@@ -1,5 +1,5 @@
 //
-//  IntroLayer.m
+//  ToolSelectLayer.mm
 //  Penguin Rescue
 //
 //  Created by Stephen Johnson on 10/15/12.
@@ -8,14 +8,14 @@
 
 
 // Import the interfaces
-#import "IntroLayer.h"
+#import "ToolSelectLayer.h"
 #import "GameLayer.h"
 
 
 #pragma mark - IntroLayer
 
-// IntroLayer implementation
-@implementation IntroLayer
+// ToolSelectLayer implementation
+@implementation ToolSelectLayer
 
 // Helper class method that creates a Scene with the HelloWorldLayer as the only child.
 +(CCScene *) scene
@@ -24,7 +24,7 @@
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	IntroLayer *layer = [IntroLayer node];
+	ToolSelectLayer *layer = [ToolSelectLayer node];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -61,6 +61,7 @@
 -(void) onEnter
 {
 	[super onEnter];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameLayer scene] ]];
+	NSLog(@"Showing ToolSelectLayer...");
+	
 }
 @end

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>Bogdan Vladu</string>
+	<key>CreatedWith</key>
+	<string>LevelHelper</string>
+	<key>Gravity</key>
+	<string>{0, 0}</string>
+	<key>JOINTS_INFO</key>
+	<array/>
+	<key>LHVersion</key>
+	<string>1.4.963</string>
+	<key>NODES_INFO</key>
+	<array>
+		<dict>
+			<key>Children</key>
+			<array>
+				<dict>
+					<key>Children</key>
+					<array>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Sand_Circle</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.pvr.gz</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{150, 141}, {25, 25}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{310, 131}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{25, 25}</string>
+								<key>Tag</key>
+								<integer>0</integer>
+								<key>TagName</key>
+								<string>DEFAULT</string>
+								<key>TextureOffset</key>
+								<string>{0, -0}</string>
+								<key>UniqueName</key>
+								<string>Sand_Circle</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Sand_Circle</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Dock</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.pvr.gz</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{108, 198}, {51.75, 15.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{149, 149}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{51.25, 15.75}</string>
+								<key>Tag</key>
+								<integer>0</integer>
+								<key>TagName</key>
+								<string>DEFAULT</string>
+								<key>TextureOffset</key>
+								<string>{0.25, -0}</string>
+								<key>UniqueName</key>
+								<string>Dock</string>
+								<key>ZOrder</key>
+								<integer>4</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Dock</string>
+						</dict>
+					</array>
+					<key>CustomClassInfo</key>
+					<dict>
+						<key>ClassName</key>
+						<string>No Class</string>
+					</dict>
+					<key>NodeType</key>
+					<string>LHBatch</string>
+					<key>ParentClass</key>
+					<string>LHLayer</string>
+					<key>ParentName</key>
+					<string>MAIN_LAYER</string>
+					<key>SHScene</key>
+					<string>Spritesheet.pshs</string>
+					<key>SheetImage</key>
+					<string>Spritesheet_Map.pvr.gz</string>
+					<key>SheetImageRelative</key>
+					<string>/Penguin Rescue/Resources/images/Spritesheet_Map.pvr.gz</string>
+					<key>Tag</key>
+					<integer>0</integer>
+					<key>TagName</key>
+					<string>DEFAULT</string>
+					<key>UniqueName</key>
+					<string>Map</string>
+					<key>ZOrder</key>
+					<integer>1</integer>
+				</dict>
+			</array>
+			<key>CustomClassInfo</key>
+			<dict>
+				<key>ClassName</key>
+				<string>No Class</string>
+			</dict>
+			<key>NodeType</key>
+			<string>LHLayer</string>
+			<key>ParentClass</key>
+			<string></string>
+			<key>ParentName</key>
+			<string></string>
+			<key>Tag</key>
+			<integer>0</integer>
+			<key>TagName</key>
+			<string>DEFAULT</string>
+			<key>UniqueName</key>
+			<string>MAIN_LAYER</string>
+			<key>ZOrder</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>PARALLAX_INFO</key>
+	<array/>
+	<key>ScenePreference</key>
+	<dict>
+		<key>2HDSuffix</key>
+		<string>-ipadhd</string>
+		<key>BackgroundColor</key>
+		<string>{{0, 0}, {0, -1.1851458045492263e+134}}</string>
+		<key>BundleIdentifier</key>
+		<string></string>
+		<key>CustomClasses</key>
+		<array/>
+		<key>Device</key>
+		<integer>2</integer>
+		<key>GameWorld</key>
+		<string>{{0, 0}, {480, 320}}</string>
+		<key>HDSuffix</key>
+		<string>-hd</string>
+		<key>Orientation</key>
+		<integer>1</integer>
+		<key>PanValue</key>
+		<string>{0, 0}</string>
+		<key>ProjectName</key>
+		<string>Penguin Rescue</string>
+		<key>ProjectPath</key>
+		<string>/Users/Steve/Code/Conquer/Penguin Rescue</string>
+		<key>SafeFrame</key>
+		<string>{480, 320}</string>
+		<key>Tags</key>
+		<array>
+			<string>DEFAULT</string>
+			<string>PENGUIN</string>
+			<string>SHARK</string>
+			<string>LAND</string>
+			<string>WATER</string>
+			<string>SHARK_REPELLENT</string>
+			<string>SHARK_ATTRACTANT</string>
+		</array>
+		<key>ZoomValue</key>
+		<real>0.0</real>
+	</dict>
+</dict>
+</plist>
