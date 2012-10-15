@@ -43,16 +43,19 @@ enum GAME_STATE {
 	
 	GAME_STATE _state;
 	double _gameStartCountdownTimer;
+	
+	NSMutableArray* _safePenguins;
+
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
 
+#define SCALING_FACTOR 0.5
 
-#define SHARKS_COUNTDOWN_TIMER_INITIAL 3
 
-
+#define SHARKS_COUNTDOWN_TIMER_INITIAL 1
 
 
 

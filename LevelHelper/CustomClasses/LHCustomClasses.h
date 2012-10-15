@@ -3,4 +3,6 @@
 //For more info please visit: www.levelhelper.org
 
 
+#import "Penguin.h"
+#import "Shark.h"
 

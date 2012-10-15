@@ -34,7 +34,32 @@
 	<key>CodePathRelative</key>
 	<string>..</string>
 	<key>CustomClasses</key>
-	<array/>
+	<array>
+		<dict>
+			<key>ClassName</key>
+			<string>Penguin</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>speed</key>
+				<real>50</real>
+			</dict>
+		</dict>
+		<dict>
+			<key>ClassName</key>
+			<string>Shark</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>activeDetectionRadius</key>
+				<real>400</real>
+				<key>activeSpeed</key>
+				<real>75</real>
+				<key>restingDetectionRadius</key>
+				<real>250</real>
+				<key>restingSpeed</key>
+				<real>50</real>
+			</dict>
+		</dict>
+	</array>
 	<key>CustomScreenSize</key>
 	<string>{480, 320}</string>
 	<key>Device</key>
