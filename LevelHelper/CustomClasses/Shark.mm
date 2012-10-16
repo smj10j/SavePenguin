@@ -8,9 +8,13 @@
 @implementation Shark
 
 
-@synthesize speed;
-@synthesize activeDetectionRadius;
+@synthesize endpointX;
+@synthesize activeSpeed;
 @synthesize restingDetectionRadius;
+@synthesize activeDetectionRadius;
+@synthesize targetAcquired;
+@synthesize endpointY;
+@synthesize restingSpeed;
 
 
 -(void) dealloc{
@@ -38,14 +42,26 @@ return NSStringFromClass([self class]);
 -(void) setPropertiesFromDictionary:(NSDictionary*)dictionary
 {
 
-	if([dictionary objectForKey:@"speed"])
-		[self setSpeed:[[dictionary objectForKey:@"speed"] floatValue]];
+	if([dictionary objectForKey:@"endpointX"])
+		[self setEndpointX:[[dictionary objectForKey:@"endpointX"] floatValue]];
+
+	if([dictionary objectForKey:@"activeSpeed"])
+		[self setActiveSpeed:[[dictionary objectForKey:@"activeSpeed"] floatValue]];
+
+	if([dictionary objectForKey:@"restingDetectionRadius"])
+		[self setRestingDetectionRadius:[[dictionary objectForKey:@"restingDetectionRadius"] floatValue]];
 
 	if([dictionary objectForKey:@"activeDetectionRadius"])
 		[self setActiveDetectionRadius:[[dictionary objectForKey:@"activeDetectionRadius"] floatValue]];
 
-	if([dictionary objectForKey:@"restingDetectionRadius"])
-		[self setRestingDetectionRadius:[[dictionary objectForKey:@"restingDetectionRadius"] floatValue]];
+	if([dictionary objectForKey:@"targetAcquired"])
+		[self setTargetAcquired:[[dictionary objectForKey:@"targetAcquired"] boolValue]];
+
+	if([dictionary objectForKey:@"endpointY"])
+		[self setEndpointY:[[dictionary objectForKey:@"endpointY"] floatValue]];
+
+	if([dictionary objectForKey:@"restingSpeed"])
+		[self setRestingSpeed:[[dictionary objectForKey:@"restingSpeed"] floatValue]];
 
 }
 

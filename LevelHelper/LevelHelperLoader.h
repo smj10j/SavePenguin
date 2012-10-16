@@ -68,7 +68,8 @@ enum LevelHelper_TAG
 	WATER 			= 4,
 	SHARK_REPELLENT 			= 5,
 	SHARK_ATTRACTANT 			= 6,
-	NUMBER_OF_TAGS 	= 7
+	BORDER 			= 7,
+	NUMBER_OF_TAGS 	= 8
 };
 
 CGSize  LHSizeFromString(NSString* val);

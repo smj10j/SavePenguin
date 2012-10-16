@@ -40,6 +40,10 @@
 			<string>Penguin</string>
 			<key>ClassRepresentation</key>
 			<dict>
+				<key>hasSpottedShark</key>
+				<false/>
+				<key>isSafe</key>
+				<false/>
 				<key>speed</key>
 				<real>50</real>
 			</dict>
@@ -53,10 +57,16 @@
 				<real>400</real>
 				<key>activeSpeed</key>
 				<real>75</real>
+				<key>endpointX</key>
+				<real>1024</real>
+				<key>endpointY</key>
+				<real>400</real>
 				<key>restingDetectionRadius</key>
 				<real>250</real>
 				<key>restingSpeed</key>
 				<real>50</real>
+				<key>targetAcquired</key>
+				<false/>
 			</dict>
 		</dict>
 	</array>
@@ -106,6 +116,7 @@
 		<string>WATER</string>
 		<string>SHARK_REPELLENT</string>
 		<string>SHARK_ATTRACTANT</string>
+		<string>BORDER</string>
 	</array>
 </dict>
 </plist>

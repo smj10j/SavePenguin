@@ -73,6 +73,23 @@
 		// enable events
 		self.isTouchEnabled = YES;
 		
+		//sharks start in N seconds
+		_gameStartCountdownTimer = SHARKS_COUNTDOWN_TIMER_INITIAL;
+		
+		_gridWidth = winSize.width/GRID_SIZE;
+		_gridHeight = winSize.height/GRID_SIZE;
+		_sharkMoveGrid = new int*[_gridWidth];
+		_featuresGrid = new int*[_gridWidth];
+		for(int i = 0; i < _gridWidth; i++) {
+			_sharkMoveGrid[i] = new int[_gridHeight];
+			_featuresGrid[i] = new int[_gridHeight];
+			for(int j = 0; j < _gridHeight; j++) {
+				_sharkMoveGrid[i][j] = 0;
+				_featuresGrid[i][j] = 0;
+			}
+		}
+		
+		// init physics
 		[self initPhysics];
 		
 		//TODO: store and load the level from prefs using JSON files for next/prev
@@ -83,15 +100,14 @@
 		//place the HUD items (pause, restart, etc.)
 		[self drawHUD];
 		
-		// init physics
+		//various handlers
 		[self setupCollisionHandling];
 		
-		//sharks start in N seconds
-		_gameStartCountdownTimer = SHARKS_COUNTDOWN_TIMER_INITIAL;
-		_safePenguins = [[NSMutableArray alloc] init];
 		
 		//start the game
 		_state = RUNNING;
+		CCDirectorIOS* director = (CCDirectorIOS*) [CCDirector sharedDirector];
+		[director setAnimationInterval:1.0/TARGET_FPS];
 		[self scheduleUpdate];
 		
 	}
@@ -122,6 +138,8 @@
 	_debugDraw->SetFlags(flags);		
 }
 
+
+
 -(void) setupCollisionHandling
 {
     [_levelLoader useLevelHelperCollisionHandling];
@@ -134,12 +152,16 @@
 
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
-	LHSprite* pauseButton = [_levelLoader createSpriteWithName:@"Pause" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:self];
-	LHSprite* restartButton = [_levelLoader createSpriteWithName:@"Restart" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:self];
-
-	
+	//TODO: add touchBegan observer to handle showing an enlarged button
+	LHSprite* pauseButton = [_levelLoader createSpriteWithName:@"Pause" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:self];	
 	pauseButton.position = ccp(pauseButton.contentSize.width/2+30,pauseButton.contentSize.height/2+20);
+	[pauseButton registerTouchBeganObserver:self selector:@selector(togglePause)];
+	
+	
+	//TODO: add touchBegan observer to handle showing an enlarged button
+	LHSprite* restartButton = [_levelLoader createSpriteWithName:@"Restart" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:self];
 	restartButton.position = ccp(winSize.width - (restartButton.contentSize.width/2+30),restartButton.contentSize.height/2+20);
+	[restartButton registerTouchBeganObserver:self selector:@selector(restart)];
 	
 }
 
@@ -163,6 +185,20 @@
 		[_levelLoader createPhysicBoundaries:_world];
 	}
 	
+	//fill in the feature grid detailing map movement info
+	NSArray* lands = [_levelLoader spritesWithTag:LAND];
+	for(LHSprite* land in lands) {
+		for(int x = land.position.x-land.contentSize.width*land.scaleX/2; x < land.position.x+land.contentSize.width*land.scaleX/2; x++) {
+			for(int y = land.position.y-land.contentSize.height*land.scaleY/2; y < land.position.y+land.contentSize.height*land.scaleY/2; y++) {
+				_featuresGrid[x/GRID_SIZE][y/GRID_SIZE] = 1000;
+			}
+		}
+		/*NSLog(@"Land from %f,%f to %f,%f",
+			land.position.x-land.contentSize.width/2, land.position.y-land.contentSize.height/2,
+			land.position.x+land.contentSize.width/2, land.position.y+land.contentSize.height/2);*/
+	}
+	
+	
 	//TODO: load if we should show the tutorial from user prefs
 	if(true) {
 		[self showTutorial];
@@ -172,7 +208,13 @@
 
 
 
-
+-(void) togglePause {
+	if(_state == PAUSE) {
+		[self resume];
+	}else {
+		[self pause];
+	}
+}
 
 -(void) pause {
 	NSLog(@"Pausing game");
@@ -219,7 +261,8 @@
 	
 	//TODO: show some happy sharks and sad penguins (if any are left!)
 	//eg. [shark startAnimationNamed:@"attackPenguin"];
-	penguin.visible = false;
+	[penguin removeSelf];
+	penguin = nil;
 	
 	//TODO: restart after animations are done
 	//[self restart];
@@ -313,47 +356,171 @@
 
 }
 
+-(void) propagateSharkGridCostToX:(int)x y:(int)y {
+	
+	if(x < 0 || x >= _gridWidth) {
+		return;
+	}
+	if(y < 0 || y >= _gridHeight) {
+		return;
+	}
+	
+	double w = _sharkMoveGrid[x][y];
+	double wN = y+1 >= _gridHeight ? -10000 : _sharkMoveGrid[x][y+1];
+	double wS = y-1 < 0 ? -10000 : _sharkMoveGrid[x][y-1];
+	double wE = x+1 >= _gridWidth ? -10000 : _sharkMoveGrid[x+1][y];
+	double wW = x-1 < 0 ? -10000 : _sharkMoveGrid[x-1][y];
+
+	if(w != 0 && w != 1) {
+		//NSLog(@"%d,%d = %f", x, y, w);
+	}
+	
+	bool changedN = false;
+	bool changedS = false;
+	bool changedE = false;
+	bool changedW = false;
+	
+
+	if(wN == 0 || wN > w+1) {
+		_sharkMoveGrid[x][y+1] = w+1 + _featuresGrid[x][y+1];
+		changedN = true;
+	}
+	if(wS == 0 || wS > w+1) {
+		_sharkMoveGrid[x][y-1] = w+1 + _featuresGrid[x][y-1];
+		changedS = true;
+	}
+	if(wE == 0 || wE > w+1) {
+		_sharkMoveGrid[x+1][y] = w+1 + _featuresGrid[x+1][y];
+		changedE = true;
+	}
+	if(wW == 0 || wW > w+1) {
+		_sharkMoveGrid[x-1][y] = w+1 + _featuresGrid[x-1][y];
+		changedW = true;
+	}
+	
+	if(changedN) {
+		[self propagateSharkGridCostToX:x y:y+1];
+	}
+	if(changedS) {
+		[self propagateSharkGridCostToX:x y:y-1];
+	}
+	if(changedE) {
+		[self propagateSharkGridCostToX:x+1 y:y];
+	}
+	if(changedW) {
+		[self propagateSharkGridCostToX:x-1 y:y];
+	}
+	
+}
+
 
 -(void) moveSharks:(ccTime)dt {
 	//NSLog(@"Moving %d sharks...", [sharks count]);
-
-	CGSize winSize = [[CCDirector sharedDirector] winSize];
 	
 	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
-	NSArray* lands = [_levelLoader spritesWithTag:LAND];
 	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
 
-	bool targetAcquired = false;
+	bool haveCreatedGrid = false;
+	
+	for(int x = 0; x < _gridWidth; x++) {
+		for(int y = 0; y < _gridHeight; y++) {
+			_sharkMoveGrid[x][y] = _featuresGrid[x][y];
+		}
+	}
 
 	for(LHSprite* shark in sharks) {
 		
-		double minDistance = 1000000;
-		CGPoint bestOptionPos = ccp(shark.position.x+1, shark.position.y);
+		double minDistance = 10000000;
+		int gridX = (int)shark.position.x/GRID_SIZE;
+		int gridY = (int)shark.position.y/GRID_SIZE;
+		
+		if(gridX >= _gridWidth || gridX < 0 || gridY >= _gridHeight || gridY < 0) {
+			[shark removeSelf];
+			shark = nil;
+			continue;
+		}
+		
+		//set our endpoint path data
+		//NSLog(@"%f, %f - %d, %d", ((Shark*)shark.userInfo).endpointX/GRID_SIZE, ((Shark*)shark.userInfo).endpointY/GRID_SIZE, _gridWidth, _gridHeight);
+		CGPoint endpoint = ccp(min(((Shark*)shark.userInfo).endpointX/GRID_SIZE, _gridWidth-1), min(((Shark*)shark.userInfo).endpointY/GRID_SIZE,_gridHeight-1));
+		
+		if(ccpDistance(shark.position, ccp(((Shark*)shark.userInfo).endpointX, ((Shark*)shark.userInfo).endpointY)) > 50) {
+			[self propagateSharkGridCostToX:endpoint.x y:endpoint.y];
+		}
+
+		
+		CGPoint bestOptionPos = ccp(shark.position.x+1,shark.position.y);
+		((Shark*)shark.userInfo).targetAcquired = false;
 		
 		for(LHSprite* penguin in penguins) {
 			if([self isPenguinSafe:penguin]) {
 				continue;
 			}
-			
+
 			if(penguin.body->IsAwake()) {
 				//we smell blood...
 				minDistance = fmin(minDistance, 500/*((Shark*)shark).activeDetectionRadius * SCALING_FACTOR*/);
 			}else {
 				minDistance = fmin(minDistance, 300/*((Shark*)shark).restingDetectionRadius * SCALING_FACTOR*/);
-			}
+			}		
 			
 			double dist = ccpDistance(shark.position, penguin.position);
 			if(dist < minDistance) {
 				minDistance = dist;
-				bestOptionPos = penguin.position;
-				targetAcquired = true;
+				((Shark*)shark.userInfo).targetAcquired = true;
 			}
 		}
 		
+		if(((Shark*)shark.userInfo).targetAcquired && !haveCreatedGrid) {
+		
+			//NSLog(@"target acquired");
+
+			//update the best route using penguin data
+		
+			for(LHSprite* penguin in penguins) {
+				if([self isPenguinSafe:penguin]) {
+					continue;
+				}
+			
+				_sharkMoveGrid[(int)penguin.position.x/GRID_SIZE][(int)penguin.position.y/GRID_SIZE] = 0;
+				[self propagateSharkGridCostToX:(int)penguin.position.x/GRID_SIZE
+												y:(int)penguin.position.y/GRID_SIZE];
+			}
+			
+			haveCreatedGrid = true;
+
+		}
+		
+		
+		
+		//use the best route algorithm
+		double wN = _sharkMoveGrid[gridX][gridY+1 >= _gridHeight ? gridY : gridY+1];
+		double wS = _sharkMoveGrid[gridX][gridY-1 <= 0 ? gridY : gridY-1];
+		double wE = _sharkMoveGrid[gridX+1 >= _gridWidth ? gridX : gridX+1][gridY];
+		double wW = _sharkMoveGrid[gridX-1 <= 0 ? gridX : gridX-1][gridY];
+	
+		if(wW == wE == wS == wN) {
+		
+			//TODO: some kind of random determination?
+		
+		}else {
+			bestOptionPos = ccp(
+				shark.position.x+(
+					1/(wE == 0 ? 10 : wE) - 1/(wW == 0 ? 10 : wW)),
+				shark.position.y+(
+					1/(wN == 0 ? 10 : wN) - 1/(wS == 0 ? 10 : wS))
+				);
+			/*bestOptionPos = ccp(shark.position.x + (fabs(wE) > fabs(wW) ? wE : wW),
+								shark.position.y + (fabs(wN) > fabs(wS) ? wN : wS)
+							);*/
+			//NSLog(@"best: %f,%f", bestOptionPos.x,bestOptionPos.y);
+		}
+				
 		double dx = bestOptionPos.x - shark.position.x;
 		double dy = bestOptionPos.y - shark.position.y;
-		double max = fmax(dx, dy);
-				
+		double max = fmax(fabs(dx), fabs(dy));
+
+								
 		if(max == 0) {
 			//no best option?
 			NSLog(@"No best option shark max(dx,dy) was 0");
@@ -363,15 +530,15 @@
 		double normalizedX = dx/max;
 		double normalizedY = dy/max;
 	
-		if(targetAcquired) {
+		if(((Shark*)shark.userInfo).targetAcquired) {
 			[shark body]->SetLinearVelocity(b2Vec2(
-				dt * 100/*((Shark*)shark).restingSpeed*SCALING_FACTOR*/ * normalizedX,
-				dt * 100/*((Shark*)shark).restingSpeed*SCALING_FACTOR*/ * normalizedY
+				dt * 50/*((Shark*)shark).restingSpeed*SCALING_FACTOR*/ * normalizedX,
+				dt * 50/*((Shark*)shark).restingSpeed*SCALING_FACTOR*/ * normalizedY
 			));
 		}else {
 			[shark body]->SetLinearVelocity(b2Vec2(
-				dt * 50/*((Shark*)shark).activeSpeed*SCALING_FACTOR*/ * normalizedX,
-				dt * 50/*((Shark*)shark).activeSpeed*SCALING_FACTOR*/ * normalizedY
+				dt * 25/*((Shark*)shark).activeSpeed*SCALING_FACTOR*/ * normalizedX,
+				dt * 25/*((Shark*)shark).activeSpeed*SCALING_FACTOR*/ * normalizedY
 			));		
 		}
 	}
@@ -386,6 +553,10 @@
 	NSArray* lands = [_levelLoader spritesWithTag:LAND];
 
 	for(LHSprite* penguin in penguins) {
+		
+		//TODO: actually add in shark spotting logic
+		
+		((Penguin*)penguin.userInfo).hasSpottedShark = true;
 		
 		double minDistance = 1000000;
 		CGPoint bestOptionPos = penguin.position;
@@ -407,7 +578,7 @@
 		}else {
 			double dx = bestOptionPos.x - penguin.position.x;
 			double dy = bestOptionPos.y - penguin.position.y;
-			double max = fmax(dx, dy);
+			double max = fmax(fabs(dx), fabs(dy));
 			
 			if(max == 0) {
 				//no best option?
@@ -419,8 +590,8 @@
 			double normalizedY = dy/max;
 		
 			[penguin body]->SetLinearVelocity(b2Vec2(
-				dt * 50/*((Penguin*)penguin).speed*SCALING_FACTOR*/ * normalizedX,
-				dt * 50/*((Penguin*)penguin).speed*SCALING_FACTOR*/ * normalizedY
+				dt * 40/*((Penguin*)penguin).speed*SCALING_FACTOR*/ * normalizedX,
+				dt * 40/*((Penguin*)penguin).speed*SCALING_FACTOR*/ * normalizedY
 			));
 		}
 	}
@@ -459,21 +630,18 @@
     {
 		NSLog(@"Penguin %@ has collided with some land!", penguin.uniqueName);
 		if(![self isPenguinSafe:penguin]) {
-			[_safePenguins addObject:penguin.uniqueName];
+			((Penguin*)penguin.userInfo).isSafe = true;
 			
 			//TODO: replace with a happy animation
 			[penguin removeSelf];
+			penguin = nil;
 		}
     }
 }
 
 -(bool) isPenguinSafe:(LHSprite*)penguin {
-	for(NSString* name in _safePenguins) {
-		if([name isEqualToString:penguin.uniqueName]) {
-			return true;
-		}
-	}
-	return false;
+	Penguin* info = (Penguin*)penguin.userInfo;
+	return info.isSafe;
 }
 
 
@@ -502,6 +670,18 @@
 
 
 
+-(void) drawDebugMovementGrid {
+	for(int x = 0; x < _gridWidth; x++) {
+		for(int y = 0; y < _gridHeight; y++) {
+
+			// draw big point in the center
+			ccPointSize(50);
+			ccDrawColor4B(_sharkMoveGrid[x][y],0,0,50);
+			ccDrawPoint( ccp(x*GRID_SIZE, y*GRID_SIZE) );
+
+		}
+	}
+}
 
 
 
@@ -519,6 +699,10 @@
 	kmGLPushMatrix();
 	
 	_world->DrawDebugData();
+	
+	
+	//[self drawDebugMovementGrid];
+	
 	
 	kmGLPopMatrix();
 }

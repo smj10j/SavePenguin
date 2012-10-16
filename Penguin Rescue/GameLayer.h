@@ -6,9 +6,7 @@
 //  Copyright Conquer LLC 2012. All rights reserved.
 //
 
-
-#import <GameKit/GameKit.h>
-
+#import <Foundation/Foundation.h>
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
 #import "Box2D.h"
@@ -44,16 +42,19 @@ enum GAME_STATE {
 	GAME_STATE _state;
 	double _gameStartCountdownTimer;
 	
-	NSMutableArray* _safePenguins;
-
+	int** _sharkMoveGrid;
+	int** _featuresGrid;
+	int _gridWidth;
+	int _gridHeight;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
+#define SCALING_FACTOR (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5 : 1.0)
+#define TARGET_FPS 60
 
-#define SCALING_FACTOR 0.5
-
+#define GRID_SIZE 25
 
 #define SHARKS_COUNTDOWN_TIMER_INITIAL 1
 

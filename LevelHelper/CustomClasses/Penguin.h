@@ -7,7 +7,9 @@
 {
 
 
+	BOOL hasSpottedShark;
 	float speed;
+	BOOL isSafe;
 
 
 #if __has_feature(objc_arc) && __clang_major__ >= 3
@@ -18,7 +20,9 @@
 #endif // __has_feature(objc_arc)
 
 }
+@property BOOL hasSpottedShark;
 @property float speed;
+@property BOOL isSafe;
 
 +(Penguin*) customClassInstance;
 

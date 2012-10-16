@@ -8,7 +8,9 @@
 @implementation Penguin
 
 
+@synthesize hasSpottedShark;
 @synthesize speed;
+@synthesize isSafe;
 
 
 -(void) dealloc{
@@ -36,8 +38,14 @@ return NSStringFromClass([self class]);
 -(void) setPropertiesFromDictionary:(NSDictionary*)dictionary
 {
 
+	if([dictionary objectForKey:@"hasSpottedShark"])
+		[self setHasSpottedShark:[[dictionary objectForKey:@"hasSpottedShark"] boolValue]];
+
 	if([dictionary objectForKey:@"speed"])
 		[self setSpeed:[[dictionary objectForKey:@"speed"] floatValue]];
+
+	if([dictionary objectForKey:@"isSafe"])
+		[self setIsSafe:[[dictionary objectForKey:@"isSafe"] boolValue]];
 
 }
 
