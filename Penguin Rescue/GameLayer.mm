@@ -667,6 +667,10 @@
 				vE = -(wE-wW)/wE;
 			}
 			
+			//TODO: fix the situation where the shark can get "stuck" in a position
+			//add some kind of random jitter to bump him out of it
+			//do the same for the penguin
+			
 			if(absWN == absMin) {
 				vN = (wS-wN)/wS;
 			}else if(absWS == absMin) {

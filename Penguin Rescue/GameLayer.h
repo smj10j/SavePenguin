@@ -54,16 +54,16 @@ enum GAME_STATE {
 +(CCScene *) scene;
 
 #define DEBUG_MODE false
-#define DEBUG_MODE_PENGUIN true
-#define DEBUG_MODE_SHARK true
+#define DEBUG_MODE_PENGUIN false
+#define DEBUG_MODE_SHARK false
 
 #define SCALING_FACTOR (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5 : 1.0)
 #define TARGET_FPS 60
 
 #define INITIAL_GRID_WEIGHT 10
 #define HARD_BORDER_WEIGHT 100
-#define GRID_SIZE 25
-#define MAP_FEATURE_SOFTENING_PASSES 2
+#define GRID_SIZE ((int)(32*SCALING_FACTOR))
+#define MAP_FEATURE_SOFTENING_PASSES 0		//can greatly increase computation time!
 
 #define SHARKS_COUNTDOWN_TIMER_INITIAL 1
 

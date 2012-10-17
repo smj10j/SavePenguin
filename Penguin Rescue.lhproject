@@ -73,9 +73,9 @@
 		</dict>
 	</array>
 	<key>CustomScreenSize</key>
-	<string>{1024, 768}</string>
+	<string>{480, 320}</string>
 	<key>Device</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>Engine</key>
 	<integer>0</integer>
 	<key>HDSuffix</key>
