@@ -9,6 +9,7 @@
 
 	BOOL hasSpottedShark;
 	float speed;
+	float detectionRadius;
 	BOOL isSafe;
 
 
@@ -22,6 +23,7 @@
 }
 @property BOOL hasSpottedShark;
 @property float speed;
+@property float detectionRadius;
 @property BOOL isSafe;
 
 +(Penguin*) customClassInstance;

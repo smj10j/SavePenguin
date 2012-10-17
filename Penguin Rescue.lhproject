@@ -40,12 +40,14 @@
 			<string>Penguin</string>
 			<key>ClassRepresentation</key>
 			<dict>
+				<key>detectionRadius</key>
+				<real>300</real>
 				<key>hasSpottedShark</key>
 				<false/>
 				<key>isSafe</key>
 				<false/>
 				<key>speed</key>
-				<real>50</real>
+				<real>30</real>
 			</dict>
 		</dict>
 		<dict>
@@ -54,26 +56,26 @@
 			<key>ClassRepresentation</key>
 			<dict>
 				<key>activeDetectionRadius</key>
-				<real>400</real>
+				<real>600</real>
 				<key>activeSpeed</key>
-				<real>75</real>
+				<real>60</real>
 				<key>endpointX</key>
 				<real>1024</real>
 				<key>endpointY</key>
 				<real>400</real>
 				<key>restingDetectionRadius</key>
-				<real>250</real>
+				<real>400</real>
 				<key>restingSpeed</key>
-				<real>50</real>
+				<real>40</real>
 				<key>targetAcquired</key>
 				<false/>
 			</dict>
 		</dict>
 	</array>
 	<key>CustomScreenSize</key>
-	<string>{480, 320}</string>
+	<string>{1024, 768}</string>
 	<key>Device</key>
-	<integer>2</integer>
+	<integer>1</integer>
 	<key>Engine</key>
 	<integer>0</integer>
 	<key>HDSuffix</key>

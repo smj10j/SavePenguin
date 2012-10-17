@@ -10,6 +10,7 @@
 
 @synthesize hasSpottedShark;
 @synthesize speed;
+@synthesize detectionRadius;
 @synthesize isSafe;
 
 
@@ -43,6 +44,9 @@ return NSStringFromClass([self class]);
 
 	if([dictionary objectForKey:@"speed"])
 		[self setSpeed:[[dictionary objectForKey:@"speed"] floatValue]];
+
+	if([dictionary objectForKey:@"detectionRadius"])
+		[self setDetectionRadius:[[dictionary objectForKey:@"detectionRadius"] floatValue]];
 
 	if([dictionary objectForKey:@"isSafe"])
 		[self setIsSafe:[[dictionary objectForKey:@"isSafe"] boolValue]];

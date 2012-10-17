@@ -51,10 +51,12 @@ enum GAME_STATE {
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
-#define SCALING_FACTOR (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5 : 1.0)
-#define TARGET_FPS 60
+#define DEBUG_MODE false
 
-#define GRID_SIZE 25
+#define SCALING_FACTOR (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5 : 1.0)
+#define TARGET_FPS 100.0
+
+#define GRID_SIZE 15
 
 #define SHARKS_COUNTDOWN_TIMER_INITIAL 1
 
