@@ -175,9 +175,6 @@
 
 -(void) loadLevel:(NSString*)levelName inLevelPack:(NSString*)levelPack {
 		
-		
-	//TODO: figure out why the ipad is putting distance between the land textures!
-		
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
 	//create a LevelHelperLoader object that has the data of the specified level
@@ -762,7 +759,7 @@
 			double wW = _penguinMoveGrid[gridX-1 < 0 ? gridX : gridX-1][gridY];
 		
 		
-			NSLog(@"w=%f e=%f n=%f s=%f", wW, wE, wN, wS);
+			//NSLog(@"w=%f e=%f n=%f s=%f", wW, wE, wN, wS);
 		
 			if(wW == wE && wE == wN && wN == wS) {
 			

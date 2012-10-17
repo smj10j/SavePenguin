@@ -263,43 +263,10 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>344b0bb21b16edf90de622cd</key>
-		<dict>
-			<key>FileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.cpp.objcpp</string>
-			<key>path</key>
-			<string>GameSharkNormal.mm</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>362cb113adce1650c51d3621</key>
-		<dict>
-			<key>FileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>GameSharkNormal.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>3d7b21f8d5b5d3942c7101ad</key>
 		<dict>
 			<key>fileRef</key>
 			<string>82c7663fe65c8cfc7d3b777c</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>3f828baddda525ea63ab3ac8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>344b0bb21b16edf90de622cd</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -426,19 +393,6 @@
 			<string>sourcecode.c.h</string>
 			<key>path</key>
 			<string>LHBezier.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>697a62dfec92fa1e7939235b</key>
-		<dict>
-			<key>FileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.cpp.objcpp</string>
-			<key>path</key>
-			<string>GamePenguinNormal.mm</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -7895,6 +7849,8 @@
 				</array>
 				<key>INFOPLIST_FILE</key>
 				<string>Penguin Rescue/Resources/Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>4.3</string>
 				<key>ONLY_ACTIVE_ARCH</key>
 				<string>YES</string>
 				<key>OTHER_LDFLAGS</key>
@@ -7940,6 +7896,8 @@
 				</array>
 				<key>INFOPLIST_FILE</key>
 				<string>Penguin Rescue/Resources/Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>4.3</string>
 				<key>OTHER_LDFLAGS</key>
 				<array>
 					<string>-lz</string>
@@ -8254,13 +8212,6 @@ buildNumber=$(($buildNumber + 1))
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>be9321333563fbf7a6d3e3ca</key>
-		<dict>
-			<key>fileRef</key>
-			<string>697a62dfec92fa1e7939235b</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>c0814f787261c538e5479240</key>
 		<dict>
 			<key>FileEncoding</key>
@@ -8410,19 +8361,6 @@ buildNumber=$(($buildNumber + 1))
 			<string>sourcecode.cpp.objcpp</string>
 			<key>path</key>
 			<string>LevelHelperLoader.mm</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>dd72a4c635738b266f810a52</key>
-		<dict>
-			<key>FileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>GamePenguinNormal.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>

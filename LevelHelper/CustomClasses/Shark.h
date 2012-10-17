@@ -11,8 +11,8 @@
 	float activeSpeed;
 	float restingDetectionRadius;
 	float activeDetectionRadius;
-	BOOL targetAcquired;
 	float endpointY;
+	BOOL targetAcquired;
 	float restingSpeed;
 
 
@@ -28,8 +28,8 @@
 @property float activeSpeed;
 @property float restingDetectionRadius;
 @property float activeDetectionRadius;
-@property BOOL targetAcquired;
 @property float endpointY;
+@property BOOL targetAcquired;
 @property float restingSpeed;
 
 +(Shark*) customClassInstance;

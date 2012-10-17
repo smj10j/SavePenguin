@@ -199,16 +199,21 @@
     {   
         if(device != 1 && device != 3)//if ipad only then we dont need to apply transformations
         {
+		
+			//assume we have normal ipad - use the HD image
+			NSString* suffix = hdSuffix;
             if(CC_CONTENT_SCALE_FACTOR() == 2)
             {
-                //we have ipad retina
-                computedFile = [NSString stringWithFormat:@"%@%@.%@", [file stringByDeletingPathExtension], hd2xSuffix, [file pathExtension]];
-                
+                //actually, we have ipad retina
+				suffix = hd2xSuffix;                
             }
-            else {
-                //we have normal ipad - lets use the HD image
-                computedFile = [NSString stringWithFormat:@"%@%@.%@", [file stringByDeletingPathExtension], hdSuffix, [file pathExtension]];
-            }
+		
+			NSArray* pieces = [file componentsSeparatedByString:@"."];
+			computedFile = [NSString stringWithFormat:@"%@%@.%@",
+					[pieces objectAtIndex:0],
+					suffix,
+					[[pieces subarrayWithRange:NSMakeRange(1,pieces.count-1)] componentsJoinedByString:@"."]
+			];
         }
 //computedFile = [computedFile lastPathComponent];
         
@@ -218,7 +223,8 @@
 #else
         NSString *fullpath = [CCFileUtils fullPathFromRelativePath:[NSString stringWithFormat:@"%@%@",activeFolder, computedFile]];
 #endif
-                        
+        
+						  
         if([[NSFileManager defaultManager] fileExistsAtPath:fullpath]){
             return fullpath;//[NSString stringWithFormat:@"%@%@",activeFolder, fullpath];
         }

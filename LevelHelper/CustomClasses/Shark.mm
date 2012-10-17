@@ -12,8 +12,8 @@
 @synthesize activeSpeed;
 @synthesize restingDetectionRadius;
 @synthesize activeDetectionRadius;
-@synthesize targetAcquired;
 @synthesize endpointY;
+@synthesize targetAcquired;
 @synthesize restingSpeed;
 
 
@@ -54,11 +54,11 @@ return NSStringFromClass([self class]);
 	if([dictionary objectForKey:@"activeDetectionRadius"])
 		[self setActiveDetectionRadius:[[dictionary objectForKey:@"activeDetectionRadius"] floatValue]];
 
-	if([dictionary objectForKey:@"targetAcquired"])
-		[self setTargetAcquired:[[dictionary objectForKey:@"targetAcquired"] boolValue]];
-
 	if([dictionary objectForKey:@"endpointY"])
 		[self setEndpointY:[[dictionary objectForKey:@"endpointY"] floatValue]];
+
+	if([dictionary objectForKey:@"targetAcquired"])
+		[self setTargetAcquired:[[dictionary objectForKey:@"targetAcquired"] boolValue]];
 
 	if([dictionary objectForKey:@"restingSpeed"])
 		[self setRestingSpeed:[[dictionary objectForKey:@"restingSpeed"] floatValue]];
