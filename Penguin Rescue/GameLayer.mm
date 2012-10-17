@@ -175,6 +175,9 @@
 
 -(void) loadLevel:(NSString*)levelName inLevelPack:(NSString*)levelPack {
 		
+		
+	//TODO: figure out why the ipad is putting distance between the land textures!
+		
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
 	//create a LevelHelperLoader object that has the data of the specified level
@@ -714,7 +717,7 @@
 		shark.body->SetLinearVelocity(b2Vec2(weightedVelX,weightedVelY));
 		
 		//rotate shark
-		double radians = atan2(actualTargetPosition.x-shark.position.x, actualTargetPosition.y-shark.position.y); //this grabs the radians for us
+		double radians = atan2(weightedVelX, weightedVelY); //this grabs the radians for us
 		double degrees = CC_RADIANS_TO_DEGREES(radians) - 90; //90 is because the sprit is facing right
 		[shark transformRotation:degrees];
 	}
@@ -726,7 +729,6 @@
 	//CGSize winSize = [[CCDirector sharedDirector] winSize];
 
 	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
-	NSArray* lands = [_levelLoader spritesWithTag:LAND];
 	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
 
 	for(LHSprite* penguin in penguins) {
