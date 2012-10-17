@@ -225,6 +225,45 @@
 
 
 
+	
+	//now blend the static feature maps
+	for(int i = 0; i < MAP_FEATURE_SOFTENING_PASSES; i++) {
+		for(int x = 0; x < _gridWidth; x++) {
+			for(int y = 0; y < _gridHeight; y++) {
+				
+				double w = _penguinMapfeaturesGrid[x][y];
+				if(w != HARD_BORDER_WEIGHT) {
+					double wN = y+1 >= _gridHeight ? w : _penguinMapfeaturesGrid[x][y+1];
+					double wS = y-1 < 0 ? w : _penguinMapfeaturesGrid[x][y-1];
+					double wE = x+1 >= _gridWidth ? w : _penguinMapfeaturesGrid[x+1][y];
+					double wW = x-1 < 0 ? w : _penguinMapfeaturesGrid[x-1][y];
+					double wNE = y+1 >= _gridHeight || x+1 >= _gridWidth ? w : _penguinMapfeaturesGrid[x+1][y+1];
+					double wNW = y+1 >= _gridHeight || x-1 < 0 ? w : _penguinMapfeaturesGrid[x-1][y+1];
+					double wSE = y-1 < 0 || x+1 >= _gridWidth ? w : _penguinMapfeaturesGrid[x+1][y-1];
+					double wSW = y-1 < 0 || x-1 < 0 ? w : _penguinMapfeaturesGrid[x-1][y-1];
+					
+					double newW = (w*12 + wN + wS + wE + wW + wNE + wNW + wSE + wSW)/20.0;
+					_penguinMapfeaturesGrid[x][y] = newW;
+				}
+				
+				w = _sharkMapfeaturesGrid[x][y];
+				if(w != HARD_BORDER_WEIGHT) {
+					double wN = y+1 >= _gridHeight ? w : _sharkMapfeaturesGrid[x][y+1];
+					double wS = y-1 < 0 ? w : _sharkMapfeaturesGrid[x][y-1];
+					double wE = x+1 >= _gridWidth ? w : _sharkMapfeaturesGrid[x+1][y];
+					double wW = x-1 < 0 ? w : _sharkMapfeaturesGrid[x-1][y];
+					double wNE = y+1 >= _gridHeight || x+1 >= _gridWidth ? w : _sharkMapfeaturesGrid[x+1][y+1];
+					double wNW = y+1 >= _gridHeight || x-1 < 0 ? w : _sharkMapfeaturesGrid[x-1][y+1];
+					double wSE = y-1 < 0 || x+1 >= _gridWidth ? w : _sharkMapfeaturesGrid[x+1][y-1];
+					double wSW = y-1 < 0 || x-1 < 0 ? w : _sharkMapfeaturesGrid[x-1][y-1];
+					
+					double newW = (w*12 + wN + wS + wE + wW + wNE + wNW + wSE + wSW)/20.0;
+					_sharkMapfeaturesGrid[x][y] = newW;
+				}
+			}
+		}
+	}
+
 	//create a static map detailing where penguins can move (ignoring shark data)
 	for(int x = 0; x < _gridWidth; x++) {
 		for(int y = 0; y < _gridHeight; y++) {
@@ -234,8 +273,8 @@
 	for(LHSprite* land in lands) {
 		_penguinMoveGrid[(int)land.position.x/GRID_SIZE][(int)land.position.y/GRID_SIZE] = 0;
 		[self propagatePenguinGridCostToX:land.position.x/GRID_SIZE y:land.position.y/GRID_SIZE];
-	
-	}
+	}		
+
 	
 	
 	//TODO: load if we should show the tutorial from user prefs
@@ -424,19 +463,19 @@
 	bool changedW = false;
 	
 
-	if(y < _gridHeight-1 && _sharkMapfeaturesGrid[x][y+1] < HARD_BORDER_WEIGHT && (wN == INITIAL_GRID_WEIGHT || wN > w+1)) {
+	if(y < _gridHeight-1 && _sharkMapfeaturesGrid[x][y+1] < HARD_BORDER_WEIGHT && (wN == _sharkMapfeaturesGrid[x][y+1] || wN > w+1)) {
 		_sharkMoveGrid[x][y+1] = w+1 + (_sharkMapfeaturesGrid[x][y+1] == INITIAL_GRID_WEIGHT ? 0 : _sharkMapfeaturesGrid[x][y+1]);
 		changedN = true;
 	}
-	if(y > 0 && _sharkMapfeaturesGrid[x][y-1] < HARD_BORDER_WEIGHT && (wS == INITIAL_GRID_WEIGHT || wS > w+1)) {
+	if(y > 0 && _sharkMapfeaturesGrid[x][y-1] < HARD_BORDER_WEIGHT && (wS == _sharkMapfeaturesGrid[x][y-1] || wS > w+1)) {
 		_sharkMoveGrid[x][y-1] = w+1  + (_sharkMapfeaturesGrid[x][y-1] == INITIAL_GRID_WEIGHT ? 0 : _sharkMapfeaturesGrid[x][y-1]);
 		changedS = true;
 	}
-	if(x < _gridWidth-1 && _sharkMapfeaturesGrid[x+1][y] < HARD_BORDER_WEIGHT && (wE == INITIAL_GRID_WEIGHT || wE > w+1)) {
+	if(x < _gridWidth-1 && _sharkMapfeaturesGrid[x+1][y] < HARD_BORDER_WEIGHT && (wE == _sharkMapfeaturesGrid[x+1][y] || wE > w+1)) {
 		_sharkMoveGrid[x+1][y] = w+1 + (_sharkMapfeaturesGrid[x+1][y] == INITIAL_GRID_WEIGHT ? 0 : _sharkMapfeaturesGrid[x+1][y]);
 		changedE = true;
 	}
-	if(x > 0 && _sharkMapfeaturesGrid[x-1][y] < HARD_BORDER_WEIGHT && (wW == INITIAL_GRID_WEIGHT || wW > w+1)) {
+	if(x > 0 && _sharkMapfeaturesGrid[x-1][y] < HARD_BORDER_WEIGHT && (wW == _sharkMapfeaturesGrid[x-1][y] || wW > w+1)) {
 		_sharkMoveGrid[x-1][y] = w+1  + (_sharkMapfeaturesGrid[x-1][y] == INITIAL_GRID_WEIGHT ? 0 : _sharkMapfeaturesGrid[x-1][y]);
 		changedW = true;
 	}
@@ -481,19 +520,19 @@
 	bool changedW = false;
 	
 
-	if(y < _gridHeight-1 && _penguinMapfeaturesGrid[x][y+1] < HARD_BORDER_WEIGHT && (wN == INITIAL_GRID_WEIGHT || wN > w+1)) {
+	if(y < _gridHeight-1 && _penguinMapfeaturesGrid[x][y+1] < HARD_BORDER_WEIGHT && (wN == _penguinMapfeaturesGrid[x][y+1] || wN > w+1)) {
 		_penguinMoveGrid[x][y+1] = w+1 + (_penguinMapfeaturesGrid[x][y+1] == INITIAL_GRID_WEIGHT ? 0 : _penguinMapfeaturesGrid[x][y+1]);
 		changedN = true;
 	}
-	if(y > 0 && _penguinMapfeaturesGrid[x][y-1] < HARD_BORDER_WEIGHT && (wS == INITIAL_GRID_WEIGHT || wS > w+1)) {
+	if(y > 0 && _penguinMapfeaturesGrid[x][y-1] < HARD_BORDER_WEIGHT && (wS == _penguinMapfeaturesGrid[x][y-1] || wS > w+1)) {
 		_penguinMoveGrid[x][y-1] = w+1  + (_penguinMapfeaturesGrid[x][y-1] == INITIAL_GRID_WEIGHT ? 0 : _penguinMapfeaturesGrid[x][y-1]);
 		changedS = true;
 	}
-	if(x < _gridWidth-1 && _penguinMapfeaturesGrid[x+1][y] < HARD_BORDER_WEIGHT && (wE == INITIAL_GRID_WEIGHT || wE > w+1)) {
+	if(x < _gridWidth-1 && _penguinMapfeaturesGrid[x+1][y] < HARD_BORDER_WEIGHT && (wE == _penguinMapfeaturesGrid[x+1][y] || wE > w+1)) {
 		_penguinMoveGrid[x+1][y] = w+1 + (_penguinMapfeaturesGrid[x+1][y] == INITIAL_GRID_WEIGHT ? 0 : _penguinMapfeaturesGrid[x+1][y]);
 		changedE = true;
 	}
-	if(x > 0 && _penguinMapfeaturesGrid[x-1][y] < HARD_BORDER_WEIGHT && (wW == INITIAL_GRID_WEIGHT || wW > w+1)) {
+	if(x > 0 && _penguinMapfeaturesGrid[x-1][y] < HARD_BORDER_WEIGHT && (wW == _penguinMapfeaturesGrid[x-1][y] || wW > w+1)) {
 		_penguinMoveGrid[x-1][y] = w+1  + (_penguinMapfeaturesGrid[x-1][y] == INITIAL_GRID_WEIGHT ? 0 : _penguinMapfeaturesGrid[x-1][y]);
 		changedW = true;
 	}
@@ -614,11 +653,31 @@
 			bestOptionPos = ccp(shark.position.x+((arc4random()%2)-1),shark.position.y+((arc4random()%2)-1));
 		
 		}else {
-			double max = fmax(fmax(fmax(wE, wW), wN), wS);
+			double vE = 0;
+			double vN = 0;
+			
+			double absWE = fabs(wE);
+			double absWW = fabs(wW);
+			double absWS = fabs(wS);
+			double absWN = fabs(wN);
+			double absMin = fmin(fmin(fmin(absWE,absWW),absWN),absWS);
+			if(absWE == absMin) {
+				vE = (wW-wE)/wW;
+			}else if(absWW == absMin) {
+				vE = -(wE-wW)/wE;
+			}
+			
+			if(absWN == absMin) {
+				vN = (wS-wN)/wS;
+			}else if(absWS == absMin) {
+				vN = -(wN-wS)/wN;
+			}
+						
 			bestOptionPos = ccp(
-				shark.position.x+(wW/max - wE/max),
-				shark.position.y+(wS/max - wN/max)
-				);
+				shark.position.x+vE,
+				shark.position.y+vN
+			);
+			
 			/*bestOptionPos = ccp(shark.position.x + (fabs(wE) > fabs(wW) ? wE : wW),
 								shark.position.y + (fabs(wN) > fabs(wS) ? wN : wS)
 							);*/
@@ -697,7 +756,7 @@
 			double wW = _penguinMoveGrid[gridX-1 < 0 ? gridX : gridX-1][gridY];
 		
 		
-			//NSLog(@"w=%f e=%f n=%f s=%f", wW, wE, wN, wS);
+			NSLog(@"w=%f e=%f n=%f s=%f", wW, wE, wN, wS);
 		
 			if(wW == wE && wE == wN && wN == wS) {
 			
@@ -705,11 +764,31 @@
 				bestOptionPos = ccp(penguin.position.x+((arc4random()%2)-1),penguin.position.y+((arc4random()%2)-1));
 			
 			}else {
-				double max = fmax(fmax(fmax(wE, wW), wN), wS);
+				
+				double vE = 0;
+				double vN = 0;
+				
+				double absWE = fabs(wE);
+				double absWW = fabs(wW);
+				double absWS = fabs(wS);
+				double absWN = fabs(wN);
+				double absMin = fmin(fmin(fmin(absWE,absWW),absWN),absWS);
+				if(absWE == absMin) {
+					vE = (wW-wE)/wW;
+				}else if(absWW == absMin) {
+					vE = -(wE-wW)/wE;
+				}
+				
+				if(absWN == absMin) {
+					vN = (wS-wN)/wS;
+				}else if(absWS == absMin) {
+					vN = -(wN-wS)/wN;
+				}
+							
 				bestOptionPos = ccp(
-					penguin.position.x+(wW/max - wE/max),
-					penguin.position.y+(wS/max - wN/max)
-					);
+					penguin.position.x+vE,
+					penguin.position.y+vN
+				);
 				/*bestOptionPos = ccp(shark.position.x + (fabs(wE) > fabs(wW) ? wE : wW),
 									shark.position.y + (fabs(wN) > fabs(wS) ? wN : wS)
 								);*/
@@ -823,7 +902,7 @@
 			
 			if(DEBUG_MODE || DEBUG_MODE_PENGUIN) {
 				ccPointSize(50);
-				int pv = (_penguinMoveGrid[x][y]);
+				int pv = (_penguinMapfeaturesGrid[x][y]);
 				ccDrawColor4B(0,0,pv,50);
 				ccDrawPoint( ccp(x*GRID_SIZE, y*GRID_SIZE) );
 			}
