@@ -42,8 +42,10 @@ enum GAME_STATE {
 	GAME_STATE _state;
 	double _gameStartCountdownTimer;
 	
+	int** _penguinMoveGrid;
 	int** _sharkMoveGrid;
-	int** _featuresGrid;
+	int** _sharkMapfeaturesGrid;
+	int** _penguinMapfeaturesGrid;
 	int _gridWidth;
 	int _gridHeight;
 }
@@ -51,11 +53,14 @@ enum GAME_STATE {
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
-#define DEBUG_MODE false
+#define DEBUG_MODE true
 
 #define SCALING_FACTOR (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5 : 1.0)
 #define TARGET_FPS 100.0
 
+#define INITIAL_GRID_WEIGHT 10
+#define HARD_BORDER_WEIGHT 100
+#define MAP_FEATURE_SOFTENING_PASSES 5
 #define GRID_SIZE 15
 
 #define SHARKS_COUNTDOWN_TIMER_INITIAL 1
