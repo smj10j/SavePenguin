@@ -48,6 +48,8 @@ enum GAME_STATE {
 	int** _penguinMapfeaturesGrid;
 	int _gridWidth;
 	int _gridHeight;
+	
+	NSMutableDictionary* _penguinsToPutOnLand;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

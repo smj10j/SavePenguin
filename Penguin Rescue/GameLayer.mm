@@ -95,6 +95,8 @@
 			}
 		}
 		
+		_penguinsToPutOnLand =[[NSMutableDictionary alloc] init];
+		
 		// init physics
 		[self initPhysics];
 		
@@ -413,6 +415,15 @@
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
 	_world->Step(dt, velocityIterations, positionIterations);
+	
+	//place penguins on land for visual appeal
+	for(id penguinName in _penguinsToPutOnLand) {
+		LHSprite* penguin = [_levelLoader spriteWithUniqueName:penguinName];
+		LHSprite* land = [_penguinsToPutOnLand objectForKey:penguinName];
+		[penguin makeNoPhysics];
+		[penguin transformPosition:land.position];
+	}
+	[_penguinsToPutOnLand removeAllObjects];
 	
 	//Iterate over the bodies in the physics world
 	for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
@@ -856,7 +867,7 @@
     {
 		NSLog(@"Penguin %@ has collided with some land!", penguin.uniqueName);
 		penguinData.isSafe = true;
-		[penguin transformPosition:land.position];
+		[_penguinsToPutOnLand setObject:land forKey:penguin.uniqueName];
 
 		//TODO: replace penguin a happy animation
     }
