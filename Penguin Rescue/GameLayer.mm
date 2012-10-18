@@ -1145,12 +1145,12 @@
 		
 		ccDrawColor4B(0,100,0,50);
 		for(LHSprite* land in lands) {
-			ccPointSize(land.contentSize.width+16);
+			ccPointSize(land.contentSize.width+16*SCALING_FACTOR);
 			ccDrawPoint(land.position);
 		}
 		ccDrawColor4B(0,200,200,50);
 		for(LHSprite* border in borders) {
-			ccPointSize(border.contentSize.width+16);
+			ccPointSize(border.contentSize.width+16*SCALING_FACTOR);
 			ccDrawPoint(border.position);
 		}
 	}
