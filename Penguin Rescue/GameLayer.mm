@@ -553,10 +553,13 @@
 	//drop any toolbox items if need be
 	if(_activeToolboxItem != nil && _moveActiveToolboxItemIntoWorld) {
 	
-		NSLog(@"Adding toolbox item to world");
+		NSLog(@"Adding toolbox item %@ to world", _activeToolboxItem.userInfoClassName);
 	
 		//StaticToolboxItem are things penguins and sharks can't move through
-		if([_activeToolboxItem.userInfoClassName isEqualToString:@"StaticToolboxItem"]) {
+		if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
+			_activeToolboxItem.tag = DEBRIS;
+			[_activeToolboxItem makeDynamic];
+		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Border"]) {
 			_activeToolboxItem.tag = BORDER;
 			[_activeToolboxItem makeStatic];
 			_shouldRegenerateFeatureMaps = true;

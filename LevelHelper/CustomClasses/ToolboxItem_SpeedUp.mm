@@ -3,11 +3,12 @@
 //For more info please visit: www.levelhelper.org
 
 
-#import "StaticToolboxItem.h"
+#import "ToolboxItem_SpeedUp.h"
 
-@implementation StaticToolboxItem
+@implementation ToolboxItem_SpeedUp
 
 
+@synthesize amount;
 
 
 -(void) dealloc{
@@ -21,11 +22,11 @@
 #endif // __has_feature(objc_arc)
 }
 
-+(StaticToolboxItem*) customClassInstance{
++(ToolboxItem_SpeedUp*) customClassInstance{
 #if __has_feature(objc_arc) && __clang_major__ >= 3
-return [[StaticToolboxItem alloc] init];
+return [[ToolboxItem_SpeedUp alloc] init];
 #else
-return [[[StaticToolboxItem alloc] init] autorelease];
+return [[[ToolboxItem_SpeedUp alloc] init] autorelease];
 #endif
 }
 
@@ -34,6 +35,9 @@ return NSStringFromClass([self class]);
 }
 -(void) setPropertiesFromDictionary:(NSDictionary*)dictionary
 {
+
+	if([dictionary objectForKey:@"amount"])
+		[self setAmount:[[dictionary objectForKey:@"amount"] floatValue]];
 
 }
 

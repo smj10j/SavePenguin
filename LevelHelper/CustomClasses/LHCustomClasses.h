@@ -5,5 +5,8 @@
 
 #import "Penguin.h"
 #import "Shark.h"
-#import "StaticToolboxItem.h"
+#import "ToolboxItem_Border.h"
+#import "ToolboxItem_Debris.h"
+#import "ToolboxItem_SlowDown.h"
+#import "ToolboxItem_SpeedUp.h"
 

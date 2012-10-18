@@ -212,7 +212,8 @@ computedFile = [NSString stringWithFormat:@"%@%@.%@",
    [pieces objectAtIndex:0],
    suffix,
    [[pieces subarrayWithRange:NSMakeRange(1,pieces.count-1)] componentsJoinedByString:@"."]
-];        }
+];
+        }
 //computedFile = [computedFile lastPathComponent];
         
         

@@ -75,9 +75,33 @@
 		</dict>
 		<dict>
 			<key>ClassName</key>
-			<string>StaticToolboxItem</string>
+			<string>ToolboxItem_Border</string>
 			<key>ClassRepresentation</key>
 			<dict/>
+		</dict>
+		<dict>
+			<key>ClassName</key>
+			<string>ToolboxItem_Debris</string>
+			<key>ClassRepresentation</key>
+			<dict/>
+		</dict>
+		<dict>
+			<key>ClassName</key>
+			<string>ToolboxItem_SlowDown</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>amount</key>
+				<real>0.20000000298023224</real>
+			</dict>
+		</dict>
+		<dict>
+			<key>ClassName</key>
+			<string>ToolboxItem_SpeedUp</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>amount</key>
+				<real>0.20000000298023224</real>
+			</dict>
 		</dict>
 	</array>
 	<key>CustomScreenSize</key>
@@ -128,6 +152,9 @@
 		<string>SHARK_ATTRACTANT</string>
 		<string>BORDER</string>
 		<string>TOOLBOX_ITEM</string>
+		<string>DEBRIS</string>
+		<string>SLOWDOWN</string>
+		<string>SPEEDUP</string>
 	</array>
 </dict>
 </plist>

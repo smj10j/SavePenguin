@@ -70,7 +70,10 @@ enum LevelHelper_TAG
 	SHARK_ATTRACTANT 			= 6,
 	BORDER 			= 7,
 	TOOLBOX_ITEM 			= 8,
-	NUMBER_OF_TAGS 	= 9
+	DEBRIS 			= 9,
+	SLOWDOWN 			= 10,
+	SPEEDUP 			= 11,
+	NUMBER_OF_TAGS 	= 12
 };
 
 CGSize  LHSizeFromString(NSString* val);

@@ -3,7 +3,7 @@
 //For more info please visit: www.levelhelper.org
 
 
-@interface StaticToolboxItem : NSObject
+@interface ToolboxItem_Debris : NSObject
 {
 
 
@@ -18,7 +18,7 @@
 
 }
 
-+(StaticToolboxItem*) customClassInstance;
++(ToolboxItem_Debris*) customClassInstance;
 
 -(NSString*) className;
 
