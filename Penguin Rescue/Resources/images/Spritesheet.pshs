@@ -1237,7 +1237,7 @@
 			<key>MaxSheetSize</key>
 			<integer>4096</integer>
 			<key>NpotSize</key>
-			<string>{228, 276}</string>
+			<string>{228, 280}</string>
 			<key>Padding</key>
 			<integer>8</integer>
 			<key>PixelFormat</key>
@@ -1272,7 +1272,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					sPBNAwAAAAAIAAAABAMAAD6nTwMAAAAALAAA
+					sPBNAwAAAAAIAAAABAMAAFJ8UAMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -1284,12 +1284,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADuAAAA
-					AQIAADgzOTcxYTJiODFjYmQzMTJkOTRkMmY0
-					OTE5YTUxOWNkMDcxN2M5Zjc7MDAwMDAwMDA7
+					AQIAADNkOTA1MDdkNzJmNDYxZWIzZDgxYTcz
+					ZjczYWEyOTFlZmYwMTgzZTQ7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNGZh
-					NzNlOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTA3
+					YzUyOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2FjdG9ycy9wZW5ndWluLnBuZwAA
@@ -1503,7 +1503,7 @@
 								<key>IsRectangle</key>
 								<false/>
 								<key>IsSensor</key>
-								<true/>
+								<false/>
 								<key>LHHeight</key>
 								<real>0.0</real>
 								<key>LHShapePositionOffset</key>
@@ -1600,9 +1600,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{0, 39}, {29.5, 56.5}}</string>
+						<string>{{0, 40}, {29.5, 56.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{0, 156}, {118, 226}}</string>
+						<string>{{0, 160}, {118, 226}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Actors.pvr.gz</string>
 						<key>Image-HD</key>
@@ -1628,7 +1628,7 @@
 						<key>OriginalSize</key>
 						<string>{118, 226}</string>
 						<key>Position</key>
-						<string>{0, 156}</string>
+						<string>{0, 160}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -1665,7 +1665,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					sPBNAwAAAAAIAAAABAMAAD2nTwMAAAAALAAA
+					sPBNAwAAAAAIAAAABAMAAFF8UAMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -1677,12 +1677,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADsAAAA
-					AQIAAGU3ZTBlOTBiMDhmYTljYjU0MjMxNTJh
-					YzM0MTY4NWMwZDQxMGM4MzA7MDAwMDAwMDA7
+					AQIAAGRlYzk1MjZkOTYyZmViNTFiNzIxN2E1
+					YWRjNDFhOWU3MGRjZjRlY2U7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNGZh
-					NzNkOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTA3
+					YzUxOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2FjdG9ycy9zaGFyay5wbmcA5AAA
@@ -1707,7 +1707,7 @@
 						<key>CanSleep</key>
 						<true/>
 						<key>FixedRot</key>
-						<true/>
+						<false/>
 						<key>GravityScale</key>
 						<real>1</real>
 						<key>HandledBySH</key>
@@ -1730,99 +1730,139 @@
 								<key>Fixture</key>
 								<array>
 									<array>
-										<string>{12.875, 4.5}</string>
-										<string>{1.625, 18.75}</string>
-										<string>{1.375, 18.5}</string>
-										<string>{-3.875, 5.75}</string>
+										<string>{-4.375, 11}</string>
+										<string>{-6.625, -15.25}</string>
+										<string>{-2.125, -15.25}</string>
 									</array>
 									<array>
-										<string>{14.375, -16.75}</string>
-										<string>{19.375, -14}</string>
-										<string>{13.875, 3.5}</string>
+										<string>{-4.375, 11}</string>
+										<string>{-2.125, -15.25}</string>
+										<string>{5.125, -14.5}</string>
 									</array>
 									<array>
-										<string>{6.875, -18.75}</string>
-										<string>{14.375, -16.75}</string>
-										<string>{13.875, 3.5}</string>
+										<string>{-4.375, 11}</string>
+										<string>{5.125, -14.5}</string>
+										<string>{9.875, -13.5}</string>
 									</array>
 									<array>
-										<string>{-6.875, -18.75}</string>
-										<string>{6.875, -18.75}</string>
-										<string>{13.875, 3.5}</string>
+										<string>{-4.375, 11}</string>
+										<string>{9.875, -13.5}</string>
+										<string>{14.375, -12}</string>
 									</array>
 									<array>
-										<string>{-6.875, -18.75}</string>
-										<string>{13.875, 3.5}</string>
-										<string>{12.875, 4.5}</string>
+										<string>{-4.125, 11.25}</string>
+										<string>{-4.375, 11}</string>
+										<string>{14.375, -12}</string>
 									</array>
 									<array>
-										<string>{-6.875, -18.75}</string>
-										<string>{12.875, 4.5}</string>
-										<string>{-3.875, 5.75}</string>
+										<string>{3.375, 11.25}</string>
+										<string>{-4.125, 11.25}</string>
+										<string>{14.375, -12}</string>
 									</array>
 									<array>
-										<string>{-6.875, -18.75}</string>
-										<string>{-3.875, 5.75}</string>
-										<string>{-8.375, 5.25}</string>
+										<string>{9.375, 10.25}</string>
+										<string>{3.375, 11.25}</string>
+										<string>{14.375, -12}</string>
 									</array>
 									<array>
-										<string>{-13.625, -17}</string>
-										<string>{-6.875, -18.75}</string>
-										<string>{-8.375, 5.25}</string>
+										<string>{15.375, 8.25}</string>
+										<string>{9.375, 10.25}</string>
+										<string>{14.375, -12}</string>
 									</array>
 									<array>
-										<string>{-13.625, -17}</string>
-										<string>{-8.375, 5.25}</string>
-										<string>{-14.875, 3.25}</string>
+										<string>{18.375, 6.25}</string>
+										<string>{15.375, 8.25}</string>
+										<string>{14.375, -12}</string>
 									</array>
 									<array>
-										<string>{-17.875, -15}</string>
-										<string>{-13.625, -17}</string>
-										<string>{-14.875, 3.25}</string>
+										<string>{18.375, 6.25}</string>
+										<string>{14.375, -12}</string>
+										<string>{18.625, -9.75}</string>
 									</array>
 									<array>
-										<string>{-17.875, -15}</string>
-										<string>{-14.875, 3.25}</string>
-										<string>{-19.375, 0.75}</string>
+										<string>{20.125, 4.25}</string>
+										<string>{18.375, 6.25}</string>
+										<string>{18.625, -9.75}</string>
 									</array>
 									<array>
-										<string>{-19.625, -13.75}</string>
-										<string>{-17.875, -15}</string>
-										<string>{-19.375, 0.75}</string>
+										<string>{21.125, 2.25}</string>
+										<string>{20.125, 4.25}</string>
+										<string>{18.625, -9.75}</string>
 									</array>
 									<array>
-										<string>{-22.375, -10.75}</string>
-										<string>{-19.625, -13.75}</string>
-										<string>{-19.375, 0.75}</string>
+										<string>{21.875, -0.75}</string>
+										<string>{21.125, 2.25}</string>
+										<string>{18.625, -9.75}</string>
 									</array>
 									<array>
-										<string>{-22.375, -10.75}</string>
-										<string>{-19.375, 0.75}</string>
-										<string>{-21.875, -1.75}</string>
+										<string>{21.875, -3.75}</string>
+										<string>{21.875, -0.75}</string>
+										<string>{18.625, -9.75}</string>
 									</array>
 									<array>
-										<string>{-22.375, -10.75}</string>
-										<string>{-21.875, -1.75}</string>
-										<string>{-23.125, -4}</string>
+										<string>{21.875, -3.75}</string>
+										<string>{18.625, -9.75}</string>
+										<string>{20.875, -7.5}</string>
 									</array>
 									<array>
-										<string>{-23.375, -8.5}</string>
-										<string>{-22.375, -10.75}</string>
-										<string>{-23.125, -4}</string>
+										<string>{21.375, -6.5}</string>
+										<string>{21.875, -3.75}</string>
+										<string>{20.875, -7.5}</string>
 									</array>
 									<array>
-										<string>{-23.625, -6}</string>
-										<string>{-23.375, -8.5}</string>
-										<string>{-23.125, -4}</string>
+										<string>{-6.625, -15.25}</string>
+										<string>{-4.375, 11}</string>
+										<string>{-9.125, 10.5}</string>
 									</array>
 									<array>
-										<string>{19.375, -14}</string>
-										<string>{22.125, -11.25}</string>
-										<string>{23.375, -8.75}</string>
-										<string>{23.375, -4.5}</string>
-										<string>{22.625, -2.75}</string>
-										<string>{19.375, 0.75}</string>
-										<string>{13.875, 3.5}</string>
+										<string>{-12.875, -14.5}</string>
+										<string>{-6.625, -15.25}</string>
+										<string>{-9.125, 10.5}</string>
+									</array>
+									<array>
+										<string>{-12.875, -14.5}</string>
+										<string>{-9.125, 10.5}</string>
+										<string>{-14.625, 8.75}</string>
+									</array>
+									<array>
+										<string>{-12.875, -14.5}</string>
+										<string>{-14.625, 8.75}</string>
+										<string>{-18.875, 6.25}</string>
+									</array>
+									<array>
+										<string>{-12.875, -14.5}</string>
+										<string>{-18.875, 6.25}</string>
+										<string>{-21.375, 3.5}</string>
+									</array>
+									<array>
+										<string>{-12.875, -14.5}</string>
+										<string>{-21.375, 3.5}</string>
+										<string>{-22.375, 0.75}</string>
+									</array>
+									<array>
+										<string>{-12.875, -14.5}</string>
+										<string>{-22.375, 0.75}</string>
+										<string>{-22.375, -6.25}</string>
+									</array>
+									<array>
+										<string>{-15.875, -13.75}</string>
+										<string>{-12.875, -14.5}</string>
+										<string>{-22.375, -6.25}</string>
+									</array>
+									<array>
+										<string>{-19.125, -12.25}</string>
+										<string>{-15.875, -13.75}</string>
+										<string>{-22.375, -6.25}</string>
+									</array>
+									<array>
+										<string>{-21.125, -10.25}</string>
+										<string>{-19.125, -12.25}</string>
+										<string>{-22.375, -6.25}</string>
+									</array>
+									<array>
+										<string>{-21.125, -10.25}</string>
+										<string>{-22.375, -6.25}</string>
+										<string>{-21.875, -8.75}</string>
 									</array>
 								</array>
 								<key>Friction</key>
@@ -1838,11 +1878,11 @@
 								<key>IsRectangle</key>
 								<false/>
 								<key>IsSensor</key>
-								<true/>
+								<false/>
 								<key>LHHeight</key>
 								<real>0.0</real>
 								<key>LHShapePositionOffset</key>
-								<string>{-23.625, -19}</string>
+								<string>{-22.875, -17.25}</string>
 								<key>LHWidth</key>
 								<real>0.0</real>
 								<key>Mask</key>
@@ -1853,31 +1893,35 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{100, 1}</string>
-									<string>{79, 52}</string>
-									<string>{61, 54}</string>
-									<string>{35, 62}</string>
-									<string>{17, 72}</string>
-									<string>{7, 82}</string>
-									<string>{2, 91}</string>
-									<string>{0, 99}</string>
-									<string>{1, 109}</string>
-									<string>{5, 118}</string>
-									<string>{16, 130}</string>
-									<string>{23, 135}</string>
-									<string>{40, 143}</string>
-									<string>{67, 150}</string>
-									<string>{122, 150}</string>
-									<string>{152, 142}</string>
-									<string>{172, 131}</string>
-									<string>{183, 120}</string>
-									<string>{188, 110}</string>
-									<string>{188, 93}</string>
-									<string>{185, 86}</string>
-									<string>{172, 72}</string>
-									<string>{150, 61}</string>
-									<string>{146, 57}</string>
-									<string>{101, 0}</string>
+									<string>{72, 1}</string>
+									<string>{53, 3}</string>
+									<string>{31, 10}</string>
+									<string>{14, 20}</string>
+									<string>{4, 31}</string>
+									<string>{0, 42}</string>
+									<string>{0, 70}</string>
+									<string>{2, 80}</string>
+									<string>{5, 86}</string>
+									<string>{13, 94}</string>
+									<string>{26, 100}</string>
+									<string>{38, 103}</string>
+									<string>{63, 106}</string>
+									<string>{81, 106}</string>
+									<string>{110, 103}</string>
+									<string>{129, 99}</string>
+									<string>{147, 93}</string>
+									<string>{164, 84}</string>
+									<string>{173, 75}</string>
+									<string>{175, 71}</string>
+									<string>{177, 60}</string>
+									<string>{177, 48}</string>
+									<string>{174, 36}</string>
+									<string>{170, 28}</string>
+									<string>{163, 20}</string>
+									<string>{151, 12}</string>
+									<string>{127, 4}</string>
+									<string>{103, 0}</string>
+									<string>{73, 0}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
@@ -1917,9 +1961,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{0, 0}, {47.75, 37.75}}</string>
+						<string>{{0, 0}, {44.5, 26.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{0, 0}, {189, 151}}</string>
+						<string>{{0, 0}, {178, 107}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Actors.pvr.gz</string>
 						<key>Image-HD</key>
@@ -1941,7 +1985,7 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/Actors/Shark.png/</string>
 						<key>OriginalRect</key>
-						<string>{{0, 1}, {189, 151}}</string>
+						<string>{{5, 31}, {178, 107}}</string>
 						<key>OriginalSize</key>
 						<string>{189, 152}</string>
 						<key>Position</key>
@@ -1955,7 +1999,7 @@
 						<key>Tag</key>
 						<integer>0</integer>
 						<key>TextureOffset</key>
-						<string>{0.25, -0.125}</string>
+						<string>{-0.125, -2.125}</string>
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>

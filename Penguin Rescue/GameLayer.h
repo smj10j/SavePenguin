@@ -51,6 +51,8 @@ struct MoveGrid {
 	int** _penguinMapfeaturesGrid;
 	NSMutableDictionary* _sharkMoveGridDatas;
 	NSMutableDictionary* _penguinMoveGridDatas;
+	
+	int _gridSize;
 	int _gridWidth;
 	int _gridHeight;
 	
@@ -79,7 +81,6 @@ struct MoveGrid {
 
 #define INITIAL_GRID_WEIGHT 25
 #define HARD_BORDER_WEIGHT 100
-#define GRID_SIZE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 24 : 54)
 
 #define SHARKS_COUNTDOWN_TIMER_INITIAL 1
 
