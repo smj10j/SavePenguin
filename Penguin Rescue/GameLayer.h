@@ -53,14 +53,21 @@ enum GAME_STATE {
 	
 	LHSprite* _pauseButton;
 	LHSprite* _restartButton;
+	
+	bool _moveActiveToolboxItemIntoWorld;
+	LHSprite* _activeToolboxItem;
+
+
+
+	bool _shouldRegenerateFeatureMaps;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
-#define DEBUG_MODE false
-#define DEBUG_MODE_PENGUIN false
-#define DEBUG_MODE_SHARK false
+#define DEBUG_ALL_THE_THINGS false
+#define DEBUG_PENGUIN false
+#define DEBUG_SHARK false
 
 #define SCALING_FACTOR (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5 : 1.0)
 #define TARGET_FPS 60
@@ -68,7 +75,6 @@ enum GAME_STATE {
 #define INITIAL_GRID_WEIGHT 10
 #define HARD_BORDER_WEIGHT 100
 #define GRID_SIZE ((int)(32*SCALING_FACTOR))
-#define MAP_FEATURE_SOFTENING_PASSES 0		//can greatly increase computation time!
 
 #define SHARKS_COUNTDOWN_TIMER_INITIAL 1
 

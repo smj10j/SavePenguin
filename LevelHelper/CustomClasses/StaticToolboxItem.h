@@ -3,15 +3,10 @@
 //For more info please visit: www.levelhelper.org
 
 
-@interface Penguin : NSObject
+@interface StaticToolboxItem : NSObject
 {
 
 
-	BOOL isDead;
-	float speed;
-	float detectionRadius;
-	BOOL hasSpottedShark;
-	BOOL isSafe;
 
 
 #if __has_feature(objc_arc) && __clang_major__ >= 3
@@ -22,13 +17,8 @@
 #endif // __has_feature(objc_arc)
 
 }
-@property BOOL isDead;
-@property float speed;
-@property float detectionRadius;
-@property BOOL hasSpottedShark;
-@property BOOL isSafe;
 
-+(Penguin*) customClassInstance;
++(StaticToolboxItem*) customClassInstance;
 
 -(NSString*) className;
 

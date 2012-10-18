@@ -316,6 +316,26 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>5430b2b05cced59839a1ddf7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>566e3f3695ce87644d8be395</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>566e3f3695ce87644d8be395</key>
+		<dict>
+			<key>FileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.cpp.objcpp</string>
+			<key>path</key>
+			<string>StaticToolboxItem.mm</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>58840cc813684ae1c5cb61d8</key>
 		<dict>
 			<key>children</key>
@@ -895,6 +915,7 @@
 				<string>AA54C92D162BCE9C00DF56D0</string>
 				<string>1d5783e491116ebb108a99ef</string>
 				<string>827a0d456acaa570140ae1e7</string>
+				<string>5430b2b05cced59839a1ddf7</string>
 				<string>da8ae1a3ed563136e9d0c419</string>
 				<string>d89955832a2f30a40fc0378f</string>
 				<string>1acdb9308d35abe583a4f523</string>
@@ -976,6 +997,9 @@
 				<string>AA4E1C0F162C0E2000F982BF</string>
 				<string>AA4E1C10162C0E2000F982BF</string>
 				<string>AA4E1C11162C0E2000F982BF</string>
+				<string>AA6DFAF5162FF8C300F93350</string>
+				<string>AA6DFAF6162FF8C300F93350</string>
+				<string>AA6DFAF7162FF8C300F93350</string>
 			</array>
 			<key>isa</key>
 			<string>PBXResourcesBuildPhase</string>
@@ -8000,6 +8024,9 @@ buildNumber=$(($buildNumber + 1))
 		<dict>
 			<key>children</key>
 			<array>
+				<string>AA6DFAF2162FF8C200F93350</string>
+				<string>AA6DFAF3162FF8C200F93350</string>
+				<string>AA6DFAF4162FF8C300F93350</string>
 				<string>AA4E1C0C162C0E2000F982BF</string>
 				<string>AA4E1C0D162C0E2000F982BF</string>
 				<string>AA4E1C0E162C0E2000F982BF</string>
@@ -8091,6 +8118,60 @@ buildNumber=$(($buildNumber + 1))
 		<dict>
 			<key>fileRef</key>
 			<string>AA54C93F162BD72600DF56D0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>AA6DFAF2162FF8C200F93350</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>archive.gzip</string>
+			<key>path</key>
+			<string>Spritesheet_Toolbox-hd.pvr.gz</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>AA6DFAF3162FF8C200F93350</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>archive.gzip</string>
+			<key>path</key>
+			<string>Spritesheet_Toolbox-ipadhd.pvr.gz</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>AA6DFAF4162FF8C300F93350</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>archive.gzip</string>
+			<key>path</key>
+			<string>Spritesheet_Toolbox.pvr.gz</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>AA6DFAF5162FF8C300F93350</key>
+		<dict>
+			<key>fileRef</key>
+			<string>AA6DFAF2162FF8C200F93350</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>AA6DFAF6162FF8C300F93350</key>
+		<dict>
+			<key>fileRef</key>
+			<string>AA6DFAF3162FF8C200F93350</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>AA6DFAF7162FF8C300F93350</key>
+		<dict>
+			<key>fileRef</key>
+			<string>AA6DFAF4162FF8C300F93350</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -8258,6 +8339,19 @@ buildNumber=$(($buildNumber + 1))
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>caf8e231d50d75168bc59e6c</key>
+		<dict>
+			<key>FileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>StaticToolboxItem.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>cbcf8a3be72e6868338383a0</key>
 		<dict>
 			<key>fileRef</key>
@@ -8392,6 +8486,8 @@ buildNumber=$(($buildNumber + 1))
 				<string>2cd4c13d32a5624d65e94041</string>
 				<string>f31eb1fb95649e56c76436fa</string>
 				<string>b1c60b49a2c684674f8e688f</string>
+				<string>caf8e231d50d75168bc59e6c</string>
+				<string>566e3f3695ce87644d8be395</string>
 				<string>c17db667da18df64b02351b6</string>
 			</array>
 			<key>isa</key>

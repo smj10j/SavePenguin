@@ -95,6 +95,10 @@
 			}
 		}
 		
+		_shouldRegenerateFeatureMaps = true;
+		_activeToolboxItem = nil;
+		_moveActiveToolboxItemIntoWorld = false;
+		
 		_penguinsToPutOnLand =[[NSMutableDictionary alloc] init];
 		
 		// init physics
@@ -107,6 +111,9 @@
 		
 		//place the HUD items (pause, restart, etc.)
 		[self drawHUD];
+
+		//place the toolbox items
+		[self drawToolbox];
 		
 		//various handlers
 		[self setupCollisionHandling];
@@ -134,7 +141,7 @@
 	
 	_world->SetContinuousPhysics(true);
 	
-	if(DEBUG_MODE) {
+	if(DEBUG_ALL_THE_THINGS) {
 		_debugDraw = new GLESDebugDraw( PTM_RATIO );
 		_world->SetDebugDraw(_debugDraw);
 		
@@ -162,26 +169,41 @@
 
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
-	//TODO: add touchBegan observer to handle showing an enlarged button
 	_pauseButton = [_levelLoader createSpriteWithName:@"Pause_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:self];
 	[_pauseButton prepareAnimationNamed:@"Pause_hover" fromSHScene:@"Spritesheet"];
-	_pauseButton.position = ccp(_pauseButton.contentSize.width/2+30*SCALING_FACTOR,_pauseButton.contentSize.height/2+20*SCALING_FACTOR);
+	[_pauseButton transformPosition: ccp(_pauseButton.contentSize.width/2+30*SCALING_FACTOR,_pauseButton.contentSize.height/2+20*SCALING_FACTOR)];
 	[_pauseButton registerTouchBeganObserver:self selector:@selector(onTouchBeganPause:)];
 	[_pauseButton registerTouchEndedObserver:self selector:@selector(onTouchEndedPause:)];
 	
 	
-	//TODO: add touchBegan observer to handle showing an enlarged button
 	_restartButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:self];
 	[_restartButton prepareAnimationNamed:@"Restart_hover" fromSHScene:@"Spritesheet"];
-	_restartButton.position = ccp(winSize.width - (_restartButton.contentSize.width/2+30*SCALING_FACTOR),_restartButton.contentSize.height/2+20*SCALING_FACTOR);
+	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.contentSize.width/2+30*SCALING_FACTOR),_restartButton.contentSize.height/2+20*SCALING_FACTOR) ];
 	[_restartButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[_restartButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 }
 
--(void) loadLevel:(NSString*)levelName inLevelPack:(NSString*)levelPack {
-		
+-(void) drawToolbox {
+	NSLog(@"Drawing Toolbox");
+
+	//TODO: load the available tools from the JSON level file and stack them on top of eachother. they should include the TAG and any other info needed at creation
+	
+	//TODO: draw a pretty box around the tools
+
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
+	NSArray* toolboxItems = [_levelLoader spritesWithTag:TOOLBOX_ITEM];
+	for(LHSprite* toolboxItem in toolboxItems) {
+		[toolboxItem registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
+		[toolboxItem registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
+	}
+	
+
+}
+
+
+-(void) loadLevel:(NSString*)levelName inLevelPack:(NSString*)levelPack {
+		
 	//create a LevelHelperLoader object that has the data of the specified level
 	if(_levelLoader != nil) {
 		[_levelLoader release];
@@ -197,13 +219,37 @@
 		//if it does, it will create the physic boundaries
 		[_levelLoader createPhysicBoundaries:_world];
 	}
-	
+		
+	//TODO: load if we should show the tutorial from user prefs
+	if(true) {
+		[self showTutorial];
+	}
+}
+
+
+-(void) generateFeatureMaps {
+
+	NSLog(@"Generating feature maps...");
+	_shouldRegenerateFeatureMaps = false;
+
+	CGSize winSize = [[CCDirector sharedDirector] winSize];
+
+	//fresh start
+	for(int x = 0; x < _gridWidth; x++) {
+		for(int y = 0; y < _gridHeight; y++) {
+			_sharkMapfeaturesGrid[x][y] = 0;
+			_penguinMapfeaturesGrid[x][y] = 0;
+		}
+	}
+
 	//fill in the feature grid detailing map movement info
 	NSArray* lands = [_levelLoader spritesWithTag:LAND];
 	NSArray* borders = [_levelLoader spritesWithTag:BORDER];
 	
 	NSMutableArray* unpassableAreas = [NSMutableArray arrayWithArray:lands];
 	[unpassableAreas addObjectsFromArray:borders];
+	
+	NSLog(@"Num safe lands: %d, Num borders: %d", [lands count], [borders count]);
 	
 	for(LHSprite* land in unpassableAreas) {
 	
@@ -230,45 +276,6 @@
 
 
 
-	
-	//now blend the static feature maps
-	for(int i = 0; i < MAP_FEATURE_SOFTENING_PASSES; i++) {
-		for(int x = 0; x < _gridWidth; x++) {
-			for(int y = 0; y < _gridHeight; y++) {
-				
-				double w = _penguinMapfeaturesGrid[x][y];
-				if(w != HARD_BORDER_WEIGHT) {
-					double wN = y+1 >= _gridHeight ? w : _penguinMapfeaturesGrid[x][y+1];
-					double wS = y-1 < 0 ? w : _penguinMapfeaturesGrid[x][y-1];
-					double wE = x+1 >= _gridWidth ? w : _penguinMapfeaturesGrid[x+1][y];
-					double wW = x-1 < 0 ? w : _penguinMapfeaturesGrid[x-1][y];
-					double wNE = y+1 >= _gridHeight || x+1 >= _gridWidth ? w : _penguinMapfeaturesGrid[x+1][y+1];
-					double wNW = y+1 >= _gridHeight || x-1 < 0 ? w : _penguinMapfeaturesGrid[x-1][y+1];
-					double wSE = y-1 < 0 || x+1 >= _gridWidth ? w : _penguinMapfeaturesGrid[x+1][y-1];
-					double wSW = y-1 < 0 || x-1 < 0 ? w : _penguinMapfeaturesGrid[x-1][y-1];
-					
-					double newW = (w*12 + wN + wS + wE + wW + wNE + wNW + wSE + wSW)/20.0;
-					_penguinMapfeaturesGrid[x][y] = newW;
-				}
-				
-				w = _sharkMapfeaturesGrid[x][y];
-				if(w != HARD_BORDER_WEIGHT) {
-					double wN = y+1 >= _gridHeight ? w : _sharkMapfeaturesGrid[x][y+1];
-					double wS = y-1 < 0 ? w : _sharkMapfeaturesGrid[x][y-1];
-					double wE = x+1 >= _gridWidth ? w : _sharkMapfeaturesGrid[x+1][y];
-					double wW = x-1 < 0 ? w : _sharkMapfeaturesGrid[x-1][y];
-					double wNE = y+1 >= _gridHeight || x+1 >= _gridWidth ? w : _sharkMapfeaturesGrid[x+1][y+1];
-					double wNW = y+1 >= _gridHeight || x-1 < 0 ? w : _sharkMapfeaturesGrid[x-1][y+1];
-					double wSE = y-1 < 0 || x+1 >= _gridWidth ? w : _sharkMapfeaturesGrid[x+1][y-1];
-					double wSW = y-1 < 0 || x-1 < 0 ? w : _sharkMapfeaturesGrid[x-1][y-1];
-					
-					double newW = (w*12 + wN + wS + wE + wW + wNE + wNW + wSE + wSW)/20.0;
-					_sharkMapfeaturesGrid[x][y] = newW;
-				}
-			}
-		}
-	}
-
 	//create a static map detailing where penguins can move (ignoring shark data)
 	for(int x = 0; x < _gridWidth; x++) {
 		for(int y = 0; y < _gridHeight; y++) {
@@ -279,14 +286,43 @@
 		_penguinMoveGrid[(int)land.position.x/GRID_SIZE][(int)land.position.y/GRID_SIZE] = 0;
 		[self propagatePenguinGridCostToX:land.position.x/GRID_SIZE y:land.position.y/GRID_SIZE];
 	}		
-
-	
-	
-	//TODO: load if we should show the tutorial from user prefs
-	if(true) {
-		[self showTutorial];
-	}
 }
+
+
+
+
+
+-(void)onTouchBeganToolboxItem:(LHTouchInfo*)info {
+
+	if(_activeToolboxItem != nil) {
+		//only handle one touch at a time
+		return;
+	}
+
+	LHSprite* toolboxItem = info.sprite;
+	
+	if(toolboxItem.tag != TOOLBOX_ITEM) {
+		//already placed
+		return;
+	}
+	
+	_activeToolboxItem = toolboxItem;
+	[toolboxItem transformScale:1];	
+}
+
+-(void)onTouchEndedToolboxItem:(LHTouchInfo*)info {
+	_moveActiveToolboxItemIntoWorld = true;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 -(void)onTouchBeganPause:(LHTouchInfo*)info {
@@ -315,9 +351,10 @@
 }
 
 -(void) pause {
-	NSLog(@"Pausing game");
-	_state = PAUSE;
-	
+	if(_state == RUNNING) {
+		NSLog(@"Pausing game");
+		_state = PAUSE;
+	}
 	[self showInGameMenu];
 }
 
@@ -328,8 +365,10 @@
 }
 
 -(void) resume {
-	NSLog(@"Resuming game");
-	_state = RUNNING;
+	if(_state == PAUSE) {
+		NSLog(@"Resuming game");
+		_state = RUNNING;
+	}
 }
 
 -(void) levelWon {
@@ -442,6 +481,26 @@
 		[penguin transformPosition:land.position];
 	}
 	[_penguinsToPutOnLand removeAllObjects];
+	
+	if(_shouldRegenerateFeatureMaps) {
+		[self generateFeatureMaps];	
+	}
+	
+	//drop any toolbox items if need be
+	if(_activeToolboxItem != nil && _moveActiveToolboxItemIntoWorld) {
+	
+		NSLog(@"Adding toolbox item to world");
+	
+		//StaticToolboxItem are things penguins and sharks can't move through
+		if([_activeToolboxItem.userInfoClassName isEqualToString:@"StaticToolboxItem"]) {
+			_activeToolboxItem.tag = BORDER;
+			[_activeToolboxItem makeStatic];
+			_shouldRegenerateFeatureMaps = true;
+		}
+		
+		_activeToolboxItem = nil;
+		_moveActiveToolboxItemIntoWorld = false;
+	}
 	
 	//Iterate over the bodies in the physics world
 	for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
@@ -867,11 +926,15 @@
 {        
 	LHSprite* shark = [contact spriteA];
     LHSprite* penguin = [contact spriteB];
+	Penguin* penguinData = ((Penguin*)penguin.userInfo);
 
     if(nil != penguin && nil != shark)
     {
-		NSLog(@"Shark %@ has collided with penguin %@!", shark.uniqueName, penguin.uniqueName);
-		[self levelLostWithShark:shark andPenguin:penguin];
+		if(!penguinData.isDead) {
+			penguinData.isDead = true;
+			NSLog(@"Shark %@ has collided with penguin %@!", shark.uniqueName, penguin.uniqueName);
+			[self levelLostWithShark:shark andPenguin:penguin];
+		}
     }
 }
 
@@ -883,10 +946,12 @@
 
     if(nil != penguin && nil != land)
     {
-		NSLog(@"Penguin %@ has collided with some land!", penguin.uniqueName);
-		penguinData.isSafe = true;
-		[_penguinsToPutOnLand setObject:land forKey:penguin.uniqueName];
-
+		if(!penguinData.isSafe) {
+			penguinData.isSafe = true;
+			[_penguinsToPutOnLand setObject:land forKey:penguin.uniqueName];
+			NSLog(@"Penguin %@ has collided with some land!", penguin.uniqueName);
+		}
+		
 		//TODO: replace penguin a happy animation
     }
 }
@@ -898,19 +963,32 @@
 
 
 
-
-
-- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	//Add a new body/atlas sprite at the touched location
 	for( UITouch *touch in touches ) {
 		CGPoint location = [touch locationInView: [touch view]];
 		location = [[CCDirector sharedDirector] convertToGL: location];
 	
-		NSLog(@"_sharkMoveGrid[%d][%d] = %d", (int)location.x, (int)location.y, _sharkMoveGrid[(int)location.x/GRID_SIZE][(int)location.y/GRID_SIZE]);
-		NSLog(@"_sharkMapfeaturesGrid[%d][%d] = %d", (int)location.x, (int)location.y, _sharkMapfeaturesGrid[(int)location.x/GRID_SIZE][(int)location.y/GRID_SIZE]);
-		NSLog(@"_penguinMoveGrid[%d][%d] = %d", (int)location.x, (int)location.y, _penguinMoveGrid[(int)location.x/GRID_SIZE][(int)location.y/GRID_SIZE]);
-		NSLog(@"_penguinMapfeaturesGrid[%d][%d] = %d", (int)location.x, (int)location.y, _penguinMapfeaturesGrid[(int)location.x/GRID_SIZE][(int)location.y/GRID_SIZE]);
+		if(_activeToolboxItem != nil) {
+			[_activeToolboxItem transformPosition:location];
+		}
+		
+	}
+}
+
+
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	for( UITouch *touch in touches ) {
+		CGPoint location = [touch locationInView: [touch view]];
+		location = [[CCDirector sharedDirector] convertToGL: location];
+
+		if(DEBUG_ALL_THE_THINGS || DEBUG_PENGUIN || DEBUG_SHARK ) {
+			NSLog(@"_sharkMoveGrid[%d][%d] = %d", (int)location.x, (int)location.y, _sharkMoveGrid[(int)location.x/GRID_SIZE][(int)location.y/GRID_SIZE]);
+			NSLog(@"_sharkMapfeaturesGrid[%d][%d] = %d", (int)location.x, (int)location.y, _sharkMapfeaturesGrid[(int)location.x/GRID_SIZE][(int)location.y/GRID_SIZE]);
+			NSLog(@"_penguinMoveGrid[%d][%d] = %d", (int)location.x, (int)location.y, _penguinMoveGrid[(int)location.x/GRID_SIZE][(int)location.y/GRID_SIZE]);
+			NSLog(@"_penguinMapfeaturesGrid[%d][%d] = %d", (int)location.x, (int)location.y, _penguinMapfeaturesGrid[(int)location.x/GRID_SIZE][(int)location.y/GRID_SIZE]);
+		}
 	}
 }
 
@@ -925,14 +1003,14 @@
 	for(int x = 0; x < _gridWidth; x++) {
 		for(int y = 0; y < _gridHeight; y++) {
 
-			if(DEBUG_MODE || DEBUG_MODE_SHARK) {
+			if(DEBUG_ALL_THE_THINGS || DEBUG_SHARK ) {
 				ccPointSize(50);
 				int sv = (_sharkMoveGrid[x][y]);
 				ccDrawColor4B(sv,0,0,50);
 				ccDrawPoint( ccp(x*GRID_SIZE, y*GRID_SIZE) );
 			}
 			
-			if(DEBUG_MODE || DEBUG_MODE_PENGUIN) {
+			if(DEBUG_ALL_THE_THINGS || DEBUG_PENGUIN) {
 				ccPointSize(50);
 				int pv = (_penguinMapfeaturesGrid[x][y]);
 				ccDrawColor4B(0,0,pv,50);
@@ -957,11 +1035,11 @@
 	
 	kmGLPushMatrix();
 	
-	if(DEBUG_MODE) {
+	if(DEBUG_ALL_THE_THINGS) {
 		_world->DrawDebugData();
 	}
 	
-	if(DEBUG_MODE || DEBUG_MODE_PENGUIN || DEBUG_MODE_SHARK) {
+	if(DEBUG_ALL_THE_THINGS || DEBUG_PENGUIN || DEBUG_SHARK ) {
 		[self drawDebugMovementGrid];
 	}
 	
@@ -973,7 +1051,7 @@
 	delete _world;
 	_world = NULL;
 	
-	if(DEBUG_MODE) {
+	if(DEBUG_ALL_THE_THINGS) {
 		delete _debugDraw;
 		_debugDraw = NULL;
 	}

@@ -8,9 +8,10 @@
 @implementation Penguin
 
 
-@synthesize hasSpottedShark;
+@synthesize isDead;
 @synthesize speed;
 @synthesize detectionRadius;
+@synthesize hasSpottedShark;
 @synthesize isSafe;
 
 
@@ -39,14 +40,17 @@ return NSStringFromClass([self class]);
 -(void) setPropertiesFromDictionary:(NSDictionary*)dictionary
 {
 
-	if([dictionary objectForKey:@"hasSpottedShark"])
-		[self setHasSpottedShark:[[dictionary objectForKey:@"hasSpottedShark"] boolValue]];
+	if([dictionary objectForKey:@"isDead"])
+		[self setIsDead:[[dictionary objectForKey:@"isDead"] boolValue]];
 
 	if([dictionary objectForKey:@"speed"])
 		[self setSpeed:[[dictionary objectForKey:@"speed"] floatValue]];
 
 	if([dictionary objectForKey:@"detectionRadius"])
 		[self setDetectionRadius:[[dictionary objectForKey:@"detectionRadius"] floatValue]];
+
+	if([dictionary objectForKey:@"hasSpottedShark"])
+		[self setHasSpottedShark:[[dictionary objectForKey:@"hasSpottedShark"] boolValue]];
 
 	if([dictionary objectForKey:@"isSafe"])
 		[self setIsSafe:[[dictionary objectForKey:@"isSafe"] boolValue]];
