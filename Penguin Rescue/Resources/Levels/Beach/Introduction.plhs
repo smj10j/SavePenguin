@@ -2026,7 +2026,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{157, 21}</string>
+								<string>{173, 29}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -2133,9 +2133,9 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{227, 19}</string>
+								<string>{339, 27}</string>
 								<key>Scale</key>
-								<string>{0.5, 0.5}</string>
+								<string>{1, 1}</string>
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
@@ -2730,75 +2730,6 @@
 		</array>
 		<key>ZoomValue</key>
 		<real>0.0</real>
-	</dict>
-	<key>WBInfo</key>
-	<dict>
-		<key>AngularDamping</key>
-		<real>0.0</real>
-		<key>AngularVelocity</key>
-		<real>0.0</real>
-		<key>CanSleep</key>
-		<true/>
-		<key>Category</key>
-		<integer>1</integer>
-		<key>Density</key>
-		<real>0.20000000298023224</real>
-		<key>FixedRot</key>
-		<false/>
-		<key>Fixture</key>
-		<array/>
-		<key>Friction</key>
-		<real>0.20000000298023224</real>
-		<key>GravityScale</key>
-		<real>1</real>
-		<key>Group</key>
-		<integer>0</integer>
-		<key>HandledBySH</key>
-		<false/>
-		<key>IsBullet</key>
-		<false/>
-		<key>IsCircle</key>
-		<false/>
-		<key>IsSensor</key>
-		<false/>
-		<key>LHHeight</key>
-		<real>0.0</real>
-		<key>LHShapePositionOffset</key>
-		<string>{0, 0}</string>
-		<key>LHWidth</key>
-		<real>0.0</real>
-		<key>LinearDamping</key>
-		<real>0.0</real>
-		<key>LinearVelocity</key>
-		<string>{0, 0}</string>
-		<key>Mask</key>
-		<integer>65535</integer>
-		<key>Name</key>
-		<string>LH_Generic_Fixture</string>
-		<key>Restitution</key>
-		<real>0.20000000298023224</real>
-		<key>Tag</key>
-		<integer>0</integer>
-		<key>TagBottom</key>
-		<integer>7</integer>
-		<key>TagBottomName</key>
-		<string>BORDER</string>
-		<key>TagLeft</key>
-		<integer>7</integer>
-		<key>TagLeftName</key>
-		<string>BORDER</string>
-		<key>TagRight</key>
-		<integer>7</integer>
-		<key>TagRightName</key>
-		<string>BORDER</string>
-		<key>TagTop</key>
-		<integer>7</integer>
-		<key>TagTopName</key>
-		<string>BORDER</string>
-		<key>Type</key>
-		<integer>0</integer>
-		<key>WBRect</key>
-		<string>{{0, 0}, {480, 320}}</string>
 	</dict>
 </dict>
 </plist>

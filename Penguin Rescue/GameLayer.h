@@ -27,6 +27,9 @@ enum GAME_STATE {
 	GAME_OVER
 };
 
+struct MoveGrid {
+	int** data;
+};
 
 
 // HelloWorldLayer
@@ -42,10 +45,11 @@ enum GAME_STATE {
 	GAME_STATE _state;
 	double _gameStartCountdownTimer;
 	
-	int** _penguinMoveGrid;
 	int** _sharkMoveGrid;
+	int** _penguinMoveGrid;
 	int** _sharkMapfeaturesGrid;
 	int** _penguinMapfeaturesGrid;
+	NSMutableDictionary* _sharkMoveGrids;
 	int _gridWidth;
 	int _gridHeight;
 	
@@ -74,7 +78,7 @@ enum GAME_STATE {
 
 #define INITIAL_GRID_WEIGHT 10
 #define HARD_BORDER_WEIGHT 100
-#define GRID_SIZE ((int)(32*SCALING_FACTOR))
+#define GRID_SIZE ((int)(16*SCALING_FACTOR))
 
 #define SHARKS_COUNTDOWN_TIMER_INITIAL 1
 
