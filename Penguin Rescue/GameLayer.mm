@@ -278,10 +278,10 @@
 	
 	for(LHSprite* land in unpassableAreas) {
 			
-		int minX = max(land.position.x, 0);
-		int maxX = min(land.position.x+land.contentSize.width, winSize.width-1);
-		int minY = max(land.position.y, 0);
-		int maxY = min(land.position.y+land.contentSize.height, winSize.height-1);
+		int minX = max(land.position.x-land.contentSize.width/2, 0);
+		int maxX = min(land.position.x+land.contentSize.width/2, winSize.width-1);
+		int minY = max(land.position.y-land.contentSize.height/2, 0);
+		int maxY = min(land.position.y+land.contentSize.height/2, winSize.height-1);
 		
 		//create the areas that both sharks and penguins can't go
 		for(int x = minX; x < maxX; x++) {
@@ -933,7 +933,7 @@
 			continue;
 		}
 		
-		CGPoint bestOptionPos = penguin.position;
+		CGPoint bestOptionPos;
 		
 		for(LHSprite* shark in sharks) {
 			double dist = ccpDistance(shark.position, penguin.position);
@@ -1145,12 +1145,12 @@
 		
 		ccDrawColor4B(0,100,0,50);
 		for(LHSprite* land in lands) {
-			ccPointSize(land.contentSize.width+10);
+			ccPointSize(land.contentSize.width+16);
 			ccDrawPoint(land.position);
 		}
-		ccDrawColor4B(0,100,100,50);
+		ccDrawColor4B(0,200,200,50);
 		for(LHSprite* border in borders) {
-			ccPointSize(border.contentSize.width+10);
+			ccPointSize(border.contentSize.width+16);
 			ccDrawPoint(border.position);
 		}
 	}
