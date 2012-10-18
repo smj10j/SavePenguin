@@ -1,5 +1,5 @@
 //
-//  SharkMoveGridData.mm
+//  MoveGridData.mm
 //  Penguin Rescue
 //
 //  Created by Stephen Johnson on 10/18/12.
@@ -7,9 +7,9 @@
 //
 
 #import "cocos2d.h"
-#import "SharkMoveGridData.h"
+#import "MoveGridData.h"
 
-@implementation SharkMoveGridData
+@implementation MoveGridData
 
 
 -(id)initWithGrid:(int**)grid {
@@ -40,7 +40,9 @@
 
 
 -(void)dealloc {
-	free(_grid);
+	if(_grid != nil) {
+		free(_grid);
+	}
 	free(_moveHistory);
 	_grid = nil;
 	

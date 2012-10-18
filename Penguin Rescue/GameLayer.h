@@ -49,7 +49,8 @@ struct MoveGrid {
 	int** _penguinMoveGrid;
 	int** _sharkMapfeaturesGrid;
 	int** _penguinMapfeaturesGrid;
-	NSMutableDictionary* _sharkMoveGrids;
+	NSMutableDictionary* _sharkMoveGridDatas;
+	NSMutableDictionary* _penguinMoveGridDatas;
 	int _gridWidth;
 	int _gridHeight;
 	

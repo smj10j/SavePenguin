@@ -217,7 +217,7 @@
 		AA6DFAF5162FF8C300F93350 /* Spritesheet_Toolbox-hd.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = AA6DFAF2162FF8C200F93350 /* Spritesheet_Toolbox-hd.pvr.gz */; };
 		AA6DFAF6162FF8C300F93350 /* Spritesheet_Toolbox-ipadhd.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = AA6DFAF3162FF8C200F93350 /* Spritesheet_Toolbox-ipadhd.pvr.gz */; };
 		AA6DFAF7162FF8C300F93350 /* Spritesheet_Toolbox.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = AA6DFAF4162FF8C300F93350 /* Spritesheet_Toolbox.pvr.gz */; };
-		AA6DFB1316302BFF00F93350 /* SharkMoveGridData.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA6DFB1216302BFF00F93350 /* SharkMoveGridData.mm */; };
+		AA6DFB1316302BFF00F93350 /* MoveGridData.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA6DFB1216302BFF00F93350 /* MoveGridData.mm */; };
 		a27a6801a7e02573488cf2ae /* LHContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63faa4ee03f4d19437a2d01f /* LHContactListener.mm */; };
 		c1d7b53907c8999f8637a22c /* LHFixture.mm in Sources */ = {isa = PBXBuildFile; fileRef = ae757d5ca3555b0fca385c9e /* LHFixture.mm */; };
 		cbcf8a3be72e6868338383a0 /* LHTouchMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = a41826f9b6cfd4e5bfe15ed5 /* LHTouchMgr.mm */; };
@@ -643,8 +643,8 @@
 		AA6DFAF2162FF8C200F93350 /* Spritesheet_Toolbox-hd.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "Spritesheet_Toolbox-hd.pvr.gz"; sourceTree = "<group>"; };
 		AA6DFAF3162FF8C200F93350 /* Spritesheet_Toolbox-ipadhd.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "Spritesheet_Toolbox-ipadhd.pvr.gz"; sourceTree = "<group>"; };
 		AA6DFAF4162FF8C300F93350 /* Spritesheet_Toolbox.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = Spritesheet_Toolbox.pvr.gz; sourceTree = "<group>"; };
-		AA6DFB1116302BFF00F93350 /* SharkMoveGridData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharkMoveGridData.h; sourceTree = "<group>"; };
-		AA6DFB1216302BFF00F93350 /* SharkMoveGridData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharkMoveGridData.mm; sourceTree = "<group>"; };
+		AA6DFB1116302BFF00F93350 /* MoveGridData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveGridData.h; sourceTree = "<group>"; };
+		AA6DFB1216302BFF00F93350 /* MoveGridData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoveGridData.mm; sourceTree = "<group>"; };
 		a372192b40b20f50dc51d243 /* lhConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lhConfig.h; sourceTree = "<group>"; };
 		a41826f9b6cfd4e5bfe15ed5 /* LHTouchMgr.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LHTouchMgr.mm; sourceTree = "<group>"; };
 		ae757d5ca3555b0fca385c9e /* LHFixture.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LHFixture.mm; sourceTree = "<group>"; };
@@ -1352,8 +1352,8 @@
 		AA6DFB1516302C1A00F93350 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				AA6DFB1116302BFF00F93350 /* SharkMoveGridData.h */,
-				AA6DFB1216302BFF00F93350 /* SharkMoveGridData.mm */,
+				AA6DFB1116302BFF00F93350 /* MoveGridData.h */,
+				AA6DFB1216302BFF00F93350 /* MoveGridData.mm */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1681,7 +1681,7 @@
 				7c4477967b3e8d5773baaf1c /* LHSprite.mm in Sources */,
 				cbcf8a3be72e6868338383a0 /* LHTouchMgr.mm in Sources */,
 				250e1473997f280a794687eb /* SHDocumentLoader.mm in Sources */,
-				AA6DFB1316302BFF00F93350 /* SharkMoveGridData.mm in Sources */,
+				AA6DFB1316302BFF00F93350 /* MoveGridData.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

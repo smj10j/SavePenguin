@@ -17,7 +17,7 @@
 
 
 #import "ToolSelectLayer.h"
-#import "SharkMoveGridData.h"
+#import "MoveGridData.h"
 
 #pragma mark - GameLayer
 
@@ -79,7 +79,8 @@
 		
 		_gridWidth = winSize.width/GRID_SIZE + 1;
 		_gridHeight = winSize.height/GRID_SIZE + 1;
-		_sharkMoveGrids = [[NSMutableDictionary alloc] init];
+		_sharkMoveGridDatas = [[NSMutableDictionary alloc] init];
+		_penguinMoveGridDatas = [[NSMutableDictionary alloc] init];
 		_sharkMoveGrid = new int*[_gridWidth];
 		_penguinMoveGrid = new int*[_gridWidth];
 		_sharkMapfeaturesGrid = new int*[_gridWidth];
@@ -226,6 +227,10 @@
 	if(true) {
 		[self showTutorial];
 	}
+	
+	for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
+		[_penguinMoveGridDatas setObject:[[MoveGridData alloc] initWithGrid:nil] forKey:penguin.uniqueName];
+	}
 }
 
 
@@ -289,7 +294,7 @@
 	}
 	
 	
-	[_sharkMoveGrids removeAllObjects];
+	[_sharkMoveGridDatas removeAllObjects];
 	
 	//create a set of maps for each shark
 	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
@@ -320,8 +325,8 @@
 
 		
 		//and add it to the map
-		SharkMoveGridData* wrapper = [[SharkMoveGridData alloc] initWithGrid:sharkMoveGrid];
-		[_sharkMoveGrids setObject:wrapper forKey:shark.uniqueName];
+		MoveGridData* wrapper = [[MoveGridData alloc] initWithGrid:sharkMoveGrid];
+		[_sharkMoveGridDatas setObject:wrapper forKey:shark.uniqueName];
 		
 		NSLog(@"Created movegrid template for shark %@", shark.uniqueName);
 	}
@@ -437,10 +442,19 @@
 	
 	_state = GAME_OVER;
 	
-	//TODO: show some happy sharks and sad penguins (if any are left!)
-	//eg. [shark startAnimationNamed:@"attackPenguin"];
-	[penguin removeSelf];
-	penguin = nil;
+	
+	if(shark != nil) {
+		//a shark got a penguin!
+		[penguin removeSelf];
+		penguin = nil;
+
+		//TODO: show some happy sharks and sad penguins (if any are left!)
+		//eg. [shark startAnimationNamed:@"attackPenguin"];
+		
+	}else {
+		//penguin must have drowned!
+		//TODO: show a drowning penguin animation
+	}
 	
 	//TODO: restart after animations are done
 	//[self restart];
@@ -756,7 +770,7 @@
 		
 		//NSLog(@"Closest penguin: %f", minDistance);
 		
-		SharkMoveGridData* sharkMoveGridData = (SharkMoveGridData*)[_sharkMoveGrids objectForKey:shark.uniqueName];
+		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
 		int** thisSharksMoveGrid = [sharkMoveGridData grid];
 		if(thisSharksMoveGrid == nil) {
 			NSLog(@"Waiting for movegrid to be generated for shark %@", shark.uniqueName);
@@ -857,6 +871,7 @@
 		if([sharkMoveGridData distanceMoved] < sharkData.restingSpeed/10) {
 			//we're stuck
 			NSLog(@"Shark %@ is stuck - we're removing him", shark.uniqueName);
+			//TODO: make the shark spin around in circles and explode in frustration!
 			[shark removeSelf];
 		}
 	
@@ -893,6 +908,7 @@
 		int gridX = (int)penguin.position.x/GRID_SIZE;
 		int gridY = (int)penguin.position.y/GRID_SIZE;
 		Penguin* penguinData = ((Penguin*)penguin.userInfo);
+		MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
 		
 		if(penguinData.isSafe) {
 			continue;
@@ -969,6 +985,14 @@
 				return;
 			}
 			
+			[penguinMoveGridData logMove:bestOptionPos];
+			if([penguinMoveGridData distanceMoved] < penguinData.speed/10) {
+				//we're stuck
+				NSLog(@"Penguin %@ is stuck - we're removing him", penguin.uniqueName);
+				//TODO: do a drowning action and lose the level!
+				[self levelLostWithShark:nil andPenguin:penguin];
+			}
+				
 			double normalizedX = dx/max;
 			double normalizedY = dy/max;
 		
@@ -1140,7 +1164,8 @@
 
 -(void) dealloc
 {
-	[_sharkMoveGrids removeAllObjects];
+	[_sharkMoveGridDatas removeAllObjects];
+	[_penguinMoveGridDatas removeAllObjects];
 	free(_sharkMoveGrid);
 	free(_penguinMoveGrid);
 	free(_penguinMapfeaturesGrid);

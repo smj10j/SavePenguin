@@ -1,5 +1,5 @@
 //
-//  SharkMoveGridData.h
+//  MoveGridData.h
 //  Penguin Rescue
 //
 //  Created by Stephen Johnson on 10/18/12.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SharkMoveGridData : NSObject {
+@interface MoveGridData : NSObject {
 
 	int** _grid;
 	CGPoint* _moveHistory;
