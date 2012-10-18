@@ -559,10 +559,14 @@
 		if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
 			_activeToolboxItem.tag = DEBRIS;
 			[_activeToolboxItem makeDynamic];
+			[_activeToolboxItem setSensor:false];
+			
 		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Border"]) {
 			_activeToolboxItem.tag = BORDER;
 			[_activeToolboxItem makeStatic];
+			[_activeToolboxItem setSensor:false];
 			_shouldRegenerateFeatureMaps = true;
+			
 		}
 		
 		_activeToolboxItem = nil;

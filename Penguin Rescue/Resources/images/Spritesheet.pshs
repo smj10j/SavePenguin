@@ -2030,7 +2030,7 @@
 			<key>MaxSheetSize</key>
 			<integer>4096</integer>
 			<key>NpotSize</key>
-			<string>{152, 240}</string>
+			<string>{144, 240}</string>
 			<key>Padding</key>
 			<integer>8</integer>
 			<key>PixelFormat</key>
@@ -2251,7 +2251,7 @@
 								<key>IsRectangle</key>
 								<false/>
 								<key>IsSensor</key>
-								<false/>
+								<true/>
 								<key>LHHeight</key>
 								<real>0.0</real>
 								<key>LHShapePositionOffset</key>
@@ -2473,12 +2473,10 @@
 								<key>Fixture</key>
 								<array>
 									<array>
-										<string>{-2.5, 18.5}</string>
-										<string>{-2.5, -15.25}</string>
-										<string>{2, -18.5}</string>
-										<string>{2.5, -18.5}</string>
-										<string>{2.25, 15.25}</string>
-										<string>{-2.25, 18.75}</string>
+										<string>{-2.5, -18.75}</string>
+										<string>{2.75, -18.75}</string>
+										<string>{2.75, 18.75}</string>
+										<string>{-2.5, 18.75}</string>
 									</array>
 								</array>
 								<key>Friction</key>
@@ -2486,21 +2484,21 @@
 								<key>Group</key>
 								<integer>0</integer>
 								<key>Height</key>
-								<real>0.0</real>
+								<real>150</real>
 								<key>HolesPoints</key>
 								<array/>
 								<key>IsCircle</key>
 								<false/>
 								<key>IsRectangle</key>
-								<false/>
+								<true/>
 								<key>IsSensor</key>
-								<false/>
+								<true/>
 								<key>LHHeight</key>
-								<real>0.0</real>
+								<real>37.5</real>
 								<key>LHShapePositionOffset</key>
 								<string>{-10.75, -18.75}</string>
 								<key>LHWidth</key>
-								<real>0.0</real>
+								<real>5.25</real>
 								<key>Mask</key>
 								<integer>65535</integer>
 								<key>Name</key>
@@ -2509,19 +2507,17 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{0, 1}</string>
-									<string>{0, 136}</string>
-									<string>{18, 149}</string>
-									<string>{20, 149}</string>
-									<string>{19, 14}</string>
-									<string>{1, 0}</string>
+									<string>{0, 0}</string>
+									<string>{21, 0}</string>
+									<string>{21, 150}</string>
+									<string>{0, 150}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
 								<key>Tag</key>
 								<integer>0</integer>
 								<key>Width</key>
-								<real>0.0</real>
+								<real>21</real>
 							</dict>
 						</array>
 						<key>Type</key>
@@ -2554,9 +2550,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{0, 0}, {5.75, 37.5}}</string>
+						<string>{{1, 1}, {5.75, 37.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{0, 0}, {21, 150}}</string>
+						<string>{{4, 4}, {21, 150}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.pvr.gz</string>
 						<key>Image-HD</key>
@@ -2582,7 +2578,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{0, 0}</string>
+						<string>{4, 4}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
