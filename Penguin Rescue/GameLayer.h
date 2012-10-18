@@ -71,14 +71,14 @@ struct MoveGrid {
 
 #define DEBUG_ALL_THE_THINGS false
 #define DEBUG_PENGUIN false
-#define DEBUG_SHARK false
+#define DEBUG_SHARK true
 
 #define SCALING_FACTOR (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5 : 1.0)
 #define TARGET_FPS 60
 
-#define INITIAL_GRID_WEIGHT 10
+#define INITIAL_GRID_WEIGHT 25
 #define HARD_BORDER_WEIGHT 100
-#define GRID_SIZE ((int)(16*SCALING_FACTOR))
+#define GRID_SIZE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 24 : 54)
 
 #define SHARKS_COUNTDOWN_TIMER_INITIAL 1
 

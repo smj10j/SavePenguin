@@ -77,8 +77,8 @@
 		//sharks start in N seconds
 		_gameStartCountdownTimer = SHARKS_COUNTDOWN_TIMER_INITIAL;
 		
-		_gridWidth = winSize.width/GRID_SIZE;
-		_gridHeight = winSize.height/GRID_SIZE;
+		_gridWidth = winSize.width/GRID_SIZE + 1;
+		_gridHeight = winSize.height/GRID_SIZE + 1;
 		_sharkMoveGrids = [[NSMutableDictionary alloc] init];
 		_sharkMoveGrid = new int*[_gridWidth];
 		_penguinMoveGrid = new int*[_gridWidth];
@@ -253,11 +253,11 @@
 	NSLog(@"Num safe lands: %d, Num borders: %d", [lands count], [borders count]);
 	
 	for(LHSprite* land in unpassableAreas) {
-	
-		int minX = max(land.position.x-GRID_SIZE, 0);
-		int maxX = min(land.position.x+land.contentSize.width+GRID_SIZE, winSize.width-1);
-		int minY = max(land.position.y-GRID_SIZE, 0);
-		int maxY = min(land.position.y+land.contentSize.height+GRID_SIZE, winSize.height-1);
+
+		int minX = max(land.position.x, 0);
+		int maxX = min(land.position.x+land.contentSize.width, winSize.width-1);
+		int minY = max(land.position.y, 0);
+		int maxY = min(land.position.y+land.contentSize.height, winSize.height-1);
 		
 		//create the areas that both sharks and penguins can't go
 		for(int x = minX; x < maxX; x++) {
@@ -311,8 +311,13 @@
 		x = max(min(x, _gridWidth-1), 0);
 		y = max(min(y, _gridHeight-1), 0);
 
-		sharkMoveGrid[x][y] = 0;
-		[self propagateSharkGridCostToX:x y:y  onSharkMoveGrid:sharkMoveGrid];
+		sharkMoveGrid[x][y] = INITIAL_GRID_WEIGHT/2;
+		[self propagateSharkGridCostToX:x
+									y:y
+									onSharkMoveGrid:sharkMoveGrid
+									withSharkX:shark.position.x/GRID_SIZE
+									sharkY:shark.position.y/GRID_SIZE];
+
 		
 		//and add it to the map
 		SharkMoveGridData* wrapper = [[SharkMoveGridData alloc] initWithGrid:sharkMoveGrid];
@@ -568,7 +573,7 @@
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done with update tick");
 }
 
--(void) propagateSharkGridCostToX:(int)x y:(int)y onSharkMoveGrid:(int**)sharkMoveGrid {
+-(void) propagateSharkGridCostToX:(int)x y:(int)y onSharkMoveGrid:(int**)sharkMoveGrid withSharkX:(int)sharkX sharkY:(int)sharkY {
 	
 	if(_state != RUNNING) {
 		//stops propagation faster on a pause
@@ -580,6 +585,13 @@
 	if(y < 0 || y >= _gridHeight) {
 		return;
 	}
+	
+	/*
+	if(sqrt(pow(sharkX-x,2)+pow(sharkY-y,2)) <3) {
+		//we're there!
+		return;
+	}
+	*/
 	
 	double w = sharkMoveGrid[x][y];
 	double wN = y+1 >= _gridHeight ? -10000 : sharkMoveGrid[x][y+1];
@@ -616,16 +628,16 @@
 	}
 	
 	if(changedN) {
-		[self propagateSharkGridCostToX:x y:y+1 onSharkMoveGrid:sharkMoveGrid];
+		[self propagateSharkGridCostToX:x y:y+1 onSharkMoveGrid:sharkMoveGrid withSharkX:sharkX sharkY:sharkY];
 	}
 	if(changedS) {
-		[self propagateSharkGridCostToX:x y:y-1 onSharkMoveGrid:sharkMoveGrid];
+		[self propagateSharkGridCostToX:x y:y-1 onSharkMoveGrid:sharkMoveGrid withSharkX:sharkX sharkY:sharkY];
 	}
 	if(changedE) {
-		[self propagateSharkGridCostToX:x+1 y:y onSharkMoveGrid:sharkMoveGrid];
+		[self propagateSharkGridCostToX:x+1 y:y onSharkMoveGrid:sharkMoveGrid withSharkX:sharkX sharkY:sharkY];
 	}
 	if(changedW) {
-		[self propagateSharkGridCostToX:x-1 y:y onSharkMoveGrid:sharkMoveGrid];
+		[self propagateSharkGridCostToX:x-1 y:y onSharkMoveGrid:sharkMoveGrid withSharkX:sharkX sharkY:sharkY];
 	}
 	
 }
@@ -769,7 +781,9 @@
 			_sharkMoveGrid[x][y] = 0;
 			[self propagateSharkGridCostToX:x
 										y:y
-										onSharkMoveGrid:_sharkMoveGrid];
+										onSharkMoveGrid:_sharkMoveGrid
+										withSharkX:shark.position.x/GRID_SIZE
+										sharkY:shark.position.y/GRID_SIZE];
 		}
 		
 		
@@ -1061,7 +1075,7 @@
 -(void) drawDebugMovementGrid {
 		
 	if(DEBUG_SHARK ) {
-		ccPointSize(50);
+		ccPointSize(GRID_SIZE-2);
 		for(int x = 0; x < _gridWidth; x++) {
 			for(int y = 0; y < _gridHeight; y++) {
 				int sv = (_sharkMoveGrid[x][y]);
@@ -1072,7 +1086,7 @@
 	}
 	
 	if(DEBUG_PENGUIN) {
-		ccPointSize(50);
+		ccPointSize(GRID_SIZE-2);
 		for(int x = 0; x < _gridWidth; x++) {
 			for(int y = 0; y < _gridHeight; y++) {
 				int pv = (_penguinMapfeaturesGrid[x][y]);
@@ -1081,32 +1095,47 @@
 			}
 		}
 	}
+	
+	if(DEBUG_SHARK || DEBUG_PENGUIN) {
+		NSArray* lands = [_levelLoader spritesWithTag:LAND];
+		NSArray* borders = [_levelLoader spritesWithTag:BORDER];
+		NSMutableArray* unpassableAreas = [NSMutableArray arrayWithArray:lands];
+		[unpassableAreas addObjectsFromArray:borders];
+		
+		ccDrawColor4B(0,100,0,50);
+		for(LHSprite* land in unpassableAreas) {
+			ccPointSize(land.contentSize.width+10);
+			ccDrawPoint(land.position);
+		}
+	}
 }
 
 
 
 -(void) draw
 {
-	//
-	// IMPORTANT:
-	// This is only for debug purposes
-	// It is recommend to disable it
-	//
-	[super draw];
-	
-	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
-	
-	kmGLPushMatrix();
-	
-	if(DEBUG_ALL_THE_THINGS) {
-		_world->DrawDebugData();
-	}
-	
-	if(DEBUG_ALL_THE_THINGS || DEBUG_PENGUIN || DEBUG_SHARK ) {
+	if(DEBUG_ALL_THE_THINGS || DEBUG_PENGUIN || DEBUG_SHARK) {
+		//
+		// IMPORTANT:
+		// This is only for debug purposes
+		// It is recommend to disable it
+		//
+		[super draw];
+		
+		ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
+		
+		kmGLPushMatrix();
+		
+		if(DEBUG_ALL_THE_THINGS) {
+			_world->DrawDebugData();
+		}
+		
 		[self drawDebugMovementGrid];
+		
+		kmGLPopMatrix();
+	}else {
+		[super draw];	
 	}
-	
-	kmGLPopMatrix();
 }
 
 -(void) dealloc
