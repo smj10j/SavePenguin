@@ -50,6 +50,9 @@ enum GAME_STATE {
 	int _gridHeight;
 	
 	NSMutableDictionary* _penguinsToPutOnLand;
+	
+	LHSprite* _pauseButton;
+	LHSprite* _restartButton;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

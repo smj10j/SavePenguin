@@ -163,16 +163,19 @@
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
 	//TODO: add touchBegan observer to handle showing an enlarged button
-	LHSprite* pauseButton = [_levelLoader createSpriteWithName:@"Pause" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:self];	
-	pauseButton.position = ccp(pauseButton.contentSize.width/2+30*SCALING_FACTOR,pauseButton.contentSize.height/2+20*SCALING_FACTOR);
-	[pauseButton registerTouchBeganObserver:self selector:@selector(togglePause)];
+	_pauseButton = [_levelLoader createSpriteWithName:@"Pause_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:self];
+	[_pauseButton prepareAnimationNamed:@"Pause_hover" fromSHScene:@"Spritesheet"];
+	_pauseButton.position = ccp(_pauseButton.contentSize.width/2+30*SCALING_FACTOR,_pauseButton.contentSize.height/2+20*SCALING_FACTOR);
+	[_pauseButton registerTouchBeganObserver:self selector:@selector(onTouchBeganPause:)];
+	[_pauseButton registerTouchEndedObserver:self selector:@selector(onTouchEndedPause:)];
 	
 	
 	//TODO: add touchBegan observer to handle showing an enlarged button
-	LHSprite* restartButton = [_levelLoader createSpriteWithName:@"Restart" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:self];
-	restartButton.position = ccp(winSize.width - (restartButton.contentSize.width/2+30*SCALING_FACTOR),restartButton.contentSize.height/2+20*SCALING_FACTOR);
-	[restartButton registerTouchBeganObserver:self selector:@selector(restart)];
-	
+	_restartButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:self];
+	[_restartButton prepareAnimationNamed:@"Restart_hover" fromSHScene:@"Spritesheet"];
+	_restartButton.position = ccp(winSize.width - (_restartButton.contentSize.width/2+30*SCALING_FACTOR),_restartButton.contentSize.height/2+20*SCALING_FACTOR);
+	[_restartButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
+	[_restartButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 }
 
 -(void) loadLevel:(NSString*)levelName inLevelPack:(NSString*)levelPack {
@@ -286,14 +289,29 @@
 }
 
 
+-(void)onTouchBeganPause:(LHTouchInfo*)info {
+	[_pauseButton setFrame:1];
+	
+}
 
+-(void)onTouchEndedPause:(LHTouchInfo*)info {
+	[_pauseButton setFrame:0];
 
--(void) togglePause {
+	//TODO: the in-game menu will actually resume and toggling will not be necessary
 	if(_state == PAUSE) {
 		[self resume];
 	}else {
 		[self pause];
 	}
+}
+
+-(void)onTouchBeganRestart:(LHTouchInfo*)info {
+	[_restartButton setFrame:1];
+}
+
+-(void)onTouchEndedRestart:(LHTouchInfo*)info {
+	[_restartButton setFrame:0];
+	[self restart];
 }
 
 -(void) pause {
