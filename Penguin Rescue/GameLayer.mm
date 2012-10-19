@@ -1122,7 +1122,10 @@
 		double targetVelY = dt * sharkSpeed * normalizedY;
 		double weightedVelX = (prevVel.x * 4.0 + targetVelX)/5.0;
 		double weightedVelY = (prevVel.y * 4.0 + targetVelY)/5.0;
-		shark.body->SetLinearVelocity(b2Vec2(weightedVelX,weightedVelY));
+		
+		//we're using an impulse for the shark so they interact with things like Debris (physics)
+		//shark.body->SetLinearVelocity(b2Vec2(weightedVelX,weightedVelY));
+		shark.body->ApplyLinearImpulse(b2Vec2(targetVelX*.1,targetVelY*.1), shark.body->GetWorldCenter());
 		
 		//rotate shark
 		double radians = atan2(weightedVelX, weightedVelY); //this grabs the radians for us
@@ -1234,6 +1237,8 @@
 			}
 			
 			[penguinMoveGridData logMove:bestOptionPos];
+			
+			/*
 			if([penguinMoveGridData distanceTraveledStraightline] < 1*SCALING_FACTOR) {
 				//we're stuck
 				penguinData.isStuck = true;
@@ -1246,6 +1251,7 @@
 					//TODO: do a confused/arms up in air animation
 				}
 			}
+			*/
 				
 			double normalizedX = dx/max;
 			double normalizedY = dy/max;

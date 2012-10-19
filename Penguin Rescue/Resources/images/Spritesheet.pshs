@@ -686,7 +686,7 @@
 								<key>IsRectangle</key>
 								<false/>
 								<key>IsSensor</key>
-								<false/>
+								<true/>
 								<key>LHHeight</key>
 								<real>0.0</real>
 								<key>LHShapePositionOffset</key>
@@ -754,7 +754,7 @@
 							</dict>
 						</array>
 						<key>Type</key>
-						<integer>1</integer>
+						<integer>2</integer>
 					</dict>
 					<key>SHSheetName</key>
 					<string>Actors</string>
@@ -898,7 +898,7 @@
 						<key>IsBullet</key>
 						<false/>
 						<key>LinearDamping</key>
-						<real>0.0</real>
+						<real>3.0999999046325684</real>
 						<key>LinearVelocity</key>
 						<string>{0, 0}</string>
 						<key>SH_ComplexShapes</key>
