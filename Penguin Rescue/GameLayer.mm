@@ -82,10 +82,10 @@
 		_penguinsToPutOnLand =[[NSMutableDictionary alloc] init];
 		__DEBUG_SHARKS = DEBUG_SHARK;
 		__DEBUG_PENGUINS = DEBUG_PENGUIN;
-		__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
 		if(__DEBUG_SHARKS || __DEBUG_PENGUINS) {
 			self.color = ccBLACK;
 		}
+		__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
 		
 		// init physics
 		[self initPhysics];
@@ -155,23 +155,25 @@
 	for(LHSprite* land in unpassableAreas) {
 		_gridSize = max(_gridSize, land.contentSize.width);
 	}
+	
+	//TODO: it would be optimal to enable this - but I need to optimize and greatly speed up each turn to be able to do so
+	//think about using some kind of delta algorithm to only update potentially changed tiles
+	//_gridSize/= 2;
+	
 	_gridWidth = winSize.width/_gridSize + 1;
 	_gridHeight = winSize.height/_gridSize + 1;
 
 	NSLog(@"Setting up grid with size=%d, width=%d, height=%d", _gridSize, _gridWidth, _gridHeight);
 
-	_sharkMoveGrid = new int*[_gridWidth];
 	_penguinMoveGrid = new int*[_gridWidth];
 	_sharkMapfeaturesGrid = new int*[_gridWidth];
 	_penguinMapfeaturesGrid = new int*[_gridWidth];
 	for(int i = 0; i < _gridWidth; i++) {
 		_penguinMoveGrid[i] = new int[_gridHeight];
-		_sharkMoveGrid[i] = new int[_gridHeight];
 		_sharkMapfeaturesGrid[i] = new int[_gridHeight];
 		_penguinMapfeaturesGrid[i] = new int[_gridHeight];
 		for(int j = 0; j < _gridHeight; j++) {
 			_penguinMoveGrid[i][j] = 0;
-			_sharkMoveGrid[i][j] = 0;
 			_sharkMapfeaturesGrid[i][j] = INITIAL_GRID_WEIGHT;
 			_penguinMapfeaturesGrid[i][j] = INITIAL_GRID_WEIGHT;
 		}
@@ -179,7 +181,7 @@
 	
 	_penguinMoveGridDatas = [[NSMutableDictionary alloc] init];
 	for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
-		[_penguinMoveGridDatas setObject:[[MoveGridData alloc] initWithGrid:nil] forKey:penguin.uniqueName];
+		[_penguinMoveGridDatas setObject:[[MoveGridData alloc] initWithGrid:nil height:0 width:0] forKey:penguin.uniqueName];
 	}
 	
 	//shark is filled in generateFeatureMaps
@@ -408,13 +410,11 @@
 		sharkMoveGrid[x][y] = INITIAL_GRID_WEIGHT-1;
 		[self propagateSharkGridCostToX:x
 									y:y
-									onSharkMoveGrid:sharkMoveGrid
-									withSharkX:shark.position.x/_gridSize
-									sharkY:shark.position.y/_gridSize];
+									onSharkMoveGrid:sharkMoveGrid];
 
 		
 		//and add it to the map
-		MoveGridData* wrapper = [[MoveGridData alloc] initWithGrid:sharkMoveGrid];
+		MoveGridData* wrapper = [[MoveGridData alloc] initWithGrid: sharkMoveGrid height:_gridHeight width:_gridWidth];
 		[_sharkMoveGridDatas setObject:wrapper forKey:shark.uniqueName];
 		
 		NSLog(@"Created movegrid template for shark %@", shark.uniqueName);
@@ -509,9 +509,9 @@
 	
 	double elapsed = ([[NSDate date] timeIntervalSince1970] - __DEBUG_TOUCH_SECONDS);
 	if(elapsed < 2) {
-		self.color = __DEBUG_ORIG_BACKGROUND_COLOR;
+		/*self.color = __DEBUG_ORIG_BACKGROUND_COLOR;
 		__DEBUG_PENGUINS = DEBUG_PENGUIN;
-		__DEBUG_SHARKS = DEBUG_SHARK;
+		__DEBUG_SHARKS = DEBUG_SHARK;*/
 	}else if(elapsed < 5) {
 		NSLog(@"Enabling debug sharks");
 		__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
@@ -756,7 +756,7 @@
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done with update tick");
 }
 
--(void) propagateSharkGridCostToX:(int)x y:(int)y onSharkMoveGrid:(int**)sharkMoveGrid withSharkX:(int)sharkX sharkY:(int)sharkY {
+-(void) propagateSharkGridCostToX:(int)x y:(int)y onSharkMoveGrid:(int**)sharkMoveGrid {
 	
 	if(_state != RUNNING) {
 		//stops propagation faster on a pause
@@ -811,16 +811,16 @@
 	}
 	
 	if(changedN) {
-		[self propagateSharkGridCostToX:x y:y+1 onSharkMoveGrid:sharkMoveGrid withSharkX:sharkX sharkY:sharkY];
+		[self propagateSharkGridCostToX:x y:y+1 onSharkMoveGrid:sharkMoveGrid];
 	}
 	if(changedS) {
-		[self propagateSharkGridCostToX:x y:y-1 onSharkMoveGrid:sharkMoveGrid withSharkX:sharkX sharkY:sharkY];
+		[self propagateSharkGridCostToX:x y:y-1 onSharkMoveGrid:sharkMoveGrid];
 	}
 	if(changedE) {
-		[self propagateSharkGridCostToX:x+1 y:y onSharkMoveGrid:sharkMoveGrid withSharkX:sharkX sharkY:sharkY];
+		[self propagateSharkGridCostToX:x+1 y:y onSharkMoveGrid:sharkMoveGrid];
 	}
 	if(changedW) {
-		[self propagateSharkGridCostToX:x-1 y:y onSharkMoveGrid:sharkMoveGrid withSharkX:sharkX sharkY:sharkY];
+		[self propagateSharkGridCostToX:x-1 y:y onSharkMoveGrid:sharkMoveGrid];
 	}
 	
 }
@@ -938,40 +938,34 @@
 		}
 		
 		//NSLog(@"Closest penguin: %f", minDistance);
-		
+
 		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
-		int** thisSharksMoveGrid = [sharkMoveGridData grid];
-		if(thisSharksMoveGrid == nil) {
-			NSLog(@"Waiting for movegrid to be generated for shark %@", shark.uniqueName);
-			continue;
-		}
-		
-		for(int x = 0; x < _gridWidth; x++) {
-			for(int y = 0; y < _gridHeight; y++) {
-				_sharkMoveGrid[x][y] = thisSharksMoveGrid[x][y];
-			}
-		}
 					
 		if(targetPenguin != nil) {
 		
-			//NSLog(@"creating grid for %f,%f", actualTargetPosition.x, actualTargetPosition.y);
-			//update the best route using penguin data
 			int x = (int)targetPenguin.position.x/_gridSize;
 			int y = (int)targetPenguin.position.y/_gridSize;
 			x = max(min(x, _gridWidth-1), 0);
 			y = max(min(y, _gridHeight-1), 0);
+			CGPoint tile = {x,y};
+			id _self = self;
+			_sharkMoveGrid = [sharkMoveGridData gridToTile:tile withPropagationCallback:^(int** aGrid) {
+				aGrid[x][y] = 0;
+				[_self propagateSharkGridCostToX:x
+											y:y
+											onSharkMoveGrid:aGrid];
+			}];
+		
+			//NSLog(@"creating grid for %f,%f", actualTargetPosition.x, actualTargetPosition.y);
+			//update the best route using penguin data
 			
-			_sharkMoveGrid[x][y] = 0;
-			[self propagateSharkGridCostToX:x
-										y:y
-										onSharkMoveGrid:_sharkMoveGrid
-										withSharkX:shark.position.x/_gridSize
-										sharkY:shark.position.y/_gridSize];
+
 		}else {
 			//no target - if we're stuck just give up
 			if(sharkData.isStuck) {
 				continue;
 			}
+			_sharkMoveGrid = [sharkMoveGridData baseGrid];
 		}
 		
 		
@@ -1363,7 +1357,6 @@
 {
 	[_sharkMoveGridDatas removeAllObjects];
 	[_penguinMoveGridDatas removeAllObjects];
-	free(_sharkMoveGrid);
 	free(_penguinMoveGrid);
 	free(_penguinMapfeaturesGrid);
 	free(_sharkMapfeaturesGrid);

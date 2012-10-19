@@ -10,13 +10,21 @@
 
 @interface MoveGridData : NSObject {
 
-	int** _grid;
+	int** _baseGrid;
+	int** _latestGrid;
+	int _gridWidth;
+	int _gridHeight;
+	
 	CGPoint* _moveHistory;
 	int _moveHistoryIndex;
+	
+	CGPoint _lastTileExamined;
 }
 
-- (id)initWithGrid:(int**)grid;
-- (int**)grid;
+- (id)initWithGrid:(int**)grid height:(int)height width:(int)width;
+
+- (int**)baseGrid;
+- (int**)gridToTile:(CGPoint)pos withPropagationCallback:(void(^)(int**))propagationMethod;
 
 - (void)logMove:(CGPoint)pos;
 - (double)distanceMoved;
