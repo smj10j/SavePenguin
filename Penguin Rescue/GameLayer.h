@@ -33,7 +33,7 @@ struct MoveGrid {
 
 
 // HelloWorldLayer
-@interface GameLayer : CCLayer
+@interface GameLayer : CCLayerColor
 {
 	CCTexture2D* _spriteTexture_;	// weak ref
 	b2World* _world;					// strong ref
@@ -41,6 +41,7 @@ struct MoveGrid {
 	
 	
 	LevelHelperLoader* _levelLoader;
+	LHLayer* _mainLayer;
 	
 	GAME_STATE _state;
 	double _gameStartCountdownTimer;
@@ -58,11 +59,13 @@ struct MoveGrid {
 	
 	NSMutableDictionary* _penguinsToPutOnLand;
 	
+	LHSprite* _bottomBarContainer;
 	LHSprite* _pauseButton;
 	LHSprite* _restartButton;
 	
 	bool _moveActiveToolboxItemIntoWorld;
 	LHSprite* _activeToolboxItem;
+	CGPoint _activeToolboxItemOriginalPosition;
 
 
 

@@ -67,7 +67,7 @@
 
 -(id) init
 {
-	if( (self=[super init])) {
+	if( (self=[super initWithColor:ccc4(100, 100, 255, 50)])) {
 		
 		// enable events
 		self.isTouchEnabled = YES;
@@ -195,33 +195,66 @@
 
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
-	_pauseButton = [_levelLoader createSpriteWithName:@"Pause_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:self];
+	_bottomBarContainer = [_levelLoader createSpriteWithName:@"BottomBar" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:_mainLayer];
+	[_bottomBarContainer transformPosition: ccp(winSize.width/2,_bottomBarContainer.contentSize.height/2)];
+
+	_pauseButton = [_levelLoader createSpriteWithName:@"Pause_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:_mainLayer];
 	[_pauseButton prepareAnimationNamed:@"Pause_hover" fromSHScene:@"Spritesheet"];
-	[_pauseButton transformPosition: ccp(_pauseButton.contentSize.width/2+30*SCALING_FACTOR,_pauseButton.contentSize.height/2+20*SCALING_FACTOR)];
+	[_pauseButton transformPosition: ccp(_pauseButton.contentSize.width/2+20*SCALING_FACTOR,_pauseButton.contentSize.height/2+14*SCALING_FACTOR)];
 	[_pauseButton registerTouchBeganObserver:self selector:@selector(onTouchBeganPause:)];
 	[_pauseButton registerTouchEndedObserver:self selector:@selector(onTouchEndedPause:)];
 	
 	
-	_restartButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:self];
+	_restartButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:_mainLayer];
 	[_restartButton prepareAnimationNamed:@"Restart_hover" fromSHScene:@"Spritesheet"];
-	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.contentSize.width/2+30*SCALING_FACTOR),_restartButton.contentSize.height/2+20*SCALING_FACTOR) ];
+	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.contentSize.width/2+20*SCALING_FACTOR),_restartButton.contentSize.height/2+14*SCALING_FACTOR) ];
 	[_restartButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[_restartButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 }
 
 -(void) drawToolbox {
 	NSLog(@"Drawing Toolbox");
-
-	//TODO: load the available tools from the JSON level file and stack them on top of eachother. they should include the TAG and any other info needed at creation
 	
 	//TODO: draw a pretty box around the tools
 
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
 	NSArray* toolboxItems = [_levelLoader spritesWithTag:TOOLBOX_ITEM];
+	
+	//get all the tools put on the level - they can be anywhere!
+	NSMutableDictionary* toolGroups = [[NSMutableDictionary alloc] init];
 	for(LHSprite* toolboxItem in toolboxItems) {
-		[toolboxItem registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
-		[toolboxItem registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
+		NSMutableSet* toolGroup = [toolGroups objectForKey:toolboxItem.userInfoClassName];
+		if(toolGroup == nil) {
+			toolGroup = [[NSMutableSet alloc] init];
+			[toolGroups setObject:toolGroup forKey:toolboxItem.userInfoClassName];
+		}
+		[toolGroup addObject:toolboxItem];
+	}
+	
+	int toolGroupX = winSize.width/2;
+	int toolGroupY = _bottomBarContainer.contentSize.height/2;
+	
+	for(id key in toolGroups) {
+
+		NSMutableSet* toolGroup = [toolGroups objectForKey:key];
+		for(LHSprite* toolboxItem in toolGroup) {
+
+			//move the tool to the bottom bar
+			[toolboxItem transformPosition: ccp(toolGroupX, toolGroupY)];
+			[toolboxItem transformScale:.5];
+
+			//draw a box around it
+			LHSprite* toolboxContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:_mainLayer];
+			[toolboxContainer transformPosition: ccp(toolGroupX, toolGroupY)];
+		
+			//TODO: display a # of items in the stack
+		
+			[toolboxItem registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
+			[toolboxItem registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
+		}
+				
+		toolGroupX+= 100;
 	}
 	
 
@@ -238,6 +271,8 @@
 
 	//create all objects from the level file and adds them to the cocos2d layer (self)
 	[_levelLoader addObjectsToWorld:_world cocos2dLayer:self];
+
+	_mainLayer = [_levelLoader layerWithUniqueName:@"MAIN_LAYER"];
 
 	//checks if the level has physics boundaries
 	if([_levelLoader hasPhysicBoundaries])
@@ -359,6 +394,10 @@
 
 -(void)onTouchBeganToolboxItem:(LHTouchInfo*)info {
 
+	if(_state != RUNNING) {
+		return;
+	}
+
 	if(_activeToolboxItem != nil) {
 		//only handle one touch at a time
 		return;
@@ -372,10 +411,22 @@
 	}
 	
 	_activeToolboxItem = toolboxItem;
+	_activeToolboxItemOriginalPosition = _activeToolboxItem.position;
 	[toolboxItem transformScale:1];	
 }
 
 -(void)onTouchEndedToolboxItem:(LHTouchInfo*)info {
+	
+	if(_state != RUNNING || (info.glPoint.y < _bottomBarContainer.contentSize.height)) {
+		//placed back into the HUD
+		NSLog(@"Placing toolbox item back into the HUD");
+		//TODO: update the count displayed
+		[_activeToolboxItem transformPosition:_activeToolboxItemOriginalPosition];
+		[_activeToolboxItem transformScale:.5];
+		_activeToolboxItem = nil;
+		return;
+	}
+			
 	_moveActiveToolboxItemIntoWorld = true;
 }
 
@@ -569,6 +620,9 @@
 			
 		}
 		
+		//allows it to fall under the HUD now
+		_activeToolboxItem.zOrder = 1;
+	
 		_activeToolboxItem = nil;
 		_moveActiveToolboxItemIntoWorld = false;
 	}
