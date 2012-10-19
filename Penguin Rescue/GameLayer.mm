@@ -288,12 +288,14 @@
 
 -(void) loadLevel:(NSString*)levelName inLevelPack:(NSString*)levelPack {
 		
+	[LevelHelperLoader dontStretchArt];
+
 	//create a LevelHelperLoader object that has the data of the specified level
 	if(_levelLoader != nil) {
 		[_levelLoader release];
 	}
 	_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", levelPack, levelName]];
-
+	
 	//create all objects from the level file and adds them to the cocos2d layer (self)
 	[_levelLoader addObjectsToWorld:_world cocos2dLayer:self];
 
@@ -607,7 +609,7 @@
 
 
 
-
+	
 
 
 
