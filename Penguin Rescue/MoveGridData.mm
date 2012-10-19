@@ -12,11 +12,12 @@
 @implementation MoveGridData
 
 
-- (id)initWithGrid:(int**)grid height:(int)height width:(int)width {
+- (id)initWithGrid:(int**)grid height:(int)height width:(int)width tag:(NSString*)tag {
 	if(self = [super init]) {
 		_baseGrid = grid;
 		_gridWidth = width;
 		_gridHeight = height;
+		_tag = tag;
 		
 		if(_gridWidth > 0 && _gridHeight > 0 && _baseGrid != nil) {
 			_latestGrid = new int*[_gridWidth];
@@ -28,12 +29,21 @@
 			}
 		}
 		
+		_forceLatestGridUpdate = false;
+		
 		_moveHistory = new CGPoint[MOVE_HISTORY_SIZE];
 		_moveHistoryIndex = 0;
 		_moveHistoryIsFull = false;
-		
-		_numPartialUpdates = MAX_PARTIAL_UPDATES;
 	}
+	
+	//create a grouping of the objects by tags so we can share grids between them
+	NSMutableSet* moveGridDatas = [tagToMoveGridData objectForKey:_tag];
+	if(moveGridDatas == nil) {
+		moveGridDatas = [[NSMutableSet alloc] init];
+		[tagToMoveGridData setObject:moveGridDatas forKey:_tag];
+	}
+	[moveGridDatas addObject:self];
+	
 	return self;
 }
 
@@ -46,11 +56,12 @@
 }
 
 
-- (int**)gridToTile:(CGPoint)pos withPropagationCallback:(void(^)(int**))propagationMethod {
+- (int**)gridToTile:(CGPoint)pos withPropagationCallback:(void(^)(int**,CGPoint))propagationMethod {
 
-	if(pos.x != _lastTileExamined.x || pos.y != _lastTileExamined.y) {
+	if(_forceLatestGridUpdate || pos.x != _lastTileExamined.x || pos.y != _lastTileExamined.y) {
 	
 		_lastTileExamined = pos;
+		_forceLatestGridUpdate = false;
 		
 		//propagate!
 		if(propagationMethod) {
@@ -61,16 +72,26 @@
 				}
 			}
 			
-			propagationMethod(_latestGrid, true);
+			propagationMethod(_latestGrid, pos);
 		}
 	}else {
 	}
+	
+	//TODO: update all the others sharing our tag (think through this carefully!!)
 		
 	return _latestGrid;
 }
 
+- (void)forceLatestGridUpdate {
+	_forceLatestGridUpdate = true;
+}
+
 - (int**)baseGrid {
 	return _baseGrid;
+}
+
+- (int**)latestGrid {
+	return _latestGrid;
 }
 
 - (double)distanceTraveledStraightline {

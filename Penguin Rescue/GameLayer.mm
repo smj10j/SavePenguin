@@ -75,6 +75,7 @@
 		//sharks start in N seconds
 		_gameStartCountdownTimer = SHARKS_COUNTDOWN_TIMER_INITIAL;
 		
+		_isUpdatingSharkMovementGrids = false;
 		_shouldRegenerateFeatureMaps = false;
 		_activeToolboxItem = nil;
 		_moveActiveToolboxItemIntoWorld = false;
@@ -106,6 +107,9 @@
 		
 		//various handlers
 		[self setupCollisionHandling];
+		
+		//get some move grids goinz on
+		[self schedule:@selector(updateSharkMoveGrids) interval:0.5f];
 
 		//start the game
 		_state = RUNNING;
@@ -180,7 +184,7 @@
 	
 	_penguinMoveGridDatas = [[NSMutableDictionary alloc] init];
 	for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
-		[_penguinMoveGridDatas setObject:[[MoveGridData alloc] initWithGrid:nil height:0 width:0] forKey:penguin.uniqueName];
+		[_penguinMoveGridDatas setObject:[[MoveGridData alloc] initWithGrid:nil height:0 width:0 tag:@"PENGUIN"] forKey:penguin.uniqueName];
 	}
 	
 	//shark is filled in generateFeatureMaps
@@ -406,16 +410,18 @@
 		x = max(min(x, _gridWidth-1), 0);
 		y = max(min(y, _gridHeight-1), 0);
 
-		sharkMoveGrid[x][y] = INITIAL_GRID_WEIGHT-1;
+		sharkMoveGrid[x][y] = INITIAL_ENDPOINT_GRID_WEIGHT;
 		[self propagateSharkGridCostToX:x
 									y:y
 									onSharkMoveGrid:sharkMoveGrid
+									withSharkPosition:ccp(-1,-1)
 									withBranches:-1
-									andWeightDelta:1];
+									andWeightDelta:1
+									foundRoute:nil];
 
 		
 		//and add it to the map
-		MoveGridData* wrapper = [[MoveGridData alloc] initWithGrid: sharkMoveGrid height:_gridHeight width:_gridWidth];
+		MoveGridData* wrapper = [[MoveGridData alloc] initWithGrid: sharkMoveGrid height:_gridHeight width:_gridWidth tag:@"SHARK"];
 		[_sharkMoveGridDatas setObject:wrapper forKey:shark.uniqueName];
 		
 		NSLog(@"Created movegrid template for shark %@", shark.uniqueName);
@@ -541,6 +547,7 @@
 	if(_state == RUNNING) {
 		NSLog(@"Pausing game");
 		_state = PAUSE;
+		[_levelLoader setPaused:true];
 	}
 	[self showInGameMenu];
 }
@@ -555,6 +562,7 @@
 	if(_state == PAUSE) {
 		NSLog(@"Resuming game");
 		_state = RUNNING;
+		[_levelLoader setPaused:false];
 	}
 }
 
@@ -697,6 +705,9 @@
 		_activeToolboxItem = nil;
 		_moveActiveToolboxItemIntoWorld = false;
 		_shouldUpdateToolbox = true;
+		for(id key in _sharkMoveGridDatas) {
+			[[_sharkMoveGridDatas objectForKey:key] forceLatestGridUpdate];
+		}
 	}
 	
 	/*************************************/
@@ -707,7 +718,7 @@
 		
 		[self moveSharks:dt];
 		[self movePenguins:dt];
-	
+			
 	}else {
 		_gameStartCountdownTimer-= dt;
 		_gameStartCountdownLabel.string = [NSString stringWithFormat:@"Game starts in %d...", (int)ceil(_gameStartCountdownTimer)];
@@ -757,12 +768,20 @@
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done with update tick");
 }
 
--(void) propagateSharkGridCostToX:(int)x y:(int)y onSharkMoveGrid:(int**)sharkMoveGrid withBranches:(int)branches andWeightDelta:(int)weightDelta{
+-(void) propagateSharkGridCostToX:(int)x y:(int)y onSharkMoveGrid:(int**)sharkMoveGrid withSharkPosition:(CGPoint)sharkPos withBranches:(int)branches andWeightDelta:(int)weightDelta foundRoute:(bool*)foundRoute{
 	
 	if(_state != RUNNING) {
 		//stops propagation faster on a pause
 		return;
 	}
+
+	if(sharkPos.x >= 0 && sharkPos.y >= 0 && sharkPos.x == x && sharkPos.y == y) {
+		//find the fastest route - not necessarily the best
+		if(foundRoute != nil) {
+			*foundRoute = true;
+		}
+	}
+
 	if(x < 0 || x >= _gridWidth) {
 		return;
 	}
@@ -774,22 +793,19 @@
 		return;
 	}
 	
-	/*
-	if(sqrt(pow(sharkX-x,2)+pow(sharkY-y,2)) <3) {
-		//we're there!
+	double w = sharkMoveGrid[x][y];
+	if(weightDelta > 0 && w > _gridWidth*3) {
+		//this is an approximation to increase speed - it can cause failures to find any path at all (very complex ones)
 		return;
 	}
-	*/
-	
-	double w = sharkMoveGrid[x][y];
 	double wN = y+1 >= _gridHeight ? -10000 : sharkMoveGrid[x][y+1];
 	double wS = y-1 < 0 ? -10000 : sharkMoveGrid[x][y-1];
 	double wE = x+1 >= _gridWidth ? -10000 : sharkMoveGrid[x+1][y];
 	double wW = x-1 < 0 ? -10000 : sharkMoveGrid[x-1][y];
 
-	if(w != 0 && w != 1) {
-		//NSLog(@"%d,%d = %f", x, y, w);
-	}
+	/*if(w != 0 && w != 1) {
+		NSLog(@"%d,%d = %f", x, y, w);
+	}*/
 
 	
 	bool changedN = false;
@@ -816,16 +832,16 @@
 	}
 	
 	if(changedN) {
-		[self propagateSharkGridCostToX:x y:y+1 onSharkMoveGrid:sharkMoveGrid withBranches:branches-1 andWeightDelta:(weightDelta > 0 ? weightDelta : weightDelta-1)];
+		[self propagateSharkGridCostToX:x y:y+1 onSharkMoveGrid:sharkMoveGrid withSharkPosition:sharkPos withBranches:branches-1 andWeightDelta:(weightDelta > 0 ? weightDelta : weightDelta-1) foundRoute:foundRoute];
 	}
 	if(changedS) {
-		[self propagateSharkGridCostToX:x y:y-1 onSharkMoveGrid:sharkMoveGrid withBranches:branches-1 andWeightDelta:(weightDelta > 0 ? weightDelta : weightDelta-1)];
+		[self propagateSharkGridCostToX:x y:y-1 onSharkMoveGrid:sharkMoveGrid withSharkPosition:sharkPos withBranches:branches-1 andWeightDelta:(weightDelta > 0 ? weightDelta : weightDelta-1) foundRoute:foundRoute];
 	}
 	if(changedE) {
-		[self propagateSharkGridCostToX:x+1 y:y onSharkMoveGrid:sharkMoveGrid withBranches:branches-1 andWeightDelta:(weightDelta > 0 ? weightDelta : weightDelta-1)];
+		[self propagateSharkGridCostToX:x+1 y:y onSharkMoveGrid:sharkMoveGrid withSharkPosition:sharkPos withBranches:branches-1 andWeightDelta:(weightDelta > 0 ? weightDelta : weightDelta-1) foundRoute:foundRoute];
 	}
 	if(changedW) {
-		[self propagateSharkGridCostToX:x-1 y:y onSharkMoveGrid:sharkMoveGrid withBranches:branches-1 andWeightDelta:(weightDelta > 0 ? weightDelta : weightDelta-1)];
+		[self propagateSharkGridCostToX:x-1 y:y onSharkMoveGrid:sharkMoveGrid withSharkPosition:sharkPos withBranches:branches-1 andWeightDelta:(weightDelta > 0 ? weightDelta : weightDelta-1) foundRoute:foundRoute];
 	}
 	
 }
@@ -888,34 +904,35 @@
 	
 }
 
-
--(void) moveSharks:(ccTime)dt {
-		
+-(void) updateSharkMoveGrids {
+	
+	if(_isUpdatingSharkMovementGrids || _state != RUNNING) {
+		return;
+	}
+	_isUpdatingSharkMovementGrids = true;
+	
+	//can set this to stop updating for this iteration
+	__block bool continueUpdatingSharkMoveGrids = true;
+	
 	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
 	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
-	if(DEBUG_ALL_THE_THINGS) NSLog(@"Moving %d sharks...", [sharks count]);
-	
-	if([sharks count] == 0) {
-		//winna winna chicken dinna!
-		[self levelWon];
-		return;
-	}	
+	if(DEBUG_ALL_THE_THINGS) NSLog(@"Updating %d sharks movement grids...", [sharks count]);
 		
 	for(LHSprite* shark in sharks) {
 		
+		if(!continueUpdatingSharkMoveGrids) break;
+		
 		Shark* sharkData = ((Shark*)shark.userInfo);
 		double minDistance = 10000000;
-		int gridX = (int)shark.position.x/_gridSize;
-		int gridY = (int)shark.position.y/_gridSize;
+		int sharkX = (int)shark.position.x/_gridSize;
+		int sharkY = (int)shark.position.y/_gridSize;
+		LHSprite* targetPenguin = nil;
 		
-		if(gridX >= _gridWidth || gridX < 0 || gridY >= _gridHeight || gridY < 0) {
-			[shark removeSelf];
-			shark = nil;
+		if(sharkX >= _gridWidth || sharkX < 0 || sharkY >= _gridHeight || sharkY < 0) {
+			//will be handled in moveSharks()
 			continue;
 		}
-				
-		CGPoint bestOptionPos;
-		LHSprite* targetPenguin = nil;
+
 		
 		//find the nearest penguin
 		for(LHSprite* penguin in penguins) {
@@ -942,68 +959,84 @@
 			}
 		}
 		
-		if(targetPenguin != nil) {
-			//NSLog(@"Closest penguin %@: %f", targetPenguin.uniqueName, minDistance);
-		}
-		
 		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
 					
 		if(targetPenguin != nil) {
+
+			//NSLog(@"Closest penguin %@: %f", targetPenguin.uniqueName, minDistance);
 		
 			int x = (int)targetPenguin.position.x/_gridSize;
 			int y = (int)targetPenguin.position.y/_gridSize;
 			x = max(min(x, _gridWidth-1), 0);
 			y = max(min(y, _gridHeight-1), 0);
 			CGPoint tile = {x,y};
-			id _self = self;
-			_sharkMoveGrid = [sharkMoveGridData gridToTile:tile withPropagationCallback:^(int** aGrid) {
-				
-				NSLog(@"Propagating full grid update to %d,%d", x, y);
 
-				aGrid[x][y] = 0;
-				[_self propagateSharkGridCostToX:x
-											y:y
+			[sharkMoveGridData gridToTile:tile withPropagationCallback:^(int** aGrid, CGPoint tile) {
+				
+				NSLog(@"Propagating full grid update to %f,%f", tile.x, tile.y);
+
+				aGrid[(int)tile.x][(int)tile.y] = 0;
+				bool foundRoute = false;
+				[self propagateSharkGridCostToX:tile.x
+											y:tile.y
 											onSharkMoveGrid:aGrid
+											withSharkPosition:ccp(sharkX, sharkY)
 											withBranches:-1
-											andWeightDelta:1];
+											andWeightDelta:1
+											foundRoute:&foundRoute];
+											
+				if(!foundRoute) {
+					//no path.. the penguin must be inaccessible!
+					NSLog(@"Penguin %@ is inaccessible to shark %@ - marking the penguin as stuck", targetPenguin.uniqueName, shark.uniqueName);
+					((Penguin*)targetPenguin.userInfo).isStuck = true;
+										
+				}else {
+					//since at least one shark can get to it, it obviously is not stuck
+					((Penguin*)targetPenguin.userInfo).isStuck = false;
+				}
 				
-				
-				//TODO: implement this as a thread using     schedule( schedule_selector(MyLayer::loadingsStep), 1.0f); 
-				//i can then set a flag and do moveSharks updates as normal and only run the propagation whenever possible
-			
+
+				//let's only update one shark per iteration
+				continueUpdatingSharkMoveGrids = false;
 			}];
-			
-			double wN = _sharkMoveGrid[x][y+1 >= _gridHeight ? y : y+1];
-			double wS = _sharkMoveGrid[x][y-1 < 0 ? y : y-1];
-			double wE = _sharkMoveGrid[x+1 >= _gridWidth ? x : x+1][y];
-			double wW = _sharkMoveGrid[x-1 < 0 ? x : x-1][y];
-
-			if(wN != 1 && wS != 1 && wE != 1 && wW != 1) {
-				//the penguin is not accessible by this shark
-				NSLog(@"Penguin %@ is inaccessible to shark %@ - marking the penguin as stuck", targetPenguin.uniqueName, shark.uniqueName);
-				((Penguin*)targetPenguin.userInfo).isStuck = true;
-				continue;
-			}else {
-				//since at least one shark can get to it, it obviously is not stuck
-				((Penguin*)targetPenguin.userInfo).isStuck = false;
-			}
-			
 		
-			//NSLog(@"creating grid for %f,%f", actualTargetPosition.x, actualTargetPosition.y);
-			//update the best route using penguin data
-			
+		}
+	}
+	
+	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done updating %d sharks movement grids...", [sharks count]);
+	_isUpdatingSharkMovementGrids = false;
+}
 
-		}else {
-			//no target - if we're stuck just give up
-			if(sharkData.isStuck) {
-				continue;
-			}
-			//TODO: eventually, make the penguins also use the MoveGridData
-			_sharkMoveGrid = [sharkMoveGridData baseGrid];
+//TODO: eventually, make the penguins also use the MoveGridData
+
+
+-(void) moveSharks:(ccTime)dt {
+		
+	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
+	if(DEBUG_ALL_THE_THINGS) NSLog(@"Moving %d sharks...", [sharks count]);
+	
+	if([sharks count] == 0) {
+		//winna winna chicken dinna!
+		[self levelWon];
+		return;
+	}	
+		
+	for(LHSprite* shark in sharks) {
+		
+		Shark* sharkData = ((Shark*)shark.userInfo);
+		int gridX = (int)shark.position.x/_gridSize;
+		int gridY = (int)shark.position.y/_gridSize;
+		CGPoint bestOptionPos;
+		
+		if(gridX >= _gridWidth || gridX < 0 || gridY >= _gridHeight || gridY < 0) {
+			[shark removeSelf];
+			shark = nil;
+			continue;
 		}
 		
-		
 		//use the best route algorithm
+		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
+		_sharkMoveGrid = sharkMoveGridData.latestGrid;
 		double wN = _sharkMoveGrid[gridX][gridY+1 >= _gridHeight ? gridY : gridY+1];
 		double wS = _sharkMoveGrid[gridX][gridY-1 < 0 ? gridY : gridY-1];
 		double wE = _sharkMoveGrid[gridX+1 >= _gridWidth ? gridX : gridX+1][gridY];
@@ -1056,15 +1089,15 @@
 								
 		if(max == 0) {
 			//no best option?
-			NSLog(@"No best option for shark max(dx,dy) was 0");
-			return;
+			//NSLog(@"No best option for shark %@ max(dx,dy) was 0", shark.uniqueName);
+			max = 1;
 		}
 		
 		double normalizedX = dx/max;
 		double normalizedY = dy/max;
 	
 		[sharkMoveGridData logMove:bestOptionPos];
-		if([sharkMoveGridData distanceTraveledStraightline] < _gridSize*SCALING_FACTOR && [sharkMoveGridData distanceTraveled] < _gridSize*SCALING_FACTOR) {
+		if([sharkMoveGridData distanceTraveledStraightline] < _gridSize*SCALING_FACTOR) {
 			sharkData.isStuck = true;
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
@@ -1194,12 +1227,12 @@
 									
 			if(max == 0) {
 				//no best option?
-				NSLog(@"No best option for penguin max(dx,dy) was 0");
-				return;
+				//NSLog(@"No best option for penguin %@ max(dx,dy) was 0", penguin.uniqueName);
+				max = 1;
 			}
 			
 			[penguinMoveGridData logMove:bestOptionPos];
-			if([penguinMoveGridData distanceTraveledStraightline] < _gridSize*SCALING_FACTOR && [penguinMoveGridData distanceTraveled] < _gridSize*SCALING_FACTOR) {
+			if([penguinMoveGridData distanceTraveledStraightline] < _gridSize*SCALING_FACTOR) {
 				//we're stuck
 				penguinData.isStuck = true;
 				if(PENGUIN_DIES_WHEN_STUCK) {
@@ -1301,10 +1334,10 @@
 
 
 		if(DEBUG_ALL_THE_THINGS || DEBUG_PENGUIN || DEBUG_SHARK ) {
-			NSLog(@"Shark1 sharkMoveGrid[%d][%d] = %d", (int)location.x, (int)location.y, _sharkMoveGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
-			NSLog(@"_sharkMapfeaturesGrid[%d][%d] = %d", (int)location.x, (int)location.y, _sharkMapfeaturesGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
-			NSLog(@"_penguinMoveGrid[%d][%d] = %d", (int)location.x, (int)location.y, _penguinMoveGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
-			NSLog(@"_penguinMapfeaturesGrid[%d][%d] = %d", (int)location.x, (int)location.y, _penguinMapfeaturesGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
+			if(_sharkMoveGrid != nil) NSLog(@"Shark1 sharkMoveGrid[%d][%d] = %d", (int)location.x, (int)location.y, _sharkMoveGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
+			if(_sharkMapfeaturesGrid != nil) NSLog(@"_sharkMapfeaturesGrid[%d][%d] = %d", (int)location.x, (int)location.y, _sharkMapfeaturesGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
+			if(_penguinMoveGrid != nil)NSLog(@"_penguinMoveGrid[%d][%d] = %d", (int)location.x, (int)location.y, _penguinMoveGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
+			if(_penguinMapfeaturesGrid != nil)NSLog(@"_penguinMapfeaturesGrid[%d][%d] = %d", (int)location.x, (int)location.y, _penguinMapfeaturesGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
 		}
 	}
 }
@@ -1319,7 +1352,7 @@
 -(void) drawDebugMovementGrid {
 		
 	if(__DEBUG_SHARKS && _sharkMoveGrid != nil) {
-		double max = _gridWidth*1.5;
+		double max = _gridWidth*4;
 		ccPointSize(_gridSize-1);
 		for(int x = 0; x < _gridWidth; x++) {
 			for(int y = 0; y < _gridHeight; y++) {
@@ -1331,7 +1364,7 @@
 	}
 	
 	if(__DEBUG_PENGUINS && _penguinMoveGrid != nil) {
-		double max = _gridWidth*1.5;
+		double max = _gridWidth*4;
 		ccPointSize(_gridSize-1);
 		for(int x = 0; x < _gridWidth; x++) {
 			for(int y = 0; y < _gridHeight; y++) {
@@ -1389,11 +1422,18 @@
 
 -(void) dealloc
 {
+	[self pause];
+	[self unscheduleAllSelectors];
+	[self unscheduleUpdate];
+
 	[_sharkMoveGridDatas removeAllObjects];
 	[_penguinMoveGridDatas removeAllObjects];
 	free(_penguinMoveGrid);
 	free(_penguinMapfeaturesGrid);
 	free(_sharkMapfeaturesGrid);
+	
+	[_levelLoader release];
+	_levelLoader = nil;	
 	
 	delete _world;
 	_world = NULL;
