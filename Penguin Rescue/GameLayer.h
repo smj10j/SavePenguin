@@ -69,7 +69,7 @@ struct MoveGrid {
 	CGPoint _activeToolboxItemOriginalPosition;
 	NSMutableDictionary* _toolGroups;
 	bool _shouldUpdateToolbox;
-
+	int _toolboxItemSize;
 
 
 	bool _shouldRegenerateFeatureMaps;

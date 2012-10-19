@@ -196,6 +196,11 @@
 
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
+	_gameStartCountdownLabel = [CCLabelTTF labelWithString:@"" fontName:@"Helvetica" fontSize:36 dimensions:CGSizeMake(500, 100) hAlignment:kCCTextAlignmentRight vAlignment:kCCVerticalTextAlignmentCenter];
+	_gameStartCountdownLabel.color = ccWHITE;
+	_gameStartCountdownLabel.position = ccp(winSize.width-250 - 20,winSize.height-50);
+	[_mainLayer addChild:_gameStartCountdownLabel];
+
 	_bottomBarContainer = [_levelLoader createSpriteWithName:@"BottomBar" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:_mainLayer];
 	[_bottomBarContainer transformPosition: ccp(winSize.width/2,_bottomBarContainer.contentSize.height/2)];
 
@@ -211,6 +216,10 @@
 	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.contentSize.width/2+20*SCALING_FACTOR),_restartButton.contentSize.height/2+14*SCALING_FACTOR) ];
 	[_restartButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[_restartButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
+	
+	LHSprite* toolboxContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:nil];
+	[toolboxContainer removeSelf];
+	_toolboxItemSize = toolboxContainer.contentSize.width;
 }
 
 -(void) updateToolbox {
@@ -235,11 +244,7 @@
 		[toolGroup addObject:toolboxItem];
 	}
 	
-	LHSprite* toolboxContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:nil];
-	[toolboxContainer removeSelf];
-	const int TOOLBOX_ITEM_WIDTH = toolboxContainer.contentSize.width;
-	
-	int toolGroupX = winSize.width/2 - (TOOLBOX_ITEM_WIDTH*(_toolGroups.count/2));
+	int toolGroupX = winSize.width/2 - (_toolboxItemSize*(_toolGroups.count/2));
 	int toolGroupY = _bottomBarContainer.contentSize.height/2 - 4;	//hardcoded 4 because of the little rounded edges in the bottom bar
 	
 	for(id key in _toolGroups) {
@@ -252,22 +257,26 @@
 			toolboxContainer.tag = TOOLBOX_ITEM_CONTAINER;
 			[toolboxContainer transformPosition: ccp(toolGroupX, toolGroupY)];
 
+			LHSprite* toolboxContainerCountContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container-Count" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:toolboxContainer];
+			[toolboxContainerCountContainer transformPosition: ccp(toolboxContainer.contentSize.width+2, toolboxContainer.contentSize.height+2)];
+
 			//move the tool into the box
 			[toolboxItem transformPosition: ccp(toolGroupX, toolGroupY)];
-			[toolboxItem transformScale:.5];
-
+			double scale = fmin(_toolboxItemSize/toolboxItem.contentSize.width, _toolboxItemSize/toolboxItem.contentSize.height);
+			[toolboxItem transformScale: scale];
+			NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", toolboxItem.uniqueName, (int)(100*scale));
 		
 			//display # of items in the stack
 			CCLabelTTF* numToolsLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", toolGroup.count] fontName:@"Helvetica" fontSize:12 dimensions:CGSizeMake(12, 12) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter];
-			numToolsLabel.color = ccBLACK;
-			numToolsLabel.position = ccp(10,10);
-			[toolboxContainer addChild:numToolsLabel];
+			numToolsLabel.color = ccWHITE;
+			numToolsLabel.position = ccp(toolboxContainerCountContainer.contentSize.width/2, toolboxContainerCountContainer.contentSize.height/2);
+			[toolboxContainerCountContainer addChild:numToolsLabel];
 				
 			[toolboxItem registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
 			[toolboxItem registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
 		}
 				
-		toolGroupX+= TOOLBOX_ITEM_WIDTH	+ 16*SCALING_FACTOR; //16 is a margin
+		toolGroupX+= _toolboxItemSize	+ 16*SCALING_FACTOR; //16 is a margin
 	}
 	
 
@@ -425,17 +434,21 @@
 	
 	_activeToolboxItem = toolboxItem;
 	_activeToolboxItemOriginalPosition = _activeToolboxItem.position;
-	[toolboxItem transformScale:1];	
+	[_activeToolboxItem transformScaleX: 1];
+	[_activeToolboxItem transformScaleY: 1];
+	NSLog(@"Scaling up toolboxitem %@ to full-size", _activeToolboxItem.uniqueName);
 }
 
 -(void)onTouchEndedToolboxItem:(LHTouchInfo*)info {
 	
 	if(_state != RUNNING || (info.glPoint.y < _bottomBarContainer.contentSize.height)) {
 		//placed back into the HUD
-		NSLog(@"Placing toolbox item back into the HUD");
 		//TODO: update the count displayed
 		[_activeToolboxItem transformPosition:_activeToolboxItemOriginalPosition];
-		[_activeToolboxItem transformScale:.5];
+		double scale = fmin(_toolboxItemSize/_activeToolboxItem.contentSize.width, _toolboxItemSize/_activeToolboxItem.contentSize.height);
+		[_activeToolboxItem transformScale: scale];
+		NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", _activeToolboxItem.uniqueName, (int)(100*scale));
+		NSLog(@"Placing toolbox item back into the HUD");
 		_activeToolboxItem = nil;
 		return;
 	}
@@ -590,12 +603,15 @@
 	}
 
 	if(_gameStartCountdownTimer <= 0) {
-	
+		
+		_gameStartCountdownLabel.visible = false;
+		
 		[self moveSharks:dt];
 		[self movePenguins:dt];
 	
 	}else {
 		_gameStartCountdownTimer-= dt;
+		_gameStartCountdownLabel.string = [NSString stringWithFormat:@"Game starts in %d...", (int)ceil(_gameStartCountdownTimer)];
 		return;
 	}
 
