@@ -42,6 +42,7 @@ struct MoveGrid {
 	
 	LevelHelperLoader* _levelLoader;
 	LHLayer* _mainLayer;
+	LHBatch* _toolboxBatchNode;
 	
 	GAME_STATE _state;
 	double _gameStartCountdownTimer;
@@ -89,8 +90,8 @@ struct MoveGrid {
 #define HARD_BORDER_WEIGHT 100
 
 #define SHARKS_COUNTDOWN_TIMER_INITIAL 3
-#define PENGUIN_STUCK_SPEED 1.5*SCALING_FACTOR
-#define SHARK_STUCK_SPEED 1.5*SCALING_FACTOR
+#define PENGUIN_STUCK_SPEED 2.5*SCALING_FACTOR
+#define SHARK_STUCK_SPEED 2.5*SCALING_FACTOR
 
 
 

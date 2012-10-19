@@ -757,7 +757,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>10</integer>
+						<integer>2</integer>
 					</dict>
 				</dict>
 				<key>Pause_active</key>
@@ -907,7 +907,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>11</integer>
+						<integer>2</integer>
 					</dict>
 				</dict>
 				<key>Pause_inactive</key>
@@ -1058,7 +1058,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>11</integer>
+						<integer>2</integer>
 					</dict>
 				</dict>
 				<key>Restart_active</key>
@@ -1209,7 +1209,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>11</integer>
+						<integer>2</integer>
 					</dict>
 				</dict>
 				<key>Restart_inactive</key>
@@ -1360,7 +1360,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>11</integer>
+						<integer>2</integer>
 					</dict>
 				</dict>
 				<key>Toolbox-Item-Container</key>
@@ -1511,7 +1511,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>11</integer>
+						<integer>2</integer>
 					</dict>
 				</dict>
 				<key>Toolbox-Item-Container-Count</key>
@@ -1662,7 +1662,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>12</integer>
+						<integer>2</integer>
 					</dict>
 				</dict>
 			</dict>
@@ -2836,7 +2836,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>2</integer>
+						<integer>49</integer>
 					</dict>
 				</dict>
 				<key>Metal-Gate</key>
@@ -3046,7 +3046,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>2</integer>
+						<integer>49</integer>
 					</dict>
 				</dict>
 			</dict>
@@ -3055,7 +3055,7 @@
 			<key>Trim</key>
 			<true/>
 			<key>ZOrder</key>
-			<integer>50</integer>
+			<integer>100</integer>
 		</dict>
 	</array>
 	<key>SH_ANIMATIONS_LIST</key>

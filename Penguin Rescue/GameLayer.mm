@@ -201,23 +201,25 @@
 	_gameStartCountdownLabel.position = ccp(winSize.width-250 - 20,winSize.height-50);
 	[_mainLayer addChild:_gameStartCountdownLabel];
 
-	_bottomBarContainer = [_levelLoader createSpriteWithName:@"BottomBar" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:_mainLayer];
+	_bottomBarContainer = [_levelLoader createBatchSpriteWithName:@"BottomBar" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
+	;
 	[_bottomBarContainer transformPosition: ccp(winSize.width/2,_bottomBarContainer.contentSize.height/2)];
 
-	_pauseButton = [_levelLoader createSpriteWithName:@"Pause_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:_mainLayer];
+	_pauseButton = [_levelLoader createBatchSpriteWithName:@"Pause_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[_pauseButton prepareAnimationNamed:@"Pause_hover" fromSHScene:@"Spritesheet"];
 	[_pauseButton transformPosition: ccp(_pauseButton.contentSize.width/2+20*SCALING_FACTOR,_pauseButton.contentSize.height/2+14*SCALING_FACTOR)];
 	[_pauseButton registerTouchBeganObserver:self selector:@selector(onTouchBeganPause:)];
 	[_pauseButton registerTouchEndedObserver:self selector:@selector(onTouchEndedPause:)];
 	
 	
-	_restartButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:_mainLayer];
+	_restartButton = [_levelLoader createBatchSpriteWithName:@"Restart_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[_restartButton prepareAnimationNamed:@"Restart_hover" fromSHScene:@"Spritesheet"];
 	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.contentSize.width/2+20*SCALING_FACTOR),_restartButton.contentSize.height/2+14*SCALING_FACTOR) ];
 	[_restartButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[_restartButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 	
-	LHSprite* toolboxContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:nil];
+	//get the toolbox item size for scaling purposes
+	LHSprite* toolboxContainer = [_levelLoader createBatchSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[toolboxContainer removeSelf];
 	_toolboxItemSize = toolboxContainer.contentSize.width;
 }
@@ -254,6 +256,7 @@
 
 			//draw a box to hold it
 			LHSprite* toolboxContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:_mainLayer];
+			toolboxContainer.zOrder = _bottomBarContainer.parent.zOrder;
 			toolboxContainer.tag = TOOLBOX_ITEM_CONTAINER;
 			[toolboxContainer transformPosition: ccp(toolGroupX, toolGroupY)];
 
@@ -295,6 +298,7 @@
 	[_levelLoader addObjectsToWorld:_world cocos2dLayer:self];
 
 	_mainLayer = [_levelLoader layerWithUniqueName:@"MAIN_LAYER"];
+	_toolboxBatchNode = [_levelLoader batchWithUniqueName:@"Toolbox"];
 
 	//checks if the level has physics boundaries
 	if([_levelLoader hasPhysicBoundaries])
@@ -433,6 +437,7 @@
 	}
 	
 	_activeToolboxItem = toolboxItem;
+		
 	_activeToolboxItemOriginalPosition = _activeToolboxItem.position;
 	[_activeToolboxItem transformScaleX: 1];
 	[_activeToolboxItem transformScaleY: 1];
@@ -441,19 +446,30 @@
 
 -(void)onTouchEndedToolboxItem:(LHTouchInfo*)info {
 	
-	if(_state != RUNNING || (info.glPoint.y < _bottomBarContainer.contentSize.height)) {
-		//placed back into the HUD
-		//TODO: update the count displayed
-		[_activeToolboxItem transformPosition:_activeToolboxItemOriginalPosition];
-		double scale = fmin((_toolboxItemSize-10*SCALING_FACTOR)/_activeToolboxItem.contentSize.width, (_toolboxItemSize-10*SCALING_FACTOR)/_activeToolboxItem.contentSize.height);
-		[_activeToolboxItem transformScale: scale];
-		NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", _activeToolboxItem.uniqueName, (int)(100*scale));
-		NSLog(@"Placing toolbox item back into the HUD");
-		_activeToolboxItem = nil;
-		return;
-	}
+	if(_activeToolboxItem != nil) {
+	
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
+		
+		if(_state != RUNNING
+				|| (info.glPoint.y < _bottomBarContainer.contentSize.height)
+				|| (info.glPoint.y >= winSize.height)
+				|| (info.glPoint.x <= 0)
+				|| (info.glPoint.x >= winSize.width)
+			) {
+			//placed back into the HUD
+
+			[_activeToolboxItem transformPosition:_activeToolboxItemOriginalPosition];
+			double scale = fmin((_toolboxItemSize-10*SCALING_FACTOR)/_activeToolboxItem.contentSize.width, (_toolboxItemSize-10*SCALING_FACTOR)/_activeToolboxItem.contentSize.height);
+			[_activeToolboxItem transformScale: scale];
+			NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", _activeToolboxItem.uniqueName, (int)(100*scale));
+			NSLog(@"Placing toolbox item back into the HUD");
 			
-	_moveActiveToolboxItemIntoWorld = true;
+			_activeToolboxItem = nil;
+			
+		}else {
+			_moveActiveToolboxItemIntoWorld = true;
+		}
+	}
 }
 
 
@@ -601,19 +617,8 @@
 	if(_state != RUNNING) {
 		return;
 	}
-
-	if(_gameStartCountdownTimer <= 0) {
-		
-		_gameStartCountdownLabel.visible = false;
-		
-		[self moveSharks:dt];
-		[self movePenguins:dt];
 	
-	}else {
-		_gameStartCountdownTimer-= dt;
-		_gameStartCountdownLabel.string = [NSString stringWithFormat:@"Game starts in %d...", (int)ceil(_gameStartCountdownTimer)];
-		return;
-	}
+	/* Things okay to do before the timer is 0 */
 
 	//place penguins on land for visual appeal
 	for(id penguinName in _penguinsToPutOnLand) {
@@ -653,13 +658,35 @@
 			
 		}
 		
-		//TODO: allow the placed toolbox item to fall under the HUD now
-		
+		//move it into the main layer so it's under the HUD
+		if(_activeToolboxItem.parent == _toolboxBatchNode) {
+			[_toolboxBatchNode removeChild:_activeToolboxItem cleanup:NO];
+		}
+		[_mainLayer addChild:_activeToolboxItem];
+
 	
 		_activeToolboxItem = nil;
 		_moveActiveToolboxItemIntoWorld = false;
 		_shouldUpdateToolbox = true;
 	}
+	
+	/*************************************/
+
+	if(_gameStartCountdownTimer <= 0) {
+		
+		_gameStartCountdownLabel.visible = false;
+		
+		[self moveSharks:dt];
+		[self movePenguins:dt];
+	
+	}else {
+		_gameStartCountdownTimer-= dt;
+		_gameStartCountdownLabel.string = [NSString stringWithFormat:@"Game starts in %d...", (int)ceil(_gameStartCountdownTimer)];
+		return;
+	}
+
+
+	
 	
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done with game state update");
 
