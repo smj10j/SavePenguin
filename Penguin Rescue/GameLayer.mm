@@ -156,9 +156,8 @@
 		_gridSize = max(_gridSize, land.contentSize.width);
 	}
 	
-	//TODO: it would be optimal to enable this - but I need to optimize and greatly speed up each turn to be able to do so
-	//think about using some kind of delta algorithm to only update potentially changed tiles
-	//_gridSize/= 2;
+	//TODO: it would be optimal to enable this - but I need to optimize and greatly speed up each turn...
+	_gridSize/= 2;
 	
 	_gridWidth = winSize.width/_gridSize + 1;
 	_gridHeight = winSize.height/_gridSize + 1;
@@ -410,7 +409,9 @@
 		sharkMoveGrid[x][y] = INITIAL_GRID_WEIGHT-1;
 		[self propagateSharkGridCostToX:x
 									y:y
-									onSharkMoveGrid:sharkMoveGrid];
+									onSharkMoveGrid:sharkMoveGrid
+									withBranches:-1
+									andWeightDelta:1];
 
 		
 		//and add it to the map
@@ -756,7 +757,7 @@
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done with update tick");
 }
 
--(void) propagateSharkGridCostToX:(int)x y:(int)y onSharkMoveGrid:(int**)sharkMoveGrid {
+-(void) propagateSharkGridCostToX:(int)x y:(int)y onSharkMoveGrid:(int**)sharkMoveGrid withBranches:(int)branches andWeightDelta:(int)weightDelta{
 	
 	if(_state != RUNNING) {
 		//stops propagation faster on a pause
@@ -766,6 +767,10 @@
 		return;
 	}
 	if(y < 0 || y >= _gridHeight) {
+		return;
+	}
+	if(branches == 0) {
+		//note that starting with a -1 will allow unlimited branching
 		return;
 	}
 	
@@ -793,34 +798,34 @@
 	bool changedW = false;
 	
 
-	if(y < _gridHeight-1 && _sharkMapfeaturesGrid[x][y+1] < HARD_BORDER_WEIGHT && (wN == _sharkMapfeaturesGrid[x][y+1] || wN > w+1)) {
-		sharkMoveGrid[x][y+1] = w+1 + (_sharkMapfeaturesGrid[x][y+1] == INITIAL_GRID_WEIGHT ? 0 : _sharkMapfeaturesGrid[x][y+1]);
+	if(y < _gridHeight-1 && _sharkMapfeaturesGrid[x][y+1] < HARD_BORDER_WEIGHT && (wN == _sharkMapfeaturesGrid[x][y+1] || wN > w+weightDelta)) {
+		sharkMoveGrid[x][y+1] = w+weightDelta + (_sharkMapfeaturesGrid[x][y+1] == INITIAL_GRID_WEIGHT ? 0 : _sharkMapfeaturesGrid[x][y+1]);
 		changedN = true;
 	}
-	if(y > 0 && _sharkMapfeaturesGrid[x][y-1] < HARD_BORDER_WEIGHT && (wS == _sharkMapfeaturesGrid[x][y-1] || wS > w+1)) {
-		sharkMoveGrid[x][y-1] = w+1  + (_sharkMapfeaturesGrid[x][y-1] == INITIAL_GRID_WEIGHT ? 0 : _sharkMapfeaturesGrid[x][y-1]);
+	if(y > 0 && _sharkMapfeaturesGrid[x][y-1] < HARD_BORDER_WEIGHT && (wS == _sharkMapfeaturesGrid[x][y-1] || wS > w+weightDelta)) {
+		sharkMoveGrid[x][y-1] = w+weightDelta  + (_sharkMapfeaturesGrid[x][y-1] == INITIAL_GRID_WEIGHT ? 0 : _sharkMapfeaturesGrid[x][y-1]);
 		changedS = true;
 	}
-	if(x < _gridWidth-1 && _sharkMapfeaturesGrid[x+1][y] < HARD_BORDER_WEIGHT && (wE == _sharkMapfeaturesGrid[x+1][y] || wE > w+1)) {
-		sharkMoveGrid[x+1][y] = w+1 + (_sharkMapfeaturesGrid[x+1][y] == INITIAL_GRID_WEIGHT ? 0 : _sharkMapfeaturesGrid[x+1][y]);
+	if(x < _gridWidth-1 && _sharkMapfeaturesGrid[x+1][y] < HARD_BORDER_WEIGHT && (wE == _sharkMapfeaturesGrid[x+1][y] || wE > w+weightDelta)) {
+		sharkMoveGrid[x+1][y] = w+weightDelta + (_sharkMapfeaturesGrid[x+1][y] == INITIAL_GRID_WEIGHT ? 0 : _sharkMapfeaturesGrid[x+1][y]);
 		changedE = true;
 	}
-	if(x > 0 && _sharkMapfeaturesGrid[x-1][y] < HARD_BORDER_WEIGHT && (wW == _sharkMapfeaturesGrid[x-1][y] || wW > w+1)) {
-		sharkMoveGrid[x-1][y] = w+1  + (_sharkMapfeaturesGrid[x-1][y] == INITIAL_GRID_WEIGHT ? 0 : _sharkMapfeaturesGrid[x-1][y]);
+	if(x > 0 && _sharkMapfeaturesGrid[x-1][y] < HARD_BORDER_WEIGHT && (wW == _sharkMapfeaturesGrid[x-1][y] || wW > w+weightDelta)) {
+		sharkMoveGrid[x-1][y] = w+weightDelta  + (_sharkMapfeaturesGrid[x-1][y] == INITIAL_GRID_WEIGHT ? 0 : _sharkMapfeaturesGrid[x-1][y]);
 		changedW = true;
 	}
 	
 	if(changedN) {
-		[self propagateSharkGridCostToX:x y:y+1 onSharkMoveGrid:sharkMoveGrid];
+		[self propagateSharkGridCostToX:x y:y+1 onSharkMoveGrid:sharkMoveGrid withBranches:branches-1 andWeightDelta:(weightDelta > 0 ? weightDelta : weightDelta-1)];
 	}
 	if(changedS) {
-		[self propagateSharkGridCostToX:x y:y-1 onSharkMoveGrid:sharkMoveGrid];
+		[self propagateSharkGridCostToX:x y:y-1 onSharkMoveGrid:sharkMoveGrid withBranches:branches-1 andWeightDelta:(weightDelta > 0 ? weightDelta : weightDelta-1)];
 	}
 	if(changedE) {
-		[self propagateSharkGridCostToX:x+1 y:y onSharkMoveGrid:sharkMoveGrid];
+		[self propagateSharkGridCostToX:x+1 y:y onSharkMoveGrid:sharkMoveGrid withBranches:branches-1 andWeightDelta:(weightDelta > 0 ? weightDelta : weightDelta-1)];
 	}
 	if(changedW) {
-		[self propagateSharkGridCostToX:x-1 y:y onSharkMoveGrid:sharkMoveGrid];
+		[self propagateSharkGridCostToX:x-1 y:y onSharkMoveGrid:sharkMoveGrid withBranches:branches-1 andWeightDelta:(weightDelta > 0 ? weightDelta : weightDelta-1)];
 	}
 	
 }
@@ -937,8 +942,10 @@
 			}
 		}
 		
-		//NSLog(@"Closest penguin: %f", minDistance);
-
+		if(targetPenguin != nil) {
+			//NSLog(@"Closest penguin %@: %f", targetPenguin.uniqueName, minDistance);
+		}
+		
 		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
 					
 		if(targetPenguin != nil) {
@@ -950,11 +957,37 @@
 			CGPoint tile = {x,y};
 			id _self = self;
 			_sharkMoveGrid = [sharkMoveGridData gridToTile:tile withPropagationCallback:^(int** aGrid) {
+				
+				NSLog(@"Propagating full grid update to %d,%d", x, y);
+
 				aGrid[x][y] = 0;
 				[_self propagateSharkGridCostToX:x
 											y:y
-											onSharkMoveGrid:aGrid];
+											onSharkMoveGrid:aGrid
+											withBranches:-1
+											andWeightDelta:1];
+				
+				
+				//TODO: implement this as a thread using     schedule( schedule_selector(MyLayer::loadingsStep), 1.0f); 
+				//i can then set a flag and do moveSharks updates as normal and only run the propagation whenever possible
+			
 			}];
+			
+			double wN = _sharkMoveGrid[x][y+1 >= _gridHeight ? y : y+1];
+			double wS = _sharkMoveGrid[x][y-1 < 0 ? y : y-1];
+			double wE = _sharkMoveGrid[x+1 >= _gridWidth ? x : x+1][y];
+			double wW = _sharkMoveGrid[x-1 < 0 ? x : x-1][y];
+
+			if(wN != 1 && wS != 1 && wE != 1 && wW != 1) {
+				//the penguin is not accessible by this shark
+				NSLog(@"Penguin %@ is inaccessible to shark %@ - marking the penguin as stuck", targetPenguin.uniqueName, shark.uniqueName);
+				((Penguin*)targetPenguin.userInfo).isStuck = true;
+				continue;
+			}else {
+				//since at least one shark can get to it, it obviously is not stuck
+				((Penguin*)targetPenguin.userInfo).isStuck = false;
+			}
+			
 		
 			//NSLog(@"creating grid for %f,%f", actualTargetPosition.x, actualTargetPosition.y);
 			//update the best route using penguin data
@@ -965,6 +998,7 @@
 			if(sharkData.isStuck) {
 				continue;
 			}
+			//TODO: eventually, make the penguins also use the MoveGridData
 			_sharkMoveGrid = [sharkMoveGridData baseGrid];
 		}
 		
@@ -1030,7 +1064,7 @@
 		double normalizedY = dy/max;
 	
 		[sharkMoveGridData logMove:bestOptionPos];
-		if([sharkMoveGridData distanceMoved] < SHARK_STUCK_SPEED) {
+		if([sharkMoveGridData distanceTraveledStraightline] < _gridSize*SCALING_FACTOR && [sharkMoveGridData distanceTraveled] < _gridSize*SCALING_FACTOR) {
 			sharkData.isStuck = true;
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
@@ -1165,7 +1199,7 @@
 			}
 			
 			[penguinMoveGridData logMove:bestOptionPos];
-			if([penguinMoveGridData distanceMoved] < PENGUIN_STUCK_SPEED) {
+			if([penguinMoveGridData distanceTraveledStraightline] < _gridSize*SCALING_FACTOR && [penguinMoveGridData distanceTraveled] < _gridSize*SCALING_FACTOR) {
 				//we're stuck
 				penguinData.isStuck = true;
 				if(PENGUIN_DIES_WHEN_STUCK) {
@@ -1284,7 +1318,7 @@
 
 -(void) drawDebugMovementGrid {
 		
-	if(__DEBUG_SHARKS ) {
+	if(__DEBUG_SHARKS && _sharkMoveGrid != nil) {
 		double max = _gridWidth*1.5;
 		ccPointSize(_gridSize-1);
 		for(int x = 0; x < _gridWidth; x++) {
@@ -1296,7 +1330,7 @@
 		}
 	}
 	
-	if(__DEBUG_PENGUINS) {
+	if(__DEBUG_PENGUINS && _penguinMoveGrid != nil) {
 		double max = _gridWidth*1.5;
 		ccPointSize(_gridSize-1);
 		for(int x = 0; x < _gridWidth; x++) {

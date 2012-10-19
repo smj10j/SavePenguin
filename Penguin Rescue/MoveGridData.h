@@ -17,6 +17,7 @@
 	
 	CGPoint* _moveHistory;
 	int _moveHistoryIndex;
+	bool _moveHistoryIsFull;
 	
 	CGPoint _lastTileExamined;
 }
@@ -27,7 +28,8 @@
 - (int**)gridToTile:(CGPoint)pos withPropagationCallback:(void(^)(int**))propagationMethod;
 
 - (void)logMove:(CGPoint)pos;
-- (double)distanceMoved;
+- (double)distanceTraveled;
+- (double)distanceTraveledStraightline;
 
 @end
 
