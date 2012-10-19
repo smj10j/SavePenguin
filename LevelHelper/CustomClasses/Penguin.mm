@@ -13,6 +13,7 @@
 @synthesize detectionRadius;
 @synthesize hasSpottedShark;
 @synthesize isSafe;
+@synthesize alertRadius;
 
 
 -(void) dealloc{
@@ -54,6 +55,9 @@ return NSStringFromClass([self class]);
 
 	if([dictionary objectForKey:@"isSafe"])
 		[self setIsSafe:[[dictionary objectForKey:@"isSafe"] boolValue]];
+
+	if([dictionary objectForKey:@"alertRadius"])
+		[self setAlertRadius:[[dictionary objectForKey:@"alertRadius"] floatValue]];
 
 }
 

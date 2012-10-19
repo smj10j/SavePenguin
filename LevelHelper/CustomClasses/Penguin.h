@@ -12,6 +12,7 @@
 	float detectionRadius;
 	BOOL hasSpottedShark;
 	BOOL isSafe;
+	float alertRadius;
 
 
 #if __has_feature(objc_arc) && __clang_major__ >= 3
@@ -27,6 +28,7 @@
 @property float detectionRadius;
 @property BOOL hasSpottedShark;
 @property BOOL isSafe;
+@property float alertRadius;
 
 +(Penguin*) customClassInstance;
 

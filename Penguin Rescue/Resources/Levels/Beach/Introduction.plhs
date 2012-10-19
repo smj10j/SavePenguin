@@ -2234,6 +2234,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>alertRadius</key>
+									<true/>
 									<key>detectionRadius</key>
 									<true/>
 									<key>hasSpottedShark</key>
@@ -2249,6 +2251,8 @@
 								<string>Penguin</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>alertRadius</key>
+									<real>300</real>
 									<key>detectionRadius</key>
 									<real>300</real>
 									<key>hasSpottedShark</key>
@@ -2333,6 +2337,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>alertRadius</key>
+									<true/>
 									<key>detectionRadius</key>
 									<true/>
 									<key>hasSpottedShark</key>
@@ -2348,6 +2354,8 @@
 								<string>Penguin</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>alertRadius</key>
+									<real>300</real>
 									<key>detectionRadius</key>
 									<real>300</real>
 									<key>hasSpottedShark</key>
@@ -3118,6 +3126,8 @@
 				<string>Penguin</string>
 				<key>ClassRepresentation</key>
 				<dict>
+					<key>alertRadius</key>
+					<real>300</real>
 					<key>detectionRadius</key>
 					<real>300</real>
 					<key>hasSpottedShark</key>

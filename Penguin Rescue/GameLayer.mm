@@ -258,11 +258,11 @@
 			[toolboxContainer transformPosition: ccp(toolGroupX, toolGroupY)];
 
 			LHSprite* toolboxContainerCountContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container-Count" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:toolboxContainer];
-			[toolboxContainerCountContainer transformPosition: ccp(toolboxContainer.contentSize.width+2, toolboxContainer.contentSize.height+2)];
+			[toolboxContainerCountContainer transformPosition: ccp(toolboxContainer.contentSize.width, toolboxContainer.contentSize.height)];
 
 			//move the tool into the box
 			[toolboxItem transformPosition: ccp(toolGroupX, toolGroupY)];
-			double scale = fmin(_toolboxItemSize/toolboxItem.contentSize.width, _toolboxItemSize/toolboxItem.contentSize.height);
+			double scale = fmin((_toolboxItemSize-10*SCALING_FACTOR)/toolboxItem.contentSize.width, (_toolboxItemSize-10*SCALING_FACTOR)/toolboxItem.contentSize.height);
 			[toolboxItem transformScale: scale];
 			NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", toolboxItem.uniqueName, (int)(100*scale));
 		
@@ -445,7 +445,7 @@
 		//placed back into the HUD
 		//TODO: update the count displayed
 		[_activeToolboxItem transformPosition:_activeToolboxItemOriginalPosition];
-		double scale = fmin(_toolboxItemSize/_activeToolboxItem.contentSize.width, _toolboxItemSize/_activeToolboxItem.contentSize.height);
+		double scale = fmin((_toolboxItemSize-10*SCALING_FACTOR)/_activeToolboxItem.contentSize.width, (_toolboxItemSize-10*SCALING_FACTOR)/_activeToolboxItem.contentSize.height);
 		[_activeToolboxItem transformScale: scale];
 		NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", _activeToolboxItem.uniqueName, (int)(100*scale));
 		NSLog(@"Placing toolbox item back into the HUD");
@@ -1035,6 +1035,16 @@
 		if(penguinData.hasSpottedShark) {
 		
 			//AHHH!!!
+			
+			//alert nearby penguins
+			for(LHSprite* penguin2 in penguins) {
+				if(![penguin2.uniqueName isEqualToString:penguin.uniqueName]) {
+					if(ccpDistance(penguin.position, penguin2.position) <= penguinData.alertRadius*SCALING_FACTOR) {
+						//TODO: show some kind of AH!!! speech bubble alert animation for the penguins communicating
+						((Penguin*)penguin2.userInfo).hasSpottedShark = true;
+					}
+				}
+			}
 
 			//use the best route algorithm
 			double wN = _penguinMoveGrid[gridX][gridY+1 >= _gridHeight ? gridY : gridY+1];
