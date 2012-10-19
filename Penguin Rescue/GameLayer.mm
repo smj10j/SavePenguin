@@ -80,6 +80,12 @@
 		_moveActiveToolboxItemIntoWorld = false;
 		_shouldUpdateToolbox = false;
 		_penguinsToPutOnLand =[[NSMutableDictionary alloc] init];
+		__DEBUG_SHARKS = DEBUG_SHARK;
+		__DEBUG_PENGUINS = DEBUG_PENGUIN;
+		__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
+		if(__DEBUG_SHARKS || __DEBUG_PENGUINS) {
+			self.color = ccBLACK;
+		}
 		
 		// init physics
 		[self initPhysics];
@@ -100,7 +106,7 @@
 		
 		//various handlers
 		[self setupCollisionHandling];
-		
+
 		//start the game
 		_state = RUNNING;
 		CCDirectorIOS* director = (CCDirectorIOS*) [CCDirector sharedDirector];
@@ -247,7 +253,7 @@
 	}
 	
 	int toolGroupX = winSize.width/2 - (_toolboxItemSize*(_toolGroups.count/2));
-	int toolGroupY = _bottomBarContainer.contentSize.height/2 - 4;	//hardcoded 4 because of the little rounded edges in the bottom bar
+	int toolGroupY = _bottomBarContainer.contentSize.height/2 - 6*SCALING_FACTOR;	//hardcoded 4 because of the little rounded edges in the bottom bar
 	
 	for(id key in _toolGroups) {
 
@@ -313,6 +319,7 @@
 	if(true) {
 		[self showTutorial];
 	}
+	
 }
 
 
@@ -487,7 +494,7 @@
 
 -(void)onTouchBeganPause:(LHTouchInfo*)info {
 	[_pauseButton setFrame:1];
-	
+	__DEBUG_TOUCH_SECONDS = [[NSDate date] timeIntervalSince1970];	
 }
 
 -(void)onTouchEndedPause:(LHTouchInfo*)info {
@@ -498,6 +505,25 @@
 		[self resume];
 	}else {
 		[self pause];
+	}
+	
+	double elapsed = ([[NSDate date] timeIntervalSince1970] - __DEBUG_TOUCH_SECONDS);
+	if(elapsed < 2) {
+		self.color = __DEBUG_ORIG_BACKGROUND_COLOR;
+		__DEBUG_PENGUINS = DEBUG_PENGUIN;
+		__DEBUG_SHARKS = DEBUG_SHARK;
+	}else if(elapsed < 5) {
+		NSLog(@"Enabling debug sharks");
+		__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
+		self.color = ccBLACK;
+		__DEBUG_PENGUINS = false;
+		__DEBUG_SHARKS = true;
+	}else {
+		NSLog(@"Enabling debug penguins");
+		__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
+		self.color = ccBLACK;
+		__DEBUG_PENGUINS = true;
+		__DEBUG_SHARKS = false;
 	}
 }
 
@@ -1264,29 +1290,31 @@
 
 -(void) drawDebugMovementGrid {
 		
-	if(DEBUG_SHARK ) {
+	if(__DEBUG_SHARKS ) {
+		double max = _gridWidth*1.5;
 		ccPointSize(_gridSize-1);
 		for(int x = 0; x < _gridWidth; x++) {
 			for(int y = 0; y < _gridHeight; y++) {
 				int sv = (_sharkMoveGrid[x][y]);
-				ccDrawColor4B(sv,0,0,50);
+				ccDrawColor4B((sv/max)*255,0,0,50);
 				ccDrawPoint( ccp(x*_gridSize + _gridSize/2, y*_gridSize + _gridSize/2) );
 			}
 		}
 	}
 	
-	if(DEBUG_PENGUIN) {
+	if(__DEBUG_PENGUINS) {
+		double max = _gridWidth*1.5;
 		ccPointSize(_gridSize-1);
 		for(int x = 0; x < _gridWidth; x++) {
 			for(int y = 0; y < _gridHeight; y++) {
-				int pv = (_penguinMapfeaturesGrid[x][y]);
-				ccDrawColor4B(0,0,pv,50);
+				int pv = (_penguinMoveGrid[x][y]);
+				ccDrawColor4B(0,0,(pv/max)*255,50);
 				ccDrawPoint( ccp(x*_gridSize+_gridSize/2, y*_gridSize+_gridSize/2) );
 			}
 		}
 	}
 	
-	if(DEBUG_SHARK || DEBUG_PENGUIN) {
+	if(__DEBUG_SHARKS || __DEBUG_PENGUINS) {
 		NSArray* lands = [_levelLoader spritesWithTag:LAND];
 		NSArray* borders = [_levelLoader spritesWithTag:BORDER];
 		
@@ -1307,7 +1335,7 @@
 
 -(void) draw
 {
-	if(DEBUG_ALL_THE_THINGS || DEBUG_PENGUIN || DEBUG_SHARK) {
+	if(DEBUG_ALL_THE_THINGS || __DEBUG_SHARKS || __DEBUG_PENGUINS) {
 		//
 		// IMPORTANT:
 		// This is only for debug purposes

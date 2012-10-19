@@ -74,14 +74,23 @@ struct MoveGrid {
 
 
 	bool _shouldRegenerateFeatureMaps;
+	
+	
+	
+	
+	
+	bool __DEBUG_SHARKS;
+	bool __DEBUG_PENGUINS;
+	double __DEBUG_TOUCH_SECONDS;
+	ccColor3B __DEBUG_ORIG_BACKGROUND_COLOR;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
 #define DEBUG_ALL_THE_THINGS false
-#define DEBUG_PENGUIN false
-#define DEBUG_SHARK true
+#define DEBUG_PENGUIN false	//can be overridden in game
+#define DEBUG_SHARK true	//can be overridden in game
 
 #define SCALING_FACTOR (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5 : 1.0)
 #define TARGET_FPS 60
