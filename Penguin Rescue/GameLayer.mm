@@ -286,8 +286,9 @@
 			numToolsLabel.position = ccp(toolboxContainerCountContainer.contentSize.width/2, toolboxContainerCountContainer.contentSize.height/2);
 			[toolboxContainerCountContainer addChild:numToolsLabel];
 				
-			[toolboxItem registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
-			[toolboxItem registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
+			[toolboxContainer setUserData:toolboxItem.uniqueName];
+			[toolboxContainer registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
+			[toolboxContainer registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
 		}
 				
 		toolGroupX+= _toolboxItemSize	+ 16*SCALING_FACTOR; //16 is a margin
@@ -445,7 +446,8 @@
 		return;
 	}
 
-	LHSprite* toolboxItem = info.sprite;
+	LHSprite* toolboxItemContainer = info.sprite;
+	LHSprite* toolboxItem = [_levelLoader spriteWithUniqueName:((NSString*)toolboxItemContainer.userData)];
 	
 	if(toolboxItem.tag != TOOLBOX_ITEM) {
 		//already placed
