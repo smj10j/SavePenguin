@@ -45,6 +45,7 @@ struct MoveGrid {
 	
 	GAME_STATE _state;
 	double _gameStartCountdownTimer;
+	CCLabelTTF* _gameStartCountdownLabel;
 	
 	int** _sharkMoveGrid;
 	int** _penguinMoveGrid;
@@ -66,6 +67,8 @@ struct MoveGrid {
 	bool _moveActiveToolboxItemIntoWorld;
 	LHSprite* _activeToolboxItem;
 	CGPoint _activeToolboxItemOriginalPosition;
+	NSMutableDictionary* _toolGroups;
+	bool _shouldUpdateToolbox;
 
 
 
@@ -85,8 +88,9 @@ struct MoveGrid {
 #define INITIAL_GRID_WEIGHT 25
 #define HARD_BORDER_WEIGHT 100
 
-#define SHARKS_COUNTDOWN_TIMER_INITIAL 1
-
+#define SHARKS_COUNTDOWN_TIMER_INITIAL 3
+#define PENGUIN_STUCK_SPEED 1
+#define SHARK_STUCK_SPEED 1
 
 
 

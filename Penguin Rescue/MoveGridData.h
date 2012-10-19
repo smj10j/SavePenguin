@@ -25,4 +25,4 @@
 
 
 
-#define MOVE_HISTORY_SIZE 50
+#define MOVE_HISTORY_SIZE 30

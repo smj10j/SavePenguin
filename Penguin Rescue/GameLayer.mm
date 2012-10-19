@@ -78,6 +78,7 @@
 		_shouldRegenerateFeatureMaps = false;
 		_activeToolboxItem = nil;
 		_moveActiveToolboxItemIntoWorld = false;
+		_shouldUpdateToolbox = false;
 		_penguinsToPutOnLand =[[NSMutableDictionary alloc] init];
 		
 		// init physics
@@ -95,7 +96,7 @@
 		[self drawHUD];
 
 		//place the toolbox items
-		[self drawToolbox];
+		[self updateToolbox];
 		
 		//various handlers
 		[self setupCollisionHandling];
@@ -178,7 +179,7 @@
 	//shark is filled in generateFeatureMaps
 	_sharkMoveGridDatas = [[NSMutableDictionary alloc] init];
 	
-	_shouldRegenerateFeatureMaps = true;
+	[self generateFeatureMaps];
 }
 
 
@@ -212,49 +213,61 @@
 	[_restartButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 }
 
--(void) drawToolbox {
-	NSLog(@"Drawing Toolbox");
+-(void) updateToolbox {
+	NSLog(@"Updating Toolbox");
 	
-	//TODO: draw a pretty box around the tools
-
+	for(LHSprite* toolboxItemContainer in [_levelLoader spritesWithTag:TOOLBOX_ITEM_CONTAINER]) {
+		[toolboxItemContainer removeSelf];
+	}
+	
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
 	NSArray* toolboxItems = [_levelLoader spritesWithTag:TOOLBOX_ITEM];
 	
 	//get all the tools put on the level - they can be anywhere!
-	NSMutableDictionary* toolGroups = [[NSMutableDictionary alloc] init];
+	_toolGroups = [[NSMutableDictionary alloc] init];
 	for(LHSprite* toolboxItem in toolboxItems) {
-		NSMutableSet* toolGroup = [toolGroups objectForKey:toolboxItem.userInfoClassName];
+		NSMutableSet* toolGroup = [_toolGroups objectForKey:toolboxItem.userInfoClassName];
 		if(toolGroup == nil) {
 			toolGroup = [[NSMutableSet alloc] init];
-			[toolGroups setObject:toolGroup forKey:toolboxItem.userInfoClassName];
+			[_toolGroups setObject:toolGroup forKey:toolboxItem.userInfoClassName];
 		}
 		[toolGroup addObject:toolboxItem];
 	}
 	
-	int toolGroupX = winSize.width/2;
-	int toolGroupY = _bottomBarContainer.contentSize.height/2;
+	LHSprite* toolboxContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:nil];
+	[toolboxContainer removeSelf];
+	const int TOOLBOX_ITEM_WIDTH = toolboxContainer.contentSize.width;
 	
-	for(id key in toolGroups) {
+	int toolGroupX = winSize.width/2 - (TOOLBOX_ITEM_WIDTH*(_toolGroups.count/2));
+	int toolGroupY = _bottomBarContainer.contentSize.height/2 - 4;	//hardcoded 4 because of the little rounded edges in the bottom bar
+	
+	for(id key in _toolGroups) {
 
-		NSMutableSet* toolGroup = [toolGroups objectForKey:key];
+		NSMutableSet* toolGroup = [_toolGroups objectForKey:key];
 		for(LHSprite* toolboxItem in toolGroup) {
 
-			//move the tool to the bottom bar
+			//draw a box to hold it
+			LHSprite* toolboxContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:_mainLayer];
+			toolboxContainer.tag = TOOLBOX_ITEM_CONTAINER;
+			[toolboxContainer transformPosition: ccp(toolGroupX, toolGroupY)];
+
+			//move the tool into the box
 			[toolboxItem transformPosition: ccp(toolGroupX, toolGroupY)];
 			[toolboxItem transformScale:.5];
 
-			//draw a box around it
-			LHSprite* toolboxContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:_mainLayer];
-			[toolboxContainer transformPosition: ccp(toolGroupX, toolGroupY)];
 		
-			//TODO: display a # of items in the stack
-		
+			//display # of items in the stack
+			CCLabelTTF* numToolsLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", toolGroup.count] fontName:@"Helvetica" fontSize:12 dimensions:CGSizeMake(12, 12) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter];
+			numToolsLabel.color = ccBLACK;
+			numToolsLabel.position = ccp(10,10);
+			[toolboxContainer addChild:numToolsLabel];
+				
 			[toolboxItem registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
 			[toolboxItem registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
 		}
 				
-		toolGroupX+= 100;
+		toolGroupX+= TOOLBOX_ITEM_WIDTH	+ 16*SCALING_FACTOR; //16 is a margin
 	}
 	
 
@@ -533,7 +546,7 @@
 -(void) restart {
 	NSLog(@"Restarting");
 	_state = GAME_OVER;
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameLayer scene] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer scene] ]];
 }
 
 
@@ -596,9 +609,13 @@
 	[_penguinsToPutOnLand removeAllObjects];
 	
 	if(_shouldRegenerateFeatureMaps) {
-		//the delay is so this potentially-intensive operation doesn't make the game skip
-		_shouldRegenerateFeatureMaps = false;
-		[self scheduleOnce:@selector(generateFeatureMaps) delay:0.05];
+  		_shouldRegenerateFeatureMaps = false;
+		[self generateFeatureMaps];
+	}
+	
+	if(_shouldUpdateToolbox) {
+		_shouldUpdateToolbox = false;
+		[self updateToolbox];
 	}
 	
 	//drop any toolbox items if need be
@@ -620,11 +637,12 @@
 			
 		}
 		
-		//allows it to fall under the HUD now
-		_activeToolboxItem.zOrder = 1;
+		//TODO: allow the placed toolbox item to fall under the HUD now
+		
 	
 		_activeToolboxItem = nil;
 		_moveActiveToolboxItemIntoWorld = false;
+		_shouldUpdateToolbox = true;
 	}
 	
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done with game state update");
@@ -915,12 +933,6 @@
 			}else if(absWS == absMin) {
 				vN = (wS-wN)/(wN==0?1:wN);
 			}
-			
-			//TODO: fix the situation where the shark can get "stuck" in a position
-			//add some kind of random jitter to bump him out of it
-			//do the same for the penguin
-			
-
 		
 			bestOptionPos = ccp(
 				shark.position.x+vE,
@@ -948,7 +960,7 @@
 		double normalizedY = dy/max;
 	
 		[sharkMoveGridData logMove:bestOptionPos];
-		if([sharkMoveGridData distanceMoved] < sharkData.restingSpeed/10) {
+		if([sharkMoveGridData distanceMoved] < SHARK_STUCK_SPEED) {
 			//we're stuck
 			NSLog(@"Shark %@ is stuck - we're removing him", shark.uniqueName);
 			//TODO: make the shark spin around in circles and explode in frustration!
@@ -1066,7 +1078,7 @@
 			}
 			
 			[penguinMoveGridData logMove:bestOptionPos];
-			if([penguinMoveGridData distanceMoved] < penguinData.speed/10) {
+			if([penguinMoveGridData distanceMoved] < PENGUIN_STUCK_SPEED) {
 				//we're stuck
 				NSLog(@"Penguin %@ is stuck - we're removing him", penguin.uniqueName);
 				//TODO: do a drowning action and lose the level!
