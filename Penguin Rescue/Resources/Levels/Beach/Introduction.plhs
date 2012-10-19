@@ -2394,6 +2394,8 @@
 									<true/>
 									<key>isSafe</key>
 									<true/>
+									<key>isStuck</key>
+									<true/>
 									<key>speed</key>
 									<true/>
 								</dict>
@@ -2410,6 +2412,8 @@
 									<key>isDead</key>
 									<false/>
 									<key>isSafe</key>
+									<false/>
+									<key>isStuck</key>
 									<false/>
 									<key>speed</key>
 									<real>30</real>
@@ -2497,6 +2501,8 @@
 									<true/>
 									<key>isSafe</key>
 									<true/>
+									<key>isStuck</key>
+									<true/>
 									<key>speed</key>
 									<true/>
 								</dict>
@@ -2513,6 +2519,8 @@
 									<key>isDead</key>
 									<false/>
 									<key>isSafe</key>
+									<false/>
+									<key>isStuck</key>
 									<false/>
 									<key>speed</key>
 									<real>30</real>
@@ -2600,6 +2608,8 @@
 									<true/>
 									<key>isSafe</key>
 									<true/>
+									<key>isStuck</key>
+									<true/>
 									<key>speed</key>
 									<true/>
 								</dict>
@@ -2616,6 +2626,8 @@
 									<key>isDead</key>
 									<false/>
 									<key>isSafe</key>
+									<false/>
+									<key>isStuck</key>
 									<false/>
 									<key>speed</key>
 									<real>30</real>
@@ -2701,6 +2713,8 @@
 									<true/>
 									<key>endpointY</key>
 									<true/>
+									<key>isStuck</key>
+									<true/>
 									<key>restingDetectionRadius</key>
 									<true/>
 									<key>restingSpeed</key>
@@ -2720,6 +2734,8 @@
 									<real>1024</real>
 									<key>endpointY</key>
 									<real>400</real>
+									<key>isStuck</key>
+									<false/>
 									<key>restingDetectionRadius</key>
 									<real>400</real>
 									<key>restingSpeed</key>
@@ -2808,6 +2824,8 @@
 									<true/>
 									<key>endpointY</key>
 									<true/>
+									<key>isStuck</key>
+									<true/>
 									<key>restingDetectionRadius</key>
 									<true/>
 									<key>restingSpeed</key>
@@ -2827,6 +2845,8 @@
 									<real>1024</real>
 									<key>endpointY</key>
 									<real>400</real>
+									<key>isStuck</key>
+									<false/>
 									<key>restingDetectionRadius</key>
 									<real>400</real>
 									<key>restingSpeed</key>
@@ -3389,6 +3409,8 @@
 					<false/>
 					<key>isSafe</key>
 					<false/>
+					<key>isStuck</key>
+					<false/>
 					<key>speed</key>
 					<real>30</real>
 				</dict>
@@ -3406,6 +3428,8 @@
 					<real>1024</real>
 					<key>endpointY</key>
 					<real>400</real>
+					<key>isStuck</key>
+					<false/>
 					<key>restingDetectionRadius</key>
 					<real>400</real>
 					<key>restingSpeed</key>

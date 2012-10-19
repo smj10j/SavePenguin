@@ -14,6 +14,7 @@
 	float endpointY;
 	BOOL targetAcquired;
 	float restingSpeed;
+	BOOL isStuck;
 
 
 #if __has_feature(objc_arc) && __clang_major__ >= 3
@@ -31,6 +32,7 @@
 @property float endpointY;
 @property BOOL targetAcquired;
 @property float restingSpeed;
+@property BOOL isStuck;
 
 +(Shark*) customClassInstance;
 

@@ -398,7 +398,7 @@
 		x = max(min(x, _gridWidth-1), 0);
 		y = max(min(y, _gridHeight-1), 0);
 
-		sharkMoveGrid[x][y] = INITIAL_GRID_WEIGHT/2;
+		sharkMoveGrid[x][y] = INITIAL_GRID_WEIGHT-1;
 		[self propagateSharkGridCostToX:x
 									y:y
 									onSharkMoveGrid:sharkMoveGrid
@@ -889,7 +889,7 @@
 		//find the nearest penguin
 		for(LHSprite* penguin in penguins) {
 			Penguin* penguinData = ((Penguin*)penguin.userInfo);
-			if(penguinData.isSafe) {
+			if(penguinData.isSafe || penguinData.isStuck) {
 				continue;
 			}
 
@@ -941,6 +941,11 @@
 										onSharkMoveGrid:_sharkMoveGrid
 										withSharkX:shark.position.x/_gridSize
 										sharkY:shark.position.y/_gridSize];
+		}else {
+			//no target - if we're stuck just give up
+			if(sharkData.isStuck) {
+				continue;
+			}
 		}
 		
 		
@@ -1006,10 +1011,17 @@
 	
 		[sharkMoveGridData logMove:bestOptionPos];
 		if([sharkMoveGridData distanceMoved] < SHARK_STUCK_SPEED) {
-			//we're stuck
-			NSLog(@"Shark %@ is stuck - we're removing him", shark.uniqueName);
-			//TODO: make the shark spin around in circles and explode in frustration!
-			[shark removeSelf];
+			sharkData.isStuck = true;
+			if(SHARK_DIES_WHEN_STUCK) {
+				//we're stuck
+				NSLog(@"Shark %@ is stuck - we're removing him", shark.uniqueName);
+				//TODO: make the shark spin around in circles and explode in frustration!
+				[shark removeSelf];
+			}else {
+				NSLog(@"Shark %@ is stuck - we're ignoring him", shark.uniqueName);
+				//TODO: do a confused/arms up in air animation
+			
+			}
 		}
 	
 		double sharkSpeed = sharkData.restingSpeed;
@@ -1047,7 +1059,7 @@
 		Penguin* penguinData = ((Penguin*)penguin.userInfo);
 		MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
 		
-		if(penguinData.isSafe) {
+		if(penguinData.isSafe || penguinData.isStuck) {
 			continue;
 		}
 		
@@ -1135,9 +1147,15 @@
 			[penguinMoveGridData logMove:bestOptionPos];
 			if([penguinMoveGridData distanceMoved] < PENGUIN_STUCK_SPEED) {
 				//we're stuck
-				NSLog(@"Penguin %@ is stuck - we're removing him", penguin.uniqueName);
-				//TODO: do a drowning action and lose the level!
-				[self levelLostWithShark:nil andPenguin:penguin];
+				penguinData.isStuck = true;
+				if(PENGUIN_DIES_WHEN_STUCK) {
+					NSLog(@"Penguin %@ is stuck - we're removing him", penguin.uniqueName);
+					//TODO: do a drowning action and lose the level!
+					[self levelLostWithShark:nil andPenguin:penguin];
+				}else {
+					NSLog(@"Penguin %@ is stuck - we're ignoring him", penguin.uniqueName);
+					//TODO: do a confused/arms up in air animation
+				}
 			}
 				
 			double normalizedX = dx/max;
@@ -1163,8 +1181,9 @@
 
 }
 
-//TODO: add a collission detector for the sharks/penguins
-//if it ever gets trigger then the penguins lost
+//TODO: make all assets sized for HD iPad!
+
+//if this ever gets trigger then the penguins lost
 -(void) sharkPenguinCollision:(LHContactInfo*)contact
 {        
 	LHSprite* shark = [contact spriteA];

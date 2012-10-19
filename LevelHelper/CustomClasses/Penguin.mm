@@ -10,10 +10,11 @@
 
 @synthesize isDead;
 @synthesize speed;
-@synthesize detectionRadius;
-@synthesize hasSpottedShark;
 @synthesize isSafe;
 @synthesize alertRadius;
+@synthesize detectionRadius;
+@synthesize hasSpottedShark;
+@synthesize isStuck;
 
 
 -(void) dealloc{
@@ -47,17 +48,20 @@ return NSStringFromClass([self class]);
 	if([dictionary objectForKey:@"speed"])
 		[self setSpeed:[[dictionary objectForKey:@"speed"] floatValue]];
 
+	if([dictionary objectForKey:@"isSafe"])
+		[self setIsSafe:[[dictionary objectForKey:@"isSafe"] boolValue]];
+
+	if([dictionary objectForKey:@"alertRadius"])
+		[self setAlertRadius:[[dictionary objectForKey:@"alertRadius"] floatValue]];
+
 	if([dictionary objectForKey:@"detectionRadius"])
 		[self setDetectionRadius:[[dictionary objectForKey:@"detectionRadius"] floatValue]];
 
 	if([dictionary objectForKey:@"hasSpottedShark"])
 		[self setHasSpottedShark:[[dictionary objectForKey:@"hasSpottedShark"] boolValue]];
 
-	if([dictionary objectForKey:@"isSafe"])
-		[self setIsSafe:[[dictionary objectForKey:@"isSafe"] boolValue]];
-
-	if([dictionary objectForKey:@"alertRadius"])
-		[self setAlertRadius:[[dictionary objectForKey:@"alertRadius"] floatValue]];
+	if([dictionary objectForKey:@"isStuck"])
+		[self setIsStuck:[[dictionary objectForKey:@"isStuck"] boolValue]];
 
 }
 

@@ -9,10 +9,11 @@
 
 	BOOL isDead;
 	float speed;
-	float detectionRadius;
-	BOOL hasSpottedShark;
 	BOOL isSafe;
 	float alertRadius;
+	float detectionRadius;
+	BOOL hasSpottedShark;
+	BOOL isStuck;
 
 
 #if __has_feature(objc_arc) && __clang_major__ >= 3
@@ -25,10 +26,11 @@
 }
 @property BOOL isDead;
 @property float speed;
-@property float detectionRadius;
-@property BOOL hasSpottedShark;
 @property BOOL isSafe;
 @property float alertRadius;
+@property float detectionRadius;
+@property BOOL hasSpottedShark;
+@property BOOL isStuck;
 
 +(Penguin*) customClassInstance;
 

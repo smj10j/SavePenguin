@@ -15,6 +15,7 @@
 @synthesize endpointY;
 @synthesize targetAcquired;
 @synthesize restingSpeed;
+@synthesize isStuck;
 
 
 -(void) dealloc{
@@ -62,6 +63,9 @@ return NSStringFromClass([self class]);
 
 	if([dictionary objectForKey:@"restingSpeed"])
 		[self setRestingSpeed:[[dictionary objectForKey:@"restingSpeed"] floatValue]];
+
+	if([dictionary objectForKey:@"isStuck"])
+		[self setIsStuck:[[dictionary objectForKey:@"isStuck"] boolValue]];
 
 }
 

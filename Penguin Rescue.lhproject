@@ -50,6 +50,8 @@
 				<false/>
 				<key>isSafe</key>
 				<false/>
+				<key>isStuck</key>
+				<false/>
 				<key>speed</key>
 				<real>30</real>
 			</dict>
@@ -67,6 +69,8 @@
 				<real>1024</real>
 				<key>endpointY</key>
 				<real>400</real>
+				<key>isStuck</key>
+				<false/>
 				<key>restingDetectionRadius</key>
 				<real>400</real>
 				<key>restingSpeed</key>
