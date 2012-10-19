@@ -1099,7 +1099,8 @@
 		double normalizedY = dy/max;
 	
 		[sharkMoveGridData logMove:bestOptionPos];
-		if([sharkMoveGridData distanceTraveledStraightline] < _gridSize*SCALING_FACTOR) {
+		
+		if([sharkMoveGridData distanceTraveledStraightline] < 1*SCALING_FACTOR) {
 			sharkData.isStuck = true;
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
@@ -1109,7 +1110,6 @@
 			}else {
 				NSLog(@"Shark %@ is stuck - we're ignoring him", shark.uniqueName);
 				//TODO: do a confused/arms up in air animation
-			
 			}
 		}
 	
@@ -1234,7 +1234,7 @@
 			}
 			
 			[penguinMoveGridData logMove:bestOptionPos];
-			if([penguinMoveGridData distanceTraveledStraightline] < _gridSize*SCALING_FACTOR) {
+			if([penguinMoveGridData distanceTraveledStraightline] < 1*SCALING_FACTOR) {
 				//we're stuck
 				penguinData.isStuck = true;
 				if(PENGUIN_DIES_WHEN_STUCK) {
