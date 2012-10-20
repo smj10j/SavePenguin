@@ -1039,23 +1039,28 @@
 	for(LHSprite* shark in sharks) {
 		
 		Shark* sharkData = ((Shark*)shark.userInfo);
-		int gridX = (int)shark.position.x/_gridSize;
-		int gridY = (int)shark.position.y/_gridSize;
+		int sharkX = (int)shark.position.x/_gridSize;
+		int sharkY = (int)shark.position.y/_gridSize;
 		CGPoint bestOptionPos;
 		
-		if(gridX >= _gridWidth || gridX < 0 || gridY >= _gridHeight || gridY < 0) {
+		if(sharkX >= _gridWidth || sharkX < 0 || sharkY >= _gridHeight || sharkY < 0) {
+			NSLog(@"Shark %@ has moved offscreen to %d,%d - removing him", shark.uniqueName, sharkX, sharkY);
 			[shark removeSelf];
 			shark = nil;
 			continue;
 		}
 		
+		
 		//use the best route algorithm
 		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
 		_sharkMoveGrid = sharkMoveGridData.latestGrid;
-		double wN = _sharkMoveGrid[gridX][gridY+1 >= _gridHeight ? gridY : gridY+1];
-		double wS = _sharkMoveGrid[gridX][gridY-1 < 0 ? gridY : gridY-1];
-		double wE = _sharkMoveGrid[gridX+1 >= _gridWidth ? gridX : gridX+1][gridY];
-		double wW = _sharkMoveGrid[gridX-1 < 0 ? gridX : gridX-1][gridY];
+		
+		_sharkMoveGrid[sharkX][sharkY]++;	//burn that bridge, baby!
+		
+		double wN = _sharkMoveGrid[sharkX][sharkY+1 >= _gridHeight ? sharkY : sharkY+1];
+		double wS = _sharkMoveGrid[sharkX][sharkY-1 < 0 ? sharkY : sharkY-1];
+		double wE = _sharkMoveGrid[sharkX+1 >= _gridWidth ? sharkX : sharkX+1][sharkY];
+		double wW = _sharkMoveGrid[sharkX-1 < 0 ? sharkX : sharkX-1][sharkY];
 	
 	
 		//NSLog(@"w=%f e=%f n=%f s=%f", wW, wE, wN, wS);
@@ -1154,7 +1159,6 @@
 	//CGSize winSize = [[CCDirector sharedDirector] winSize];
 
 	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
-	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Moving %d penguins...", [penguins count]);
 
 	for(LHSprite* penguin in penguins) {
@@ -1173,19 +1177,27 @@
 			return;
 		}
 		
-		CGPoint bestOptionPos;
 		
-		for(LHSprite* shark in sharks) {
-			double dist = ccpDistance(shark.position, penguin.position);
-			if(dist < penguinData.detectionRadius*SCALING_FACTOR) {
-				penguinData.hasSpottedShark = true;
-				break;
+		//TODO: enable this if each penguin has its own grid... otherwise we're contaminating the best path
+		//_penguinMoveGrid[penguinX][penguinY]++;	//burn that bridge, baby!
+
+		
+		
+		if(!penguinData.hasSpottedShark) {
+			NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
+			for(LHSprite* shark in sharks) {
+				double dist = ccpDistance(shark.position, penguin.position);
+				if(dist < penguinData.detectionRadius*SCALING_FACTOR) {
+					penguinData.hasSpottedShark = true;
+					break;
+				}
 			}
 		}
 		
 		if(penguinData.hasSpottedShark) {
 		
 			//AHHH!!!
+			CGPoint bestOptionPos;
 			
 			//alert nearby penguins
 			for(LHSprite* penguin2 in penguins) {
@@ -1237,10 +1249,8 @@
 					penguin.position.x+vE,
 					penguin.position.y+vN
 				);
-				/*bestOptionPos = ccp(shark.position.x + (fabs(wE) > fabs(wW) ? wE : wW),
-									shark.position.y + (fabs(wN) > fabs(wS) ? wN : wS)
-								);*/
-				//NSLog(@"best: %f,%f", bestOptionPos.x,bestOptionPos.y);
+
+				//NSLog(@"Penguin %@ best position: %f,%f", penguin.uniqueName, bestOptionPos.x,bestOptionPos.y);
 			}
 					
 			double dx = bestOptionPos.x - penguin.position.x;
