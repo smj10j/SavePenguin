@@ -1198,6 +1198,7 @@
 		}
 		
 		if(penguinX >= _gridWidth || penguinX < 0 || penguinY >= _gridHeight || penguinY < 0) {
+			NSLog(@"Penguin %@ is offscreen at %d,%d - showing level lost", penguin.uniqueName, penguinX, penguinY);
 			[self levelLostWithShark:nil andPenguin:penguin];
 			return;
 		}
@@ -1248,7 +1249,7 @@
 			
 				double w = _penguinMoveGrid[penguinX][penguinY];
 				if(w == wW && w == INITIAL_GRID_WEIGHT) {
-					NSLog(@"Penguin %@ is stuck!!", penguin.uniqueName);
+					NSLog(@"Penguin %@ is stuck (nowhere to go)!", penguin.uniqueName);
 					penguinData.isStuck = true;
 					//TODO: show a confused expression. possibly raising wings into the air in a "oh well" gesture
 					
@@ -1302,43 +1303,34 @@
 					
 			double dx = bestOptionPos.x - penguin.position.x;
 			double dy = bestOptionPos.y - penguin.position.y;
-			double max = fmax(fabs(dx), fabs(dy));
+			double penguinSpeed = penguinData.speed;
 
-									
+			[penguinMoveGridData logMove:bestOptionPos];
+			if([penguinMoveGridData distanceTraveledStraightline] < 2*SCALING_FACTOR) {
+				//we're stuck... but we'll let sharks report us as being stuck.
+				//we'll just try and get ourselves out of this sticky situation
+				
+				dx+= ((arc4random()%200)-100)/1000;
+				dy+= ((arc4random()%200)-100)/1000;
+				penguinSpeed*= 25;
+				NSLog(@"Penguin %@ is stuck (trying to move but can't) - giving him a bit of jitter", penguin.uniqueName);
+			}
+			
+			double max = fmax(fabs(dx), fabs(dy));
 			if(max == 0) {
 				//no best option?
 				//NSLog(@"No best option for penguin %@ max(dx,dy) was 0", penguin.uniqueName);
 				max = 1;
-			}
+			}			
 			
-			[penguinMoveGridData logMove:bestOptionPos];
-			
-			/*
-			if([penguinMoveGridData distanceTraveledStraightline] < 2*SCALING_FACTOR) {
-				//we're stuck... but we'll let sharks report us as being stuck.
-				//we'll just try and get ourselves out of this sticky situation
-				CGPoint teleportCoords = ccp(bestOptionGridPos.x*_gridSize + _gridSize/2,
-											bestOptionGridPos.y*_gridSize + _gridSize/2);
-				NSLog(@"Penguin %@ is stuck - warping him to %f,%f", penguin.uniqueName, teleportCoords.x, teleportCoords.y);
-				[penguin transformPosition:teleportCoords];
-				return;
-			}
-			*/
-				
 			double normalizedX = dx/max;
 			double normalizedY = dy/max;
 		
-			double penguinSpeed = penguinData.speed;
 			double targetVelX = dt * penguinSpeed * normalizedX;
 			double targetVelY = dt * penguinSpeed * normalizedY;
 		
 			//we're using an impulse for the penguin so they interact with things like Debris (physics)
 			penguin.body->ApplyLinearImpulse(b2Vec2(targetVelX*.1,targetVelY*.1), penguin.body->GetWorldCenter());
-			
-			//TODO: look into why the penguins get so bouncy
-			
-			//penguins try to stay upright
-			penguin.body->ApplyAngularImpulse(penguin.rotation*.01);
 		}
 	}
 

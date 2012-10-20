@@ -581,7 +581,7 @@
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
-								<integer>90</integer>
+								<integer>270</integer>
 								<key>Color</key>
 								<string>{{1, 1}, {1, 1}}</string>
 								<key>FlipX</key>
@@ -601,7 +601,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{395, 144}</string>
+								<string>{396, 144}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -650,13 +650,13 @@
 							<key>SHSheetName</key>
 							<string>Map</string>
 							<key>SHSpriteName</key>
-							<string>Wall_End3</string>
+							<string>Wall_End1</string>
 							<key>SheetImage</key>
 							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
-								<integer>90</integer>
+								<integer>270</integer>
 								<key>Color</key>
 								<string>{{1, 1}, {1, 1}}</string>
 								<key>FlipX</key>
@@ -664,19 +664,19 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 189}, {35.5, 28.5}}</string>
+								<string>{{67, 69}, {36.75, 32}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<true/>
+								<false/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{395, 255}</string>
+								<string>{397, 255}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -686,14 +686,14 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{-1, -1}</string>
+								<string>{0.375, -1.25}</string>
 								<key>UniqueName</key>
-								<string>Wall_End3_1</string>
+								<string>Wall_End1</string>
 								<key>ZOrder</key>
 								<integer>0</integer>
 							</dict>
 							<key>UniqueName</key>
-							<string>Wall_End3_1</string>
+							<string>Wall_End1</string>
 						</dict>
 						<dict>
 							<key>AnimationsProperties</key>
@@ -725,13 +725,13 @@
 							<key>SHSheetName</key>
 							<string>Map</string>
 							<key>SHSpriteName</key>
-							<string>Wall_End1</string>
+							<string>Wall_End3</string>
 							<key>SheetImage</key>
 							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
-								<integer>90</integer>
+								<integer>270</integer>
 								<key>Color</key>
 								<string>{{1, 1}, {1, 1}}</string>
 								<key>FlipX</key>
@@ -739,19 +739,19 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{67, 69}, {36.75, 32}}</string>
+								<string>{{0, 189}, {35.5, 28.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{395, 33}</string>
+								<string>{397, 33}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -761,14 +761,14 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0.375, -1.25}</string>
+								<string>{-1, -1}</string>
 								<key>UniqueName</key>
-								<string>Wall_End1</string>
+								<string>Wall_End3_1</string>
 								<key>ZOrder</key>
 								<integer>0</integer>
 							</dict>
 							<key>UniqueName</key>
-							<string>Wall_End1</string>
+							<string>Wall_End3_1</string>
 						</dict>
 					</array>
 					<key>CustomClassInfo</key>
@@ -876,7 +876,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{2, 32}, {34.75, 40.75}}</string>
+								<string>{{0, 30}, {34.75, 40.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -940,7 +940,7 @@
 									<key>activeDetectionRadius</key>
 									<real>600</real>
 									<key>activeSpeed</key>
-									<real>50</real>
+									<real>75</real>
 									<key>endpointX</key>
 									<real>1024</real>
 									<key>endpointY</key>
@@ -2139,7 +2139,7 @@
 					<key>activeDetectionRadius</key>
 					<real>600</real>
 					<key>activeSpeed</key>
-					<real>50</real>
+					<real>75</real>
 					<key>endpointX</key>
 					<real>1024</real>
 					<key>endpointY</key>
