@@ -93,13 +93,11 @@ enum PROPAGATION_RESULT {
 
 #define DEBUG_ALL_THE_THINGS false
 #define DEBUG_PENGUIN false	//can be overridden in game
-#define DEBUG_SHARK true	//can be overridden in game
+#define DEBUG_SHARK false	//can be overridden in game
 
-#define SCALING_FACTOR (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5 : 1.0)
+#define SCALING_FACTOR (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.6 : 1.0)
 #define TARGET_FPS 60
 
-#define MAX_GRID_SIZE 48
-#define MIN_GRID_SIZE 16
 #define INITIAL_GRID_WEIGHT 25
 #define INITIAL_ENDPOINT_GRID_WEIGHT INITIAL_GRID_WEIGHT-1
 #define HARD_BORDER_WEIGHT 100

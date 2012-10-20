@@ -148,23 +148,34 @@
 -(void) initializeMapGrid {
 	
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
-	
-	NSArray* lands = [_levelLoader spritesWithTag:LAND];
-	NSArray* borders = [_levelLoader spritesWithTag:BORDER];
+	CGSize winSizeInPixels = [[CCDirector sharedDirector] winSizeInPixels];
 	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
-	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
-	NSMutableArray* gridAwareSprites = [NSMutableArray arrayWithArray:lands];
-	[gridAwareSprites addObjectsFromArray:borders];
-	[gridAwareSprites addObjectsFromArray:penguins];
-	[gridAwareSprites addObjectsFromArray:sharks];
-	
-	_gridSize = MAX_GRID_SIZE;
-	for(LHSprite* sprite in gridAwareSprites) {
-		_gridSize = min(_gridSize, sprite.boundingBox.size.width);
+			
+	//device adjustments
+	if(winSize.width == 480) {
+		//iPhone
+		if(winSizeInPixels.width == 480) {
+			//low-res - probably a slower processor
+			_gridSize = 16;
+			NSLog(@"Using a grid size for an older iPhone");
+		}else {
+			//high-res 4+
+			_gridSize = 8;
+			NSLog(@"Using a grid size for a newer iPhone");
+		}
+	}else {
+		//iPad
+		if(winSizeInPixels.width == 1024) {
+			//low-res - probably a slower processor
+			_gridSize = 20;
+			NSLog(@"Using a grid size for an older iPad");
+		}else {
+			//high-res 4+
+			_gridSize = 12;
+			NSLog(@"Using a grid size for a newer iPad");
+		}
 	}
-	_gridSize/= 2;
-	_gridSize = max(_gridSize, MIN_GRID_SIZE);
-	
+		
 	_gridWidth = winSize.width/_gridSize + 1;
 	_gridHeight = winSize.height/_gridSize + 1;
 
