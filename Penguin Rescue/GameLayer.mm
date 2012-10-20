@@ -1085,6 +1085,21 @@
 			double vE = 0;
 			double vN = 0;
 			
+			//situation: West and East are equal and North and South are equal - we'll get stuck forever
+			if(wE == wW && wN != wS) {
+				if(arc4random()%100 < 50) {
+					wE++;
+				}else {
+					wW++;
+				}
+			}else if(wN == wS && wE != wW) {
+				if(arc4random()%100 < 50) {
+					wN++;
+				}else {
+					wS++;
+				}
+			}
+			
 			double absWE = fabs(wE);
 			double absWW = fabs(wW);
 			double absWS = fabs(wS);
@@ -1268,7 +1283,22 @@
 				
 				double vE = 0;
 				double vN = 0;
-				
+
+				//situation: West and East are equal and North and South are equal - we'll get stuck forever
+				if(wE == wW && wN != wS) {
+					if(arc4random()%100 < 50) {
+						wE++;
+					}else {
+						wW++;
+					}
+				}else if(wN == wS && wE != wW) {
+					if(arc4random()%100 < 50) {
+						wN++;
+					}else {
+						wS++;
+					}
+				}
+					
 				double absWE = fabs(wE);
 				double absWW = fabs(wW);
 				double absWS = fabs(wS);
