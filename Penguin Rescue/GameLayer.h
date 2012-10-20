@@ -22,6 +22,7 @@
 
 
 enum GAME_STATE {
+	PLACE,
 	PAUSE,
 	RUNNING,
 	GAME_OVER
@@ -47,8 +48,6 @@ enum PROPAGATION_RESULT {
 	LHBatch* _toolboxBatchNode;
 	
 	GAME_STATE _state;
-	double _gameStartCountdownTimer;
-	CCLabelTTF* _gameStartCountdownLabel;
 	
 	int** _sharkMoveGrid;
 	int** _penguinMoveGrid;
@@ -93,7 +92,7 @@ enum PROPAGATION_RESULT {
 +(CCScene *) scene;
 
 #define DEBUG_ALL_THE_THINGS false
-#define DEBUG_PENGUIN true	//can be overridden in game
+#define DEBUG_PENGUIN false	//can be overridden in game
 #define DEBUG_SHARK false	//can be overridden in game
 
 #define SCALING_FACTOR (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5 : 1.0)

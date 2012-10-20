@@ -31,6 +31,7 @@
 - (int**)latestGrid;	//returns the grid with movement data
 - (int**)gridToTile:(CGPoint)pos withPropagationCallback:(void(^)(int**,CGPoint))propagationMethod;	//calculates a new grid or returns one that would have een calculated (if already calculated)
 - (void)forceLatestGridUpdate;
+- (void)updateBaseGrid:(int**)baseGrid;
 
 
 - (void)logMove:(CGPoint)pos;

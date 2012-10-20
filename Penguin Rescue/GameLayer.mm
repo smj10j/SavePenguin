@@ -72,9 +72,6 @@
 		// enable events
 		self.isTouchEnabled = YES;
 		
-		//sharks start in N seconds
-		_gameStartCountdownTimer = SHARKS_COUNTDOWN_TIMER_INITIAL;
-		
 		_isUpdatingSharkMovementGrids = false;
 		_nextMovementGridSharkIndexToUpdate = 0;
 		_shouldRegenerateFeatureMaps = false;
@@ -207,11 +204,6 @@
 	NSLog(@"Drawing HUD");
 
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
-
-	_gameStartCountdownLabel = [CCLabelTTF labelWithString:@"" fontName:@"Helvetica" fontSize:36 dimensions:CGSizeMake(500, 100) hAlignment:kCCTextAlignmentRight vAlignment:kCCVerticalTextAlignmentCenter];
-	_gameStartCountdownLabel.color = ccWHITE;
-	_gameStartCountdownLabel.position = ccp(winSize.width-250 - 20,winSize.height-50);
-	[_mainLayer addChild:_gameStartCountdownLabel];
 
 	_bottomBarContainer = [_levelLoader createBatchSpriteWithName:@"BottomBar" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	;
@@ -387,9 +379,6 @@
 		[self propagatePenguinGridCostToX:land.position.x/_gridSize y:land.position.y/_gridSize];
 	}
 	
-	
-	[_sharkMoveGridDatas removeAllObjects];
-	
 	//create a set of maps for each shark
 	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
 	for(LHSprite* shark in sharks) {
@@ -425,12 +414,17 @@
 		if(!foundRoute) {
 			NSLog(@"ERROR!!! Oh no! Failed to create movegrid template for shark %@ to %d,%d because no route was found", shark.uniqueName, x, y);
 		}else {
-			NSLog(@"Successfully reated movegrid template for shark %@ to %d,%d", shark.uniqueName, x, y);
+			NSLog(@"Successfully created movegrid template for shark %@ to %d,%d", shark.uniqueName, x, y);
 		}
 		
 		//and add it to the map
-		MoveGridData* wrapper = [[MoveGridData alloc] initWithGrid: sharkMoveGrid height:_gridHeight width:_gridWidth tag:@"SHARK"];
-		[_sharkMoveGridDatas setObject:wrapper forKey:shark.uniqueName];
+		MoveGridData* moveGridData = [_sharkMoveGridDatas objectForKey:shark.uniqueName];
+		if(moveGridData == nil) {
+			moveGridData = [[MoveGridData alloc] initWithGrid: sharkMoveGrid height:_gridHeight width:_gridWidth tag:@"SHARK"];
+			[_sharkMoveGridDatas setObject:moveGridData forKey:shark.uniqueName];
+		}else {
+			[moveGridData updateBaseGrid:sharkMoveGrid];
+		}
 		
 	}
 	
@@ -443,7 +437,7 @@
 
 -(void)onTouchBeganToolboxItem:(LHTouchInfo*)info {
 
-	if(_state != RUNNING) {
+	if(_state != RUNNING && _state != PLACE) {
 		return;
 	}
 
@@ -474,7 +468,7 @@
 	
 		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		
-		if(_state != RUNNING
+		if((_state != RUNNING && _state != PLACE)
 				|| (info.glPoint.y < _bottomBarContainer.boundingBox.size.height)
 				|| (info.glPoint.y >= winSize.height)
 				|| (info.glPoint.x <= 0)
@@ -660,25 +654,11 @@
 -(void) update: (ccTime) dt
 {
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Update tick");
-	if(_state != RUNNING) {
+	if(_state != RUNNING && _state != PLACE) {
 		return;
 	}
-	
-	/* Things okay to do before the timer is 0 */
 
-	//place penguins on land for visual appeal
-	for(id penguinName in _penguinsToPutOnLand) {
-		LHSprite* penguin = [_levelLoader spriteWithUniqueName:penguinName];
-		LHSprite* land = [_penguinsToPutOnLand objectForKey:penguinName];
-		[penguin makeNoPhysics];
-		[penguin transformPosition:land.position];
-	}
-	[_penguinsToPutOnLand removeAllObjects];
-	
-	if(_shouldRegenerateFeatureMaps) {
-  		_shouldRegenerateFeatureMaps = false;
-		[self generateFeatureMaps];
-	}
+	/* Things that can occur while placing toolbox items or while running */
 	
 	if(_shouldUpdateToolbox) {
 		_shouldUpdateToolbox = false;
@@ -721,19 +701,31 @@
 	
 	/*************************************/
 
-	if(_gameStartCountdownTimer <= 0) {
-		
-		_gameStartCountdownLabel.visible = false;
-		
-		[self moveSharks:dt];
-		[self movePenguins:dt];
-			
-	}else {
-		_gameStartCountdownTimer-= dt;
-		_gameStartCountdownLabel.string = [NSString stringWithFormat:@"Game starts in %d...", (int)ceil(_gameStartCountdownTimer)];
+	if(_state != RUNNING) {
 		return;
 	}
 
+
+	//place penguins on land for visual appeal
+	for(id penguinName in _penguinsToPutOnLand) {
+		LHSprite* penguin = [_levelLoader spriteWithUniqueName:penguinName];
+		LHSprite* land = [_penguinsToPutOnLand objectForKey:penguinName];
+		[penguin makeNoPhysics];
+		[penguin transformPosition:land.position];
+	}
+	[_penguinsToPutOnLand removeAllObjects];
+	
+	//regenerate base feature maps if need be
+	if(_shouldRegenerateFeatureMaps) {
+  		_shouldRegenerateFeatureMaps = false;
+		[self generateFeatureMaps];
+	}
+	
+	
+	
+	[self moveSharks:dt];
+	[self movePenguins:dt];
+		
 
 	
 	
@@ -1358,7 +1350,7 @@
 		CGPoint location = [touch locationInView: [touch view]];
 		location = [[CCDirector sharedDirector] convertToGL: location];
 
-		if(_state == RUNNING) {
+		if(_state == RUNNING || _state == PLACE) {
 			if(_activeToolboxItem && ccpDistance(location, _activeToolboxItem.position) > 50*SCALING_FACTOR) {
 				//tapping a second finger on the screen when moving a toolbox item rotates the item
 				[_activeToolboxItem transformRotation:((int)_activeToolboxItem.rotation+90)%360];

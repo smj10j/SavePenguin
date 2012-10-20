@@ -18,7 +18,7 @@
 		_gridWidth = width;
 		_gridHeight = height;
 		_tag = tag;
-		
+	
 		if(_gridWidth > 0 && _gridHeight > 0 && _baseGrid != nil) {
 			_latestGrid = new int*[_gridWidth];
 			for(int x = 0; x < _gridWidth; x++) {
@@ -47,6 +47,16 @@
 	return self;
 }
 
+- (void)copyBaseGridToLatestGrid {
+	if(_gridWidth > 0 && _gridHeight > 0 && _baseGrid != nil && _latestGrid != nil) {
+		for(int x = 0; x < _gridWidth; x++) {
+			for(int y = 0; y < _gridHeight; y++) {
+				_latestGrid[x][y] = _baseGrid[x][y];
+			}
+		}
+	}
+}
+
 - (void)logMove:(CGPoint)pos {
 	_moveHistory[_moveHistoryIndex] = pos;
 	_moveHistoryIndex = (++_moveHistoryIndex%MOVE_HISTORY_SIZE);
@@ -66,11 +76,7 @@
 		//propagate!
 		if(propagationMethod) {
 			
-			for(int x = 0; x < _gridWidth; x++) {
-				for(int y = 0; y < _gridHeight; y++) {
-					_latestGrid[x][y] = _baseGrid[x][y];
-				}
-			}
+			[self copyBaseGridToLatestGrid];
 			
 			propagationMethod(_latestGrid, pos);
 		}
@@ -92,6 +98,15 @@
 
 - (int**)latestGrid {
 	return _latestGrid;
+}
+
+- (void)updateBaseGrid:(int**)baseGrid {
+	if(_baseGrid != nil) {
+		free(_baseGrid);
+	}
+	_baseGrid = baseGrid;
+	[self copyBaseGridToLatestGrid];
+	[self forceLatestGridUpdate];
 }
 
 - (double)distanceTraveledStraightline {
