@@ -13,9 +13,9 @@
 @synthesize restingDetectionRadius;
 @synthesize activeDetectionRadius;
 @synthesize endpointY;
-@synthesize targetAcquired;
-@synthesize restingSpeed;
 @synthesize isStuck;
+@synthesize restingSpeed;
+@synthesize targetAcquired;
 
 
 -(void) dealloc{
@@ -58,14 +58,14 @@ return NSStringFromClass([self class]);
 	if([dictionary objectForKey:@"endpointY"])
 		[self setEndpointY:[[dictionary objectForKey:@"endpointY"] floatValue]];
 
-	if([dictionary objectForKey:@"targetAcquired"])
-		[self setTargetAcquired:[[dictionary objectForKey:@"targetAcquired"] boolValue]];
+	if([dictionary objectForKey:@"isStuck"])
+		[self setIsStuck:[[dictionary objectForKey:@"isStuck"] boolValue]];
 
 	if([dictionary objectForKey:@"restingSpeed"])
 		[self setRestingSpeed:[[dictionary objectForKey:@"restingSpeed"] floatValue]];
 
-	if([dictionary objectForKey:@"isStuck"])
-		[self setIsStuck:[[dictionary objectForKey:@"isStuck"] boolValue]];
+	if([dictionary objectForKey:@"targetAcquired"])
+		[self setTargetAcquired:[[dictionary objectForKey:@"targetAcquired"] boolValue]];
 
 }
 

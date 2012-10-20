@@ -93,7 +93,7 @@ enum PROPAGATION_RESULT {
 +(CCScene *) scene;
 
 #define DEBUG_ALL_THE_THINGS false
-#define DEBUG_PENGUIN false	//can be overridden in game
+#define DEBUG_PENGUIN true	//can be overridden in game
 #define DEBUG_SHARK false	//can be overridden in game
 
 #define SCALING_FACTOR (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5 : 1.0)

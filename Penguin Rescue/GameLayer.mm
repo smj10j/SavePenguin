@@ -339,8 +339,8 @@
 	//fresh start
 	for(int x = 0; x < _gridWidth; x++) {
 		for(int y = 0; y < _gridHeight; y++) {
-			_sharkMapfeaturesGrid[x][y] = 0;
-			_penguinMapfeaturesGrid[x][y] = 0;
+			_sharkMapfeaturesGrid[x][y] = INITIAL_GRID_WEIGHT;
+			_penguinMapfeaturesGrid[x][y] = INITIAL_GRID_WEIGHT;
 		}
 	}
 
@@ -363,17 +363,15 @@
 		//create the areas that both sharks and penguins can't go
 		for(int x = minX; x < maxX; x++) {
 			for(int y = minY; y < maxY; y++) {
-				_sharkMapfeaturesGrid[(int)floor(x/_gridSize)][(int)floor(y/_gridSize)] = HARD_BORDER_WEIGHT;
+				_sharkMapfeaturesGrid[(int)(x/_gridSize)][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
 				if(land.tag == BORDER) {
-					_penguinMapfeaturesGrid[(int)floor(x/_gridSize)][(int)floor(y/_gridSize)] = HARD_BORDER_WEIGHT;
+					_penguinMapfeaturesGrid[(int)(x/_gridSize)][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
 				}
 			}
 		}
 			
 
-		/*NSLog(@"Land from %f,%f to %f,%f",
-			land.position.x-land.boundingBox.size.width/2, land.position.y-land.boundingBox.size.height/2,
-			land.position.x+land.boundingBox.size.width/2, land.position.y+land.boundingBox.size.height/2);*/
+		//NSLog(@"Land from %d,%d to %d,%d", minX, minY, maxX, maxY);
 	}
 
 
@@ -396,6 +394,8 @@
 	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
 	for(LHSprite* shark in sharks) {
 		Shark* sharkData = ((Shark*)shark.userInfo);
+		int sharkX = (int)shark.position.x/_gridSize;
+		int sharkY = (int)shark.position.y/_gridSize;
 		
 		//first create a copy of the feature map
 		int** sharkMoveGrid = new int*[_gridWidth];
@@ -412,21 +412,26 @@
 		x = max(min(x, _gridWidth-1), 0);
 		y = max(min(y, _gridHeight-1), 0);
 
+		bool foundRoute = false;
 		sharkMoveGrid[x][y] = INITIAL_ENDPOINT_GRID_WEIGHT;
 		[self propagateSharkGridCostToX:x
 									y:y
 									onSharkMoveGrid:sharkMoveGrid
-									withSharkPosition:ccp(-1,-1)
+									withSharkPosition:ccp(sharkX,sharkY)
 									withBranches:-1
 									andWeightDelta:1
-									foundRoute:nil];
+									foundRoute:&foundRoute];
 
+		if(!foundRoute) {
+			NSLog(@"ERROR!!! Oh no! Failed to create movegrid template for shark %@ to %d,%d because no route was found", shark.uniqueName, x, y);
+		}else {
+			NSLog(@"Successfully reated movegrid template for shark %@ to %d,%d", shark.uniqueName, x, y);
+		}
 		
 		//and add it to the map
 		MoveGridData* wrapper = [[MoveGridData alloc] initWithGrid: sharkMoveGrid height:_gridHeight width:_gridWidth tag:@"SHARK"];
 		[_sharkMoveGridDatas setObject:wrapper forKey:shark.uniqueName];
 		
-		NSLog(@"Created movegrid template for shark %@", shark.uniqueName);
 	}
 	
 	NSLog(@"Done generating feature maps");
@@ -773,9 +778,11 @@
 }
 
 -(void) propagateSharkGridCostToX:(int)x y:(int)y onSharkMoveGrid:(int**)sharkMoveGrid withSharkPosition:(CGPoint)sharkPos withBranches:(int)branches andWeightDelta:(int)weightDelta foundRoute:(bool*)foundRoute{
-	
-	if(_state != RUNNING) {
-		//stops propagation faster on a pause
+
+	if(x < 0 || x >= _gridWidth) {
+		return;
+	}
+	if(y < 0 || y >= _gridHeight) {
 		return;
 	}
 
@@ -786,12 +793,6 @@
 		}
 	}
 
-	if(x < 0 || x >= _gridWidth) {
-		return;
-	}
-	if(y < 0 || y >= _gridHeight) {
-		return;
-	}
 	if(branches == 0) {
 		//note that starting with a -1 will allow unlimited branching
 		return;
@@ -1365,7 +1366,7 @@
 		}
 
 		if(DEBUG_ALL_THE_THINGS || DEBUG_PENGUIN || DEBUG_SHARK ) {
-			if(_sharkMoveGrid != nil) NSLog(@"Shark1 sharkMoveGrid[%d][%d] = %d", (int)location.x, (int)location.y, _sharkMoveGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
+			if(_sharkMoveGrid != nil) NSLog(@"_sharkMoveGrid[%d][%d] = %d", (int)location.x, (int)location.y, _sharkMoveGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
 			if(_sharkMapfeaturesGrid != nil) NSLog(@"_sharkMapfeaturesGrid[%d][%d] = %d", (int)location.x, (int)location.y, _sharkMapfeaturesGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
 			if(_penguinMoveGrid != nil)NSLog(@"_penguinMoveGrid[%d][%d] = %d", (int)location.x, (int)location.y, _penguinMoveGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
 			if(_penguinMapfeaturesGrid != nil)NSLog(@"_penguinMapfeaturesGrid[%d][%d] = %d", (int)location.x, (int)location.y, _penguinMapfeaturesGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);

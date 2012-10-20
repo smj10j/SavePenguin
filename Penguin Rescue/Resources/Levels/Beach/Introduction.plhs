@@ -11,7 +11,7 @@
 	<key>JOINTS_INFO</key>
 	<array/>
 	<key>LHVersion</key>
-	<string>1.4.963</string>
+	<string>1.4.966</string>
 	<key>NODES_INFO</key>
 	<array>
 		<dict>
@@ -52,7 +52,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -76,7 +76,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{165, 13}</string>
+								<string>{125, -20}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -127,7 +127,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -151,7 +151,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{165, 38}</string>
+								<string>{125, -4}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -202,7 +202,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -226,15 +226,15 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{165, 63}</string>
+								<string>{125, 30}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
 								<string>{25, 25}</string>
 								<key>Tag</key>
-								<integer>7</integer>
+								<integer>0</integer>
 								<key>TagName</key>
-								<string>BORDER</string>
+								<string>DEFAULT</string>
 								<key>TextureOffset</key>
 								<string>{0, -0}</string>
 								<key>UniqueName</key>
@@ -277,7 +277,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -301,7 +301,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{165, 88}</string>
+								<string>{125, 55}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -352,7 +352,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -376,7 +376,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{165, 113}</string>
+								<string>{125, 80}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -427,7 +427,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -451,7 +451,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{165, 138}</string>
+								<string>{125, 105}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -502,7 +502,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -526,7 +526,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{165, 163}</string>
+								<string>{125, 130}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -577,7 +577,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -601,7 +601,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{140, 188}</string>
+								<string>{150, 130}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -652,7 +652,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -676,7 +676,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{140, 213}</string>
+								<string>{175, 130}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -727,7 +727,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -751,7 +751,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{165, 213}</string>
+								<string>{200, 130}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -802,7 +802,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -826,7 +826,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{190, 213}</string>
+								<string>{200, 155}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -877,7 +877,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -901,7 +901,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{213, 221}</string>
+								<string>{200, 180}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -952,7 +952,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -976,7 +976,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{237, 213}</string>
+								<string>{225, 205}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1027,7 +1027,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -1051,7 +1051,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{261, 213}</string>
+								<string>{250, 230}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1102,7 +1102,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -1126,7 +1126,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{285, 213}</string>
+								<string>{275, 230}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1177,7 +1177,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -1201,7 +1201,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{285, 189}</string>
+								<string>{300, 230}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1252,7 +1252,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -1276,7 +1276,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{290, 213}</string>
+								<string>{300, 205}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1327,7 +1327,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -1351,7 +1351,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{290, 188}</string>
+								<string>{300, 180}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1402,7 +1402,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -1426,7 +1426,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{290, 163}</string>
+								<string>{300, 155}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1477,7 +1477,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -1501,7 +1501,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{290, 138}</string>
+								<string>{300, 130}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1552,7 +1552,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -1576,7 +1576,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{290, 113}</string>
+								<string>{300, 105}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1627,7 +1627,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -1651,7 +1651,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{290, 88}</string>
+								<string>{300, 80}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1702,7 +1702,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -1726,7 +1726,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{315, 63}</string>
+								<string>{275, 80}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1777,7 +1777,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -1801,7 +1801,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{340, 63}</string>
+								<string>{250, 80}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1852,7 +1852,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -1876,7 +1876,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{365, 88}</string>
+								<string>{275, 55}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1927,7 +1927,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -1951,7 +1951,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{390, 113}</string>
+								<string>{300, 55}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -2002,7 +2002,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -2026,7 +2026,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{390, 138}</string>
+								<string>{325, 55}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -2077,7 +2077,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -2101,7 +2101,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{390, 163}</string>
+								<string>{350, 55}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -2152,7 +2152,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -2176,7 +2176,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{390, 188}</string>
+								<string>{375, 55}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -2227,7 +2227,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -2251,7 +2251,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{390, 213}</string>
+								<string>{400, 55}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -2302,7 +2302,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -2326,15 +2326,15 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{278, 26}</string>
+								<string>{400, 80}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
 								<string>{25, 25}</string>
 								<key>Tag</key>
-								<integer>3</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>LAND</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0, -0}</string>
 								<key>UniqueName</key>
@@ -2377,7 +2377,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -2401,7 +2401,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{165, -13}</string>
+								<string>{400, 105}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -2452,7 +2452,7 @@
 							<key>SHSpriteName</key>
 							<string>Sand_Square</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Map.pvr.gz</string>
+							<string>Spritesheet_Map.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -2476,7 +2476,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{165, -38}</string>
+								<string>{400, 130}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -2495,6 +2495,231 @@
 							<key>UniqueName</key>
 							<string>Sand_Square_32</string>
 						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Sand_Square</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{0, 26}, {25, 25}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{400, 155}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{25, 25}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0, -0}</string>
+								<key>UniqueName</key>
+								<string>Sand_Square_33</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Sand_Square_33</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Sand_Square</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{0, 26}, {25, 25}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{189, 28}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{25, 25}</string>
+								<key>Tag</key>
+								<integer>3</integer>
+								<key>TagName</key>
+								<string>LAND</string>
+								<key>TextureOffset</key>
+								<string>{0, -0}</string>
+								<key>UniqueName</key>
+								<string>Sand_Square_34</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Sand_Square_34</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Sand_Square</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{0, 26}, {25, 25}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{125, 22}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{25, 25}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0, -0}</string>
+								<key>UniqueName</key>
+								<string>Sand_Square_35</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Sand_Square_35</string>
+						</dict>
 					</array>
 					<key>CustomClassInfo</key>
 					<dict>
@@ -2510,9 +2735,9 @@
 					<key>SHScene</key>
 					<string>Spritesheet.pshs</string>
 					<key>SheetImage</key>
-					<string>Spritesheet_Map.pvr.gz</string>
+					<string>Spritesheet_Map.png</string>
 					<key>SheetImageRelative</key>
-					<string>/Penguin Rescue/Resources/images/Spritesheet_Map.pvr.gz</string>
+					<string>/Penguin Rescue/Resources/images/Spritesheet_Map.png</string>
 					<key>Tag</key>
 					<integer>0</integer>
 					<key>TagName</key>
@@ -2566,7 +2791,7 @@
 									<key>isStuck</key>
 									<false/>
 									<key>speed</key>
-									<real>60</real>
+									<real>40</real>
 								</dict>
 							</dict>
 							<key>NodeType</key>
@@ -2589,7 +2814,7 @@
 							<key>SHSpriteName</key>
 							<string>Penguin</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Actors.pvr.gz</string>
+							<string>Spritesheet_Actors.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -2601,29 +2826,29 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 0}, {29.5, 56.5}}</string>
+								<string>{{0, 30}, {34.75, 40.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{223, 92}</string>
+								<string>{375, 218}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{29.5, 56.5}</string>
+								<string>{37.5, 43.75}</string>
 								<key>Tag</key>
 								<integer>1</integer>
 								<key>TagName</key>
 								<string>PENGUIN</string>
 								<key>TextureOffset</key>
-								<string>{0, -0}</string>
+								<string>{0.625, -0}</string>
 								<key>UniqueName</key>
 								<string>Penguin</string>
 								<key>ZOrder</key>
@@ -2631,220 +2856,6 @@
 							</dict>
 							<key>UniqueName</key>
 							<string>Penguin</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>alertRadius</key>
-									<true/>
-									<key>detectionRadius</key>
-									<true/>
-									<key>hasSpottedShark</key>
-									<true/>
-									<key>isDead</key>
-									<true/>
-									<key>isSafe</key>
-									<true/>
-									<key>isStuck</key>
-									<true/>
-									<key>speed</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>Penguin</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>alertRadius</key>
-									<real>300</real>
-									<key>detectionRadius</key>
-									<real>300</real>
-									<key>hasSpottedShark</key>
-									<false/>
-									<key>isDead</key>
-									<false/>
-									<key>isSafe</key>
-									<false/>
-									<key>isStuck</key>
-									<false/>
-									<key>speed</key>
-									<real>60</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Actors</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Actors</string>
-							<key>SHSpriteName</key>
-							<string>Penguin</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Actors.pvr.gz</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{0, 0}, {29.5, 56.5}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<false/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{439, 204}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{29.5, 56.5}</string>
-								<key>Tag</key>
-								<integer>1</integer>
-								<key>TagName</key>
-								<string>PENGUIN</string>
-								<key>TextureOffset</key>
-								<string>{0, -0}</string>
-								<key>UniqueName</key>
-								<string>Penguin_1</string>
-								<key>ZOrder</key>
-								<integer>1</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Penguin_1</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>alertRadius</key>
-									<true/>
-									<key>detectionRadius</key>
-									<true/>
-									<key>hasSpottedShark</key>
-									<true/>
-									<key>isDead</key>
-									<true/>
-									<key>isSafe</key>
-									<true/>
-									<key>isStuck</key>
-									<true/>
-									<key>speed</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>Penguin</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>alertRadius</key>
-									<real>300</real>
-									<key>detectionRadius</key>
-									<real>300</real>
-									<key>hasSpottedShark</key>
-									<false/>
-									<key>isDead</key>
-									<false/>
-									<key>isSafe</key>
-									<false/>
-									<key>isStuck</key>
-									<false/>
-									<key>speed</key>
-									<real>60</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Actors</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Actors</string>
-							<key>SHSpriteName</key>
-							<string>Penguin</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Actors.pvr.gz</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{0, 0}, {29.5, 56.5}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<false/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{343, 140}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{29.5, 56.5}</string>
-								<key>Tag</key>
-								<integer>1</integer>
-								<key>TagName</key>
-								<string>PENGUIN</string>
-								<key>TextureOffset</key>
-								<string>{0, -0}</string>
-								<key>UniqueName</key>
-								<string>Penguin_2</string>
-								<key>ZOrder</key>
-								<integer>1</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Penguin_2</string>
 						</dict>
 						<dict>
 							<key>AnimationsProperties</key>
@@ -2879,7 +2890,7 @@
 									<key>activeDetectionRadius</key>
 									<real>600</real>
 									<key>activeSpeed</key>
-									<real>80</real>
+									<real>50</real>
 									<key>endpointX</key>
 									<real>1024</real>
 									<key>endpointY</key>
@@ -2889,7 +2900,7 @@
 									<key>restingDetectionRadius</key>
 									<real>400</real>
 									<key>restingSpeed</key>
-									<real>50</real>
+									<real>25</real>
 									<key>targetAcquired</key>
 									<false/>
 								</dict>
@@ -2914,7 +2925,7 @@
 							<key>SHSpriteName</key>
 							<string>Shark</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Actors.pvr.gz</string>
+							<string>Spritesheet_Actors.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -2926,29 +2937,29 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{31, 0}, {44.5, 26.75}}</string>
+								<string>{{0, 0}, {58.75, 29}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<true/>
+								<false/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{56, 195}</string>
+								<string>{51, 191}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{47.25, 38}</string>
+								<string>{62.5, 31.25}</string>
 								<key>Tag</key>
 								<integer>2</integer>
 								<key>TagName</key>
 								<string>SHARK</string>
 								<key>TextureOffset</key>
-								<string>{-0.125, -2.125}</string>
+								<string>{0.375, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Shark</string>
 								<key>ZOrder</key>
@@ -2956,117 +2967,6 @@
 							</dict>
 							<key>UniqueName</key>
 							<string>Shark</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>activeDetectionRadius</key>
-									<true/>
-									<key>activeSpeed</key>
-									<true/>
-									<key>endpointX</key>
-									<true/>
-									<key>endpointY</key>
-									<true/>
-									<key>isStuck</key>
-									<true/>
-									<key>restingDetectionRadius</key>
-									<true/>
-									<key>restingSpeed</key>
-									<true/>
-									<key>targetAcquired</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>Shark</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>activeDetectionRadius</key>
-									<real>600</real>
-									<key>activeSpeed</key>
-									<real>80</real>
-									<key>endpointX</key>
-									<real>1024</real>
-									<key>endpointY</key>
-									<real>400</real>
-									<key>isStuck</key>
-									<false/>
-									<key>restingDetectionRadius</key>
-									<real>400</real>
-									<key>restingSpeed</key>
-									<real>50</real>
-									<key>targetAcquired</key>
-									<false/>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Actors</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Actors</string>
-							<key>SHSpriteName</key>
-							<string>Shark</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Actors.pvr.gz</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{31, 0}, {44.5, 26.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<true/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{104, 251}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{47.25, 38}</string>
-								<key>Tag</key>
-								<integer>2</integer>
-								<key>TagName</key>
-								<string>SHARK</string>
-								<key>TextureOffset</key>
-								<string>{-0.125, -2.125}</string>
-								<key>UniqueName</key>
-								<string>Shark_1</string>
-								<key>ZOrder</key>
-								<integer>2</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Shark_1</string>
 						</dict>
 					</array>
 					<key>CustomClassInfo</key>
@@ -3083,9 +2983,9 @@
 					<key>SHScene</key>
 					<string>Spritesheet.pshs</string>
 					<key>SheetImage</key>
-					<string>Spritesheet_Actors.pvr.gz</string>
+					<string>Spritesheet_Actors.png</string>
 					<key>SheetImageRelative</key>
-					<string>/Penguin Rescue/Resources/images/Spritesheet_Actors.pvr.gz</string>
+					<string>/Penguin Rescue/Resources/images/Spritesheet_Actors.png</string>
 					<key>Tag</key>
 					<integer>0</integer>
 					<key>TagName</key>
@@ -3132,7 +3032,7 @@
 							<key>SHSpriteName</key>
 							<string>Floating-Log</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.pvr.gz</string>
+							<string>Spritesheet_Toolbox.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -3156,7 +3056,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{398, 25}</string>
+								<string>{174, 329}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -3209,7 +3109,7 @@
 							<key>SHSpriteName</key>
 							<string>Floating-Log</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.pvr.gz</string>
+							<string>Spritesheet_Toolbox.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -3233,7 +3133,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{398, 25}</string>
+								<string>{174, 329}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -3286,7 +3186,7 @@
 							<key>SHSpriteName</key>
 							<string>Floating-Log</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.pvr.gz</string>
+							<string>Spritesheet_Toolbox.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -3310,7 +3210,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{398, 25}</string>
+								<string>{174, 329}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -3363,7 +3263,7 @@
 							<key>SHSpriteName</key>
 							<string>Metal-Gate</string>
 							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.pvr.gz</string>
+							<string>Spritesheet_Toolbox.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
@@ -3387,7 +3287,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{446, 109}</string>
+								<string>{123, 317}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -3406,83 +3306,6 @@
 							<key>UniqueName</key>
 							<string>Metal-Gate</string>
 						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict/>
-								<key>ClassName</key>
-								<string>ToolboxItem_Border</string>
-								<key>ClassRepresentation</key>
-								<dict/>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Toolbox</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Toolbox</string>
-							<key>SHSpriteName</key>
-							<string>Metal-Gate</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.pvr.gz</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{0, 0}, {21.75, 89.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<false/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{446, 109}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{21.25, 89.25}</string>
-								<key>Tag</key>
-								<integer>8</integer>
-								<key>TagName</key>
-								<string>TOOLBOX_ITEM</string>
-								<key>TextureOffset</key>
-								<string>{0.25, -0.25}</string>
-								<key>UniqueName</key>
-								<string>Metal-Gate_1</string>
-								<key>ZOrder</key>
-								<integer>19</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Metal-Gate_1</string>
-						</dict>
 					</array>
 					<key>CustomClassInfo</key>
 					<dict>
@@ -3498,9 +3321,9 @@
 					<key>SHScene</key>
 					<string>Spritesheet.pshs</string>
 					<key>SheetImage</key>
-					<string>Spritesheet_Toolbox.pvr.gz</string>
+					<string>Spritesheet_Toolbox.png</string>
 					<key>SheetImageRelative</key>
-					<string>/Penguin Rescue/Resources/images/Spritesheet_Toolbox.pvr.gz</string>
+					<string>/Penguin Rescue/Resources/images/Spritesheet_Toolbox.png</string>
 					<key>Tag</key>
 					<integer>0</integer>
 					<key>TagName</key>
@@ -3562,7 +3385,7 @@
 					<key>isStuck</key>
 					<false/>
 					<key>speed</key>
-					<real>60</real>
+					<real>40</real>
 				</dict>
 			</dict>
 			<dict>
@@ -3573,7 +3396,7 @@
 					<key>activeDetectionRadius</key>
 					<real>600</real>
 					<key>activeSpeed</key>
-					<real>80</real>
+					<real>50</real>
 					<key>endpointX</key>
 					<real>1024</real>
 					<key>endpointY</key>
@@ -3583,7 +3406,7 @@
 					<key>restingDetectionRadius</key>
 					<real>400</real>
 					<key>restingSpeed</key>
-					<real>50</real>
+					<real>25</real>
 					<key>targetAcquired</key>
 					<false/>
 				</dict>
