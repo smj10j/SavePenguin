@@ -919,7 +919,7 @@
 
 -(void) updateSharkMoveGrids {
 	
-	if(_isUpdatingSharkMovementGrids || _state != RUNNING) {
+	if(_isUpdatingSharkMovementGrids || (_state != RUNNING && _state != PLACE)) {
 		return;
 	}
 	_isUpdatingSharkMovementGrids = true;
@@ -1002,17 +1002,6 @@
 											withBranches:-1
 											andWeightDelta:1
 											foundRoute:&foundRoute];
-											
-				if(!foundRoute) {
-					//no path.. the penguin must be inaccessible!
-					NSLog(@"Penguin %@ is inaccessible to shark %@ - marking the penguin as stuck", targetPenguin.uniqueName, shark.uniqueName);
-					((Penguin*)targetPenguin.userInfo).isStuck = true;
-										
-				}else {
-					//since at least one shark can get to it, it obviously is not stuck
-					((Penguin*)targetPenguin.userInfo).isStuck = false;
-				}
-				
 
 				//let's only update one shark per iteration
 				continueUpdatingSharkMoveGrids = false;
@@ -1028,6 +1017,7 @@
 
 //TODO: eventually, make the penguins also use the MoveGridData
 
+//TODO: add a shark *thrashing* animation when it slows down to indicate a struggle. make it look mad!
 
 -(void) moveSharks:(ccTime)dt {
 		
@@ -1070,6 +1060,21 @@
 		//NSLog(@"w=%f e=%f n=%f s=%f", wW, wE, wN, wS);
 	
 		if(wW == wE && wE == wN && wN == wS) {
+		
+			double w = _sharkMoveGrid[sharkX][sharkY];
+			if(wW == w && w == INITIAL_GRID_WEIGHT) {
+				sharkData.isStuck = true;
+				if(SHARK_DIES_WHEN_STUCK) {
+					//we're stuck
+					NSLog(@"Shark %@ is stuck (no where to go) - we're removing him", shark.uniqueName);
+					//TODO: make the shark spin around in circles and explode in frustration!
+					[shark removeSelf];
+				}else {
+					NSLog(@"Shark %@ is stuck (no where to go) - we're ignoring him", shark.uniqueName);
+					//TODO: do a confused/arms up in air animation
+				}
+				continue;
+			}
 		
 			//TODO: some kind of random determination?
 			bestOptionPos = ccp(shark.position.x+((arc4random()%10)-5)/10.0,shark.position.y+((arc4random()%10)-5)/10.0);
@@ -1126,11 +1131,11 @@
 			sharkData.isStuck = true;
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
-				NSLog(@"Shark %@ is stuck - we're removing him", shark.uniqueName);
+				NSLog(@"Shark %@ is stuck (trying to move, but not making progress) - we're removing him", shark.uniqueName);
 				//TODO: make the shark spin around in circles and explode in frustration!
 				[shark removeSelf];
 			}else {
-				NSLog(@"Shark %@ is stuck - we're ignoring him", shark.uniqueName);
+				NSLog(@"Shark %@ is stuck (trying to move, but not making progress) - we're ignoring him", shark.uniqueName);
 				//TODO: do a confused/arms up in air animation
 			}
 		}
@@ -1238,6 +1243,19 @@
 			//NSLog(@"Penguins %@ direction weights: w=%f e=%f n=%f s=%f", penguin.uniqueName, wW, wE, wN, wS);
 		
 			if(wW == wE && wE == wN && wN == wS) {
+			
+				double w = _penguinMoveGrid[penguinX][penguinY];
+				if(w == wW && w == INITIAL_GRID_WEIGHT) {
+					NSLog(@"Penguin %@ is stuck!!", penguin.uniqueName);
+					penguinData.isStuck = true;
+					//TODO: show a confused expression. possibly raising wings into the air in a "oh well" gesture
+					
+					//halt!
+					penguin.body->SetLinearVelocity(b2Vec2(0,0));
+					penguin.body->SetAngularVelocity(0);
+					
+					continue;
+				}
 			
 				//TODO: some kind of random determination?
 				bestOptionPos = ccp(penguin.position.x+((arc4random()%2)-1),penguin.position.y+((arc4random()%2)-1));

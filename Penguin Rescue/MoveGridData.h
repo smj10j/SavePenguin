@@ -34,7 +34,6 @@
 - (void)forceLatestGridUpdate;
 - (void)updateBaseGrid:(int**)baseGrid;
 
-
 - (void)logMove:(CGPoint)pos;
 - (double)distanceTraveled;
 - (double)distanceTraveledStraightline;
