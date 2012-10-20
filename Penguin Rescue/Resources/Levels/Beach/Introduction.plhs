@@ -2566,7 +2566,7 @@
 									<key>isStuck</key>
 									<false/>
 									<key>speed</key>
-									<real>30</real>
+									<real>60</real>
 								</dict>
 							</dict>
 							<key>NodeType</key>
@@ -2673,7 +2673,7 @@
 									<key>isStuck</key>
 									<false/>
 									<key>speed</key>
-									<real>30</real>
+									<real>60</real>
 								</dict>
 							</dict>
 							<key>NodeType</key>
@@ -2780,7 +2780,7 @@
 									<key>isStuck</key>
 									<false/>
 									<key>speed</key>
-									<real>30</real>
+									<real>60</real>
 								</dict>
 							</dict>
 							<key>NodeType</key>
@@ -2879,7 +2879,7 @@
 									<key>activeDetectionRadius</key>
 									<real>600</real>
 									<key>activeSpeed</key>
-									<real>60</real>
+									<real>80</real>
 									<key>endpointX</key>
 									<real>1024</real>
 									<key>endpointY</key>
@@ -2889,7 +2889,7 @@
 									<key>restingDetectionRadius</key>
 									<real>400</real>
 									<key>restingSpeed</key>
-									<real>40</real>
+									<real>50</real>
 									<key>targetAcquired</key>
 									<false/>
 								</dict>
@@ -2990,7 +2990,7 @@
 									<key>activeDetectionRadius</key>
 									<real>600</real>
 									<key>activeSpeed</key>
-									<real>60</real>
+									<real>80</real>
 									<key>endpointX</key>
 									<real>1024</real>
 									<key>endpointY</key>
@@ -3000,7 +3000,7 @@
 									<key>restingDetectionRadius</key>
 									<real>400</real>
 									<key>restingSpeed</key>
-									<real>40</real>
+									<real>50</real>
 									<key>targetAcquired</key>
 									<false/>
 								</dict>
@@ -3562,7 +3562,7 @@
 					<key>isStuck</key>
 					<false/>
 					<key>speed</key>
-					<real>30</real>
+					<real>60</real>
 				</dict>
 			</dict>
 			<dict>
@@ -3573,7 +3573,7 @@
 					<key>activeDetectionRadius</key>
 					<real>600</real>
 					<key>activeSpeed</key>
-					<real>60</real>
+					<real>80</real>
 					<key>endpointX</key>
 					<real>1024</real>
 					<key>endpointY</key>
@@ -3583,7 +3583,7 @@
 					<key>restingDetectionRadius</key>
 					<real>400</real>
 					<key>restingSpeed</key>
-					<real>40</real>
+					<real>50</real>
 					<key>targetAcquired</key>
 					<false/>
 				</dict>

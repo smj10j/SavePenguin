@@ -605,8 +605,8 @@
 		//eg. [shark startAnimationNamed:@"attackPenguin"];
 		
 	}else {
-		//penguin must have drowned!
-		//TODO: show a drowning penguin animation
+		//penguin must have drowned or gone of screen!
+		//TODO: show a drowning penguin animation... what to do for offscreen?
 	}
 	
 	//TODO: restart after animations are done
@@ -1154,13 +1154,18 @@
 
 	for(LHSprite* penguin in penguins) {
 		
-		int gridX = (int)penguin.position.x/_gridSize;
-		int gridY = (int)penguin.position.y/_gridSize;
+		int penguinX = (int)penguin.position.x/_gridSize;
+		int penguinY = (int)penguin.position.y/_gridSize;
 		Penguin* penguinData = ((Penguin*)penguin.userInfo);
 		MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
 		
 		if(penguinData.isSafe || penguinData.isStuck) {
 			continue;
+		}
+		
+		if(penguinX >= _gridWidth || penguinX < 0 || penguinY >= _gridHeight || penguinY < 0) {
+			[self levelLostWithShark:nil andPenguin:penguin];
+			return;
 		}
 		
 		CGPoint bestOptionPos;
@@ -1188,10 +1193,10 @@
 			}
 
 			//use the best route algorithm
-			double wN = _penguinMoveGrid[gridX][gridY+1 >= _gridHeight ? gridY : gridY+1];
-			double wS = _penguinMoveGrid[gridX][gridY-1 < 0 ? gridY : gridY-1];
-			double wE = _penguinMoveGrid[gridX+1 >= _gridWidth ? gridX : gridX+1][gridY];
-			double wW = _penguinMoveGrid[gridX-1 < 0 ? gridX : gridX-1][gridY];
+			double wN = _penguinMoveGrid[penguinX][penguinY+1 >= _gridHeight-1 ? penguinY : penguinY+1];
+			double wS = _penguinMoveGrid[penguinX][penguinY-1 < 0 ? penguinY : penguinY-1];
+			double wE = _penguinMoveGrid[penguinX+1 >= _gridWidth-1 ? penguinX : penguinX+1][penguinY];
+			double wW = _penguinMoveGrid[penguinX-1 < 0 ? penguinX : penguinX-1][penguinY];
 		
 		
 			//NSLog(@"w=%f e=%f n=%f s=%f", wW, wE, wN, wS);
@@ -1265,18 +1270,20 @@
 			double normalizedY = dy/max;
 		
 			double penguinSpeed = penguinData.speed;
-			b2Vec2 prevVel = penguin.body->GetLinearVelocity();
 			double targetVelX = dt * penguinSpeed * normalizedX;
 			double targetVelY = dt * penguinSpeed * normalizedY;
-			double weightedVelX = (prevVel.x * 4.0 + targetVelX)/5.0;
-			double weightedVelY = (prevVel.y * 4.0 + targetVelY)/5.0;
-			penguin.body->SetLinearVelocity(b2Vec2(weightedVelX,weightedVelY));
+		
+			//we're using an impulse for the penguin so they interact with things like Debris (physics)
+			//penguin.body->SetLinearVelocity(b2Vec2(weightedVelX,weightedVelY));
+			penguin.body->ApplyLinearImpulse(b2Vec2(targetVelX*.1,targetVelY*.1), penguin.body->GetWorldCenter());
 			
 			//rotate penguin
-			double radians = atan2(weightedVelX, weightedVelY); //this grabs the radians for us
-			double degrees = CC_RADIANS_TO_DEGREES(radians) - 90; //90 is because the sprit is facing right
-			[penguin transformRotation:degrees];
-
+			//double radians = atan2(weightedVelX, weightedVelY); //this grabs the radians for us
+			//double degrees = CC_RADIANS_TO_DEGREES(radians) - 90; //90 is because the sprit is facing right
+			//[penguin transformRotation:degrees];
+			
+			//penguins try to stay upright
+			penguin.body->ApplyAngularImpulse(penguin.rotation*.01);
 		}
 	}
 
