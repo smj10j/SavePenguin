@@ -65,7 +65,7 @@ enum PROPAGATION_RESULT {
 	NSMutableDictionary* _penguinsToPutOnLand;
 	
 	LHSprite* _bottomBarContainer;
-	LHSprite* _pauseButton;
+	LHSprite* _playPauseButton;
 	LHSprite* _restartButton;
 	
 	bool _moveActiveToolboxItemIntoWorld;

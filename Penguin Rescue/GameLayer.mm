@@ -110,7 +110,7 @@
 		[self schedule:@selector(updateSharkMoveGrids) interval:0.5f];
 
 		//start the game
-		_state = RUNNING;
+		_state = PLACE;
 		CCDirectorIOS* director = (CCDirectorIOS*) [CCDirector sharedDirector];
 		[director setAnimationInterval:1.0/TARGET_FPS];
 		[self scheduleUpdate];
@@ -209,15 +209,15 @@
 	;
 	[_bottomBarContainer transformPosition: ccp(winSize.width/2,_bottomBarContainer.boundingBox.size.height/2)];
 
-	_pauseButton = [_levelLoader createBatchSpriteWithName:@"Pause_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
-	[_pauseButton prepareAnimationNamed:@"Pause_hover" fromSHScene:@"Spritesheet"];
-	[_pauseButton transformPosition: ccp(_pauseButton.boundingBox.size.width/2+20*SCALING_FACTOR,_pauseButton.boundingBox.size.height/2+14*SCALING_FACTOR)];
-	[_pauseButton registerTouchBeganObserver:self selector:@selector(onTouchBeganPause:)];
-	[_pauseButton registerTouchEndedObserver:self selector:@selector(onTouchEndedPause:)];
+	_playPauseButton = [_levelLoader createBatchSpriteWithName:@"Play_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
+	[_playPauseButton prepareAnimationNamed:@"Play_Pause_Button" fromSHScene:@"Spritesheet"];
+	[_playPauseButton transformPosition: ccp(_playPauseButton.boundingBox.size.width/2+20*SCALING_FACTOR,_playPauseButton.boundingBox.size.height/2+14*SCALING_FACTOR)];
+	[_playPauseButton registerTouchBeganObserver:self selector:@selector(onTouchBeganPlayPause:)];
+	[_playPauseButton registerTouchEndedObserver:self selector:@selector(onTouchEndedPlayPause:)];
 	
 	
 	_restartButton = [_levelLoader createBatchSpriteWithName:@"Restart_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
-	[_restartButton prepareAnimationNamed:@"Restart_hover" fromSHScene:@"Spritesheet"];
+	[_restartButton prepareAnimationNamed:@"Restart_Button" fromSHScene:@"Spritesheet"];
 	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.boundingBox.size.width/2+20*SCALING_FACTOR),_restartButton.boundingBox.size.height/2+14*SCALING_FACTOR) ];
 	[_restartButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[_restartButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
@@ -502,20 +502,30 @@
 
 
 
--(void)onTouchBeganPause:(LHTouchInfo*)info {
-	[_pauseButton setFrame:1];
+-(void)onTouchBeganPlayPause:(LHTouchInfo*)info {
+	[_playPauseButton setFrame:_playPauseButton.currentFrame+1];	//active state
 	__DEBUG_TOUCH_SECONDS = [[NSDate date] timeIntervalSince1970];	
 }
 
--(void)onTouchEndedPause:(LHTouchInfo*)info {
-	[_pauseButton setFrame:0];
+-(void)onTouchEndedPlayPause:(LHTouchInfo*)info {
+
+	if(_state == PLACE) {
+		_state = RUNNING;
+		[_playPauseButton setFrame:2];	//pause inactive
+		
+	}else if(_state == PAUSE) {
+		[self resume];
+		[_playPauseButton setFrame:2];	//pause inactive
+
+	}else if(_state == RUNNING) {
+		[self pause];
+		[_playPauseButton setFrame:3];	//pause active
+		[_playPauseButton setFrame:0];	//play inactive
+
+	}
 
 	//TODO: the in-game menu will actually resume and toggling will not be necessary
-	if(_state == PAUSE) {
-		[self resume];
-	}else {
-		[self pause];
-	}
+
 	
 	double elapsed = ([[NSDate date] timeIntervalSince1970] - __DEBUG_TOUCH_SECONDS);
 	if(elapsed < 2) {
@@ -538,11 +548,11 @@
 }
 
 -(void)onTouchBeganRestart:(LHTouchInfo*)info {
-	[_restartButton setFrame:1];
+	[_restartButton setFrame:_restartButton.currentFrame+1];
 }
 
 -(void)onTouchEndedRestart:(LHTouchInfo*)info {
-	[_restartButton setFrame:0];
+	[_restartButton setFrame:_restartButton.currentFrame-1];
 	[self restart];
 }
 
@@ -550,7 +560,6 @@
 	if(_state == RUNNING) {
 		NSLog(@"Pausing game");
 		_state = PAUSE;
-		[_levelLoader setPaused:true];
 	}
 	[self showInGameMenu];
 }
@@ -565,7 +574,9 @@
 	if(_state == PAUSE) {
 		NSLog(@"Resuming game");
 		_state = RUNNING;
-		[_levelLoader setPaused:false];
+	}else if(_state == PLACE) {
+		NSLog(@"Starting game");
+		_state = RUNNING;
 	}
 }
 
@@ -660,6 +671,12 @@
 
 	/* Things that can occur while placing toolbox items or while running */
 	
+	//regenerate base feature maps if need be
+	if(_shouldRegenerateFeatureMaps) {
+  		_shouldRegenerateFeatureMaps = false;
+		[self generateFeatureMaps];
+	}	
+	
 	if(_shouldUpdateToolbox) {
 		_shouldUpdateToolbox = false;
 		[self updateToolbox];
@@ -715,11 +732,6 @@
 	}
 	[_penguinsToPutOnLand removeAllObjects];
 	
-	//regenerate base feature maps if need be
-	if(_shouldRegenerateFeatureMaps) {
-  		_shouldRegenerateFeatureMaps = false;
-		[self generateFeatureMaps];
-	}
 	
 	
 	
