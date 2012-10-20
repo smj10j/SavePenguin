@@ -76,6 +76,7 @@
 		_gameStartCountdownTimer = SHARKS_COUNTDOWN_TIMER_INITIAL;
 		
 		_isUpdatingSharkMovementGrids = false;
+		_nextMovementGridSharkIndexToUpdate = 0;
 		_shouldRegenerateFeatureMaps = false;
 		_activeToolboxItem = nil;
 		_moveActiveToolboxItemIntoWorld = false;
@@ -920,7 +921,12 @@
 	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Updating %d sharks movement grids...", [sharks count]);
 		
+	int sharkIndex = 0;
 	for(LHSprite* shark in sharks) {
+	
+		if(sharkIndex++ < _nextMovementGridSharkIndexToUpdate) {
+			continue;
+		}
 		
 		if(!continueUpdatingSharkMoveGrids) break;
 		
@@ -975,7 +981,7 @@
 
 			[sharkMoveGridData gridToTile:tile withPropagationCallback:^(int** aGrid, CGPoint tile) {
 				
-				NSLog(@"Propagating full grid update to %f,%f", tile.x, tile.y);
+				NSLog(@"Shark %@ propagating full grid update to penguin %@ at %f,%f", shark.uniqueName, targetPenguin.uniqueName, tile.x, tile.y);
 
 				aGrid[(int)tile.x][(int)tile.y] = 0;
 				bool foundRoute = false;
@@ -1003,6 +1009,7 @@
 			}];
 		
 		}
+		_nextMovementGridSharkIndexToUpdate = (_nextMovementGridSharkIndexToUpdate+1)%[sharks count];
 	}
 	
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done updating %d sharks movement grids...", [sharks count]);
