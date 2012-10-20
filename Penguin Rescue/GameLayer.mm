@@ -158,7 +158,7 @@
 	[unpassableAreas addObjectsFromArray:borders];
 	
 	for(LHSprite* land in unpassableAreas) {
-		_gridSize = max(_gridSize, land.contentSize.width);
+		_gridSize = max(_gridSize, land.boundingBox.size.width);
 	}
 	
 	//TODO: it would be optimal to enable this - but I need to optimize and greatly speed up each turn...
@@ -215,25 +215,25 @@
 
 	_bottomBarContainer = [_levelLoader createBatchSpriteWithName:@"BottomBar" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	;
-	[_bottomBarContainer transformPosition: ccp(winSize.width/2,_bottomBarContainer.contentSize.height/2)];
+	[_bottomBarContainer transformPosition: ccp(winSize.width/2,_bottomBarContainer.boundingBox.size.height/2)];
 
 	_pauseButton = [_levelLoader createBatchSpriteWithName:@"Pause_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[_pauseButton prepareAnimationNamed:@"Pause_hover" fromSHScene:@"Spritesheet"];
-	[_pauseButton transformPosition: ccp(_pauseButton.contentSize.width/2+20*SCALING_FACTOR,_pauseButton.contentSize.height/2+14*SCALING_FACTOR)];
+	[_pauseButton transformPosition: ccp(_pauseButton.boundingBox.size.width/2+20*SCALING_FACTOR,_pauseButton.boundingBox.size.height/2+14*SCALING_FACTOR)];
 	[_pauseButton registerTouchBeganObserver:self selector:@selector(onTouchBeganPause:)];
 	[_pauseButton registerTouchEndedObserver:self selector:@selector(onTouchEndedPause:)];
 	
 	
 	_restartButton = [_levelLoader createBatchSpriteWithName:@"Restart_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[_restartButton prepareAnimationNamed:@"Restart_hover" fromSHScene:@"Spritesheet"];
-	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.contentSize.width/2+20*SCALING_FACTOR),_restartButton.contentSize.height/2+14*SCALING_FACTOR) ];
+	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.boundingBox.size.width/2+20*SCALING_FACTOR),_restartButton.boundingBox.size.height/2+14*SCALING_FACTOR) ];
 	[_restartButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[_restartButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 	
 	//get the toolbox item size for scaling purposes
 	LHSprite* toolboxContainer = [_levelLoader createBatchSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[toolboxContainer removeSelf];
-	_toolboxItemSize = toolboxContainer.contentSize.width;
+	_toolboxItemSize = toolboxContainer.boundingBox.size.width;
 }
 
 -(void) updateToolbox {
@@ -259,7 +259,7 @@
 	}
 	
 	int toolGroupX = winSize.width/2 - (_toolboxItemSize*(_toolGroups.count/2));
-	int toolGroupY = _bottomBarContainer.contentSize.height/2 - 6*SCALING_FACTOR;	//hardcoded 4 because of the little rounded edges in the bottom bar
+	int toolGroupY = _bottomBarContainer.boundingBox.size.height/2 - 6*SCALING_FACTOR;	//hardcoded 4 because of the little rounded edges in the bottom bar
 	
 	for(id key in _toolGroups) {
 
@@ -273,7 +273,7 @@
 			[toolboxContainer transformPosition: ccp(toolGroupX, toolGroupY)];
 
 			LHSprite* toolboxContainerCountContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container-Count" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:toolboxContainer];
-			[toolboxContainerCountContainer transformPosition: ccp(toolboxContainer.contentSize.width, toolboxContainer.contentSize.height)];
+			[toolboxContainerCountContainer transformPosition: ccp(toolboxContainer.boundingBox.size.width, toolboxContainer.boundingBox.size.height)];
 
 			//move the tool into the box
 			[toolboxItem transformPosition: ccp(toolGroupX, toolGroupY)];
@@ -284,7 +284,7 @@
 			//display # of items in the stack
 			CCLabelTTF* numToolsLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", toolGroup.count] fontName:@"Helvetica" fontSize:12 dimensions:CGSizeMake(12, 12) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter];
 			numToolsLabel.color = ccWHITE;
-			numToolsLabel.position = ccp(toolboxContainerCountContainer.contentSize.width/2, toolboxContainerCountContainer.contentSize.height/2);
+			numToolsLabel.position = ccp(toolboxContainerCountContainer.boundingBox.size.width/2, toolboxContainerCountContainer.boundingBox.size.height/2);
 			[toolboxContainerCountContainer addChild:numToolsLabel];
 				
 			[toolboxContainer setUserData:toolboxItem.uniqueName];
@@ -354,11 +354,11 @@
 	NSLog(@"Num safe lands: %d, Num borders: %d", [lands count], [borders count]);
 	
 	for(LHSprite* land in unpassableAreas) {
-			
-		int minX = max(land.position.x-land.contentSize.width/2, 0);
-		int maxX = min(land.position.x+land.contentSize.width/2, winSize.width-1);
-		int minY = max(land.position.y-land.contentSize.height/2, 0);
-		int maxY = min(land.position.y+land.contentSize.height/2, winSize.height-1);
+					
+		int minX = max(land.boundingBox.origin.x, 0);
+		int maxX = min(land.boundingBox.origin.x+land.boundingBox.size.width, winSize.width-1);
+		int minY = max(land.boundingBox.origin.y, 0);
+		int maxY = min(land.boundingBox.origin.y+land.boundingBox.size.height, winSize.height-1);
 		
 		//create the areas that both sharks and penguins can't go
 		for(int x = minX; x < maxX; x++) {
@@ -372,8 +372,8 @@
 			
 
 		/*NSLog(@"Land from %f,%f to %f,%f",
-			land.position.x-land.contentSize.width/2, land.position.y-land.contentSize.height/2,
-			land.position.x+land.contentSize.width/2, land.position.y+land.contentSize.height/2);*/
+			land.position.x-land.boundingBox.size.width/2, land.position.y-land.boundingBox.size.height/2,
+			land.position.x+land.boundingBox.size.width/2, land.position.y+land.boundingBox.size.height/2);*/
 	}
 
 
@@ -456,7 +456,7 @@
 	}
 	
 	_activeToolboxItem = toolboxItem;
-		
+			
 	_activeToolboxItemOriginalPosition = _activeToolboxItem.position;
 	[_activeToolboxItem transformScaleX: 1];
 	[_activeToolboxItem transformScaleY: 1];
@@ -470,13 +470,14 @@
 		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		
 		if(_state != RUNNING
-				|| (info.glPoint.y < _bottomBarContainer.contentSize.height)
+				|| (info.glPoint.y < _bottomBarContainer.boundingBox.size.height)
 				|| (info.glPoint.y >= winSize.height)
 				|| (info.glPoint.x <= 0)
 				|| (info.glPoint.x >= winSize.width)
 			) {
 			//placed back into the HUD
 
+			[_activeToolboxItem transformRotation:0];
 			[_activeToolboxItem transformPosition:_activeToolboxItemOriginalPosition];
 			double scale = fmin((_toolboxItemSize-10*SCALING_FACTOR)/_activeToolboxItem.contentSize.width, (_toolboxItemSize-10*SCALING_FACTOR)/_activeToolboxItem.contentSize.height);
 			[_activeToolboxItem transformScale: scale];
@@ -1333,10 +1334,12 @@
 		CGPoint location = [touch locationInView: [touch view]];
 		location = [[CCDirector sharedDirector] convertToGL: location];
 	
-		if(_activeToolboxItem != nil) {
-			[_activeToolboxItem transformPosition:location];
+		if([touches count] == 1) {
+			if(_activeToolboxItem != nil) {
+				//toolbox item drag
+				[_activeToolboxItem transformPosition:location];
+			}
 		}
-		
 	}
 }
 
@@ -1347,6 +1350,12 @@
 		CGPoint location = [touch locationInView: [touch view]];
 		location = [[CCDirector sharedDirector] convertToGL: location];
 
+		if(_state == RUNNING) {
+			if(_activeToolboxItem && ccpDistance(location, _activeToolboxItem.position) > 50*SCALING_FACTOR) {
+				//tapping a second finger on the screen when moving a toolbox item rotates the item
+				[_activeToolboxItem transformRotation:((int)_activeToolboxItem.rotation+90)%360];
+			}
+		}
 
 		if(DEBUG_ALL_THE_THINGS || DEBUG_PENGUIN || DEBUG_SHARK ) {
 			if(_sharkMoveGrid != nil) NSLog(@"Shark1 sharkMoveGrid[%d][%d] = %d", (int)location.x, (int)location.y, _sharkMoveGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
@@ -1393,16 +1402,22 @@
 	if(__DEBUG_SHARKS || __DEBUG_PENGUINS) {
 		NSArray* lands = [_levelLoader spritesWithTag:LAND];
 		NSArray* borders = [_levelLoader spritesWithTag:BORDER];
-		
-		ccDrawColor4B(0,100,0,50);
+
+		ccColor4F landColor = ccc4f(0,100,0,50);
 		for(LHSprite* land in lands) {
-			ccPointSize(land.contentSize.width+16*SCALING_FACTOR);
-			ccDrawPoint(land.position);
+			ccDrawSolidRect(ccp(land.boundingBox.origin.x - 8*SCALING_FACTOR,
+								land.boundingBox.origin.y - 8*SCALING_FACTOR),
+			ccp(land.boundingBox.origin.x+land.boundingBox.size.width + 8*SCALING_FACTOR,
+				land.boundingBox.origin.y+land.boundingBox.size.height + 8*SCALING_FACTOR),
+			landColor);
 		}
-		ccDrawColor4B(0,200,200,50);
+		ccColor4F borderColor = ccc4f(0,200,200,50);
 		for(LHSprite* border in borders) {
-			ccPointSize(border.contentSize.width+16*SCALING_FACTOR);
-			ccDrawPoint(border.position);
+			ccDrawSolidRect(ccp(border.boundingBox.origin.x - 8*SCALING_FACTOR,
+								border.boundingBox.origin.y - 8*SCALING_FACTOR),
+							ccp(border.boundingBox.origin.x+border.boundingBox.size.width + 8*SCALING_FACTOR,
+								border.boundingBox.origin.y+border.boundingBox.size.height + 8*SCALING_FACTOR),
+							borderColor);
 		}
 	}
 }
