@@ -12,7 +12,7 @@
 @implementation MoveGridData
 
 
-- (id)initWithGrid:(int**)grid height:(int)height width:(int)width tag:(NSString*)tag {
+- (id)initWithGrid:(int**)grid height:(int)height width:(int)width moveHistorySize:(int)moveHistorySize tag:(NSString*)tag {
 	if(self = [super init]) {
 		_baseGrid = grid;
 		_gridWidth = width;
@@ -31,7 +31,8 @@
 		
 		_forceLatestGridUpdate = false;
 		
-		_moveHistory = new CGPoint[MOVE_HISTORY_SIZE];
+		_moveHistorySize = moveHistorySize;
+		_moveHistory = new CGPoint[_moveHistorySize];
 		_moveHistoryIndex = 0;
 		_moveHistoryIsFull = false;
 	}
@@ -59,7 +60,7 @@
 
 - (void)logMove:(CGPoint)pos {
 	_moveHistory[_moveHistoryIndex] = pos;
-	_moveHistoryIndex = (++_moveHistoryIndex%MOVE_HISTORY_SIZE);
+	_moveHistoryIndex = (++_moveHistoryIndex%_moveHistorySize);
 	if(_moveHistoryIndex == 0) {
 		_moveHistoryIsFull = true;
 	}
@@ -111,14 +112,14 @@
 
 - (double)distanceTraveledStraightline {
 	CGPoint start = _moveHistory[_moveHistoryIndex];
-	CGPoint end = _moveHistory[(_moveHistoryIndex+MOVE_HISTORY_SIZE-1)%MOVE_HISTORY_SIZE];
+	CGPoint end = _moveHistory[(_moveHistoryIndex+_moveHistorySize-1)%_moveHistorySize];
 	return ccpDistance(start, end);
 }
 
 - (double)distanceTraveled {
 	double sum = 0;
 	if(_moveHistoryIsFull) {
-		for(int i = 1; i < MOVE_HISTORY_SIZE; i++) {
+		for(int i = 1; i < _moveHistorySize; i++) {
 			sum+= ccpDistance(_moveHistory[i], _moveHistory[i-1]);
 		}
 	}else {

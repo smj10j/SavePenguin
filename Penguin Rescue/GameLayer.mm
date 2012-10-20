@@ -151,14 +151,18 @@
 	
 	NSArray* lands = [_levelLoader spritesWithTag:LAND];
 	NSArray* borders = [_levelLoader spritesWithTag:BORDER];
-	NSMutableArray* unpassableAreas = [NSMutableArray arrayWithArray:lands];
-	[unpassableAreas addObjectsFromArray:borders];
+	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
+	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
+	NSMutableArray* gridAwareSprites = [NSMutableArray arrayWithArray:lands];
+	[gridAwareSprites addObjectsFromArray:borders];
+	[gridAwareSprites addObjectsFromArray:penguins];
+	[gridAwareSprites addObjectsFromArray:sharks];
 	
 	_gridSize = MAX_GRID_SIZE;
-	for(LHSprite* land in unpassableAreas) {
-		_gridSize = min(_gridSize, land.boundingBox.size.width);
+	for(LHSprite* sprite in gridAwareSprites) {
+		_gridSize = min(_gridSize, sprite.boundingBox.size.width);
 	}
-	_gridSize/= 4;
+	_gridSize/= 2;
 	_gridSize = max(_gridSize, MIN_GRID_SIZE);
 	
 	_gridWidth = winSize.width/_gridSize + 1;
@@ -181,8 +185,8 @@
 	}
 	
 	_penguinMoveGridDatas = [[NSMutableDictionary alloc] init];
-	for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
-		[_penguinMoveGridDatas setObject:[[MoveGridData alloc] initWithGrid:nil height:0 width:0 tag:@"PENGUIN"] forKey:penguin.uniqueName];
+	for(LHSprite* penguin in penguins) {
+		[_penguinMoveGridDatas setObject:[[MoveGridData alloc] initWithGrid:nil height:0 width:0 moveHistorySize:PENGUIN_MOVE_HISTORY_SIZE tag:@"PENGUIN"] forKey:penguin.uniqueName];
 	}
 	
 	//shark is filled in generateFeatureMaps
@@ -420,7 +424,7 @@
 		//and add it to the map
 		MoveGridData* moveGridData = [_sharkMoveGridDatas objectForKey:shark.uniqueName];
 		if(moveGridData == nil) {
-			moveGridData = [[MoveGridData alloc] initWithGrid: sharkMoveGrid height:_gridHeight width:_gridWidth tag:@"SHARK"];
+			moveGridData = [[MoveGridData alloc] initWithGrid: sharkMoveGrid height:_gridHeight width:_gridWidth moveHistorySize:SHARK_MOVE_HISTORY_SIZE tag:@"SHARK"];
 			[_sharkMoveGridDatas setObject:moveGridData forKey:shark.uniqueName];
 		}else {
 			[moveGridData updateBaseGrid:sharkMoveGrid];
@@ -1161,6 +1165,20 @@
 	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Moving %d penguins...", [penguins count]);
 
+	bool hasWon = true;
+	for(LHSprite* penguin in penguins) {
+		Penguin* penguinData = ((Penguin*)penguin.userInfo);
+		if(!penguinData.isSafe) {
+			hasWon = false;
+			break;
+		}
+	}
+	if(hasWon) {
+		NSLog(@"All penguins have made it to safety!");
+		[self levelWon];
+		return;
+	}
+
 	for(LHSprite* penguin in penguins) {
 		
 		int penguinX = (int)penguin.position.x/_gridSize;
@@ -1198,6 +1216,7 @@
 		
 			//AHHH!!!
 			CGPoint bestOptionPos;
+			CGPoint bestOptionGridPos;
 			
 			//alert nearby penguins
 			for(LHSprite* penguin2 in penguins) {
@@ -1216,13 +1235,14 @@
 			double wW = _penguinMoveGrid[penguinX-1 < 0 ? penguinX : penguinX-1][penguinY];
 		
 		
-			//NSLog(@"w=%f e=%f n=%f s=%f", wW, wE, wN, wS);
+			//NSLog(@"Penguins %@ direction weights: w=%f e=%f n=%f s=%f", penguin.uniqueName, wW, wE, wN, wS);
 		
 			if(wW == wE && wE == wN && wN == wS) {
 			
 				//TODO: some kind of random determination?
 				bestOptionPos = ccp(penguin.position.x+((arc4random()%2)-1),penguin.position.y+((arc4random()%2)-1));
-			
+				bestOptionGridPos = ccp(bestOptionPos.x/_gridSize, bestOptionPos.y/_gridSize);
+				
 			}else {
 				
 				double vE = 0;
@@ -1245,9 +1265,16 @@
 					vN = (wS-wN)/(wN==0?1:wN);
 				}
 							
+				//pixel level
 				bestOptionPos = ccp(
 					penguin.position.x+vE,
 					penguin.position.y+vN
+				);
+				
+				//a full step in the grid direction
+				bestOptionGridPos = ccp(
+						(penguinX + (vE > 0 ? 1 : vE < 0 ? -1 : 0)),
+						(penguinY + (vN > 0 ? 1 : vN < 0 ? -1 : 0))
 				);
 
 				//NSLog(@"Penguin %@ best position: %f,%f", penguin.uniqueName, bestOptionPos.x,bestOptionPos.y);
@@ -1267,17 +1294,14 @@
 			[penguinMoveGridData logMove:bestOptionPos];
 			
 			/*
-			if([penguinMoveGridData distanceTraveledStraightline] < 1*SCALING_FACTOR) {
-				//we're stuck
-				penguinData.isStuck = true;
-				if(PENGUIN_DIES_WHEN_STUCK) {
-					NSLog(@"Penguin %@ is stuck - we're removing him", penguin.uniqueName);
-					//TODO: do a drowning action and lose the level!
-					[self levelLostWithShark:nil andPenguin:penguin];
-				}else {
-					NSLog(@"Penguin %@ is stuck - we're ignoring him", penguin.uniqueName);
-					//TODO: do a confused/arms up in air animation
-				}
+			if([penguinMoveGridData distanceTraveledStraightline] < 2*SCALING_FACTOR) {
+				//we're stuck... but we'll let sharks report us as being stuck.
+				//we'll just try and get ourselves out of this sticky situation
+				CGPoint teleportCoords = ccp(bestOptionGridPos.x*_gridSize + _gridSize/2,
+											bestOptionGridPos.y*_gridSize + _gridSize/2);
+				NSLog(@"Penguin %@ is stuck - warping him to %f,%f", penguin.uniqueName, teleportCoords.x, teleportCoords.y);
+				[penguin transformPosition:teleportCoords];
+				return;
 			}
 			*/
 				
@@ -1289,13 +1313,7 @@
 			double targetVelY = dt * penguinSpeed * normalizedY;
 		
 			//we're using an impulse for the penguin so they interact with things like Debris (physics)
-			//penguin.body->SetLinearVelocity(b2Vec2(weightedVelX,weightedVelY));
 			penguin.body->ApplyLinearImpulse(b2Vec2(targetVelX*.1,targetVelY*.1), penguin.body->GetWorldCenter());
-			
-			//rotate penguin
-			//double radians = atan2(weightedVelX, weightedVelY); //this grabs the radians for us
-			//double degrees = CC_RADIANS_TO_DEGREES(radians) - 90; //90 is because the sprit is facing right
-			//[penguin transformRotation:degrees];
 			
 			//penguins try to stay upright
 			penguin.body->ApplyAngularImpulse(penguin.rotation*.01);

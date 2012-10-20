@@ -18,6 +18,7 @@
 	CGPoint* _moveHistory;
 	int _moveHistoryIndex;
 	bool _moveHistoryIsFull;
+	int _moveHistorySize;
 	
 	CGPoint _lastTileExamined;
 	bool _forceLatestGridUpdate;
@@ -25,7 +26,7 @@
 	NSString* _tag;
 }
 
-- (id)initWithGrid:(int**)grid height:(int)height width:(int)width tag:(NSString*)tag;
+- (id)initWithGrid:(int**)grid height:(int)height width:(int)width moveHistorySize:(int)moveHistorySize tag:(NSString*)tag;
 
 - (int**)baseGrid;		//returns the initial grid (usually feature data)
 - (int**)latestGrid;	//returns the grid with movement data
@@ -43,7 +44,3 @@
 
 static NSMutableDictionary* tagToMoveGridData = [[NSMutableDictionary alloc] init];
 
-
-
-
-#define MOVE_HISTORY_SIZE 50
