@@ -328,6 +328,8 @@
 
 -(void) generateFeatureMaps {
 
+	//TODO: consider if we should "unStuck" all penguins/sharks whenever we regenerate the feature map
+
 	NSLog(@"Generating feature maps...");
 
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -1332,6 +1334,8 @@
 		
 			//we're using an impulse for the penguin so they interact with things like Debris (physics)
 			penguin.body->ApplyLinearImpulse(b2Vec2(targetVelX*.1,targetVelY*.1), penguin.body->GetWorldCenter());
+			
+			//TODO: look into why the penguins get so bouncy
 			
 			//penguins try to stay upright
 			penguin.body->ApplyAngularImpulse(penguin.rotation*.01);
