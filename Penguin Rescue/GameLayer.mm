@@ -154,12 +154,12 @@
 	NSMutableArray* unpassableAreas = [NSMutableArray arrayWithArray:lands];
 	[unpassableAreas addObjectsFromArray:borders];
 	
+	_gridSize = MAX_GRID_SIZE;
 	for(LHSprite* land in unpassableAreas) {
-		_gridSize = max(_gridSize, land.boundingBox.size.width);
+		_gridSize = min(_gridSize, land.boundingBox.size.width);
 	}
-	
-	//TODO: it would be optimal to enable this - but I need to optimize and greatly speed up each turn...
 	_gridSize/= 2;
+	_gridSize = max(_gridSize, MIN_GRID_SIZE);
 	
 	_gridWidth = winSize.width/_gridSize + 1;
 	_gridHeight = winSize.height/_gridSize + 1;
