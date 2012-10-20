@@ -158,7 +158,7 @@
 	for(LHSprite* land in unpassableAreas) {
 		_gridSize = min(_gridSize, land.boundingBox.size.width);
 	}
-	_gridSize/= 2;
+	_gridSize/= 4;
 	_gridSize = max(_gridSize, MIN_GRID_SIZE);
 	
 	_gridWidth = winSize.width/_gridSize + 1;
@@ -1387,31 +1387,25 @@
 
 -(void) drawDebugMovementGrid {
 		
-	if(__DEBUG_SHARKS && _sharkMoveGrid != nil) {
-		double max = _gridWidth*4;
-		ccPointSize(_gridSize-1);
-		for(int x = 0; x < _gridWidth; x++) {
-			for(int y = 0; y < _gridHeight; y++) {
-				int sv = (_sharkMoveGrid[x][y]);
-				ccDrawColor4B((sv/max)*255,0,0,50);
-				ccDrawPoint( ccp(x*_gridSize + _gridSize/2, y*_gridSize + _gridSize/2) );
-			}
-		}
-	}
-	
-	if(__DEBUG_PENGUINS && _penguinMoveGrid != nil) {
-		double max = _gridWidth*4;
-		ccPointSize(_gridSize-1);
-		for(int x = 0; x < _gridWidth; x++) {
-			for(int y = 0; y < _gridHeight; y++) {
-				int pv = (_penguinMoveGrid[x][y]);
-				ccDrawColor4B(0,0,(pv/max)*255,50);
-				ccDrawPoint( ccp(x*_gridSize+_gridSize/2, y*_gridSize+_gridSize/2) );
-			}
-		}
-	}
-	
 	if(__DEBUG_SHARKS || __DEBUG_PENGUINS) {
+	
+		double max = _gridWidth*4;
+		ccPointSize(_gridSize-1);
+		for(int x = 0; x < _gridWidth; x++) {
+			for(int y = 0; y < _gridHeight; y++) {
+				if(__DEBUG_PENGUINS && _penguinMoveGrid != nil) {
+					int pv = (_penguinMoveGrid[x][y]);
+					ccDrawColor4B(0,0,(pv/max)*255,50);
+					ccDrawPoint( ccp(x*_gridSize+_gridSize/2, y*_gridSize+_gridSize/2) );
+				}
+				if(__DEBUG_SHARKS && _sharkMoveGrid != nil) {
+					int sv = (_sharkMoveGrid[x][y]);
+					ccDrawColor4B((sv/max)*255,0,0,50);
+					ccDrawPoint( ccp(x*_gridSize + _gridSize/2, y*_gridSize + _gridSize/2) );
+				}
+			}
+		}	
+	
 		NSArray* lands = [_levelLoader spritesWithTag:LAND];
 		NSArray* borders = [_levelLoader spritesWithTag:BORDER];
 
