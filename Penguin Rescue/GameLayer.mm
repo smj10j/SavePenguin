@@ -94,12 +94,12 @@
 		NSString* levelPack = @"Beach";
 		[self loadLevel:levelName inLevelPack:levelPack];
 		
+		//place the HUD items (pause, restart, etc.)
+		[self drawHUD];		
+		
 		//set the grid size and create various arrays
 		[self initializeMapGrid];
 		
-		//place the HUD items (pause, restart, etc.)
-		[self drawHUD];
-
 		//place the toolbox items
 		[self updateToolbox];
 		
@@ -220,7 +220,7 @@
 
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
-	_bottomBarContainer = [_levelLoader createBatchSpriteWithName:@"BottomBar" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
+	_bottomBarContainer = [_levelLoader createBatchSpriteWithName:@"BottomBar" fromSheet:@"HUD" fromSHFile:@"Spritesheet" tag:BORDER];
 	;
 	[_bottomBarContainer transformPosition: ccp(winSize.width/2,_bottomBarContainer.boundingBox.size.height/2)];
 
