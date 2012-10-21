@@ -226,14 +226,14 @@
 
 	_playPauseButton = [_levelLoader createBatchSpriteWithName:@"Play_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[_playPauseButton prepareAnimationNamed:@"Play_Pause_Button" fromSHScene:@"Spritesheet"];
-	[_playPauseButton transformPosition: ccp(_playPauseButton.boundingBox.size.width/2+HUD_BUTTON_MARGIN_LEFT,_playPauseButton.boundingBox.size.height/2+HUD_BUTTON_MARGIN_TOP)];
+	[_playPauseButton transformPosition: ccp(_playPauseButton.boundingBox.size.width/2+HUD_BUTTON_MARGIN_H,_playPauseButton.boundingBox.size.height/2+HUD_BUTTON_MARGIN_V)];
 	[_playPauseButton registerTouchBeganObserver:self selector:@selector(onTouchBeganPlayPause:)];
 	[_playPauseButton registerTouchEndedObserver:self selector:@selector(onTouchEndedPlayPause:)];
 	
 	
 	_restartButton = [_levelLoader createBatchSpriteWithName:@"Restart_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[_restartButton prepareAnimationNamed:@"Restart_Button" fromSHScene:@"Spritesheet"];
-	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.boundingBox.size.width/2+HUD_BUTTON_MARGIN_LEFT),_restartButton.boundingBox.size.height/2+HUD_BUTTON_MARGIN_TOP) ];
+	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.boundingBox.size.width/2+HUD_BUTTON_MARGIN_H),_restartButton.boundingBox.size.height/2+HUD_BUTTON_MARGIN_V) ];
 	[_restartButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[_restartButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 	
@@ -285,7 +285,7 @@
 
 			//move the tool into the box
 			[toolboxItem transformPosition: ccp(toolGroupX, toolGroupY)];
-			double scale = fmin((_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING)/toolboxItem.contentSize.width, (_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING)/toolboxItem.contentSize.height);
+			double scale = fmin((_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING_H)/toolboxItem.contentSize.width, (_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING_V)/toolboxItem.contentSize.height);
 			[toolboxItem transformScale: scale];
 			//NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", toolboxItem.uniqueName, (int)(100*scale));
 		
@@ -496,7 +496,7 @@
 
 			[_activeToolboxItem transformRotation:0];
 			[_activeToolboxItem transformPosition:_activeToolboxItemOriginalPosition];
-			double scale = fmin((_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING)/_activeToolboxItem.contentSize.width, (_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING)/_activeToolboxItem.contentSize.height);
+			double scale = fmin((_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING_H)/_activeToolboxItem.contentSize.width, (_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING_V)/_activeToolboxItem.contentSize.height);
 			[_activeToolboxItem transformScale: scale];
 			//NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", _activeToolboxItem.uniqueName, (int)(100*scale));
 			NSLog(@"Placing toolbox item back into the HUD");
@@ -978,9 +978,9 @@
 				minDistance = 1000000;
 			}else if(penguin.body->IsAwake()) {
 				//we smell blood...
-				minDistance = fmin(minDistance, sharkData.activeDetectionRadius * SCALING_FACTOR);
+				minDistance = fmin(minDistance, sharkData.activeDetectionRadius * SCALING_FACTOR_GENERIC);
 			}else {
-				minDistance = fmin(minDistance, sharkData.restingDetectionRadius * SCALING_FACTOR);
+				minDistance = fmin(minDistance, sharkData.restingDetectionRadius * SCALING_FACTOR_GENERIC);
 			}		
 			
 			double dist = ccpDistance(shark.position, penguin.position);
@@ -1159,7 +1159,7 @@
 	
 		[sharkMoveGridData logMove:bestOptionPos];
 		
-		if([sharkMoveGridData distanceTraveledStraightline] < 1*SCALING_FACTOR) {
+		if([sharkMoveGridData distanceTraveledStraightline] < 1*SCALING_FACTOR_GENERIC) {
 			sharkData.isStuck = true;
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
@@ -1240,7 +1240,7 @@
 			NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
 			for(LHSprite* shark in sharks) {
 				double dist = ccpDistance(shark.position, penguin.position);
-				if(dist < penguinData.detectionRadius*SCALING_FACTOR) {
+				if(dist < penguinData.detectionRadius*SCALING_FACTOR_GENERIC) {
 					penguinData.hasSpottedShark = true;
 					break;
 				}
@@ -1256,7 +1256,7 @@
 			//alert nearby penguins
 			for(LHSprite* penguin2 in penguins) {
 				if(![penguin2.uniqueName isEqualToString:penguin.uniqueName]) {
-					if(ccpDistance(penguin.position, penguin2.position) <= penguinData.alertRadius*SCALING_FACTOR) {
+					if(ccpDistance(penguin.position, penguin2.position) <= penguinData.alertRadius*SCALING_FACTOR_GENERIC) {
 						//TODO: show some kind of AH!!! speech bubble alert animation for the penguins communicating
 						((Penguin*)penguin2.userInfo).hasSpottedShark = true;
 					}
@@ -1348,7 +1348,7 @@
 			double penguinSpeed = penguinData.speed;
 
 			[penguinMoveGridData logMove:bestOptionPos];
-			if([penguinMoveGridData distanceTraveledStraightline] < 2*SCALING_FACTOR) {
+			if([penguinMoveGridData distanceTraveledStraightline] < 2*SCALING_FACTOR_GENERIC) {
 				//we're stuck... but we'll let sharks report us as being stuck.
 				//we'll just try and get ourselves out of this sticky situation
 				
@@ -1447,7 +1447,7 @@
 		location = [[CCDirector sharedDirector] convertToGL: location];
 
 		if(_state == RUNNING || _state == PLACE) {
-			if(_activeToolboxItem && ccpDistance(location, _activeToolboxItem.position) > 50*SCALING_FACTOR) {
+			if(_activeToolboxItem && ccpDistance(location, _activeToolboxItem.position) > 50*SCALING_FACTOR_GENERIC) {
 				//tapping a second finger on the screen when moving a toolbox item rotates the item
 				[_activeToolboxItem transformRotation:((int)_activeToolboxItem.rotation+90)%360];
 			}
@@ -1495,18 +1495,18 @@
 
 		ccColor4F landColor = ccc4f(0,100,0,50);
 		for(LHSprite* land in lands) {
-			ccDrawSolidRect(ccp(land.boundingBox.origin.x - 8*SCALING_FACTOR,
-								land.boundingBox.origin.y - 8*SCALING_FACTOR),
-			ccp(land.boundingBox.origin.x+land.boundingBox.size.width + 8*SCALING_FACTOR,
-				land.boundingBox.origin.y+land.boundingBox.size.height + 8*SCALING_FACTOR),
+			ccDrawSolidRect(ccp(land.boundingBox.origin.x - 8*SCALING_FACTOR_H,
+								land.boundingBox.origin.y - 8*SCALING_FACTOR_V),
+			ccp(land.boundingBox.origin.x+land.boundingBox.size.width + 8*SCALING_FACTOR_H,
+				land.boundingBox.origin.y+land.boundingBox.size.height + 8*SCALING_FACTOR_V),
 			landColor);
 		}
 		ccColor4F borderColor = ccc4f(0,200,200,50);
 		for(LHSprite* border in borders) {
-			ccDrawSolidRect(ccp(border.boundingBox.origin.x - 8*SCALING_FACTOR,
-								border.boundingBox.origin.y - 8*SCALING_FACTOR),
-							ccp(border.boundingBox.origin.x+border.boundingBox.size.width + 8*SCALING_FACTOR,
-								border.boundingBox.origin.y+border.boundingBox.size.height + 8*SCALING_FACTOR),
+			ccDrawSolidRect(ccp(border.boundingBox.origin.x - 8*SCALING_FACTOR_H,
+								border.boundingBox.origin.y - 8*SCALING_FACTOR_V),
+							ccp(border.boundingBox.origin.x+border.boundingBox.size.width + 8*SCALING_FACTOR_H,
+								border.boundingBox.origin.y+border.boundingBox.size.height + 8*SCALING_FACTOR_V),
 							borderColor);
 		}
 	}

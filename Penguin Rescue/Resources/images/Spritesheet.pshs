@@ -175,13 +175,13 @@
 										<string>{6.5, 13}</string>
 									</array>
 									<array>
-										<string>{-15.725, -2.25}</string>
+										<string>{-15.725000000000001, -2.25}</string>
 										<string>{-15.75, -4.75}</string>
 										<string>{6.5, 13}</string>
 									</array>
 									<array>
 										<string>{-15, 9.75}</string>
-										<string>{-15.725, -2.25}</string>
+										<string>{-15.725000000000001, -2.25}</string>
 										<string>{6.5, 13}</string>
 									</array>
 									<array>
@@ -248,13 +248,13 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{0.10000000000000001, 79}</string>
+									<string>{0.099999999999994316, 79}</string>
 									<string>{3, 31}</string>
 									<string>{7, 19}</string>
 									<string>{17, 8}</string>
 									<string>{26, 3}</string>
 									<string>{36, 0}</string>
-									<string>{50, 0.10000000000000001}</string>
+									<string>{50, 0.099999999999994316}</string>
 									<string>{74, 6}</string>
 									<string>{80, 9}</string>
 									<string>{89, 18}</string>
@@ -542,7 +542,7 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{0.10000000000000001, 74}</string>
+									<string>{0.099999999999994316, 74}</string>
 									<string>{7, 42}</string>
 									<string>{16, 22}</string>
 									<string>{31, 8}</string>
@@ -851,13 +851,13 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{0.10000000000000001, 54}</string>
+									<string>{0.099999999999994316, 54}</string>
 									<string>{5, 37}</string>
 									<string>{10, 30}</string>
 									<string>{21, 21}</string>
 									<string>{64, 2}</string>
 									<string>{74, 0}</string>
-									<string>{95, 0.10000000000000001}</string>
+									<string>{95, 0.099999999999994316}</string>
 									<string>{106, 3}</string>
 									<string>{117, 11}</string>
 									<string>{145, 66}</string>
@@ -1124,7 +1124,7 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{0.10000000000000001, 108}</string>
+									<string>{0.099999999999994316, 108}</string>
 									<string>{18, 12}</string>
 									<string>{22, 8}</string>
 									<string>{34, 3}</string>
@@ -1135,7 +1135,7 @@
 									<string>{146.09999999999999, 118}</string>
 									<string>{21, 127.09999999999999}</string>
 									<string>{7, 123}</string>
-									<string>{3.9999999999999996, 120}</string>
+									<string>{4, 120}</string>
 									<string>{0, 110}</string>
 								</array>
 								<key>ShapePositionOffset</key>
@@ -1394,12 +1394,12 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{0.10000000000000001, 14}</string>
+									<string>{0.099999999999994316, 14}</string>
 									<string>{1, 10}</string>
 									<string>{6, 5}</string>
 									<string>{13, 2}</string>
 									<string>{26, 0}</string>
-									<string>{66, 0.10000000000000001}</string>
+									<string>{66, 0.10000000000000142}</string>
 									<string>{143, 9}</string>
 									<string>{143.09999999999999, 121}</string>
 									<string>{39, 108}</string>
@@ -1671,7 +1671,7 @@
 								<key>ShapePoints</key>
 								<array>
 									<string>{0, 0}</string>
-									<string>{-7.9999999999999938, 101}</string>
+									<string>{-7.9999999999999929, 101}</string>
 									<string>{-10.999999999999993, 114}</string>
 									<string>{-16.999999999999993, 126}</string>
 									<string>{-25.999999999999993, 135}</string>
@@ -1683,8 +1683,8 @@
 									<string>{-100, 104}</string>
 									<string>{-108, 80}</string>
 									<string>{-112, 59.000000000000007}</string>
-									<string>{-113.09999999999999, 6.0000000000000071}</string>
-									<string>{-112, 6.8580220752251778e-15}</string>
+									<string>{-113.09999999999999, 6}</string>
+									<string>{-112, 0}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
@@ -2106,13 +2106,13 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{-12, 0.10000000000000074}</string>
-									<string>{-2.9999999999999925, 121}</string>
-									<string>{-0.099999999999957567, 693}</string>
-									<string>{-11.999999999999954, 749}</string>
+									<string>{-12, 0.10000000000002274}</string>
+									<string>{-2.9999999999999929, 121}</string>
+									<string>{-0.099999999999951683, 693}</string>
+									<string>{-11.999999999999957, 749}</string>
 									<string>{-124.99999999999996, 749.10000000000002}</string>
 									<string>{-128.09999999999999, 148}</string>
-									<string>{-124, 7.5928101547135902e-15}</string>
+									<string>{-124, 0}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
@@ -2345,15 +2345,15 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{-13, 0.1000000000000008}</string>
-									<string>{3.8882535872928466e-14, 635}</string>
-									<string>{-1.9999999999999589, 671}</string>
-									<string>{-12.999999999999954, 749}</string>
+									<string>{-13, 0.10000000000002274}</string>
+									<string>{4.2632564145606011e-14, 635}</string>
+									<string>{-1.9999999999999574, 671}</string>
+									<string>{-12.999999999999957, 749}</string>
 									<string>{-124.99999999999996, 749.10000000000002}</string>
 									<string>{-129.99999999999994, 728}</string>
 									<string>{-130.09999999999997, 617}</string>
-									<string>{-127.99999999999999, 120.00000000000001}</string>
-									<string>{-125, 7.6540424946709578e-15}</string>
+									<string>{-127.99999999999999, 120}</string>
+									<string>{-125, 0}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
@@ -2597,9 +2597,9 @@
 								<key>ShapePoints</key>
 								<array>
 									<string>{0, 0}</string>
-									<string>{8.3888305741593687e-15, 137}</string>
+									<string>{1.4210854715202004e-14, 137}</string>
 									<string>{-161, 137}</string>
-									<string>{-161, 9.8584067331361936e-15}</string>
+									<string>{-161, 1.4210854715202004e-14}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
@@ -2877,10 +2877,10 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{0.10000000000000001, 27}</string>
+									<string>{0.099999999999994316, 27}</string>
 									<string>{2, 23}</string>
 									<string>{91, 0}</string>
-									<string>{98, 0.10000000000000001}</string>
+									<string>{98, 0.10000000000000142}</string>
 									<string>{174, 20}</string>
 									<string>{193, 27}</string>
 									<string>{222, 43}</string>
@@ -3038,7 +3038,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAAJxeUwMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAAC12UwMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -3050,12 +3050,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAADhjZjM0YWUyYzFhOWM5MWM3ZGVkYWFj
-					Yzc5Zjc5NDk0NDc1YzIxOWQ7MDAwMDAwMDA7
+					AQIAADBmZDk2ZmU2MWJlN2NmYTZkNDJjYWY5
+					NTA2NWNhZmY0NGFmMTNiMTI7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTM1
-					ZTljOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTM3
+					NjJkOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC9ib3R0b21iYXIucG5nAAAA
@@ -3188,7 +3188,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAAJVeUwMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAACZ2UwMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -3200,12 +3200,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADA4MzBiMGJlZGNiY2MyOTA2MzAyOGE3
-					NmQ5OWFkOGU4ZDUzMWNiMzk7MDAwMDAwMDA7
+					AQIAAGY1MzY1NTAwMDVkNmM1NGQ4MTQzNDQw
+					OGM3NmFkMTcyNGVjMDAyMGI7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTM1
-					ZTk1Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTM3
+					NjI2Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC9wYXVzZV9hY3RpdmUucG5n
@@ -3273,9 +3273,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{53, 0}, {39, 39}}</string>
+						<string>{{93, 0}, {39, 39}}</string>
 						<key>Frame-HD</key>
-						<string>{{212, 0}, {156, 156}}</string>
+						<string>{{372, 0}, {156, 156}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -3301,7 +3301,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{212, 0}</string>
+						<string>{372, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -3338,7 +3338,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAACUXlMDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAAldlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -3350,12 +3350,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA2NzkyZThlYzMzZmQzMzFjNDg0
-					MGNjM2U5NmMzOGJkZTI3OWNjMmQwOzAwMDAw
+					8gAAAAECAAA5ZGM3Yzc5YjhiNWY4MGM5MTYz
+					MGEzNmE0MDIyZWM0NmMwOGNjODljOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUzNWU5NDsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNzYyNTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcGF1c2VfaW5hY3Rp
@@ -3424,9 +3424,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{93, 0}, {39, 39}}</string>
+						<string>{{133, 0}, {39, 39}}</string>
 						<key>Frame-HD</key>
-						<string>{{372, 0}, {156, 156}}</string>
+						<string>{{532, 0}, {156, 156}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -3452,7 +3452,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{372, 0}</string>
+						<string>{532, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -3489,7 +3489,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAAJleUwMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAACp2UwMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -3501,12 +3501,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADvAAAA
-					AQIAAGI5MTFjYjMxMjJiNzBjZjE4NmQ1MjI2
-					ZjAyNzQyMTdhMTIyMzhkNTc7MDAwMDAwMDA7
+					AQIAAGEyYjNhZGE5MmJmMmYyNTE0YmMzNWMw
+					NTg4MTY5ZTRlZjYzMTllZjY7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTM1
-					ZTk5Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTM3
+					NjJhOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC9wbGF5X2FjdGl2ZS5wbmcA
@@ -3574,9 +3574,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{213, 0}, {38.75, 39}}</string>
+						<string>{{253, 0}, {38.75, 39}}</string>
 						<key>Frame-HD</key>
-						<string>{{852, 0}, {155, 156}}</string>
+						<string>{{1012, 0}, {155, 156}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -3602,7 +3602,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{852, 0}</string>
+						<string>{1012, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -3639,7 +3639,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAACYXlMDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAApdlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -3651,12 +3651,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8QAAAAECAAAxMWYzNGQ1MDQ0NTljYThiMGI0
-					MWRlMTc4MjM0NGJjZDljYzZlNWRiOzAwMDAw
+					8QAAAAECAAAzMDU0NGY1NTlmNzgyZWQwOWU4
+					ZmQ1OGQ5OTlmZWIxMWZlMTQ1NzllOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUzNWU5ODsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNzYyOTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcGxheV9pbmFjdGl2
@@ -3725,9 +3725,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{253, 0}, {38.75, 39}}</string>
+						<string>{{213, 0}, {38.75, 39}}</string>
 						<key>Frame-HD</key>
-						<string>{{1012, 0}, {155, 156}}</string>
+						<string>{{852, 0}, {155, 156}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -3753,7 +3753,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{1012, 0}</string>
+						<string>{852, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -3790,7 +3790,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAACXXlMDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAAodlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -3802,12 +3802,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAwZWRlZjRiZGNkZTY0MjIzOWRh
-					ODNhZjVhNjhhNzYxMmI3ZTZlMjA3OzAwMDAw
+					8gAAAAECAAA2N2NiYTQyMzljNjMzZTdhNjRh
+					YmEzOGJkYTExYzNiZWZkYjQ4MWI2OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUzNWU5NzsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNzYyODsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcmVzdGFydF9hY3Rp
@@ -3876,9 +3876,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{173, 0}, {39, 39}}</string>
+						<string>{{53, 0}, {39, 39}}</string>
 						<key>Frame-HD</key>
-						<string>{{692, 0}, {156, 156}}</string>
+						<string>{{212, 0}, {156, 156}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -3904,7 +3904,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{692, 0}</string>
+						<string>{212, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -3941,7 +3941,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAACWXlMDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAAndlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -3953,12 +3953,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABiZDAzZWRkMDVkN2ZkMjlhNGMw
-					Yjc5ZGVkZWY0YjU3YjEyMjllZGJiOzAwMDAw
+					9AAAAAECAAA5MmM4NDY0OTc2NTYzMjNhNDFh
+					ODA5MTViMjJhMzA2NjEzYjc4Yjk4OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUzNWU5NjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNzYyNzsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcmVzdGFydF9pbmFj
@@ -4027,9 +4027,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{133, 0}, {39, 39}}</string>
+						<string>{{173, 0}, {39, 39}}</string>
 						<key>Frame-HD</key>
-						<string>{{532, 0}, {156, 156}}</string>
+						<string>{{692, 0}, {156, 156}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -4055,7 +4055,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{532, 0}</string>
+						<string>{692, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -4093,7 +4093,7 @@
 					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
 					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
 					AAAAAAgAAAAEAwAAgulNAwAAAAAIAAAABAMA
-					AJpeUwMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					ACt2UwMAAAAALAAAAAEGAAD0AAAABAEAABQB
 					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
 					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
 					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
@@ -4104,12 +4104,12 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD6AAAAAQIAADVkMzY0M2JiN2Y2
-					NzgwZTM3MjI1NjI0NTQ5OTc3MDhkNGY2ZGEz
-					NDA7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD6AAAAAQIAADYwYzcwYjJiYTdl
+					ZDc5NWY2NWZlY2VlZmNlNjc3MTBkYjg0NTg4
+					YzE7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
-					MDAwMDAwMDAzNTM1ZTlhOy91c2Vycy9zdGV2
+					MDAwMDAwMDAzNTM3NjJiOy91c2Vycy9zdGV2
 					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
 					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
 					L3NyYy1hc3NldHMvaW1hZ2VzL2h1ZC90b29s
@@ -4192,7 +4192,7 @@
 						<key>IsRotated</key>
 						<false/>
 						<key>IsTrimmed</key>
-						<true/>
+						<false/>
 						<key>Name</key>
 						<string>Toolbox-Item-Container</string>
 						<key>Opacity</key>
@@ -4216,7 +4216,7 @@
 						<key>Tag</key>
 						<integer>0</integer>
 						<key>TextureOffset</key>
-						<string>{0, -0}</string>
+						<string>{0, 0}</string>
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
@@ -4244,7 +4244,7 @@
 					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
 					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
 					095NAwAAAAAIAAAABAMAAILpTQMAAAAACAAA
-					AAQDAACbXlMDAAAAACwAAAABBgAA+AAAAAgB
+					AAQDAAAsdlMDAAAAACwAAAABBgAA+AAAAAgB
 					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
 					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
 					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
@@ -4255,12 +4255,12 @@
 					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
 					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
 					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
-					BAAAAAMDAAAAAQAAAAEAAAECAAAyY2U2YzUw
-					NTU3NzYzOTM0NGYwMGMwYjQ1NGM3ODkzZjcz
-					MWYyNTNmOzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					BAAAAAMDAAAAAQAAAAEAAAECAAA5OGE4Yzg5
+					MTc1NTYyZTVjZGQxNzE0OTdiYzExOTAzOWM0
+					OTQwNjM4OzAwMDAwMDAwOzAwMDAwMDAwMDAw
 					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
 					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
-					MDI7MDAwMDAwMDAwMzUzNWU5YjsvdXNlcnMv
+					MDI7MDAwMDAwMDAwMzUzNzYyYzsvdXNlcnMv
 					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
 					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
 					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9odWQv
@@ -6055,7 +6055,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAACYXlMDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAApdlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -6067,12 +6067,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8QAAAAECAAAxMWYzNGQ1MDQ0NTljYThiMGI0
-					MWRlMTc4MjM0NGJjZDljYzZlNWRiOzAwMDAw
+					8QAAAAECAAAzMDU0NGY1NTlmNzgyZWQwOWU4
+					ZmQ1OGQ5OTlmZWIxMWZlMTQ1NzllOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUzNWU5ODsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNzYyOTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcGxheV9pbmFjdGl2
@@ -6088,9 +6088,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{253, 0}, {38.75, 39}}</string>
+					<string>{{213, 0}, {38.75, 39}}</string>
 					<key>Frame-HD</key>
-					<string>{{1012, 0}, {155, 156}}</string>
+					<string>{{852, 0}, {155, 156}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -6127,7 +6127,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAAJleUwMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAACp2UwMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -6139,12 +6139,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADvAAAA
-					AQIAAGI5MTFjYjMxMjJiNzBjZjE4NmQ1MjI2
-					ZjAyNzQyMTdhMTIyMzhkNTc7MDAwMDAwMDA7
+					AQIAAGEyYjNhZGE5MmJmMmYyNTE0YmMzNWMw
+					NTg4MTY5ZTRlZjYzMTllZjY7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTM1
-					ZTk5Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTM3
+					NjJhOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC9wbGF5X2FjdGl2ZS5wbmcA
@@ -6159,9 +6159,9 @@
 					ALQCAAAAAAAAgPAAAMACAAAAAAAA
 					</data>
 					<key>Frame</key>
-					<string>{{213, 0}, {38.75, 39}}</string>
+					<string>{{253, 0}, {38.75, 39}}</string>
 					<key>Frame-HD</key>
-					<string>{{852, 0}, {155, 156}}</string>
+					<string>{{1012, 0}, {155, 156}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -6198,7 +6198,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAACUXlMDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAAldlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -6210,12 +6210,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA2NzkyZThlYzMzZmQzMzFjNDg0
-					MGNjM2U5NmMzOGJkZTI3OWNjMmQwOzAwMDAw
+					8gAAAAECAAA5ZGM3Yzc5YjhiNWY4MGM5MTYz
+					MGEzNmE0MDIyZWM0NmMwOGNjODljOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUzNWU5NDsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNzYyNTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcGF1c2VfaW5hY3Rp
@@ -6231,9 +6231,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{93, 0}, {39, 39}}</string>
+					<string>{{133, 0}, {39, 39}}</string>
 					<key>Frame-HD</key>
-					<string>{{372, 0}, {156, 156}}</string>
+					<string>{{532, 0}, {156, 156}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -6270,7 +6270,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAAJVeUwMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAACZ2UwMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -6282,12 +6282,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADA4MzBiMGJlZGNiY2MyOTA2MzAyOGE3
-					NmQ5OWFkOGU4ZDUzMWNiMzk7MDAwMDAwMDA7
+					AQIAAGY1MzY1NTAwMDVkNmM1NGQ4MTQzNDQw
+					OGM3NmFkMTcyNGVjMDAyMGI7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTM1
-					ZTk1Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTM3
+					NjI2Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC9wYXVzZV9hY3RpdmUucG5n
@@ -6302,9 +6302,9 @@
 					ALQCAAAAAAAAgPAAAMACAAAAAAAA
 					</data>
 					<key>Frame</key>
-					<string>{{53, 0}, {39, 39}}</string>
+					<string>{{93, 0}, {39, 39}}</string>
 					<key>Frame-HD</key>
-					<string>{{212, 0}, {156, 156}}</string>
+					<string>{{372, 0}, {156, 156}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -6362,7 +6362,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAACWXlMDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAAndlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -6374,12 +6374,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABiZDAzZWRkMDVkN2ZkMjlhNGMw
-					Yjc5ZGVkZWY0YjU3YjEyMjllZGJiOzAwMDAw
+					9AAAAAECAAA5MmM4NDY0OTc2NTYzMjNhNDFh
+					ODA5MTViMjJhMzA2NjEzYjc4Yjk4OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUzNWU5NjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNzYyNzsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcmVzdGFydF9pbmFj
@@ -6395,9 +6395,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{133, 0}, {39, 39}}</string>
+					<string>{{173, 0}, {39, 39}}</string>
 					<key>Frame-HD</key>
-					<string>{{532, 0}, {156, 156}}</string>
+					<string>{{692, 0}, {156, 156}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -6434,7 +6434,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAACXXlMDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAAodlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -6446,12 +6446,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAwZWRlZjRiZGNkZTY0MjIzOWRh
-					ODNhZjVhNjhhNzYxMmI3ZTZlMjA3OzAwMDAw
+					8gAAAAECAAA2N2NiYTQyMzljNjMzZTdhNjRh
+					YmEzOGJkYTExYzNiZWZkYjQ4MWI2OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUzNWU5NzsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNzYyODsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcmVzdGFydF9hY3Rp
@@ -6467,9 +6467,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{173, 0}, {39, 39}}</string>
+					<string>{{53, 0}, {39, 39}}</string>
 					<key>Frame-HD</key>
-					<string>{{692, 0}, {156, 156}}</string>
+					<string>{{212, 0}, {156, 156}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
