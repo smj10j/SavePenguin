@@ -598,6 +598,8 @@
 	}
 }
 
+
+//TODO: should all penguins need to make it to safety OR just have all sharks gone or all penguins safe
 -(void) levelWon {
 
 	if(_state == GAME_OVER) {
@@ -613,29 +615,43 @@
 	//[self goToNextLevel];
 }
 
+-(void) levelLostWithOffscreenPenguin:(LHSprite*)penguin {
+
+	if(_state == GAME_OVER) {
+		return;
+	}
+
+	NSLog(@"Showing level lost animations for offscreen penguin");
+	
+	_state = GAME_OVER;
+
+	//a penguin ran offscreen!
+	[penguin removeSelf];
+	penguin = nil;
+
+	//TODO: show some kind of information about how penguins have to reach the safety point
+	
+			
+	//TODO: restart after animations are done
+	//[self restart];	
+}
+
 -(void) levelLostWithShark:(LHSprite*)shark andPenguin:(LHSprite*)penguin {
 
 	if(_state == GAME_OVER) {
 		return;
 	}
 
-	NSLog(@"Showing level lost animations");
+	NSLog(@"Showing level lost animations for penguin/shark collision");
 	
 	_state = GAME_OVER;
 	
-	
-	if(shark != nil) {
-		//a shark got a penguin!
-		[penguin removeSelf];
-		penguin = nil;
+	//a shark got a penguin!
+	[penguin removeSelf];
+	penguin = nil;
 
-		//TODO: show some happy sharks and sad penguins (if any are left!)
-		//eg. [shark startAnimationNamed:@"attackPenguin"];
-		
-	}else {
-		//penguin must have drowned or gone of screen!
-		//TODO: show a drowning penguin animation... what to do for offscreen?
-	}
+	//TODO: show some happy sharks and sad penguins (if any are left!)
+	//eg. [shark startAnimationNamed:@"attackPenguin"];
 	
 	//TODO: restart after animations are done
 	//[self restart];
@@ -1084,10 +1100,9 @@
 					//TODO: make the shark spin around in circles and explode in frustration!
 					[shark removeSelf];
 				}else {
-					NSLog(@"Shark %@ is stuck (no where to go) - we're ignoring him", shark.uniqueName);
-					//TODO: do a confused/arms up in air animation
+					NSLog(@"Shark %@ is stuck (no where to go) - we're letting him keep at it", shark.uniqueName);
+					//TODO: make the shark show some kind of frustration (perhaps smoke in nostrils/grimac)
 				}
-				continue;
 			}
 		
 			//TODO: some kind of random determination?
@@ -1139,38 +1154,45 @@
 							);*/
 			//NSLog(@"best: %f,%f", bestOptionPos.x,bestOptionPos.y);
 		}
+		
+
 				
 		double dx = bestOptionPos.x - shark.position.x;
 		double dy = bestOptionPos.y - shark.position.y;
+
+		double sharkSpeed = sharkData.restingSpeed;
+		if(sharkData.targetAcquired) {
+			sharkSpeed = sharkData.activeSpeed;
+		}
+				
+		[sharkMoveGridData logMove:bestOptionPos];
+		if([sharkMoveGridData distanceTraveledStraightline] < 2*SCALING_FACTOR_GENERIC) {
+			if(SHARK_DIES_WHEN_STUCK) {
+				//we're stuck
+				sharkData.isStuck = true;
+				NSLog(@"Shark %@ is stuck (trying to move, but not making progress) - we're removing him", shark.uniqueName);
+				//TODO: make the shark spin around in circles and explode in frustration!
+				[shark removeSelf];
+			}else {
+				//TODO: do a confused/arms up in air animation
+				
+				dx+= ((arc4random()%200)-100)/1000;
+				dy+= ((arc4random()%200)-100)/1000;
+				sharkSpeed*= 25;
+				NSLog(@"Shark %@ is stuck (trying to move but can't) - giving him a bit of jitter", shark.uniqueName);
+
+			}
+		}
+		
 		double dSum = fabs(dx) + fabs(dy);
-								
 		if(dSum == 0) {
 			//no best option?
 			//NSLog(@"No best option for shark %@ max(dx,dy) was 0", shark.uniqueName);
 			dSum = 1;
 		}
 
-		double sharkSpeed = sharkData.restingSpeed;
-		if(sharkData.targetAcquired) {
-			sharkSpeed = sharkData.activeSpeed;
-		}
 		double normalizedX = (sharkSpeed*dx)/dSum;
 		double normalizedY = (sharkSpeed*dy)/dSum;
-	
-		[sharkMoveGridData logMove:bestOptionPos];
-		
-		if([sharkMoveGridData distanceTraveledStraightline] < 1*SCALING_FACTOR_GENERIC) {
-			sharkData.isStuck = true;
-			if(SHARK_DIES_WHEN_STUCK) {
-				//we're stuck
-				NSLog(@"Shark %@ is stuck (trying to move, but not making progress) - we're removing him", shark.uniqueName);
-				//TODO: make the shark spin around in circles and explode in frustration!
-				[shark removeSelf];
-			}else {
-				NSLog(@"Shark %@ is stuck (trying to move, but not making progress) - we're ignoring him", shark.uniqueName);
-				//TODO: do a confused/arms up in air animation
-			}
-		}
 	
 
 		b2Vec2 prevVel = shark.body->GetLinearVelocity();
@@ -1226,7 +1248,7 @@
 		
 		if(penguinX >= _gridWidth || penguinX < 0 || penguinY >= _gridHeight || penguinY < 0) {
 			NSLog(@"Penguin %@ is offscreen at %d,%d - showing level lost", penguin.uniqueName, penguinX, penguinY);
-			[self levelLostWithShark:nil andPenguin:penguin];
+			[self levelLostWithOffscreenPenguin:penguin];
 			return;
 		}
 		
@@ -1351,6 +1373,8 @@
 			if([penguinMoveGridData distanceTraveledStraightline] < 2*SCALING_FACTOR_GENERIC) {
 				//we're stuck... but we'll let sharks report us as being stuck.
 				//we'll just try and get ourselves out of this sticky situation
+				
+				//TODO: do a flustered/feathers flying everywhere animation
 				
 				dx+= ((arc4random()%200)-100)/1000;
 				dy+= ((arc4random()%200)-100)/1000;
