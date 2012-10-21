@@ -729,10 +729,6 @@
 			
 		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Border"]) {
 			_activeToolboxItem.tag = BORDER;
-			b2Fixture* fixture = _activeToolboxItem.body->GetFixtureList();
-			b2Filter filter = fixture->GetFilterData();
-			filter.categoryBits = 2;
-			fixture->SetFilterData(filter);
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:false];
 			_shouldRegenerateFeatureMaps = true;
@@ -1268,6 +1264,7 @@
 				double dist = ccpDistance(shark.position, penguin.position);
 				if(dist < penguinData.detectionRadius*SCALING_FACTOR_GENERIC) {
 					penguinData.hasSpottedShark = true;
+					//TODOO: play some kind of penguin animation with an alert dialog and a squawk sound
 					break;
 				}
 			}
@@ -1461,6 +1458,7 @@
 		if([touches count] == 1) {
 			if(_activeToolboxItem != nil) {
 				//toolbox item drag
+				//TODO: add some kind of crosshair so you know where the item is if it's tiny and under your finger
 				[_activeToolboxItem transformPosition:location];
 			}
 		}
@@ -1481,7 +1479,7 @@
 			}
 		}
 
-		if(DEBUG_ALL_THE_THINGS || DEBUG_PENGUIN || DEBUG_SHARK ) {
+		if(DEBUG_ALL_THE_THINGS || __DEBUG_PENGUINS || __DEBUG_SHARKS ) {
 			if(_sharkMoveGrid != nil) NSLog(@"_sharkMoveGrid[%d][%d] = %d", (int)location.x, (int)location.y, _sharkMoveGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
 			if(_sharkMapfeaturesGrid != nil) NSLog(@"_sharkMapfeaturesGrid[%d][%d] = %d", (int)location.x, (int)location.y, _sharkMapfeaturesGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
 			if(_penguinMoveGrid != nil)NSLog(@"_penguinMoveGrid[%d][%d] = %d", (int)location.x, (int)location.y, _penguinMoveGrid[(int)location.x/_gridSize][(int)location.y/_gridSize]);
