@@ -81,6 +81,7 @@
 		_penguinsToPutOnLand =[[NSMutableDictionary alloc] init];
 		__DEBUG_SHARKS = DEBUG_SHARK;
 		__DEBUG_PENGUINS = DEBUG_PENGUIN;
+		__DEBUG_TOUCH_SECONDS = 0;
 		if(__DEBUG_SHARKS || __DEBUG_PENGUINS) {
 			self.color = ccBLACK;
 		}
@@ -526,7 +527,7 @@
 }
 
 -(void)onTouchEndedPlayPause:(LHTouchInfo*)info {
-
+	
 	if(_state == PLACE) {
 		_state = RUNNING;
 		[_playPauseButton setFrame:2];	//pause inactive
@@ -544,25 +545,9 @@
 
 	//TODO: the in-game menu will actually resume and toggling will not be necessary
 
-	
-	double elapsed = ([[NSDate date] timeIntervalSince1970] - __DEBUG_TOUCH_SECONDS);
-	if(elapsed < 2) {
-		/*self.color = __DEBUG_ORIG_BACKGROUND_COLOR;
-		__DEBUG_PENGUINS = DEBUG_PENGUIN;
-		__DEBUG_SHARKS = DEBUG_SHARK;*/
-	}else if(elapsed < 5) {
-		NSLog(@"Enabling debug sharks");
-		__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
-		self.color = ccBLACK;
-		__DEBUG_PENGUINS = false;
-		__DEBUG_SHARKS = true;
-	}else {
-		NSLog(@"Enabling debug penguins");
-		__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
-		self.color = ccBLACK;
-		__DEBUG_PENGUINS = true;
-		__DEBUG_SHARKS = false;
-	}
+
+
+	__DEBUG_TOUCH_SECONDS = 0;
 }
 
 -(void)onTouchBeganRestart:(LHTouchInfo*)info {
@@ -747,6 +732,23 @@
 		_shouldUpdateToolbox = true;
 		for(id key in _sharkMoveGridDatas) {
 			[[_sharkMoveGridDatas objectForKey:key] forceLatestGridUpdate];
+		}
+	}
+	
+	if(__DEBUG_TOUCH_SECONDS != 0) {
+		double elapsed = ([[NSDate date] timeIntervalSince1970] - __DEBUG_TOUCH_SECONDS);
+		if(elapsed >= 1) {
+			NSLog(@"Enabling debug sharks");
+			__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
+			self.color = ccBLACK;
+			__DEBUG_SHARKS = true;
+			
+		}
+		if(elapsed >= 2) {
+			NSLog(@"Enabling debug penguins");
+			__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
+			self.color = ccBLACK;
+			__DEBUG_PENGUINS = true;
 		}
 	}
 	
