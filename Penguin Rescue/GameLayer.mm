@@ -1178,7 +1178,7 @@
 				
 				dx+= ((arc4random()%200)-100)/1000;
 				dy+= ((arc4random()%200)-100)/1000;
-				sharkSpeed*= 25;
+				sharkSpeed*= 15;
 				NSLog(@"Shark %@ is stuck (trying to move but can't) - giving him a bit of jitter", shark.uniqueName);
 
 			}
