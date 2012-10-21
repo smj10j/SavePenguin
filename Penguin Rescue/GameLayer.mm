@@ -729,6 +729,10 @@
 			
 		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Border"]) {
 			_activeToolboxItem.tag = BORDER;
+			b2Fixture* fixture = _activeToolboxItem.body->GetFixtureList();
+			b2Filter filter = fixture->GetFilterData();
+			filter.categoryBits = 2;
+			fixture->SetFilterData(filter);
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:false];
 			_shouldRegenerateFeatureMaps = true;
