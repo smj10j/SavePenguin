@@ -5527,7 +5527,7 @@
 					<key>PhysicProperties</key>
 					<dict>
 						<key>AngularDamping</key>
-						<real>0.0</real>
+						<real>2</real>
 						<key>AngularVelocity</key>
 						<real>0.0</real>
 						<key>CanSleep</key>
@@ -5541,7 +5541,7 @@
 						<key>IsBullet</key>
 						<false/>
 						<key>LinearDamping</key>
-						<real>0.0</real>
+						<real>2</real>
 						<key>LinearVelocity</key>
 						<string>{0, 0}</string>
 						<key>SH_ComplexShapes</key>
@@ -5552,7 +5552,7 @@
 								<key>Category</key>
 								<integer>1</integer>
 								<key>Density</key>
-								<real>7</real>
+								<real>1</real>
 								<key>Fixture</key>
 								<array>
 									<array>
