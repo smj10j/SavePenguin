@@ -1141,17 +1141,21 @@
 				
 		double dx = bestOptionPos.x - shark.position.x;
 		double dy = bestOptionPos.y - shark.position.y;
-		double max = fmax(fabs(dx), fabs(dy));
+		double dSum = fabs(dx) + fabs(dy);
 
 								
-		if(max == 0) {
+		if(dSum == 0) {
 			//no best option?
 			//NSLog(@"No best option for shark %@ max(dx,dy) was 0", shark.uniqueName);
-			max = 1;
+			dSum = 1;
 		}
-		
-		double normalizedX = dx/max;
-		double normalizedY = dy/max;
+
+		double sharkSpeed = sharkData.restingSpeed;
+		if(sharkData.targetAcquired) {
+			sharkSpeed = sharkData.activeSpeed;
+		}		
+		double normalizedX = (sharkSpeed*dx)/dSum;
+		double normalizedY = (sharkSpeed*dy)/dSum;
 	
 		[sharkMoveGridData logMove:bestOptionPos];
 		
@@ -1168,13 +1172,10 @@
 			}
 		}
 	
-		double sharkSpeed = sharkData.restingSpeed;
-		if(sharkData.targetAcquired) {
-			sharkSpeed = sharkData.activeSpeed;
-		}
+
 		b2Vec2 prevVel = shark.body->GetLinearVelocity();
-		double targetVelX = dt * sharkSpeed * normalizedX;
-		double targetVelY = dt * sharkSpeed * normalizedY;
+		double targetVelX = dt * normalizedX;
+		double targetVelY = dt * normalizedY;
 		double weightedVelX = (prevVel.x * 4.0 + targetVelX)/5.0;
 		double weightedVelY = (prevVel.y * 4.0 + targetVelY)/5.0;
 		
@@ -1357,18 +1358,18 @@
 				NSLog(@"Penguin %@ is stuck (trying to move but can't) - giving him a bit of jitter", penguin.uniqueName);
 			}
 			
-			double max = fmax(fabs(dx), fabs(dy));
-			if(max == 0) {
+			double dSum = fabs(dx) + fabs(dy);									
+			if(dSum == 0) {
 				//no best option?
-				//NSLog(@"No best option for penguin %@ max(dx,dy) was 0", penguin.uniqueName);
-				max = 1;
-			}			
-			
-			double normalizedX = dx/max;
-			double normalizedY = dy/max;
+				//NSLog(@"No best option for shark %@ max(dx,dy) was 0", shark.uniqueName);
+				dSum = 1;
+			}
+
+			double normalizedX = (penguinSpeed*dx)/dSum;
+			double normalizedY = (penguinSpeed*dy)/dSum;
 		
-			double targetVelX = dt * penguinSpeed * normalizedX;
-			double targetVelY = dt * penguinSpeed * normalizedY;
+			double targetVelX = dt * normalizedX;
+			double targetVelY = dt * normalizedY;
 		
 			//we're using an impulse for the penguin so they interact with things like Debris (physics)
 			penguin.body->ApplyLinearImpulse(b2Vec2(targetVelX*.1,targetVelY*.1), penguin.body->GetWorldCenter());
