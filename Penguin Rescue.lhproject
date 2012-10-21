@@ -62,7 +62,7 @@
 			<key>ClassRepresentation</key>
 			<dict>
 				<key>activeDetectionRadius</key>
-				<real>600</real>
+				<real>800</real>
 				<key>activeSpeed</key>
 				<real>75</real>
 				<key>endpointX</key>
@@ -72,7 +72,7 @@
 				<key>isStuck</key>
 				<false/>
 				<key>restingDetectionRadius</key>
-				<real>400</real>
+				<real>600</real>
 				<key>restingSpeed</key>
 				<real>25</real>
 				<key>targetAcquired</key>

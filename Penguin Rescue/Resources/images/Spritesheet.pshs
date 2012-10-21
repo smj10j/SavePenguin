@@ -3003,7 +3003,7 @@
 			<key>MaxSheetSize</key>
 			<integer>4096</integer>
 			<key>NpotSize</key>
-			<string>{956, 2048}</string>
+			<string>{1388, 2048}</string>
 			<key>Padding</key>
 			<integer>8</integer>
 			<key>PixelFormat</key>
@@ -3038,7 +3038,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAADhlUgMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAAJxeUwMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -3050,12 +3050,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAADQyYTAxODExZmZhOWU0MjliMDYwMmJm
-					NmViN2ZjMjIyNDdkMDcwMWY7MDAwMDAwMDA7
+					AQIAADhjZjM0YWUyYzFhOWM5MWM3ZGVkYWFj
+					Yzc5Zjc5NDk0NDc1YzIxOWQ7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTI2
-					NTM4Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTM1
+					ZTljOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC9ib3R0b21iYXIucG5nAAAA
@@ -3123,9 +3123,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{0, 0}, {512, 34.75}}</string>
+						<string>{{0, 0}, {512, 52}}</string>
 						<key>Frame-HD</key>
-						<string>{{0, 0}, {2048, 139}}</string>
+						<string>{{0, 0}, {2048, 208}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -3147,21 +3147,21 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/HUD/BottomBar.png/</string>
 						<key>OriginalRect</key>
-						<string>{{0, 1}, {2048, 139}}</string>
+						<string>{{0, 2}, {2048, 208}}</string>
 						<key>OriginalSize</key>
-						<string>{2048, 140}</string>
+						<string>{2048, 210}</string>
 						<key>Position</key>
 						<string>{0, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
-						<string>{512, 35}</string>
+						<string>{512, 52.5}</string>
 						<key>SpriteWasBreaked</key>
 						<false/>
 						<key>Tag</key>
 						<integer>0</integer>
 						<key>TextureOffset</key>
-						<string>{0, -0.125}</string>
+						<string>{0, -0.25}</string>
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
@@ -3188,7 +3188,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAADBlUgMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAAJVeUwMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -3200,12 +3200,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAAGYwMTRmZmNlNTBkNjAwNTExZmEyMTVm
-					ZmIzOTUyY2MyN2QyYWU5OWU7MDAwMDAwMDA7
+					AQIAADA4MzBiMGJlZGNiY2MyOTA2MzAyOGE3
+					NmQ5OWFkOGU4ZDUzMWNiMzk7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTI2
-					NTMwOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTM1
+					ZTk1Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC9wYXVzZV9hY3RpdmUucG5n
@@ -3273,9 +3273,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{36, 0}, {26, 26}}</string>
+						<string>{{53, 0}, {39, 39}}</string>
 						<key>Frame-HD</key>
-						<string>{{144, 0}, {104, 104}}</string>
+						<string>{{212, 0}, {156, 156}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -3297,15 +3297,15 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/HUD/Pause_active.png/</string>
 						<key>OriginalRect</key>
-						<string>{{0, 0}, {104, 104}}</string>
+						<string>{{0, 0}, {156, 156}}</string>
 						<key>OriginalSize</key>
-						<string>{104, 104}</string>
+						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{144, 0}</string>
+						<string>{212, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
-						<string>{26, 26}</string>
+						<string>{39, 39}</string>
 						<key>SpriteWasBreaked</key>
 						<false/>
 						<key>Tag</key>
@@ -3338,7 +3338,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAAuZVIDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAACUXlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -3350,12 +3350,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAABiZWZjODAzY2Q1ODQ3NTIxZjFj
-					ZGUzNGMxNTU0ODQzNWY5Zjg5NjFmOzAwMDAw
+					8gAAAAECAAA2NzkyZThlYzMzZmQzMzFjNDg0
+					MGNjM2U5NmMzOGJkZTI3OWNjMmQwOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUyNjUyZTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNWU5NDsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcGF1c2VfaW5hY3Rp
@@ -3424,9 +3424,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{63, 0}, {26, 26}}</string>
+						<string>{{93, 0}, {39, 39}}</string>
 						<key>Frame-HD</key>
-						<string>{{252, 0}, {104, 104}}</string>
+						<string>{{372, 0}, {156, 156}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -3448,15 +3448,15 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/HUD/Pause_inactive.png/</string>
 						<key>OriginalRect</key>
-						<string>{{0, 0}, {104, 104}}</string>
+						<string>{{0, 0}, {156, 156}}</string>
 						<key>OriginalSize</key>
-						<string>{104, 104}</string>
+						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{252, 0}</string>
+						<string>{372, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
-						<string>{26, 26}</string>
+						<string>{39, 39}</string>
 						<key>SpriteWasBreaked</key>
 						<false/>
 						<key>Tag</key>
@@ -3489,7 +3489,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAADRlUgMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAAJleUwMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -3501,12 +3501,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADvAAAA
-					AQIAADU5M2FhZWI4YjdmYzJkYmU2OGQyMDA0
-					ZjM4NGViOTQwMTExNzk3MTQ7MDAwMDAwMDA7
+					AQIAAGI5MTFjYjMxMjJiNzBjZjE4NmQ1MjI2
+					ZjAyNzQyMTdhMTIyMzhkNTc7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTI2
-					NTM0Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTM1
+					ZTk5Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC9wbGF5X2FjdGl2ZS5wbmcA
@@ -3574,9 +3574,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{144, 0}, {26, 26}}</string>
+						<string>{{213, 0}, {38.75, 39}}</string>
 						<key>Frame-HD</key>
-						<string>{{576, 0}, {104, 104}}</string>
+						<string>{{852, 0}, {155, 156}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -3598,21 +3598,21 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/HUD/Play_active.png/</string>
 						<key>OriginalRect</key>
-						<string>{{0, 0}, {104, 104}}</string>
+						<string>{{1, 0}, {155, 156}}</string>
 						<key>OriginalSize</key>
-						<string>{104, 104}</string>
+						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{576, 0}</string>
+						<string>{852, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
-						<string>{26, 26}</string>
+						<string>{39, 39}</string>
 						<key>SpriteWasBreaked</key>
 						<false/>
 						<key>Tag</key>
 						<integer>0</integer>
 						<key>TextureOffset</key>
-						<string>{0, -0}</string>
+						<string>{0.125, -0}</string>
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
@@ -3639,7 +3639,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAAzZVIDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAACYXlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -3651,12 +3651,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8QAAAAECAAA4Y2Q1MmU4ZmRjZDg5NjM1OTAw
-					NDY2OTc5YzU4ZDRhOTE4OTBhZjVmOzAwMDAw
+					8QAAAAECAAAxMWYzNGQ1MDQ0NTljYThiMGI0
+					MWRlMTc4MjM0NGJjZDljYzZlNWRiOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUyNjUzMzsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNWU5ODsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcGxheV9pbmFjdGl2
@@ -3725,9 +3725,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{171, 0}, {26, 25.75}}</string>
+						<string>{{253, 0}, {38.75, 39}}</string>
 						<key>Frame-HD</key>
-						<string>{{684, 0}, {104, 103}}</string>
+						<string>{{1012, 0}, {155, 156}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -3749,21 +3749,21 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/HUD/Play_inactive.png/</string>
 						<key>OriginalRect</key>
-						<string>{{0, 1}, {104, 103}}</string>
+						<string>{{1, 0}, {155, 156}}</string>
 						<key>OriginalSize</key>
-						<string>{104, 104}</string>
+						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{684, 0}</string>
+						<string>{1012, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
-						<string>{26, 26}</string>
+						<string>{39, 39}</string>
 						<key>SpriteWasBreaked</key>
 						<false/>
 						<key>Tag</key>
 						<integer>0</integer>
 						<key>TextureOffset</key>
-						<string>{0, -0.125}</string>
+						<string>{0.125, -0}</string>
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
@@ -3790,7 +3790,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAAxZVIDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAACXXlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -3802,12 +3802,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAwYzE1MjdiZWYyOTA4N2M5NzRi
-					NzYyN2I3Mzk4OGNkY2Y1Yjk5YjQzOzAwMDAw
+					8gAAAAECAAAwZWRlZjRiZGNkZTY0MjIzOWRh
+					ODNhZjVhNjhhNzYxMmI3ZTZlMjA3OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUyNjUzMTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNWU5NzsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcmVzdGFydF9hY3Rp
@@ -3876,9 +3876,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{90, 0}, {26, 26}}</string>
+						<string>{{173, 0}, {39, 39}}</string>
 						<key>Frame-HD</key>
-						<string>{{360, 0}, {104, 104}}</string>
+						<string>{{692, 0}, {156, 156}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -3900,15 +3900,15 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/HUD/Restart_active.png/</string>
 						<key>OriginalRect</key>
-						<string>{{0, 0}, {104, 104}}</string>
+						<string>{{0, 0}, {156, 156}}</string>
 						<key>OriginalSize</key>
-						<string>{104, 104}</string>
+						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{360, 0}</string>
+						<string>{692, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
-						<string>{26, 26}</string>
+						<string>{39, 39}</string>
 						<key>SpriteWasBreaked</key>
 						<false/>
 						<key>Tag</key>
@@ -3941,7 +3941,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAAvZVIDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAACWXlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -3953,12 +3953,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAA3YTExMjRjZjFhNWZhYzVjNTBk
-					ZDQyNTNjOTQ2MGJkMWY3MmE3YzNhOzAwMDAw
+					9AAAAAECAABiZDAzZWRkMDVkN2ZkMjlhNGMw
+					Yjc5ZGVkZWY0YjU3YjEyMjllZGJiOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUyNjUyZjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNWU5NjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcmVzdGFydF9pbmFj
@@ -4027,9 +4027,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{117, 0}, {26, 26}}</string>
+						<string>{{133, 0}, {39, 39}}</string>
 						<key>Frame-HD</key>
-						<string>{{468, 0}, {104, 104}}</string>
+						<string>{{532, 0}, {156, 156}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -4051,15 +4051,15 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/HUD/Restart_inactive.png/</string>
 						<key>OriginalRect</key>
-						<string>{{0, 0}, {104, 104}}</string>
+						<string>{{0, 0}, {156, 156}}</string>
 						<key>OriginalSize</key>
-						<string>{104, 104}</string>
+						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{468, 0}</string>
+						<string>{532, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
-						<string>{26, 26}</string>
+						<string>{39, 39}</string>
 						<key>SpriteWasBreaked</key>
 						<false/>
 						<key>Tag</key>
@@ -4093,7 +4093,7 @@
 					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
 					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
 					AAAAAAgAAAAEAwAAgulNAwAAAAAIAAAABAMA
-					ADVlUgMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AJpeUwMAAAAALAAAAAEGAAD0AAAABAEAABQB
 					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
 					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
 					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
@@ -4104,12 +4104,12 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD6AAAAAQIAADhmNTc0ZTNhOGZh
-					NGUzNGVmMmU1ZWFlMzA1ZWZkN2Q0M2E3MWEw
-					MTg7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD6AAAAAQIAADVkMzY0M2JiN2Y2
+					NzgwZTM3MjI1NjI0NTQ5OTc3MDhkNGY2ZGEz
+					NDA7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
-					MDAwMDAwMDAzNTI2NTM1Oy91c2Vycy9zdGV2
+					MDAwMDAwMDAzNTM1ZTlhOy91c2Vycy9zdGV2
 					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
 					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
 					L3NyYy1hc3NldHMvaW1hZ2VzL2h1ZC90b29s
@@ -4178,9 +4178,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{198, 0}, {26, 23.75}}</string>
+						<string>{{293, 0}, {38.5, 34.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{792, 0}, {104, 93}}</string>
+						<string>{{1172, 0}, {154, 138}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -4202,21 +4202,21 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/HUD/Toolbox-Item-Container.png/</string>
 						<key>OriginalRect</key>
-						<string>{{0, 0}, {104, 93}}</string>
+						<string>{{0, 0}, {154, 138}}</string>
 						<key>OriginalSize</key>
-						<string>{104, 93}</string>
+						<string>{154, 138}</string>
 						<key>Position</key>
-						<string>{792, 0}</string>
+						<string>{1172, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
-						<string>{26, 23.25}</string>
+						<string>{38.5, 34.5}</string>
 						<key>SpriteWasBreaked</key>
 						<false/>
 						<key>Tag</key>
 						<integer>0</integer>
 						<key>TextureOffset</key>
-						<string>{0, -0.25}</string>
+						<string>{0, -0}</string>
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
@@ -4244,7 +4244,7 @@
 					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
 					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
 					095NAwAAAAAIAAAABAMAAILpTQMAAAAACAAA
-					AAQDAAA2ZVIDAAAAACwAAAABBgAA+AAAAAgB
+					AAQDAACbXlMDAAAAACwAAAABBgAA+AAAAAgB
 					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
 					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
 					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
@@ -4255,12 +4255,12 @@
 					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
 					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
 					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
-					BAAAAAMDAAAAAQAAAAEAAAECAAA0NGJlNjMx
-					Yzc3YTNhN2JhMGNlYjY1OWE3N2JhNjZjOTFh
-					N2ZmZWJiOzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					BAAAAAMDAAAAAQAAAAEAAAECAAAyY2U2YzUw
+					NTU3NzYzOTM0NGYwMGMwYjQ1NGM3ODkzZjcz
+					MWYyNTNmOzAwMDAwMDAwOzAwMDAwMDAwMDAw
 					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
 					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
-					MDI7MDAwMDAwMDAwMzUyNjUzNjsvdXNlcnMv
+					MDI7MDAwMDAwMDAwMzUzNWU5YjsvdXNlcnMv
 					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
 					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
 					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9odWQv
@@ -4329,9 +4329,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{225, 0}, {14, 13.75}}</string>
+						<string>{{332, 0}, {14.75, 14.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{900, 0}, {56, 55}}</string>
+						<string>{{1328, 0}, {57, 57}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -4353,11 +4353,11 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/HUD/Toolbox-Item-Container-Count.png/</string>
 						<key>OriginalRect</key>
-						<string>{{1, 2}, {56, 55}}</string>
+						<string>{{1, 0}, {57, 57}}</string>
 						<key>OriginalSize</key>
 						<string>{58, 58}</string>
 						<key>Position</key>
-						<string>{900, 0}</string>
+						<string>{1328, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -4367,7 +4367,7 @@
 						<key>Tag</key>
 						<integer>0</integer>
 						<key>TextureOffset</key>
-						<string>{0, -0.125}</string>
+						<string>{0.375, -0.125}</string>
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
@@ -4376,7 +4376,7 @@
 				</dict>
 			</dict>
 			<key>Size</key>
-			<string>{1024, 2048}</string>
+			<string>{2048, 2048}</string>
 			<key>Trim</key>
 			<true/>
 			<key>ZOrder</key>
@@ -6055,7 +6055,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAAzZVIDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAACYXlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -6067,12 +6067,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8QAAAAECAAA4Y2Q1MmU4ZmRjZDg5NjM1OTAw
-					NDY2OTc5YzU4ZDRhOTE4OTBhZjVmOzAwMDAw
+					8QAAAAECAAAxMWYzNGQ1MDQ0NTljYThiMGI0
+					MWRlMTc4MjM0NGJjZDljYzZlNWRiOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUyNjUzMzsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNWU5ODsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcGxheV9pbmFjdGl2
@@ -6088,17 +6088,17 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{171, 0}, {26, 25.75}}</string>
+					<string>{{253, 0}, {38.75, 39}}</string>
 					<key>Frame-HD</key>
-					<string>{{684, 0}, {104, 103}}</string>
+					<string>{{1012, 0}, {155, 156}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
 					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/HUD/Play_inactive.png</string>
 					<key>SpriteSize</key>
-					<string>{26, 26}</string>
+					<string>{39, 39}</string>
 					<key>TextureOffset</key>
-					<string>{0, -0.125}</string>
+					<string>{0.125, -0}</string>
 					<key>delayPerUnit</key>
 					<real>1</real>
 					<key>notifications</key>
@@ -6127,7 +6127,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAADRlUgMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAAJleUwMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -6139,12 +6139,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADvAAAA
-					AQIAADU5M2FhZWI4YjdmYzJkYmU2OGQyMDA0
-					ZjM4NGViOTQwMTExNzk3MTQ7MDAwMDAwMDA7
+					AQIAAGI5MTFjYjMxMjJiNzBjZjE4NmQ1MjI2
+					ZjAyNzQyMTdhMTIyMzhkNTc7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTI2
-					NTM0Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTM1
+					ZTk5Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC9wbGF5X2FjdGl2ZS5wbmcA
@@ -6159,17 +6159,17 @@
 					ALQCAAAAAAAAgPAAAMACAAAAAAAA
 					</data>
 					<key>Frame</key>
-					<string>{{144, 0}, {26, 26}}</string>
+					<string>{{213, 0}, {38.75, 39}}</string>
 					<key>Frame-HD</key>
-					<string>{{576, 0}, {104, 104}}</string>
+					<string>{{852, 0}, {155, 156}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
 					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/HUD/Play_active.png</string>
 					<key>SpriteSize</key>
-					<string>{26, 26}</string>
+					<string>{39, 39}</string>
 					<key>TextureOffset</key>
-					<string>{0, -0}</string>
+					<string>{0.125, -0}</string>
 					<key>delayPerUnit</key>
 					<real>1</real>
 					<key>notifications</key>
@@ -6198,7 +6198,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAAuZVIDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAACUXlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -6210,12 +6210,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAABiZWZjODAzY2Q1ODQ3NTIxZjFj
-					ZGUzNGMxNTU0ODQzNWY5Zjg5NjFmOzAwMDAw
+					8gAAAAECAAA2NzkyZThlYzMzZmQzMzFjNDg0
+					MGNjM2U5NmMzOGJkZTI3OWNjMmQwOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUyNjUyZTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNWU5NDsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcGF1c2VfaW5hY3Rp
@@ -6231,15 +6231,15 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{63, 0}, {26, 26}}</string>
+					<string>{{93, 0}, {39, 39}}</string>
 					<key>Frame-HD</key>
-					<string>{{252, 0}, {104, 104}}</string>
+					<string>{{372, 0}, {156, 156}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
 					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/HUD/Pause_inactive.png</string>
 					<key>SpriteSize</key>
-					<string>{26, 26}</string>
+					<string>{39, 39}</string>
 					<key>TextureOffset</key>
 					<string>{0, -0}</string>
 					<key>delayPerUnit</key>
@@ -6270,7 +6270,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAADBlUgMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAAJVeUwMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -6282,12 +6282,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAAGYwMTRmZmNlNTBkNjAwNTExZmEyMTVm
-					ZmIzOTUyY2MyN2QyYWU5OWU7MDAwMDAwMDA7
+					AQIAADA4MzBiMGJlZGNiY2MyOTA2MzAyOGE3
+					NmQ5OWFkOGU4ZDUzMWNiMzk7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTI2
-					NTMwOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTM1
+					ZTk1Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC9wYXVzZV9hY3RpdmUucG5n
@@ -6302,15 +6302,15 @@
 					ALQCAAAAAAAAgPAAAMACAAAAAAAA
 					</data>
 					<key>Frame</key>
-					<string>{{36, 0}, {26, 26}}</string>
+					<string>{{53, 0}, {39, 39}}</string>
 					<key>Frame-HD</key>
-					<string>{{144, 0}, {104, 104}}</string>
+					<string>{{212, 0}, {156, 156}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
 					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/HUD/Pause_active.png</string>
 					<key>SpriteSize</key>
-					<string>{26, 26}</string>
+					<string>{39, 39}</string>
 					<key>TextureOffset</key>
 					<string>{0, -0}</string>
 					<key>delayPerUnit</key>
@@ -6362,7 +6362,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAAvZVIDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAACWXlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -6374,12 +6374,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAA3YTExMjRjZjFhNWZhYzVjNTBk
-					ZDQyNTNjOTQ2MGJkMWY3MmE3YzNhOzAwMDAw
+					9AAAAAECAABiZDAzZWRkMDVkN2ZkMjlhNGMw
+					Yjc5ZGVkZWY0YjU3YjEyMjllZGJiOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUyNjUyZjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNWU5NjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcmVzdGFydF9pbmFj
@@ -6395,15 +6395,15 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{117, 0}, {26, 26}}</string>
+					<string>{{133, 0}, {39, 39}}</string>
 					<key>Frame-HD</key>
-					<string>{{468, 0}, {104, 104}}</string>
+					<string>{{532, 0}, {156, 156}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
 					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/HUD/Restart_inactive.png</string>
 					<key>SpriteSize</key>
-					<string>{26, 26}</string>
+					<string>{39, 39}</string>
 					<key>TextureOffset</key>
 					<string>{0, -0}</string>
 					<key>delayPerUnit</key>
@@ -6434,7 +6434,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAAxZVIDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAACXXlMDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -6446,12 +6446,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAwYzE1MjdiZWYyOTA4N2M5NzRi
-					NzYyN2I3Mzk4OGNkY2Y1Yjk5YjQzOzAwMDAw
+					8gAAAAECAAAwZWRlZjRiZGNkZTY0MjIzOWRh
+					ODNhZjVhNjhhNzYxMmI3ZTZlMjA3OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzUyNjUzMTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzUzNWU5NzsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcmVzdGFydF9hY3Rp
@@ -6467,15 +6467,15 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{90, 0}, {26, 26}}</string>
+					<string>{{173, 0}, {39, 39}}</string>
 					<key>Frame-HD</key>
-					<string>{{360, 0}, {104, 104}}</string>
+					<string>{{692, 0}, {156, 156}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
 					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/HUD/Restart_active.png</string>
 					<key>SpriteSize</key>
-					<string>{26, 26}</string>
+					<string>{39, 39}</string>
 					<key>TextureOffset</key>
 					<string>{0, -0}</string>
 					<key>delayPerUnit</key>

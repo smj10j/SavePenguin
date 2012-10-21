@@ -226,14 +226,14 @@
 
 	_playPauseButton = [_levelLoader createBatchSpriteWithName:@"Play_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[_playPauseButton prepareAnimationNamed:@"Play_Pause_Button" fromSHScene:@"Spritesheet"];
-	[_playPauseButton transformPosition: ccp(_playPauseButton.boundingBox.size.width/2+20*SCALING_FACTOR,_playPauseButton.boundingBox.size.height/2+14*SCALING_FACTOR)];
+	[_playPauseButton transformPosition: ccp(_playPauseButton.boundingBox.size.width/2+HUD_BUTTON_MARGIN_LEFT,_playPauseButton.boundingBox.size.height/2+HUD_BUTTON_MARGIN_TOP)];
 	[_playPauseButton registerTouchBeganObserver:self selector:@selector(onTouchBeganPlayPause:)];
 	[_playPauseButton registerTouchEndedObserver:self selector:@selector(onTouchEndedPlayPause:)];
 	
 	
 	_restartButton = [_levelLoader createBatchSpriteWithName:@"Restart_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[_restartButton prepareAnimationNamed:@"Restart_Button" fromSHScene:@"Spritesheet"];
-	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.boundingBox.size.width/2+20*SCALING_FACTOR),_restartButton.boundingBox.size.height/2+14*SCALING_FACTOR) ];
+	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.boundingBox.size.width/2+HUD_BUTTON_MARGIN_LEFT),_restartButton.boundingBox.size.height/2+HUD_BUTTON_MARGIN_TOP) ];
 	[_restartButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[_restartButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 	
@@ -265,9 +265,10 @@
 		[toolGroup addObject:toolboxItem];
 	}
 	
-	int toolGroupX = winSize.width/2 - (_toolboxItemSize*(_toolGroups.count/2));
-	int toolGroupY = _bottomBarContainer.boundingBox.size.height/2 - 6*SCALING_FACTOR;	//hardcoded 4 because of the little rounded edges in the bottom bar
 	
+	int toolGroupX = winSize.width/2 - ((_toolboxItemSize)*((_toolGroups.count-1)/2)) - _toolboxItemSize/2;
+	int toolGroupY = _bottomBarContainer.boundingBox.size.height/2 - TOOLBOX_MARGIN_TOP;
+		
 	for(id key in _toolGroups) {
 
 		NSMutableSet* toolGroup = [_toolGroups objectForKey:key];
@@ -284,12 +285,12 @@
 
 			//move the tool into the box
 			[toolboxItem transformPosition: ccp(toolGroupX, toolGroupY)];
-			double scale = fmin((_toolboxItemSize-10*SCALING_FACTOR)/toolboxItem.contentSize.width, (_toolboxItemSize-10*SCALING_FACTOR)/toolboxItem.contentSize.height);
+			double scale = fmin((_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING)/toolboxItem.contentSize.width, (_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING)/toolboxItem.contentSize.height);
 			[toolboxItem transformScale: scale];
-			NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", toolboxItem.uniqueName, (int)(100*scale));
+			//NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", toolboxItem.uniqueName, (int)(100*scale));
 		
 			//display # of items in the stack
-			CCLabelTTF* numToolsLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", toolGroup.count] fontName:@"Helvetica" fontSize:12 dimensions:CGSizeMake(12, 12) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter];
+			CCLabelTTF* numToolsLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", toolGroup.count] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE dimensions:CGSizeMake(TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE, TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter];
 			numToolsLabel.color = ccWHITE;
 			numToolsLabel.position = ccp(toolboxContainerCountContainer.boundingBox.size.width/2, toolboxContainerCountContainer.boundingBox.size.height/2);
 			[toolboxContainerCountContainer addChild:numToolsLabel];
@@ -299,7 +300,7 @@
 			[toolboxContainer registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
 		}
 				
-		toolGroupX+= _toolboxItemSize	+ 16*SCALING_FACTOR; //16 is a margin
+		toolGroupX+= _toolboxItemSize + TOOLBOX_MARGIN_LEFT; //16 is a margin
 	}
 	
 
@@ -495,9 +496,9 @@
 
 			[_activeToolboxItem transformRotation:0];
 			[_activeToolboxItem transformPosition:_activeToolboxItemOriginalPosition];
-			double scale = fmin((_toolboxItemSize-10*SCALING_FACTOR)/_activeToolboxItem.contentSize.width, (_toolboxItemSize-10*SCALING_FACTOR)/_activeToolboxItem.contentSize.height);
+			double scale = fmin((_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING)/_activeToolboxItem.contentSize.width, (_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING)/_activeToolboxItem.contentSize.height);
 			[_activeToolboxItem transformScale: scale];
-			NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", _activeToolboxItem.uniqueName, (int)(100*scale));
+			//NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", _activeToolboxItem.uniqueName, (int)(100*scale));
 			NSLog(@"Placing toolbox item back into the HUD");
 			
 			_activeToolboxItem = nil;
@@ -1142,7 +1143,6 @@
 		double dx = bestOptionPos.x - shark.position.x;
 		double dy = bestOptionPos.y - shark.position.y;
 		double dSum = fabs(dx) + fabs(dy);
-
 								
 		if(dSum == 0) {
 			//no best option?
@@ -1153,7 +1153,7 @@
 		double sharkSpeed = sharkData.restingSpeed;
 		if(sharkData.targetAcquired) {
 			sharkSpeed = sharkData.activeSpeed;
-		}		
+		}
 		double normalizedX = (sharkSpeed*dx)/dSum;
 		double normalizedY = (sharkSpeed*dy)/dSum;
 	
