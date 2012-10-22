@@ -95,6 +95,21 @@
 		NSString* levelPack = @"Beach";
 		[self loadLevel:levelName inLevelPack:levelPack];
 		
+
+		LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water_1" fromSheet:@"Map" fromSHFile:@"Spritesheet" parent:_mainLayer];
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
+		for(int x = -waterTile.boundingBox.size.width/2; x < winSize.width + waterTile.boundingBox.size.width/2; ) {
+			for(int y = -waterTile.boundingBox.size.height/2; y < winSize.height + waterTile.boundingBox.size.width/2; ) {
+				LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water_1" fromSheet:@"Map" fromSHFile:@"Spritesheet" parent:_mapBatchNode];
+				[waterTile setZOrder:0];
+				[waterTile transformPosition:ccp(x,y)];
+				y+= waterTile.boundingBox.size.height;
+			}
+			x+= waterTile.boundingBox.size.width;
+		}
+		[waterTile removeSelf];
+
+		
 		//place the HUD items (pause, restart, etc.)
 		[self drawHUD];		
 		
@@ -323,6 +338,7 @@
 
 	_mainLayer = [_levelLoader layerWithUniqueName:@"MAIN_LAYER"];
 	_toolboxBatchNode = [_levelLoader batchWithUniqueName:@"Toolbox"];
+	_mapBatchNode = [_levelLoader batchWithUniqueName:@"Map"];
 
 	//checks if the level has physics boundaries
 	if([_levelLoader hasPhysicBoundaries])

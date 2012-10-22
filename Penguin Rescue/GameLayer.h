@@ -46,6 +46,7 @@ enum PROPAGATION_RESULT {
 	LevelHelperLoader* _levelLoader;
 	LHLayer* _mainLayer;
 	LHBatch* _toolboxBatchNode;
+	LHBatch* _mapBatchNode;
 	
 	GAME_STATE _state;
 	
