@@ -1095,6 +1095,7 @@
 		
 			double w = _sharkMoveGrid[sharkX][sharkY];
 			if(wW == w && w == INITIAL_GRID_WEIGHT) {
+				//this occurs when the shark has no route to the penguin - he literally has no idea which way to go
 				sharkData.isStuck = true;
 				if(SHARK_DIES_WHEN_STUCK) {
 					//we're stuck
@@ -1180,7 +1181,7 @@
 				
 				dx+= ((arc4random()%200)-100)/1000;
 				dy+= ((arc4random()%200)-100)/1000;
-				sharkSpeed*= 15;
+				sharkSpeed*= 5;
 				NSLog(@"Shark %@ is stuck (trying to move but can't) - giving him a bit of jitter", shark.uniqueName);
 
 			}
