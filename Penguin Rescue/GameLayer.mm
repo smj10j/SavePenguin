@@ -96,6 +96,8 @@
 		[self loadLevel:levelName inLevelPack:levelPack];
 		
 
+		//TODO: move this to somwhere that makes sense... like loadLevel
+		//draw the background water tiles
 		LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water_1" fromSheet:@"Map" fromSHFile:@"Spritesheet" parent:_mainLayer];
 		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		for(int x = -waterTile.boundingBox.size.width/2; x < winSize.width + waterTile.boundingBox.size.width/2; ) {

@@ -64,7 +64,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{39, 217}, {37.5, 37.5}}</string>
+								<string>{{39, 217}, {35.75, 31.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -86,7 +86,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0}</string>
+								<string>{0.875, -0.75}</string>
 								<key>UniqueName</key>
 								<string>Wall_End1</string>
 								<key>ZOrder</key>
@@ -139,7 +139,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 217}, {37.5, 37.5}}</string>
+								<string>{{1, 217}, {36.75, 28.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -161,7 +161,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0}</string>
+								<string>{-0.375, -0.5}</string>
 								<key>UniqueName</key>
 								<string>Wall_End3</string>
 								<key>ZOrder</key>
@@ -289,7 +289,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{140, 57}, {37.5, 37.5}}</string>
+								<string>{{140, 57}, {31.5, 29.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -311,7 +311,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0}</string>
+								<string>{3, -0.875}</string>
 								<key>UniqueName</key>
 								<string>Wall_End2</string>
 								<key>ZOrder</key>
@@ -364,7 +364,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{39, 178}, {37.5, 37.5}}</string>
+								<string>{{39, 178}, {36.5, 33.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -386,7 +386,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0}</string>
+								<string>{0, -0.25}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island2</string>
 								<key>ZOrder</key>
@@ -439,7 +439,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 140}, {187.5, 37.5}}</string>
+								<string>{{0, 140}, {187.5, 32.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -461,7 +461,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0}</string>
+								<string>{0, -1.625}</string>
 								<key>UniqueName</key>
 								<string>Wall_Middle2</string>
 								<key>ZOrder</key>
@@ -514,7 +514,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 101}, {187.5, 37.5}}</string>
+								<string>{{0, 101}, {187.5, 32}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -536,7 +536,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0}</string>
+								<string>{0, 0.75}</string>
 								<key>UniqueName</key>
 								<string>Wall_Middle1</string>
 								<key>ZOrder</key>
@@ -589,7 +589,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 217}, {37.5, 37.5}}</string>
+								<string>{{1, 217}, {36.75, 28.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -611,7 +611,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0}</string>
+								<string>{-0.375, -0.5}</string>
 								<key>UniqueName</key>
 								<string>Wall_End3_1</string>
 								<key>ZOrder</key>
@@ -664,7 +664,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{101, 57}, {37.5, 37.5}}</string>
+								<string>{{101, 58}, {34.5, 35.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -686,7 +686,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island1</string>
 								<key>ZOrder</key>
@@ -739,7 +739,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{39, 178}, {37.5, 37.5}}</string>
+								<string>{{39, 178}, {36.5, 33.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -761,7 +761,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0}</string>
+								<string>{0, -0.25}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island2_1</string>
 								<key>ZOrder</key>
