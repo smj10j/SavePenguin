@@ -873,9 +873,9 @@
 				
 		if(bestOptionPos.x < 0 && bestOptionPos.y < 0) {
 			//this occurs when the shark has no route to the penguin - he literally has no idea which way to go
-			sharkData.isStuck = true;
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
+				sharkData.isStuck = true;
 				NSLog(@"Shark %@ is stuck (no where to go) - we're removing him", shark.uniqueName);
 				//TODO: make the shark spin around in circles and explode in frustration!
 				[shark removeSelf];

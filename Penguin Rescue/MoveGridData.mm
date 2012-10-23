@@ -103,10 +103,13 @@
 	double wE = _moveGrid[fromTile.x < _gridWidth-1 ? (int)fromTile.x+1 : 10000][(int)fromTile.y];
 	double wW = _moveGrid[fromTile.x > 0 ? (int)fromTile.x-1 : 10000][(int)fromTile.y];
 	
+	//makes backtracking less attractive
+	_moveGrid[(int)fromTile.x][(int)fromTile.y]++;
+	
 	//NSLog(@"weights: %f, %f, %f, %f", wN, wS, wE, wW);
 	
 	if(wW == wE && wE == wN && wN == wS) {
-	
+				
 		double w = _moveGrid[(int)fromTile.x][(int)fromTile.y];
 		if(wW == w && w == INITIAL_GRID_WEIGHT) {
 			//this occurs when the shark has no route to the penguin - he literally has no idea which way to go
@@ -170,14 +173,13 @@
 
 	if(_forceUpdateToMoveGrid || (_lastToTile.x != toTile.x && _lastToTile.y != toTile.y)) {
 
-		NSLog(@"Updating move grid");
+		NSLog(@"Updating a %@ move grid", _tag);
 
 		_lastToTile = toTile;
 		_forceUpdateToMoveGrid = false;
 
 		[self copyBaseGridToMoveGrid];
 
-		//TODO: if this is a wall, we should pick the next best coord
 		_moveGrid[(int)toTile.x][(int)toTile.y] = 0;
 		bool foundRoute = false;
 		[self propagateGridCostToX:toTile.x y:toTile.y fromTile:fromTile foundRoute:&foundRoute];
@@ -202,7 +204,7 @@
 	}
 	
 	double w = _moveGrid[x][y];
-	if(w > _gridWidth*3) {
+	if(w > _gridWidth*4) {
 		//this is an approximation to increase speed - it can cause failures to find any path at all (very complex ones)
 		return;
 	}

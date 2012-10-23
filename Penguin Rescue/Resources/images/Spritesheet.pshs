@@ -24,7 +24,7 @@
 			<key>MaxSheetSize</key>
 			<integer>4096</integer>
 			<key>NpotSize</key>
-			<string>{752, 996}</string>
+			<string>{752, 928}</string>
 			<key>Padding</key>
 			<integer>8</integer>
 			<key>PixelFormat</key>
@@ -59,7 +59,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPjeTQMAAAAACAAAAAQDAABjb1QDAAAA
+					BAMAAPjeTQMAAAAACAAAAAQDAAAIT1UDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -71,12 +71,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAABmMzA1NDgxZThmMTZjMThjYjgw
-					MTY0MWMxMjMxMGEwOTdkY2M5OTY2OzAwMDAw
+					8gAAAAECAABiZmQ1MTg4OGIzM2VlODk4NTQw
+					NGVhZTI1NzhmNzEwZWU0YjNhNmNhOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU0NmY2MzsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU1NGYwODsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tYXAvZGVicmlzX2lzbGFu
@@ -308,9 +308,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{101, 58}, {34.5, 35.75}}</string>
+						<string>{{101, 57}, {34.5, 35.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{404, 232}, {138, 143}}</string>
+						<string>{{404, 228}, {138, 143}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -336,7 +336,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{404, 232}</string>
+						<string>{404, 228}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -373,7 +373,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPjeTQMAAAAACAAAAAQDAABib1QDAAAA
+					BAMAAPjeTQMAAAAACAAAAAQDAAAHT1UDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -385,12 +385,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAyZDYwZTNmZDZlNzEzZWMzYWRl
-					ZThmYTExODlhYzdmMmMyYzVhOTk4OzAwMDAw
+					8gAAAAECAAA5ZWU2M2U0NTQwMGIxNzc2NDM0
+					M2IxODJlZDhkOTIyMTU1OGUxZGJmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU0NmY2MjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU1NGYwNzsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tYXAvZGVicmlzX2lzbGFu
@@ -598,9 +598,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{39, 178}, {36.5, 33.5}}</string>
+						<string>{{137, 57}, {36.5, 33.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{156, 712}, {146, 134}}</string>
+						<string>{{548, 228}, {146, 134}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -626,7 +626,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{156, 712}</string>
+						<string>{548, 228}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -663,7 +663,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					+N5NAwAAAAAIAAAABAMAAGFvVAMAAAAALAAA
+					+N5NAwAAAAAIAAAABAMAAAZPVQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -675,12 +675,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAAGI0ZGIyYzFjMDFlM2M0ZDg3NmQzMGFi
-					NzYwYmJjMmMwYmI2M2Y0YmU7MDAwMDAwMDA7
+					AQIAADk1NjNhNWMxM2ViYmI1MGNlZWEzMjQ2
+					NWMxMzhjZTZmZTEyZjZjZTY7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTQ2
-					ZjYxOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTU0
+					ZjA2Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21hcC9zYWZlX2lzbGFuZDEucG5n
@@ -1028,7 +1028,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					+N5NAwAAAAAIAAAABAMAAGZvVAMAAAAALAAA
+					+N5NAwAAAAAIAAAABAMAAAtPVQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -1040,12 +1040,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAADliNTAxNjBjODFhMzNlYjFjOGY5ZGMx
-					NmI0MWM1NDQxNTQxMDMxOTY7MDAwMDAwMDA7
+					AQIAADBiY2E3ZDI4ZjA2MjNlOGYzNDc2MGMw
+					MTkxMGM3MjI3YWY1MTM3YTk7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTQ2
-					ZjY2Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTU0
+					ZjBiOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21hcC93YWxsX2VuZDEucG5nAAAA
@@ -1187,7 +1187,7 @@
 									<string>{146.09999999999999, 118}</string>
 									<string>{21, 127.09999999999999}</string>
 									<string>{7, 123}</string>
-									<string>{3.9999999999999996, 120}</string>
+									<string>{4, 120}</string>
 									<string>{0, 110}</string>
 								</array>
 								<key>ShapePositionOffset</key>
@@ -1228,9 +1228,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{39, 217}, {36.75, 32}}</string>
+						<string>{{0, 168}, {36.75, 32}}</string>
 						<key>Frame-HD</key>
-						<string>{{156, 868}, {147, 128}}</string>
+						<string>{{0, 672}, {147, 128}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -1256,7 +1256,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{156, 868}</string>
+						<string>{0, 672}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -1293,7 +1293,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					+N5NAwAAAAAIAAAABAMAAGdvVAMAAAAALAAA
+					+N5NAwAAAAAIAAAABAMAAAxPVQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -1305,12 +1305,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAADAwMmNjZTcwMjU1ZjdjOTM5ZmY0ZjE1
-					YjI5MTI0MDFlNzVjMGQ0MDQ7MDAwMDAwMDA7
+					AQIAADljY2RmYTYwMDc5ZjgzYmRjNWI1ZGFh
+					ZTE0NTM2MDYzNWNiNjJjOGE7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTQ2
-					ZjY3Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTU0
+					ZjBjOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21hcC93YWxsX2VuZDIucG5nAAAA
@@ -1499,9 +1499,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{140, 57}, {36, 30.5}}</string>
+						<string>{{0, 201}, {36, 30.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{560, 228}, {144, 122}}</string>
+						<string>{{0, 804}, {144, 122}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -1527,7 +1527,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{560, 228}</string>
+						<string>{0, 804}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -1564,7 +1564,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					+N5NAwAAAAAIAAAABAMAAGhvVAMAAAAALAAA
+					+N5NAwAAAAAIAAAABAMAAA1PVQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -1576,12 +1576,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAADFhOGEwYmNkZGRjY2Q4NzJlOTNjZDFh
-					ZWFlNDU3NzI5NjI5ZDE4NjU7MDAwMDAwMDA7
+					AQIAADNiYjI4OTMxMDYyMDRjYzAzMGE0OWE1
+					MDk2ODAzODE4NzQzM2E3YTI7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTQ2
-					ZjY4Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTU0
+					ZjBkOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21hcC93YWxsX2VuZDMucG5nAAAA
@@ -1723,7 +1723,7 @@
 								<key>ShapePoints</key>
 								<array>
 									<string>{0, 0}</string>
-									<string>{101, 7.9999999999999991}</string>
+									<string>{101, 8}</string>
 									<string>{114, 11}</string>
 									<string>{126, 17}</string>
 									<string>{135, 26}</string>
@@ -1735,8 +1735,8 @@
 									<string>{104, 100}</string>
 									<string>{80, 108}</string>
 									<string>{59, 112}</string>
-									<string>{5.9999999999999929, 113.09999999999999}</string>
-									<string>{-6.8580220752251778e-15, 112}</string>
+									<string>{6, 113.09999999999999}</string>
+									<string>{0, 112}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
@@ -1776,9 +1776,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{1, 217}, {35.5, 28.5}}</string>
+						<string>{{38, 197}, {35.5, 28.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{4, 868}, {142, 114}}</string>
+						<string>{{152, 788}, {142, 114}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -1804,7 +1804,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{4, 868}</string>
+						<string>{152, 788}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -1841,7 +1841,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					+N5NAwAAAAAIAAAABAMAAG5vVAMAAAAALAAA
+					+N5NAwAAAAAIAAAABAMAAA5PVQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -1853,12 +1853,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAAGIxMDhiOGY3ZWEyOWM1NDRmNzMwMTYx
-					OWQxZjExYTJhMTc1MmQ2ZDc7MDAwMDAwMDA7
+					AQIAADdhMjVmZGY1ZTdkM2VlNTg2ZDg1M2U4
+					ODU1MWQ3NjNlN2VmOTVjODg7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTQ2
-					ZjZlOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTU0
+					ZjBlOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21hcC93YWxsX2VuZDQucG5nAAAA
@@ -1991,9 +1991,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{0, 178}, {37, 27.75}}</string>
+						<string>{{38, 168}, {37, 27.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{0, 712}, {148, 111}}</string>
+						<string>{{152, 672}, {148, 111}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -2019,7 +2019,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{0, 712}</string>
+						<string>{152, 672}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -2056,7 +2056,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					+N5NAwAAAAAIAAAABAMAAGRvVAMAAAAALAAA
+					+N5NAwAAAAAIAAAABAMAAAlPVQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -2068,12 +2068,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAAGQ0OGZmNWM3MzFiZTIxZTNjZjgwZDQ5
-					ZDI3ZWNkMzg5YmE2M2E3MTI7MDAwMDAwMDA7
+					AQIAAGUzZjkzMGQ4NGI2YmZhYWJlZjhlYjBk
+					YWU0NzAzNmY4MzVhOGQ1MWM7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTQ2
-					ZjY0Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTU0
+					ZjA5Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21hcC93YWxsX21pZGRsZTEucG5n
@@ -2158,13 +2158,13 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{0.100000000000022, 12}</string>
-									<string>{121, 3.0000000000000004}</string>
-									<string>{693, 0.099999999999994121}</string>
-									<string>{749, 12.000000000000004}</string>
+									<string>{0.10000000000002274, 12}</string>
+									<string>{121, 3}</string>
+									<string>{693, 0.099999999999994316}</string>
+									<string>{749, 12}</string>
 									<string>{749.10000000000002, 125}</string>
 									<string>{148, 128.09999999999999}</string>
-									<string>{-7.5928101547135902e-15, 124}</string>
+									<string>{0, 124}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
@@ -2204,9 +2204,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{0, 101}, {187.5, 32.75}}</string>
+						<string>{{0, 135}, {187.5, 32.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{0, 404}, {750, 129}}</string>
+						<string>{{0, 540}, {750, 129}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -2232,7 +2232,7 @@
 						<key>OriginalSize</key>
 						<string>{750, 150}</string>
 						<key>Position</key>
-						<string>{0, 404}</string>
+						<string>{0, 540}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -2269,7 +2269,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					+N5NAwAAAAAIAAAABAMAAGVvVAMAAAAALAAA
+					+N5NAwAAAAAIAAAABAMAAApPVQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -2281,12 +2281,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADc1NzBmNmFkYTNmNjcwNmRlM2Q5ZGYx
-					ZTM4ZTQyMWZiNzE3MThjMzg7MDAwMDAwMDA7
+					AQIAADUwOTUxNTg2MmIyOGFjZjUyNTExYTA4
+					NTZiNTc2YTEyN2U1ZWU2ZTM7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTQ2
-					ZjY1Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTU0
+					ZjBhOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21hcC93YWxsX21pZGRsZTIucG5n
@@ -2397,15 +2397,15 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{0.10000000000002195, 13}</string>
-									<string>{635, -3.7500282726775448e-15}</string>
-									<string>{671, 1.9999999999999984}</string>
-									<string>{749, 13.000000000000004}</string>
+									<string>{0.10000000000002274, 13}</string>
+									<string>{635, 0}</string>
+									<string>{671, 2}</string>
+									<string>{749, 13}</string>
 									<string>{749.10000000000002, 125}</string>
 									<string>{728, 130}</string>
 									<string>{617, 130.09999999999999}</string>
-									<string>{119.99999999999999, 128}</string>
-									<string>{-7.6540424946709578e-15, 125}</string>
+									<string>{120, 128}</string>
+									<string>{0, 125}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
@@ -2445,9 +2445,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{0, 140}, {187.5, 32.75}}</string>
+						<string>{{0, 101}, {187.5, 32.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{0, 560}, {750, 131}}</string>
+						<string>{{0, 404}, {750, 131}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -2473,7 +2473,7 @@
 						<key>OriginalSize</key>
 						<string>{750, 150}</string>
 						<key>Position</key>
-						<string>{0, 560}</string>
+						<string>{0, 404}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -2510,7 +2510,7 @@
 					AwAAAAAIAAAABAMAAKbGTQMAAAAACAAAAAQD
 					AACnxk0DAAAAAAgAAAAEAwAA0N5NAwAAAAAI
 					AAAABAMAANPeTQMAAAAACAAAAAQDAAD43k0D
-					AAAAAAgAAAAEAwAAb29UAwAAAAAsAAAAAQYA
+					AAAAAAgAAAAEAwAAEk9VAwAAAAAsAAAAAQYA
 					AOQAAAD0AAAABAEAABQBAAAkAQAANAEAAEQB
 					AABUAQAAZAEAAHQBAACEAQAAGAAAAAECAAAB
 					AAAAAAAAAA8AAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2522,11 +2522,11 @@
 					OTZFRi05RUQyODRFRjU4OEYYAAAAAQIAAIEA
 					AAABAAgA7z8AAAEACAAAAAAAAAAAAAEAAAAB
 					AQAALwAAAAQAAAADAwAAAAEAAOsAAAABAgAA
-					NzA3MzIyMDg5YjU5NTY1NjA4NGI5YThjOTI5
-					YjBlNzEyMGMzMTE5NzswMDAwMDAwMDswMDAw
+					M2NhZDEyYzBhMzc0YTg4NzUzZDM1ZDBkOGZm
+					MTc4Yzg1NzAzOThkYjswMDAwMDAwMDswMDAw
 					MDAwMDAwMDAwMDIwO2NvbS5hcHBsZS5hcHAt
 					c2FuZGJveC5yZWFkLXdyaXRlOzAwMDAwMDAx
-					OzBlMDAwMDAyOzAwMDAwMDAwMDM1NDZmNmY7
+					OzBlMDAwMDAyOzAwMDAwMDAwMDM1NTRmMTI7
 					L3VzZXJzL3N0ZXZlL2NvZGUvY29ucXVlci9w
 					ZW5ndWluIHJlc2N1ZS9wZW5ndWluIHJlc2N1
 					ZS9yZXNvdXJjZXMvc3JjLWFzc2V0cy9pbWFn
@@ -2638,6 +2638,156 @@
 						<true/>
 						<key>ZOrder</key>
 						<integer>1</integer>
+					</dict>
+				</dict>
+				<key>Water_2</key>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va8wEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAAsAMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAAAwAAAAEBAABNYXAACwAAAAEBAABXYXRl
+					cl8yLnBuZwAsAAAAAQYAAAQAAAAUAAAAJAAA
+					ADAAAABAAAAAQAAAAFgAAABsAAAAgAAAAJAA
+					AACcAAAACAAAAAQDAAByAAAAAAAAAAgAAAAE
+					AwAAW7cOAAAAAAAIAAAABAMAAOvRDgAAAAAA
+					CAAAAAQDAADt0Q4AAAAAAAgAAAAEAwAAo8ZN
+					AwAAAAAIAAAABAMAAKbGTQMAAAAACAAAAAQD
+					AACnxk0DAAAAAAgAAAAEAwAA0N5NAwAAAAAI
+					AAAABAMAANPeTQMAAAAACAAAAAQDAAD43k0D
+					AAAAAAgAAAAEAwAAE09VAwAAAAAsAAAAAQYA
+					AOQAAAD0AAAABAEAABQBAAAkAQAANAEAAEQB
+					AABUAQAAZAEAAHQBAACEAQAAGAAAAAECAAAB
+					AAAAAAAAAA8AAAAAAAAAAAAAAAAAAAAAAAAA
+					AQUAAAQAAAADAwAAAgAAAAQAAAADAwAABAAA
+					AAgAAAAEAwAACQAAAAAAAAAEAAAAAwMAAPUB
+					AAAMAAAAAQEAAE1hY2ludG9zaCBIRAgAAAAE
+					AwAAAICBPXQAAAAIAAAAAAQAAEG0DBo+AAAA
+					JAAAAAEBAAA3MDFCN0UwNS05RTA1LTM3RjMt
+					OTZFRi05RUQyODRFRjU4OEYYAAAAAQIAAIEA
+					AAABAAgA7z8AAAEACAAAAAAAAAAAAAEAAAAB
+					AQAALwAAAAQAAAADAwAAAAEAAOsAAAABAgAA
+					MGIyNjJiZmZhZDExZDZlOWFiOWVhNjY1Yzcx
+					ZDM1NjJiNjZjZjMzNzswMDAwMDAwMDswMDAw
+					MDAwMDAwMDAwMDIwO2NvbS5hcHBsZS5hcHAt
+					c2FuZGJveC5yZWFkLXdyaXRlOzAwMDAwMDAx
+					OzBlMDAwMDAyOzAwMDAwMDAwMDM1NTRmMTM7
+					L3VzZXJzL3N0ZXZlL2NvZGUvY29ucXVlci9w
+					ZW5ndWluIHJlc2N1ZS9wZW5ndWluIHJlc2N1
+					ZS9yZXNvdXJjZXMvc3JjLWFzc2V0cy9pbWFn
+					ZXMvbWFwL3dhdGVyXzIucG5nAADkAAAA/v//
+					/wEAAAAAAAAAEgAAAAQQAACwAAAAAAAAAAUQ
+					AACUAQAAAAAAABAQAADIAQAAAAAAAFQQAADw
+					AQAAAAAAAFUQAAD8AQAAAAAAAFYQAADoAQAA
+					AAAAAAIgAACkAgAAAAAAABAgAAAkAgAAAAAA
+					ABEgAABYAgAAAAAAABIgAAA4AgAAAAAAABMg
+					AABIAgAAAAAAACAgAACEAgAAAAAAADAgAADo
+					AQAAAAAAAAHAAAAIAgAAAAAAABHAAAAUAAAA
+					AAAAABLAAAAYAgAAAAAAABDQAACwAgAAAAAA
+					AIDwAAC8AgAAAAAAAA==
+					</data>
+					<key>IsSHSprite</key>
+					<true/>
+					<key>PhysicProperties</key>
+					<dict>
+						<key>AngularDamping</key>
+						<real>0.0</real>
+						<key>AngularVelocity</key>
+						<real>0.0</real>
+						<key>CanSleep</key>
+						<true/>
+						<key>FixedRot</key>
+						<false/>
+						<key>GravityScale</key>
+						<real>1</real>
+						<key>HandledBySH</key>
+						<true/>
+						<key>IsBullet</key>
+						<false/>
+						<key>LinearDamping</key>
+						<real>0.0</real>
+						<key>LinearVelocity</key>
+						<string>{0, 0}</string>
+						<key>SH_ComplexShapes</key>
+						<array/>
+						<key>Type</key>
+						<integer>3</integer>
+					</dict>
+					<key>SHSheetName</key>
+					<string>Map</string>
+					<key>SHSpriteName</key>
+					<string>Water_2</string>
+					<key>SheetImage</key>
+					<string>Spritesheet_Map.png</string>
+					<key>SheetImage-HD</key>
+					<string>Spritesheet_Map-ipadhd.png</string>
+					<key>TextureProperties</key>
+					<dict>
+						<key>Angle</key>
+						<integer>0</integer>
+						<key>Border</key>
+						<integer>0</integer>
+						<key>CanBeTrimmed</key>
+						<true/>
+						<key>Color</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>ConvertedFromOldFormat</key>
+						<false/>
+						<key>CustomClassName</key>
+						<string></string>
+						<key>FlipX</key>
+						<false/>
+						<key>FlipY</key>
+						<false/>
+						<key>Frame</key>
+						<string>{{165, 0}, {8, 8}}</string>
+						<key>Frame-HD</key>
+						<string>{{660, 0}, {32, 32}}</string>
+						<key>Image</key>
+						<string>Spritesheet_Map.png</string>
+						<key>Image-HD</key>
+						<string>Spritesheet_Map-ipadhd.png</string>
+						<key>IsCropped</key>
+						<false/>
+						<key>IsDrawable</key>
+						<true/>
+						<key>IsRotated</key>
+						<false/>
+						<key>IsTrimmed</key>
+						<true/>
+						<key>Name</key>
+						<string>Water_2</string>
+						<key>Opacity</key>
+						<real>1</real>
+						<key>OriginalImage</key>
+						<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Map/Water_2.png</string>
+						<key>OriginalImage_RelativePath</key>
+						<string>../src-assets/images/Map/Water_2.png/</string>
+						<key>OriginalRect</key>
+						<string>{{0, 0}, {32, 32}}</string>
+						<key>OriginalSize</key>
+						<string>{32, 32}</string>
+						<key>Position</key>
+						<string>{660, 0}</string>
+						<key>Scale</key>
+						<string>{1, 1}</string>
+						<key>SpriteSize</key>
+						<string>{8, 8}</string>
+						<key>SpriteWasBreaked</key>
+						<false/>
+						<key>Tag</key>
+						<integer>0</integer>
+						<key>TextureOffset</key>
+						<string>{0, -0}</string>
+						<key>UsesBatchRendering</key>
+						<true/>
+						<key>ZOrder</key>
+						<integer>0</integer>
 					</dict>
 				</dict>
 			</dict>
@@ -3205,7 +3355,7 @@
 			<key>MaxSheetSize</key>
 			<integer>4096</integer>
 			<key>NpotSize</key>
-			<string>{1388, 2048}</string>
+			<string>{1388, 2560}</string>
 			<key>Padding</key>
 			<integer>8</integer>
 			<key>PixelFormat</key>
@@ -4578,7 +4728,7 @@
 				</dict>
 			</dict>
 			<key>Size</key>
-			<string>{2048, 2048}</string>
+			<string>{2048, 4096}</string>
 			<key>Trim</key>
 			<true/>
 			<key>ZOrder</key>
@@ -4721,9 +4871,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{61, 77}, {37.5, 37.5}}</string>
+						<string>{{61, 39}, {37.5, 37.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{244, 308}, {150, 150}}</string>
+						<string>{{244, 156}, {150, 150}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -4749,7 +4899,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{244, 308}</string>
+						<string>{244, 156}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -4872,9 +5022,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{23, 0}, {37.5, 37.5}}</string>
+						<string>{{61, 0}, {37.5, 37.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{92, 0}, {150, 150}}</string>
+						<string>{{244, 0}, {150, 150}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -4900,7 +5050,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{92, 0}</string>
+						<string>{244, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -5023,9 +5173,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{61, 0}, {37.5, 37.5}}</string>
+						<string>{{23, 0}, {37.5, 37.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{244, 0}, {150, 150}}</string>
+						<string>{{92, 0}, {150, 150}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -5051,7 +5201,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{244, 0}</string>
+						<string>{92, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -5325,9 +5475,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{61, 39}, {37.5, 37.5}}</string>
+						<string>{{23, 116}, {37.5, 37.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{244, 156}, {150, 150}}</string>
+						<string>{{92, 464}, {150, 150}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -5353,7 +5503,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{244, 156}</string>
+						<string>{92, 464}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -5476,9 +5626,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{23, 77}, {37.5, 37.5}}</string>
+						<string>{{61, 77}, {37.5, 37.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{92, 308}, {150, 150}}</string>
+						<string>{{244, 308}, {150, 150}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -5504,7 +5654,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{92, 308}</string>
+						<string>{244, 308}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -5627,9 +5777,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{23, 116}, {37.5, 37.5}}</string>
+						<string>{{23, 77}, {37.5, 37.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{92, 464}, {150, 150}}</string>
+						<string>{{92, 308}, {150, 150}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -5655,7 +5805,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{92, 464}</string>
+						<string>{92, 308}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -5913,7 +6063,7 @@
 									<string>{4, 18}</string>
 									<string>{0, 34}</string>
 									<string>{3, 57}</string>
-									<string>{8, 68}</string>
+									<string>{7.9999999999999991, 68}</string>
 									<string>{20, 79}</string>
 									<string>{26, 80}</string>
 									<string>{42, 73}</string>
