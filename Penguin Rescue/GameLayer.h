@@ -50,14 +50,10 @@ enum PROPAGATION_RESULT {
 	
 	GAME_STATE _state;
 	
-	int** _sharkMoveGrid;
-	int** _penguinMoveGrid;
 	int** _sharkMapfeaturesGrid;
 	int** _penguinMapfeaturesGrid;
 	NSMutableDictionary* _sharkMoveGridDatas;
 	NSMutableDictionary* _penguinMoveGridDatas;
-	bool _isUpdatingSharkMovementGrids;
-	int _nextMovementGridSharkIndexToUpdate;
 	
 	int _gridSize;
 	int _gridWidth;
@@ -101,10 +97,6 @@ enum PROPAGATION_RESULT {
 #define SCALING_FACTOR_V (IS_IPHONE ? 320.0/768.0 : 1.0)
 #define SCALING_FACTOR_GENERIC SCALING_FACTOR_V
 #define TARGET_FPS 60
-
-#define INITIAL_GRID_WEIGHT 25
-#define INITIAL_ENDPOINT_GRID_WEIGHT INITIAL_GRID_WEIGHT-1
-#define HARD_BORDER_WEIGHT 100
 
 #define SHARK_DIES_WHEN_STUCK false
 #define PENGUIN_MOVE_HISTORY_SIZE 20
