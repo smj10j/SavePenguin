@@ -777,7 +777,6 @@
 		AA54C685162BB27A00DF56D0 = {
 			isa = PBXGroup;
 			children = (
-				AA4C8D8C1637C53100C55554 /* SystemConfiguration.framework */,
 				AA54C6A6162BB27A00DF56D0 /* Penguin Rescue */,
 				AA54C693162BB27A00DF56D0 /* Frameworks */,
 				AA54C691162BB27A00DF56D0 /* Products */,
@@ -796,6 +795,7 @@
 		AA54C693162BB27A00DF56D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA4C8D8C1637C53100C55554 /* SystemConfiguration.framework */,
 				AA54C694162BB27A00DF56D0 /* QuartzCore.framework */,
 				AA54C696162BB27A00DF56D0 /* OpenGLES.framework */,
 				AA54C698162BB27A00DF56D0 /* OpenAL.framework */,
