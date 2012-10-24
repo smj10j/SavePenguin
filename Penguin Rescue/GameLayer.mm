@@ -9,6 +9,8 @@
 // Import the interfaces
 #import "GameLayer.h"
 
+#import "Flurry.h"
+
 // Not included in "cocos2d.h"
 #import "CCPhysicsSprite.h"
 
@@ -16,7 +18,7 @@
 #import "AppDelegate.h"
 
 
-#import "ToolSelectLayer.h"
+#import "MainMenuLayer.h"
 #import "MoveGridData.h"
 
 #pragma mark - GameLayer
@@ -28,22 +30,16 @@
 -(void) loadLevel:(NSString*)levelName inLevelPack:(NSString*)levelPack;
 -(void) drawHUD;
 
-//turn-by-turn control
--(void) moveSharks:(ccTime)dt;
--(void) movePenguins:(ccTime)dt;
-
 //different screens/layers/dialogs
 -(void) showTutorial;
 -(void) goToNextLevel;
--(void) showToolSelectLayer;
 
 //game control
 -(void) resume;
 -(void) pause;
 -(void) showInGameMenu;
 -(void) restart;
--(void) levelLostWithShark:(LHSprite*)shark andPenguin:(LHSprite*)penguin;
--(void) levelWon;
+
 
 
 @end
@@ -90,8 +86,11 @@
 		
 		//TODO: store and load the level from prefs using JSON files for next/prev
 		NSString* levelName = @"Introduction";
-		NSString* levelPack = @"Beach";
-		[self loadLevel:levelName inLevelPack:levelPack];
+		NSString* levelPack = @"Arctic";
+		
+		_levelName = levelName;
+		_levelPack = levelPack;
+		[self loadLevel:_levelName inLevelPack:_levelPack];
 		
 		//place the HUD items (pause, restart, etc.)
 		[self drawHUD];		
@@ -111,6 +110,13 @@
 		[director setAnimationInterval:1.0/TARGET_FPS];
 		[self scheduleUpdate];
 		
+		
+		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+			_levelName, @"Level_Name",
+			_levelPack, @"Level_Pack",
+		nil];
+
+		[Flurry logEvent:@"Play_Level" withParameters:flurryParams timed:YES];		
 	}
 	return self;
 }
@@ -497,6 +503,14 @@
 			//NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", _activeToolboxItem.uniqueName, (int)(100*scale));
 			NSLog(@"Placing toolbox item back into the HUD");
 			
+			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+				_levelName, @"Level_Name", 
+				_levelPack, @"Level_Pack",
+				_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
+				_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
+			nil];
+			[Flurry logEvent:@"Undo_Place_Toolbox_Item" withParameters:flurryParams];		
+			
 			_activeToolboxItem = nil;
 			
 		}else {
@@ -524,18 +538,17 @@
 -(void)onTouchEndedPlayPause:(LHTouchInfo*)info {
 	
 	if(_state == PLACE) {
-		_state = RUNNING;
+		[self resume];
 		[_playPauseButton setFrame:2];	//pause inactive
 		
 	}else if(_state == PAUSE) {
 		[self resume];
 		[_playPauseButton setFrame:2];	//pause inactive
-
+		
 	}else if(_state == RUNNING) {
 		[self pause];
 		[_playPauseButton setFrame:3];	//pause active
 		[_playPauseButton setFrame:0];	//play inactive
-
 	}
 
 	//TODO: the in-game menu will actually resume and toggling will not be necessary
@@ -558,8 +571,15 @@
 	if(_state == RUNNING) {
 		NSLog(@"Pausing game");
 		_state = PAUSE;
+		
+		[self showInGameMenu];
+
+		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+			_levelName, @"Level_Name", 
+			_levelPack, @"Level_Pack",
+		nil];
+		[Flurry logEvent:@"Pause_level" withParameters:flurryParams];		
 	}
-	[self showInGameMenu];
 }
 
 -(void) showInGameMenu {
@@ -572,9 +592,23 @@
 	if(_state == PAUSE) {
 		NSLog(@"Resuming game");
 		_state = RUNNING;
+		
+		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+			_levelName, @"Level_Name", 
+			_levelPack, @"Level_Pack",
+		nil];
+		[Flurry logEvent:@"Resume_level" withParameters:flurryParams];		
+		
 	}else if(_state == PLACE) {
 		NSLog(@"Starting game");
 		_state = RUNNING;
+		
+		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+			_levelName, @"Level_Name", 
+			_levelPack, @"Level_Pack",
+		nil];
+		[Flurry logEvent:@"Start_level" withParameters:flurryParams];		
+				
 	}
 }
 
@@ -585,6 +619,11 @@
 	if(_state == GAME_OVER) {
 		return;
 	}
+	
+	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+		@"Won", @"Level_Status",
+	nil];
+	[Flurry endTimedEvent:@"Play_Level" withParameters:flurryParams];
 	
 	NSLog(@"Showing level won animations");
 	//TODO: show some happy penguins (sharks offscreen)
@@ -600,6 +639,12 @@
 	if(_state == GAME_OVER) {
 		return;
 	}
+
+	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+		@"Lost", @"Level_Status",
+		@"Offscreen Penguin", @"Level_Lost_Reason",
+	nil];
+	[Flurry endTimedEvent:@"Play_Level" withParameters:flurryParams];
 
 	NSLog(@"Showing level lost animations for offscreen penguin");
 	
@@ -622,6 +667,12 @@
 		return;
 	}
 
+	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+		@"Lost", @"Level_Status",
+		@"Shark Collision", @"Level_Lost_Reason",
+	nil];
+	[Flurry endTimedEvent:@"Play_Level" withParameters:flurryParams];
+
 	NSLog(@"Showing level lost animations for penguin/shark collision");
 	
 	_state = GAME_OVER;
@@ -638,6 +689,13 @@
 }
 
 -(void) restart {
+
+	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+		@"Lost", @"Level_Status",
+		@"Restart", @"Level_Lost_Reason",
+	nil];
+	[Flurry endTimedEvent:@"Play_Level" withParameters:flurryParams];
+
 	NSLog(@"Restarting");
 	_state = GAME_OVER;
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer scene] ]];
@@ -655,8 +713,8 @@
 
 }
 
--(void) showToolSelectLayer {
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[ToolSelectLayer scene] ]];
+-(void) showMainMenuLayer {
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[MainMenuLayer scene] ]];
 	
 }
 
@@ -666,7 +724,6 @@
 	
 	//TODO: show a tutorial
 	
-	[self showToolSelectLayer];
 }
 
 
@@ -721,6 +778,16 @@
 		}
 		[_mainLayer addChild:_activeToolboxItem];
 
+
+		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+			_levelName, @"Level_Name", 
+			_levelPack, @"Level_Pack",
+			_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
+			_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
+			NSStringFromCGPoint(_activeToolboxItem.position), @"Location",
+		nil];
+		[Flurry logEvent:@"Place_Toolbox_Item" withParameters:flurryParams];				
+
 	
 		_activeToolboxItem = nil;
 		_moveActiveToolboxItemIntoWorld = false;
@@ -738,6 +805,13 @@
 			for(LHSprite* background in backgrounds) {
 				[background removeSelf];
 			}
+			
+			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+				_levelName, @"Level_Name", 
+				_levelPack, @"Level_Pack",
+			nil];
+			[Flurry logEvent:@"Debug_Sharks_Enabled" withParameters:flurryParams];		
+			
 		}
 		if(elapsed >= 2 && !__DEBUG_PENGUINS) {
 			NSLog(@"Enabling debug penguins");
@@ -748,6 +822,12 @@
 			for(LHSprite* background in backgrounds) {
 				[background removeSelf];
 			}
+			
+			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+				_levelName, @"Level_Name", 
+				_levelPack, @"Level_Pack",
+			nil];
+			[Flurry logEvent:@"Debug_Penguins_Enabled" withParameters:flurryParams];		
 		}
 	}
 	
@@ -939,8 +1019,8 @@
 		b2Vec2 prevVel = shark.body->GetLinearVelocity();
 		double targetVelX = dt * normalizedX;
 		double targetVelY = dt * normalizedY;
-		double weightedVelX = (prevVel.x * 4.0 + targetVelX)/5.0;
-		double weightedVelY = (prevVel.y * 4.0 + targetVelY)/5.0;
+		double weightedVelX = (prevVel.x * 9.0 + targetVelX)/10.0;
+		double weightedVelY = (prevVel.y * 9.0 + targetVelY)/10.0;
 		
 		//we're using an impulse for the shark so they interact with things like Debris (physics)
 		//shark.body->SetLinearVelocity(b2Vec2(weightedVelX,weightedVelY));
@@ -950,6 +1030,8 @@
 		double radians = atan2(weightedVelX, weightedVelY); //this grabs the radians for us
 		double degrees = CC_RADIANS_TO_DEGREES(radians) - 90; //90 is because the sprit is facing right
 		[shark transformRotation:degrees];
+		
+		//TODO: add a waddle animation
 	}
 	
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done moving %d sharks...", [sharks count]);
@@ -1083,14 +1165,14 @@
 		
 			//we're using an impulse for the penguin so they interact with things like Debris (physics)
 			penguin.body->ApplyLinearImpulse(b2Vec2(targetVelX*.1,targetVelY*.1), penguin.body->GetWorldCenter());
+			
+			//TODO: add a waddle animation
 		}
 	}
 
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done moving %d penguins...", [penguins count]);
 
 }
-
-//TODO: make all assets sized for HD iPad!
 
 //if this ever gets trigger then the penguins lost
 -(void) sharkPenguinCollision:(LHContactInfo*)contact

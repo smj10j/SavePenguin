@@ -841,7 +841,7 @@
 									<key>isStuck</key>
 									<false/>
 									<key>speed</key>
-									<real>30</real>
+									<real>40</real>
 								</dict>
 							</dict>
 							<key>NodeType</key>
@@ -2128,7 +2128,7 @@
 					<key>isStuck</key>
 					<false/>
 					<key>speed</key>
-					<real>30</real>
+					<real>40</real>
 				</dict>
 			</dict>
 			<dict>
@@ -2216,6 +2216,7 @@
 			<string>SLOWDOWN</string>
 			<string>SPEEDUP</string>
 			<string>TOOLBOX_ITEM_CONTAINER</string>
+			<string>BACKGROUND</string>
 		</array>
 		<key>ZoomValue</key>
 		<real>0.0</real>

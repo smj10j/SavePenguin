@@ -8,6 +8,8 @@
 
 #import "cocos2d.h"
 
+#import "Flurry.h"
+
 #import "AppDelegate.h"
 #import "IntroLayer.h"
 
@@ -17,6 +19,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+	//capture uncaught exceptions for logging
+	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+	
+	//start analytics
+	[Flurry startSession:@"6DDZY62RXJWGMWHGYVQ3"];
+
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
@@ -158,5 +167,23 @@
 	
 	[super dealloc];
 }
+
+
+
+
+
+
+
+
+
+
+
+//send uncaught exceptions to Flurry
+void uncaughtExceptionHandler(NSException *exception) {
+	NSLog(@"Uncaught exception: %@ - %@", exception.name, exception.reason);
+	[Flurry logError:@"Uncaught" message:@"Crash!" exception:exception];
+}
+
+
 @end
 
