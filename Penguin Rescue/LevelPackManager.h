@@ -10,6 +10,8 @@
 
 @interface LevelPackManager : NSObject
 
++(void)setupPaths;
+
 
 +(NSDictionary*)allLevelPacks;
 +(NSDictionary*)allLevelsInPack:(NSString*)packPath;
@@ -21,5 +23,23 @@
 +(NSArray*)availableLevelsInPack:(NSString*)packPath;
 
 
++(void)completeLevel:(NSString*)levelPath inPack:(NSString*)packPath;
+
+
++(NSString*)levelAfter:(NSString*)levelPath inPack:(NSString*)packPath;
+
 
 @end
+
+
+
+
+
+
+#define LEVELPACKMANAGER_KEY_USER_COMPLETED_LEVELS @"CompletedLevels"
+#define LEVELPACKMANAGER_KEY_USER_COMPLETED_PACKS @"CompletedPacks"
+
+#define LEVELPACKMANAGER_KEY_NAME @"Name"
+#define LEVELPACKMANAGER_KEY_PATH @"Path"
+#define LEVELPACKMANAGER_KEY_REQUIRES_PACK @"RequiresPack"
+#define LEVELPACKMANAGER_KEY_REQUIRES_NUM_PACK_LEVELS_COMPLETED @"RequiresNumPackLevelsCompleted"

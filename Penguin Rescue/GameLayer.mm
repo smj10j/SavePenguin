@@ -17,7 +17,7 @@
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
-
+#import "LevelSelectLayer.h"
 #import "MainMenuLayer.h"
 #import "MoveGridData.h"
 
@@ -250,12 +250,12 @@ static NSString* sLevelPath;
 	_menuPopupContainer = [_levelLoader createBatchSpriteWithName:@"Menu_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet"];
 	[_menuPopupContainer transformPosition: ccp(5*SCALING_FACTOR_H + _menuPopupContainer.boundingBox.size.width/2,
 												-_menuPopupContainer.boundingBox.size.height)];
-	LHSprite* mainMenuButton = [_levelLoader createSpriteWithName:@"Resume_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:_menuPopupContainer];
-	[mainMenuButton prepareAnimationNamed:@"Menu_Main_Menu_Button" fromSHScene:@"Spritesheet"];
-	[mainMenuButton transformPosition: ccp(_menuPopupContainer.boundingBox.size.width/2,
+	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:_menuPopupContainer];
+	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_Button" fromSHScene:@"Spritesheet"];
+	[levelsMenuButton transformPosition: ccp(_menuPopupContainer.boundingBox.size.width/2,
 										_menuPopupContainer.boundingBox.size.height/2) ];
-	[mainMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganMainMenu:)];
-	[mainMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedMainMenu:)];
+	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
+	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
 	
 	//get the toolbox item size for scaling purposes
 	LHSprite* toolboxContainer = [_levelLoader createBatchSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
@@ -569,6 +569,9 @@ static NSString* sLevelPath;
 		[self pause];
 		[_playPauseButton setFrame:3];	//pause active
 		[_playPauseButton setFrame:0];	//play inactive
+	}else if (_state == GAME_OVER) {
+		[self pause];
+		[_playPauseButton setFrame:2];	//pause inactive
 	}
 
 	__DEBUG_TOUCH_SECONDS = 0;
@@ -592,6 +595,16 @@ static NSString* sLevelPath;
 	[self showMainMenuLayer];
 }
 
+-(void)onTouchBeganLevelsMenu:(LHTouchInfo*)info {
+	[info.sprite setFrame:info.sprite.currentFrame+1];
+}
+
+-(void)onTouchEndedLevelsMenu:(LHTouchInfo*)info {
+	//TODO: still appers to occasionally cause crash????
+	[info.sprite removeTouchObserver];	//BUG in levelHelper causes a crash on subsequent presses if this isn't here
+	[self showLevelsMenuLayer];
+}
+
 -(void) pause {
 	if(_state == RUNNING) {
 		NSLog(@"Pausing game");
@@ -604,8 +617,8 @@ static NSString* sLevelPath;
 		[Flurry logEvent:@"Pause_level" withParameters:flurryParams];		
 
 
-		[self showInGameMenu];
 	}
+	[self showInGameMenu];
 }
 
 -(void) showInGameMenu {
@@ -657,6 +670,9 @@ static NSString* sLevelPath;
 		return;
 	}
 	
+	//store the level as being completed
+	[LevelPackManager completeLevel:_levelPath inPack:_levelPackPath];
+	
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"Won", @"Level_Status",
 	nil];
@@ -667,8 +683,8 @@ static NSString* sLevelPath;
 	
 	_state = GAME_OVER;
 
-	//TODO: go to next level
-	//[self goToNextLevel];
+	//go to next level
+	[self goToNextLevel];
 }
 
 -(void) levelLostWithOffscreenPenguin:(LHSprite*)penguin {
@@ -745,14 +761,26 @@ static NSString* sLevelPath;
 
 
 -(void) goToNextLevel {
-	//TODO: determine next level by examining JSON file
-	NSLog(@"Going to next level");
-
+	NSString* nextLevelPath = [LevelPackManager levelAfter:_levelPath inPack:_levelPackPath];
+	NSLog(@"Going to next level %@", nextLevelPath);
+	
+	if(nextLevelPath == nil) {
+		//TODO: show some kind of pack completed notification
+		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer scene] ]];
+	
+	}else {
+		[GameLayer setLevelPackPath:sLevelPackPath];
+		[GameLayer setLevelPath:nextLevelPath];
+		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer scene] ]];
+	}
 }
 
 -(void) showMainMenuLayer {
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[MainMenuLayer scene] ]];
-	
+}
+
+-(void) showLevelsMenuLayer {
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[LevelSelectLayer scene] ]];
 }
 
 -(void) showTutorial {

@@ -12,6 +12,7 @@
 
 #import "AppDelegate.h"
 #import "IntroLayer.h"
+#import "LevelPackManager.h"
 
 @implementation AppController
 
@@ -27,7 +28,7 @@
 	//[Flurry setDebugLogEnabled:true];
 	//[Flurry setShowErrorInLogEnabled:true];
 	[Flurry startSession:@"6DDZY62RXJWGMWHGYVQ3"];
-
+	
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	

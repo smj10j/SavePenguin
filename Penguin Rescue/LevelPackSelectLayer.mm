@@ -93,19 +93,30 @@
 	for(int i = 0; i < _levelPacksDictionary.count; i++) {
 
 		NSDictionary* levelPackData = [_levelPacksDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
-		NSString* levelPackName = [levelPackData objectForKey:@"Name"];
+		NSString* levelPackName = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_NAME];
 
 		//create the sprite
 		LHSprite* levelPackButton;
 		
-		if([_availableLevelPacks containsObject:levelPackName]) {
+		if([_completedLevelPacks containsObject:levelPackName]) {
+			NSLog(@"Pack %@ is completed!", levelPackName);
+
+			levelPackButton = [_levelLoader createSpriteWithName:@"Completed_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+			[levelPackButton prepareAnimationNamed:@"Menu_Completed_Level_Select_Button" fromSHScene:@"Spritesheet"];
+						
+			//used when clicking the sprite
+			[_spriteNameToLevelPackPath setObject:[levelPackData objectForKey:LEVELPACKMANAGER_KEY_PATH] forKey:levelPackButton.uniqueName];
+			[levelPackButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelSelect:)];
+			[levelPackButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelSelect:)];
+					
+		}else if([_availableLevelPacks containsObject:levelPackName]) {
 			NSLog(@"Pack %@ is available!", levelPackName);
 
 			levelPackButton = [_levelLoader createSpriteWithName:@"Available_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 			[levelPackButton prepareAnimationNamed:@"Menu_Available_Level_Select_Button" fromSHScene:@"Spritesheet"];
 						
 			//used when clicking the sprite
-			[_spriteNameToLevelPackPath setObject:[levelPackData objectForKey:@"Path"] forKey:levelPackButton.uniqueName];
+			[_spriteNameToLevelPackPath setObject:[levelPackData objectForKey:LEVELPACKMANAGER_KEY_PATH] forKey:levelPackButton.uniqueName];
 			[levelPackButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelSelect:)];
 			[levelPackButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelSelect:)];
 					
