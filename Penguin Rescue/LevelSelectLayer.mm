@@ -46,24 +46,45 @@
 		//create a LevelHelperLoader object - we use an empty level
 		_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", @"Menu", @"Blank"]];
 		
-		_playButton = [_levelLoader createSpriteWithName:@"Available_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
-		[_playButton prepareAnimationNamed:@"Menu_Level_Select_Button" fromSHScene:@"Spritesheet"];
-		[_playButton transformPosition: ccp(winSize.width/2, winSize.height/2)];
-		[_playButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelSelect:)];
-		[_playButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelSelect:)];
+		LHSprite* levelButton = [_levelLoader createSpriteWithName:@"Available_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+		[levelButton prepareAnimationNamed:@"Menu_Level_Select_Button" fromSHScene:@"Spritesheet"];
+		[levelButton transformPosition: ccp(winSize.width/2, winSize.height/2)];
+		[levelButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelSelect:)];
+		[levelButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelSelect:)];
 		
+		
+		
+		
+		LHSprite* backButton = [_levelLoader createSpriteWithName:@"Back_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+		[backButton prepareAnimationNamed:@"Menu_Back_Button" fromSHScene:@"Spritesheet"];
+		[backButton transformPosition: ccp(20*SCALING_FACTOR_H + backButton.boundingBox.size.width/2,
+											20*SCALING_FACTOR_V + backButton.boundingBox.size.height/2)];
+		[backButton registerTouchBeganObserver:self selector:@selector(onTouchBeganBack:)];
+		[backButton registerTouchEndedObserver:self selector:@selector(onTouchEndedBack:)];
+
 	}
 	
 	return self;
 }
 
 -(void)onTouchBeganLevelSelect:(LHTouchInfo*)info {
-	[_playButton setFrame:_playButton.currentFrame+1];	//active state
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 }
 
 -(void)onTouchEndedLevelSelect:(LHTouchInfo*)info {
-	[_playButton setFrame:_playButton.currentFrame-1];	//inactive state
+	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer scene] ]];
+}
+
+
+
+-(void)onTouchBeganBack:(LHTouchInfo*)info {
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
+}
+
+-(void)onTouchEndedBack:(LHTouchInfo*)info {
+	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[MainMenuLayer scene] ]];
 }
 
 

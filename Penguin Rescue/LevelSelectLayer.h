@@ -16,7 +16,6 @@
 {
 	LevelHelperLoader* _levelLoader;
 	
-	LHSprite* _playButton;
 
 }
 
