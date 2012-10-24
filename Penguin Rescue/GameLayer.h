@@ -66,6 +66,7 @@ enum PROPAGATION_RESULT {
 	LHSprite* _bottomBarContainer;
 	LHSprite* _playPauseButton;
 	LHSprite* _restartButton;
+	LHSprite* _menuPopupContainer;
 	
 	bool _moveActiveToolboxItemIntoWorld;
 	LHSprite* _activeToolboxItem;

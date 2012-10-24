@@ -229,13 +229,23 @@
 	[_playPauseButton transformPosition: ccp(_playPauseButton.boundingBox.size.width/2+HUD_BUTTON_MARGIN_H,_playPauseButton.boundingBox.size.height/2+HUD_BUTTON_MARGIN_V)];
 	[_playPauseButton registerTouchBeganObserver:self selector:@selector(onTouchBeganPlayPause:)];
 	[_playPauseButton registerTouchEndedObserver:self selector:@selector(onTouchEndedPlayPause:)];
-	
-	
+		
 	_restartButton = [_levelLoader createBatchSpriteWithName:@"Restart_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[_restartButton prepareAnimationNamed:@"Restart_Button" fromSHScene:@"Spritesheet"];
 	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.boundingBox.size.width/2+HUD_BUTTON_MARGIN_H),_restartButton.boundingBox.size.height/2+HUD_BUTTON_MARGIN_V) ];
 	[_restartButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[_restartButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
+	
+	
+	_menuPopupContainer = [_levelLoader createBatchSpriteWithName:@"Menu_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet"];
+	[_menuPopupContainer transformPosition: ccp(5*SCALING_FACTOR_H + _menuPopupContainer.boundingBox.size.width/2,
+												-_menuPopupContainer.boundingBox.size.height)];
+	LHSprite* mainMenuButton = [_levelLoader createSpriteWithName:@"Resume_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:_menuPopupContainer];
+	[mainMenuButton prepareAnimationNamed:@"Menu_Main_Menu_Button" fromSHScene:@"Spritesheet"];
+	[mainMenuButton transformPosition: ccp(_menuPopupContainer.boundingBox.size.width/2,
+										_menuPopupContainer.boundingBox.size.height/2) ];
+	[mainMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganMainMenu:)];
+	[mainMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedMainMenu:)];
 	
 	//get the toolbox item size for scaling purposes
 	LHSprite* toolboxContainer = [_levelLoader createBatchSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
@@ -551,20 +561,23 @@
 		[_playPauseButton setFrame:0];	//play inactive
 	}
 
-	//TODO: the in-game menu will actually resume and toggling will not be necessary
-
-
-
 	__DEBUG_TOUCH_SECONDS = 0;
 }
 
 -(void)onTouchBeganRestart:(LHTouchInfo*)info {
-	[_restartButton setFrame:_restartButton.currentFrame+1];
+	[info.sprite setFrame:info.sprite.currentFrame+1];
 }
 
 -(void)onTouchEndedRestart:(LHTouchInfo*)info {
-	[_restartButton setFrame:_restartButton.currentFrame-1];
 	[self restart];
+}
+
+-(void)onTouchBeganMainMenu:(LHTouchInfo*)info {
+	[info.sprite setFrame:info.sprite.currentFrame+1];
+}
+
+-(void)onTouchEndedMainMenu:(LHTouchInfo*)info {
+	[self showMainMenuLayer];
 }
 
 -(void) pause {
@@ -572,20 +585,29 @@
 		NSLog(@"Pausing game");
 		_state = PAUSE;
 		
-		[self showInGameMenu];
-
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 			_levelName, @"Level_Name", 
 			_levelPack, @"Level_Pack",
 		nil];
 		[Flurry logEvent:@"Pause_level" withParameters:flurryParams];		
+
+
+		[self showInGameMenu];
 	}
 }
 
 -(void) showInGameMenu {
 	NSLog(@"Showing in-game menu");
-	//TODO: show an in-game menu
-	// - show levels, go to main menu, resume
+
+	[_menuPopupContainer runAction:[CCMoveTo actionWithDuration:0.75f position:
+								ccp(5*SCALING_FACTOR_H + _menuPopupContainer.boundingBox.size.width/2,
+									_menuPopupContainer.boundingBox.size.height/2 - 5)]];
+}
+
+-(void) hideInGameMenu {
+	[_menuPopupContainer runAction:[CCMoveTo actionWithDuration:0.75f position:
+								ccp(5*SCALING_FACTOR_H + _menuPopupContainer.boundingBox.size.width/2,
+									-_menuPopupContainer.boundingBox.size.height)]];
 }
 
 -(void) resume {
@@ -598,7 +620,9 @@
 			_levelPack, @"Level_Pack",
 		nil];
 		[Flurry logEvent:@"Resume_level" withParameters:flurryParams];		
-		
+
+		[self hideInGameMenu];
+			
 	}else if(_state == PLACE) {
 		NSLog(@"Starting game");
 		_state = RUNNING;
@@ -607,9 +631,10 @@
 			_levelName, @"Level_Name", 
 			_levelPack, @"Level_Pack",
 		nil];
-		[Flurry logEvent:@"Start_level" withParameters:flurryParams];		
-				
+		[Flurry logEvent:@"Start_level" withParameters:flurryParams];
+
 	}
+	
 }
 
 
@@ -1339,10 +1364,18 @@
 
 -(void) dealloc
 {
+	NSLog(@"GameLayer dealloc");
+
 	[self pause];
 	[self unscheduleAllSelectors];
 	[self unscheduleUpdate];
 
+	/*
+	for(LHSprite* sprite in [_levelLoader allSprites]) {
+		[sprite removeTouchObserver];
+	}
+	*/
+	
 	[_sharkMoveGridDatas removeAllObjects];
 	[_penguinMoveGridDatas removeAllObjects];
 	free(_penguinMapfeaturesGrid);
