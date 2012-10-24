@@ -577,6 +577,7 @@
 }
 
 -(void)onTouchEndedMainMenu:(LHTouchInfo*)info {
+	[info.sprite removeTouchObserver];	//BUG in levelHelper causes a crash on subsequent presses if this isn't here
 	[self showMainMenuLayer];
 }
 
@@ -1370,12 +1371,6 @@
 	[self unscheduleAllSelectors];
 	[self unscheduleUpdate];
 
-	/*
-	for(LHSprite* sprite in [_levelLoader allSprites]) {
-		[sprite removeTouchObserver];
-	}
-	*/
-	
 	[_sharkMoveGridDatas removeAllObjects];
 	[_penguinMoveGridDatas removeAllObjects];
 	free(_penguinMapfeaturesGrid);
