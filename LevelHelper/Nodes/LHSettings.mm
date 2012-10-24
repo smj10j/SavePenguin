@@ -45,6 +45,7 @@
 @synthesize preloadBatchNodes;
 @synthesize device;
 @synthesize safeFrame;
+@synthesize userOffset;
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 + (LHSettings*)sharedInstance{
@@ -248,11 +249,16 @@ computedFile = [NSString stringWithFormat:@"%@%@.%@",
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     CGPoint pos_offset = [self possitionOffset];
+    CGPoint user_offset = [self userOffset];
     CGPoint  wbConv = [self convertRatio];
     
     point.x += pos_offset.x/2.0f;
     point.y += pos_offset.y/2.0f;
 
+    point.x += user_offset.x/2.0f;
+    point.y += user_offset.y/2.0f;
+
+    
     point.x *= wbConv.x;
     point.y  = winSize.height - point.y*wbConv.y;
     
@@ -351,8 +357,10 @@ computedFile = [NSString stringWithFormat:@"%@%@.%@",
 
 -(bool)isIphone5{
     
-    if([[CCDirector sharedDirector] winSizeInPixels].width == 1136 ||
-       [[CCDirector sharedDirector] winSizeInPixels].height == 1136)
+    if([[CCDirector sharedDirector] winSize].width == 568 ||
+       [[CCDirector sharedDirector] winSize].height == 568)
+//    if([[CCDirector sharedDirector] winSizeInPixels].width == 1136 ||
+//       [[CCDirector sharedDirector] winSizeInPixels].height == 1136)
         return YES;
     
     return NO;
@@ -424,7 +432,7 @@ computedFile = [NSString stringWithFormat:@"%@%@.%@",
                 convertRatio.x = 1.0f;
                 convertRatio.y = 1.0f;
                 
-                if([[CCDirector sharedDirector] winSizeInPixels].width == 1136.0f)
+                if((int)[[CCDirector sharedDirector] winSize].width == 568)
                 {
                     possitionOffset.x = 88.0f;
                     possitionOffset.y = 0.0f;

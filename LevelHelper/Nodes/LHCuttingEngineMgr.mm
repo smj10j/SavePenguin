@@ -379,7 +379,7 @@ public:
     }
 
     CGRect oldRect = [oldSprite originalRect];
-        
+    
     CCTexture2D* oldTexture = [[CCTextureCache sharedTextureCache] addImage:[oldSprite imageFile]];
     
     CCSprite* tempOrigSprite = [CCSprite spriteWithTexture:oldTexture rect:oldRect];
@@ -405,9 +405,9 @@ public:
     [mShaderProgram use];
     
 #if COCOS2D_VERSION >= 0x00020100
-    [shaderProgram_ setUniformsForBuiltins];
+    [mShaderProgram setUniformsForBuiltins];
 #else
-    [shaderProgram_ setUniformForModelViewProjectionMatrix];
+    [mShaderProgram setUniformForModelViewProjectionMatrix];
 #endif
     
 	ccVertex2F* verts = new ccVertex2F[count];
@@ -476,7 +476,7 @@ public:
     
     [myCutTexture end];
     
-    LHSprite* sprCut = [LHSprite spriteWithTexture:myCutTexture.sprite.texture];    
+    LHSprite* sprCut = [LHSprite spriteWithTexture:myCutTexture.sprite.texture];
     
     if(sprCut)
     {

@@ -31,6 +31,12 @@ static int untitledLayersCount = 0;
 
 #ifndef LH_ARC_ENABLED
     [uniqueName release];
+    
+    if(userCustomInfo){
+        [userCustomInfo release];
+        userCustomInfo = nil;
+    }
+
 	[super dealloc];
 #endif
 }
@@ -55,6 +61,8 @@ static int untitledLayersCount = 0;
         for(NSDictionary* childDict in childrenInfo){
             [self addChildFromDictionary:childDict];
         }
+        
+        [self loadUserCustomInfoFromDictionary:[dictionary objectForKey:@"CustomClassInfo"]];
     }
     return self;
 }
@@ -118,6 +126,30 @@ static int untitledLayersCount = 0;
         LHLayer* layer = [LHLayer layerWithDictionary:childDict];
         [self addChild:layer z:[layer zOrder]];
     }
+}
+-(void) loadUserCustomInfoFromDictionary:(NSDictionary*)dictionary{
+    userCustomInfo = nil;
+    if(!dictionary)return;
+    
+    NSString* className = [dictionary stringForKey:@"ClassName"];
+    Class customClass = NSClassFromString(className);
+    
+    if(!customClass) return;
+    
+    userCustomInfo = [customClass performSelector:@selector(customClassInstance)];
+#ifndef LH_ARC_ENABLED
+    [userCustomInfo retain];
+#endif
+    [userCustomInfo performSelector:@selector(setPropertiesFromDictionary:) withObject:[dictionary objectForKey:@"ClassRepresentation"]];
+}
+-(NSString*)userInfoClassName{
+    if(userCustomInfo)
+        return NSStringFromClass([userCustomInfo class]);
+    return @"No Class";
+}
+//------------------------------------------------------------------------------
+-(id)userInfo{
+    return userCustomInfo;
 }
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------

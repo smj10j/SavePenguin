@@ -54,6 +54,12 @@ static int untitledBatchCount = 0;
     [uniqueName release];
     [imagePath release];
     [shFile release];
+
+    if(userCustomInfo){
+        [userCustomInfo release];
+        userCustomInfo = nil;
+    }
+
 	[super dealloc];
 #endif
 }
@@ -116,6 +122,8 @@ static int untitledBatchCount = 0;
                 [self addChildFromDictionary:childDict];
             }
         }
+        
+        [self loadUserCustomInfoFromDictionary:[dictionary objectForKey:@"CustomClassInfo"]];
     }
     return self;
 }
@@ -157,6 +165,32 @@ static int untitledBatchCount = 0;
     return nil;
 }
 //------------------------------------------------------------------------------
+-(void) loadUserCustomInfoFromDictionary:(NSDictionary*)dictionary{
+    userCustomInfo = nil;
+    if(!dictionary)return;
+    
+    NSString* className = [dictionary stringForKey:@"ClassName"];
+    Class customClass = NSClassFromString(className);
+    
+    if(!customClass) return;
+    
+    userCustomInfo = [customClass performSelector:@selector(customClassInstance)];
+#ifndef LH_ARC_ENABLED
+    [userCustomInfo retain];
+#endif
+    [userCustomInfo performSelector:@selector(setPropertiesFromDictionary:) withObject:[dictionary objectForKey:@"ClassRepresentation"]];
+}
+-(NSString*)userInfoClassName{
+    if(userCustomInfo)
+        return NSStringFromClass([userCustomInfo class]);
+    return @"No Class";
+}
+//------------------------------------------------------------------------------
+-(id)userInfo{
+    return userCustomInfo;
+}
+
+
 -(void)addChildFromDictionary:(NSDictionary*)childDict
 {
     if([[childDict stringForKey:@"NodeType"] isEqualToString:@"LHSprite"])

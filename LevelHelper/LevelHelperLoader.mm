@@ -344,6 +344,9 @@ CGSize  LHSizeFromString(NSString* val){
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
++(void) loadLevelsWithOffset:(CGPoint)offset{
+    [[LHSettings sharedInstance] setUserOffset:offset];
+}
 +(void) dontStretchArt{
     [[LHSettings sharedInstance] setStretchArt:false];
 }
@@ -421,6 +424,29 @@ CGSize  LHSizeFromString(NSString* val){
 	}
     return jointsWithTag;
 }
+
+-(void)removeAllPhysics{
+
+#ifdef LH_USE_BOX2D
+    NSArray* allSprites = [self allSprites];
+    for (LHSprite* aSprite in allSprites) {
+        [aSprite makeNoPhysics];
+    }
+    
+    [[LHCuttingEngineMgr sharedInstance] destroyAllPrevioslyCutSprites];
+#endif
+    
+    [jointsInLevel removeAllObjects];
+    [physicBoundariesInLevel removeAllObjects];
+    
+#ifdef LH_USE_BOX2D
+    if(nil != contactNode){
+        [contactNode removeFromParentAndCleanup:YES];
+    }
+#endif
+    
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 -(NSDictionary*)dictionaryInfoForSpriteNodeNamed:(NSString*)name 
@@ -1113,8 +1139,8 @@ CGSize  LHSizeFromString(NSString* val){
 -(void) createPhysicBoundaries:(b2World*)_world{
     CGPoint  wbConv = [[LHSettings sharedInstance] realConvertRatio];
     if(_world == NULL)
-        return;
-    [self createPhysicBoundariesHelper:_world convertRatio:wbConv offset:CGPointMake(0.0f, 0.0f)];
+        return;    
+    [self createPhysicBoundariesHelper:_world convertRatio:wbConv offset:CGPointZero];
 }
 //------------------------------------------------------------------------------
 -(void) removePhysicBoundaries{    

@@ -106,6 +106,8 @@
     bool r_mouseDownStarted;
 #endif
 
+    
+    id  userCustomInfo;
 }
 @property (readonly) bool isClosed;
 @property (readonly) bool isTile;
@@ -180,5 +182,9 @@
 -(void)setCollisionFilterMask:(int)mask;
 -(void)setCollisionFilterGroup:(int)group;
 #endif
+
+//------------------------------------------------------------------------------
+-(NSString*)userInfoClassName;
+-(id)userInfo;
 
 @end	

@@ -74,7 +74,8 @@ enum LevelHelper_TAG
 	SLOWDOWN 			= 10,
 	SPEEDUP 			= 11,
 	TOOLBOX_ITEM_CONTAINER 			= 12,
-	NUMBER_OF_TAGS 	= 13
+	BACKGROUND 			= 13,
+	NUMBER_OF_TAGS 	= 14
 };
 
 CGSize  LHSizeFromString(NSString* val);
@@ -140,6 +141,17 @@ NSValue* LHValueWithCGPoint(CGPoint pt);
 //------------------------------------------------------------------------------
 
 //UTILITIES
+//The offset value is not transformed and is device dependend
+//You must apply this offset based on device. To test for the device you eighter use one of the
+//ios specific method to get the device or test for the winSize using CCDirector
+//for iPhone5 if you want to make the level to be positioned starting from the left-centered corner rather then in the center
+//the offset should be CGPointMake(-88, 0)
+//for iPad if you want to make the level to be positioned starting from the left-centered corner rather then in the center
+//the offset should be CGPointMake(-32,0);
+//left-top corner should be CGPointMake(-32,-64);
+//THIS METHOD SHOULD BE USED TOGETHER WITH dontStretchArt
++(void) loadLevelsWithOffset:(CGPoint)offset;
+
 +(void) dontStretchArtOnIpad DEPRECATED_ATTRIBUTE;
 +(void) dontStretchArt;
 +(void) useRetinaOnIpad:(bool)useRet DEPRECATED_ATTRIBUTE;
@@ -186,6 +198,11 @@ NSValue* LHValueWithCGPoint(CGPoint pt);
  any of the objects
  
  */
+
+//in cases where you cannot control when the box2d world is deleted
+//you may want to call this method prior releasing the LevelHelperLoader instance so that you
+//dont get an crash when cocos2d removes the sprites and box2d world object is no longer alive
+-(void)removeAllPhysics;
 
 
 
@@ -359,6 +376,7 @@ NSValue* LHValueWithCGPoint(CGPoint pt);
 +(void)removeTouchDispatcherFromObject:(id)object;
 ////////////////////////////////////////////////////////////////////////////////
 @end
+
 
 
 

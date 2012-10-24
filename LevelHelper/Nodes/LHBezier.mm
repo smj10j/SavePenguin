@@ -166,6 +166,12 @@ typedef struct lhV3F_Line
 #endif
     
 #ifndef LH_ARC_ENABLED    
+    
+    if(userCustomInfo){
+        [userCustomInfo release];
+        userCustomInfo = nil;
+    }
+    
     if(touchBeginObserver)
         [touchBeginObserver release];
     if(touchBeginObserver)
@@ -240,15 +246,13 @@ typedef struct lhV3F_Line
     
     float scale = 1;
 
-#if COCOS2D_VERSION < 0x00020000    
-#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-    scale = [[CCDirector sharedDirector] contentScaleFactor];
-#endif
-#endif    
-    //    NSLog(@"INIT TILE %@", dictionary);
+    if([[LHSettings sharedInstance] isIphone5])
+        scale = [[CCDirector sharedDirector] contentScaleFactor];
     
 	CGPoint convert = [[LHSettings sharedInstance] convertRatio];
-    
+    CGPoint pos_offset = [[LHSettings sharedInstance] possitionOffset];
+    CGPoint user_offset = [[LHSettings sharedInstance] userOffset];
+
 	for(NSArray* fix in fixtures)
 	{
 		NSMutableArray* triangle = [[NSMutableArray alloc] init];
@@ -256,14 +260,17 @@ typedef struct lhV3F_Line
 		{
 			CGPoint point = LHPointFromString(pt);
 			
-            CGPoint pos_offset = [[LHSettings sharedInstance] possitionOffset];
+            
             
 			point.x = point.x* convert.x;
 			point.y = winSize.height - point.y*convert.y;
             
-            point.x += pos_offset.x;
-            point.y -= pos_offset.y;
-            
+            point.x += pos_offset.x/scale;
+            point.y -= pos_offset.y/scale;
+
+            point.x += user_offset.x/scale;
+            point.y -= user_offset.y/scale;
+
 			[triangle addObject:LHValueWithCGPoint(point)];
 		}
 		
@@ -287,9 +294,7 @@ typedef struct lhV3F_Line
 			CGPoint startCtrlPt = [curvDict pointForKey:@"StartControlPoint"];
 			CGPoint endPt       = [curvDict pointForKey:@"EndPoint"];
 			CGPoint startPt     = [curvDict pointForKey:@"StartPoint"];
-			
-            CGPoint pos_offset = [[LHSettings sharedInstance] possitionOffset];
-            
+			            
 			if(!isLine)
 			{
 				CGPoint prevPoint;
@@ -310,17 +315,24 @@ typedef struct lhV3F_Line
 						CGPoint pt2 = CGPointMake(vPoint.x*convert.x, 
 												  winSize.height - vPoint.y*convert.y);
 						
-                        pt1.x *= scale;
-                        pt1.y *= scale;
+//                        pt1.x *= scale;
+//                        pt1.y *= scale;
+//                        
+//                        pt2.x *= scale;
+//                        pt2.y *= scale;
                         
-                        pt2.x *= scale;
-                        pt2.y *= scale;
+                        pt1.x += pos_offset.x/scale;
+                        pt1.y -= pos_offset.y/scale;
                         
-                        pt1.x += pos_offset.x;
-                        pt1.y -= pos_offset.y;
+                        pt2.x += pos_offset.x/scale;
+                        pt2.y -= pos_offset.y/scale;
                         
-                        pt2.x += pos_offset.x;
-                        pt2.y -= pos_offset.y;
+                        pt1.x += user_offset.x;
+                        pt1.y -= user_offset.y;
+                        
+                        pt2.x += user_offset.x;
+                        pt2.y -= user_offset.y;
+                        
                         
 						[linesHolder addObject:LHValueWithCGPoint(pt1)];
 						[linesHolder addObject:LHValueWithCGPoint(pt2)];
@@ -337,17 +349,25 @@ typedef struct lhV3F_Line
 				CGPoint pos2 = CGPointMake(endPt.x*convert.x, 
 										   winSize.height - endPt.y*convert.y);
 				
-                pos1.x *= scale;
-                pos1.y *= scale;
+//                pos1.x *= scale;
+//                pos1.y *= scale;
+//                
+//                pos2.x *= scale;
+//                pos2.y *= scale;
                 
-                pos2.x *= scale;
-                pos2.y *= scale;
+                pos1.x += pos_offset.x/scale;
+                pos1.y -= pos_offset.y/scale;
                 
-                pos1.x += pos_offset.x;
-                pos1.y -= pos_offset.y;
+                pos2.x += pos_offset.x/scale;
+                pos2.y -= pos_offset.y/scale;
                 
-                pos2.x += pos_offset.x;
-                pos2.y -= pos_offset.y;
+                
+                pos1.x += user_offset.x/scale;
+                pos1.y -= user_offset.y/scale;
+                
+                pos2.x += user_offset.x/scale;
+                pos2.y -= user_offset.y/scale;
+
                 
 				[linesHolder addObject:LHValueWithCGPoint(pos1)];
 				[linesHolder addObject:LHValueWithCGPoint(pos2)];
@@ -687,6 +707,7 @@ typedef struct lhV3F_Line
         tagTouchMovedObserver = nil;
         tagTouchEndedObserver = nil;
         
+         [self loadUserCustomInfoFromDictionary:[dictionary objectForKey:@"CustomClassInfo"]];
         
         [LevelHelperLoader setTouchDispatcherForObject:self tag:(int)self.tag];
 	}
@@ -1502,4 +1523,29 @@ typedef struct lhV3F_Line
 #endif
 //------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------
+-(void) loadUserCustomInfoFromDictionary:(NSDictionary*)dictionary{
+    userCustomInfo = nil;
+    if(!dictionary)return;
+    
+    NSString* className = [dictionary stringForKey:@"ClassName"];
+    Class customClass = NSClassFromString(className);
+    
+    if(!customClass) return;
+    
+    userCustomInfo = [customClass performSelector:@selector(customClassInstance)];
+#ifndef LH_ARC_ENABLED
+    [userCustomInfo retain];
+#endif
+    [userCustomInfo performSelector:@selector(setPropertiesFromDictionary:) withObject:[dictionary objectForKey:@"ClassRepresentation"]];
+}
+-(NSString*)userInfoClassName{
+    if(userCustomInfo)
+        return NSStringFromClass([userCustomInfo class]);
+    return @"No Class";
+}
+//------------------------------------------------------------------------------
+-(id)userInfo{
+    return userCustomInfo;
+}
 @end

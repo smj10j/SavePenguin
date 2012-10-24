@@ -327,10 +327,10 @@
 	
 	//draw the background water tiles
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
-	LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water_1" fromSheet:@"Map" fromSHFile:@"Spritesheet" parent:_mainLayer];
+	LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water_1" fromSheet:@"Map" fromSHFile:@"Spritesheet" tag:BACKGROUND parent:_mainLayer];
 	for(int x = -waterTile.boundingBox.size.width/2; x < winSize.width + waterTile.boundingBox.size.width/2; ) {
 		for(int y = -waterTile.boundingBox.size.height/2; y < winSize.height + waterTile.boundingBox.size.width/2; ) {
-			LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water_1" fromSheet:@"Map" fromSHFile:@"Spritesheet" parent:_mapBatchNode];
+			LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water_1" fromSheet:@"Map" fromSHFile:@"Spritesheet" tag:BACKGROUND parent:_mapBatchNode];
 			[waterTile setZOrder:0];
 			[waterTile transformPosition:ccp(x,y)];
 			y+= waterTile.boundingBox.size.height;
@@ -729,18 +729,25 @@
 	
 	if(__DEBUG_TOUCH_SECONDS != 0) {
 		double elapsed = ([[NSDate date] timeIntervalSince1970] - __DEBUG_TOUCH_SECONDS);
-		if(elapsed >= 1) {
+		if(elapsed >= 1 && !__DEBUG_SHARKS) {
 			NSLog(@"Enabling debug sharks");
-			__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
-			self.color = ccBLACK;
 			__DEBUG_SHARKS = true;
-			
-		}
-		if(elapsed >= 2) {
-			NSLog(@"Enabling debug penguins");
 			__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
 			self.color = ccBLACK;
+			NSArray* backgrounds = [_levelLoader spritesWithTag:BACKGROUND];
+			for(LHSprite* background in backgrounds) {
+				[background removeSelf];
+			}
+		}
+		if(elapsed >= 2 && !__DEBUG_PENGUINS) {
+			NSLog(@"Enabling debug penguins");
 			__DEBUG_PENGUINS = true;
+			__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
+			self.color = ccBLACK;
+			NSArray* backgrounds = [_levelLoader spritesWithTag:BACKGROUND];
+			for(LHSprite* background in backgrounds) {
+				[background removeSelf];
+			}
 		}
 	}
 	
@@ -1161,6 +1168,67 @@
 
 
 
+
+
+
+
+
+-(void) drawDebugMovementGrid {
+
+	if(__DEBUG_SHARKS || __DEBUG_PENGUINS) {
+
+		MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:@"Penguin"];
+		const int** penguinMoveGrid = nil;
+		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:@"Shark"];
+		const int** sharkMoveGrid = nil;
+		if(penguinMoveGridData != nil) {
+			penguinMoveGrid = [penguinMoveGridData moveGrid];
+		}
+		if(sharkMoveGridData != nil) {
+			sharkMoveGrid = [sharkMoveGridData moveGrid];
+		}
+		
+		double max = _gridWidth*4;
+		ccPointSize(_gridSize-1);
+		for(int x = 0; x < _gridWidth; x++) {
+			for(int y = 0; y < _gridHeight; y++) {
+				if(__DEBUG_PENGUINS && penguinMoveGrid != nil) {
+					int pv = (penguinMoveGrid[x][y]);
+					ccDrawColor4B(0,0,(pv/max)*255,50);
+					ccDrawPoint( ccp(x*_gridSize+_gridSize/2, y*_gridSize+_gridSize/2) );
+				}
+				if(__DEBUG_SHARKS && sharkMoveGrid != nil) {
+					int sv = (sharkMoveGrid[x][y]);
+					ccDrawColor4B((sv/max)*255,0,0,50);
+					ccDrawPoint( ccp(x*_gridSize + _gridSize/2, y*_gridSize + _gridSize/2) );
+				}
+			}
+		}	
+
+		NSArray* lands = [_levelLoader spritesWithTag:LAND];
+		NSArray* borders = [_levelLoader spritesWithTag:BORDER];
+
+		ccColor4F landColor = ccc4f(0,100,0,50);
+		for(LHSprite* land in lands) {
+			ccDrawSolidRect(ccp(land.boundingBox.origin.x - 8*SCALING_FACTOR_H,
+								land.boundingBox.origin.y - 8*SCALING_FACTOR_V),
+			ccp(land.boundingBox.origin.x+land.boundingBox.size.width + 8*SCALING_FACTOR_H,
+				land.boundingBox.origin.y+land.boundingBox.size.height + 8*SCALING_FACTOR_V),
+			landColor);
+		}
+		ccColor4F borderColor = ccc4f(0,200,200,50);
+		for(LHSprite* border in borders) {
+			ccDrawSolidRect(ccp(border.boundingBox.origin.x - 8*SCALING_FACTOR_H,
+								border.boundingBox.origin.y - 8*SCALING_FACTOR_V),
+							ccp(border.boundingBox.origin.x+border.boundingBox.size.width + 8*SCALING_FACTOR_H,
+								border.boundingBox.origin.y+border.boundingBox.size.height + 8*SCALING_FACTOR_V),
+							borderColor);
+		}
+	}
+}
+
+
+
 -(void) draw
 {
 	if(DEBUG_ALL_THE_THINGS || __DEBUG_SHARKS || __DEBUG_PENGUINS) {
@@ -1178,7 +1246,9 @@
 		if(DEBUG_ALL_THE_THINGS) {
 			_world->DrawDebugData();
 		}
-				
+		
+		[self drawDebugMovementGrid];
+		
 		kmGLPopMatrix();
 	}else {
 		[super draw];	

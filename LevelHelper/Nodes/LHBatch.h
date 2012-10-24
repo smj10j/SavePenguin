@@ -41,6 +41,8 @@
     NSString* uniqueName;
     NSString* imagePath;
     NSString* shFile;
+    
+    id  userCustomInfo;
 }
 @property (readonly) NSString* uniqueName;
 @property (readonly) NSString* imagePath; 
@@ -60,4 +62,9 @@
 
 -(NSArray*)allSprites;
 -(NSArray*)spritesWithTag:(int)tag;
-@end	
+
+//------------------------------------------------------------------------------
+-(NSString*)userInfoClassName;
+-(id)userInfo;
+
+@end

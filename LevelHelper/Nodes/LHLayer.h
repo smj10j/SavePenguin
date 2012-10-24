@@ -17,6 +17,8 @@
     bool isMainLayer;
     NSString* uniqueName;
     __unsafe_unretained LevelHelperLoader* parentLoader;
+    
+    id  userCustomInfo;
 }
 @property (readonly) NSString* uniqueName;
 @property bool isMainLayer;
@@ -42,5 +44,8 @@
 -(NSArray*)batchesWithTag:(int)tag;
 -(NSArray*)spritesWithTag:(int)tag;
 -(NSArray*)beziersWithTag:(int)tag;
+//------------------------------------------------------------------------------
+-(NSString*)userInfoClassName;
+-(id)userInfo;
 
 @end

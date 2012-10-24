@@ -66,6 +66,7 @@
     
     NSMutableString* activeFolder;
     CGSize saveFrame;//used by the touch handler to conver touches
+    CGPoint userOffset;
 }
 @property bool useHDOnIpad;
 @property float lhPtmRatio;
@@ -77,6 +78,7 @@
 @property bool preloadBatchNodes;
 @property int device;
 @property CGSize safeFrame;
+@property CGPoint userOffset;
 
 +(LHSettings*) sharedInstance;
 

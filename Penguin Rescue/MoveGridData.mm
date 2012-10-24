@@ -95,6 +95,10 @@
 	return sum;
 }
 
+- (const int**)moveGrid {
+	return (const int**)_moveGrid;
+}
+
 - (CGPoint)getBestMoveToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile {
 	CGPoint bestMove = ccp(-1,-1);
 	
