@@ -1,0 +1,12 @@
+{
+	Arctic = {
+		RequiresPack = "";
+		"RequiresNumPackLevelsCompleted" = 0;
+		Path = Arctic;
+	};
+	Beach = {
+		RequiresPack = Arctic;
+		"RequiresNumPackLevelsCompleted" = 10;
+		Path = Beach;
+	};
+}

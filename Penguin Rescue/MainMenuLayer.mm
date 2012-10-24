@@ -9,7 +9,7 @@
 
 // Import the interfaces
 #import "MainMenuLayer.h"
-#import "LevelSelectLayer.h"
+#import "LevelPackSelectLayer.h"
 
 
 #pragma mark - MainMenuLayer
@@ -53,6 +53,8 @@
 		
 	}
 	
+	NSLog(@"Initialized MainMenuLayer");	
+	
 	return self;
 }
 
@@ -62,7 +64,7 @@
 
 -(void)onTouchEndedPlay:(LHTouchInfo*)info {
 	[_playButton setFrame:_playButton.currentFrame-1];	//inactive state
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelSelectLayer scene] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelPackSelectLayer scene] ]];
 }
 
 

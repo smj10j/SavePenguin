@@ -213,6 +213,7 @@
 		AA54C8CD162BB27E00DF56D0 /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = AA54C8CC162BB27E00DF56D0 /* blocks.png */; };
 		AA54C92A162BCDD600DF56D0 /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = AA54C929162BCDD600DF56D0 /* Levels */; };
 		AA54C933162BD64300DF56D0 /* Spritesheet.pshs in Resources */ = {isa = PBXBuildFile; fileRef = AA54C92F162BD64300DF56D0 /* Spritesheet.pshs */; };
+		AA6252561638097000A36D65 /* LevelPackSelectLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA6252551638097000A36D65 /* LevelPackSelectLayer.mm */; };
 		AA6DFB1316302BFF00F93350 /* MoveGridData.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA6DFB1216302BFF00F93350 /* MoveGridData.mm */; };
 		AAE610691632B7FD004166CC /* Spritesheet_Actors-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6105D1632B7FD004166CC /* Spritesheet_Actors-hd.png */; };
 		AAE6106A1632B7FD004166CC /* Spritesheet_Actors-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6105E1632B7FD004166CC /* Spritesheet_Actors-ipadhd.png */; };
@@ -654,6 +655,10 @@
 		AA54C8CC162BB27E00DF56D0 /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
 		AA54C929162BCDD600DF56D0 /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Levels; path = Resources/Levels; sourceTree = "<group>"; };
 		AA54C92F162BD64300DF56D0 /* Spritesheet.pshs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Spritesheet.pshs; sourceTree = "<group>"; };
+		AA6252531638032100A36D65 /* Penguin Rescue.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Penguin Rescue.entitlements"; sourceTree = "<group>"; };
+		AA6252541638097000A36D65 /* LevelPackSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelPackSelectLayer.h; sourceTree = "<group>"; };
+		AA6252551638097000A36D65 /* LevelPackSelectLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LevelPackSelectLayer.mm; sourceTree = "<group>"; };
+		AA62525B1638191C00A36D65 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		AA6DFB1116302BFF00F93350 /* MoveGridData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveGridData.h; sourceTree = "<group>"; };
 		AA6DFB1216302BFF00F93350 /* MoveGridData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoveGridData.mm; sourceTree = "<group>"; };
 		AAE6105D1632B7FD004166CC /* Spritesheet_Actors-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spritesheet_Actors-hd.png"; sourceTree = "<group>"; };
@@ -812,7 +817,9 @@
 		AA54C6A6162BB27A00DF56D0 /* Penguin Rescue */ = {
 			isa = PBXGroup;
 			children = (
+				AA6252531638032100A36D65 /* Penguin Rescue.entitlements */,
 				AA6DFB1516302C1A00F93350 /* Helpers */,
+				AA62525B1638191C00A36D65 /* Constants.h */,
 				AA54C8C0162BB27E00DF56D0 /* AppDelegate.h */,
 				AA54C8C1162BB27E00DF56D0 /* AppDelegate.mm */,
 				AA54C8C3162BB27E00DF56D0 /* GameLayer.h */,
@@ -821,6 +828,8 @@
 				AA54C8C7162BB27E00DF56D0 /* IntroLayer.mm */,
 				AA4C8D8E1637D2D200C55554 /* MainMenuLayer.h */,
 				AA4C8D8F1637D2D200C55554 /* MainMenuLayer.mm */,
+				AA6252541638097000A36D65 /* LevelPackSelectLayer.h */,
+				AA6252551638097000A36D65 /* LevelPackSelectLayer.mm */,
 				AA4C8D911637D34900C55554 /* LevelSelectLayer.h */,
 				AA4C8D921637D34900C55554 /* LevelSelectLayer.mm */,
 				AA54C8C9162BB27E00DF56D0 /* GLES-Render.h */,
@@ -1737,6 +1746,7 @@
 				250e1473997f280a794687eb /* SHDocumentLoader.mm in Sources */,
 				AA4C8D901637D2D200C55554 /* MainMenuLayer.mm in Sources */,
 				AA4C8D931637D34900C55554 /* LevelSelectLayer.mm in Sources */,
+				AA6252561638097000A36D65 /* LevelPackSelectLayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1787,6 +1797,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Penguin Rescue/Penguin Rescue.entitlements";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1823,6 +1834,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Penguin Rescue/Penguin Rescue.entitlements";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Penguin Rescue/Prefix.pch";

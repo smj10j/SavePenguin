@@ -1,5 +1,5 @@
 //
-//  IntroLayer.h
+//  LevelPackSelectLayer.h
 //  Penguin Rescue
 //
 //  Created by Stephen Johnson on 10/15/12.
@@ -9,11 +9,20 @@
 
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
+#import "LevelHelperLoader.h"
 #import "Constants.h"
 
 // IntroLayer
-@interface IntroLayer : CCLayer
+@interface LevelPackSelectLayer : CCLayer
 {
+	LevelHelperLoader* _levelLoader;
+	
+	NSURL* _iCloudPath;
+	
+	NSDictionary* _levelPacksDictionary;
+	NSMutableDictionary* _availableLevelPacksDictionary;
+	
+	NSMutableDictionary* _spriteNameToLevelPackPath;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

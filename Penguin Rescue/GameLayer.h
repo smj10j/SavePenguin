@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
 #import "Box2D.h"
 #import "GLES-Render.h"
-
 #import "LevelHelperLoader.h"
+
+#import "Constants.h"
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
@@ -42,8 +44,8 @@ enum PROPAGATION_RESULT {
 	b2World* _world;					// strong ref
 	GLESDebugDraw *_debugDraw;		// strong ref
 	
-	NSString* _levelName;
-	NSString* _levelPack;
+	NSString* _levelPath;
+	NSString* _levelPackPath;
 	
 	LevelHelperLoader* _levelLoader;
 	LHLayer* _mainLayer;
@@ -91,28 +93,10 @@ enum PROPAGATION_RESULT {
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
-#define DEBUG_ALL_THE_THINGS false
-#define DEBUG_PENGUIN false	//can be overridden in game
-#define DEBUG_SHARK false	//can be overridden in game
-
-#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-#define SCALING_FACTOR_H (IS_IPHONE ? 480.0/1024.0 : 1.0)
-#define SCALING_FACTOR_V (IS_IPHONE ? 320.0/768.0 : 1.0)
-#define SCALING_FACTOR_GENERIC SCALING_FACTOR_V
-#define TARGET_FPS 60
-
-#define SHARK_DIES_WHEN_STUCK false
-#define PENGUIN_MOVE_HISTORY_SIZE 20
-#define SHARK_MOVE_HISTORY_SIZE 50
-
-
-#define HUD_BUTTON_MARGIN_V 14*SCALING_FACTOR_V
-#define HUD_BUTTON_MARGIN_H 16*SCALING_FACTOR_H
-
-#define TOOLBOX_MARGIN_TOP 10*SCALING_FACTOR_V
-#define TOOLBOX_MARGIN_LEFT 20*SCALING_FACTOR_H
-#define TOOLBOX_ITEM_CONTAINER_PADDING_H 20*SCALING_FACTOR_H
-#define TOOLBOX_ITEM_CONTAINER_PADDING_V 20*SCALING_FACTOR_V
-#define TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE 14
++(void)setLevelPackPath:(NSString*)levelPackPath;
++(void)setLevelPath:(NSString*)levelPath;
 
 @end
+
+
+

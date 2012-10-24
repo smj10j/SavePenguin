@@ -40,9 +40,12 @@
 -(void) showInGameMenu;
 -(void) restart;
 
-
-
 @end
+
+
+static NSString* sLevelPackPath;
+static NSString* sLevelPath;
+
 
 @implementation GameLayer
 
@@ -59,6 +62,17 @@
 	
 	// return the scene
 	return scene;
+}
+
+
++(void)setLevelPackPath:(NSString*)levelPackPath {
+	sLevelPackPath = levelPackPath;
+	NSLog(@"Set GameLayer.sLevelPackPath=%@", sLevelPackPath);
+}
+
++(void)setLevelPath:(NSString*)levelPath {
+	sLevelPath = levelPath;
+	NSLog(@"Set GameLayer.sLevelPath=%@", sLevelPath);
 }
 
 -(id) init
@@ -84,13 +98,9 @@
 		// init physics
 		[self initPhysics];
 		
-		//TODO: store and load the level from prefs using JSON files for next/prev
-		NSString* levelName = @"Introduction";
-		NSString* levelPack = @"Arctic";
-		
-		_levelName = levelName;
-		_levelPack = levelPack;
-		[self loadLevel:_levelName inLevelPack:_levelPack];
+		_levelPath = sLevelPath;
+		_levelPackPath = sLevelPackPath;
+		[self loadLevel:_levelPath inLevelPack:_levelPackPath];
 		
 		//place the HUD items (pause, restart, etc.)
 		[self drawHUD];		
@@ -112,8 +122,8 @@
 		
 		
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-			_levelName, @"Level_Name",
-			_levelPack, @"Level_Pack",
+			_levelPath, @"Level_Name",
+			_levelPackPath, @"Level_Pack",
 		nil];
 
 		[Flurry logEvent:@"Play_Level" withParameters:flurryParams timed:YES];		
@@ -300,7 +310,7 @@
 			//NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", toolboxItem.uniqueName, (int)(100*scale));
 		
 			//display # of items in the stack
-			CCLabelTTF* numToolsLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", toolGroup.count] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE dimensions:CGSizeMake(TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE, TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter];
+			CCLabelTTF* numToolsLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", toolGroup.count] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE];
 			numToolsLabel.color = ccWHITE;
 			numToolsLabel.position = ccp(toolboxContainerCountContainer.boundingBox.size.width/2, toolboxContainerCountContainer.boundingBox.size.height/2);
 			[toolboxContainerCountContainer addChild:numToolsLabel];
@@ -514,8 +524,8 @@
 			NSLog(@"Placing toolbox item back into the HUD");
 			
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-				_levelName, @"Level_Name", 
-				_levelPack, @"Level_Pack",
+				_levelPath, @"Level_Name", 
+				_levelPackPath, @"Level_Pack",
 				_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
 				_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
 			nil];
@@ -587,8 +597,8 @@
 		_state = PAUSE;
 		
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-			_levelName, @"Level_Name", 
-			_levelPack, @"Level_Pack",
+			_levelPath, @"Level_Name", 
+			_levelPackPath, @"Level_Pack",
 		nil];
 		[Flurry logEvent:@"Pause_level" withParameters:flurryParams];		
 
@@ -600,13 +610,13 @@
 -(void) showInGameMenu {
 	NSLog(@"Showing in-game menu");
 
-	[_menuPopupContainer runAction:[CCMoveTo actionWithDuration:0.75f position:
+	[_menuPopupContainer runAction:[CCMoveTo actionWithDuration:0.40f position:
 								ccp(5*SCALING_FACTOR_H + _menuPopupContainer.boundingBox.size.width/2,
 									_menuPopupContainer.boundingBox.size.height/2 - 5)]];
 }
 
 -(void) hideInGameMenu {
-	[_menuPopupContainer runAction:[CCMoveTo actionWithDuration:0.75f position:
+	[_menuPopupContainer runAction:[CCMoveTo actionWithDuration:0.40f position:
 								ccp(5*SCALING_FACTOR_H + _menuPopupContainer.boundingBox.size.width/2,
 									-_menuPopupContainer.boundingBox.size.height)]];
 }
@@ -617,8 +627,8 @@
 		_state = RUNNING;
 		
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-			_levelName, @"Level_Name", 
-			_levelPack, @"Level_Pack",
+			_levelPath, @"Level_Name", 
+			_levelPackPath, @"Level_Pack",
 		nil];
 		[Flurry logEvent:@"Resume_level" withParameters:flurryParams];		
 
@@ -629,8 +639,8 @@
 		_state = RUNNING;
 		
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-			_levelName, @"Level_Name", 
-			_levelPack, @"Level_Pack",
+			_levelPath, @"Level_Name", 
+			_levelPackPath, @"Level_Pack",
 		nil];
 		[Flurry logEvent:@"Start_level" withParameters:flurryParams];
 
@@ -806,8 +816,8 @@
 
 
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-			_levelName, @"Level_Name", 
-			_levelPack, @"Level_Pack",
+			_levelPath, @"Level_Name", 
+			_levelPackPath, @"Level_Pack",
 			_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
 			_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
 			NSStringFromCGPoint(_activeToolboxItem.position), @"Location",
@@ -833,8 +843,8 @@
 			}
 			
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-				_levelName, @"Level_Name", 
-				_levelPack, @"Level_Pack",
+				_levelPath, @"Level_Name", 
+				_levelPackPath, @"Level_Pack",
 			nil];
 			[Flurry logEvent:@"Debug_Sharks_Enabled" withParameters:flurryParams];		
 			
@@ -850,8 +860,8 @@
 			}
 			
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-				_levelName, @"Level_Name", 
-				_levelPack, @"Level_Pack",
+				_levelPath, @"Level_Name", 
+				_levelPackPath, @"Level_Pack",
 			nil];
 			[Flurry logEvent:@"Debug_Penguins_Enabled" withParameters:flurryParams];		
 		}

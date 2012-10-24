@@ -24,6 +24,8 @@
 	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 	
 	//start analytics
+	//[Flurry setDebugLogEnabled:true];
+	//[Flurry setShowErrorInLogEnabled:true];
 	[Flurry startSession:@"6DDZY62RXJWGMWHGYVQ3"];
 
 	// Create the main window

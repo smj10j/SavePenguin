@@ -10,7 +10,7 @@
 // Import the interfaces
 #import "IntroLayer.h"
 #import "MainMenuLayer.h"
-
+#import "AppDelegate.h"
 
 #pragma mark - IntroLayer
 
@@ -54,6 +54,8 @@
 		// add the label as a child to this Layer
 		[self addChild: background];
 	}
+	
+	NSLog(@"Initialized IntroLayer");	
 	
 	return self;
 }
