@@ -1,8 +1,22 @@
 {
-	Introduction = {
+	0 = {
 		Path = Introduction;
+		Name = Introduction;
 	};
-	Sandbox = {
+	1 = {
 		Path = Sandbox;
+		Name = Sandbox;
+	};
+	2 = {
+		Path = Sandbox;
+		Name = "Non existent 1";
+	};
+	3 = {
+		Path = Sandbox;
+		Name = "Non existent 2";
+	};
+	4 = {
+		Path = Sandbox;
+		Name = "Non existent 3";
 	};
 }

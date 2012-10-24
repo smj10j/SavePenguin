@@ -20,7 +20,8 @@
 	NSURL* _iCloudPath;
 	
 	NSDictionary* _levelPacksDictionary;
-	NSMutableDictionary* _availableLevelPacksDictionary;
+	NSArray* _availableLevelPacks;
+	NSArray* _completedLevelPacks;
 	
 	NSMutableDictionary* _spriteNameToLevelPackPath;
 }

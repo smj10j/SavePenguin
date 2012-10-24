@@ -587,6 +587,7 @@ static NSString* sLevelPath;
 }
 
 -(void)onTouchEndedMainMenu:(LHTouchInfo*)info {
+	//TODO: still appers to occasionally cause crash????
 	[info.sprite removeTouchObserver];	//BUG in levelHelper causes a crash on subsequent presses if this isn't here
 	[self showMainMenuLayer];
 }
@@ -993,8 +994,9 @@ static NSString* sLevelPath;
 		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
 		[sharkMoveGridData updateMoveGridToTile:targetPenguinGridPos fromTile:sharkGridPos];
 		CGPoint bestOptionPos = [sharkMoveGridData getBestMoveToTile:targetPenguinGridPos fromTile:sharkGridPos];
-				
-		if(bestOptionPos.x < 0 && bestOptionPos.y < 0) {
+		
+		//NSLog(@"Best Option Pos: %f,%f", bestOptionPos.x,bestOptionPos.y);
+		if(bestOptionPos.x == -10000 && bestOptionPos.y == -10000) {
 			//this occurs when the shark has no route to the penguin - he literally has no idea which way to go
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
@@ -1153,7 +1155,7 @@ static NSString* sLevelPath;
 			[penguinMoveGridData updateMoveGridToTile:targetLandGridPos fromTile:penguinGridPos];
 			CGPoint bestOptionPos = [penguinMoveGridData getBestMoveToTile:targetLandGridPos fromTile:penguinGridPos];
 					
-			if(bestOptionPos.x < 0 && bestOptionPos.y < 0) {
+			if(bestOptionPos.x == -10000 && bestOptionPos.y == -10000) {
 				NSLog(@"Penguin %@ is stuck (nowhere to go)!", penguin.uniqueName);
 				penguinData.isStuck = true;
 				//TODO: show a confused expression. possibly raising wings into the air in a "oh well" gesture

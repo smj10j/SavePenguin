@@ -11,6 +11,7 @@
 #import "LevelSelectLayer.h"
 #import "LevelPackSelectLayer.h"
 #import "GameLayer.h"
+#import "LevelPackManager.h"
 
 
 #pragma mark - LevelSelectLayer
@@ -87,41 +88,11 @@ static NSString* sLevelPackPath;
 -(void) loadLevels {
 
 	//load all available levels for this pack
-	NSString* mainBundlePath = [[NSBundle mainBundle] bundlePath];
-	NSString* levelsPropertyListPath = [mainBundlePath stringByAppendingPathComponent:[NSString stringWithFormat:@"Levels/%@/Levels.plist", sLevelPackPath]];
-	NSLog(@"Loading all levels from %@", levelsPropertyListPath);
-	_levelsDictionary = [NSDictionary dictionaryWithContentsOfFile:levelsPropertyListPath];
+	_levelsDictionary = [LevelPackManager allLevelsInPack:sLevelPackPath];
 	
-	//load all levels for this pack that the user has access to
-	NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	NSString* availableLevelsPropertyListPath = [rootPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-Levels.plist", sLevelPackPath]];
-	NSLog(@"Loading user-accessible levels from %@", availableLevelsPropertyListPath);
-	_availableLevelsDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:availableLevelsPropertyListPath];
-	if(_availableLevelsDictionary == nil) {
-		_availableLevelsDictionary = [[NSMutableDictionary alloc] init];
-
-		//add the first 3 levels as available
-		_availableLevelsDictionary = [[NSMutableDictionary alloc] init];
-		int i = 0;
-		NSMutableArray* availableLevels = [[NSMutableArray alloc] init];
-		for(NSString* levelName in _levelsDictionary) {
-			if(i++ >= 3) {
-				break;
-			}
-			[availableLevels addObject:levelName];
-		}
-		[_availableLevelsDictionary setObject:availableLevels forKey:@"AvailableLevels"];
-		
-		if(![_availableLevelsDictionary writeToFile:availableLevelsPropertyListPath atomically: YES]) {
-			NSLog(@"FAILED TO STORE _availableLevelsDictionary - %@", availableLevelsPropertyListPath);
-		}
-	}
-	NSArray* availableLevelPacks = [_availableLevelsDictionary objectForKey:@"AvailableLevels"];
-
-
-
-
-
+	//load all levels for this pack that the user has completed
+	_completedLevels = [LevelPackManager completedLevelsInPack:sLevelPackPath];
+	_availableLevels = [LevelPackManager availableLevelsInPack:sLevelPackPath];
 	_spriteNameToLevelPath = [[NSMutableDictionary alloc] init];
 	
 	
@@ -130,13 +101,15 @@ static NSString* sLevelPackPath;
 	int levelY = winSize.height - 150*SCALING_FACTOR_V;
 
 
-	for(NSString* levelName in _levelsDictionary) {
-		NSDictionary* levelData = [_levelsDictionary objectForKey:levelName];
+	for(int i = 0; i < _levelsDictionary.count; i++) {
+
+		NSDictionary* levelData = [_levelsDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
+		NSString* levelName = [levelData objectForKey:@"Name"];
 		
 		//create the sprite
 		LHSprite* levelButton;
 		
-		if([availableLevelPacks containsObject:levelName]) {
+		if([_availableLevels containsObject:levelName]) {
 			NSLog(@"Level %@ is available!", levelName);
 
 			levelButton = [_levelLoader createSpriteWithName:@"Available_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];

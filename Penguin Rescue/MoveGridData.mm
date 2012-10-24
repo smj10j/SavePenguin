@@ -100,7 +100,7 @@
 }
 
 - (CGPoint)getBestMoveToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile {
-	CGPoint bestMove = ccp(-1,-1);
+	CGPoint bestMove = ccp(-10000,-10000);
 	
 	double wN = _moveGrid[(int)fromTile.x][fromTile.y < _gridHeight-1 ? (int)fromTile.y+1 : 10000];
 	double wS = _moveGrid[(int)fromTile.x][fromTile.y > 0 ? (int)fromTile.y-1 : 10000];
