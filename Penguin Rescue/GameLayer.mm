@@ -1299,7 +1299,7 @@ static NSString* sLevelPath;
 				//toolbox item drag
 				//TODO: add some kind of crosshair so you know where the item is if it's tiny and under your finger
 				[_activeToolboxItem transformPosition:location];
-			}else if(_startTouch.x != 0 && _startTouch.y != 0) {
+			}/*else if(_startTouch.x != 0 && _startTouch.y != 0) {
 				//slide the main layer
 				_mapBatchNode.position = ccp(_mapBatchNode.position.x+location.x-_lastTouch.x, _mapBatchNode.position.y+location.y-_lastTouch.y);
 				_actorsBatchNode.position = ccp(_mapBatchNode.position.x+location.x-_lastTouch.x, _mapBatchNode.position.y+location.y-_lastTouch.y);
@@ -1307,7 +1307,7 @@ static NSString* sLevelPath;
 					[toolboxItem transformPosition:ccp(toolboxItem.position.x+location.x-_lastTouch.x, toolboxItem.position.y+location.y-_lastTouch.y)];
 				}				
 				_lastTouch = location;
-			}
+			}*/
 		}
 	}
 }
