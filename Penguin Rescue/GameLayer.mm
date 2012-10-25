@@ -72,6 +72,7 @@ static NSString* sLevelPath;
 		_shouldUpdateToolbox = false;
 		_penguinsToPutOnLand =[[NSMutableDictionary alloc] init];
 		_placedToolboxItems = [[NSMutableArray alloc] init];
+		_scoreKeeper = [[ScoreKeeper alloc] init];
 		__DEBUG_SHARKS = DEBUG_SHARK;
 		__DEBUG_PENGUINS = DEBUG_PENGUIN;
 		__DEBUG_TOUCH_SECONDS = 0;
@@ -102,10 +103,13 @@ static NSString* sLevelPath;
 				
 		//start the game
 		_state = PLACE;
+		_levelStartPlaceTime  = [[NSDate date] timeIntervalSince1970];
+
 		CCDirectorIOS* director = (CCDirectorIOS*) [CCDirector sharedDirector];
 		[director setAnimationInterval:1.0/TARGET_FPS];
 		[self scheduleUpdate];
 		
+
 		
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 			_levelPath, @"Level_Name",
@@ -600,21 +604,31 @@ static NSString* sLevelPath;
 -(void)onTouchEndedMainMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	//TODO: crash bug is still here
-	[info.sprite removeTouchObserver];	//BUG in levelHelper causes a crash on subsequent presses if this isn't here
 	[self showMainMenuLayer];
 }
 
 -(void)onTouchBeganLevelsMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	//[info.sprite setFrame:info.sprite.currentFrame+1];
+	[info.sprite setFrame:info.sprite.currentFrame+1];
 }
 
 -(void)onTouchEndedLevelsMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	//TODO: crash bug is still here
-	//[info.sprite removeTouchObserver];	//BUG in levelHelper causes a crash on subsequent presses if this isn't here
-	//[self showLevelsMenuLayer];
+	[self showLevelsMenuLayer];
 }
+
+-(void)onTouchBeganNextLevel:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame+1];
+}
+
+-(void)onTouchEndedNextLevel:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
+	[self goToNextLevel];
+}
+
+
 
 -(void) pause {
 	if(_state == RUNNING) {
@@ -661,7 +675,8 @@ static NSString* sLevelPath;
 	}else if(_state == PLACE) {
 		NSLog(@"Starting game");
 		_state = RUNNING;
-		
+		_levelStartRunningTime  = [[NSDate date] timeIntervalSince1970];
+
 		[self fadeOutAllTutorials];
 		
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -681,22 +696,162 @@ static NSString* sLevelPath;
 	if(_state == GAME_OVER) {
 		return;
 	}
+	_state = GAME_OVER;
 	
 	//store the level as being completed
 	[LevelPackManager completeLevel:_levelPath inPack:_levelPackPath];
 	
+	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"Won", @"Level_Status",
 	nil];
 	[Flurry endTimedEvent:@"Play_Level" withParameters:flurryParams];
 	
 	NSLog(@"Showing level won animations");
-	//TODO: show some happy penguins (sharks offscreen)
 	
-	_state = GAME_OVER;
+	
+	//TODO: show some happy penguins and sad sharks
+	
+	
+	
+	
+	int scoreDeductions = 0;
+	
+	
+	//TODO: show a level won screen
+	CGSize winSize = [[CCDirector sharedDirector] winSize];
+	LHSprite* levelWonPopup = [_levelLoader createSpriteWithName:@"Level_Won_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:_mainLayer];
+	levelWonPopup.opacity = 0;
+	levelWonPopup.zOrder = 10000;
+	[levelWonPopup transformPosition: ccp(winSize.width/2,winSize.height/2)];
 
-	//go to next level
-	[self goToNextLevel];
+
+
+	/***** action butons ******/
+	
+	int buttonY = 160*SCALING_FACTOR_V;
+	int buttonXOffset = -125*SCALING_FACTOR_H;
+
+	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelWonPopup];
+	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_Button" fromSHScene:@"Spritesheet"];
+	[levelsMenuButton transformPosition: ccp(buttonXOffset + levelWonPopup.boundingBox.size.width/2 - levelsMenuButton.boundingBox.size.width*2, buttonY) ];
+	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
+	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
+	
+	LHSprite* restartMenuButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelWonPopup];
+	[restartMenuButton prepareAnimationNamed:@"Menu_Restart_Button" fromSHScene:@"Spritesheet"];
+	[restartMenuButton transformPosition: ccp(buttonXOffset + levelWonPopup.boundingBox.size.width/2, buttonY) ];
+	[restartMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
+	[restartMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
+	
+	LHSprite* nextLevelMenuButton = [_levelLoader createSpriteWithName:@"Next_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelWonPopup];
+	[nextLevelMenuButton prepareAnimationNamed:@"Menu_Next_Level_Button" fromSHScene:@"Spritesheet"];
+	[nextLevelMenuButton transformPosition: ccp(buttonXOffset + levelWonPopup.boundingBox.size.width/2 + restartMenuButton.boundingBox.size.width*2, buttonY) ];
+	[nextLevelMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganNextLevel:)];
+	[nextLevelMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedNextLevel:)];
+	
+	
+	/***** scoring items ******/
+	
+	int scoringTextYOffset = 100*SCALING_FACTOR_V;
+	int scoringTextXOffset = -85*SCALING_FACTOR_H;
+	int scoringSpriteXOffset = scoringTextXOffset + -140*SCALING_FACTOR_H;
+	
+	CCLabelTTF* maxScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Max Score: %d", SCORING_MAX_SCORE_POSSIBLE] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE dimensions:CGSizeMake(SCORING_LINE_WIDTH, SCORING_LINE_HEIGHT) hAlignment:kCCTextAlignmentRight];
+	maxScoreLabel.color = SCORING_FONT_COLOR;
+	maxScoreLabel.position = ccp(scoringTextXOffset + levelWonPopup.boundingBox.size.width/2, scoringTextYOffset + levelWonPopup.boundingBox.size.height/2);
+	[levelWonPopup addChild:maxScoreLabel];
+	
+	scoringTextYOffset-= SCORING_LINE_HEIGHT;
+	
+	double elapsedPlaceTime = ([[NSDate date] timeIntervalSince1970] - _levelStartPlaceTime);
+	int timeScoreDeduction = elapsedPlaceTime*5;
+	scoreDeductions+= timeScoreDeduction;
+	
+	CCLabelTTF* elapsedPlaceTimeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d seconds = -%d", (int)elapsedPlaceTime, timeScoreDeduction] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE dimensions:CGSizeMake(SCORING_LINE_WIDTH, SCORING_LINE_HEIGHT) hAlignment:kCCTextAlignmentRight];
+	elapsedPlaceTimeLabel.color = SCORING_FONT_COLOR;
+	elapsedPlaceTimeLabel.position = ccp(scoringTextXOffset + levelWonPopup.boundingBox.size.width/2, scoringTextYOffset + levelWonPopup.boundingBox.size.height/2);
+	[levelWonPopup addChild:elapsedPlaceTimeLabel];
+
+	scoringTextYOffset-= SCORING_LINE_HEIGHT;
+
+
+	NSDictionary* toolboxItemScores = _scoreKeeper.scores;
+
+	for(NSString* scoreTag in toolboxItemScores) {
+
+		NSLog(@"Outputting score for scoreTag %@", scoreTag);
+		NSString* scoreDesc = ([scoreTag rangeOfString:@"RUNNING"].location == NSNotFound) ? @"Pre-start" : @"After start";
+
+		
+		Score* score = [toolboxItemScores objectForKey:scoreTag];
+
+		int spriteScoreDeduction = score.count * score.score;
+		scoreDeductions+= spriteScoreDeduction;
+	
+		LHSprite* toolboxSprite = score.sprite;
+		toolboxSprite.zOrder = levelWonPopup.zOrder+1;
+		[toolboxSprite transformPosition: ccp(scoringSpriteXOffset + levelWonPopup.boundingBox.size.width/2, scoringTextYOffset + levelWonPopup.boundingBox.size.height/2)];
+		double scale = fmin(SCORING_LINE_HEIGHT/toolboxSprite.contentSize.width, SCORING_LINE_HEIGHT/toolboxSprite.contentSize.height);
+		[toolboxSprite transformScale: scale];		
+		
+		CCLabelTTF* toolboxItemScoreLabel = [CCLabelTTF labelWithString:
+				[NSString stringWithFormat:@"%@ x%d @ %d = -%d",
+							scoreDesc,
+							score.count,
+							score.score,
+							spriteScoreDeduction]
+				fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE dimensions:CGSizeMake(SCORING_LINE_WIDTH, SCORING_LINE_HEIGHT) hAlignment:kCCTextAlignmentRight];
+		toolboxItemScoreLabel.color = SCORING_FONT_COLOR;
+		toolboxItemScoreLabel.position = ccp(scoringTextXOffset + levelWonPopup.boundingBox.size.width/2, scoringTextYOffset + levelWonPopup.boundingBox.size.height/2);
+		[levelWonPopup addChild:toolboxItemScoreLabel];
+
+		scoringTextYOffset-= SCORING_LINE_HEIGHT;
+	}
+
+	int finalScore = SCORING_MAX_SCORE_POSSIBLE - scoreDeductions;
+	
+	//TODO: post the score to the server or queue for online processing
+
+	CCLabelTTF* totalScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Final Score: %d", finalScore] fontName:@"Helvetica" fontSize:(SCORING_FONT_SIZE*1.2) dimensions:CGSizeMake(SCORING_LINE_WIDTH, SCORING_LINE_HEIGHT) hAlignment:kCCTextAlignmentRight];
+	totalScoreLabel.color = SCORING_FONT_COLOR;
+	totalScoreLabel.position = ccp(scoringTextXOffset + levelWonPopup.boundingBox.size.width/2, scoringTextYOffset + levelWonPopup.boundingBox.size.height/2);
+	[levelWonPopup addChild:totalScoreLabel];
+
+
+
+	/***** competitive items ******/
+
+	int competitiveTextYOffset = 100*SCALING_FACTOR_V;
+	int competitiveTextXOffset = 230*SCALING_FACTOR_H;
+
+	//TODO: get the number from the server (or cached copy!)
+
+	CCLabelTTF* worldPercentCompleteLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"World %% Completed: %d%%", 45] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE dimensions:CGSizeMake(SCORING_LINE_WIDTH, SCORING_LINE_HEIGHT) hAlignment:kCCTextAlignmentRight];
+	worldPercentCompleteLabel.color = SCORING_FONT_COLOR;
+	worldPercentCompleteLabel.position = ccp(competitiveTextXOffset + levelWonPopup.boundingBox.size.width/2, competitiveTextYOffset + levelWonPopup.boundingBox.size.height/2);
+	[levelWonPopup addChild:worldPercentCompleteLabel];
+
+	competitiveTextYOffset-= SCORING_LINE_HEIGHT;
+
+	CCLabelTTF* worldAverageScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"World Avg Score: %d", 8000] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE dimensions:CGSizeMake(SCORING_LINE_WIDTH, SCORING_LINE_HEIGHT) hAlignment:kCCTextAlignmentRight];
+	worldAverageScoreLabel.color = SCORING_FONT_COLOR;
+	worldAverageScoreLabel.position = ccp(competitiveTextXOffset + levelWonPopup.boundingBox.size.width/2, competitiveTextYOffset + levelWonPopup.boundingBox.size.height/2);
+	[levelWonPopup addChild:worldAverageScoreLabel];
+
+	competitiveTextYOffset-= SCORING_LINE_HEIGHT;
+
+	CCLabelTTF* worldPercentileLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"You're in the top %d%%!", 10] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE dimensions:CGSizeMake(SCORING_LINE_WIDTH, SCORING_LINE_HEIGHT) hAlignment:kCCTextAlignmentRight];
+	worldPercentileLabel.color = SCORING_FONT_COLOR;
+	worldPercentileLabel.position = ccp(competitiveTextXOffset + levelWonPopup.boundingBox.size.width/2, competitiveTextYOffset + levelWonPopup.boundingBox.size.height/2);
+	[levelWonPopup addChild:worldPercentileLabel];
+
+
+
+
+	
+	//show!
+	[levelWonPopup runAction:[CCFadeIn actionWithDuration:0.5f]];
 }
 
 -(void) levelLostWithOffscreenPenguin:(LHSprite*)penguin {
@@ -704,6 +859,7 @@ static NSString* sLevelPath;
 	if(_state == GAME_OVER) {
 		return;
 	}
+	_state = GAME_OVER;
 
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"Lost", @"Level_Status",
@@ -713,7 +869,6 @@ static NSString* sLevelPath;
 
 	NSLog(@"Showing level lost animations for offscreen penguin");
 	
-	_state = GAME_OVER;
 
 	//a penguin ran offscreen!
 	[penguin removeSelf];
@@ -731,6 +886,7 @@ static NSString* sLevelPath;
 	if(_state == GAME_OVER) {
 		return;
 	}
+	_state = GAME_OVER;
 
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"Lost", @"Level_Status",
@@ -740,7 +896,6 @@ static NSString* sLevelPath;
 
 	NSLog(@"Showing level lost animations for penguin/shark collision");
 	
-	_state = GAME_OVER;
 	
 	//a shark got a penguin!
 	[penguin removeSelf];
@@ -792,6 +947,7 @@ static NSString* sLevelPath;
 }
 
 -(void) showLevelsMenuLayer {
+	[LevelSelectLayer setLevelPackPath:_levelPackPath];
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[LevelSelectLayer scene] ]];
 }
 
@@ -1026,11 +1182,19 @@ static NSString* sLevelPath;
 			[_activeToolboxItem makeDynamic];
 			[_activeToolboxItem setSensor:false];
 			
+			ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)_activeToolboxItem.userInfo);
+			int score = _state == PLACE ? toolboxItemData.placeCost : toolboxItemData.runningCost;
+			[_scoreKeeper addScore:score description:(_state == PLACE ? @"PLACE" : @"RUNNING") sprite:_activeToolboxItem group:true];
+			
 		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Border"]) {
 			_activeToolboxItem.tag = BORDER;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:false];
 			_shouldRegenerateFeatureMaps = true;
+
+			ToolboxItem_Border* toolboxItemData = ((ToolboxItem_Border*)_activeToolboxItem.userInfo);
+			int score = _state == PLACE ? toolboxItemData.placeCost : toolboxItemData.runningCost;
+			[_scoreKeeper addScore:score description:(_state == PLACE ? @"PLACE" : @"RUNNING") sprite:_activeToolboxItem group:true];
 			
 		}
 		
@@ -1041,7 +1205,7 @@ static NSString* sLevelPath;
 		[_mainLayer addChild:_activeToolboxItem];
 		[_placedToolboxItems addObject:_activeToolboxItem];
 
-
+		//analytics logging
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 			_levelPath, @"Level_Name", 
 			_levelPackPath, @"Level_Pack",
@@ -1116,8 +1280,6 @@ static NSString* sLevelPath;
 	[self movePenguins:dt];
 	[self updateMoveGrids];
 		
-
-	
 	
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done with game state update");
 
@@ -1354,7 +1516,7 @@ static NSString* sLevelPath;
 				
 				dx+= ((arc4random()%200)-100)/1000;
 				dy+= ((arc4random()%200)-100)/1000;
-				penguinSpeed*= 25;
+				penguinSpeed*= 5;
 				NSLog(@"Penguin %@ is stuck (trying to move but can't) - giving him a bit of jitter", penguin.uniqueName);
 			}
 			

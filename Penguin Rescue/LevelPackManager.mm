@@ -83,18 +83,18 @@ static NSString* sRootPath;
 			[availableLevelPacks addObject:levelPackPath];
 			
 		}else if(requiresPack == nil || [requiresPack isEqualToString:@""]) {
-			//no prequisies
+			//no prequisites
 			[availableLevelPacks addObject:levelPackPath];
 			
 		}else if([completedLevelPacks containsObject: requiresPack]) {
-			//full required pack is completed
+			//required pack is 100% completed
 			[availableLevelPacks addObject:levelPackPath];
 			
 		}else {
-			//requires a completed pack - let's see if it meets the number of levels within the pack
+			//requires a a fully or partially completed pack - let's see if we meet the number of levels required within the required pack
 			if(requiresNumPackLevelsCompleted == 0) {
-				//no completed levels required
-				[availableLevelPacks addObject:levelPackPath];
+				//0 means 100% required, so let's not add it
+				NSLog(@"Pack %@ is not available because not 100%% of levels are completed in required pack %@", levelPackPath, requiresPack);
 				
 			}else {
 				NSArray* completedLevels = [LevelPackManager completedLevelsInPack:requiresPack];

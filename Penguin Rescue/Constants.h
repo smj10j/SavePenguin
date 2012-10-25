@@ -11,10 +11,9 @@
 
 
 
-
-#define TEST_MODE false
+#define TEST_MODE true
 #define TEST_LEVEL_PACK @"Arctic"
-#define TEST_LEVEL @"Showdown"
+#define TEST_LEVEL @"OpenWater"
 #define DEBUG_ALL_THE_THINGS false
 #define DEBUG_PENGUIN false	//can be overridden in game
 #define DEBUG_SHARK false	//can be overridden in game
@@ -39,6 +38,14 @@
 #define TOOLBOX_ITEM_CONTAINER_PADDING_H 20*SCALING_FACTOR_H
 #define TOOLBOX_ITEM_CONTAINER_PADDING_V 20*SCALING_FACTOR_V
 #define TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE 14
+
+
+#define SCORING_LINE_HEIGHT 40*SCALING_FACTOR_V
+#define SCORING_LINE_WIDTH 300*SCALING_FACTOR_H
+#define SCORING_FONT_SIZE 22*SCALING_FACTOR_FONTS
+#define SCORING_FONT_COLOR ccBLACK
+
+#define SCORING_MAX_SCORE_POSSIBLE 10000
 
 
 #endif

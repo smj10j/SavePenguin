@@ -438,7 +438,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{285, 34}</string>
+								<string>{239, 34}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -549,7 +549,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{75, 108}</string>
+								<string>{93, 148}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -606,11 +606,21 @@
 							<key>CustomClassInfo</key>
 							<dict>
 								<key>ClassDefaults</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Border</string>
 								<key>ClassRepresentation</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<real>150</real>
+									<key>runningCost</key>
+									<real>200</real>
+								</dict>
 							</dict>
 							<key>NodeType</key>
 							<string>LHSprite</string>
@@ -683,11 +693,21 @@
 							<key>CustomClassInfo</key>
 							<dict>
 								<key>ClassDefaults</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Border</string>
 								<key>ClassRepresentation</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<real>150</real>
+									<key>runningCost</key>
+									<real>200</real>
+								</dict>
 							</dict>
 							<key>NodeType</key>
 							<string>LHSprite</string>
@@ -760,11 +780,21 @@
 							<key>CustomClassInfo</key>
 							<dict>
 								<key>ClassDefaults</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<real>75</real>
+									<key>runningCost</key>
+									<real>100</real>
+								</dict>
 							</dict>
 							<key>NodeType</key>
 							<string>LHSprite</string>
@@ -837,11 +867,21 @@
 							<key>CustomClassInfo</key>
 							<dict>
 								<key>ClassDefaults</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<real>75</real>
+									<key>runningCost</key>
+									<real>100</real>
+								</dict>
 							</dict>
 							<key>NodeType</key>
 							<string>LHSprite</string>
@@ -914,11 +954,21 @@
 							<key>CustomClassInfo</key>
 							<dict>
 								<key>ClassDefaults</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<real>75</real>
+									<key>runningCost</key>
+									<real>100</real>
+								</dict>
 							</dict>
 							<key>NodeType</key>
 							<string>LHSprite</string>
@@ -991,11 +1041,21 @@
 							<key>CustomClassInfo</key>
 							<dict>
 								<key>ClassDefaults</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<real>75</real>
+									<key>runningCost</key>
+									<real>100</real>
+								</dict>
 							</dict>
 							<key>NodeType</key>
 							<string>LHSprite</string>
@@ -1068,11 +1128,21 @@
 							<key>CustomClassInfo</key>
 							<dict>
 								<key>ClassDefaults</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<real>75</real>
+									<key>runningCost</key>
+									<real>100</real>
+								</dict>
 							</dict>
 							<key>NodeType</key>
 							<string>LHSprite</string>
@@ -1145,11 +1215,21 @@
 							<key>CustomClassInfo</key>
 							<dict>
 								<key>ClassDefaults</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<real>75</real>
+									<key>runningCost</key>
+									<real>100</real>
+								</dict>
 							</dict>
 							<key>NodeType</key>
 							<string>LHSprite</string>
@@ -1222,11 +1302,21 @@
 							<key>CustomClassInfo</key>
 							<dict>
 								<key>ClassDefaults</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<real>75</real>
+									<key>runningCost</key>
+									<real>100</real>
+								</dict>
 							</dict>
 							<key>NodeType</key>
 							<string>LHSprite</string>
@@ -1299,11 +1389,21 @@
 							<key>CustomClassInfo</key>
 							<dict>
 								<key>ClassDefaults</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<real>75</real>
+									<key>runningCost</key>
+									<real>100</real>
+								</dict>
 							</dict>
 							<key>NodeType</key>
 							<string>LHSprite</string>
@@ -1376,11 +1476,21 @@
 							<key>CustomClassInfo</key>
 							<dict>
 								<key>ClassDefaults</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
-								<dict/>
+								<dict>
+									<key>placeCost</key>
+									<real>75</real>
+									<key>runningCost</key>
+									<real>100</real>
+								</dict>
 							</dict>
 							<key>NodeType</key>
 							<string>LHSprite</string>
@@ -1554,13 +1664,23 @@
 				<key>ClassName</key>
 				<string>ToolboxItem_Border</string>
 				<key>ClassRepresentation</key>
-				<dict/>
+				<dict>
+					<key>placeCost</key>
+					<real>150</real>
+					<key>runningCost</key>
+					<real>200</real>
+				</dict>
 			</dict>
 			<dict>
 				<key>ClassName</key>
 				<string>ToolboxItem_Debris</string>
 				<key>ClassRepresentation</key>
-				<dict/>
+				<dict>
+					<key>placeCost</key>
+					<real>75</real>
+					<key>runningCost</key>
+					<real>100</real>
+				</dict>
 			</dict>
 			<dict>
 				<key>ClassName</key>

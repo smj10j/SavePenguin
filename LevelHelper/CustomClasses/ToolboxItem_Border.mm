@@ -8,6 +8,8 @@
 @implementation ToolboxItem_Border
 
 
+@synthesize runningCost;
+@synthesize placeCost;
 
 
 -(void) dealloc{
@@ -34,6 +36,12 @@ return NSStringFromClass([self class]);
 }
 -(void) setPropertiesFromDictionary:(NSDictionary*)dictionary
 {
+
+	if([dictionary objectForKey:@"runningCost"])
+		[self setRunningCost:[[dictionary objectForKey:@"runningCost"] floatValue]];
+
+	if([dictionary objectForKey:@"placeCost"])
+		[self setPlaceCost:[[dictionary objectForKey:@"placeCost"] floatValue]];
 
 }
 

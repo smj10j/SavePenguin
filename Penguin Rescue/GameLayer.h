@@ -16,6 +16,7 @@
 
 #import "LevelPackManager.h"
 #import "SettingsManager.h"
+#import "ScoreKeeper.h"
 #import "Constants.h"
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
@@ -85,14 +86,17 @@ enum PROPAGATION_RESULT {
 	NSMutableDictionary* _toolGroups;
 	bool _shouldUpdateToolbox;
 	int _toolboxItemSize;
-
+	
 
 	bool _shouldRegenerateFeatureMaps;
 	
 	
+	double _levelStartPlaceTime;
+	double _levelStartRunningTime;
 	CGPoint _startTouch;
 	CGPoint _lastTouch;
 	NSMutableArray* _placedToolboxItems;
+	ScoreKeeper* _scoreKeeper;
 	
 	
 	
