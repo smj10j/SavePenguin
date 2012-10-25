@@ -174,8 +174,8 @@ static NSString* sLevelPath;
 		}
 	}
 		
-	_gridWidth = _levelSize.width/_gridSize;
-	_gridHeight = _levelSize.height/_gridSize;
+	_gridWidth = ceil(_levelSize.width/_gridSize);
+	_gridHeight = ceil(_levelSize.height/_gridSize);
 
 	NSLog(@"Setting up grid with size=%d, width=%d, height=%d", _gridSize, _gridWidth, _gridHeight);
 
@@ -474,7 +474,7 @@ static NSString* sLevelPath;
 	NSLog(@"Done generating feature maps");
 	
 	//force a move grid update early
-	[self updateMoveGrids];
+	[self updateMoveGrids:true];
 }
 
 
@@ -868,14 +868,17 @@ static NSString* sLevelPath;
 }
 
 
-	
 -(void) updateMoveGrids {
+	[self updateMoveGrids:false];
+}
+	
+-(void) updateMoveGrids:(bool)force {
 
-	if(_state != RUNNING || _isUpdatingMoveGrids) {
+	if((!force && _state != RUNNING) || _isUpdatingMoveGrids) {
 		return;
 	}
 	_isUpdatingMoveGrids = true;
-	
+			
 	dispatch_async(dispatch_get_main_queue(), ^(void) {
 
 		NSArray* sharks = [_levelLoader spritesWithTag:SHARK];

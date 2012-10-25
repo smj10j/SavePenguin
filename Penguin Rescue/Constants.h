@@ -12,7 +12,7 @@
 
 
 
-#define TEST_MODE true
+#define TEST_MODE false
 #define TEST_LEVEL_PACK @"Arctic"
 #define TEST_LEVEL @"Showdown"
 #define DEBUG_ALL_THE_THINGS false
@@ -23,7 +23,7 @@
 #define SCALING_FACTOR_H (IS_IPHONE ? 480.0/1024.0 : 1.0)
 #define SCALING_FACTOR_V (IS_IPHONE ? 320.0/768.0 : 1.0)
 #define SCALING_FACTOR_GENERIC SCALING_FACTOR_V
-#define SCALING_FACTOR_FONTS .60
+#define SCALING_FACTOR_FONTS (SCALING_FACTOR_V*1.5)
 #define TARGET_FPS 60
 
 #define SHARK_DIES_WHEN_STUCK false
