@@ -99,6 +99,14 @@
 	return (const int**)_moveGrid;
 }
 
+- (const int**)baseGrid {
+	return (const int**)_baseGrid;
+}
+
+- (const CGPoint)lastTargetTile {
+	return (const CGPoint)_lastToTile;
+}
+
 - (CGPoint)getBestMoveToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile {
 	CGPoint bestMove = ccp(-10000,-10000);
 	
@@ -110,7 +118,7 @@
 	//makes backtracking less attractive
 	_moveGrid[(int)fromTile.x][(int)fromTile.y]++;
 	
-	//NSLog(@"weights: %f, %f, %f, %f", wN, wS, wE, wW);
+	//NSLog(@"tag %@ weights: %f, %f, %f, %f", _tag, wN, wS, wE, wW);
 	
 	if(wW == wE && wE == wN && wN == wS) {
 				
@@ -188,6 +196,8 @@
 		_moveGrid[(int)toTile.x][(int)toTile.y] = 0;
 		bool foundRoute = false;
 		[self propagateGridCostToX:toTile.x y:toTile.y fromTile:fromTile foundRoute:&foundRoute];
+		
+		//NSLog(@"Foundroute: %d", foundRoute);
 	}
 }
 
@@ -218,10 +228,9 @@
 	double wE = x+1 > _gridWidth-1 ? -10000 : _moveGrid[x+1][y];
 	double wW = x-1 < 0 ? -10000 : _moveGrid[x-1][y];
 
-	/*if(w != 0 && w != 1) {
-		NSLog(@"%d,%d = %f", x, y, w);
+	/*if(w < 50) {
+		NSLog(@"tag %@ %d,%d = %f", _tag, x, y, w);
 	}*/
-
 	
 	bool changedN = false;
 	bool changedS = false;

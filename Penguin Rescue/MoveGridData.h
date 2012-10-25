@@ -34,7 +34,9 @@
 - (double)distanceTraveled;
 - (double)distanceTraveledStraightline;
 
+- (const int**)baseGrid;
 - (const int**)moveGrid;
+- (const CGPoint)lastTargetTile;
 
 - (void)updateMoveGridToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile;
 - (CGPoint)getBestMoveToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile;

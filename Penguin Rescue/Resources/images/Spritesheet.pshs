@@ -3359,7 +3359,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>1</integer>
+						<integer>11</integer>
 					</dict>
 				</dict>
 				<key>BottomBar</key>
@@ -3960,7 +3960,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>3</integer>
+						<integer>12</integer>
 					</dict>
 				</dict>
 				<key>Num1</key>
@@ -4110,7 +4110,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>3</integer>
+						<integer>12</integer>
 					</dict>
 				</dict>
 				<key>Num2</key>
@@ -4260,7 +4260,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>3</integer>
+						<integer>12</integer>
 					</dict>
 				</dict>
 				<key>Num3</key>
@@ -4410,7 +4410,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>3</integer>
+						<integer>12</integer>
 					</dict>
 				</dict>
 				<key>Num4</key>
@@ -4560,7 +4560,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>3</integer>
+						<integer>12</integer>
 					</dict>
 				</dict>
 				<key>Num5</key>
@@ -4710,7 +4710,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>3</integer>
+						<integer>12</integer>
 					</dict>
 				</dict>
 				<key>Num6</key>
@@ -4860,7 +4860,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>3</integer>
+						<integer>12</integer>
 					</dict>
 				</dict>
 				<key>Num7</key>
@@ -5010,7 +5010,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>3</integer>
+						<integer>12</integer>
 					</dict>
 				</dict>
 				<key>Num8</key>
@@ -5160,7 +5160,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>3</integer>
+						<integer>12</integer>
 					</dict>
 				</dict>
 				<key>Num9</key>
@@ -5310,7 +5310,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>3</integer>
+						<integer>12</integer>
 					</dict>
 				</dict>
 				<key>Pause_active</key>
@@ -6666,7 +6666,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>1</integer>
+						<integer>10</integer>
 					</dict>
 				</dict>
 				<key>Tutorial2</key>
@@ -6816,7 +6816,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>1</integer>
+						<integer>10</integer>
 					</dict>
 				</dict>
 				<key>Tutorial3</key>
@@ -6966,7 +6966,7 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>1</integer>
+						<integer>10</integer>
 					</dict>
 				</dict>
 			</dict>

@@ -98,6 +98,9 @@ static NSString* sLevelPath;
 		//various handlers
 		[self setupCollisionHandling];
 		
+		//update move grids
+		[self schedule:@selector(updateMoveGrids) interval:1.0f];
+		
 		//start the game
 		_state = PLACE;
 		CCDirectorIOS* director = (CCDirectorIOS*) [CCDirector sharedDirector];
@@ -171,8 +174,8 @@ static NSString* sLevelPath;
 		}
 	}
 		
-	_gridWidth = _levelSize.width/_gridSize + 1;
-	_gridHeight = _levelSize.height/_gridSize + 1;
+	_gridWidth = _levelSize.width/_gridSize;
+	_gridHeight = _levelSize.height/_gridSize;
 
 	NSLog(@"Setting up grid with size=%d, width=%d, height=%d", _gridSize, _gridWidth, _gridHeight);
 
@@ -864,7 +867,64 @@ static NSString* sLevelPath;
 
 
 	
+-(void) updateMoveGrids {
 
+	if(_state != RUNNING) {
+		return;
+	}
+
+	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
+	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
+	LHSprite* targetPenguin = nil;
+
+	if(DEBUG_ALL_THE_THINGS) NSLog(@"Updating %d sharks...", [sharks count]);
+		
+	for(LHSprite* shark in sharks) {
+		
+		Shark* sharkData = ((Shark*)shark.userInfo);
+		CGPoint sharkGridPos = [self toGrid:shark.position];
+
+		if(sharkGridPos.x >= _gridWidth || sharkGridPos.x < 0 || sharkGridPos.y >= _gridHeight || sharkGridPos.y < 0) {
+			NSLog(@"Shark %@ has moved offscreen to %f,%f - removing him", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
+			[shark removeSelf];
+			shark = nil;
+			continue;
+		}
+
+
+		//find the nearest penguin
+		for(LHSprite* penguin in penguins) {
+			Penguin* penguinData = ((Penguin*)penguin.userInfo);
+			if(penguinData.isSafe || penguinData.isStuck) {
+				continue;
+			}
+
+			double minDistance = 100000000;
+			if(sharkData.targetAcquired) {
+				//any ol' penguin will do
+				minDistance = 1000000;
+			}else if(penguin.body->IsAwake()) {
+				//we smell blood...
+				minDistance = fmin(minDistance, sharkData.activeDetectionRadius * SCALING_FACTOR_GENERIC);
+			}else {
+				minDistance = fmin(minDistance, sharkData.restingDetectionRadius * SCALING_FACTOR_GENERIC);
+			}		
+			
+			double dist = ccpDistance(shark.position, penguin.position);
+			if(dist < minDistance) {
+				minDistance = dist;
+				targetPenguin = penguin;
+				sharkData.targetAcquired = true;
+			}
+		}
+		
+		//TOOD: account for no penguin targeted
+		CGPoint targetPenguinGridPos = [self toGrid:targetPenguin.position];
+
+		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
+		[sharkMoveGridData updateMoveGridToTile:targetPenguinGridPos fromTile:sharkGridPos];
+	}
+}
 
 
 -(void) update: (ccTime) dt
@@ -1037,7 +1097,6 @@ static NSString* sLevelPath;
 -(void) moveSharks:(ccTime)dt {
 		
 	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
-	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Moving %d sharks...", [sharks count]);
 	
 	if([sharks count] == 0) {
@@ -1050,7 +1109,6 @@ static NSString* sLevelPath;
 		
 		Shark* sharkData = ((Shark*)shark.userInfo);
 		CGPoint sharkGridPos = [self toGrid:shark.position];
-		LHSprite* targetPenguin = nil;
 
 		if(sharkGridPos.x >= _gridWidth || sharkGridPos.x < 0 || sharkGridPos.y >= _gridHeight || sharkGridPos.y < 0) {
 			NSLog(@"Shark %@ has moved offscreen to %f,%f - removing him", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
@@ -1059,40 +1117,9 @@ static NSString* sLevelPath;
 			continue;
 		}
 		
-		//find the nearest penguin
-		for(LHSprite* penguin in penguins) {
-			Penguin* penguinData = ((Penguin*)penguin.userInfo);
-			if(penguinData.isSafe || penguinData.isStuck) {
-				continue;
-			}
-
-			double minDistance = 100000000;
-			if(sharkData.targetAcquired) {
-				//any ol' penguin will do
-				minDistance = 1000000;
-			}else if(penguin.body->IsAwake()) {
-				//we smell blood...
-				minDistance = fmin(minDistance, sharkData.activeDetectionRadius * SCALING_FACTOR_GENERIC);
-			}else {
-				minDistance = fmin(minDistance, sharkData.restingDetectionRadius * SCALING_FACTOR_GENERIC);
-			}		
-			
-			double dist = ccpDistance(shark.position, penguin.position);
-			if(dist < minDistance) {
-				minDistance = dist;
-				targetPenguin = penguin;
-				sharkData.targetAcquired = true;
-			}
-		}
-		
-		
-		//TOOD: account for no penguin targeted
-		CGPoint targetPenguinGridPos = [self toGrid:targetPenguin.position];
-		
 		//use the best route algorithm
 		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
-		[sharkMoveGridData updateMoveGridToTile:targetPenguinGridPos fromTile:sharkGridPos];
-		CGPoint bestOptionPos = [sharkMoveGridData getBestMoveToTile:targetPenguinGridPos fromTile:sharkGridPos];
+		CGPoint bestOptionPos = [sharkMoveGridData getBestMoveToTile:sharkMoveGridData.lastTargetTile fromTile:sharkGridPos];
 		
 		//NSLog(@"Best Option Pos: %f,%f", bestOptionPos.x,bestOptionPos.y);
 		if(bestOptionPos.x == -10000 && bestOptionPos.y == -10000) {
@@ -1438,12 +1465,12 @@ static NSString* sLevelPath;
 			for(int y = 0; y < _gridHeight; y++) {
 				if(__DEBUG_PENGUINS && penguinMoveGrid != nil) {
 					int pv = (penguinMoveGrid[x][y]);
-					ccDrawColor4B(0,0,(pv/max)*255,50);
+					ccDrawColor4B(55,55,(pv/max)*200+55,50);
 					ccDrawPoint( ccp(x*_gridSize+_gridSize/2, y*_gridSize+_gridSize/2) );
 				}
 				if(__DEBUG_SHARKS && sharkMoveGrid != nil) {
 					int sv = (sharkMoveGrid[x][y]);
-					ccDrawColor4B((sv/max)*255,0,0,50);
+					ccDrawColor4B((sv/max)*200+55,55,55,50);
 					ccDrawPoint( ccp(x*_gridSize + _gridSize/2, y*_gridSize + _gridSize/2) );
 				}
 			}
