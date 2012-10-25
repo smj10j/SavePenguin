@@ -127,6 +127,7 @@
 		double vE = 0;
 		double vN = 0;
 		
+		//COMMENTED OUT BECAUSE THIS SEEMS LIKE FAULTY LOGIC
 		//situation: West and East are equal and North and South are not equal - we'll get stuck forever
 		/*if(wE == wW && wN != wS) {
 			if(arc4random()%100 < 50) {

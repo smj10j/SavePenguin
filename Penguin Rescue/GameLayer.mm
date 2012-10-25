@@ -18,6 +18,7 @@
 #import "AppDelegate.h"
 
 #import "LevelSelectLayer.h"
+#import "LevelPackSelectLayer.h"
 #import "MainMenuLayer.h"
 #import "MoveGridData.h"
 
@@ -552,7 +553,7 @@ static NSString* sLevelPath;
 		[_playPauseButton setFrame:3];	//pause active
 		[_playPauseButton setFrame:0];	//play inactive
 	}else if (_state == GAME_OVER) {
-		[self pause];
+		[self showInGameMenu];
 		[_playPauseButton setFrame:2];	//pause inactive
 	}
 
@@ -575,19 +576,21 @@ static NSString* sLevelPath;
 
 -(void)onTouchEndedMainMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+	//TODO: crash bug is still here
 	[info.sprite removeTouchObserver];	//BUG in levelHelper causes a crash on subsequent presses if this isn't here
 	[self showMainMenuLayer];
 }
 
 -(void)onTouchBeganLevelsMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	[info.sprite setFrame:info.sprite.currentFrame+1];
+	//[info.sprite setFrame:info.sprite.currentFrame+1];
 }
 
 -(void)onTouchEndedLevelsMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	[info.sprite removeTouchObserver];	//BUG in levelHelper causes a crash on subsequent presses if this isn't here
-	[self showLevelsMenuLayer];
+	//TODO: crash bug is still here
+	//[info.sprite removeTouchObserver];	//BUG in levelHelper causes a crash on subsequent presses if this isn't here
+	//[self showLevelsMenuLayer];
 }
 
 -(void) pause {
@@ -600,8 +603,6 @@ static NSString* sLevelPath;
 			_levelPackPath, @"Level_Pack",
 		nil];
 		[Flurry logEvent:@"Pause_level" withParameters:flurryParams];		
-
-
 	}
 	[self showInGameMenu];
 }
@@ -754,7 +755,7 @@ static NSString* sLevelPath;
 	
 	if(nextLevelPath == nil) {
 		//TODO: show some kind of pack completed notification
-		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer scene] ]];
+		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelPackSelectLayer scene] ]];
 	
 	}else {
 		[GameLayer setLevelPackPath:sLevelPackPath];
@@ -790,7 +791,8 @@ static NSString* sLevelPath;
 					nil]]
 				];
 			}
-			[tutorial runAction:[CCFadeIn actionWithDuration:0.5f]];
+			[tutorial stopAllActions];
+			[tutorial runAction:[CCFadeIn actionWithDuration:2.5f]];
 			
 			//TODO: uncomment
 			//[SettingsManager setBool:true forKey:@"HasSeenTutorial1"];
@@ -1449,13 +1451,18 @@ static NSString* sLevelPath;
 	}
 }
 
+-(void) onExit{
+	NSLog(@"GameLayer onExit");
+	_state = PAUSE;
+    [self unscheduleAllSelectors];
+    [self unscheduleUpdate];
+    [[CCTextureCache sharedTextureCache] removeAllTextures];
+    [super onExit];
+}
+
 -(void) dealloc
 {
 	NSLog(@"GameLayer dealloc");
-
-	[self pause];
-	[self unscheduleAllSelectors];
-	[self unscheduleUpdate];
 
 	[_sharkMoveGridDatas removeAllObjects];
 	[_penguinMoveGridDatas removeAllObjects];
