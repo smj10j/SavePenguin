@@ -63,6 +63,7 @@ enum PROPAGATION_RESULT {
 	int** _penguinMapfeaturesGrid;
 	NSMutableDictionary* _sharkMoveGridDatas;
 	NSMutableDictionary* _penguinMoveGridDatas;
+	bool _isUpdatingMoveGrids;
 	
 	int _gridSize;
 	int _gridWidth;

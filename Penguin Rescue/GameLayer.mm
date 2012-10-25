@@ -63,7 +63,7 @@ static NSString* sLevelPath;
 		// enable events
 		self.isTouchEnabled = YES;
 		
-		
+		_isUpdatingMoveGrids = false;
 		_shouldRegenerateFeatureMaps = false;
 		_activeToolboxItem = nil;
 		_moveActiveToolboxItemIntoWorld = false;
@@ -469,10 +469,12 @@ static NSString* sLevelPath;
 		}else {
 			[moveGridData updateBaseGrid:sharkMoveGrid];
 		}
-		
 	}
 	
 	NSLog(@"Done generating feature maps");
+	
+	//force a move grid update early
+	[self updateMoveGrids];
 }
 
 
@@ -869,61 +871,68 @@ static NSString* sLevelPath;
 	
 -(void) updateMoveGrids {
 
-	if(_state != RUNNING) {
+	if(_state != RUNNING || _isUpdatingMoveGrids) {
 		return;
 	}
+	_isUpdatingMoveGrids = true;
+	
+	dispatch_async(dispatch_get_main_queue(), ^(void) {
 
-	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
-	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
-	LHSprite* targetPenguin = nil;
+		NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
+		NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
+		LHSprite* targetPenguin = nil;
 
-	if(DEBUG_ALL_THE_THINGS) NSLog(@"Updating %d sharks...", [sharks count]);
-		
-	for(LHSprite* shark in sharks) {
-		
-		Shark* sharkData = ((Shark*)shark.userInfo);
-		CGPoint sharkGridPos = [self toGrid:shark.position];
+		if(DEBUG_ALL_THE_THINGS) NSLog(@"Updating %d sharks...", [sharks count]);
+			
+		for(LHSprite* shark in sharks) {
+			
+			Shark* sharkData = ((Shark*)shark.userInfo);
+			CGPoint sharkGridPos = [self toGrid:shark.position];
 
-		if(sharkGridPos.x >= _gridWidth || sharkGridPos.x < 0 || sharkGridPos.y >= _gridHeight || sharkGridPos.y < 0) {
-			NSLog(@"Shark %@ has moved offscreen to %f,%f - removing him", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
-			[shark removeSelf];
-			shark = nil;
-			continue;
-		}
-
-
-		//find the nearest penguin
-		for(LHSprite* penguin in penguins) {
-			Penguin* penguinData = ((Penguin*)penguin.userInfo);
-			if(penguinData.isSafe || penguinData.isStuck) {
+			if(sharkGridPos.x >= _gridWidth || sharkGridPos.x < 0 || sharkGridPos.y >= _gridHeight || sharkGridPos.y < 0) {
+				NSLog(@"Shark %@ has moved offscreen to %f,%f - removing him", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
+				[shark removeSelf];
+				shark = nil;
 				continue;
 			}
 
-			double minDistance = 100000000;
-			if(sharkData.targetAcquired) {
-				//any ol' penguin will do
-				minDistance = 1000000;
-			}else if(penguin.body->IsAwake()) {
-				//we smell blood...
-				minDistance = fmin(minDistance, sharkData.activeDetectionRadius * SCALING_FACTOR_GENERIC);
-			}else {
-				minDistance = fmin(minDistance, sharkData.restingDetectionRadius * SCALING_FACTOR_GENERIC);
-			}		
-			
-			double dist = ccpDistance(shark.position, penguin.position);
-			if(dist < minDistance) {
-				minDistance = dist;
-				targetPenguin = penguin;
-				sharkData.targetAcquired = true;
+
+			//find the nearest penguin
+			for(LHSprite* penguin in penguins) {
+				Penguin* penguinData = ((Penguin*)penguin.userInfo);
+				if(penguinData.isSafe || penguinData.isStuck) {
+					continue;
+				}
+
+				double minDistance = 100000000;
+				if(sharkData.targetAcquired) {
+					//any ol' penguin will do
+					minDistance = 1000000;
+				}else if(penguin.body->IsAwake()) {
+					//we smell blood...
+					minDistance = fmin(minDistance, sharkData.activeDetectionRadius * SCALING_FACTOR_GENERIC);
+				}else {
+					minDistance = fmin(minDistance, sharkData.restingDetectionRadius * SCALING_FACTOR_GENERIC);
+				}		
+				
+				double dist = ccpDistance(shark.position, penguin.position);
+				if(dist < minDistance) {
+					minDistance = dist;
+					targetPenguin = penguin;
+					sharkData.targetAcquired = true;
+				}
 			}
+			
+			//TOOD: account for no penguin targeted
+			CGPoint targetPenguinGridPos = [self toGrid:targetPenguin.position];
+
+			MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
+			[sharkMoveGridData updateMoveGridToTile:targetPenguinGridPos fromTile:sharkGridPos];
 		}
 		
-		//TOOD: account for no penguin targeted
-		CGPoint targetPenguinGridPos = [self toGrid:targetPenguin.position];
-
-		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
-		[sharkMoveGridData updateMoveGridToTile:targetPenguinGridPos fromTile:sharkGridPos];
-	}
+		
+		_isUpdatingMoveGrids = false;
+	});
 }
 
 
