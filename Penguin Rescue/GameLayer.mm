@@ -1465,12 +1465,12 @@ static NSString* sLevelPath;
 			for(int y = 0; y < _gridHeight; y++) {
 				if(__DEBUG_PENGUINS && penguinMoveGrid != nil) {
 					int pv = (penguinMoveGrid[x][y]);
-					ccDrawColor4B(55,55,(pv/max)*200+55,50);
+					ccDrawColor4B(55,55,(log(pv/max * 100)/2)*200+55,50);
 					ccDrawPoint( ccp(x*_gridSize+_gridSize/2, y*_gridSize+_gridSize/2) );
 				}
 				if(__DEBUG_SHARKS && sharkMoveGrid != nil) {
 					int sv = (sharkMoveGrid[x][y]);
-					ccDrawColor4B((sv/max)*200+55,55,55,50);
+					ccDrawColor4B((log(sv/max * 100)/2)*200+55,55,55,50);
 					ccDrawPoint( ccp(x*_gridSize + _gridSize/2, y*_gridSize + _gridSize/2) );
 				}
 			}
