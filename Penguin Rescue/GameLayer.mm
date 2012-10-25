@@ -714,11 +714,12 @@ static NSString* sLevelPath;
 	
 	
 	
-	
 	int scoreDeductions = 0;
 	
 	
-	//TODO: show a level won screen
+	
+	
+	//show a level won screen
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 	LHSprite* levelWonPopup = [_levelLoader createSpriteWithName:@"Level_Won_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:_mainLayer];
 	levelWonPopup.opacity = 0;
@@ -854,6 +855,7 @@ static NSString* sLevelPath;
 	[levelWonPopup runAction:[CCFadeIn actionWithDuration:0.5f]];
 }
 
+//TODO: can this even happen anymore
 -(void) levelLostWithOffscreenPenguin:(LHSprite*)penguin {
 
 	if(_state == GAME_OVER) {
@@ -870,15 +872,9 @@ static NSString* sLevelPath;
 	NSLog(@"Showing level lost animations for offscreen penguin");
 	
 
-	//a penguin ran offscreen!
-	[penguin removeSelf];
-	penguin = nil;
-
 	//TODO: show some kind of information about how penguins have to reach the safety point
 	
-			
-	//TODO: restart after animations are done
-	//[self restart];	
+	[self showLevelLostPopup];
 }
 
 -(void) levelLostWithShark:(LHSprite*)shark andPenguin:(LHSprite*)penguin {
@@ -888,6 +884,7 @@ static NSString* sLevelPath;
 	}
 	_state = GAME_OVER;
 
+	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"Lost", @"Level_Status",
 		@"Shark Collision", @"Level_Lost_Reason",
@@ -896,16 +893,43 @@ static NSString* sLevelPath;
 
 	NSLog(@"Showing level lost animations for penguin/shark collision");
 	
-	
-	//a shark got a penguin!
-	[penguin removeSelf];
-	penguin = nil;
 
 	//TODO: show some happy sharks and sad penguins (if any are left!)
 	//eg. [shark startAnimationNamed:@"attackPenguin"];
 	
-	//TODO: restart after animations are done
-	//[self restart];
+	[self showLevelLostPopup];
+}
+
+-(void)showLevelLostPopup {
+	//show a level won screen
+	CGSize winSize = [[CCDirector sharedDirector] winSize];
+	LHSprite* levelLostPopup = [_levelLoader createSpriteWithName:@"Level_Lost_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:_mainLayer];
+	levelLostPopup.opacity = 0;
+	levelLostPopup.zOrder = 10000;
+	[levelLostPopup transformPosition: ccp(winSize.width/2,winSize.height/2)];
+
+
+
+	/***** action butons ******/
+	
+	int buttonYOffset = 20*SCALING_FACTOR_V;
+	int buttonXOffset = 0;
+
+	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelLostPopup];
+	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_Button" fromSHScene:@"Spritesheet"];
+	[levelsMenuButton transformPosition: ccp(buttonXOffset + levelLostPopup.boundingBox.size.width/2 - levelsMenuButton.boundingBox.size.width, buttonYOffset + levelLostPopup.boundingBox.size.height/2 - levelsMenuButton.boundingBox.size.height/2) ];
+	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
+	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
+	
+	LHSprite* restartMenuButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelLostPopup];
+	[restartMenuButton prepareAnimationNamed:@"Menu_Restart_Button" fromSHScene:@"Spritesheet"];
+	[restartMenuButton transformPosition: ccp(buttonXOffset + levelLostPopup.boundingBox.size.width/2 + restartMenuButton.boundingBox.size.width, buttonYOffset + levelLostPopup.boundingBox.size.height/2 - restartMenuButton.boundingBox.size.height/2) ];
+	[restartMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
+	[restartMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
+
+
+	//show!!
+	[levelLostPopup runAction:[CCFadeIn actionWithDuration:0.5f]];
 }
 
 -(void) restart {
