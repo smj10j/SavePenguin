@@ -291,35 +291,38 @@ static NSString* sLevelPath;
 	for(id key in _toolGroups) {
 
 		NSMutableSet* toolGroup = [_toolGroups objectForKey:key];
+
+		//draw a box to hold it
+		LHSprite* toolboxContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:_mainLayer];
+		toolboxContainer.zOrder = _bottomBarContainer.parent.zOrder;
+		toolboxContainer.tag = TOOLBOX_ITEM_CONTAINER;
+		[toolboxContainer transformPosition: ccp(toolGroupX, toolGroupY)];
+
+		LHSprite* toolboxContainerCountContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container-Count" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:toolboxContainer];
+		[toolboxContainerCountContainer transformPosition: ccp(toolboxContainer.boundingBox.size.width, toolboxContainer.boundingBox.size.height)];
+
+		//display # of items in the stack
+		CCLabelTTF* numToolsLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", toolGroup.count] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE];
+		numToolsLabel.color = ccWHITE;
+		numToolsLabel.position = ccp(toolboxContainerCountContainer.boundingBox.size.width/2, toolboxContainerCountContainer.boundingBox.size.height/2);
+		[toolboxContainerCountContainer addChild:numToolsLabel];
+
+		LHSprite* topToolboxItem = nil;
 		for(LHSprite* toolboxItem in toolGroup) {
-
-			//draw a box to hold it
-			LHSprite* toolboxContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:_mainLayer];
-			toolboxContainer.zOrder = _bottomBarContainer.parent.zOrder;
-			toolboxContainer.tag = TOOLBOX_ITEM_CONTAINER;
-			[toolboxContainer transformPosition: ccp(toolGroupX, toolGroupY)];
-
-			LHSprite* toolboxContainerCountContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container-Count" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:toolboxContainer];
-			[toolboxContainerCountContainer transformPosition: ccp(toolboxContainer.boundingBox.size.width, toolboxContainer.boundingBox.size.height)];
-
+			if(topToolboxItem == nil) topToolboxItem = toolboxItem;
 			//move the tool into the box
 			[toolboxItem transformPosition: ccp(toolGroupX, toolGroupY)];
 			double scale = fmin((_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING_H)/toolboxItem.contentSize.width, (_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING_V)/toolboxItem.contentSize.height);
 			[toolboxItem transformScale: scale];
 			//NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", toolboxItem.uniqueName, (int)(100*scale));
-		
-			//display # of items in the stack
-			CCLabelTTF* numToolsLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", toolGroup.count] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE];
-			numToolsLabel.color = ccWHITE;
-			numToolsLabel.position = ccp(toolboxContainerCountContainer.boundingBox.size.width/2, toolboxContainerCountContainer.boundingBox.size.height/2);
-			[toolboxContainerCountContainer addChild:numToolsLabel];
-				
-			[toolboxContainer setUserData:toolboxItem.uniqueName];
-			[toolboxContainer registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
-			[toolboxContainer registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
 		}
+		
+		[toolboxContainer setUserData:topToolboxItem.uniqueName];
+		[toolboxContainer registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
+		[toolboxContainer registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
+
 				
-		toolGroupX+= _toolboxItemSize + TOOLBOX_MARGIN_LEFT; //16 is a margin
+		toolGroupX+= _toolboxItemSize + TOOLBOX_MARGIN_LEFT;
 	}
 	
 
