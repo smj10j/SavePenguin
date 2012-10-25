@@ -69,10 +69,9 @@
 
 	if(TEST_MODE) {
 		//TESTING CODE
-		[GameLayer setLevelPackPath:@"Arctic"];
-		[GameLayer setLevelPath:@"Northbound"];
+		[GameLayer setLevelPackPath:TEST_LEVEL_PACK];
+		[GameLayer setLevelPath:TEST_LEVEL];
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer scene] ]];
-	
 	
 	}else {
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelPackSelectLayer scene] ]];

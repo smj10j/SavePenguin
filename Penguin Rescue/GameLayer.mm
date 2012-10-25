@@ -809,8 +809,15 @@ static NSString* sLevelPath;
 			NSLog(@"Showing tutorial 2");
 			//TODO: uncomment
 			//[SettingsManager setBool:true forKey:@"HasSeenTutorial2"];
-		}else {
-			NSLog(@"BUBLBES AND CAAA!!KK!!EE!");
+		}
+	}
+	if(tutorial == nil && ![SettingsManager boolForKey:@"HasSeenTutorial3"]) {
+		//is this tutorial available on this level?
+		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial3"];
+		if(tutorial != nil) {
+			NSLog(@"Showing tutorial 3");
+			//TODO: uncomment
+			//[SettingsManager setBool:true forKey:@"HasSeenTutorial3"];
 		}
 	}
 	

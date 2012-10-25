@@ -13,6 +13,8 @@
 
 
 #define TEST_MODE true
+#define TEST_LEVEL_PACK @"Arctic"
+#define TEST_LEVEL @"ChannelBreak"
 #define DEBUG_ALL_THE_THINGS false
 #define DEBUG_PENGUIN false	//can be overridden in game
 #define DEBUG_SHARK false	//can be overridden in game
