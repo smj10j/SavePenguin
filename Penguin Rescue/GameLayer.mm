@@ -82,11 +82,13 @@ static NSString* sLevelPath;
 		// enable events
 		self.isTouchEnabled = YES;
 		
+		
 		_shouldRegenerateFeatureMaps = false;
 		_activeToolboxItem = nil;
 		_moveActiveToolboxItemIntoWorld = false;
 		_shouldUpdateToolbox = false;
 		_penguinsToPutOnLand =[[NSMutableDictionary alloc] init];
+		_placedToolboxItems = [[NSMutableArray alloc] init];
 		__DEBUG_SHARKS = DEBUG_SHARK;
 		__DEBUG_PENGUINS = DEBUG_PENGUIN;
 		__DEBUG_TOUCH_SECONDS = 0;
@@ -187,8 +189,8 @@ static NSString* sLevelPath;
 		}
 	}
 		
-	_gridWidth = winSize.width/_gridSize + 1;
-	_gridHeight = winSize.height/_gridSize + 1;
+	_gridWidth = _levelSize.width/_gridSize + 1;
+	_gridHeight = _levelSize.height/_gridSize + 1;
 
 	NSLog(@"Setting up grid with size=%d, width=%d, height=%d", _gridSize, _gridWidth, _gridHeight);
 
@@ -329,6 +331,8 @@ static NSString* sLevelPath;
 
 -(void) loadLevel:(NSString*)levelName inLevelPack:(NSString*)levelPack {
 		
+	CGSize winSize = [[CCDirector sharedDirector] winSize];		
+		
 	[LevelHelperLoader dontStretchArt];
 
 	//create a LevelHelperLoader object that has the data of the specified level
@@ -340,9 +344,13 @@ static NSString* sLevelPath;
 	//create all objects from the level file and adds them to the cocos2d layer (self)
 	[_levelLoader addObjectsToWorld:_world cocos2dLayer:self];
 
+	_levelSize = winSize.width < _levelLoader.gameWorldSize.size.width ? _levelLoader.gameWorldSize.size : winSize;
+	NSLog(@"Level size: %f x %f", _levelSize.width, _levelSize.height);
+
 	_mainLayer = [_levelLoader layerWithUniqueName:@"MAIN_LAYER"];
 	_toolboxBatchNode = [_levelLoader batchWithUniqueName:@"Toolbox"];
 	_mapBatchNode = [_levelLoader batchWithUniqueName:@"Map"];
+	_actorsBatchNode = [_levelLoader batchWithUniqueName:@"Actors"];
 
 	//checks if the level has physics boundaries
 	if([_levelLoader hasPhysicBoundaries])
@@ -352,7 +360,6 @@ static NSString* sLevelPath;
 	}
 	
 	//draw the background water tiles
-	CGSize winSize = [[CCDirector sharedDirector] winSize];
 	LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water_1" fromSheet:@"Map" fromSHFile:@"Spritesheet" tag:BACKGROUND parent:_mainLayer];
 	for(int x = -waterTile.boundingBox.size.width/2; x < winSize.width + waterTile.boundingBox.size.width/2; ) {
 		for(int y = -waterTile.boundingBox.size.height/2; y < winSize.height + waterTile.boundingBox.size.width/2; ) {
@@ -379,8 +386,6 @@ static NSString* sLevelPath;
 
 	NSLog(@"Generating feature maps...");
 
-	CGSize winSize = [[CCDirector sharedDirector] winSize];
-
 	//fresh start
 	for(int x = 0; x < _gridWidth; x++) {
 		for(int y = 0; y < _gridHeight; y++) {
@@ -401,9 +406,9 @@ static NSString* sLevelPath;
 	for(LHSprite* land in unpassableAreas) {
 					
 		int minX = max(land.boundingBox.origin.x, 0);
-		int maxX = min(land.boundingBox.origin.x+land.boundingBox.size.width, winSize.width-1);
+		int maxX = min(land.boundingBox.origin.x+land.boundingBox.size.width, _levelSize.width-1);
 		int minY = max(land.boundingBox.origin.y, 0);
-		int maxY = min(land.boundingBox.origin.y+land.boundingBox.size.height, winSize.height-1);
+		int maxY = min(land.boundingBox.origin.y+land.boundingBox.size.height, _levelSize.height-1);
 		
 		//create the areas that both sharks and penguins can't go
 		for(int x = minX; x < maxX; x++) {
@@ -505,14 +510,12 @@ static NSString* sLevelPath;
 -(void)onTouchEndedToolboxItem:(LHTouchInfo*)info {
 	
 	if(_activeToolboxItem != nil) {
-	
-		CGSize winSize = [[CCDirector sharedDirector] winSize];
-		
+			
 		if((_state != RUNNING && _state != PLACE)
 				|| (info.glPoint.y < _bottomBarContainer.boundingBox.size.height)
-				|| (info.glPoint.y >= winSize.height)
+				|| (info.glPoint.y >= _levelSize.height)
 				|| (info.glPoint.x <= 0)
-				|| (info.glPoint.x >= winSize.width)
+				|| (info.glPoint.x >= _levelSize.width)
 			) {
 			//placed back into the HUD
 
@@ -639,6 +642,7 @@ static NSString* sLevelPath;
 }
 
 -(void) resume {
+
 	if(_state == PAUSE) {
 		NSLog(@"Resuming game");
 		_state = RUNNING;
@@ -845,6 +849,7 @@ static NSString* sLevelPath;
 			[_toolboxBatchNode removeChild:_activeToolboxItem cleanup:NO];
 		}
 		[_mainLayer addChild:_activeToolboxItem];
+		[_placedToolboxItems addObject:_activeToolboxItem];
 
 
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -1108,8 +1113,6 @@ static NSString* sLevelPath;
 
 -(void) movePenguins:(ccTime)dt {
 
-	//CGSize winSize = [[CCDirector sharedDirector] winSize];
-
 	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Moving %d penguins...", [penguins count]);
 
@@ -1296,6 +1299,14 @@ static NSString* sLevelPath;
 				//toolbox item drag
 				//TODO: add some kind of crosshair so you know where the item is if it's tiny and under your finger
 				[_activeToolboxItem transformPosition:location];
+			}else if(_startTouch.x != 0 && _startTouch.y != 0) {
+				//slide the main layer
+				_mapBatchNode.position = ccp(_mapBatchNode.position.x+location.x-_lastTouch.x, _mapBatchNode.position.y+location.y-_lastTouch.y);
+				_actorsBatchNode.position = ccp(_mapBatchNode.position.x+location.x-_lastTouch.x, _mapBatchNode.position.y+location.y-_lastTouch.y);
+				for(LHSprite* toolboxItem in _placedToolboxItems) {
+					[toolboxItem transformPosition:ccp(toolboxItem.position.x+location.x-_lastTouch.x, toolboxItem.position.y+location.y-_lastTouch.y)];
+				}				
+				_lastTouch = location;
 			}
 		}
 	}
@@ -1317,7 +1328,16 @@ static NSString* sLevelPath;
 	}
 }
 
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 
+	for( UITouch *touch in touches ) {
+		CGPoint location = [touch locationInView: [touch view]];
+		location = [[CCDirector sharedDirector] convertToGL: location];
+
+		_startTouch = location;
+		_lastTouch = location;
+	}
+}
 
 
 

@@ -49,9 +49,11 @@ enum PROPAGATION_RESULT {
 	NSString* _levelPackPath;
 	
 	LevelHelperLoader* _levelLoader;
+	CGSize _levelSize;
 	LHLayer* _mainLayer;
 	LHBatch* _toolboxBatchNode;
 	LHBatch* _mapBatchNode;
+	LHBatch* _actorsBatchNode;
 	
 	GAME_STATE _state;
 	
@@ -82,6 +84,9 @@ enum PROPAGATION_RESULT {
 	bool _shouldRegenerateFeatureMaps;
 	
 	
+	CGPoint _startTouch;
+	CGPoint _lastTouch;
+	NSMutableArray* _placedToolboxItems;
 	
 	
 	
