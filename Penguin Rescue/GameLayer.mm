@@ -244,7 +244,7 @@ static NSString* sLevelPath;
 	//show the level name at the top
 	LHSprite* levelNamePopup = [_levelLoader createSpriteWithName:@"Level_Name_Popup" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[levelNamePopup transformPosition: ccp(winSize.width/2,winSize.height+levelNamePopup.boundingBox.size.height/2)];
-	CCLabelTTF* levelNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level: %@", [_levelData objectForKey:LEVELPACKMANAGER_KEY_NAME]] fontName:@"Helvetica" fontSize:18];
+	CCLabelTTF* levelNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level: %@", [_levelData objectForKey:LEVELPACKMANAGER_KEY_NAME]] fontName:@"Helvetica" fontSize:18*SCALING_FACTOR_FONTS];
 	levelNameLabel.color = ccBLACK;
 	levelNameLabel.position = ccp(levelNamePopup.boundingBox.size.width/2, levelNamePopup.boundingBox.size.height/2);
 	[levelNamePopup addChild:levelNameLabel];
