@@ -730,32 +730,32 @@ static NSString* sLevelPath;
 
 	/***** action butons ******/
 	
-	int buttonY = 160*SCALING_FACTOR_V;
+	int buttonYOffset = 140*SCALING_FACTOR_V;
 	int buttonXOffset = -125*SCALING_FACTOR_H;
 
 	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelWonPopup];
 	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_Button" fromSHScene:@"Spritesheet"];
-	[levelsMenuButton transformPosition: ccp(buttonXOffset + levelWonPopup.boundingBox.size.width/2 - levelsMenuButton.boundingBox.size.width*2, buttonY) ];
+	[levelsMenuButton transformPosition: ccp(buttonXOffset + levelWonPopup.boundingBox.size.width/2 - levelsMenuButton.boundingBox.size.width*2, buttonYOffset + levelsMenuButton.boundingBox.size.height/2) ];
 	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
 	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
 	
 	LHSprite* restartMenuButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelWonPopup];
 	[restartMenuButton prepareAnimationNamed:@"Menu_Restart_Button" fromSHScene:@"Spritesheet"];
-	[restartMenuButton transformPosition: ccp(buttonXOffset + levelWonPopup.boundingBox.size.width/2, buttonY) ];
+	[restartMenuButton transformPosition: ccp(buttonXOffset + levelWonPopup.boundingBox.size.width/2, buttonYOffset + restartMenuButton.boundingBox.size.height/2) ];
 	[restartMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[restartMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 	
 	LHSprite* nextLevelMenuButton = [_levelLoader createSpriteWithName:@"Next_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelWonPopup];
 	[nextLevelMenuButton prepareAnimationNamed:@"Menu_Next_Level_Button" fromSHScene:@"Spritesheet"];
-	[nextLevelMenuButton transformPosition: ccp(buttonXOffset + levelWonPopup.boundingBox.size.width/2 + restartMenuButton.boundingBox.size.width*2, buttonY) ];
+	[nextLevelMenuButton transformPosition: ccp(buttonXOffset + levelWonPopup.boundingBox.size.width/2 + restartMenuButton.boundingBox.size.width*2, buttonYOffset + nextLevelMenuButton.boundingBox.size.height/2) ];
 	[nextLevelMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganNextLevel:)];
 	[nextLevelMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedNextLevel:)];
 	
 	
 	/***** scoring items ******/
 	
-	int scoringTextYOffset = 100*SCALING_FACTOR_V;
-	int scoringTextXOffset = -85*SCALING_FACTOR_H;
+	int scoringTextYOffset = 120*SCALING_FACTOR_V;
+	int scoringTextXOffset = -185*SCALING_FACTOR_H;
 	int scoringSpriteXOffset = scoringTextXOffset + -140*SCALING_FACTOR_H;
 	
 	CCLabelTTF* maxScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Max Score: %d", SCORING_MAX_SCORE_POSSIBLE] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE dimensions:CGSizeMake(SCORING_LINE_WIDTH, SCORING_LINE_HEIGHT) hAlignment:kCCTextAlignmentRight];
@@ -824,7 +824,7 @@ static NSString* sLevelPath;
 	/***** competitive items ******/
 
 	int competitiveTextYOffset = 100*SCALING_FACTOR_V;
-	int competitiveTextXOffset = 230*SCALING_FACTOR_H;
+	int competitiveTextXOffset = 200*SCALING_FACTOR_H;
 
 	//TODO: get the number from the server (or cached copy!)
 
@@ -912,7 +912,7 @@ static NSString* sLevelPath;
 
 	/***** action butons ******/
 	
-	int buttonYOffset = 20*SCALING_FACTOR_V;
+	int buttonYOffset = -20*SCALING_FACTOR_V;
 	int buttonXOffset = 0;
 
 	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelLostPopup];
