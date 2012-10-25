@@ -10,6 +10,7 @@
 // Import the interfaces
 #import "MainMenuLayer.h"
 #import "LevelPackSelectLayer.h"
+#import "GameLayer.h"
 
 
 #pragma mark - MainMenuLayer
@@ -63,8 +64,19 @@
 }
 
 -(void)onTouchEndedPlay:(LHTouchInfo*)info {
+
 	[_playButton setFrame:_playButton.currentFrame-1];	//inactive state
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelPackSelectLayer scene] ]];
+
+	if(TEST_MODE) {
+		//TESTING CODE
+		[GameLayer setLevelPackPath:@"Arctic"];
+		[GameLayer setLevelPath:@"Northbound"];
+		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer scene] ]];
+	
+	
+	}else {
+		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelPackSelectLayer scene] ]];
+	}
 }
 
 

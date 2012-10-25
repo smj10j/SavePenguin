@@ -790,36 +790,51 @@ static NSString* sLevelPath;
 
 -(void) showTutorial {
 
+	LHSprite* tutorial = nil;
+
 	//have we shown this tutorial yet?
 	if(![SettingsManager boolForKey:@"HasSeenTutorial1"]) {
-
 		//is this tutorial available on this level?
-		LHSprite* tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial1"];
+		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial1"];
 		if(tutorial != nil) {
 			NSLog(@"Showing tutorial 1");
-			
-			//fade in all tutorial items
-			for(LHSprite* tutorial in [_levelLoader spritesWithTag:TUTORIAL]) {
-				[tutorial runAction: [CCSequence actions:
-					[CCRepeatForever actionWithAction:
-						[CCSequence actions:
-							[CCFadeTo actionWithDuration:0.5f opacity:150],
-							[CCFadeTo actionWithDuration:0.5f opacity:30],
-						nil]
-					],
-					nil]
-				];
-			}
-			[tutorial stopAllActions];
-			[tutorial runAction:[CCSequence actions: 
-					[CCDelayTime actionWithDuration:1.0f],
-					[CCFadeIn actionWithDuration:1.5f],
-				nil]
-			];
-			
 			//TODO: uncomment
 			//[SettingsManager setBool:true forKey:@"HasSeenTutorial1"];
 		}
+	}
+	if(tutorial == nil && ![SettingsManager boolForKey:@"HasSeenTutorial2"]) {
+		//is this tutorial available on this level?
+		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial2"];
+		if(tutorial != nil) {
+			NSLog(@"Showing tutorial 2");
+			//TODO: uncomment
+			//[SettingsManager setBool:true forKey:@"HasSeenTutorial2"];
+		}else {
+			NSLog(@"BUBLBES AND CAAA!!KK!!EE!");
+		}
+	}
+	
+	
+	//generic for all tutorials
+	if(tutorial != nil) {		
+		//fade in all tutorial items
+		for(LHSprite* tutorial in [_levelLoader spritesWithTag:TUTORIAL]) {
+			[tutorial runAction: [CCSequence actions:
+				[CCRepeatForever actionWithAction:
+					[CCSequence actions:
+						[CCFadeTo actionWithDuration:0.5f opacity:150],
+						[CCFadeTo actionWithDuration:0.5f opacity:30],
+					nil]
+				],
+				nil]
+			];
+		}
+		[tutorial stopAllActions];
+		[tutorial runAction:[CCSequence actions: 
+				[CCDelayTime actionWithDuration:1.0f],
+				[CCFadeIn actionWithDuration:1.5f],
+			nil]
+		];
 	}
 }
 
