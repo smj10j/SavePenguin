@@ -159,10 +159,12 @@ static NSString* sLevelPackPath;
 /************* Touch handlers ***************/
 
 -(void)onTouchBeganLevelSelect:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 }
 
 -(void)onTouchEndedLevelSelect:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
 	[GameLayer setLevelPackPath:sLevelPackPath];
 	[GameLayer setLevelPath:[_spriteNameToLevelPath objectForKey:info.sprite.uniqueName]];
@@ -172,10 +174,12 @@ static NSString* sLevelPackPath;
 
 
 -(void)onTouchBeganBack:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 }
 
 -(void)onTouchEndedBack:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelPackSelectLayer scene] ]];
 }

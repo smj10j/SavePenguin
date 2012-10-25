@@ -147,10 +147,12 @@
 /************* Touch handlers ***************/
 
 -(void)onTouchBeganLevelSelect:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 }
 
 -(void)onTouchEndedLevelSelect:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
 	[LevelSelectLayer setLevelPackPath:[_spriteNameToLevelPackPath objectForKey:info.sprite.uniqueName]];
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelSelectLayer scene] ]];
@@ -159,10 +161,12 @@
 
 
 -(void)onTouchBeganBack:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 }
 
 -(void)onTouchEndedBack:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[MainMenuLayer scene] ]];
 }

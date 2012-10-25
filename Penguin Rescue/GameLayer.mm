@@ -578,6 +578,7 @@ static NSString* sLevelPath;
 }
 
 -(void)onTouchBeganRestart:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];
 }
 
@@ -586,21 +587,23 @@ static NSString* sLevelPath;
 }
 
 -(void)onTouchBeganMainMenu:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];
 }
 
 -(void)onTouchEndedMainMenu:(LHTouchInfo*)info {
-	//TODO: still appers to occasionally cause crash????
+	if(info.sprite == nil) return;
 	[info.sprite removeTouchObserver];	//BUG in levelHelper causes a crash on subsequent presses if this isn't here
 	[self showMainMenuLayer];
 }
 
 -(void)onTouchBeganLevelsMenu:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];
 }
 
 -(void)onTouchEndedLevelsMenu:(LHTouchInfo*)info {
-	//TODO: still appers to occasionally cause crash????
+	if(info.sprite == nil) return;
 	[info.sprite removeTouchObserver];	//BUG in levelHelper causes a crash on subsequent presses if this isn't here
 	[self showLevelsMenuLayer];
 }
