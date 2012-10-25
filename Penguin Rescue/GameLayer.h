@@ -48,6 +48,7 @@ enum PROPAGATION_RESULT {
 	
 	NSString* _levelPath;
 	NSString* _levelPackPath;
+	NSDictionary* _levelData;
 	
 	LevelHelperLoader* _levelLoader;
 	CGSize _levelSize;

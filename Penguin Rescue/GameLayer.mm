@@ -83,6 +83,7 @@ static NSString* sLevelPath;
 		
 		_levelPath = sLevelPath;
 		_levelPackPath = sLevelPackPath;
+		_levelData = [LevelPackManager level:_levelPath inPack:_levelPackPath];
 		[self loadLevel:_levelPath inLevelPack:_levelPackPath];
 		
 		//place the HUD items (pause, restart, etc.)
@@ -239,6 +240,21 @@ static NSString* sLevelPath;
 										_menuPopupContainer.boundingBox.size.height/2) ];
 	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
 	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
+	
+	//show the level name at the top
+	LHSprite* levelNamePopup = [_levelLoader createSpriteWithName:@"Level_Name_Popup" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
+	[levelNamePopup transformPosition: ccp(winSize.width/2,winSize.height+levelNamePopup.boundingBox.size.height/2)];
+	CCLabelTTF* levelNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level: %@", [_levelData objectForKey:LEVELPACKMANAGER_KEY_NAME]] fontName:@"Helvetica" fontSize:18];
+	levelNameLabel.color = ccBLACK;
+	levelNameLabel.position = ccp(levelNamePopup.boundingBox.size.width/2, levelNamePopup.boundingBox.size.height/2);
+	[levelNamePopup addChild:levelNameLabel];
+	[levelNamePopup runAction:[CCSequence actions:
+		[CCDelayTime actionWithDuration:1.5f],
+		[CCMoveBy actionWithDuration:0.5f position:ccp(0,-levelNamePopup.boundingBox.size.height)],
+		[CCDelayTime actionWithDuration:2.5f],
+		[CCMoveBy actionWithDuration:0.5f position:ccp(0,levelNamePopup.boundingBox.size.height)],
+		nil]];
+	
 	
 	//get the toolbox item size for scaling purposes
 	LHSprite* toolboxContainer = [_levelLoader createBatchSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
@@ -784,15 +800,22 @@ static NSString* sLevelPath;
 			
 			//fade in all tutorial items
 			for(LHSprite* tutorial in [_levelLoader spritesWithTag:TUTORIAL]) {
-				[tutorial runAction:
-					[CCRepeatForever actionWithAction:[CCSequence actions:
-						[CCFadeTo actionWithDuration:0.5f opacity:200],
-						[CCFadeTo actionWithDuration:0.5f opacity:50],
-					nil]]
+				[tutorial runAction: [CCSequence actions:
+					[CCRepeatForever actionWithAction:
+						[CCSequence actions:
+							[CCFadeTo actionWithDuration:0.5f opacity:150],
+							[CCFadeTo actionWithDuration:0.5f opacity:30],
+						nil]
+					],
+					nil]
 				];
 			}
 			[tutorial stopAllActions];
-			[tutorial runAction:[CCFadeIn actionWithDuration:2.5f]];
+			[tutorial runAction:[CCSequence actions: 
+					[CCDelayTime actionWithDuration:1.0f],
+					[CCFadeIn actionWithDuration:1.5f],
+				nil]
+			];
 			
 			//TODO: uncomment
 			//[SettingsManager setBool:true forKey:@"HasSeenTutorial1"];

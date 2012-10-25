@@ -22,6 +22,7 @@
 +(NSArray*)availablePacks;
 +(NSArray*)availableLevelsInPack:(NSString*)packPath;
 
++(NSDictionary*)level:(NSString*)levelPath inPack:(NSString*)packPath;
 
 +(void)completeLevel:(NSString*)levelPath inPack:(NSString*)packPath;
 

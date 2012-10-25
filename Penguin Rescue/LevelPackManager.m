@@ -135,6 +135,25 @@ static NSString* sRootPath;
 }
 
 
+//returns level information
++(NSDictionary*)level:(NSString*)levelPath inPack:(NSString*)packPath {
+	[LevelPackManager setupPaths];
+
+	NSDictionary* levelsDictionary = [LevelPackManager allLevelsInPack:packPath];
+	for(int i = 0; i < levelsDictionary.count; i++) {
+		NSDictionary* levelData = [levelsDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
+		
+		if([levelPath isEqualToString:[levelData objectForKey:LEVELPACKMANAGER_KEY_PATH]]) {
+			return levelData;
+		}
+	}
+	return nil;
+}
+
+
+
+
+
 //completes a level and, if necessary, the pack
 +(void)completeLevel:(NSString*)levelPath inPack:(NSString*)packPath {
 	
