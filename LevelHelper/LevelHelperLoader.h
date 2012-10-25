@@ -75,7 +75,8 @@ enum LevelHelper_TAG
 	SPEEDUP 			= 11,
 	TOOLBOX_ITEM_CONTAINER 			= 12,
 	BACKGROUND 			= 13,
-	NUMBER_OF_TAGS 	= 14
+	TUTORIAL 			= 14,
+	NUMBER_OF_TAGS 	= 15
 };
 
 CGSize  LHSizeFromString(NSString* val);

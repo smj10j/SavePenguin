@@ -107,7 +107,7 @@ static int untitledSpritesCount = 0;
 
     [self stopAnimation];
     [self stopPathMovement];
-	//[self removeTouchObserver];//this is called in onExit
+//    [self removeTouchObserver];//this is called in onExit
     
     [self unscheduleAllSelectors];
     

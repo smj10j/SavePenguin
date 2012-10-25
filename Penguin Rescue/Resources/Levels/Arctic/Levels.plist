@@ -1,22 +1,22 @@
 {
 	0 = {
-		Path = Introduction;
-		Name = Introduction;
+		Path = DangerDanger;
+		Name = "Danger! Danger!";
 	};
 	1 = {
-		Path = Sandbox;
-		Name = Sandbox;
+		Path = Northbound;
+		Name = Northbound;
 	};
 	2 = {
-		Path = Sandbox;
-		Name = "Non existent 1";
+		Path = ChannelBreak;
+		Name = "Channel Break";
 	};
 	3 = {
-		Path = Sandbox;
-		Name = "Non existent 2";
+		Path = Showdown;
+		Name = Showdown;
 	};
 	4 = {
-		Path = Sandbox;
-		Name = "Non existent 3";
+		Path = OpenWater;
+		Name = "Open Water";
 	};
 }

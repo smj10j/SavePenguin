@@ -15,6 +15,7 @@
 #import "LevelHelperLoader.h"
 
 #import "LevelPackManager.h"
+#import "SettingsManager.h"
 #import "Constants.h"
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.

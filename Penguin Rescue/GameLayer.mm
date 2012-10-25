@@ -23,26 +23,6 @@
 
 #pragma mark - GameLayer
 
-@interface GameLayer()
-
-//initialization
--(void) initPhysics;
--(void) loadLevel:(NSString*)levelName inLevelPack:(NSString*)levelPack;
--(void) drawHUD;
-
-//different screens/layers/dialogs
--(void) showTutorial;
--(void) goToNextLevel;
-
-//game control
--(void) resume;
--(void) pause;
--(void) showInGameMenu;
--(void) restart;
-
-@end
-
-
 static NSString* sLevelPackPath;
 static NSString* sLevelPath;
 
@@ -372,11 +352,7 @@ static NSString* sLevelPath;
 	}
 	[waterTile removeSelf];
 		
-	//TODO: load if we should show the tutorial from user prefs
-	if(true) {
-		[self showTutorial];
-	}
-	
+	[self showTutorial];
 }
 
 
@@ -791,11 +767,21 @@ static NSString* sLevelPath;
 }
 
 -(void) showTutorial {
-	NSLog(@"Showing tutorial");
-	_state = PAUSE;
-	
-	//TODO: show a tutorial
-	
+
+	//have we shown this tutorial yet?
+	if(![SettingsManager boolForKey:@"HasSeenTutorial1"]) {
+
+		//is this tutorial available on this level?
+		if([_levelLoader spriteWithUniqueName:@"Tutorial1"] != nil) {
+			NSLog(@"Showing tutorial 1");
+			_state = PAUSE;
+			
+			//TODO: show a tutorial
+			
+			
+			//[SettingsManager setBool:true forKey:@"HasSeenTutorial1"];
+		}
+	}
 }
 
 
