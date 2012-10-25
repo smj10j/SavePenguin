@@ -46,9 +46,6 @@ static NSString* sLevelPackPath;
 {
 	if( (self=[super init])) {
 		
-		// ask director for the window size
-		CGSize winSize = [[CCDirector sharedDirector] winSize];
-		
 		[LevelHelperLoader dontStretchArt];
 
 		//create a LevelHelperLoader object - we use an empty level
@@ -105,34 +102,35 @@ static NSString* sLevelPackPath;
 
 		NSDictionary* levelData = [_levelsDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
 		NSString* levelName = [levelData objectForKey:LEVELPACKMANAGER_KEY_NAME];
+		NSString* levelPath = [levelData objectForKey:LEVELPACKMANAGER_KEY_PATH];
 		
 		//create the sprite
 		LHSprite* levelButton;
 		
-		if([_completedLevels containsObject:levelName]) {
-			NSLog(@"Level %@ is completed!", levelName);
+		if([_completedLevels containsObject:levelPath]) {
+			NSLog(@"Level %@ is completed!", levelPath);
 
 			levelButton = [_levelLoader createSpriteWithName:@"Completed_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 			[levelButton prepareAnimationNamed:@"Menu_Completed_Level_Select_Button" fromSHScene:@"Spritesheet"];
 			
 			//used when clicking the sprite
-			[_spriteNameToLevelPath setObject:[levelData objectForKey:LEVELPACKMANAGER_KEY_PATH] forKey:levelButton.uniqueName];
+			[_spriteNameToLevelPath setObject:levelPath forKey:levelButton.uniqueName];
 			[levelButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelSelect:)];
 			[levelButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelSelect:)];
 					
-		}else if([_availableLevels containsObject:levelName]) {
-			NSLog(@"Level %@ is available!", levelName);
+		}else if([_availableLevels containsObject:levelPath]) {
+			NSLog(@"Level %@ is available!", levelPath);
 
 			levelButton = [_levelLoader createSpriteWithName:@"Available_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 			[levelButton prepareAnimationNamed:@"Menu_Available_Level_Select_Button" fromSHScene:@"Spritesheet"];
 			
 			//used when clicking the sprite
-			[_spriteNameToLevelPath setObject:[levelData objectForKey:LEVELPACKMANAGER_KEY_PATH] forKey:levelButton.uniqueName];
+			[_spriteNameToLevelPath setObject:levelPath forKey:levelButton.uniqueName];
 			[levelButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelSelect:)];
 			[levelButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelSelect:)];
 					
 		}else {
-			NSLog(@"Level %@ is NOT available!", levelName);
+			NSLog(@"Level %@ is NOT available!", levelPath);
 
 			levelButton = [_levelLoader createSpriteWithName:@"Unavailable_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 				

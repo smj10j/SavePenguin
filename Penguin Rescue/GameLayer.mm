@@ -827,8 +827,8 @@ static NSString* sLevelPath;
 	for(LHSprite* tutorial in [_levelLoader spritesWithTag:TUTORIAL]) {
 		[tutorial stopAllActions];
 		[tutorial runAction:[CCFadeOut actionWithDuration:0.5f]];
-		[self scheduleOnce:@selector(removeAllTutorials) delay:0.5f];
 	}
+	[self scheduleOnce:@selector(removeAllTutorials) delay:0.5f];
 }
 
 -(void)removeAllTutorials {

@@ -73,35 +73,35 @@ static NSString* sRootPath;
 	for(int i = 0; i < levelPacksDictionary.count; i++) {
 
 		NSDictionary* levelPackData = [levelPacksDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
-		NSString* levelPackName = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_NAME];
+		NSString* levelPackPath = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_PATH];
 		NSString* requiresPack = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_REQUIRES_PACK];
 		NSNumber* requiresNumPackLevelsCompleted = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_REQUIRES_NUM_PACK_LEVELS_COMPLETED];
 
-		if([completedLevelPacks containsObject:levelPackName]) {
+		if([completedLevelPacks containsObject:levelPackPath]) {
 		
 			//if it's completed it's definitely available!
-			[availableLevelPacks addObject:levelPackName];
+			[availableLevelPacks addObject:levelPackPath];
 			
 		}else if(requiresPack == nil || [requiresPack isEqualToString:@""]) {
 			//no prequisies
-			[availableLevelPacks addObject:levelPackName];
+			[availableLevelPacks addObject:levelPackPath];
 			
 		}else if([completedLevelPacks containsObject: requiresPack]) {
 			//full required pack is completed
-			[availableLevelPacks addObject:levelPackName];
+			[availableLevelPacks addObject:levelPackPath];
 			
 		}else {
 			//requires a completed pack - let's see if it meets the number of levels within the pack
 			if(requiresNumPackLevelsCompleted == 0) {
 				//no completed levels required
-				[availableLevelPacks addObject:levelPackName];
+				[availableLevelPacks addObject:levelPackPath];
 				
 			}else {
 				NSArray* completedLevels = [LevelPackManager completedLevelsInPack:requiresPack];
 				if(completedLevels.count >= [requiresNumPackLevelsCompleted intValue]) {
-					[availableLevelPacks addObject:levelPackName];
+					[availableLevelPacks addObject:levelPackPath];
 				}else {
-					NSLog(@"Pack %@ is not available because %d/%d levels are completed in required pack %@", levelPackName, completedLevels.count, [requiresNumPackLevelsCompleted intValue], requiresPack);
+					NSLog(@"Pack %@ is not available because %d/%d levels are completed in required pack %@", levelPackPath, completedLevels.count, [requiresNumPackLevelsCompleted intValue], requiresPack);
 				}
 			}		
 		}
@@ -120,15 +120,16 @@ static NSString* sRootPath;
 
 	int maxLevelIndex = 2;
 	//find the highest completd level
-	for(NSString* levelName in completedLevels) {
+	for(NSString* levelPath in completedLevels) {
 		maxLevelIndex++;
 	}
 	
+	NSLog(@"Making available up to level %d in pack %@", maxLevelIndex, packPath);
 	//add the 3 levels after levelsDictionary last completed level
 	for(int i = 0; i < levelsDictionary.count && i <= maxLevelIndex; i++) {
 		NSDictionary* levelData = [levelsDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
-		NSString* levelName = [levelData objectForKey:LEVELPACKMANAGER_KEY_NAME];
-		[availableLevels addObject:levelName];
+		NSString* levelPath = [levelData objectForKey:LEVELPACKMANAGER_KEY_PATH];
+		[availableLevels addObject:levelPath];
 	}
 	
 	return availableLevels;
@@ -162,6 +163,7 @@ static NSString* sRootPath;
 	//create the completed levels array
 	NSMutableArray* completedLevels = [[NSMutableArray alloc] initWithArray:[LevelPackManager completedLevelsInPack:packPath]];
 	if([completedLevels containsObject:levelPath]) {
+		NSLog(@"Level %@ in pack %@ already completed", levelPath, packPath);
 		return;
 	}
 	[completedLevels addObject:levelPath];
@@ -196,6 +198,7 @@ static NSString* sRootPath;
 	//create the completed levels array
 	NSMutableArray* completedPacks = [[NSMutableArray alloc] initWithArray:[LevelPackManager completedPacks]];
 	if([completedPacks containsObject:packPath]) {
+		NSLog(@"Pack %@ already completed", packPath);
 		return;
 	}
 	[completedPacks addObject:packPath];
