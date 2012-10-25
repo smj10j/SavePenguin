@@ -923,13 +923,62 @@ static NSString* sLevelPath;
 				}
 			}
 			
-			//TOOD: account for no penguin targeted
-			CGPoint targetPenguinGridPos = [self toGrid:targetPenguin.position];
+			if(targetPenguin != nil) {
+				CGPoint targetPenguinGridPos = [self toGrid:targetPenguin.position];
 
-			MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
-			[sharkMoveGridData updateMoveGridToTile:targetPenguinGridPos fromTile:sharkGridPos];
+				MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
+				[sharkMoveGridData updateMoveGridToTile:targetPenguinGridPos fromTile:sharkGridPos];
+			}
 		}
 		
+	
+		for(LHSprite* penguin in penguins) {
+			
+			CGPoint penguinGridPos = [self toGrid:penguin.position];
+			Penguin* penguinData = ((Penguin*)penguin.userInfo);
+			
+			if(penguinData.isSafe || penguinData.isStuck) {
+				continue;
+			}
+			
+			if(penguinGridPos.x > _gridWidth-1 || penguinGridPos.x < 0 || penguinGridPos.y > _gridHeight-1 || penguinGridPos.y < 0) {
+				NSLog(@"Penguin %@ is offscreen at %f,%f - showing level lost", penguin.uniqueName, penguinGridPos.x, penguinGridPos.y);
+				[self levelLostWithOffscreenPenguin:penguin];
+				return;
+			}
+			
+			if(!penguinData.hasSpottedShark) {
+				NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
+				for(LHSprite* shark in sharks) {
+					double dist = ccpDistance(shark.position, penguin.position);
+					if(dist < penguinData.detectionRadius*SCALING_FACTOR_GENERIC) {
+						penguinData.hasSpottedShark = true;
+						//TODOO: play some kind of penguin animation with an alert dialog and a squawk sound
+						break;
+					}
+				}
+			}
+			
+			if(penguinData.hasSpottedShark) {
+			
+				//AHHH!!!
+
+				LHSprite* targetLand = nil;
+				double minDistance = 10000;
+				NSArray* lands = [_levelLoader spritesWithTag:LAND];
+				for(LHSprite* land in lands) {
+					double dist = ccpDistance(land.position, penguin.position);
+					if(dist < minDistance) {
+						minDistance = dist;
+						targetLand = land;
+					}
+				}
+				CGPoint targetLandGridPos = [self toGrid:targetLand.position];
+
+				MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
+				[penguinMoveGridData updateMoveGridToTile:targetLandGridPos fromTile:penguinGridPos];
+			}
+		}
 		
 		_isUpdatingMoveGrids = false;
 	});
@@ -1249,18 +1298,6 @@ static NSString* sLevelPath;
 			return;
 		}
 		
-		if(!penguinData.hasSpottedShark) {
-			NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
-			for(LHSprite* shark in sharks) {
-				double dist = ccpDistance(shark.position, penguin.position);
-				if(dist < penguinData.detectionRadius*SCALING_FACTOR_GENERIC) {
-					penguinData.hasSpottedShark = true;
-					//TODOO: play some kind of penguin animation with an alert dialog and a squawk sound
-					break;
-				}
-			}
-		}
-		
 		if(penguinData.hasSpottedShark) {
 		
 			//AHHH!!!
@@ -1275,22 +1312,8 @@ static NSString* sLevelPath;
 				}
 			}
 
-
-			LHSprite* targetLand = nil;
-			double minDistance = 10000;
-			NSArray* lands = [_levelLoader spritesWithTag:LAND];
-			for(LHSprite* land in lands) {
-				double dist = ccpDistance(land.position, penguin.position);
-				if(dist < minDistance) {
-					minDistance = dist;
-					targetLand = land;
-				}
-			}
-			CGPoint targetLandGridPos = [self toGrid:targetLand.position];
-
 			//use the best route algorithm
-			[penguinMoveGridData updateMoveGridToTile:targetLandGridPos fromTile:penguinGridPos];
-			CGPoint bestOptionPos = [penguinMoveGridData getBestMoveToTile:targetLandGridPos fromTile:penguinGridPos];
+			CGPoint bestOptionPos = [penguinMoveGridData getBestMoveToTile:penguinMoveGridData.lastTargetTile fromTile:penguinGridPos];
 					
 			if(bestOptionPos.x == -10000 && bestOptionPos.y == -10000) {
 				NSLog(@"Penguin %@ is stuck (nowhere to go)!", penguin.uniqueName);
