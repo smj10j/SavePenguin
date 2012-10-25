@@ -475,6 +475,9 @@ static NSString* sLevelPath;
 		return;
 	}
 	
+	//hide any tutorials
+	[self fadeOutAllTutorials];
+
 	_activeToolboxItem = toolboxItem;
 			
 	_activeToolboxItemOriginalPosition = _activeToolboxItem.position;
@@ -635,6 +638,8 @@ static NSString* sLevelPath;
 		NSLog(@"Starting game");
 		_state = RUNNING;
 		
+		[self fadeOutAllTutorials];
+		
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 			_levelPath, @"Level_Name", 
 			_levelPackPath, @"Level_Pack",
@@ -772,19 +777,40 @@ static NSString* sLevelPath;
 	if(![SettingsManager boolForKey:@"HasSeenTutorial1"]) {
 
 		//is this tutorial available on this level?
-		if([_levelLoader spriteWithUniqueName:@"Tutorial1"] != nil) {
+		LHSprite* tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial1"];
+		if(tutorial != nil) {
 			NSLog(@"Showing tutorial 1");
-			_state = PAUSE;
 			
-			//TODO: show a tutorial
+			//fade in all tutorial items
+			for(LHSprite* tutorial in [_levelLoader spritesWithTag:TUTORIAL]) {
+				[tutorial runAction:
+					[CCRepeatForever actionWithAction:[CCSequence actions:
+						[CCFadeTo actionWithDuration:0.5f opacity:200],
+						[CCFadeTo actionWithDuration:0.5f opacity:50],
+					nil]]
+				];
+			}
+			[tutorial runAction:[CCFadeIn actionWithDuration:0.5f]];
 			
-			
+			//TODO: uncomment
 			//[SettingsManager setBool:true forKey:@"HasSeenTutorial1"];
 		}
 	}
 }
 
+-(void)fadeOutAllTutorials {
+	for(LHSprite* tutorial in [_levelLoader spritesWithTag:TUTORIAL]) {
+		[tutorial stopAllActions];
+		[tutorial runAction:[CCFadeOut actionWithDuration:0.5f]];
+		[self scheduleOnce:@selector(removeAllTutorials) delay:0.5f];
+	}
+}
 
+-(void)removeAllTutorials {
+	for(LHSprite* tutorial in [_levelLoader spritesWithTag:TUTORIAL]) {
+		[tutorial removeSelf];
+	}
+}
 
 
 	
@@ -1009,6 +1035,7 @@ static NSString* sLevelPath;
 			}
 		}
 		
+		
 		//TOOD: account for no penguin targeted
 		CGPoint targetPenguinGridPos = [self toGrid:targetPenguin.position];
 		
@@ -1074,7 +1101,6 @@ static NSString* sLevelPath;
 
 		double normalizedX = (sharkSpeed*dx)/dSum;
 		double normalizedY = (sharkSpeed*dy)/dSum;
-	
 
 		b2Vec2 prevVel = shark.body->GetLinearVelocity();
 		double targetVelX = dt * normalizedX;
@@ -1082,9 +1108,14 @@ static NSString* sLevelPath;
 		double weightedVelX = (prevVel.x * 9.0 + targetVelX)/10.0;
 		double weightedVelY = (prevVel.y * 9.0 + targetVelY)/10.0;
 		
+		double impulseX = targetVelX*.1;
+		double impulseY = targetVelY*.1;
+		
+		//NSLog(@"Applying impulse %f,%f to shark %@", impulseX, impulseY, shark.uniqueName);
+		
 		//we're using an impulse for the shark so they interact with things like Debris (physics)
 		//shark.body->SetLinearVelocity(b2Vec2(weightedVelX,weightedVelY));
-		shark.body->ApplyLinearImpulse(b2Vec2(targetVelX*.1,targetVelY*.1), shark.body->GetWorldCenter());
+		shark.body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), shark.body->GetWorldCenter());
 		
 		//rotate shark
 		double radians = atan2(weightedVelX, weightedVelY); //this grabs the radians for us
@@ -1221,8 +1252,14 @@ static NSString* sLevelPath;
 			double targetVelX = dt * normalizedX;
 			double targetVelY = dt * normalizedY;
 		
+			double impulseX = targetVelX*.1;
+			double impulseY = targetVelY*.1;
+			
+			//NSLog(@"Applying impulse %f,%f to penguin %@", impulseX, impulseY, penguin.uniqueName);
+		
+		
 			//we're using an impulse for the penguin so they interact with things like Debris (physics)
-			penguin.body->ApplyLinearImpulse(b2Vec2(targetVelX*.1,targetVelY*.1), penguin.body->GetWorldCenter());
+			penguin.body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), penguin.body->GetWorldCenter());
 			
 			//TODO: add a waddle animation
 		}

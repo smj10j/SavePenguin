@@ -127,8 +127,8 @@
 		double vE = 0;
 		double vN = 0;
 		
-		//situation: West and East are equal and North and South are equal - we'll get stuck forever
-		if(wE == wW && wN != wS) {
+		//situation: West and East are equal and North and South are not equal - we'll get stuck forever
+		/*if(wE == wW && wN != wS) {
 			if(arc4random()%100 < 50) {
 				wE++;
 			}else {
@@ -140,7 +140,7 @@
 			}else {
 				wS++;
 			}
-		}
+		}*/
 		
 		double absWE = fabs(wE);
 		double absWW = fabs(wW);
@@ -175,7 +175,7 @@
 
 - (void)updateMoveGridToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile {
 
-	if(_forceUpdateToMoveGrid || (_lastToTile.x != toTile.x && _lastToTile.y != toTile.y)) {
+	if(_forceUpdateToMoveGrid || (_lastToTile.x != toTile.x || _lastToTile.y != toTile.y)) {
 
 		NSLog(@"Updating a %@ move grid", _tag);
 

@@ -13,7 +13,7 @@ static NSMutableDictionary* sSettings = nil;
 @implementation SettingsManager
 
 +(void)loadSettings {
-	if(sSettings == nil) {
+	//if(sSettings == nil) {
 		NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 		NSString* settingsPlistPath = [rootPath stringByAppendingPathComponent:@"UserSettings.plist"];
 		sSettings = [NSMutableDictionary dictionaryWithContentsOfFile:settingsPlistPath];
@@ -21,7 +21,7 @@ static NSMutableDictionary* sSettings = nil;
 			sSettings = [[NSMutableDictionary alloc] init];
 		}
 		NSLog(@"Loaded user settings");
-	}
+	//}
 }
 
 +(void)saveSettings {
