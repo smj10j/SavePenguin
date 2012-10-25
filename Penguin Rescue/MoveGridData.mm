@@ -21,10 +21,13 @@
 	
 		if(_gridWidth > 0 && _gridHeight > 0 && _baseGrid != nil) {
 			_moveGrid = new int*[_gridWidth];
+			_moveGridBuffer = new int*[_gridWidth];
 			for(int x = 0; x < _gridWidth; x++) {
 				_moveGrid[x] = new int[_gridHeight];
+				_moveGridBuffer[x] = new int[_gridHeight];
 				for(int y = 0; y < _gridHeight; y++) {
 					_moveGrid[x][y] = _baseGrid[x][y];
+					_moveGridBuffer[x][y] = _baseGrid[x][y];
 				}
 			}
 		}
@@ -47,11 +50,21 @@
 	return self;
 }
 
-- (void)copyBaseGridToMoveGrid {
-	if(_gridWidth > 0 && _gridHeight > 0 && _baseGrid != nil && _moveGrid != nil) {
+- (void)copyBaseGridToMoveGridBuffer {
+	if(_gridWidth > 0 && _gridHeight > 0 && _baseGrid != nil && _moveGridBuffer != nil) {
 		for(int x = 0; x < _gridWidth; x++) {
 			for(int y = 0; y < _gridHeight; y++) {
-				_moveGrid[x][y] = _baseGrid[x][y];
+				_moveGridBuffer[x][y] = _baseGrid[x][y];
+			}
+		}
+	}
+}
+
+- (void)copyMoveGridBufferToMoveGrid {
+	if(_gridWidth > 0 && _gridHeight > 0 && _moveGrid != nil && _moveGridBuffer != nil) {
+		for(int x = 0; x < _gridWidth; x++) {
+			for(int y = 0; y < _gridHeight; y++) {
+				_moveGrid[x][y] = _moveGridBuffer[x][y];
 			}
 		}
 	}
@@ -191,11 +204,11 @@
 		_lastToTile = toTile;
 		_forceUpdateToMoveGrid = false;
 
-		[self copyBaseGridToMoveGrid];
-
-		_moveGrid[(int)toTile.x][(int)toTile.y] = 0;
 		bool foundRoute = false;
+		[self copyBaseGridToMoveGridBuffer];
+		_moveGridBuffer[(int)toTile.x][(int)toTile.y] = 0;
 		[self propagateGridCostToX:toTile.x y:toTile.y fromTile:fromTile foundRoute:&foundRoute];
+		[self copyMoveGridBufferToMoveGrid];
 		
 		//NSLog(@"Foundroute: %d", foundRoute);
 	}
@@ -218,15 +231,15 @@
 		}
 	}
 	
-	double w = _moveGrid[x][y];
+	double w = _moveGridBuffer[x][y];
 	if(w > _gridWidth*4) {
 		//this is an approximation to increase speed - it can cause failures to find any path at all (very complex ones)
 		return;
 	}
-	double wN = y+1 > _gridHeight-1 ? -10000 : _moveGrid[x][y+1];
-	double wS = y-1 < 0 ? -10000 : _moveGrid[x][y-1];
-	double wE = x+1 > _gridWidth-1 ? -10000 : _moveGrid[x+1][y];
-	double wW = x-1 < 0 ? -10000 : _moveGrid[x-1][y];
+	double wN = y+1 > _gridHeight-1 ? -10000 : _moveGridBuffer[x][y+1];
+	double wS = y-1 < 0 ? -10000 : _moveGridBuffer[x][y-1];
+	double wE = x+1 > _gridWidth-1 ? -10000 : _moveGridBuffer[x+1][y];
+	double wW = x-1 < 0 ? -10000 : _moveGridBuffer[x-1][y];
 
 	/*if(w < 50) {
 		NSLog(@"tag %@ %d,%d = %f", _tag, x, y, w);
@@ -239,19 +252,19 @@
 	
 
 	if(y < _gridHeight-1 && _baseGrid[x][y+1] < HARD_BORDER_WEIGHT && (wN == _baseGrid[x][y+1] || wN > w+1)) {
-		_moveGrid[x][y+1] = w+1 + (_baseGrid[x][y+1] == INITIAL_GRID_WEIGHT ? 0 : _baseGrid[x][y+1]);
+		_moveGridBuffer[x][y+1] = w+1 + (_baseGrid[x][y+1] == INITIAL_GRID_WEIGHT ? 0 : _baseGrid[x][y+1]);
 		changedN = true;
 	}
 	if(y > 0 && _baseGrid[x][y-1] < HARD_BORDER_WEIGHT && (wS == _baseGrid[x][y-1] || wS > w+1)) {
-		_moveGrid[x][y-1] = w+1  + (_baseGrid[x][y-1] == INITIAL_GRID_WEIGHT ? 0 : _baseGrid[x][y-1]);
+		_moveGridBuffer[x][y-1] = w+1  + (_baseGrid[x][y-1] == INITIAL_GRID_WEIGHT ? 0 : _baseGrid[x][y-1]);
 		changedS = true;
 	}
 	if(x < _gridWidth-1 && _baseGrid[x+1][y] < HARD_BORDER_WEIGHT && (wE == _baseGrid[x+1][y] || wE > w+1)) {
-		_moveGrid[x+1][y] = w+1 + (_baseGrid[x+1][y] == INITIAL_GRID_WEIGHT ? 0 : _baseGrid[x+1][y]);
+		_moveGridBuffer[x+1][y] = w+1 + (_baseGrid[x+1][y] == INITIAL_GRID_WEIGHT ? 0 : _baseGrid[x+1][y]);
 		changedE = true;
 	}
 	if(x > 0 && _baseGrid[x-1][y] < HARD_BORDER_WEIGHT && (wW == _baseGrid[x-1][y] || wW > w+1)) {
-		_moveGrid[x-1][y] = w+1  + (_baseGrid[x-1][y] == INITIAL_GRID_WEIGHT ? 0 : _baseGrid[x-1][y]);
+		_moveGridBuffer[x-1][y] = w+1  + (_baseGrid[x-1][y] == INITIAL_GRID_WEIGHT ? 0 : _baseGrid[x-1][y]);
 		changedW = true;
 	}
 	
@@ -268,6 +281,22 @@
 		[self propagateGridCostToX:x-1 y:y fromTile:fromTile foundRoute:foundRoute];
 	}
 	
+}
+
+-(void)dealloc {
+	if(_moveGrid != nil) {
+		free(_moveGrid);
+		_moveGrid = nil;
+	}
+	if(_moveGridBuffer != nil) {
+		free(_moveGridBuffer);
+		_moveGridBuffer = nil;
+	}
+	if(_moveHistory != nil) {
+		free(_moveHistory);
+		_moveHistory = nil;
+	}
+	[super dealloc];
 }
 
 

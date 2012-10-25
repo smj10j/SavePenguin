@@ -12,6 +12,7 @@
 
 	int** _baseGrid;
 	int** _moveGrid;
+	int** _moveGridBuffer;
 	int _gridWidth;
 	int _gridHeight;
 
