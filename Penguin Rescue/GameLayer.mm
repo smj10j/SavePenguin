@@ -754,8 +754,8 @@ static NSString* sLevelPath;
 	
 	/***** scoring items ******/
 	
-	int scoringTextYOffset = 120*SCALING_FACTOR_V;
-	int scoringTextXOffset = -185*SCALING_FACTOR_H;
+	int scoringTextYOffset = 140*SCALING_FACTOR_V;
+	int scoringTextXOffset = -240*SCALING_FACTOR_H;
 	int scoringSpriteXOffset = scoringTextXOffset + -140*SCALING_FACTOR_H;
 	
 	CCLabelTTF* maxScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Max Score: %d", SCORING_MAX_SCORE_POSSIBLE] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE dimensions:CGSizeMake(SCORING_LINE_WIDTH, SCORING_LINE_HEIGHT) hAlignment:kCCTextAlignmentRight];
@@ -823,8 +823,8 @@ static NSString* sLevelPath;
 
 	/***** competitive items ******/
 
-	int competitiveTextYOffset = 100*SCALING_FACTOR_V;
-	int competitiveTextXOffset = 200*SCALING_FACTOR_H;
+	int competitiveTextYOffset = 60*SCALING_FACTOR_V;
+	int competitiveTextXOffset = 195*SCALING_FACTOR_H;
 
 	//TODO: get the number from the server (or cached copy!)
 
