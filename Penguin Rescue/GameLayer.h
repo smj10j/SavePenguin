@@ -107,10 +107,7 @@ enum PROPAGATION_RESULT {
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
-+(CCScene *) scene;
-
-+(void)setLevelPackPath:(NSString*)levelPackPath;
-+(void)setLevelPath:(NSString*)levelPath;
++(CCScene *) sceneWithLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath;
 
 @end
 

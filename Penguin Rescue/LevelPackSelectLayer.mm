@@ -155,8 +155,8 @@
 -(void)onTouchEndedLevelSelect:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
-	[LevelSelectLayer setLevelPackPath:[_spriteNameToLevelPackPath objectForKey:info.sprite.uniqueName]];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelSelectLayer scene] ]];
+	
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelSelectLayer sceneWithLevelPackPath:[_spriteNameToLevelPackPath objectForKey:info.sprite.uniqueName]] ]];
 }
 
 

@@ -24,13 +24,9 @@
 
 #pragma mark - GameLayer
 
-static NSString* sLevelPackPath;
-static NSString* sLevelPath;
-
-
 @implementation GameLayer
 
-+(CCScene *) scene
++(CCScene *) sceneWithLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
@@ -38,22 +34,13 @@ static NSString* sLevelPath;
 	// 'layer' is an autorelease object.
 	GameLayer *layer = [GameLayer node];
 	
+	[layer startLevelWithLevelPackPath:levelPackPath levelPath:levelPath];
+	
 	// add layer as a child to scene
 	[scene addChild: layer];
 	
 	// return the scene
 	return scene;
-}
-
-
-+(void)setLevelPackPath:(NSString*)levelPackPath {
-	sLevelPackPath = levelPackPath;
-	NSLog(@"Set GameLayer.sLevelPackPath=%@", sLevelPackPath);
-}
-
-+(void)setLevelPath:(NSString*)levelPath {
-	sLevelPath = levelPath;
-	NSLog(@"Set GameLayer.sLevelPath=%@", sLevelPath);
 }
 
 -(id) init
@@ -84,41 +71,46 @@ static NSString* sLevelPath;
 		// init physics
 		[self initPhysics];
 		
-		_levelPath = sLevelPath;
-		_levelPackPath = sLevelPackPath;
-		_levelData = [LevelPackManager level:_levelPath inPack:_levelPackPath];
-		[self loadLevel:_levelPath inLevelPack:_levelPackPath];
-		
-		//place the HUD items (pause, restart, etc.)
-		[self drawHUD];		
-		
-		//set the grid size and create various arrays
-		[self initializeMapGrid];
-		
-		//place the toolbox items
-		[self updateToolbox];
-		
-		//various handlers
-		[self setupCollisionHandling];
-				
-		//start the game
-		_state = PLACE;
-		_levelStartPlaceTime  = [[NSDate date] timeIntervalSince1970];
-
-		CCDirectorIOS* director = (CCDirectorIOS*) [CCDirector sharedDirector];
-		[director setAnimationInterval:1.0/TARGET_FPS];
-		[self scheduleUpdate];
-		
-
-		
-		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-			_levelPath, @"Level_Name",
-			_levelPackPath, @"Level_Pack",
-		nil];
-
-		[Flurry logEvent:@"Play_Level" withParameters:flurryParams timed:YES];		
 	}
 	return self;
+}
+
+-(void) startLevelWithLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
+
+	_levelPath = [levelPath retain];
+	_levelPackPath = [levelPackPath retain];
+	_levelData = [LevelPackManager level:_levelPath inPack:_levelPackPath];
+	[self loadLevel:_levelPath inLevelPack:_levelPackPath];
+	
+	//place the HUD items (pause, restart, etc.)
+	[self drawHUD];		
+	
+	//set the grid size and create various arrays
+	[self initializeMapGrid];
+	
+	//place the toolbox items
+	[self updateToolbox];
+	
+	//various handlers
+	[self setupCollisionHandling];
+			
+	//start the game
+	_state = PLACE;
+	_levelStartPlaceTime  = [[NSDate date] timeIntervalSince1970];
+
+	CCDirectorIOS* director = (CCDirectorIOS*) [CCDirector sharedDirector];
+	[director setAnimationInterval:1.0/TARGET_FPS];
+	[self scheduleUpdate];
+	
+
+	
+	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+		_levelPath, @"Level_Name",
+		_levelPackPath, @"Level_Pack",
+	nil];
+
+	[Flurry logEvent:@"Play_Level" withParameters:flurryParams timed:YES];		
+
 }
 
 -(void) initPhysics
@@ -628,6 +620,12 @@ static NSString* sLevelPath;
 	[self goToNextLevel];
 }
 
+-(void)onTouchBeganTutorial:(LHTouchInfo*)info {
+	[self fadeOutAllTutorials];
+}
+
+
+
 
 
 -(void) pause {
@@ -942,7 +940,7 @@ static NSString* sLevelPath;
 
 	NSLog(@"Restarting");
 	_state = GAME_OVER;
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer scene] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:_levelPath]]];
 }
 
 
@@ -960,9 +958,7 @@ static NSString* sLevelPath;
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelPackSelectLayer scene] ]];
 	
 	}else {
-		[GameLayer setLevelPackPath:sLevelPackPath];
-		[GameLayer setLevelPath:nextLevelPath];
-		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer scene] ]];
+		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:nextLevelPath]]];
 	}
 }
 
@@ -971,8 +967,7 @@ static NSString* sLevelPath;
 }
 
 -(void) showLevelsMenuLayer {
-	[LevelSelectLayer setLevelPackPath:_levelPackPath];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[LevelSelectLayer scene] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[LevelSelectLayer sceneWithLevelPackPath:_levelPackPath] ]];
 }
 
 -(void) showTutorial {
@@ -1029,6 +1024,7 @@ static NSString* sLevelPath;
 				[CCFadeIn actionWithDuration:1.5f],
 			nil]
 		];
+		[tutorial registerTouchBeganObserver:self selector:@selector(onTouchBeganTutorial:)];
 	}
 }
 

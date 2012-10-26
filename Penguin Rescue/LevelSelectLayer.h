@@ -16,6 +16,7 @@
 @interface LevelSelectLayer : CCLayer
 {
 	LevelHelperLoader* _levelLoader;
+	NSString* _levelPackPath;
 	
 	NSURL* _iCloudPath;
 	
@@ -27,8 +28,7 @@
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
-+(CCScene *) scene;
++(CCScene *) sceneWithLevelPackPath:(NSString*)levelPackPath;
 
-+(void)setLevelPackPath:(NSString*)levelPackPath;
 
 @end

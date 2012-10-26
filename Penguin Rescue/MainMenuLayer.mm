@@ -69,10 +69,8 @@
 
 	if(TEST_MODE) {
 		//TESTING CODE
-		[GameLayer setLevelPackPath:TEST_LEVEL_PACK];
-		[GameLayer setLevelPath:TEST_LEVEL];
-		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer scene] ]];
-	
+		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:TEST_LEVEL_PACK levelPath:TEST_LEVEL]]];
+
 	}else {
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelPackSelectLayer scene] ]];
 	}

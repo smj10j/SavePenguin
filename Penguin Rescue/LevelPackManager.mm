@@ -229,7 +229,8 @@ static NSString* sRootPath;
 		NSDictionary* levelData = [levelsDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
 		
 		if(returnNextLevel) {
-			return [levelData objectForKey:LEVELPACKMANAGER_KEY_PATH];
+			NSString* levelPath = [levelData objectForKey:LEVELPACKMANAGER_KEY_PATH];
+			return levelPath;
 		}
 		
 		if([levelPath isEqualToString:[levelData objectForKey:LEVELPACKMANAGER_KEY_PATH]]) {

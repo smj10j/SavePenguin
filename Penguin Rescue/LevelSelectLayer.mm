@@ -16,12 +16,10 @@
 
 #pragma mark - LevelSelectLayer
 
-static NSString* sLevelPackPath;
-
 @implementation LevelSelectLayer
 
 // Helper class method that creates a Scene with the HelloWorldLayer as the only child.
-+(CCScene *) scene
++(CCScene *) sceneWithLevelPackPath:(NSString*)levelPackPath 
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
@@ -29,16 +27,13 @@ static NSString* sLevelPackPath;
 	// 'layer' is an autorelease object.
 	LevelSelectLayer *layer = [LevelSelectLayer node];
 	
+	[layer loadLevelsWithLevelPackPath:levelPackPath];
+	
 	// add layer as a child to scene
 	[scene addChild: layer];
 	
 	// return the scene
 	return scene;
-}
-
-+(void)setLevelPackPath:(NSString*)levelPackPath {
-	sLevelPackPath = levelPackPath;
-	NSLog(@"Set LevelSelectLayer.sLevelPackPath=%@", sLevelPackPath);
 }
 
 //
@@ -73,8 +68,6 @@ static NSString* sLevelPackPath;
 		*/
 	}
 	
-	[self loadLevels];
-	
 	NSLog(@"Initialized LevelSelectLayer");	
 	
 	return self;
@@ -82,14 +75,16 @@ static NSString* sLevelPackPath;
 
 
 
--(void) loadLevels {
+-(void) loadLevelsWithLevelPackPath:(NSString*)levelPackPath {
+
+	_levelPackPath = [levelPackPath retain];
 
 	//load all available levels for this pack
-	_levelsDictionary = [LevelPackManager allLevelsInPack:sLevelPackPath];
+	_levelsDictionary = [LevelPackManager allLevelsInPack:_levelPackPath];
 	
 	//load all levels for this pack that the user has completed
-	_completedLevels = [LevelPackManager completedLevelsInPack:sLevelPackPath];
-	_availableLevels = [LevelPackManager availableLevelsInPack:sLevelPackPath];
+	_completedLevels = [LevelPackManager completedLevelsInPack:_levelPackPath];
+	_availableLevels = [LevelPackManager availableLevelsInPack:_levelPackPath];
 	_spriteNameToLevelPath = [[NSMutableDictionary alloc] init];
 	
 	
@@ -151,9 +146,6 @@ static NSString* sLevelPackPath;
 
 
 
-
-
-
 /************* Touch handlers ***************/
 
 -(void)onTouchBeganLevelSelect:(LHTouchInfo*)info {
@@ -164,9 +156,7 @@ static NSString* sLevelPackPath;
 -(void)onTouchEndedLevelSelect:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
-	[GameLayer setLevelPackPath:sLevelPackPath];
-	[GameLayer setLevelPath:[_spriteNameToLevelPath objectForKey:info.sprite.uniqueName]];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer scene] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:[_spriteNameToLevelPath objectForKey:info.sprite.uniqueName]] ]];
 }
 
 

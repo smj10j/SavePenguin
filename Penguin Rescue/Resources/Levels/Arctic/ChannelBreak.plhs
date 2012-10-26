@@ -1017,7 +1017,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{344, 0}, {144.75, 122.75}}</string>
+								<string>{{0, 221}, {258.75, 219.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1029,17 +1029,17 @@
 								<key>Opacity</key>
 								<real>0.0</real>
 								<key>Position</key>
-								<string>{401, 71}</string>
+								<string>{137, 116}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{150, 125}</string>
+								<string>{258.75, 219.25}</string>
 								<key>Tag</key>
 								<integer>14</integer>
 								<key>TagName</key>
 								<string>TUTORIAL</string>
 								<key>TextureOffset</key>
-								<string>{0.375, -0.375}</string>
+								<string>{0, -0.25}</string>
 								<key>UniqueName</key>
 								<string>Tutorial3</string>
 								<key>ZOrder</key>
@@ -1092,7 +1092,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{53, 124}, {44.5, 67.75}}</string>
+								<string>{{520, 0}, {44.5, 67.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1167,7 +1167,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{53, 124}, {44.5, 67.75}}</string>
+								<string>{{520, 0}, {44.5, 67.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1242,7 +1242,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{489, 104}, {11.75, 16.5}}</string>
+								<string>{{520, 189}, {11.75, 16.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1317,7 +1317,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{503, 0}, {6.75, 16.75}}</string>
+								<string>{{633, 18}, {6.75, 16.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
