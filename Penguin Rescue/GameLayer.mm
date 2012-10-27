@@ -73,6 +73,7 @@
 		// init physics
 		[self initPhysics];
 		
+		[self preloadSounds];
 	}
 	return self;
 }
@@ -114,6 +115,16 @@
 	nil];
 
 	[Flurry logEvent:@"Play_Level" withParameters:flurryParams timed:YES];		
+
+}
+
+-(void) preloadSounds {
+
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/button.wav"];
+	
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox-pickup.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox-putback.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox-place.wav"];
 
 }
 
@@ -502,6 +513,10 @@
 	
 	//hide any tutorials
 	[self fadeOutAllTutorials];
+	
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox-pickup.wav"];
+	}
 
 	_activeToolboxItem = toolboxItem;
 			
@@ -540,6 +555,10 @@
 			
 			_activeToolboxItem = nil;
 			
+			if([SettingsManager boolForKey:@"SoundEnabled"]) {
+				[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox-putback.wav"];
+			}
+			
 		}else {
 			_moveActiveToolboxItemIntoWorld = true;
 		}
@@ -559,7 +578,11 @@
 
 -(void)onTouchBeganPlayPause:(LHTouchInfo*)info {
 	[_playPauseButton setFrame:_playPauseButton.currentFrame+1];	//active state
-	__DEBUG_TOUCH_SECONDS = [[NSDate date] timeIntervalSince1970];	
+	__DEBUG_TOUCH_SECONDS = [[NSDate date] timeIntervalSince1970];
+	
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
+	}
 }
 
 -(void)onTouchEndedPlayPause:(LHTouchInfo*)info {
@@ -587,6 +610,10 @@
 -(void)onTouchBeganRestart:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];
+	
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
+	}
 }
 
 -(void)onTouchEndedRestart:(LHTouchInfo*)info {
@@ -596,6 +623,10 @@
 -(void)onTouchBeganMainMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];
+	
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
+	}
 }
 
 -(void)onTouchEndedMainMenu:(LHTouchInfo*)info {
@@ -607,6 +638,10 @@
 -(void)onTouchBeganLevelsMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];
+	
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
+	}
 }
 
 -(void)onTouchEndedLevelsMenu:(LHTouchInfo*)info {
@@ -618,6 +653,10 @@
 -(void)onTouchBeganNextLevel:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];
+	
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
+	}
 }
 
 -(void)onTouchEndedNextLevel:(LHTouchInfo*)info {
@@ -1286,6 +1325,9 @@
 		nil];
 		[Flurry logEvent:@"Place_Toolbox_Item" withParameters:flurryParams];				
 
+		if([SettingsManager boolForKey:@"SoundEnabled"]) {
+			[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox-place.wav"];
+		}
 	
 		_activeToolboxItem = nil;
 		_moveActiveToolboxItemIntoWorld = false;
