@@ -14,6 +14,7 @@
 #import "LevelPackManager.h"
 #import "SettingsManager.h"
 #import "SimpleAudioEngine.h"
+#import "CCScrollLayer.h"
 
 #pragma mark - LevelPackSelectLayer
 
@@ -95,17 +96,20 @@
 	_spriteNameToLevelPackPath = [[NSMutableDictionary alloc] init];
 
 
+	NSMutableArray* scrollableLayers = [[NSMutableArray alloc] init];
+
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
 	LHSprite* levelPackButton = [_levelLoader createSpriteWithName:@"Level_Pack_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	const CGSize levelPackButtonSize = levelPackButton.boundingBox.size;
-	int levelPackX = levelPackButtonSize.width/2 + 50*SCALING_FACTOR_H;
-	int levelPackY = winSize.height/2;
 	[levelPackButton removeSelf];
 	
 	//TODO: need to add ability to scroll the list of packs (swipe left to right)
 		
 	for(int i = 0; i < _levelPacksDictionary.count; i++) {
+	
+		CCLayer* scrollableLayer = [[CCLayer alloc] init];
+		[scrollableLayers addObject:scrollableLayer];
 
 		NSDictionary* levelPackData = [_levelPacksDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
 		NSString* levelPackName = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_NAME];
@@ -114,7 +118,7 @@
 		NSDictionary* allLevels = [LevelPackManager allLevelsInPack:levelPackPath];
 
 		//create the sprite
-		LHSprite* levelPackButton = [_levelLoader createSpriteWithName:@"Level_Pack_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+		LHSprite* levelPackButton = [_levelLoader createSpriteWithName:@"Level_Pack_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:scrollableLayer];
 		[levelPackButton prepareAnimationNamed:@"Menu_Level_Pack_Select_Button" fromSHScene:@"Spritesheet"];
 
 		//display the pack background
@@ -154,6 +158,7 @@
 		[levelPackButton addChild:packNameLabel];
 		
 		
+		
 		if(!isLocked) {
 		
 			//used when clicking the sprite
@@ -172,9 +177,15 @@
 		
 		
 		//positioning
-		[levelPackButton transformPosition: ccp(levelPackX, levelPackY)];
-		levelPackX+= levelPackButtonSize.width + 50*SCALING_FACTOR_H;
+		[levelPackButton transformPosition: ccp(winSize.width/2, winSize.height/2 + 20*SCALING_FACTOR_V)];
 	}
+	
+	
+	// now create the scroller and pass-in the pages (set widthOffset to 0 for fullscreen pages)
+	CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:scrollableLayers widthOffset: 230];
+
+	// finally add the scroller to your scene
+	[self addChild:scroller];
 
 }
 

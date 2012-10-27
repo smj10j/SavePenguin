@@ -26,6 +26,8 @@
 		827a0d456acaa570140ae1e7 /* Shark.mm in Sources */ = {isa = PBXBuildFile; fileRef = b1c60b49a2c684674f8e688f /* Shark.mm */; };
 		86536b512507f4d0b8b43bba /* ToolboxItem_SpeedUp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 32053ccfad7e5703ee2b42dd /* ToolboxItem_SpeedUp.mm */; };
 		868944766f6c8d60c08dabfa /* LHContactNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49a864eb542f01b4e9d96737 /* LHContactNode.mm */; };
+		AA0E5CE7163C7D4600316B50 /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0E5CE5163C7D4600316B50 /* CCScrollLayer.m */; };
+		AA0E5CE8163C7D4600316B50 /* README in Resources */ = {isa = PBXBuildFile; fileRef = AA0E5CE6163C7D4600316B50 /* README */; };
 		AA250B39163827A70080663E /* LevelPackManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA250B38163827A70080663E /* LevelPackManager.mm */; };
 		AA250B3D163903D30080663E /* SettingsManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA250B3C163903D30080663E /* SettingsManager.mm */; };
 		AA250B4516398D880080663E /* ScoreKeeper.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA250B4416398D880080663E /* ScoreKeeper.mm */; };
@@ -280,6 +282,9 @@
 		98c0a3193ea55cda2edf81d9 /* ToolboxItem_SlowDown.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ToolboxItem_SlowDown.mm; sourceTree = "<group>"; };
 		9a81c1fbee6e13013cc27d9b /* LHSettings.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LHSettings.mm; sourceTree = "<group>"; };
 		9abcf5a26f704879bbed9082 /* LHCuttingEngineMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHCuttingEngineMgr.h; sourceTree = "<group>"; };
+		AA0E5CE4163C7D4600316B50 /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
+		AA0E5CE5163C7D4600316B50 /* CCScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCScrollLayer.m; sourceTree = "<group>"; };
+		AA0E5CE6163C7D4600316B50 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		AA250B37163827A70080663E /* LevelPackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelPackManager.h; sourceTree = "<group>"; };
 		AA250B38163827A70080663E /* LevelPackManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LevelPackManager.mm; sourceTree = "<group>"; };
 		AA250B3B163903D30080663E /* SettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsManager.h; sourceTree = "<group>"; };
@@ -786,6 +791,16 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		AA0E5CE3163C7D4600316B50 /* CCScrollLayer */ = {
+			isa = PBXGroup;
+			children = (
+				AA0E5CE4163C7D4600316B50 /* CCScrollLayer.h */,
+				AA0E5CE5163C7D4600316B50 /* CCScrollLayer.m */,
+				AA0E5CE6163C7D4600316B50 /* README */,
+			);
+			path = CCScrollLayer;
+			sourceTree = "<group>";
+		};
 		AA4C8D881637C48F00C55554 /* Flurry */ = {
 			isa = PBXGroup;
 			children = (
@@ -836,6 +851,7 @@
 			children = (
 				AA6252531638032100A36D65 /* Penguin Rescue.entitlements */,
 				AA6DFB1516302C1A00F93350 /* Helpers */,
+				AA0E5CE3163C7D4600316B50 /* CCScrollLayer */,
 				AA62525B1638191C00A36D65 /* Constants.h */,
 				AA54C8C0162BB27E00DF56D0 /* AppDelegate.h */,
 				AA54C8C1162BB27E00DF56D0 /* AppDelegate.mm */,
@@ -1566,6 +1582,7 @@
 				AA4C8D981637DB5700C55554 /* Spritesheet_Menu-ipadhd.png in Resources */,
 				AA4C8D991637DB5700C55554 /* Spritesheet_Menu.png in Resources */,
 				AAD7B660163C34BB00B02521 /* sounds in Resources */,
+				AA0E5CE8163C7D4600316B50 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1781,6 +1798,7 @@
 				250e1473997f280a794687eb /* SHDocumentLoader.mm in Sources */,
 				AACE801C163992FB008C7E3B /* Score.mm in Sources */,
 				AAD7B65D163C296500B02521 /* AboutLayer.mm in Sources */,
+				AA0E5CE7163C7D4600316B50 /* CCScrollLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
