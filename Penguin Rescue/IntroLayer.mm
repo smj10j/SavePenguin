@@ -70,7 +70,7 @@
 		}
 		
 		
-		[SettingsManager setBool:[[NSDate date] timeIntervalSince1970] forKey:@"LastRunTimestamp"];
+		[SettingsManager setDouble:[[NSDate date] timeIntervalSince1970] forKey:@"LastRunTimestamp"];
 	}
 	
 	NSLog(@"Initialized IntroLayer");	
