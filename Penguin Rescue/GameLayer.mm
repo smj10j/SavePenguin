@@ -212,10 +212,6 @@
 
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
-	_bottomBarContainer = [_levelLoader createBatchSpriteWithName:@"BottomBar" fromSheet:@"HUD" fromSHFile:@"Spritesheet" tag:BORDER];
-	;
-	[_bottomBarContainer transformPosition: ccp(winSize.width/2,_bottomBarContainer.boundingBox.size.height/2)];
-
 	_playPauseButton = [_levelLoader createBatchSpriteWithName:@"Play_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[_playPauseButton prepareAnimationNamed:@"Play_Pause_Button" fromSHScene:@"Spritesheet"];
 	[_playPauseButton transformPosition: ccp(_playPauseButton.boundingBox.size.width/2+HUD_BUTTON_MARGIN_H,_playPauseButton.boundingBox.size.height/2+HUD_BUTTON_MARGIN_V)];
@@ -284,15 +280,14 @@
 	
 	
 	int toolGroupX = winSize.width/2 - ((_toolboxItemSize)*((_toolGroups.count-1)/2)) - _toolboxItemSize/2;
-	int toolGroupY = _bottomBarContainer.boundingBox.size.height/2 - TOOLBOX_MARGIN_TOP;
+	int toolGroupY = _toolboxItemSize/2 + TOOLBOX_MARGIN_TOP;
 		
 	for(id key in _toolGroups) {
 
 		NSMutableSet* toolGroup = [_toolGroups objectForKey:key];
 
 		//draw a box to hold it
-		LHSprite* toolboxContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:_mainLayer];
-		toolboxContainer.zOrder = _bottomBarContainer.parent.zOrder;
+		LHSprite* toolboxContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 		toolboxContainer.tag = TOOLBOX_ITEM_CONTAINER;
 		[toolboxContainer transformPosition: ccp(toolGroupX, toolGroupY)];
 
@@ -511,7 +506,7 @@
 	if(_activeToolboxItem != nil) {
 			
 		if((_state != RUNNING && _state != PLACE)
-				|| (info.glPoint.y < _bottomBarContainer.boundingBox.size.height)
+				|| (info.glPoint.y < _toolboxItemSize)
 				|| (info.glPoint.y >= _levelSize.height)
 				|| (info.glPoint.x <= 0)
 				|| (info.glPoint.x >= _levelSize.width)
