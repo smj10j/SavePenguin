@@ -6,8 +6,14 @@
 		Name = "Arctic I";
 	};
 	1 = {
-		RequiresPack = Arctic;
-		"RequiresNumPackLevelsCompleted" = 10;
+		RequiresPack = Arctic1;
+		"RequiresNumPackLevelsCompleted" = 5;
+		Path = Arctic2;
+		Name = "Arctic II";
+	};
+	2 = {
+		RequiresPack = Arctic2;
+		"RequiresNumPackLevelsCompleted" = 5;
 		Path = Beach;
 		Name = Beach;
 	};
