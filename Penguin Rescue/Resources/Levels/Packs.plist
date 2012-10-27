@@ -2,8 +2,8 @@
 	0 = {
 		RequiresPack = "";
 		"RequiresNumPackLevelsCompleted" = 0;
-		Path = Arctic;
-		Name = Arctic;
+		Path = Arctic1;
+		Name = "Arctic I";
 	};
 	1 = {
 		RequiresPack = Arctic;

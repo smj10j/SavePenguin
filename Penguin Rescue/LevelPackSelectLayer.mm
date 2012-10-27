@@ -150,7 +150,7 @@
 		//display the pack name
 		CCLabelTTF* packNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", levelPackName] fontName:@"Helvetica" fontSize:36*SCALING_FACTOR_FONTS];
 		packNameLabel.color = ccWHITE;
-		packNameLabel.position = ccp(levelPackButtonSize.width/2,levelPackButtonSize.height - levelPackButtonSize.width/10);
+		packNameLabel.position = ccp(levelPackButtonSize.width/2,levelPackButtonSize.height + 40*SCALING_FACTOR_V);
 		[levelPackButton addChild:packNameLabel];
 		
 		
@@ -163,9 +163,9 @@
 
 			//display the % completion
 			double percentComplete = (double)completedLevels.count/(allLevels.count > 0 ? allLevels.count : 1) * 100.0;
-			CCLabelTTF* percentCompleteLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%% complete", (int)percentComplete] fontName:@"Helvetica" fontSize:36*SCALING_FACTOR_FONTS];
+			CCLabelTTF* percentCompleteLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%% complete", (int)percentComplete] fontName:@"Helvetica" fontSize:24*SCALING_FACTOR_FONTS];
 			percentCompleteLabel.color = ccWHITE;
-			percentCompleteLabel.position = ccp(levelPackButtonSize.width/2,levelPackButtonSize.width/10);
+			percentCompleteLabel.position = ccp(levelPackButtonSize.width/2, -25*SCALING_FACTOR_V);
 			[levelPackButton addChild:percentCompleteLabel];
 			
 		}
