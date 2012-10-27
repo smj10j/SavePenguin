@@ -96,24 +96,39 @@
 	
 	
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
-	int levelX = 200*SCALING_FACTOR_H;
-	int levelY = winSize.height - 150*SCALING_FACTOR_V;
 
+	LHSprite* levelButton = [_levelLoader createSpriteWithName:@"Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+	const CGSize levelButtonSize = levelButton.boundingBox.size;
+	const int levelButtonMargin = 50*SCALING_FACTOR_H;
+	const int columns = winSize.width / (levelButtonMargin+levelButtonSize.width);
+	const int levelButtonXInitial = winSize.width/2 - (columns/2 * (levelButtonSize.width+levelButtonMargin)) + (levelButtonSize.width+levelButtonMargin)/2;
+	[levelButton removeSelf];
+
+	int levelButtonX = levelButtonXInitial;
+	int levelButtonY = winSize.height + levelButtonSize.height/2;
 
 	for(int i = 0; i < _levelsDictionary.count; i++) {
+	
+		if(i%columns == 0) {
+			//new row
+			levelButtonY-= (levelButtonSize.height + levelButtonMargin);
+			levelButtonX = levelButtonXInitial;
+		}
 
 		NSDictionary* levelData = [_levelsDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
 		NSString* levelName = [levelData objectForKey:LEVELPACKMANAGER_KEY_NAME];
 		NSString* levelPath = [levelData objectForKey:LEVELPACKMANAGER_KEY_PATH];
 		
 		//create the sprite
-		LHSprite* levelButton;
+		LHSprite* levelButton = [_levelLoader createSpriteWithName:@"Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+		[levelButton prepareAnimationNamed:@"Menu_Level_Select_Button" fromSHScene:@"Spritesheet"];
 		
 		if([_completedLevels containsObject:levelPath]) {
 			NSLog(@"Level %@ is completed!", levelPath);
 
-			levelButton = [_levelLoader createSpriteWithName:@"Completed_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
-			[levelButton prepareAnimationNamed:@"Menu_Completed_Level_Select_Button" fromSHScene:@"Spritesheet"];
+			//add a checkmark on top
+			LHSprite* completedMark = [_levelLoader createSpriteWithName:@"Level_Completed" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelButton];
+			[completedMark transformPosition:ccp(levelButtonSize.width - completedMark.contentSize.width/2 - 20*SCALING_FACTOR_H,completedMark.contentSize.height/2 + 20*SCALING_FACTOR_V)];
 			
 			//used when clicking the sprite
 			[_spriteNameToLevelPath setObject:levelPath forKey:levelButton.uniqueName];
@@ -123,9 +138,6 @@
 		}else if([_availableLevels containsObject:levelPath]) {
 			NSLog(@"Level %@ is available!", levelPath);
 
-			levelButton = [_levelLoader createSpriteWithName:@"Available_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
-			[levelButton prepareAnimationNamed:@"Menu_Available_Level_Select_Button" fromSHScene:@"Spritesheet"];
-			
 			//used when clicking the sprite
 			[_spriteNameToLevelPath setObject:levelPath forKey:levelButton.uniqueName];
 			[levelButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelSelect:)];
@@ -134,19 +146,21 @@
 		}else {
 			NSLog(@"Level %@ is NOT available!", levelPath);
 
-			levelButton = [_levelLoader createSpriteWithName:@"Unavailable_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
-				
+			//add a lock on top
+			LHSprite* lockIcon = [_levelLoader createSpriteWithName:@"Level_Locked" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelButton];
+			[lockIcon transformPosition:ccp(levelButtonSize.width - lockIcon.contentSize.width/2 - 20*SCALING_FACTOR_H,lockIcon.contentSize.height/2 + 20*SCALING_FACTOR_V)];
+
 		}
 		
 		//display the level name
-		CCLabelTTF* levelNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", levelName] fontName:@"Helvetica" fontSize:20];
+		CCLabelTTF* levelNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", levelName] fontName:@"Helvetica" fontSize:20*SCALING_FACTOR_FONTS];
 		levelNameLabel.color = ccBLACK;
-		levelNameLabel.position = ccp(levelButton.contentSize.width/2,levelButton.contentSize.height/2);
+		levelNameLabel.position = ccp(levelButtonSize.width/2,levelButtonSize.height/2);
 		[levelButton addChild:levelNameLabel];
 		
 		//positioning
-		[levelButton transformPosition: ccp(levelX, levelY)];
-		levelX+= levelButton.boundingBox.size.width + 30*SCALING_FACTOR_H;
+		[levelButton transformPosition: ccp(levelButtonX, levelButtonY)];
+		levelButtonX+= levelButtonSize.width + levelButtonMargin;
 	}
 
 }

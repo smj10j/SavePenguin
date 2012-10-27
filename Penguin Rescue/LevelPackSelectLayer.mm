@@ -96,7 +96,7 @@
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
 	LHSprite* levelPackButton = [_levelLoader createSpriteWithName:@"Level_Pack_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
-	CGSize levelPackSize = levelPackButton.boundingBox.size;
+	const CGSize levelPackSize = levelPackButton.boundingBox.size;
 	int levelPackX = levelPackSize.width/2 + 50*SCALING_FACTOR_H;
 	int levelPackY = winSize.height/2;
 	[levelPackButton removeSelf];
@@ -125,7 +125,7 @@
 			NSLog(@"Pack %@ is completed!", levelPackPath);
 
 			//add a checkmark on top
-			LHSprite* completedMark = [_levelLoader createSpriteWithName:@"Completed_Level" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
+			LHSprite* completedMark = [_levelLoader createSpriteWithName:@"Level_Pack_Completed" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
 			[completedMark transformPosition:ccp(levelPackSize.width/2,levelPackSize.height/2)];
 	
 			//used when clicking the sprite
@@ -145,7 +145,7 @@
 			NSLog(@"Pack %@ is NOT available!", levelPackPath);
 
 			//add a lock on top
-			LHSprite* lockIcon = [_levelLoader createSpriteWithName:@"Locked_Level" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
+			LHSprite* lockIcon = [_levelLoader createSpriteWithName:@"Level_Pack_Locked" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
 			[lockIcon transformPosition:ccp(levelPackSize.width/2,levelPackSize.height/2)];
 				
 		}
