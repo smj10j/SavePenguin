@@ -94,24 +94,40 @@
 
 
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
-	int levelPackX = 200*SCALING_FACTOR_H;
-	int levelPackY = winSize.height - 150*SCALING_FACTOR_V;
+
+	LHSprite* levelPackButton = [_levelLoader createSpriteWithName:@"Level_Pack_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+	CGSize levelPackSize = levelPackButton.boundingBox.size;
+	int levelPackX = levelPackSize.width/2 + 50*SCALING_FACTOR_H;
+	int levelPackY = winSize.height/2;
+	[levelPackButton removeSelf];
+	
 		
 	for(int i = 0; i < _levelPacksDictionary.count; i++) {
 
 		NSDictionary* levelPackData = [_levelPacksDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
 		NSString* levelPackName = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_NAME];
 		NSString* levelPackPath = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_PATH];
+		NSArray* completedLevels = [LevelPackManager completedLevelsInPack:levelPackPath];
+		NSDictionary* allLevels = [LevelPackManager allLevelsInPack:levelPackPath];
 
 		//create the sprite
-		LHSprite* levelPackButton;
-		
+		LHSprite* levelPackButton = [_levelLoader createSpriteWithName:@"Level_Pack_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+		[levelPackButton prepareAnimationNamed:@"Menu_Level_Pack_Select_Button" fromSHScene:@"Spritesheet"];
+
+		//display the pack background
+		CCSprite* packBackground = [CCSprite spriteWithFile:[NSString stringWithFormat:@"Levels/%@/%@", levelPackPath, @"IconBackground.png"]];
+		packBackground.scale = levelPackButton.contentSize.width/1001.0;
+		packBackground.position = ccp(levelPackSize.width/2,levelPackSize.height/2);
+		packBackground.opacity = 200;
+		[levelPackButton addChild:packBackground];						
+
 		if([_completedLevelPacks containsObject:levelPackPath]) {
 			NSLog(@"Pack %@ is completed!", levelPackPath);
 
-			levelPackButton = [_levelLoader createSpriteWithName:@"Completed_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
-			[levelPackButton prepareAnimationNamed:@"Menu_Completed_Level_Select_Button" fromSHScene:@"Spritesheet"];
-						
+			//add a checkmark on top
+			LHSprite* completedMark = [_levelLoader createSpriteWithName:@"Completed_Level" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
+			[completedMark transformPosition:ccp(levelPackSize.width/2,levelPackSize.height/2)];
+	
 			//used when clicking the sprite
 			[_spriteNameToLevelPackPath setObject:levelPackPath forKey:levelPackButton.uniqueName];
 			[levelPackButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelSelect:)];
@@ -120,9 +136,6 @@
 		}else if([_availableLevelPacks containsObject:levelPackPath]) {
 			NSLog(@"Pack %@ is available!", levelPackPath);
 
-			levelPackButton = [_levelLoader createSpriteWithName:@"Available_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
-			[levelPackButton prepareAnimationNamed:@"Menu_Available_Level_Select_Button" fromSHScene:@"Spritesheet"];
-						
 			//used when clicking the sprite
 			[_spriteNameToLevelPackPath setObject:levelPackPath forKey:levelPackButton.uniqueName];
 			[levelPackButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelSelect:)];
@@ -131,19 +144,32 @@
 		}else {
 			NSLog(@"Pack %@ is NOT available!", levelPackPath);
 
-			levelPackButton = [_levelLoader createSpriteWithName:@"Unavailable_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+			//add a lock on top
+			LHSprite* lockIcon = [_levelLoader createSpriteWithName:@"Locked_Level" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
+			[lockIcon transformPosition:ccp(levelPackSize.width/2,levelPackSize.height/2)];
 				
 		}
 		
+		
 		//display the pack name
-		CCLabelTTF* packNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", levelPackName] fontName:@"Helvetica" fontSize:24];
-		packNameLabel.color = ccBLACK;
-		packNameLabel.position = ccp(levelPackButton.contentSize.width/2,levelPackButton.contentSize.height/2);
+		CCLabelTTF* packNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", levelPackName] fontName:@"Helvetica" fontSize:36*SCALING_FACTOR_FONTS];
+		packNameLabel.color = ccWHITE;
+		packNameLabel.position = ccp(levelPackSize.width/2,levelPackSize.height - levelPackSize.width/10);
 		[levelPackButton addChild:packNameLabel];
+		
+		
+		//display the % completion
+		double percentComplete = (double)completedLevels.count/(allLevels.count > 0 ? allLevels.count : 1) * 100.0;
+		CCLabelTTF* percentCompleteLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%% complete", (int)percentComplete] fontName:@"Helvetica" fontSize:36*SCALING_FACTOR_FONTS];
+		percentCompleteLabel.color = ccWHITE;
+		percentCompleteLabel.position = ccp(levelPackSize.width/2,levelPackSize.width/10);
+		[levelPackButton addChild:percentCompleteLabel];
+
+		
 		
 		//positioning
 		[levelPackButton transformPosition: ccp(levelPackX, levelPackY)];
-		levelPackX+= levelPackButton.boundingBox.size.width + 30*SCALING_FACTOR_H;
+		levelPackX+= levelPackSize.width + 50*SCALING_FACTOR_H;
 	}
 
 }
