@@ -20,7 +20,6 @@
 
 -(void)addScore:(int)score description:(NSString*)tag sprite:(LHSprite*)sprite group:(bool)group;
 
-
--(NSDictionary*)scores;
+-(int)totalScore;
 
 @end

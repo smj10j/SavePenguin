@@ -35,8 +35,13 @@
 
 }
 
--(NSDictionary*)scores {
-	return _scores;
+-(int)totalScore {
+	int total = 0;
+	for(NSString* scoreTag in _scores) {
+		Score* score = [_scores objectForKey:scoreTag];
+		total+= score.count * score.score;
+	}
+	return total;
 }
 
 @end
