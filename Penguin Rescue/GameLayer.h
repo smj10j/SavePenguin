@@ -86,6 +86,8 @@ enum PROPAGATION_RESULT {
 	NSMutableDictionary* _toolGroups;
 	bool _shouldUpdateToolbox;
 	int _toolboxItemSize;
+	NSMutableArray* _placedToolboxItems;
+	ScoreKeeper* _scoreKeeper;
 	
 
 	bool _shouldRegenerateFeatureMaps;
@@ -93,10 +95,12 @@ enum PROPAGATION_RESULT {
 	
 	double _levelStartPlaceTime;
 	double _levelStartRunningTime;
+	double _levelPlaceTimeDuration;
+	double _levelRunningTimeDuration;
+	
 	CGPoint _startTouch;
 	CGPoint _lastTouch;
-	NSMutableArray* _placedToolboxItems;
-	ScoreKeeper* _scoreKeeper;
+	
 	
 	
 	

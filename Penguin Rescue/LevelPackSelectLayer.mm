@@ -117,7 +117,7 @@
 
 		//display the pack background
 		CCSprite* packBackground = [CCSprite spriteWithFile:[NSString stringWithFormat:@"Levels/%@/%@", levelPackPath, @"IconBackground.png"]];
-		packBackground.scale = levelPackButton.contentSize.width/1001.0;
+		packBackground.scale = levelPackButton.contentSize.width/packBackground.contentSize.width;
 		packBackground.position = ccp(levelPackSize.width/2,levelPackSize.height/2);
 		packBackground.opacity = 200;
 		[levelPackButton addChild:packBackground];						

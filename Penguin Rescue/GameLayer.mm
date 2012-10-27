@@ -97,6 +97,8 @@
 	//start the game
 	_state = PLACE;
 	_levelStartPlaceTime  = [[NSDate date] timeIntervalSince1970];
+	_levelPlaceTimeDuration = 0;
+	_levelRunningTimeDuration = 0;
 
 	CCDirectorIOS* director = (CCDirectorIOS*) [CCDirector sharedDirector];
 	[director setAnimationInterval:1.0/TARGET_FPS];
@@ -244,7 +246,7 @@
 	[timeAndLevelPopup addChild:levelNameLabel];
 	_timeElapsedLabel = [CCLabelTTF labelWithString:@"" fontName:@"Helvetica" fontSize:18*SCALING_FACTOR_FONTS];
 	_timeElapsedLabel.color = ccBLACK;
-	_timeElapsedLabel.position = ccp(timeAndLevelPopup.boundingBox.size.width/2, timeAndLevelPopup.boundingBox.size.height/4 + 2);
+	_timeElapsedLabel.position = ccp(timeAndLevelPopup.boundingBox.size.width/2, timeAndLevelPopup.boundingBox.size.height/4 + 2*SCALING_FACTOR_V);
 	[timeAndLevelPopup addChild:_timeElapsedLabel];
 	
 	
@@ -252,7 +254,7 @@
 		[CCDelayTime actionWithDuration:1.5f],
 		[CCMoveBy actionWithDuration:0.5f position:ccp(0,-timeAndLevelPopup.boundingBox.size.height)],
 		[CCDelayTime actionWithDuration:2.5f],
-		[CCMoveBy actionWithDuration:0.5f position:ccp(0,timeAndLevelPopup.boundingBox.size.height/2 + 2)],
+		[CCMoveBy actionWithDuration:0.5f position:ccp(0,timeAndLevelPopup.boundingBox.size.height/2 + 2*SCALING_FACTOR_V)],
 		nil]];
 	
 	
@@ -741,9 +743,10 @@
 	const int toolsScoreDeduction = _scoreKeeper.totalScore;
 	scoreDeductions+= toolsScoreDeduction;
 	
-	const double elapsedPlaceTime = ([[NSDate date] timeIntervalSince1970] - _levelStartPlaceTime);
-	const int timeScoreDeduction = elapsedPlaceTime*5;
-	scoreDeductions+= timeScoreDeduction;	
+	const double placeTimeScore = _levelPlaceTimeDuration * 20;
+	const double runningTimeScore = _levelRunningTimeDuration * 10;
+	const int timeScoreDeduction = placeTimeScore + runningTimeScore;
+	scoreDeductions+= timeScoreDeduction;
 	
 	const int finalScore = SCORING_MAX_SCORE_POSSIBLE - scoreDeductions;
 	//TODO: post the score to the server or queue for online processing
@@ -753,7 +756,6 @@
 	//show a level won screen
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 	LHSprite* levelWonPopup = [_levelLoader createSpriteWithName:@"Level_Won_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:_mainLayer];
-	levelWonPopup.opacity = 0;
 	levelWonPopup.zOrder = 10000;
 	[levelWonPopup transformPosition: ccp(winSize.width/2,winSize.height/2)];
 	
@@ -762,58 +764,59 @@
 
 	/***** action butons ******/
 	
-	int buttonYOffset = 110*SCALING_FACTOR_V;
-	int buttonXOffset = 0;
-
-	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelWonPopup];
+	const int buttonYOffset = (120 - (levelWonPopupSize.height - winSize.height)*.9)*SCALING_FACTOR_V;
+	
+	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_Button" fromSHScene:@"Spritesheet"];
-	[levelsMenuButton transformPosition: ccp(buttonXOffset + levelWonPopupSize.width/2 - levelsMenuButton.boundingBox.size.width*2, buttonYOffset + levelsMenuButton.boundingBox.size.height/2) ];
+	[levelsMenuButton transformPosition: ccp(winSize.width/2 - levelsMenuButton.boundingBox.size.width*2,
+											levelsMenuButton.boundingBox.size.height/2 + buttonYOffset) ];
 	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
 	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
 	
-	LHSprite* restartMenuButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelWonPopup];
+	LHSprite* restartMenuButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	[restartMenuButton prepareAnimationNamed:@"Menu_Restart_Button" fromSHScene:@"Spritesheet"];
-	[restartMenuButton transformPosition: ccp(buttonXOffset + levelWonPopupSize.width/2, buttonYOffset + restartMenuButton.boundingBox.size.height/2) ];
+	[restartMenuButton transformPosition: ccp(winSize.width/2,
+											restartMenuButton.boundingBox.size.height/2 + buttonYOffset) ];
 	[restartMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[restartMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 	
-	LHSprite* nextLevelMenuButton = [_levelLoader createSpriteWithName:@"Next_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelWonPopup];
+	LHSprite* nextLevelMenuButton = [_levelLoader createSpriteWithName:@"Next_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	[nextLevelMenuButton prepareAnimationNamed:@"Menu_Next_Level_Button" fromSHScene:@"Spritesheet"];
-	[nextLevelMenuButton transformPosition: ccp(buttonXOffset + levelWonPopupSize.width/2 + restartMenuButton.boundingBox.size.width*2, buttonYOffset + nextLevelMenuButton.boundingBox.size.height/2) ];
+	[nextLevelMenuButton transformPosition: ccp(winSize.width/2 + restartMenuButton.boundingBox.size.width*2,
+											nextLevelMenuButton.boundingBox.size.height/2 + buttonYOffset) ];
 	[nextLevelMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganNextLevel:)];
 	[nextLevelMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedNextLevel:)];
 	
 	
 	/***** scoring items ******/
 
-	const int scoringYOffset = 90*SCALING_FACTOR_V;
-
+	const int scoringYOffset = (IS_IPHONE ? 495 : 475)*SCALING_FACTOR_V;
 	
 	CCLabelTTF* maxScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", SCORING_MAX_SCORE_POSSIBLE] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1 ];
 	maxScoreLabel.color = SCORING_FONT_COLOR2;
-	maxScoreLabel.position = ccp(levelWonPopupSize.width/2 - 185*SCALING_FACTOR_H,
-								 levelWonPopupSize.height/2 + scoringYOffset);
-	[levelWonPopup addChild:maxScoreLabel];
+	maxScoreLabel.position = ccp(winSize.width/2 - (185*SCALING_FACTOR_H) - (IS_IPHONE ? 15*SCALING_FACTOR_H : 0),
+								 scoringYOffset);
+	[self addChild:maxScoreLabel];
 		
 	
 	CCLabelTTF* elapsedPlaceTimeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", timeScoreDeduction] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 	elapsedPlaceTimeLabel.color = SCORING_FONT_COLOR1;
-	elapsedPlaceTimeLabel.position = ccp(levelWonPopupSize.width/2 - 75*SCALING_FACTOR_H,
-									  	levelWonPopupSize.height/2 + scoringYOffset);
-	[levelWonPopup addChild:elapsedPlaceTimeLabel];
+	elapsedPlaceTimeLabel.position = ccp(winSize.width/2 - (75*SCALING_FACTOR_H) - (IS_IPHONE ? 5*SCALING_FACTOR_H : 0),
+									  	scoringYOffset);
+	[self addChild:elapsedPlaceTimeLabel];
 
 
 	CCLabelTTF* toolsScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", toolsScoreDeduction] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 	toolsScoreLabel.color = SCORING_FONT_COLOR1;
-	toolsScoreLabel.position = ccp(levelWonPopupSize.width/2 + 35*SCALING_FACTOR_H,
-									levelWonPopupSize.height/2 + scoringYOffset);
-	[levelWonPopup addChild:toolsScoreLabel];
+	toolsScoreLabel.position = ccp(winSize.width/2 + (35*SCALING_FACTOR_H),
+									scoringYOffset);
+	[self addChild:toolsScoreLabel];
 
 	CCLabelTTF* totalScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", finalScore] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
 	totalScoreLabel.color = SCORING_FONT_COLOR2;
-	totalScoreLabel.position = ccp(levelWonPopupSize.width/2 + 175*SCALING_FACTOR_H,
-									levelWonPopupSize.height/2 + scoringYOffset);
-	[levelWonPopup addChild:totalScoreLabel];
+	totalScoreLabel.position = ccp(winSize.width/2 + (170*SCALING_FACTOR_H) + (IS_IPHONE ? 15*SCALING_FACTOR_H : 0),
+									scoringYOffset);
+	[self addChild:totalScoreLabel];
 
 
 
@@ -821,34 +824,30 @@
 
 	/***** competitive items ******/
 
-	const int competitiveTextXOffset = 175*SCALING_FACTOR_H;
+	const int competitiveTextXOffset = (172 + (IS_IPHONE ? 15 : 0))*SCALING_FACTOR_H;
+	const int competitiveTextYOffset = 130*SCALING_FACTOR_V;
 
 	//TODO: get the number from the server (or cached copy!)
 
 	CCLabelTTF* worldPercentCompleteLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", 45] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 	worldPercentCompleteLabel.color = SCORING_FONT_COLOR3;
-	worldPercentCompleteLabel.position = ccp(levelWonPopupSize.width/2 + competitiveTextXOffset,
-											levelWonPopupSize.height/2 - 10*SCALING_FACTOR_V);
-	[levelWonPopup addChild:worldPercentCompleteLabel];
+	worldPercentCompleteLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
+											240*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? 0 : 0));
+	[self addChild:worldPercentCompleteLabel];
 
 	CCLabelTTF* worldAverageScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", 8000] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 	worldAverageScoreLabel.color = SCORING_FONT_COLOR3;
-	worldAverageScoreLabel.position = ccp(levelWonPopupSize.width/2 + competitiveTextXOffset,
-										  levelWonPopupSize.height/2 - 85*SCALING_FACTOR_V);
-	[levelWonPopup addChild:worldAverageScoreLabel];
+	worldAverageScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
+										170*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -5 : 0));
+	[self addChild:worldAverageScoreLabel];
 
 	CCLabelTTF* worldPercentileLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", 10] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
 	worldPercentileLabel.color = SCORING_FONT_COLOR2;
-	worldPercentileLabel.position = ccp(levelWonPopupSize.width/2 + competitiveTextXOffset,
-										levelWonPopupSize.height/2 - 155*SCALING_FACTOR_V);
-	[levelWonPopup addChild:worldPercentileLabel];
+	worldPercentileLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
+										95*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -10 : 0));
+	[self addChild:worldPercentileLabel];
 
 
-
-
-	
-	//show!
-	[levelWonPopup runAction:[CCFadeIn actionWithDuration:0.5f]];
 }
 
 //TODO: can this even happen anymore
@@ -917,7 +916,7 @@
 
 	/***** action butons ******/
 	
-	int buttonYOffset = -20*SCALING_FACTOR_V;
+	int buttonYOffset = -30*SCALING_FACTOR_V;
 	int buttonXOffset = 0;
 
 	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelLostPopup];
@@ -1224,8 +1223,14 @@
 
 	/* Things that can occur while placing toolbox items or while running */
 	
+	if(_state == RUNNING) {
+		_levelRunningTimeDuration+= dt;
+	}else {
+		_levelPlaceTimeDuration+= dt;
+	}
+	
 	double elapsedTime = [[NSDate date] timeIntervalSince1970] - _levelStartPlaceTime;
-	_timeElapsedLabel.string = [NSString stringWithFormat:@"%ds", (int)elapsedTime];
+	_timeElapsedLabel.string = [NSString stringWithFormat:@"%d", (int)elapsedTime];
 	
 	//regenerate base feature maps if need be
 	if(_shouldRegenerateFeatureMaps) {
