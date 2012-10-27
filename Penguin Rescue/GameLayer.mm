@@ -634,6 +634,11 @@
 		NSLog(@"Pausing game");
 		_state = PAUSE;
 		
+		for(LHSprite* sprite in _levelLoader.allSprites) {
+			[sprite pauseAnimation];
+		}
+		
+		//analytics logging
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 			_levelPath, @"Level_Name", 
 			_levelPackPath, @"Level_Pack",
@@ -663,6 +668,13 @@
 		NSLog(@"Resuming game");
 		_state = RUNNING;
 		
+		for(LHSprite* sprite in _levelLoader.allSprites) {
+			if(sprite.numberOfFrames > 1) {
+				[sprite playAnimation];
+			}
+		}
+		
+		//analytics loggin
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 			_levelPath, @"Level_Name", 
 			_levelPackPath, @"Level_Pack",
@@ -678,6 +690,13 @@
 
 		[self fadeOutAllTutorials];
 		
+		for(LHSprite* sprite in _levelLoader.allSprites) {
+			if(sprite.numberOfFrames > 1) {
+				[sprite playAnimation];
+			}
+		}
+		
+		//analytics logging
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 			_levelPath, @"Level_Name", 
 			_levelPackPath, @"Level_Pack",
@@ -933,14 +952,20 @@
 
 -(void) restart {
 
+	NSLog(@"Restarting");
+	_state = GAME_OVER;
+
+	for(LHSprite* sprite in _levelLoader.allSprites) {
+		[sprite stopAnimation];
+	}
+
+	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"Lost", @"Level_Status",
 		@"Restart", @"Level_Lost_Reason",
 	nil];
 	[Flurry endTimedEvent:@"Play_Level" withParameters:flurryParams];
 
-	NSLog(@"Restarting");
-	_state = GAME_OVER;
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:_levelPath]]];
 }
 
@@ -1139,8 +1164,15 @@
 					for(LHSprite* shark in sharks) {
 						double dist = ccpDistance(shark.position, penguin.position);
 						if(dist < penguinData.detectionRadius*SCALING_FACTOR_GENERIC) {
+						
 							penguinData.hasSpottedShark = true;
+							
 							//TODOO: play some kind of penguin animation with an alert dialog and a squawk sound
+							
+							[penguin prepareAnimationNamed:@"Penguin_Waddle" fromSHScene:@"Spritesheet"];
+							if(_state == RUNNING) {
+								[penguin playAnimation];
+							}
 							break;
 						}
 					}
@@ -1303,7 +1335,7 @@
 	[self moveSharks:dt];
 	[self movePenguins:dt];
 	[self updateMoveGrids];
-		
+	
 	
 	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done with game state update");
 
@@ -1502,8 +1534,18 @@
 			for(LHSprite* penguin2 in penguins) {
 				if(![penguin2.uniqueName isEqualToString:penguin.uniqueName]) {
 					if(ccpDistance(penguin.position, penguin2.position) <= penguinData.alertRadius*SCALING_FACTOR_GENERIC) {
-						//TODO: show some kind of AH!!! speech bubble alert animation for the penguins communicating
-						((Penguin*)penguin2.userInfo).hasSpottedShark = true;
+
+						Penguin* penguin2UserData = ((Penguin*)penguin2.userInfo);
+						if(!penguin2UserData.hasSpottedShark) {
+							penguin2UserData.hasSpottedShark = true;
+
+							//TODO: show some kind of AH!!! speech bubble alert animation for the penguins communicating
+							
+							[penguin2 prepareAnimationNamed:@"Penguin_Waddle" fromSHScene:@"Spritesheet"];
+							if(_state == RUNNING) {
+								[penguin2 playAnimation];
+							}
+						}
 					}
 				}
 			}

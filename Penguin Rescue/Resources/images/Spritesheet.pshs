@@ -2656,7 +2656,7 @@
 			<key>MaxSheetSize</key>
 			<integer>4096</integer>
 			<key>NpotSize</key>
-			<string>{236, 260}</string>
+			<string>{292, 444}</string>
 			<key>Padding</key>
 			<integer>8</integer>
 			<key>PixelFormat</key>
@@ -2691,7 +2691,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					sPBNAwAAAAAIAAAABAMAAMmvVgMAAAAALAAA
+					sPBNAwAAAAAIAAAABAMAAH4dWgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -2703,12 +2703,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADuAAAA
-					AQIAAGYxMmJhN2M2NzdiMmFkNTRlNjY4MzE3
-					NmFkZjJlMmJhZTFmNzFkODY7MDAwMDAwMDA7
+					AQIAADY0ZTU2YTE0YzFmM2FjMTI1MTY3NjA2
+					MWRlZWQxMDdlZjdhYzhlZjU7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTZh
-					ZmM5Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
+					ZDdlOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2FjdG9ycy9wZW5ndWluLnBuZwAA
@@ -2790,10 +2790,10 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{-43.286316068369175, 31.247701498050262}</string>
-									<string>{-43.286316068369167, 104.17454364815339}</string>
-									<string>{-133.39399509291906, 104.1745436481534}</string>
-									<string>{-133.39399509291906, 31.247701498050269}</string>
+									<string>{31.247701498050258, 43.286316068369175}</string>
+									<string>{104.17454364815339, 43.286316068369175}</string>
+									<string>{104.17454364815339, 133.39399509291906}</string>
+									<string>{31.247701498050262, 133.39399509291906}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
@@ -2833,9 +2833,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{0, 30}, {34.75, 40.75}}</string>
+						<string>{{0, 71}, {34.75, 39.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{0, 120}, {137, 161}}</string>
+						<string>{{0, 284}, {137, 158}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Actors.png</string>
 						<key>Image-HD</key>
@@ -2845,7 +2845,7 @@
 						<key>IsDrawable</key>
 						<true/>
 						<key>IsRotated</key>
-						<true/>
+						<false/>
 						<key>IsTrimmed</key>
 						<true/>
 						<key>Name</key>
@@ -2857,7 +2857,309 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/Actors/Penguin.png/</string>
 						<key>OriginalRect</key>
-						<string>{{8, 6}, {137, 161}}</string>
+						<string>{{8, 6}, {137, 158}}</string>
+						<key>OriginalSize</key>
+						<string>{150, 175}</string>
+						<key>Position</key>
+						<string>{0, 284}</string>
+						<key>Scale</key>
+						<string>{1, 1}</string>
+						<key>SpriteSize</key>
+						<string>{37.5, 43.75}</string>
+						<key>SpriteWasBreaked</key>
+						<false/>
+						<key>Tag</key>
+						<integer>0</integer>
+						<key>TextureOffset</key>
+						<string>{0.625, 0.625}</string>
+						<key>UsesBatchRendering</key>
+						<true/>
+						<key>ZOrder</key>
+						<integer>1</integer>
+					</dict>
+				</dict>
+				<key>Penguin_Sad</key>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va9wEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAAwAMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAABgAAAAEBAABBY3RvcnMAAA8AAAABAQAA
+					UGVuZ3Vpbl9TYWQucG5nACwAAAABBgAABAAA
+					ABQAAAAkAAAAMAAAAEAAAABAAAAAWAAAAGwA
+					AACAAAAAkAAAAKAAAAAIAAAABAMAAHIAAAAA
+					AAAACAAAAAQDAABbtw4AAAAAAAgAAAAEAwAA
+					69EOAAAAAAAIAAAABAMAAO3RDgAAAAAACAAA
+					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
+					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
+					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
+					BAMAALDwTQMAAAAACAAAAAQDAAB/HVoDAAAA
+					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
+					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
+					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
+					AAAAAAAAAAABBQAABAAAAAMDAAACAAAABAAA
+					AAMDAAAEAAAACAAAAAQDAAAJAAAAAAAAAAQA
+					AAADAwAA9QEAAAwAAAABAQAATWFjaW50b3No
+					IEhECAAAAAQDAAAAgIE9dAAAAAgAAAAABAAA
+					QbQMGj4AAAAkAAAAAQEAADcwMUI3RTA1LTlF
+					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
+					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
+					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
+					8gAAAAECAAA2ZWViZGEyNTkxOTliNTdjN2Qy
+					MTQ3OTAxNzMwNGNhMmM1ZDcyMTAxOzAwMDAw
+					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
+					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
+					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
+					MzVhMWQ3ZjsvdXNlcnMvc3RldmUvY29kZS9j
+					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
+					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
+					ZXRzL2ltYWdlcy9hY3RvcnMvcGVuZ3Vpbl9z
+					YWQucG5nAAAA5AAAAP7///8BAAAAAAAAABIA
+					AAAEEAAAuAAAAAAAAAAFEAAAnAEAAAAAAAAQ
+					EAAA0AEAAAAAAABUEAAA+AEAAAAAAABVEAAA
+					BAIAAAAAAABWEAAA8AEAAAAAAAACIAAArAIA
+					AAAAAAAQIAAALAIAAAAAAAARIAAAYAIAAAAA
+					AAASIAAAQAIAAAAAAAATIAAAUAIAAAAAAAAg
+					IAAAjAIAAAAAAAAwIAAA8AEAAAAAAAABwAAA
+					EAIAAAAAAAARwAAAFAAAAAAAAAASwAAAIAIA
+					AAAAAAAQ0AAAuAIAAAAAAACA8AAAxAIAAAAA
+					AAA=
+					</data>
+					<key>IsSHSprite</key>
+					<true/>
+					<key>PhysicProperties</key>
+					<dict>
+						<key>AngularDamping</key>
+						<real>0.0</real>
+						<key>AngularVelocity</key>
+						<real>0.0</real>
+						<key>CanSleep</key>
+						<true/>
+						<key>FixedRot</key>
+						<false/>
+						<key>GravityScale</key>
+						<real>1</real>
+						<key>HandledBySH</key>
+						<true/>
+						<key>IsBullet</key>
+						<false/>
+						<key>LinearDamping</key>
+						<real>0.0</real>
+						<key>LinearVelocity</key>
+						<string>{0, 0}</string>
+						<key>SH_ComplexShapes</key>
+						<array/>
+						<key>Type</key>
+						<integer>3</integer>
+					</dict>
+					<key>SHSheetName</key>
+					<string>Actors</string>
+					<key>SHSpriteName</key>
+					<string>Penguin_Sad</string>
+					<key>SheetImage</key>
+					<string>Spritesheet_Actors.png</string>
+					<key>SheetImage-HD</key>
+					<string>Spritesheet_Actors-ipadhd.png</string>
+					<key>TextureProperties</key>
+					<dict>
+						<key>Angle</key>
+						<integer>0</integer>
+						<key>Border</key>
+						<integer>0</integer>
+						<key>CanBeTrimmed</key>
+						<true/>
+						<key>Color</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>ConvertedFromOldFormat</key>
+						<false/>
+						<key>CustomClassName</key>
+						<string></string>
+						<key>FlipX</key>
+						<false/>
+						<key>FlipY</key>
+						<false/>
+						<key>Frame</key>
+						<string>{{36, 71}, {34.75, 38}}</string>
+						<key>Frame-HD</key>
+						<string>{{144, 284}, {137, 152}}</string>
+						<key>Image</key>
+						<string>Spritesheet_Actors.png</string>
+						<key>Image-HD</key>
+						<string>Spritesheet_Actors-ipadhd.png</string>
+						<key>IsCropped</key>
+						<false/>
+						<key>IsDrawable</key>
+						<true/>
+						<key>IsRotated</key>
+						<false/>
+						<key>IsTrimmed</key>
+						<true/>
+						<key>Name</key>
+						<string>Penguin_Sad</string>
+						<key>Opacity</key>
+						<real>1</real>
+						<key>OriginalImage</key>
+						<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Actors/Penguin_Sad.png</string>
+						<key>OriginalImage_RelativePath</key>
+						<string>../src-assets/images/Actors/Penguin_Sad.png/</string>
+						<key>OriginalRect</key>
+						<string>{{7, 12}, {137, 152}}</string>
+						<key>OriginalSize</key>
+						<string>{150, 175}</string>
+						<key>Position</key>
+						<string>{144, 284}</string>
+						<key>Scale</key>
+						<string>{1, 1}</string>
+						<key>SpriteSize</key>
+						<string>{37.5, 43.75}</string>
+						<key>SpriteWasBreaked</key>
+						<false/>
+						<key>Tag</key>
+						<integer>0</integer>
+						<key>TextureOffset</key>
+						<string>{0.375, -0.125}</string>
+						<key>UsesBatchRendering</key>
+						<true/>
+						<key>ZOrder</key>
+						<integer>1</integer>
+					</dict>
+				</dict>
+				<key>Penguin_Step_Left</key>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va+gEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAAzAMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAABgAAAAEBAABBY3RvcnMAABUAAAABAQAA
+					UGVuZ3Vpbl9TdGVwX0xlZnQucG5nAAAALAAA
+					AAEGAAAEAAAAFAAAACQAAAAwAAAAQAAAAEAA
+					AABYAAAAbAAAAIAAAACQAAAAoAAAAAgAAAAE
+					AwAAcgAAAAAAAAAIAAAABAMAAFu3DgAAAAAA
+					CAAAAAQDAADr0Q4AAAAAAAgAAAAEAwAA7dEO
+					AAAAAAAIAAAABAMAAKPGTQMAAAAACAAAAAQD
+					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
+					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
+					AAAAAAgAAAAEAwAAsPBNAwAAAAAIAAAABAMA
+					AIEdWgMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
+					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
+					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
+					AAIAAAAEAAAAAwMAAAQAAAAIAAAABAMAAAkA
+					AAAAAAAABAAAAAMDAAD1AQAADAAAAAEBAABN
+					YWNpbnRvc2ggSEQIAAAABAMAAACAgT10AAAA
+					CAAAAAAEAABBtAwaPgAAACQAAAABAQAANzAx
+					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
+					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
+					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
+					AwMAAAABAAD4AAAAAQIAAGI2OGUwNmE2Njdi
+					MWQxZGQwOTFmNTc4YWNjYWMzN2VlNTQ4ZDhl
+					ZjI7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
+					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
+					MDAwMDAwMDAzNWExZDgxOy91c2Vycy9zdGV2
+					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
+					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
+					L3NyYy1hc3NldHMvaW1hZ2VzL2FjdG9ycy9w
+					ZW5ndWluX3N0ZXBfbGVmdC5wbmcA5AAAAP7/
+					//8BAAAAAAAAABIAAAAEEAAAwAAAAAAAAAAF
+					EAAApAEAAAAAAAAQEAAA2AEAAAAAAABUEAAA
+					AAIAAAAAAABVEAAADAIAAAAAAABWEAAA+AEA
+					AAAAAAACIAAAtAIAAAAAAAAQIAAANAIAAAAA
+					AAARIAAAaAIAAAAAAAASIAAASAIAAAAAAAAT
+					IAAAWAIAAAAAAAAgIAAAlAIAAAAAAAAwIAAA
+					+AEAAAAAAAABwAAAGAIAAAAAAAARwAAAFAAA
+					AAAAAAASwAAAKAIAAAAAAAAQ0AAAwAIAAAAA
+					AACA8AAAzAIAAAAAAAA=
+					</data>
+					<key>IsSHSprite</key>
+					<true/>
+					<key>PhysicProperties</key>
+					<dict>
+						<key>AngularDamping</key>
+						<real>0.0</real>
+						<key>AngularVelocity</key>
+						<real>0.0</real>
+						<key>CanSleep</key>
+						<true/>
+						<key>FixedRot</key>
+						<false/>
+						<key>GravityScale</key>
+						<real>1</real>
+						<key>HandledBySH</key>
+						<true/>
+						<key>IsBullet</key>
+						<false/>
+						<key>LinearDamping</key>
+						<real>0.0</real>
+						<key>LinearVelocity</key>
+						<string>{0, 0}</string>
+						<key>SH_ComplexShapes</key>
+						<array/>
+						<key>Type</key>
+						<integer>3</integer>
+					</dict>
+					<key>SHSheetName</key>
+					<string>Actors</string>
+					<key>SHSpriteName</key>
+					<string>Penguin_Step_Left</string>
+					<key>SheetImage</key>
+					<string>Spritesheet_Actors.png</string>
+					<key>SheetImage-HD</key>
+					<string>Spritesheet_Actors-ipadhd.png</string>
+					<key>TextureProperties</key>
+					<dict>
+						<key>Angle</key>
+						<integer>0</integer>
+						<key>Border</key>
+						<integer>0</integer>
+						<key>CanBeTrimmed</key>
+						<true/>
+						<key>Color</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>ConvertedFromOldFormat</key>
+						<false/>
+						<key>CustomClassName</key>
+						<string></string>
+						<key>FlipX</key>
+						<false/>
+						<key>FlipY</key>
+						<false/>
+						<key>Frame</key>
+						<string>{{0, 30}, {35.75, 39.5}}</string>
+						<key>Frame-HD</key>
+						<string>{{0, 120}, {143, 158}}</string>
+						<key>Image</key>
+						<string>Spritesheet_Actors.png</string>
+						<key>Image-HD</key>
+						<string>Spritesheet_Actors-ipadhd.png</string>
+						<key>IsCropped</key>
+						<false/>
+						<key>IsDrawable</key>
+						<true/>
+						<key>IsRotated</key>
+						<false/>
+						<key>IsTrimmed</key>
+						<true/>
+						<key>Name</key>
+						<string>Penguin_Step_Left</string>
+						<key>Opacity</key>
+						<real>1</real>
+						<key>OriginalImage</key>
+						<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Actors/Penguin_Step_Left.png</string>
+						<key>OriginalImage_RelativePath</key>
+						<string>../src-assets/images/Actors/Penguin_Step_Left.png/</string>
+						<key>OriginalRect</key>
+						<string>{{7, 9}, {143, 158}}</string>
 						<key>OriginalSize</key>
 						<string>{150, 175}</string>
 						<key>Position</key>
@@ -2871,7 +3173,158 @@
 						<key>Tag</key>
 						<integer>0</integer>
 						<key>TextureOffset</key>
-						<string>{0.625, -0}</string>
+						<string>{0.875, -0.125}</string>
+						<key>UsesBatchRendering</key>
+						<true/>
+						<key>ZOrder</key>
+						<integer>1</integer>
+					</dict>
+				</dict>
+				<key>Penguin_Step_Right</key>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va+wEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAA0AMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAABgAAAAEBAABBY3RvcnMAABYAAAABAQAA
+					UGVuZ3Vpbl9TdGVwX1JpZ2h0LnBuZwAALAAA
+					AAEGAAAEAAAAFAAAACQAAAAwAAAAQAAAAEAA
+					AABYAAAAbAAAAIAAAACQAAAAoAAAAAgAAAAE
+					AwAAcgAAAAAAAAAIAAAABAMAAFu3DgAAAAAA
+					CAAAAAQDAADr0Q4AAAAAAAgAAAAEAwAA7dEO
+					AAAAAAAIAAAABAMAAKPGTQMAAAAACAAAAAQD
+					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
+					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
+					AAAAAAgAAAAEAwAAsPBNAwAAAAAIAAAABAMA
+					AIAdWgMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
+					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
+					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
+					AAIAAAAEAAAAAwMAAAQAAAAIAAAABAMAAAkA
+					AAAAAAAABAAAAAMDAAD1AQAADAAAAAEBAABN
+					YWNpbnRvc2ggSEQIAAAABAMAAACAgT10AAAA
+					CAAAAAAEAABBtAwaPgAAACQAAAABAQAANzAx
+					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
+					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
+					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
+					AwMAAAABAAD5AAAAAQIAADM5ZjlmNDAyYzI2
+					NWFjMTIwZDc0YjlhNDc3M2QyN2QwMjAxMTk3
+					ZWY7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
+					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
+					MDAwMDAwMDAzNWExZDgwOy91c2Vycy9zdGV2
+					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
+					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
+					L3NyYy1hc3NldHMvaW1hZ2VzL2FjdG9ycy9w
+					ZW5ndWluX3N0ZXBfcmlnaHQucG5nAAAAAOQA
+					AAD+////AQAAAAAAAAASAAAABBAAAMAAAAAA
+					AAAABRAAAKQBAAAAAAAAEBAAANgBAAAAAAAA
+					VBAAAAACAAAAAAAAVRAAAAwCAAAAAAAAVhAA
+					APgBAAAAAAAAAiAAALQCAAAAAAAAECAAADQC
+					AAAAAAAAESAAAGgCAAAAAAAAEiAAAEgCAAAA
+					AAAAEyAAAFgCAAAAAAAAICAAAJQCAAAAAAAA
+					MCAAAPgBAAAAAAAAAcAAABgCAAAAAAAAEcAA
+					ABQAAAAAAAAAEsAAACgCAAAAAAAAENAAAMAC
+					AAAAAAAAgPAAAMwCAAAAAAAA
+					</data>
+					<key>IsSHSprite</key>
+					<true/>
+					<key>PhysicProperties</key>
+					<dict>
+						<key>AngularDamping</key>
+						<real>0.0</real>
+						<key>AngularVelocity</key>
+						<real>0.0</real>
+						<key>CanSleep</key>
+						<true/>
+						<key>FixedRot</key>
+						<false/>
+						<key>GravityScale</key>
+						<real>1</real>
+						<key>HandledBySH</key>
+						<true/>
+						<key>IsBullet</key>
+						<false/>
+						<key>LinearDamping</key>
+						<real>0.0</real>
+						<key>LinearVelocity</key>
+						<string>{0, 0}</string>
+						<key>SH_ComplexShapes</key>
+						<array/>
+						<key>Type</key>
+						<integer>3</integer>
+					</dict>
+					<key>SHSheetName</key>
+					<string>Actors</string>
+					<key>SHSpriteName</key>
+					<string>Penguin_Step_Right</string>
+					<key>SheetImage</key>
+					<string>Spritesheet_Actors.png</string>
+					<key>SheetImage-HD</key>
+					<string>Spritesheet_Actors-ipadhd.png</string>
+					<key>TextureProperties</key>
+					<dict>
+						<key>Angle</key>
+						<integer>0</integer>
+						<key>Border</key>
+						<integer>0</integer>
+						<key>CanBeTrimmed</key>
+						<true/>
+						<key>Color</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>ConvertedFromOldFormat</key>
+						<false/>
+						<key>CustomClassName</key>
+						<string></string>
+						<key>FlipX</key>
+						<false/>
+						<key>FlipY</key>
+						<false/>
+						<key>Frame</key>
+						<string>{{37, 30}, {35.5, 39.5}}</string>
+						<key>Frame-HD</key>
+						<string>{{148, 120}, {142, 158}}</string>
+						<key>Image</key>
+						<string>Spritesheet_Actors.png</string>
+						<key>Image-HD</key>
+						<string>Spritesheet_Actors-ipadhd.png</string>
+						<key>IsCropped</key>
+						<false/>
+						<key>IsDrawable</key>
+						<true/>
+						<key>IsRotated</key>
+						<false/>
+						<key>IsTrimmed</key>
+						<true/>
+						<key>Name</key>
+						<string>Penguin_Step_Right</string>
+						<key>Opacity</key>
+						<real>1</real>
+						<key>OriginalImage</key>
+						<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Actors/Penguin_Step_Right.png</string>
+						<key>OriginalImage_RelativePath</key>
+						<string>../src-assets/images/Actors/Penguin_Step_Right.png/</string>
+						<key>OriginalRect</key>
+						<string>{{2, 9}, {142, 158}}</string>
+						<key>OriginalSize</key>
+						<string>{150, 175}</string>
+						<key>Position</key>
+						<string>{148, 120}</string>
+						<key>Scale</key>
+						<string>{1, 1}</string>
+						<key>SpriteSize</key>
+						<string>{37.5, 43.75}</string>
+						<key>SpriteWasBreaked</key>
+						<false/>
+						<key>Tag</key>
+						<integer>0</integer>
+						<key>TextureOffset</key>
+						<string>{-0.5, -0.125}</string>
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
@@ -2898,7 +3351,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					sPBNAwAAAAAIAAAABAMAAMqvVgMAAAAALAAA
+					sPBNAwAAAAAIAAAABAMAAHwdWgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -2910,12 +3363,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADsAAAA
-					AQIAADQ5MDU2ZmFmZjM0YWQ5YjVkOGFiZTA3
-					YjllYjk2YjgzY2I3NjBmNTg7MDAwMDAwMDA7
+					AQIAADViYWFkNTYxMGEwZTM2MDEyMDQ3NzEw
+					YWI5NTRmYWY4NWI3NGRkZmI7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTZh
-					ZmNhOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
+					ZDdjOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2FjdG9ycy9zaGFyay5wbmcA5AAA
@@ -3175,7 +3628,7 @@
 				</dict>
 			</dict>
 			<key>Size</key>
-			<string>{256, 512}</string>
+			<string>{512, 512}</string>
 			<key>Trim</key>
 			<true/>
 			<key>ZOrder</key>
@@ -8524,7 +8977,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					6q9WAwAAAAAIAAAABAMAAFoQWgMAAAAALAAA
+					6q9WAwAAAAAIAAAABAMAAO4aWgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -8536,12 +8989,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADY5MDZiYmRjYmY0NTdmZDEyN2JhY2Qz
-					MDJjZjViYzIyZWNiZWM4Zjc7MDAwMDAwMDA7
+					AQIAADMxNjdlZmI3ZWI1ZjFkYjQ0NzcxYzIz
+					OGU1MDkxNWVkNzU4ODMyMGY7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
-					MDVhOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					YWVlOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21lbnUvYmFja19hY3RpdmUucG5n
@@ -8674,7 +9127,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABZEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAADtGloDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -8686,12 +9139,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAABjYjMxZTZlMzNiN2Y0NzI3Y2Qw
-					YzRmOGRkZWRmN2I5MjczYTQ1NGRjOzAwMDAw
+					8gAAAAECAAAzOTcxMmY3ZDhiN2U2Y2I0NTNm
+					OTZlZjYxZTIzZDJkYmUzNWMyYzk5OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTA1OTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWFlZDsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L2JhY2tfaW5hY3Rp
@@ -8825,7 +9278,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAACYEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAAZG1oDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -8837,12 +9290,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAA2MTgwZmY3MDNhNjY4ZjdiZjI5
-					YWNhNjNmMmJmM2EyMzExODBmMjJjOzAwMDAw
+					9AAAAAECAAAwZTQxNzE3NjdhZGYxNDk0NzQx
+					YTg3ZDdlYjhjZGUwMmY5ZjJkMzcwOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTA5ODsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWIxOTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L2xldmVsX2NvbXBs
@@ -8976,7 +9429,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					6q9WAwAAAAAIAAAABAMAAJkQWgMAAAAALAAA
+					6q9WAwAAAAAIAAAABAMAABobWgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -8988,12 +9441,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADxAAAA
-					AQIAAGZkYWEyZjM1MDE3MjNhNTJiYTNiZGY5
-					NTU4ZTU0Yjg5M2VmZTFmNDc7MDAwMDAwMDA7
+					AQIAAGExOTc2ZWU2ZGIzMzkxMGQ1NmMxYTIz
+					OThiNDAyNTBiYzAyNWQ3YjI7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
-					MDk5Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					YjFhOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21lbnUvbGV2ZWxfbG9ja2VkLnBu
@@ -9126,7 +9579,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAACxEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAArG1oDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -9138,12 +9591,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9QAAAAECAAA2ZGE5ZGFhM2IwOWE2OTRiZDg2
-					OTRhNjFiMTg5MTM1OWU0Mzc1MDRlOzAwMDAw
+					9QAAAAECAABiZGU1ZmE3MDE1MTJhZmNlNmZj
+					ZTlkMTljMDI5ZmU0ZWYyZGJiOGM5OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTBiMTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWIyYjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L2xldmVsX2xvc3Rf
@@ -9277,7 +9730,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAlhBa
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAExta
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -9289,12 +9742,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPkAAAABAgAAMTM3YTdmMzcyZmZmZWI4
-					MTllMjk3YmIwMzgzNTY3MWY0ZGIxOTEwMTsw
+					AAEAAPkAAAABAgAAZmU1MWU5ODMyNmI0ZTVm
+					Nzg5NWYwYmEwYjUwZTU1ZDExNWY5MTZhZjsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1YTEwOTY7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1YTFiMTM7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9sZXZlbF9w
@@ -9428,7 +9881,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAoRBa
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAHRta
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -9440,12 +9893,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPYAAAABAgAANmFlMzgyZDAzZjg2Njk4
-					MzBkNWEzMDg2MmRkYzgxZGMwZTEzMjViOTsw
+					AAEAAPYAAAABAgAANWEwNjJlOGY0MGE4ZjA1
+					NGY2ZGFiNGJhZDI1OWM3MDlhNDE1ZjYyNTsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1YTEwYTE7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1YTFiMWQ7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9sZXZlbF9w
@@ -9579,7 +10032,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAbRBa
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAA/hpa
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -9591,12 +10044,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPYAAAABAgAAZDVkN2U3ZWViYWU1ZmQy
-					NzdiNDZkY2E3ZWM0NWExMWI1MGMyMzJhNzsw
+					AAEAAPYAAAABAgAANGY0Yzk1NmI2OTY2OTZi
+					YWNjOWZjMGUzOWIzNzA3NDBkODJkZTBlODsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1YTEwNmQ7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1YTFhZmU7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9sZXZlbF9w
@@ -9730,7 +10183,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAYBBa
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAA9Rpa
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -9742,12 +10195,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPgAAAABAgAANDk0MjlkMTU1MTNlYmU0
-					NmI5MmYyYzA2MTc3Yjg1YzAyODA2MWJmZTsw
+					AAEAAPgAAAABAgAAY2QyYjc5YmZkZjkxODhh
+					ZDUzYzJlMWZkOGQyY2I0MTg2NjNhNDBkYTsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1YTEwNjA7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1YTFhZjU7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9sZXZlbF9w
@@ -9881,7 +10334,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAACPEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAAQG1oDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -9893,12 +10346,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABmZWQ4ZWE2NTJkNDRlNGQyODll
-					MzdjNjEyOTkyYjQ2YzgwM2NlNDlkOzAwMDAw
+					9AAAAAECAABkYTJiNDFhOThmMTRkZGQxYWNk
+					YzRhMjRhNGZjYjI4YWJjODIwMWMyOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTA4ZjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWIxMDsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L2xldmVsX3dvbl9w
@@ -10032,7 +10485,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					6q9WAwAAAAAIAAAABAMAAGoQWgMAAAAALAAA
+					6q9WAwAAAAAIAAAABAMAAPcaWgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -10044,12 +10497,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADxAAAA
-					AQIAADZkZmMzMTU2MzczMTU5NDEyMmIxZTNk
-					MjRiM2E4M2VmOTkzYzExNzA7MDAwMDAwMDA7
+					AQIAAGRmMDA4Y2Q3NWE2MWU0Zjg2ZjVlZmE1
+					NzcyNmYyMmJmNTcyNWQzYzc7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
-					MDZhOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					YWY3Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21lbnUvbGV2ZWxfYWN0aXZlLnBu
@@ -10182,7 +10635,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABhEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAD2GloDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -10194,12 +10647,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8wAAAAECAAA4N2M0OTk5MzVmZDQwM2RkOTQ5
-					YTI0ZTk0M2U4ZTkyOTYwODRlMWY0OzAwMDAw
+					8wAAAAECAABlNWFlMWNmNDM5YTY0NWYwYjhl
+					MDEyNDQyNDM4ZmU4OTQ3ZDYyYzMzOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTA2MTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWFmNjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L2xldmVsX2luYWN0
@@ -10333,7 +10786,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAbxBa
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAAhta
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -10345,12 +10798,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPcAAAABAgAAMzg3ZDkwMzgzNDhmN2E5
-					NTAwOGU4ZTllMTBjNGJlYzJlZTFiY2JlMTsw
+					AAEAAPcAAAABAgAAMjI2OTcxMWEzZGVmNWJl
+					NjVkNDM5YzEwNjJjNzc3YjI3YmJjYjliYzsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1YTEwNmY7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1YTFiMDI7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9sZXZlbHNf
@@ -10484,7 +10937,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAbhBa
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAA/xpa
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -10496,12 +10949,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPkAAAABAgAAOWE1ZTQ4ZDhiMWU1YTAy
-					ZDkzYWJmMDUxNTJiOThkYzMzNGNhOTJkMzsw
+					AAEAAPkAAAABAgAAM2UwMWIwOTgyMGFjM2I1
+					ODhhODk4NDY5MDk3ZWU4NTYzZmRhNDg5MDsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1YTEwNmU7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1YTFhZmY7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9sZXZlbHNf
@@ -10635,7 +11088,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					6q9WAwAAAAAIAAAABAMAAHQQWgMAAAAALAAA
+					6q9WAwAAAAAIAAAABAMAAAMbWgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -10647,12 +11100,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADvAAAA
-					AQIAADNkZTU4MjM5NDE5ZWVhZTk3OWNmZWNm
-					NTU0ZjIxODE4ODQ5NjQzOGQ7MDAwMDAwMDA7
+					AQIAADljMDQ3YjQ3NjM2NzQ4YjAyMGRhYzUx
+					YWY4NjQxOTQ5NjdmNjAyYzU7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
-					MDc0Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					YjAzOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21lbnUvbWVudV9wb3B1cC5wbmcA
@@ -10785,7 +11238,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAkxBa
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAEhta
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -10797,12 +11250,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPYAAAABAgAAYzY3MjU5YTVkNTgxY2Mx
-					ZGNmODdjZDUyNjgxMjA2ZjkzZGI5ZjdmYTsw
+					AAEAAPYAAAABAgAAZjllZmI3MDUyYzc2ZDNl
+					YWRmZjBkOGY2YzZlYThhMjM5MmVhYWMzYjsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1YTEwOTM7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1YTFiMTI7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9uZXh0X2xl
@@ -10936,7 +11389,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAkhBa
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAERta
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -10948,12 +11401,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPgAAAABAgAAY2NlNTYxMzYyNTA5N2M5
-					NGFlNmJjMDBiZjIwOTY4Y2NhZDcxZWRmNjsw
+					AAEAAPgAAAABAgAAMTc0NmUyN2E3ZGM4Zjgx
+					NWFmZWE4Njc4ZTkyNWI4ZmY1NDc4MDEyNzsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1YTEwOTI7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1YTFiMTE7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9uZXh0X2xl
@@ -11087,7 +11540,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					6q9WAwAAAAAIAAAABAMAAFgQWgMAAAAALAAA
+					6q9WAwAAAAAIAAAABAMAAOwaWgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -11099,12 +11552,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADRlNjBhZjgyYmIyYjQxZTAyZjU5N2Vi
-					OGUzMGQ0ZTk5MWRiZDQ0Nzc7MDAwMDAwMDA7
+					AQIAAGVhYzFkZWU2OTViNDIxYWJhODQwZDY0
+					MjY2NTdjOTY2NTBmYWY4MDA7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
-					MDU4Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					YWVjOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21lbnUvcGxheV9hY3RpdmUucG5n
@@ -11237,7 +11690,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABXEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAADrGloDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -11249,12 +11702,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAzNWMwMTEwOWRlZDI1MTUwZGFl
-					M2EwZTE4NGY3N2M2NWUyOTIwYWY0OzAwMDAw
+					8gAAAAECAABkYTE2ZmU2NjdhNTZhZDI3Yzhl
+					ZjA0NWIxNWM4Y2YzZThkMmVhNjc3OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTA1NzsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWFlYjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3BsYXlfaW5hY3Rp
@@ -11388,7 +11841,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAACnEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAAfG1oDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -11400,12 +11853,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8wAAAAECAABkOTgyYzVhMGJhYjY3ODgzYTgy
-					MGIzMmNjOWU5ZDgyODViMGQ1YjIyOzAwMDAw
+					8wAAAAECAABjYTQxYmY2MDkzZGUzMDgxYjVh
+					MzdkNzAyYTE0MzkxZmM1N2ZhMTY1OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTBhNzsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWIxZjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3RhcnRfYWN0
@@ -11539,7 +11992,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAACiEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAAeG1oDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -11551,12 +12004,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9QAAAAECAAA2OTFmOGFjNGE5ZThmMmRlMTdl
-					YjZjMmI5OGRiMjBjYWI0NGQ2Mjc3OzAwMDAw
+					9QAAAAECAABkYzM4ZTg2YzhiOTE0YzBkZjVm
+					NzRjNjViYmNlMmQ1Yjk4ZjMwMGI1OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTBhMjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWIxZTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3RhcnRfaW5h
@@ -11690,7 +12143,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAACfEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAAcG1oDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -11702,12 +12155,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA1OTFkOTI1ZDRjM2UxOTE4NzQ1
-					ZDgwZjJkNWJkYjI5MDc2Y2U1YTYzOzAwMDAw
+					8gAAAAECAAAzNjY5NTIyMmQ1Yzc1NzZkZmM0
+					OTEwNmM4MzE0OTAyYTA4ZTk3MTg5OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTA5ZjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWIxYzsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3VtZV9hY3Rp
@@ -11841,7 +12294,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAACeEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAAbG1oDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -11853,12 +12306,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABhMWUzNTM4MjE4N2U5MTEzMTg3
-					M2NlNzRlMGI5MGE0NjBkNWE3MjYzOzAwMDAw
+					9AAAAAECAAA5MDFiOTE2MzM3MWYzZDkyMjNk
+					NzVjNWI0MzQ2MmIyMTIxZTU2YmVmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTA5ZTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWIxYjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3VtZV9pbmFj
@@ -12479,7 +12932,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABXEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAADrGloDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -12491,12 +12944,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAzNWMwMTEwOWRlZDI1MTUwZGFl
-					M2EwZTE4NGY3N2M2NWUyOTIwYWY0OzAwMDAw
+					8gAAAAECAABkYTE2ZmU2NjdhNTZhZDI3Yzhl
+					ZjA0NWIxNWM4Y2YzZThkMmVhNjc3OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTA1NzsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWFlYjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3BsYXlfaW5hY3Rp
@@ -12551,7 +13004,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					6q9WAwAAAAAIAAAABAMAAFgQWgMAAAAALAAA
+					6q9WAwAAAAAIAAAABAMAAOwaWgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -12563,12 +13016,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADRlNjBhZjgyYmIyYjQxZTAyZjU5N2Vi
-					OGUzMGQ0ZTk5MWRiZDQ0Nzc7MDAwMDAwMDA7
+					AQIAAGVhYzFkZWU2OTViNDIxYWJhODQwZDY0
+					MjY2NTdjOTY2NTBmYWY4MDA7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
-					MDU4Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					YWVjOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21lbnUvcGxheV9hY3RpdmUucG5n
@@ -12643,7 +13096,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABZEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAADtGloDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -12655,12 +13108,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAABjYjMxZTZlMzNiN2Y0NzI3Y2Qw
-					YzRmOGRkZWRmN2I5MjczYTQ1NGRjOzAwMDAw
+					8gAAAAECAAAzOTcxMmY3ZDhiN2U2Y2I0NTNm
+					OTZlZjYxZTIzZDJkYmUzNWMyYzk5OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTA1OTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWFlZDsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L2JhY2tfaW5hY3Rp
@@ -12715,7 +13168,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					6q9WAwAAAAAIAAAABAMAAFoQWgMAAAAALAAA
+					6q9WAwAAAAAIAAAABAMAAO4aWgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -12727,12 +13180,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADY5MDZiYmRjYmY0NTdmZDEyN2JhY2Qz
-					MDJjZjViYzIyZWNiZWM4Zjc7MDAwMDAwMDA7
+					AQIAADMxNjdlZmI3ZWI1ZjFkYjQ0NzcxYzIz
+					OGU1MDkxNWVkNzU4ODMyMGY7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
-					MDVhOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					YWVlOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21lbnUvYmFja19hY3RpdmUucG5n
@@ -12807,7 +13260,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAbhBa
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAA/xpa
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -12819,12 +13272,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPkAAAABAgAAOWE1ZTQ4ZDhiMWU1YTAy
-					ZDkzYWJmMDUxNTJiOThkYzMzNGNhOTJkMzsw
+					AAEAAPkAAAABAgAAM2UwMWIwOTgyMGFjM2I1
+					ODhhODk4NDY5MDk3ZWU4NTYzZmRhNDg5MDsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1YTEwNmU7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1YTFhZmY7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9sZXZlbHNf
@@ -12879,7 +13332,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAbxBa
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAAhta
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -12891,12 +13344,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPcAAAABAgAAMzg3ZDkwMzgzNDhmN2E5
-					NTAwOGU4ZTllMTBjNGJlYzJlZTFiY2JlMTsw
+					AAEAAPcAAAABAgAAMjI2OTcxMWEzZGVmNWJl
+					NjVkNDM5YzEwNjJjNzc3YjI3YmJjYjliYzsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1YTEwNmY7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1YTFiMDI7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9sZXZlbHNf
@@ -12972,7 +13425,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAACeEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAAbG1oDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -12984,12 +13437,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABhMWUzNTM4MjE4N2U5MTEzMTg3
-					M2NlNzRlMGI5MGE0NjBkNWE3MjYzOzAwMDAw
+					9AAAAAECAAA5MDFiOTE2MzM3MWYzZDkyMjNk
+					NzVjNWI0MzQ2MmIyMTIxZTU2YmVmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTA5ZTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWIxYjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3VtZV9pbmFj
@@ -13044,7 +13497,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAACfEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAAcG1oDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -13056,12 +13509,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA1OTFkOTI1ZDRjM2UxOTE4NzQ1
-					ZDgwZjJkNWJkYjI5MDc2Y2U1YTYzOzAwMDAw
+					8gAAAAECAAAzNjY5NTIyMmQ1Yzc1NzZkZmM0
+					OTEwNmM4MzE0OTAyYTA4ZTk3MTg5OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTA5ZjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWIxYzsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3VtZV9hY3Rp
@@ -13137,7 +13590,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAkhBa
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAERta
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -13149,12 +13602,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPgAAAABAgAAY2NlNTYxMzYyNTA5N2M5
-					NGFlNmJjMDBiZjIwOTY4Y2NhZDcxZWRmNjsw
+					AAEAAPgAAAABAgAAMTc0NmUyN2E3ZGM4Zjgx
+					NWFmZWE4Njc4ZTkyNWI4ZmY1NDc4MDEyNzsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1YTEwOTI7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1YTFiMTE7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9uZXh0X2xl
@@ -13209,7 +13662,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAkxBa
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAEhta
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -13221,12 +13674,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPYAAAABAgAAYzY3MjU5YTVkNTgxY2Mx
-					ZGNmODdjZDUyNjgxMjA2ZjkzZGI5ZjdmYTsw
+					AAEAAPYAAAABAgAAZjllZmI3MDUyYzc2ZDNl
+					YWRmZjBkOGY2YzZlYThhMjM5MmVhYWMzYjsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1YTEwOTM7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1YTFiMTI7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9uZXh0X2xl
@@ -13302,7 +13755,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAACiEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAAeG1oDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -13314,12 +13767,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9QAAAAECAAA2OTFmOGFjNGE5ZThmMmRlMTdl
-					YjZjMmI5OGRiMjBjYWI0NGQ2Mjc3OzAwMDAw
+					9QAAAAECAABkYzM4ZTg2YzhiOTE0YzBkZjVm
+					NzRjNjViYmNlMmQ1Yjk4ZjMwMGI1OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTBhMjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWIxZTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3RhcnRfaW5h
@@ -13374,7 +13827,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAACnEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAAfG1oDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -13386,12 +13839,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8wAAAAECAABkOTgyYzVhMGJhYjY3ODgzYTgy
-					MGIzMmNjOWU5ZDgyODViMGQ1YjIyOzAwMDAw
+					8wAAAAECAABjYTQxYmY2MDkzZGUzMDgxYjVh
+					MzdkNzAyYTE0MzkxZmM1N2ZhMTY1OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTBhNzsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWIxZjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3RhcnRfYWN0
@@ -13467,7 +13920,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAYBBa
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAA9Rpa
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -13479,12 +13932,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPgAAAABAgAANDk0MjlkMTU1MTNlYmU0
-					NmI5MmYyYzA2MTc3Yjg1YzAyODA2MWJmZTsw
+					AAEAAPgAAAABAgAAY2QyYjc5YmZkZjkxODhh
+					ZDUzYzJlMWZkOGQyY2I0MTg2NjNhNDBkYTsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1YTEwNjA7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1YTFhZjU7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9sZXZlbF9w
@@ -13539,7 +13992,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAbRBa
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAA/hpa
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -13551,12 +14004,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPYAAAABAgAAZDVkN2U3ZWViYWU1ZmQy
-					NzdiNDZkY2E3ZWM0NWExMWI1MGMyMzJhNzsw
+					AAEAAPYAAAABAgAANGY0Yzk1NmI2OTY2OTZi
+					YWNjOWZjMGUzOWIzNzA3NDBkODJkZTBlODsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1YTEwNmQ7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1YTFhZmU7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9sZXZlbF9w
@@ -13632,7 +14085,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABhEFoDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAD2GloDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -13644,12 +14097,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8wAAAAECAAA4N2M0OTk5MzVmZDQwM2RkOTQ5
-					YTI0ZTk0M2U4ZTkyOTYwODRlMWY0OzAwMDAw
+					8wAAAAECAABlNWFlMWNmNDM5YTY0NWYwYjhl
+					MDEyNDQyNDM4ZmU4OTQ3ZDYyYzMzOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVhMTA2MTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVhMWFmNjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L2xldmVsX2luYWN0
@@ -13704,7 +14157,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					6q9WAwAAAAAIAAAABAMAAGoQWgMAAAAALAAA
+					6q9WAwAAAAAIAAAABAMAAPcaWgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -13716,12 +14169,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADxAAAA
-					AQIAADZkZmMzMTU2MzczMTU5NDEyMmIxZTNk
-					MjRiM2E4M2VmOTkzYzExNzA7MDAwMDAwMDA7
+					AQIAAGRmMDA4Y2Q3NWE2MWU0Zjg2ZjVlZmE1
+					NzcyNmYyMmJmNTcyNWQzYzc7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
-					MDZhOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					YWY3Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21lbnUvbGV2ZWxfYWN0aXZlLnBu
@@ -13771,6 +14224,313 @@
 			<false/>
 			<key>UniqueName</key>
 			<string>Menu_Level_Select_Button</string>
+		</dict>
+		<dict>
+			<key>DelayPerUnit</key>
+			<real>0.10000000149011612</real>
+			<key>Frames</key>
+			<array>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va9QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAAuAMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAABgAAAAEBAABBY3RvcnMAAAsAAAABAQAA
+					UGVuZ3Vpbi5wbmcALAAAAAEGAAAEAAAAFAAA
+					ACQAAAAwAAAAQAAAAEAAAABYAAAAbAAAAIAA
+					AACQAAAAoAAAAAgAAAAEAwAAcgAAAAAAAAAI
+					AAAABAMAAFu3DgAAAAAACAAAAAQDAADr0Q4A
+					AAAAAAgAAAAEAwAA7dEOAAAAAAAIAAAABAMA
+					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
+					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
+					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
+					sPBNAwAAAAAIAAAABAMAAH4dWgMAAAAALAAA
+					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
+					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
+					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
+					AAAAAAEFAAAEAAAAAwMAAAIAAAAEAAAAAwMA
+					AAQAAAAIAAAABAMAAAkAAAAAAAAABAAAAAMD
+					AAD1AQAADAAAAAEBAABNYWNpbnRvc2ggSEQI
+					AAAABAMAAACAgT10AAAACAAAAAAEAABBtAwa
+					PgAAACQAAAABAQAANzAxQjdFMDUtOUUwNS0z
+					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
+					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
+					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADuAAAA
+					AQIAADY0ZTU2YTE0YzFmM2FjMTI1MTY3NjA2
+					MWRlZWQxMDdlZjdhYzhlZjU7MDAwMDAwMDA7
+					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
+					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
+					ZDdlOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
+					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
+					aW1hZ2VzL2FjdG9ycy9wZW5ndWluLnBuZwAA
+					AOQAAAD+////AQAAAAAAAAASAAAABBAAALQA
+					AAAAAAAABRAAAJgBAAAAAAAAEBAAAMwBAAAA
+					AAAAVBAAAPQBAAAAAAAAVRAAAAACAAAAAAAA
+					VhAAAOwBAAAAAAAAAiAAAKgCAAAAAAAAECAA
+					ACgCAAAAAAAAESAAAFwCAAAAAAAAEiAAADwC
+					AAAAAAAAEyAAAEwCAAAAAAAAICAAAIgCAAAA
+					AAAAMCAAAOwBAAAAAAAAAcAAAAwCAAAAAAAA
+					EcAAABQAAAAAAAAAEsAAABwCAAAAAAAAENAA
+					ALQCAAAAAAAAgPAAAMACAAAAAAAA
+					</data>
+					<key>Frame</key>
+					<string>{{0, 71}, {34.75, 39.5}}</string>
+					<key>Frame-HD</key>
+					<string>{{0, 284}, {137, 158}}</string>
+					<key>IsRotated</key>
+					<false/>
+					<key>OriginalImage</key>
+					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Actors/Penguin.png</string>
+					<key>SpriteSize</key>
+					<string>{37.5, 43.75}</string>
+					<key>TextureOffset</key>
+					<string>{0.625, 0.625}</string>
+					<key>delayPerUnit</key>
+					<real>1</real>
+					<key>notifications</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>Penguin</string>
+				</dict>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va+wEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAA0AMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAABgAAAAEBAABBY3RvcnMAABYAAAABAQAA
+					UGVuZ3Vpbl9TdGVwX1JpZ2h0LnBuZwAALAAA
+					AAEGAAAEAAAAFAAAACQAAAAwAAAAQAAAAEAA
+					AABYAAAAbAAAAIAAAACQAAAAoAAAAAgAAAAE
+					AwAAcgAAAAAAAAAIAAAABAMAAFu3DgAAAAAA
+					CAAAAAQDAADr0Q4AAAAAAAgAAAAEAwAA7dEO
+					AAAAAAAIAAAABAMAAKPGTQMAAAAACAAAAAQD
+					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
+					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
+					AAAAAAgAAAAEAwAAsPBNAwAAAAAIAAAABAMA
+					AIAdWgMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
+					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
+					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
+					AAIAAAAEAAAAAwMAAAQAAAAIAAAABAMAAAkA
+					AAAAAAAABAAAAAMDAAD1AQAADAAAAAEBAABN
+					YWNpbnRvc2ggSEQIAAAABAMAAACAgT10AAAA
+					CAAAAAAEAABBtAwaPgAAACQAAAABAQAANzAx
+					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
+					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
+					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
+					AwMAAAABAAD5AAAAAQIAADM5ZjlmNDAyYzI2
+					NWFjMTIwZDc0YjlhNDc3M2QyN2QwMjAxMTk3
+					ZWY7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
+					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
+					MDAwMDAwMDAzNWExZDgwOy91c2Vycy9zdGV2
+					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
+					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
+					L3NyYy1hc3NldHMvaW1hZ2VzL2FjdG9ycy9w
+					ZW5ndWluX3N0ZXBfcmlnaHQucG5nAAAAAOQA
+					AAD+////AQAAAAAAAAASAAAABBAAAMAAAAAA
+					AAAABRAAAKQBAAAAAAAAEBAAANgBAAAAAAAA
+					VBAAAAACAAAAAAAAVRAAAAwCAAAAAAAAVhAA
+					APgBAAAAAAAAAiAAALQCAAAAAAAAECAAADQC
+					AAAAAAAAESAAAGgCAAAAAAAAEiAAAEgCAAAA
+					AAAAEyAAAFgCAAAAAAAAICAAAJQCAAAAAAAA
+					MCAAAPgBAAAAAAAAAcAAABgCAAAAAAAAEcAA
+					ABQAAAAAAAAAEsAAACgCAAAAAAAAENAAAMAC
+					AAAAAAAAgPAAAMwCAAAAAAAA
+					</data>
+					<key>Frame</key>
+					<string>{{37, 30}, {35.5, 39.5}}</string>
+					<key>Frame-HD</key>
+					<string>{{148, 120}, {142, 158}}</string>
+					<key>IsRotated</key>
+					<false/>
+					<key>OriginalImage</key>
+					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Actors/Penguin_Step_Right.png</string>
+					<key>SpriteSize</key>
+					<string>{37.5, 43.75}</string>
+					<key>TextureOffset</key>
+					<string>{-0.5, -0.125}</string>
+					<key>delayPerUnit</key>
+					<real>1</real>
+					<key>notifications</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>Penguin_Step_Right</string>
+				</dict>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va9QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAAuAMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAABgAAAAEBAABBY3RvcnMAAAsAAAABAQAA
+					UGVuZ3Vpbi5wbmcALAAAAAEGAAAEAAAAFAAA
+					ACQAAAAwAAAAQAAAAEAAAABYAAAAbAAAAIAA
+					AACQAAAAoAAAAAgAAAAEAwAAcgAAAAAAAAAI
+					AAAABAMAAFu3DgAAAAAACAAAAAQDAADr0Q4A
+					AAAAAAgAAAAEAwAA7dEOAAAAAAAIAAAABAMA
+					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
+					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
+					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
+					sPBNAwAAAAAIAAAABAMAAH4dWgMAAAAALAAA
+					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
+					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
+					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
+					AAAAAAEFAAAEAAAAAwMAAAIAAAAEAAAAAwMA
+					AAQAAAAIAAAABAMAAAkAAAAAAAAABAAAAAMD
+					AAD1AQAADAAAAAEBAABNYWNpbnRvc2ggSEQI
+					AAAABAMAAACAgT10AAAACAAAAAAEAABBtAwa
+					PgAAACQAAAABAQAANzAxQjdFMDUtOUUwNS0z
+					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
+					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
+					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADuAAAA
+					AQIAADY0ZTU2YTE0YzFmM2FjMTI1MTY3NjA2
+					MWRlZWQxMDdlZjdhYzhlZjU7MDAwMDAwMDA7
+					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
+					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
+					ZDdlOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
+					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
+					aW1hZ2VzL2FjdG9ycy9wZW5ndWluLnBuZwAA
+					AOQAAAD+////AQAAAAAAAAASAAAABBAAALQA
+					AAAAAAAABRAAAJgBAAAAAAAAEBAAAMwBAAAA
+					AAAAVBAAAPQBAAAAAAAAVRAAAAACAAAAAAAA
+					VhAAAOwBAAAAAAAAAiAAAKgCAAAAAAAAECAA
+					ACgCAAAAAAAAESAAAFwCAAAAAAAAEiAAADwC
+					AAAAAAAAEyAAAEwCAAAAAAAAICAAAIgCAAAA
+					AAAAMCAAAOwBAAAAAAAAAcAAAAwCAAAAAAAA
+					EcAAABQAAAAAAAAAEsAAABwCAAAAAAAAENAA
+					ALQCAAAAAAAAgPAAAMACAAAAAAAA
+					</data>
+					<key>Frame</key>
+					<string>{{0, 71}, {34.75, 39.5}}</string>
+					<key>Frame-HD</key>
+					<string>{{0, 284}, {137, 158}}</string>
+					<key>IsRotated</key>
+					<false/>
+					<key>OriginalImage</key>
+					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Actors/Penguin.png</string>
+					<key>SpriteSize</key>
+					<string>{37.5, 43.75}</string>
+					<key>TextureOffset</key>
+					<string>{0.625, 0.625}</string>
+					<key>delayPerUnit</key>
+					<real>1</real>
+					<key>notifications</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>Penguin</string>
+				</dict>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va+gEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAAzAMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAABgAAAAEBAABBY3RvcnMAABUAAAABAQAA
+					UGVuZ3Vpbl9TdGVwX0xlZnQucG5nAAAALAAA
+					AAEGAAAEAAAAFAAAACQAAAAwAAAAQAAAAEAA
+					AABYAAAAbAAAAIAAAACQAAAAoAAAAAgAAAAE
+					AwAAcgAAAAAAAAAIAAAABAMAAFu3DgAAAAAA
+					CAAAAAQDAADr0Q4AAAAAAAgAAAAEAwAA7dEO
+					AAAAAAAIAAAABAMAAKPGTQMAAAAACAAAAAQD
+					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
+					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
+					AAAAAAgAAAAEAwAAsPBNAwAAAAAIAAAABAMA
+					AIEdWgMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
+					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
+					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
+					AAIAAAAEAAAAAwMAAAQAAAAIAAAABAMAAAkA
+					AAAAAAAABAAAAAMDAAD1AQAADAAAAAEBAABN
+					YWNpbnRvc2ggSEQIAAAABAMAAACAgT10AAAA
+					CAAAAAAEAABBtAwaPgAAACQAAAABAQAANzAx
+					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
+					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
+					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
+					AwMAAAABAAD4AAAAAQIAAGI2OGUwNmE2Njdi
+					MWQxZGQwOTFmNTc4YWNjYWMzN2VlNTQ4ZDhl
+					ZjI7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
+					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
+					MDAwMDAwMDAzNWExZDgxOy91c2Vycy9zdGV2
+					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
+					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
+					L3NyYy1hc3NldHMvaW1hZ2VzL2FjdG9ycy9w
+					ZW5ndWluX3N0ZXBfbGVmdC5wbmcA5AAAAP7/
+					//8BAAAAAAAAABIAAAAEEAAAwAAAAAAAAAAF
+					EAAApAEAAAAAAAAQEAAA2AEAAAAAAABUEAAA
+					AAIAAAAAAABVEAAADAIAAAAAAABWEAAA+AEA
+					AAAAAAACIAAAtAIAAAAAAAAQIAAANAIAAAAA
+					AAARIAAAaAIAAAAAAAASIAAASAIAAAAAAAAT
+					IAAAWAIAAAAAAAAgIAAAlAIAAAAAAAAwIAAA
+					+AEAAAAAAAABwAAAGAIAAAAAAAARwAAAFAAA
+					AAAAAAASwAAAKAIAAAAAAAAQ0AAAwAIAAAAA
+					AACA8AAAzAIAAAAAAAA=
+					</data>
+					<key>Frame</key>
+					<string>{{0, 30}, {35.75, 39.5}}</string>
+					<key>Frame-HD</key>
+					<string>{{0, 120}, {143, 158}}</string>
+					<key>IsRotated</key>
+					<false/>
+					<key>OriginalImage</key>
+					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Actors/Penguin_Step_Left.png</string>
+					<key>SpriteSize</key>
+					<string>{37.5, 43.75}</string>
+					<key>TextureOffset</key>
+					<string>{0.875, -0.125}</string>
+					<key>delayPerUnit</key>
+					<real>1</real>
+					<key>notifications</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>Penguin_Step_Left</string>
+				</dict>
+			</array>
+			<key>Loop</key>
+			<true/>
+			<key>Repetitions</key>
+			<integer>1</integer>
+			<key>RestoreOriginalFrame</key>
+			<false/>
+			<key>SheetImage</key>
+			<string>Spritesheet_Actors.png</string>
+			<key>SheetName</key>
+			<string>Actors</string>
+			<key>StartAtLaunch</key>
+			<false/>
+			<key>UniqueName</key>
+			<string>Penguin_Waddle</string>
 		</dict>
 	</array>
 	<key>SaveSettings</key>

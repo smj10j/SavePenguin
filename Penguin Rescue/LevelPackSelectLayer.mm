@@ -101,6 +101,7 @@
 	int levelPackY = winSize.height/2;
 	[levelPackButton removeSelf];
 	
+	//TODO: need to add ability to scroll the list of packs (swipe left to right)
 		
 	for(int i = 0; i < _levelPacksDictionary.count; i++) {
 
