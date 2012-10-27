@@ -16,6 +16,7 @@
 @interface LevelPackSelectLayer : CCLayer
 {
 	LevelHelperLoader* _levelLoader;
+	b2World* _world;
 	
 	NSURL* _iCloudPath;
 	

@@ -44,7 +44,14 @@
 		[LevelHelperLoader dontStretchArt];
 
 		//create a LevelHelperLoader object - we use an empty level
-		_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", @"Menu", @"Blank"]];
+		_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", @"Menu", @"LevelSelect"]];
+
+		b2Vec2 gravity;
+		gravity.Set(0.0f, 0.0f);
+		_world = new b2World(gravity);
+
+		//create all objects from the level file and adds them to the cocos2d layer (self)
+		[_levelLoader addObjectsToWorld:_world cocos2dLayer:self];
 
 		
 		LHSprite* backButton = [_levelLoader createSpriteWithName:@"Back_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
@@ -178,4 +185,19 @@
 	[super onEnter];
 
 }
+
+
+-(void) dealloc
+{
+	NSLog(@"LevelSelectLayer dealloc");
+
+	[_levelLoader release];
+	_levelLoader = nil;	
+	
+	delete _world;
+	_world = NULL;
+	
+	[super dealloc];
+}
+
 @end

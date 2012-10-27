@@ -16,6 +16,7 @@
 @interface MainMenuLayer : CCLayer
 {
 	LevelHelperLoader* _levelLoader;
+	b2World* _world;
 	
 	LHSprite* _playButton;
 }
