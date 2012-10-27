@@ -11,6 +11,7 @@
 #import "IntroLayer.h"
 #import "MainMenuLayer.h"
 #import "AppDelegate.h"
+#import "SettingsManager.h"
 
 #pragma mark - IntroLayer
 
@@ -53,6 +54,23 @@
 		
 		// add the label as a child to this Layer
 		[self addChild: background];
+		
+		
+		
+		double lastRun = [SettingsManager doubleForKey:@"LastRunTimestamp"];
+		NSLog(@"Last run was: %f", lastRun);
+		
+		
+		//INITIAL SETTING TIME!!
+		if(lastRun == 0) {
+			//first run
+			
+			[SettingsManager setBool:true forKey:@"SoundEnabled"];
+			[SettingsManager setBool:true forKey:@"MusicEnabled"];
+		}
+		
+		
+		[SettingsManager setBool:[[NSDate date] timeIntervalSince1970] forKey:@"LastRunTimestamp"];
 	}
 	
 	NSLog(@"Initialized IntroLayer");	

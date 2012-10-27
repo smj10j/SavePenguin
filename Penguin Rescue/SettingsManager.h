@@ -23,4 +23,6 @@
 +(void)setDouble:(double)value forKey:(NSString*)key;
 
 
++(void)remove:(NSString*)key;
+
 @end

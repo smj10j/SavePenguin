@@ -46,13 +46,16 @@ static NSMutableDictionary* sSettings = nil;
 	return [SettingsManager objectForKey:key];
 }
 +(bool)boolForKey:(NSString*)key {
-	return [((NSNumber*)[SettingsManager objectForKey:key]) boolValue];
+	id value = [SettingsManager objectForKey:key];
+	return value == nil ? nil : [((NSNumber*)value) boolValue];
 }
 +(int)intForKey:(NSString*)key {
-	return [((NSNumber*)[SettingsManager objectForKey:key]) intValue];
+	id value = [SettingsManager objectForKey:key];
+	return value == nil ? nil :  [((NSNumber*)value) intValue];
 }
 +(double)doubleForKey:(NSString*)key {
-	return [((NSNumber*)[SettingsManager objectForKey:key]) doubleValue];
+	id value = [SettingsManager objectForKey:key];
+	return value == nil ? nil :  [((NSNumber*)value) doubleValue];
 }
 
 
@@ -68,6 +71,9 @@ static NSMutableDictionary* sSettings = nil;
 	[SettingsManager saveSettings];
 }
 
++(void)remove:(NSString*)key {
+	[SettingsManager setObject:nil forKey:key];
+}
 +(void)setString:(NSString*)value forKey:(NSString*)key {
 	[SettingsManager setObject:value forKey:key];
 }

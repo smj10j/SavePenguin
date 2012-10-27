@@ -827,7 +827,7 @@
 	const int competitiveTextXOffset = (172 + (IS_IPHONE ? 15 : 0))*SCALING_FACTOR_H;
 	const int competitiveTextYOffset = 130*SCALING_FACTOR_V;
 
-	//TODO: get the number from the server (or cached copy!)
+	//TODO: get the numbers from the server (or cached copy!)
 
 	CCLabelTTF* worldPercentCompleteLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", 45] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 	worldPercentCompleteLabel.color = SCORING_FONT_COLOR3;
@@ -838,13 +838,13 @@
 	CCLabelTTF* worldAverageScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", 8000] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 	worldAverageScoreLabel.color = SCORING_FONT_COLOR3;
 	worldAverageScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
-										170*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -5 : 0));
+										170*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -7 : 0));
 	[self addChild:worldAverageScoreLabel];
 
 	CCLabelTTF* worldPercentileLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", 10] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
 	worldPercentileLabel.color = SCORING_FONT_COLOR2;
 	worldPercentileLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
-										95*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -10 : 0));
+										95*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
 	[self addChild:worldPercentileLabel];
 
 
@@ -992,8 +992,7 @@
 		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial1"];
 		if(tutorial != nil) {
 			NSLog(@"Showing tutorial 1");
-			//TODO: uncomment
-			//[SettingsManager setBool:true forKey:@"HasSeenTutorial1"];
+			[SettingsManager setBool:true forKey:@"HasSeenTutorial1"];
 		}
 	}
 	if(tutorial == nil && ![SettingsManager boolForKey:@"HasSeenTutorial2"]) {
@@ -1001,8 +1000,7 @@
 		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial2"];
 		if(tutorial != nil) {
 			NSLog(@"Showing tutorial 2");
-			//TODO: uncomment
-			//[SettingsManager setBool:true forKey:@"HasSeenTutorial2"];
+			[SettingsManager setBool:true forKey:@"HasSeenTutorial2"];
 		}
 	}
 	if(tutorial == nil && ![SettingsManager boolForKey:@"HasSeenTutorial3"]) {
@@ -1010,8 +1008,7 @@
 		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial3"];
 		if(tutorial != nil) {
 			NSLog(@"Showing tutorial 3");
-			//TODO: uncomment
-			//[SettingsManager setBool:true forKey:@"HasSeenTutorial3"];
+			[SettingsManager setBool:true forKey:@"HasSeenTutorial3"];
 		}
 	}
 	
@@ -1604,7 +1601,7 @@
 				//NSLog(@"No best option for shark %@ max(dx,dy) was 0", shark.uniqueName);
 				dSum = 1;
 			}
-
+			
 			double normalizedX = (penguinSpeed*dx)/dSum;
 			double normalizedY = (penguinSpeed*dy)/dSum;
 		
@@ -1617,10 +1614,10 @@
 			//NSLog(@"Applying impulse %f,%f to penguin %@", impulseX, impulseY, penguin.uniqueName);
 		
 		
+			//TODO:! look into why on iPad Retina simulator the Penguin and Shark can't move at all????
+		
 			//we're using an impulse for the penguin so they interact with things like Debris (physics)
-			penguin.body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), penguin.body->GetWorldCenter());
-			
-			//TODO: add a waddle animation
+			penguin.body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), penguin.body->GetWorldCenter());			
 		}
 	}
 

@@ -219,6 +219,7 @@
 		AA6252561638097000A36D65 /* LevelPackSelectLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA6252551638097000A36D65 /* LevelPackSelectLayer.mm */; };
 		AA6DFB1316302BFF00F93350 /* MoveGridData.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA6DFB1216302BFF00F93350 /* MoveGridData.mm */; };
 		AACE801C163992FB008C7E3B /* Score.mm in Sources */ = {isa = PBXBuildFile; fileRef = AACE801B163992FB008C7E3B /* Score.mm */; };
+		AAD7B65D163C296500B02521 /* AboutLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AAD7B65C163C296500B02521 /* AboutLayer.mm */; };
 		AAE610691632B7FD004166CC /* Spritesheet_Actors-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6105D1632B7FD004166CC /* Spritesheet_Actors-hd.png */; };
 		AAE6106A1632B7FD004166CC /* Spritesheet_Actors-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6105E1632B7FD004166CC /* Spritesheet_Actors-ipadhd.png */; };
 		AAE6106B1632B7FD004166CC /* Spritesheet_Actors.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6105F1632B7FD004166CC /* Spritesheet_Actors.png */; };
@@ -673,6 +674,8 @@
 		AA6DFB1216302BFF00F93350 /* MoveGridData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoveGridData.mm; sourceTree = "<group>"; };
 		AACE801A163992FB008C7E3B /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		AACE801B163992FB008C7E3B /* Score.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Score.mm; sourceTree = "<group>"; };
+		AAD7B65B163C296500B02521 /* AboutLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutLayer.h; sourceTree = "<group>"; };
+		AAD7B65C163C296500B02521 /* AboutLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AboutLayer.mm; sourceTree = "<group>"; };
 		AAE6105D1632B7FD004166CC /* Spritesheet_Actors-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spritesheet_Actors-hd.png"; sourceTree = "<group>"; };
 		AAE6105E1632B7FD004166CC /* Spritesheet_Actors-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spritesheet_Actors-ipadhd.png"; sourceTree = "<group>"; };
 		AAE6105F1632B7FD004166CC /* Spritesheet_Actors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spritesheet_Actors.png; sourceTree = "<group>"; };
@@ -840,6 +843,8 @@
 				AA54C8C7162BB27E00DF56D0 /* IntroLayer.mm */,
 				AA4C8D8E1637D2D200C55554 /* MainMenuLayer.h */,
 				AA4C8D8F1637D2D200C55554 /* MainMenuLayer.mm */,
+				AAD7B65B163C296500B02521 /* AboutLayer.h */,
+				AAD7B65C163C296500B02521 /* AboutLayer.mm */,
 				AA6252541638097000A36D65 /* LevelPackSelectLayer.h */,
 				AA6252551638097000A36D65 /* LevelPackSelectLayer.mm */,
 				AA4C8D911637D34900C55554 /* LevelSelectLayer.h */,
@@ -1771,6 +1776,7 @@
 				cbcf8a3be72e6868338383a0 /* LHTouchMgr.mm in Sources */,
 				250e1473997f280a794687eb /* SHDocumentLoader.mm in Sources */,
 				AACE801C163992FB008C7E3B /* Score.mm in Sources */,
+				AAD7B65D163C296500B02521 /* AboutLayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
