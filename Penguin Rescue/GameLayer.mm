@@ -784,8 +784,8 @@
 	const int toolsScoreDeduction = _scoreKeeper.totalScore;
 	scoreDeductions+= toolsScoreDeduction;
 	
-	const double placeTimeScore = _levelPlaceTimeDuration * 20;
-	const double runningTimeScore = _levelRunningTimeDuration * 10;
+	const double placeTimeScore = _levelPlaceTimeDuration * SCORING_PLACE_SECOND_COST;
+	const double runningTimeScore = _levelRunningTimeDuration * SCORING_RUNNING_SECOND_COST;
 	const int timeScoreDeduction = placeTimeScore + runningTimeScore;
 	scoreDeductions+= timeScoreDeduction;
 	
