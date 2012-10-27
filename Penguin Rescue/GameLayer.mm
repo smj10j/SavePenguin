@@ -374,10 +374,10 @@
 	}
 	
 	//draw the background water tiles
-	LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water_1" fromSheet:@"Map" fromSHFile:@"Spritesheet" tag:BACKGROUND parent:_mainLayer];
+	LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water1" fromSheet:@"Map" fromSHFile:@"Spritesheet" tag:BACKGROUND parent:_mainLayer];
 	for(int x = -waterTile.boundingBox.size.width/2; x < winSize.width + waterTile.boundingBox.size.width/2; ) {
 		for(int y = -waterTile.boundingBox.size.height/2; y < winSize.height + waterTile.boundingBox.size.width/2; ) {
-			LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water_1" fromSheet:@"Map" fromSHFile:@"Spritesheet" tag:BACKGROUND parent:_mapBatchNode];
+			LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water1" fromSheet:@"Map" fromSHFile:@"Spritesheet" tag:BACKGROUND parent:_mapBatchNode];
 			[waterTile setZOrder:0];
 			[waterTile transformPosition:ccp(x,y)];
 			y+= waterTile.boundingBox.size.height;
@@ -1245,12 +1245,12 @@
 	[self addChild:toolboxItemCostNotification];
 	
 	[toolboxItemCostNotification runAction:[CCSequence actions:
-		[CCMoveBy actionWithDuration:1.5 position:ccp(0, 150*SCALING_FACTOR_V)],
+		[CCMoveBy actionWithDuration:1.5f position:ccp(0, 200*SCALING_FACTOR_V)],
 		nil]
 	];
 	[toolboxItemCostNotification runAction:[CCSequence actions:
-		[CCDelayTime actionWithDuration:0.5f],
-		[CCFadeOut actionWithDuration:1.0],
+		[CCDelayTime actionWithDuration:0.50f],
+		[CCFadeOut actionWithDuration:1.0f],
 		nil]
 	];
 }
