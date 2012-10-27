@@ -12,6 +12,8 @@
 #import "MainMenuLayer.h"
 #import "LevelSelectLayer.h"
 #import "LevelPackManager.h"
+#import "SettingsManager.h"
+#import "SimpleAudioEngine.h"
 
 #pragma mark - LevelPackSelectLayer
 
@@ -55,7 +57,7 @@
 		[backButton prepareAnimationNamed:@"Menu_Back_Button" fromSHScene:@"Spritesheet"];
 		[backButton transformPosition: ccp(20*SCALING_FACTOR_H + backButton.boundingBox.size.width/2,
 											20*SCALING_FACTOR_V + backButton.boundingBox.size.height/2)];
-		[backButton registerTouchBeganObserver:self selector:@selector(onTouchBeganBack:)];
+		[backButton registerTouchBeganObserver:self selector:@selector(onTouchAnyButton:)];
 		[backButton registerTouchEndedObserver:self selector:@selector(onTouchEndedBack:)];
 
 
@@ -131,7 +133,7 @@
 	
 			//used when clicking the sprite
 			[_spriteNameToLevelPackPath setObject:levelPackPath forKey:levelPackButton.uniqueName];
-			[levelPackButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelSelect:)];
+			[levelPackButton registerTouchBeganObserver:self selector:@selector(onTouchAnyButton:)];
 			[levelPackButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelSelect:)];
 					
 		}else if([_availableLevelPacks containsObject:levelPackPath]) {
@@ -139,7 +141,7 @@
 
 			//used when clicking the sprite
 			[_spriteNameToLevelPackPath setObject:levelPackPath forKey:levelPackButton.uniqueName];
-			[levelPackButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelSelect:)];
+			[levelPackButton registerTouchBeganObserver:self selector:@selector(onTouchAnyButton:)];
 			[levelPackButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelSelect:)];
 					
 		}else {
@@ -181,9 +183,13 @@
 
 /************* Touch handlers ***************/
 
--(void)onTouchBeganLevelSelect:(LHTouchInfo*)info {
+-(void)onTouchAnyButton:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
+	
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
+	}
 }
 
 -(void)onTouchEndedLevelSelect:(LHTouchInfo*)info {
@@ -193,12 +199,6 @@
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelSelectLayer sceneWithLevelPackPath:[_spriteNameToLevelPackPath objectForKey:info.sprite.uniqueName]] ]];
 }
 
-
-
--(void)onTouchBeganBack:(LHTouchInfo*)info {
-	if(info.sprite == nil) return;
-	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
-}
 
 -(void)onTouchEndedBack:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;

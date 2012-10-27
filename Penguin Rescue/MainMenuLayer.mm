@@ -12,6 +12,7 @@
 #import "AboutLayer.h"
 #import "LevelPackSelectLayer.h"
 #import "GameLayer.h"
+#import "SimpleAudioEngine.h"
 
 
 #pragma mark - MainMenuLayer
@@ -75,14 +76,16 @@
 		[toggleSoundButton transformPosition: ccp(
 								winSize.width - 40*SCALING_FACTOR_H - toggleSoundButton.boundingBox.size.width/2 - infoButton.boundingBox.size.width,
 								20*SCALING_FACTOR_V + toggleSoundButton.boundingBox.size.height/2)];
-		[toggleSoundButton registerTouchBeganObserver:self selector:@selector(onToggleSound:)];
+		[toggleSoundButton registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
+		[toggleSoundButton registerTouchEndedObserver:self selector:@selector(onToggleSound:)];
 
 		LHSprite* toggleMusicButton = [_levelLoader createSpriteWithName:@"Music_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 		[toggleMusicButton prepareAnimationNamed:@"Menu_Music_Button" fromSHScene:@"Spritesheet"];
 		[toggleMusicButton transformPosition: ccp(
 								winSize.width - 60*SCALING_FACTOR_H - toggleMusicButton.boundingBox.size.width/2 - infoButton.boundingBox.size.width - toggleSoundButton.boundingBox.size.width,
 								20*SCALING_FACTOR_V + toggleMusicButton.boundingBox.size.height/2)];
-		[toggleMusicButton registerTouchBeganObserver:self selector:@selector(onToggleMusic:)];
+		[toggleMusicButton registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
+		[toggleMusicButton registerTouchEndedObserver:self selector:@selector(onToggleMusic:)];
 
 		
 			
@@ -95,11 +98,22 @@
 		if(isSoundEnabled) {
 			[toggleSoundButton setFrame:toggleSoundButton.currentFrame+1];	//active state
 		}
-
 		NSLog(@"Music is %@. Sound is %@", isMusicEnabled ? @"ON": @"OFF", isSoundEnabled ? @"ON" : @"OFF");
+		
+		
+		
+		
+		/*********** Sounds preloading ***********/
+		[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/menu/button.wav"];
+
+
+		if(isMusicEnabled && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
+			[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sounds/menu/background.wav"];
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/background.wav" loop:YES];
+		}
 	}
 	
-	NSLog(@"Initialized MainMenuLayer");	
+	NSLog(@"Initialized MainMenuLayer");
 	
 	return self;
 }
@@ -110,6 +124,11 @@
 }
 
 -(void)onPlay:(LHTouchInfo*)info {
+	
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
+	}
+	
 	if(TEST_MODE) {
 		//TESTING CODE
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:TEST_LEVEL_PACK levelPath:TEST_LEVEL]]];
@@ -120,6 +139,11 @@
 }
 
 -(void)onInfo:(LHTouchInfo*)info {
+	
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
+	}
+
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[AboutLayer scene] ]];
 }
 
@@ -136,19 +160,32 @@
 	}
 	
 	[SettingsManager setBool:!isSoundEnabled forKey:@"SoundEnabled"];
+	
+	
+	
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
+	}
 }
 
 -(void)onToggleMusic:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
+	}
 
 	bool isMusicEnabled = [SettingsManager boolForKey:@"MusicEnabled"];
 	NSLog(@"Music was %d - setting to %d", isMusicEnabled, !isMusicEnabled);
 
 	if(isMusicEnabled) {
 		[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
+		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 	}else {
 		[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
+		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/background.wav" loop:YES];
 	}
+	
 	
 	[SettingsManager setBool:!isMusicEnabled forKey:@"MusicEnabled"];
 }

@@ -11,6 +11,8 @@
 #import "AboutLayer.h"
 #import "MainMenuLayer.h"
 #import "AppDelegate.h"
+#import "SettingsManager.h"
+#import "SimpleAudioEngine.h"
 
 #pragma mark - AboutLayer
 
@@ -84,6 +86,10 @@
 -(void)onTouchBeganAnyButton:(LHTouchInfo*)info {
 	if(info.sprite != nil)
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
+	
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
+	}
 }
 
 

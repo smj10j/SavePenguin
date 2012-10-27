@@ -21,6 +21,8 @@
 #import "LevelPackSelectLayer.h"
 #import "MainMenuLayer.h"
 #import "MoveGridData.h"
+#import "SettingsManager.h"
+#import "SimpleAudioEngine.h"
 
 #pragma mark - GameLayer
 
@@ -986,13 +988,15 @@
 
 	LHSprite* tutorial = nil;
 
+	//NOTE: maybe we always show tutorials for these levels?
+
 	//have we shown this tutorial yet?
 	if(![SettingsManager boolForKey:@"HasSeenTutorial1"]) {
 		//is this tutorial available on this level?
 		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial1"];
 		if(tutorial != nil) {
 			NSLog(@"Showing tutorial 1");
-			[SettingsManager setBool:true forKey:@"HasSeenTutorial1"];
+			//[SettingsManager setBool:true forKey:@"HasSeenTutorial1"];
 		}
 	}
 	if(tutorial == nil && ![SettingsManager boolForKey:@"HasSeenTutorial2"]) {
@@ -1000,7 +1004,7 @@
 		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial2"];
 		if(tutorial != nil) {
 			NSLog(@"Showing tutorial 2");
-			[SettingsManager setBool:true forKey:@"HasSeenTutorial2"];
+			//[SettingsManager setBool:true forKey:@"HasSeenTutorial2"];
 		}
 	}
 	if(tutorial == nil && ![SettingsManager boolForKey:@"HasSeenTutorial3"]) {
@@ -1008,7 +1012,7 @@
 		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial3"];
 		if(tutorial != nil) {
 			NSLog(@"Showing tutorial 3");
-			[SettingsManager setBool:true forKey:@"HasSeenTutorial3"];
+			//[SettingsManager setBool:true forKey:@"HasSeenTutorial3"];
 		}
 	}
 	
@@ -1034,6 +1038,8 @@
 			nil]
 		];
 		[tutorial registerTouchBeganObserver:self selector:@selector(onTouchBeganTutorial:)];
+	}else {
+		[self removeAllTutorials];
 	}
 }
 

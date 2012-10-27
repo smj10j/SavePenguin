@@ -12,6 +12,7 @@
 #import "MainMenuLayer.h"
 #import "AppDelegate.h"
 #import "SettingsManager.h"
+#import "SimpleAudioEngine.h"
 
 #pragma mark - IntroLayer
 
@@ -57,9 +58,12 @@
 		
 		
 		
+
+		
+		
+		
 		double lastRun = [SettingsManager doubleForKey:@"LastRunTimestamp"];
 		NSLog(@"Last run was: %f", lastRun);
-		
 		
 		//INITIAL SETTING TIME!!
 		if(lastRun == 0) {
@@ -69,7 +73,7 @@
 			[SettingsManager setBool:true forKey:@"MusicEnabled"];
 		}
 		
-		
+		//set our boot time (can be used for applying settings on updates
 		[SettingsManager setDouble:[[NSDate date] timeIntervalSince1970] forKey:@"LastRunTimestamp"];
 	}
 	

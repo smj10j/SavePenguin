@@ -220,6 +220,7 @@
 		AA6DFB1316302BFF00F93350 /* MoveGridData.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA6DFB1216302BFF00F93350 /* MoveGridData.mm */; };
 		AACE801C163992FB008C7E3B /* Score.mm in Sources */ = {isa = PBXBuildFile; fileRef = AACE801B163992FB008C7E3B /* Score.mm */; };
 		AAD7B65D163C296500B02521 /* AboutLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AAD7B65C163C296500B02521 /* AboutLayer.mm */; };
+		AAD7B660163C34BB00B02521 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = AAD7B65F163C34BB00B02521 /* sounds */; };
 		AAE610691632B7FD004166CC /* Spritesheet_Actors-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6105D1632B7FD004166CC /* Spritesheet_Actors-hd.png */; };
 		AAE6106A1632B7FD004166CC /* Spritesheet_Actors-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6105E1632B7FD004166CC /* Spritesheet_Actors-ipadhd.png */; };
 		AAE6106B1632B7FD004166CC /* Spritesheet_Actors.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6105F1632B7FD004166CC /* Spritesheet_Actors.png */; };
@@ -676,6 +677,7 @@
 		AACE801B163992FB008C7E3B /* Score.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Score.mm; sourceTree = "<group>"; };
 		AAD7B65B163C296500B02521 /* AboutLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutLayer.h; sourceTree = "<group>"; };
 		AAD7B65C163C296500B02521 /* AboutLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AboutLayer.mm; sourceTree = "<group>"; };
+		AAD7B65F163C34BB00B02521 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sounds; path = Resources/sounds; sourceTree = "<group>"; };
 		AAE6105D1632B7FD004166CC /* Spritesheet_Actors-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spritesheet_Actors-hd.png"; sourceTree = "<group>"; };
 		AAE6105E1632B7FD004166CC /* Spritesheet_Actors-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spritesheet_Actors-ipadhd.png"; sourceTree = "<group>"; };
 		AAE6105F1632B7FD004166CC /* Spritesheet_Actors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spritesheet_Actors.png; sourceTree = "<group>"; };
@@ -861,6 +863,7 @@
 		AA54C6A7162BB27A00DF56D0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AAD7B65F163C34BB00B02521 /* sounds */,
 				AA54C92E162BD64300DF56D0 /* images */,
 				AA54C929162BCDD600DF56D0 /* Levels */,
 				AA54C6A8162BB27A00DF56D0 /* Default.png */,
@@ -1562,6 +1565,7 @@
 				AA4C8D971637DB5700C55554 /* Spritesheet_Menu-hd.png in Resources */,
 				AA4C8D981637DB5700C55554 /* Spritesheet_Menu-ipadhd.png in Resources */,
 				AA4C8D991637DB5700C55554 /* Spritesheet_Menu.png in Resources */,
+				AAD7B660163C34BB00B02521 /* sounds in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
