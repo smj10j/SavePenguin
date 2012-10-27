@@ -85,7 +85,7 @@ enum PROPAGATION_RESULT {
 	CGPoint _activeToolboxItemOriginalPosition;
 	NSMutableDictionary* _toolGroups;
 	bool _shouldUpdateToolbox;
-	int _toolboxItemSize;
+	CGSize _toolboxItemSize;
 	NSMutableArray* _placedToolboxItems;
 	ScoreKeeper* _scoreKeeper;
 	

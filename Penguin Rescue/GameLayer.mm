@@ -274,7 +274,7 @@
 	//get the toolbox item size for scaling purposes
 	LHSprite* toolboxContainer = [_levelLoader createBatchSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[toolboxContainer removeSelf];
-	_toolboxItemSize = toolboxContainer.boundingBox.size.width;
+	_toolboxItemSize = toolboxContainer.boundingBox.size;
 }
 
 -(void) updateToolbox {
@@ -300,8 +300,8 @@
 	}
 	
 	
-	int toolGroupX = winSize.width/2 - ((_toolboxItemSize)*((_toolGroups.count-1)/2)) - _toolboxItemSize/2;
-	int toolGroupY = _toolboxItemSize/2 + TOOLBOX_MARGIN_TOP;
+	int toolGroupX = winSize.width/2 - ((_toolboxItemSize.width + TOOLBOX_MARGIN_LEFT)*((_toolGroups.count-1.0)/2.0));
+	int toolGroupY = _toolboxItemSize.height/2 + TOOLBOX_MARGIN_BOTTOM;
 		
 	for(id key in _toolGroups) {
 
@@ -326,7 +326,7 @@
 			if(topToolboxItem == nil) topToolboxItem = toolboxItem;
 			//move the tool into the box
 			[toolboxItem transformPosition: ccp(toolGroupX, toolGroupY)];
-			double scale = fmin((_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING_H)/toolboxItem.contentSize.width, (_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING_V)/toolboxItem.contentSize.height);
+			double scale = fmin((_toolboxItemSize.width-TOOLBOX_ITEM_CONTAINER_PADDING_H)/toolboxItem.contentSize.width, (_toolboxItemSize.height-TOOLBOX_ITEM_CONTAINER_PADDING_V)/toolboxItem.contentSize.height);
 			[toolboxItem transformScale: scale];
 			//NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", toolboxItem.uniqueName, (int)(100*scale));
 		}
@@ -336,7 +336,7 @@
 		[toolboxContainer registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
 
 				
-		toolGroupX+= _toolboxItemSize + TOOLBOX_MARGIN_LEFT;
+		toolGroupX+= _toolboxItemSize.width + TOOLBOX_MARGIN_LEFT;
 	}
 	
 
@@ -531,7 +531,7 @@
 	if(_activeToolboxItem != nil) {
 			
 		if((_state != RUNNING && _state != PLACE)
-				|| (info.glPoint.y < _toolboxItemSize)
+				|| (info.glPoint.y < _toolboxItemSize.height)
 				|| (info.glPoint.y >= _levelSize.height)
 				|| (info.glPoint.x <= 0)
 				|| (info.glPoint.x >= _levelSize.width)
@@ -540,7 +540,7 @@
 
 			[_activeToolboxItem transformRotation:0];
 			[_activeToolboxItem transformPosition:_activeToolboxItemOriginalPosition];
-			double scale = fmin((_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING_H)/_activeToolboxItem.contentSize.width, (_toolboxItemSize-TOOLBOX_ITEM_CONTAINER_PADDING_V)/_activeToolboxItem.contentSize.height);
+			double scale = fmin((_toolboxItemSize.width-TOOLBOX_ITEM_CONTAINER_PADDING_H)/_activeToolboxItem.contentSize.width, (_toolboxItemSize.height-TOOLBOX_ITEM_CONTAINER_PADDING_V)/_activeToolboxItem.contentSize.height);
 			[_activeToolboxItem transformScale: scale];
 			//NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", _activeToolboxItem.uniqueName, (int)(100*scale));
 			NSLog(@"Placing toolbox item back into the HUD");
