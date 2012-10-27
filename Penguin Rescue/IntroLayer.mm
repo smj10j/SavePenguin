@@ -59,7 +59,7 @@
 		
 		/*********** Sound Settings ************/
 		[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.20f];
-		[[SimpleAudioEngine sharedEngine] setEffectsVolume:0.70f];
+		[[SimpleAudioEngine sharedEngine] setEffectsVolume:0.80f];
 
 
 		
