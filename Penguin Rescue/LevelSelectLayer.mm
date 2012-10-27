@@ -155,7 +155,7 @@
 		}
 		
 		//display the level name
-		CCLabelTTF* levelNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", levelName] fontName:@"Helvetica" fontSize:20*SCALING_FACTOR_FONTS];
+		CCLabelTTF* levelNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", levelName] fontName:@"Helvetica" fontSize:20*SCALING_FACTOR_FONTS dimensions:CGSizeMake(levelButtonSize.width-20*SCALING_FACTOR_H, levelButtonSize.height - 20*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
 		levelNameLabel.color = ccBLACK;
 		levelNameLabel.position = ccp(levelButtonSize.width/2,levelButtonSize.height/2);
 		[levelButton addChild:levelNameLabel];
