@@ -3232,7 +3232,7 @@
 					AwAAAAAIAAAABAMAAKbGTQMAAAAACAAAAAQD
 					AACnxk0DAAAAAAgAAAAEAwAA0N5NAwAAAAAI
 					AAAABAMAANPeTQMAAAAACAAAAAQDAACC6U0D
-					AAAAAAgAAAAEAwAAitNZAwAAAAAsAAAAAQYA
+					AAAAAAgAAAAEAwAAkNtZAwAAAAAsAAAAAQYA
 					AOQAAAD0AAAABAEAABQBAAAkAQAANAEAAEQB
 					AABUAQAAZAEAAHQBAACEAQAAGAAAAAECAAAB
 					AAAAAAAAAA8AAAAAAAAAAAAAAAAAAAAAAAAA
@@ -3244,11 +3244,11 @@
 					OTZFRi05RUQyODRFRjU4OEYYAAAAAQIAAIEA
 					AAABAAgA7z8AAAEACAAAAAAAAAAAAAEAAAAB
 					AQAALwAAAAQAAAADAwAAAAEAAOkAAAABAgAA
-					OGMxNTUzOGE5MzQxZjczN2IyMDI2NTZjODA4
-					ZDc3N2E3MmIxYmQzZTswMDAwMDAwMDswMDAw
+					NThhNmZiZGQ4YzA3Y2NiN2RjYTExOTY4YjY1
+					ZTlkYmJlYTQ1ZGE1ZDswMDAwMDAwMDswMDAw
 					MDAwMDAwMDAwMDIwO2NvbS5hcHBsZS5hcHAt
 					c2FuZGJveC5yZWFkLXdyaXRlOzAwMDAwMDAx
-					OzBlMDAwMDAyOzAwMDAwMDAwMDM1OWQzOGE7
+					OzBlMDAwMDAyOzAwMDAwMDAwMDM1OWRiOTA7
 					L3VzZXJzL3N0ZXZlL2NvZGUvY29ucXVlci9w
 					ZW5ndWluIHJlc2N1ZS9wZW5ndWluIHJlc2N1
 					ZS9yZXNvdXJjZXMvc3JjLWFzc2V0cy9pbWFn
@@ -3317,9 +3317,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{260, 25}, {44.5, 67.75}}</string>
+						<string>{{260, 34}, {44.5, 67.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{1040, 100}, {178, 271}}</string>
+						<string>{{1040, 136}, {178, 271}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -3345,7 +3345,7 @@
 						<key>OriginalSize</key>
 						<string>{200, 300}</string>
 						<key>Position</key>
-						<string>{1040, 100}</string>
+						<string>{1040, 136}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -3382,7 +3382,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAAInTWQMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAAI/bWQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -3394,12 +3394,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADYzYjQ1ZTI3MGM2MzFhNGUyYTVhYmRm
-					MmQ1NTJkZGVhMDFkOTc5NzE7MDAwMDAwMDA7
+					AQIAADliZTcyNDI5YWZhMzk5YjU0ZTIxZjdm
+					NDU2OWVkZWI4ZGJkNTc5MzA7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTlk
-					Mzg5Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					YjhmOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC9maW5nZXJfdG91Y2gucG5n
@@ -3467,9 +3467,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{260, 94}, {40.75, 67.5}}</string>
+						<string>{{260, 103}, {40.75, 67.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{1040, 376}, {163, 270}}</string>
+						<string>{{1040, 412}, {163, 270}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -3495,7 +3495,7 @@
 						<key>OriginalSize</key>
 						<string>{300, 300}</string>
 						<key>Position</key>
-						<string>{1040, 376}</string>
+						<string>{1040, 412}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -3506,157 +3506,6 @@
 						<integer>0</integer>
 						<key>TextureOffset</key>
 						<string>{0.625, -1}</string>
-						<key>UsesBatchRendering</key>
-						<true/>
-						<key>ZOrder</key>
-						<integer>1</integer>
-					</dict>
-				</dict>
-				<key>Level_Name_Popup</key>
-				<dict>
-					<key>DocumentSecurityImageBookmark</key>
-					<data>
-					Ym9va9wEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
-					AAAAAAAAAAAAAAAAAAAAAAAAAAAAwAMAAAUA
-					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
-					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
-					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
-					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
-					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
-					cwAAAwAAAAEBAABIVUQAFAAAAAEBAABMZXZl
-					bF9OYW1lX1BvcHVwLnBuZywAAAABBgAABAAA
-					ABQAAAAkAAAAMAAAAEAAAABAAAAAWAAAAGwA
-					AACAAAAAkAAAAJwAAAAIAAAABAMAAHIAAAAA
-					AAAACAAAAAQDAABbtw4AAAAAAAgAAAAEAwAA
-					69EOAAAAAAAIAAAABAMAAO3RDgAAAAAACAAA
-					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
-					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
-					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAACL01kDAAAA
-					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
-					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
-					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
-					AAAAAAAAAAABBQAABAAAAAMDAAACAAAABAAA
-					AAMDAAAEAAAACAAAAAQDAAAJAAAAAAAAAAQA
-					AAADAwAA9QEAAAwAAAABAQAATWFjaW50b3No
-					IEhECAAAAAQDAAAAgIE9dAAAAAgAAAAABAAA
-					QbQMGj4AAAAkAAAAAQEAADcwMUI3RTA1LTlF
-					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
-					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
-					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABmNjUxOGJkMTZhYmNkOWI1ZWJh
-					NTY3OGZhY2M4ODRjNmJlMGQ0NWVmOzAwMDAw
-					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
-					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
-					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM4YjsvdXNlcnMvc3RldmUvY29kZS9j
-					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
-					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
-					ZXRzL2ltYWdlcy9odWQvbGV2ZWxfbmFtZV9w
-					b3B1cC5wbmcA5AAAAP7///8BAAAAAAAAABIA
-					AAAEEAAAuAAAAAAAAAAFEAAAnAEAAAAAAAAQ
-					EAAA0AEAAAAAAABUEAAA+AEAAAAAAABVEAAA
-					BAIAAAAAAABWEAAA8AEAAAAAAAACIAAArAIA
-					AAAAAAAQIAAALAIAAAAAAAARIAAAYAIAAAAA
-					AAASIAAAQAIAAAAAAAATIAAAUAIAAAAAAAAg
-					IAAAjAIAAAAAAAAwIAAA8AEAAAAAAAABwAAA
-					EAIAAAAAAAARwAAAFAAAAAAAAAASwAAAIAIA
-					AAAAAAAQ0AAAuAIAAAAAAACA8AAAxAIAAAAA
-					AAA=
-					</data>
-					<key>IsSHSprite</key>
-					<true/>
-					<key>PhysicProperties</key>
-					<dict>
-						<key>AngularDamping</key>
-						<real>0.0</real>
-						<key>AngularVelocity</key>
-						<real>0.0</real>
-						<key>CanSleep</key>
-						<true/>
-						<key>FixedRot</key>
-						<false/>
-						<key>GravityScale</key>
-						<real>1</real>
-						<key>HandledBySH</key>
-						<true/>
-						<key>IsBullet</key>
-						<false/>
-						<key>LinearDamping</key>
-						<real>0.0</real>
-						<key>LinearVelocity</key>
-						<string>{0, 0}</string>
-						<key>SH_ComplexShapes</key>
-						<array/>
-						<key>Type</key>
-						<integer>3</integer>
-					</dict>
-					<key>SHSheetName</key>
-					<string>HUD</string>
-					<key>SHSpriteName</key>
-					<string>Level_Name_Popup</string>
-					<key>SheetImage</key>
-					<string>Spritesheet_HUD.png</string>
-					<key>SheetImage-HD</key>
-					<string>Spritesheet_HUD-ipadhd.png</string>
-					<key>TextureProperties</key>
-					<dict>
-						<key>Angle</key>
-						<integer>0</integer>
-						<key>Border</key>
-						<integer>0</integer>
-						<key>CanBeTrimmed</key>
-						<true/>
-						<key>Color</key>
-						<string>{{1, 1}, {1, 1}}</string>
-						<key>ConvertedFromOldFormat</key>
-						<false/>
-						<key>CustomClassName</key>
-						<string></string>
-						<key>FlipX</key>
-						<false/>
-						<key>FlipY</key>
-						<false/>
-						<key>Frame</key>
-						<string>{{260, 0}, {160.75, 24}}</string>
-						<key>Frame-HD</key>
-						<string>{{1040, 0}, {641, 96}}</string>
-						<key>Image</key>
-						<string>Spritesheet_HUD.png</string>
-						<key>Image-HD</key>
-						<string>Spritesheet_HUD-ipadhd.png</string>
-						<key>IsCropped</key>
-						<true/>
-						<key>IsDrawable</key>
-						<true/>
-						<key>IsRotated</key>
-						<false/>
-						<key>IsTrimmed</key>
-						<false/>
-						<key>Name</key>
-						<string>Level_Name_Popup</string>
-						<key>Opacity</key>
-						<real>1</real>
-						<key>OriginalImage</key>
-						<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/HUD/Level_Name_Popup.png</string>
-						<key>OriginalImage_RelativePath</key>
-						<string>../src-assets/images/HUD/Level_Name_Popup.png/</string>
-						<key>OriginalRect</key>
-						<string>{{4, 0}, {641, 96}}</string>
-						<key>OriginalSize</key>
-						<string>{641, 96}</string>
-						<key>Position</key>
-						<string>{1040, 0}</string>
-						<key>Scale</key>
-						<string>{1, 1}</string>
-						<key>SpriteSize</key>
-						<string>{160.25, 24}</string>
-						<key>SpriteWasBreaked</key>
-						<false/>
-						<key>Tag</key>
-						<integer>0</integer>
-						<key>TextureOffset</key>
-						<string>{0, 0}</string>
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
@@ -3683,7 +3532,7 @@
 					AAgAAAAEAwAApsZNAwAAAAAIAAAABAMAAKfG
 					TQMAAAAACAAAAAQDAADQ3k0DAAAAAAgAAAAE
 					AwAA095NAwAAAAAIAAAABAMAAILpTQMAAAAA
-					CAAAAAQDAACM01kDAAAAACwAAAABBgAA4AAA
+					CAAAAAQDAACS21kDAAAAACwAAAABBgAA4AAA
 					APAAAAAAAQAAEAEAACABAAAwAQAAQAEAAFAB
 					AABgAQAAcAEAAIABAAAYAAAAAQIAAAEAAAAA
 					AAAADwAAAAAAAAAAAAAAAAAAAAAAAAABBQAA
@@ -3694,12 +3543,12 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAAA2ZjY0
-					YTVjYWEyYjM2NDNjMzgyNzc5ZjYxNzA4MWU4
-					YmFjODZmOGYyOzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAAA1Njgw
+					ZjI2NzBlN2Y4NDMxNTgxMmVjNDZjNTAwOWFl
+					NTE5MTVkODc2OzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
-					MDAwMDI7MDAwMDAwMDAwMzU5ZDM4YzsvdXNl
+					MDAwMDI7MDAwMDAwMDAwMzU5ZGI5MjsvdXNl
 					cnMvc3RldmUvY29kZS9jb25xdWVyL3Blbmd1
 					aW4gcmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jl
 					c291cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9o
@@ -3768,9 +3617,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{273, 201}, {12, 16.75}}</string>
+						<string>{{463, 0}, {12, 16.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{1092, 804}, {48, 67}}</string>
+						<string>{{1852, 0}, {48, 67}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -3796,7 +3645,7 @@
 						<key>OriginalSize</key>
 						<string>{100, 100}</string>
 						<key>Position</key>
-						<string>{1092, 804}</string>
+						<string>{1852, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -3833,7 +3682,7 @@
 					AAgAAAAEAwAApsZNAwAAAAAIAAAABAMAAKfG
 					TQMAAAAACAAAAAQDAADQ3k0DAAAAAAgAAAAE
 					AwAA095NAwAAAAAIAAAABAMAAILpTQMAAAAA
-					CAAAAAQDAACN01kDAAAAACwAAAABBgAA4AAA
+					CAAAAAQDAACX21kDAAAAACwAAAABBgAA4AAA
 					APAAAAAAAQAAEAEAACABAAAwAQAAQAEAAFAB
 					AABgAQAAcAEAAIABAAAYAAAAAQIAAAEAAAAA
 					AAAADwAAAAAAAAAAAAAAAAAAAAAAAAABBQAA
@@ -3844,12 +3693,12 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAAA0MDYy
-					NzZiOTZmYTAzMTI4YWNmNTQ2YjNkYWU4MTJi
-					MDRkOGI4ZGY4OzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAAA1NjBk
+					MTBkMjBlODhhNDdkOGQ3NmU0ZjZiODFjZGZj
+					MDlkMmE5ZjhjOzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
-					MDAwMDI7MDAwMDAwMDAwMzU5ZDM4ZDsvdXNl
+					MDAwMDI7MDAwMDAwMDAwMzU5ZGI5NzsvdXNl
 					cnMvc3RldmUvY29kZS9jb25xdWVyL3Blbmd1
 					aW4gcmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jl
 					c291cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9o
@@ -3918,9 +3767,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{473, 25}, {6.75, 16.75}}</string>
+						<string>{{306, 130}, {6.75, 16.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{1892, 100}, {27, 65}}</string>
+						<string>{{1224, 520}, {27, 65}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -3946,7 +3795,7 @@
 						<key>OriginalSize</key>
 						<string>{100, 100}</string>
 						<key>Position</key>
-						<string>{1892, 100}</string>
+						<string>{1224, 520}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -3983,7 +3832,7 @@
 					AAgAAAAEAwAApsZNAwAAAAAIAAAABAMAAKfG
 					TQMAAAAACAAAAAQDAADQ3k0DAAAAAAgAAAAE
 					AwAA095NAwAAAAAIAAAABAMAAILpTQMAAAAA
-					CAAAAAQDAACO01kDAAAAACwAAAABBgAA4AAA
+					CAAAAAQDAACY21kDAAAAACwAAAABBgAA4AAA
 					APAAAAAAAQAAEAEAACABAAAwAQAAQAEAAFAB
 					AABgAQAAcAEAAIABAAAYAAAAAQIAAAEAAAAA
 					AAAADwAAAAAAAAAAAAAAAAAAAAAAAAABBQAA
@@ -3994,12 +3843,12 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAAAxNzVl
-					MTliZWU1MDYyOTczNGQ3YmExYmUwZTc5M2Q0
-					MzIzMDQ3ZDg1OzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAAA4NTM0
+					NTMyYzkyM2FhMjJiZTE2ODkxYjEzMDAxM2Jj
+					MzhhOGZhZGRhOzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
-					MDAwMDI7MDAwMDAwMDAwMzU5ZDM4ZTsvdXNl
+					MDAwMDI7MDAwMDAwMDAwMzU5ZGI5ODsvdXNl
 					cnMvc3RldmUvY29kZS9jb25xdWVyL3Blbmd1
 					aW4gcmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jl
 					c291cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9o
@@ -4068,9 +3917,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{286, 201}, {11.75, 16.5}}</string>
+						<string>{{461, 52}, {11.75, 16.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{1144, 804}, {45, 66}}</string>
+						<string>{{1844, 208}, {45, 66}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -4096,7 +3945,7 @@
 						<key>OriginalSize</key>
 						<string>{100, 100}</string>
 						<key>Position</key>
-						<string>{1144, 804}</string>
+						<string>{1844, 208}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -4133,7 +3982,7 @@
 					AAgAAAAEAwAApsZNAwAAAAAIAAAABAMAAKfG
 					TQMAAAAACAAAAAQDAADQ3k0DAAAAAAgAAAAE
 					AwAA095NAwAAAAAIAAAABAMAAILpTQMAAAAA
-					CAAAAAQDAACP01kDAAAAACwAAAABBgAA4AAA
+					CAAAAAQDAACZ21kDAAAAACwAAAABBgAA4AAA
 					APAAAAAAAQAAEAEAACABAAAwAQAAQAEAAFAB
 					AABgAQAAcAEAAIABAAAYAAAAAQIAAAEAAAAA
 					AAAADwAAAAAAAAAAAAAAAAAAAAAAAAABBQAA
@@ -4144,12 +3993,12 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAAA5NTcz
-					Y2UzN2M0NTIxZTk4YWJmZTBjMTFmMjBhMmUw
-					YWVmMGJlYWNmOzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAAA3ZDIw
+					NmY4MmRhMDNkYzJhOGRmNDVmYzZhNjcyYjA0
+					ZjUxYTI1NWMyOzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
-					MDAwMDI7MDAwMDAwMDAwMzU5ZDM4ZjsvdXNl
+					MDAwMDI7MDAwMDAwMDAwMzU5ZGI5OTsvdXNl
 					cnMvc3RldmUvY29kZS9jb25xdWVyL3Blbmd1
 					aW4gcmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jl
 					c291cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9o
@@ -4218,9 +4067,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{461, 25}, {11, 16.75}}</string>
+						<string>{{306, 112}, {11, 16.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{1844, 100}, {44, 67}}</string>
+						<string>{{1224, 448}, {44, 67}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -4246,7 +4095,7 @@
 						<key>OriginalSize</key>
 						<string>{100, 100}</string>
 						<key>Position</key>
-						<string>{1844, 100}</string>
+						<string>{1224, 448}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -4283,7 +4132,7 @@
 					AAgAAAAEAwAApsZNAwAAAAAIAAAABAMAAKfG
 					TQMAAAAACAAAAAQDAADQ3k0DAAAAAAgAAAAE
 					AwAA095NAwAAAAAIAAAABAMAAILpTQMAAAAA
-					CAAAAAQDAACQ01kDAAAAACwAAAABBgAA4AAA
+					CAAAAAQDAACa21kDAAAAACwAAAABBgAA4AAA
 					APAAAAAAAQAAEAEAACABAAAwAQAAQAEAAFAB
 					AABgAQAAcAEAAIABAAAYAAAAAQIAAAEAAAAA
 					AAAADwAAAAAAAAAAAAAAAAAAAAAAAAABBQAA
@@ -4294,12 +4143,12 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAAA5ZjQ4
-					NTUxMWZjZDA2Zjg0YzhiNDA1ZWE2ZWE2OWU4
-					MjNhYTdkMTdiOzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAAAyODUy
+					NjYyYTIyZjJjMDVhMzQ3YTY5MmVjNTFlMmI1
+					MzVmM2U0ZGE2OzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
-					MDAwMDI7MDAwMDAwMDAwMzU5ZDM5MDsvdXNl
+					MDAwMDI7MDAwMDAwMDAwMzU5ZGI5YTsvdXNl
 					cnMvc3RldmUvY29kZS9jb25xdWVyL3Blbmd1
 					aW4gcmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jl
 					c291cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9o
@@ -4433,7 +4282,7 @@
 					AAgAAAAEAwAApsZNAwAAAAAIAAAABAMAAKfG
 					TQMAAAAACAAAAAQDAADQ3k0DAAAAAAgAAAAE
 					AwAA095NAwAAAAAIAAAABAMAAILpTQMAAAAA
-					CAAAAAQDAACR01kDAAAAACwAAAABBgAA4AAA
+					CAAAAAQDAACb21kDAAAAACwAAAABBgAA4AAA
 					APAAAAAAAQAAEAEAACABAAAwAQAAQAEAAFAB
 					AABgAQAAcAEAAIABAAAYAAAAAQIAAAEAAAAA
 					AAAADwAAAAAAAAAAAAAAAAAAAAAAAAABBQAA
@@ -4444,12 +4293,12 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAAA4Y2Vk
-					ZmM5MDY1N2ZlNThhOTRkNzBkZTAzNjM1ZjMy
-					NmYwYmI3ZmMwOzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAABhOTU1
+					MzUzNTM1YTM4MzAxMWJlNzA2NGIxZDI2YTNj
+					N2QzMzk1ZDBlOzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
-					MDAwMDI7MDAwMDAwMDAwMzU5ZDM5MTsvdXNl
+					MDAwMDI7MDAwMDAwMDAwMzU5ZGI5YjsvdXNl
 					cnMvc3RldmUvY29kZS9jb25xdWVyL3Blbmd1
 					aW4gcmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jl
 					c291cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9o
@@ -4518,9 +4367,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{306, 103}, {11, 16.5}}</string>
+						<string>{{330, 112}, {11, 16.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{1224, 412}, {44, 66}}</string>
+						<string>{{1320, 448}, {44, 66}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -4546,7 +4395,7 @@
 						<key>OriginalSize</key>
 						<string>{100, 100}</string>
 						<key>Position</key>
-						<string>{1224, 412}</string>
+						<string>{1320, 448}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -4583,7 +4432,7 @@
 					AAgAAAAEAwAApsZNAwAAAAAIAAAABAMAAKfG
 					TQMAAAAACAAAAAQDAADQ3k0DAAAAAAgAAAAE
 					AwAA095NAwAAAAAIAAAABAMAAILpTQMAAAAA
-					CAAAAAQDAACS01kDAAAAACwAAAABBgAA4AAA
+					CAAAAAQDAACc21kDAAAAACwAAAABBgAA4AAA
 					APAAAAAAAQAAEAEAACABAAAwAQAAQAEAAFAB
 					AABgAQAAcAEAAIABAAAYAAAAAQIAAAEAAAAA
 					AAAADwAAAAAAAAAAAAAAAAAAAAAAAAABBQAA
@@ -4594,12 +4443,12 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAAAxNDUz
-					N2M5M2JiMWIyZjNjN2FlNjIzYWE4Mjk0MzRj
-					MTE2MmU5NWI0OzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAAAyYzQz
+					MDk1ZTY2N2QzMDBhNDEyMDc5Y2MxMjg0NjJj
+					NmZlYWU1MmI2OzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
-					MDAwMDI7MDAwMDAwMDAwMzU5ZDM5MjsvdXNl
+					MDAwMDI7MDAwMDAwMDAwMzU5ZGI5YzsvdXNl
 					cnMvc3RldmUvY29kZS9jb25xdWVyL3Blbmd1
 					aW4gcmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jl
 					c291cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9o
@@ -4668,9 +4517,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{260, 201}, {12, 16.75}}</string>
+						<string>{{450, 0}, {12, 16.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{1040, 804}, {48, 67}}</string>
+						<string>{{1800, 0}, {48, 67}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -4696,7 +4545,7 @@
 						<key>OriginalSize</key>
 						<string>{100, 100}</string>
 						<key>Position</key>
-						<string>{1040, 804}</string>
+						<string>{1800, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -4733,7 +4582,7 @@
 					AAgAAAAEAwAApsZNAwAAAAAIAAAABAMAAKfG
 					TQMAAAAACAAAAAQDAADQ3k0DAAAAAAgAAAAE
 					AwAA095NAwAAAAAIAAAABAMAAILpTQMAAAAA
-					CAAAAAQDAACT01kDAAAAACwAAAABBgAA4AAA
+					CAAAAAQDAACd21kDAAAAACwAAAABBgAA4AAA
 					APAAAAAAAQAAEAEAACABAAAwAQAAQAEAAFAB
 					AABgAQAAcAEAAIABAAAYAAAAAQIAAAEAAAAA
 					AAAADwAAAAAAAAAAAAAAAAAAAAAAAAABBQAA
@@ -4744,12 +4593,12 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAABlMGQw
-					ZjJiMDVmNTM5M2QwNTIyZTI2NmM5ZmViMGZj
-					Mjg2Y2Q4YWFjOzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAAAyNjE3
+					NWU0ZWZlYTAzNjMxMTc2MWFkMTEyY2I3ODE0
+					MDEzMzM3OGFlOzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
-					MDAwMDI7MDAwMDAwMDAwMzU5ZDM5MzsvdXNl
+					MDAwMDI7MDAwMDAwMDAwMzU5ZGI5ZDsvdXNl
 					cnMvc3RldmUvY29kZS9jb25xdWVyL3Blbmd1
 					aW4gcmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jl
 					c291cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9o
@@ -4818,9 +4667,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{461, 43}, {11.75, 16.75}}</string>
+						<string>{{318, 112}, {11.75, 16.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{1844, 172}, {45, 65}}</string>
+						<string>{{1272, 448}, {45, 65}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -4846,7 +4695,7 @@
 						<key>OriginalSize</key>
 						<string>{100, 100}</string>
 						<key>Position</key>
-						<string>{1844, 172}</string>
+						<string>{1272, 448}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -4883,7 +4732,7 @@
 					AAgAAAAEAwAApsZNAwAAAAAIAAAABAMAAKfG
 					TQMAAAAACAAAAAQDAADQ3k0DAAAAAAgAAAAE
 					AwAA095NAwAAAAAIAAAABAMAAILpTQMAAAAA
-					CAAAAAQDAACY01kDAAAAACwAAAABBgAA4AAA
+					CAAAAAQDAACe21kDAAAAACwAAAABBgAA4AAA
 					APAAAAAAAQAAEAEAACABAAAwAQAAQAEAAFAB
 					AABgAQAAcAEAAIABAAAYAAAAAQIAAAEAAAAA
 					AAAADwAAAAAAAAAAAAAAAAAAAAAAAAABBQAA
@@ -4894,12 +4743,12 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAAA4Mzg3
-					NjM3MjgwYTBjYzM2M2QzN2Q3ZDViZjg1NzM5
-					YmI0OTIxNzc3OzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAAAzMzdl
+					YzMxOWI5MjMxYTZiYzM4OTU2NDg1MTNkMjJi
+					MTVlM2ExMjkyOzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
-					MDAwMDI7MDAwMDAwMDAwMzU5ZDM5ODsvdXNl
+					MDAwMDI7MDAwMDAwMDAwMzU5ZGI5ZTsvdXNl
 					cnMvc3RldmUvY29kZS9jb25xdWVyL3Blbmd1
 					aW4gcmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jl
 					c291cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9o
@@ -4968,9 +4817,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{450, 0}, {12, 16.75}}</string>
+						<string>{{461, 34}, {12, 16.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{1800, 0}, {48, 67}}</string>
+						<string>{{1844, 136}, {48, 67}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -4996,7 +4845,7 @@
 						<key>OriginalSize</key>
 						<string>{100, 100}</string>
 						<key>Position</key>
-						<string>{1800, 0}</string>
+						<string>{1844, 136}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -5033,7 +4882,7 @@
 					AAgAAAAEAwAApsZNAwAAAAAIAAAABAMAAKfG
 					TQMAAAAACAAAAAQDAADQ3k0DAAAAAAgAAAAE
 					AwAA095NAwAAAAAIAAAABAMAAILpTQMAAAAA
-					CAAAAAQDAACZ01kDAAAAACwAAAABBgAA4AAA
+					CAAAAAQDAACf21kDAAAAACwAAAABBgAA4AAA
 					APAAAAAAAQAAEAEAACABAAAwAQAAQAEAAFAB
 					AABgAQAAcAEAAIABAAAYAAAAAQIAAAEAAAAA
 					AAAADwAAAAAAAAAAAAAAAAAAAAAAAAABBQAA
@@ -5044,12 +4893,12 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAABmMDYy
-					MWE2YzRmNzY2M2NmOGM2ODE4ZGQ1MWI4Mjll
-					MWQyZjVhZTc4OzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAABkNDMw
+					YmEyMmZhOTg3YmEwOGIyYjYzZGUxZTUxZjlj
+					MTYyYTc4NTQ2OzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
-					MDAwMDI7MDAwMDAwMDAwMzU5ZDM5OTsvdXNl
+					MDAwMDI7MDAwMDAwMDAwMzU5ZGI5ZjsvdXNl
 					cnMvc3RldmUvY29kZS9jb25xdWVyL3Blbmd1
 					aW4gcmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jl
 					c291cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9o
@@ -5118,9 +4967,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{463, 0}, {12, 16.75}}</string>
+						<string>{{435, 16}, {12, 16.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{1852, 0}, {48, 67}}</string>
+						<string>{{1740, 64}, {48, 67}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -5146,7 +4995,7 @@
 						<key>OriginalSize</key>
 						<string>{100, 100}</string>
 						<key>Position</key>
-						<string>{1852, 0}</string>
+						<string>{1740, 64}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -5183,7 +5032,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAAHjTWQMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAAHjbWQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -5195,12 +5044,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADlkZGQwN2RiY2Y4N2ZlMjA1MGQ1ZDE1
-					NWI4Y2U5NGM5NWQ2ZThkMmM7MDAwMDAwMDA7
+					AQIAAGVmNDliMzM0MTc0MDI3OGQwZDVlYzQx
+					NGFjMGU4YTJiOWE1MTA2MTk7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTlk
-					Mzc4Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					Yjc4Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC9wYXVzZV9hY3RpdmUucG5n
@@ -5268,9 +5117,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{383, 25}, {37.75, 37.75}}</string>
+						<string>{{344, 34}, {37.75, 37.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{1532, 100}, {151, 151}}</string>
+						<string>{{1376, 136}, {151, 151}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -5296,7 +5145,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{1532, 100}</string>
+						<string>{1376, 136}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -5333,7 +5182,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAB301kDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAB321kDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -5345,12 +5194,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAxNTY4MDc3ZmIxZWM4NmU1NzNl
-					N2ZhNzliNzFmNDg5NTgzMTUyNjc5OzAwMDAw
+					8gAAAAECAABjN2YyNTk2M2ZkNzIwNmI2YWQy
+					MWZlNGYxYmRlYWY3Y2QwZTUzNGUxOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM3NzsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZGI3NzsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcGF1c2VfaW5hY3Rp
@@ -5419,9 +5268,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{344, 25}, {37.75, 37.75}}</string>
+						<string>{{306, 34}, {37.75, 37.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{1376, 100}, {151, 151}}</string>
+						<string>{{1224, 136}, {151, 151}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -5447,7 +5296,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{1376, 100}</string>
+						<string>{1224, 136}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -5484,7 +5333,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAAHzTWQMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAAHzbWQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -5496,12 +5345,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADvAAAA
-					AQIAADE5ZmRlZWNiYzE1ODQzNmUzZTc3YjE0
-					ZGVlZTk1ZTcxZjY2NzM5NmM7MDAwMDAwMDA7
+					AQIAADE4MTRkZTZkODhlZWYxNDMxMGZmMjcw
+					MWNkYWZlMmEwODU3YWEwOTg7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTlk
-					MzdjOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					YjdjOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC9wbGF5X2FjdGl2ZS5wbmcA
@@ -5569,9 +5418,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{306, 64}, {37.75, 37.75}}</string>
+						<string>{{422, 34}, {37.75, 37.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{1224, 256}, {151, 151}}</string>
+						<string>{{1688, 136}, {151, 151}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -5597,7 +5446,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{1224, 256}</string>
+						<string>{1688, 136}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -5634,7 +5483,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAB701kDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAB721kDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -5646,12 +5495,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8QAAAAECAABlNTI4ZmU1MTM4MjRmNDA1ZmQw
-					ZTc3ZTJjZDgwMzUxN2MwYzVhNTQ4OzAwMDAw
+					8QAAAAECAABkNjdkY2M1NTE5NWYyMjI3ZDc0
+					NzEyYjMxMTA4OWFjYTVhYzdhMTE2OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM3YjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZGI3YjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcGxheV9pbmFjdGl2
@@ -5720,9 +5569,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{422, 25}, {37.75, 37.75}}</string>
+						<string>{{383, 34}, {37.75, 37.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{1688, 100}, {151, 151}}</string>
+						<string>{{1532, 136}, {151, 151}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -5748,7 +5597,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{1688, 100}</string>
+						<string>{1532, 136}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -5785,7 +5634,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAB601kDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAB621kDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -5797,12 +5646,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA2YzI5MmZjMzVmY2IzZGM2ZTNk
-					YmViMTIwOWQ5OTVmNWM2ZmNmNjliOzAwMDAw
+					8gAAAAECAAAyMmE4NmQ5ZmFkMTg4NGI5Y2Y2
+					NTc2ZmY0YTRiOTcxMzUxODZiMmQ3OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM3YTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZGI3YTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcmVzdGFydF9hY3Rp
@@ -5871,9 +5720,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{260, 163}, {37.75, 37.75}}</string>
+						<string>{{306, 73}, {37.75, 37.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{1040, 652}, {151, 151}}</string>
+						<string>{{1224, 292}, {151, 151}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -5899,7 +5748,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{1040, 652}</string>
+						<string>{1224, 292}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -5936,7 +5785,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAB501kDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAB521kDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -5948,12 +5797,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABmNmM1MjVmZjZkYzg0OWZjY2U0
-					Mjg4MmUxMGQyMTEzN2NkNzc5M2I2OzAwMDAw
+					9AAAAAECAAAyYzFiOGI2ZmMwMzhjYzU4MDkz
+					MWQ3OGU4ZTBjYzVmZWU3MWE3MjM1OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM3OTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZGI3OTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcmVzdGFydF9pbmFj
@@ -6022,9 +5871,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{306, 25}, {37.75, 37.75}}</string>
+						<string>{{260, 172}, {37.75, 37.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{1224, 100}, {151, 151}}</string>
+						<string>{{1040, 688}, {151, 151}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -6050,7 +5899,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{1224, 100}</string>
+						<string>{1040, 688}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -6065,6 +5914,157 @@
 						<true/>
 						<key>ZOrder</key>
 						<integer>1</integer>
+					</dict>
+				</dict>
+				<key>Time_and_Level_Popup</key>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va+QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAAyAMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAAAwAAAAEBAABIVUQAGAAAAAEBAABUaW1l
+					X2FuZF9MZXZlbF9Qb3B1cC5wbmcsAAAAAQYA
+					AAQAAAAUAAAAJAAAADAAAABAAAAAQAAAAFgA
+					AABsAAAAgAAAAJAAAACcAAAACAAAAAQDAABy
+					AAAAAAAAAAgAAAAEAwAAW7cOAAAAAAAIAAAA
+					BAMAAOvRDgAAAAAACAAAAAQDAADt0Q4AAAAA
+					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
+					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
+					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
+					CAAAAAQDAACC6U0DAAAAAAgAAAAEAwAAkdtZ
+					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
+					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
+					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
+					AAAAAAAAAAAAAAAAAQUAAAQAAAADAwAAAgAA
+					AAQAAAADAwAABAAAAAgAAAAEAwAACQAAAAAA
+					AAAEAAAAAwMAAPUBAAAMAAAAAQEAAE1hY2lu
+					dG9zaCBIRAgAAAAEAwAAAICBPXQAAAAIAAAA
+					AAQAAEG0DBo+AAAAJAAAAAEBAAA3MDFCN0Uw
+					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
+					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
+					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
+					AAEAAPgAAAABAgAANGZmNTg5NzkxZjZjMDJl
+					ZDc5N2M2NTVkOGFkNGEyYmQ1N2JjN2Q3ODsw
+					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
+					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
+					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
+					MDAwMDM1OWRiOTE7L3VzZXJzL3N0ZXZlL2Nv
+					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
+					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
+					LWFzc2V0cy9pbWFnZXMvaHVkL3RpbWVfYW5k
+					X2xldmVsX3BvcHVwLnBuZwDkAAAA/v///wEA
+					AAAAAAAAEgAAAAQQAAC8AAAAAAAAAAUQAACg
+					AQAAAAAAABAQAADUAQAAAAAAAFQQAAD8AQAA
+					AAAAAFUQAAAIAgAAAAAAAFYQAAD0AQAAAAAA
+					AAIgAACwAgAAAAAAABAgAAAwAgAAAAAAABEg
+					AABkAgAAAAAAABIgAABEAgAAAAAAABMgAABU
+					AgAAAAAAACAgAACQAgAAAAAAADAgAAD0AQAA
+					AAAAAAHAAAAUAgAAAAAAABHAAAAUAAAAAAAA
+					ABLAAAAkAgAAAAAAABDQAAC8AgAAAAAAAIDw
+					AADIAgAAAAAAAA==
+					</data>
+					<key>IsSHSprite</key>
+					<true/>
+					<key>PhysicProperties</key>
+					<dict>
+						<key>AngularDamping</key>
+						<real>0.0</real>
+						<key>AngularVelocity</key>
+						<real>0.0</real>
+						<key>CanSleep</key>
+						<true/>
+						<key>FixedRot</key>
+						<false/>
+						<key>GravityScale</key>
+						<real>1</real>
+						<key>HandledBySH</key>
+						<true/>
+						<key>IsBullet</key>
+						<false/>
+						<key>LinearDamping</key>
+						<real>0.0</real>
+						<key>LinearVelocity</key>
+						<string>{0, 0}</string>
+						<key>SH_ComplexShapes</key>
+						<array/>
+						<key>Type</key>
+						<integer>3</integer>
+					</dict>
+					<key>SHSheetName</key>
+					<string>HUD</string>
+					<key>SHSpriteName</key>
+					<string>Time_and_Level_Popup</string>
+					<key>SheetImage</key>
+					<string>Spritesheet_HUD.png</string>
+					<key>SheetImage-HD</key>
+					<string>Spritesheet_HUD-ipadhd.png</string>
+					<key>TextureProperties</key>
+					<dict>
+						<key>Angle</key>
+						<integer>0</integer>
+						<key>Border</key>
+						<integer>0</integer>
+						<key>CanBeTrimmed</key>
+						<true/>
+						<key>Color</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>ConvertedFromOldFormat</key>
+						<false/>
+						<key>CustomClassName</key>
+						<string></string>
+						<key>FlipX</key>
+						<false/>
+						<key>FlipY</key>
+						<false/>
+						<key>Frame</key>
+						<string>{{260, 0}, {160.75, 33}}</string>
+						<key>Frame-HD</key>
+						<string>{{1040, 0}, {641, 132}}</string>
+						<key>Image</key>
+						<string>Spritesheet_HUD.png</string>
+						<key>Image-HD</key>
+						<string>Spritesheet_HUD-ipadhd.png</string>
+						<key>IsCropped</key>
+						<false/>
+						<key>IsDrawable</key>
+						<true/>
+						<key>IsRotated</key>
+						<false/>
+						<key>IsTrimmed</key>
+						<true/>
+						<key>Name</key>
+						<string>Time_and_Level_Popup</string>
+						<key>Opacity</key>
+						<real>1</real>
+						<key>OriginalImage</key>
+						<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/HUD/Time_and_Level_Popup.png</string>
+						<key>OriginalImage_RelativePath</key>
+						<string>../src-assets/images/HUD/Time_and_Level_Popup.png/</string>
+						<key>OriginalRect</key>
+						<string>{{5, 0}, {641, 132}}</string>
+						<key>OriginalSize</key>
+						<string>{650, 136}</string>
+						<key>Position</key>
+						<string>{1040, 0}</string>
+						<key>Scale</key>
+						<string>{1, 1}</string>
+						<key>SpriteSize</key>
+						<string>{162.5, 34}</string>
+						<key>SpriteWasBreaked</key>
+						<false/>
+						<key>Tag</key>
+						<integer>0</integer>
+						<key>TextureOffset</key>
+						<string>{0.375, 0.5}</string>
+						<key>UsesBatchRendering</key>
+						<true/>
+						<key>ZOrder</key>
+						<integer>14</integer>
 					</dict>
 				</dict>
 				<key>Toolbox-Item-Container</key>
@@ -6088,7 +6088,7 @@
 					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
 					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
 					AAAAAAgAAAAEAwAAgulNAwAAAAAIAAAABAMA
-					AH3TWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AH3bWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
 					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
 					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
 					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
@@ -6099,12 +6099,12 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD6AAAAAQIAADg3MzUwZTllMDA5
-					ODMzOGU2NGVmZDUxZTliZTNjNTc0MjYwZTE2
-					MjM7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD6AAAAAQIAADVlYTc3ODBlM2Ez
+					NWFlYTM0NmU1YWFhYjliMDZjOTc0NWRlNjUx
+					MmQ7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
-					MDAwMDAwMDAzNTlkMzdkOy91c2Vycy9zdGV2
+					MDAwMDAwMDAzNTlkYjdkOy91c2Vycy9zdGV2
 					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
 					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
 					L3NyYy1hc3NldHMvaW1hZ2VzL2h1ZC90b29s
@@ -6173,9 +6173,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{344, 64}, {38.5, 34.5}}</string>
+						<string>{{344, 73}, {38.5, 34.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{1376, 256}, {154, 138}}</string>
+						<string>{{1376, 292}, {154, 138}}</string>
 						<key>Image</key>
 						<string>Spritesheet_HUD.png</string>
 						<key>Image-HD</key>
@@ -6201,7 +6201,7 @@
 						<key>OriginalSize</key>
 						<string>{154, 138}</string>
 						<key>Position</key>
-						<string>{1376, 256}</string>
+						<string>{1376, 292}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -6239,7 +6239,7 @@
 					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
 					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
 					095NAwAAAAAIAAAABAMAAILpTQMAAAAACAAA
-					AAQDAAB+01kDAAAAACwAAAABBgAA+AAAAAgB
+					AAQDAAB+21kDAAAAACwAAAABBgAA+AAAAAgB
 					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
 					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
 					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
@@ -6250,12 +6250,12 @@
 					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
 					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
 					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
-					BAAAAAMDAAAAAQAAAAEAAAECAAA0NzVlMWZj
-					NjY0YmY2YmE5MTg1NTMwYzJmMTc5NDI1Nzk1
-					MTkxMjQ4OzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					BAAAAAMDAAAAAQAAAAEAAAECAAA4YmFmYTEw
+					ZWI0OGZmNjI3NzAxMjhmMGZkMWQ3NjRiMzRm
+					ZWFmNGZjOzAwMDAwMDAwOzAwMDAwMDAwMDAw
 					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
 					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
-					MDI7MDAwMDAwMDAwMzU5ZDM3ZTsvdXNlcnMv
+					MDI7MDAwMDAwMDAwMzU5ZGI3ZTsvdXNlcnMv
 					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
 					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
 					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9odWQv
@@ -6389,7 +6389,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAAIXTWQMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAAITbWQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -6401,12 +6401,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAAGIxYzhlZTRlNzU2NjA0YTczMjgyYjYw
-					M2QzZTI1MWNiOWU1Njg3ODA7MDAwMDAwMDA7
+					AQIAAGJhZDQzYWEwMGU3NDFiNGE4MTRhN2Ew
+					YWQ2OTFlZWU0ZWZmYTA2NTE7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTlk
-					Mzg1Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					Yjg0Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC90dXRvcmlhbDEucG5nAAAA
@@ -6539,7 +6539,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAAIfTWQMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAAIjbWQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -6551,12 +6551,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAADRmYjQwOTFkZWQzYTJhNzlhYWJlYjk2
-					ZTIxZmNjNzk3YWY2YTliOGQ7MDAwMDAwMDA7
+					AQIAADZlNDJlN2Q5Njg5MjE4OTVkYWE1YjJl
+					NDRlZTY2ODY4MTM5MDRmZTU7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTlk
-					Mzg3Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					Yjg4Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC90dXRvcmlhbDIucG5nAAAA
@@ -6689,7 +6689,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAAJ7TWQMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAAKfbWQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -6701,12 +6701,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAADljOWM0OGM4OTc5MGE2MGYxZjkyMGY3
-					M2JlNDhmYmY0OTM0MDdjMjk7MDAwMDAwMDA7
+					AQIAAGM1ZTcwNDQzNzY3NTA5YTNkMTJhMmQ4
+					NmZmYWI2MjkzYjNmNDJiZDA7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTlk
-					MzllOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					YmE3Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC90dXRvcmlhbDMucG5nAAAA
@@ -8489,7 +8489,7 @@
 			<key>MaxSheetSize</key>
 			<integer>4096</integer>
 			<key>NpotSize</key>
-			<string>{2052, 4092}</string>
+			<string>{2052, 4072}</string>
 			<key>Padding</key>
 			<integer>8</integer>
 			<key>PixelFormat</key>
@@ -8525,7 +8525,7 @@
 					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
 					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
 					AAAAAAgAAAAEAwAA6q9WAwAAAAAIAAAABAMA
-					ADTTWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AGDWWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
 					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
 					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
 					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
@@ -8536,12 +8536,12 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD7AAAAAQIAAGM1MDYyYzNhMDJk
-					MGNlOTcyOGU3ODA0YjQ1YzZiYWZiOTI1NDhl
-					Zjg7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD7AAAAAQIAAGY4ZmYyYjU3ZTFm
+					MDBmZjRkYWViNjFmMDdkMDlmMGUzY2M2ZWYx
+					NTU7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
-					MDAwMDAwMDAzNTlkMzM0Oy91c2Vycy9zdGV2
+					MDAwMDAwMDAzNTlkNjYwOy91c2Vycy9zdGV2
 					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
 					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
 					L3NyYy1hc3NldHMvaW1hZ2VzL21lbnUvYXZh
@@ -8610,9 +8610,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{113, 939}, {44, 44}}</string>
+						<string>{{191, 950}, {44, 44}}</string>
 						<key>Frame-HD</key>
-						<string>{{452, 3756}, {176, 176}}</string>
+						<string>{{764, 3800}, {176, 176}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Menu.png</string>
 						<key>Image-HD</key>
@@ -8638,7 +8638,7 @@
 						<key>OriginalSize</key>
 						<string>{176, 176}</string>
 						<key>Position</key>
-						<string>{452, 3756}</string>
+						<string>{764, 3800}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -8676,7 +8676,7 @@
 					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
 					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
 					AAAAAAgAAAAEAwAA6q9WAwAAAAAIAAAABAMA
-					ADPTWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AF/WWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
 					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
 					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
 					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
@@ -8687,12 +8687,12 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD9AAAAAQIAADEwNmU5MDdjY2E1
-					NTExMDRlMThmNTM2YzUyNjdkNTViN2JmOWM4
-					YTM7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD9AAAAAQIAADAxNTViYzMzMmIx
+					NjkzODRhMDdjZTA3MzNlODJjZDk0MjBmMWY0
+					MDE7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
-					MDAwMDAwMDAzNTlkMzMzOy91c2Vycy9zdGV2
+					MDAwMDAwMDAzNTlkNjVmOy91c2Vycy9zdGV2
 					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
 					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
 					L3NyYy1hc3NldHMvaW1hZ2VzL21lbnUvYXZh
@@ -8761,9 +8761,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{191, 815}, {44, 44}}</string>
+						<string>{{191, 770}, {44, 44}}</string>
 						<key>Frame-HD</key>
-						<string>{{764, 3260}, {176, 176}}</string>
+						<string>{{764, 3080}, {176, 176}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Menu.png</string>
 						<key>Image-HD</key>
@@ -8789,7 +8789,7 @@
 						<key>OriginalSize</key>
 						<string>{176, 176}</string>
 						<key>Position</key>
-						<string>{764, 3260}</string>
+						<string>{764, 3080}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -8826,7 +8826,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					6q9WAwAAAAAIAAAABAMAADLTWQMAAAAALAAA
+					6q9WAwAAAAAIAAAABAMAAFzWWQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -8838,12 +8838,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADZkMGNhZjMzZDQ2YWNkYzEzNDg1ZDE1
-					YmE5OTY5NTE4MzNhMmQ0OTc7MDAwMDAwMDA7
+					AQIAADRkOTY0ZTRlZTgxYTEwYzc2ZGY5OGVk
+					MTE5MTkyOTllNzg3YTcxZWQ7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTlk
-					MzMyOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					NjVjOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21lbnUvYmFja19hY3RpdmUucG5n
@@ -8911,9 +8911,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{113, 984}, {39, 39}}</string>
+						<string>{{113, 972}, {59.75, 32.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{452, 3936}, {156, 156}}</string>
+						<string>{{452, 3888}, {239, 131}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Menu.png</string>
 						<key>Image-HD</key>
@@ -8935,15 +8935,15 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/Menu/Back_active.png/</string>
 						<key>OriginalRect</key>
-						<string>{{0, 0}, {156, 156}}</string>
+						<string>{{0, 0}, {239, 131}}</string>
 						<key>OriginalSize</key>
-						<string>{156, 156}</string>
+						<string>{239, 131}</string>
 						<key>Position</key>
-						<string>{452, 3936}</string>
+						<string>{452, 3888}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
-						<string>{39, 39}</string>
+						<string>{59.75, 32.75}</string>
 						<key>SpriteWasBreaked</key>
 						<false/>
 						<key>Tag</key>
@@ -8976,7 +8976,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAAAx01kDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAABb1lkDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -8988,12 +8988,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAxZDM5YjcyMjBhYWRhNGNjZGMx
-					MTI0OWYyOTEzMjA1MDQxNjNkMDNmOzAwMDAw
+					8gAAAAECAAA3ZTkwMDhiZjAyOTIwNGU5ZjQ1
+					NDRlNDBjMGNjMDczZmUyZjYyMTk2OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDMzMTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZDY1YjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L2JhY2tfaW5hY3Rp
@@ -9062,9 +9062,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{236, 770}, {39, 39}}</string>
+						<string>{{113, 939}, {59.75, 32.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{944, 3080}, {156, 156}}</string>
+						<string>{{452, 3756}, {239, 131}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Menu.png</string>
 						<key>Image-HD</key>
@@ -9086,15 +9086,15 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/Menu/Back_inactive.png/</string>
 						<key>OriginalRect</key>
-						<string>{{0, 0}, {156, 156}}</string>
+						<string>{{0, 0}, {239, 131}}</string>
 						<key>OriginalSize</key>
-						<string>{156, 156}</string>
+						<string>{239, 131}</string>
 						<key>Position</key>
-						<string>{944, 3080}</string>
+						<string>{452, 3756}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
-						<string>{39, 39}</string>
+						<string>{59.75, 32.75}</string>
 						<key>SpriteWasBreaked</key>
 						<false/>
 						<key>Tag</key>
@@ -9128,7 +9128,7 @@
 					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
 					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
 					AAAAAAgAAAAEAwAA6q9WAwAAAAAIAAAABAMA
-					AEjTWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AG/WWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
 					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
 					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
 					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
@@ -9139,12 +9139,12 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD7AAAAAQIAADlkMDQ0YjJkZTc3
-					OWUxZGUyY2JhYjBhYzU1OTIyYzcyMGQ2MWU2
-					NDY7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD7AAAAAQIAAGJjODMzZWYzYWEw
+					YTQ0OGJjZTI4NTI2MGM4OWJiM2JiOGU4NzMw
+					ZGU7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
-					MDAwMDAwMDAzNTlkMzQ4Oy91c2Vycy9zdGV2
+					MDAwMDAwMDAzNTlkNjZmOy91c2Vycy9zdGV2
 					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
 					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
 					L3NyYy1hc3NldHMvaW1hZ2VzL21lbnUvY29t
@@ -9213,9 +9213,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{191, 860}, {44, 44}}</string>
+						<string>{{191, 815}, {44, 44}}</string>
 						<key>Frame-HD</key>
-						<string>{{764, 3440}, {176, 176}}</string>
+						<string>{{764, 3260}, {176, 176}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Menu.png</string>
 						<key>Image-HD</key>
@@ -9241,7 +9241,7 @@
 						<key>OriginalSize</key>
 						<string>{176, 176}</string>
 						<key>Position</key>
-						<string>{764, 3440}</string>
+						<string>{764, 3260}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -9279,7 +9279,7 @@
 					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
 					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
 					AAAAAAgAAAAEAwAA6q9WAwAAAAAIAAAABAMA
-					AEPTWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AG7WWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
 					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
 					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
 					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
@@ -9290,12 +9290,12 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD9AAAAAQIAADc1YTc0MmE2YWEx
-					NjdkYzM0ODgwM2UxYmZhZjkzZDhkMjhjZDJk
-					MzA7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD9AAAAAQIAADVkZTZiODVjOTZi
+					ZGU2NzRkYjA4MDYxOTc5MGQ0YmE1NWVlODFl
+					NDU7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
-					MDAwMDAwMDAzNTlkMzQzOy91c2Vycy9zdGV2
+					MDAwMDAwMDAzNTlkNjZlOy91c2Vycy9zdGV2
 					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
 					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
 					L3NyYy1hc3NldHMvaW1hZ2VzL21lbnUvY29t
@@ -9364,9 +9364,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{191, 770}, {44, 44}}</string>
+						<string>{{236, 770}, {44, 44}}</string>
 						<key>Frame-HD</key>
-						<string>{{764, 3080}, {176, 176}}</string>
+						<string>{{944, 3080}, {176, 176}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Menu.png</string>
 						<key>Image-HD</key>
@@ -9392,7 +9392,7 @@
 						<key>OriginalSize</key>
 						<string>{176, 176}</string>
 						<key>Position</key>
-						<string>{764, 3080}</string>
+						<string>{944, 3080}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -9429,7 +9429,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABY01kDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAB71lkDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -9441,12 +9441,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9QAAAAECAABhOTU3NmQwZGU2N2E5NjU5NTli
-					MWFlNWU5NjMzODAyOTBkOWJiNmJmOzAwMDAw
+					9QAAAAECAAA4YzlkMDYxNjJkZWNkNGU4Mzdm
+					Zjc5ODc2MmMzZmIyNWUxNmE0NzQ3OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM1ODsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZDY3YjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L2xldmVsX2xvc3Rf
@@ -9580,7 +9580,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABA01kDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAABq1lkDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -9592,12 +9592,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAAxZTZiZjYzMGY3YWVmOTUwYjA1
-					ZjZjZGFjYmEyNWNjN2M4OWY0ZjEzOzAwMDAw
+					9AAAAAECAABhNmRkNzBlYzY0NmUwMDY4YTM4
+					MTIxOTc5MTg4MWNiMWFiMGEyMTliOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM0MDsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZDY2YTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L2xldmVsX3dvbl9w
@@ -9731,7 +9731,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAN9NZ
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAYtZZ
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -9743,12 +9743,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPcAAAABAgAAZmMyMTRmNDdkMzI3YjM4
-					ZDFjZjE5M2Q5ZTA4ZDFjNTk1ZWM1NzcxMjsw
+					AAEAAPcAAAABAgAAN2MzOWE3MzMyNjdkODhj
+					M2VlOWM0NDFlNzQ0NjI1YmU0MTk4ZGU1Mjsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1OWQzMzc7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1OWQ2NjI7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9sZXZlbHNf
@@ -9817,9 +9817,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{236, 888}, {37.75, 37.75}}</string>
+						<string>{{236, 893}, {37.75, 37.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{944, 3552}, {151, 151}}</string>
+						<string>{{944, 3572}, {151, 151}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Menu.png</string>
 						<key>Image-HD</key>
@@ -9845,7 +9845,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{944, 3552}</string>
+						<string>{944, 3572}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -9882,7 +9882,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAANtNZ
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAYdZZ
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -9894,12 +9894,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPkAAAABAgAAMjZlM2FhNDA3YzBkNGNl
-					ODU0ZGVhNjBjMTc0N2EzYzIyMDdjMWQ3NTsw
+					AAEAAPkAAAABAgAANWE1YTk4ZWM3NWQ5Njhm
+					NjJkYmM0ODA2ZWM5ODBkYTA1Mjk1NWFkNjsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1OWQzMzY7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1OWQ2NjE7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9sZXZlbHNf
@@ -9968,9 +9968,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{236, 810}, {37.75, 37.75}}</string>
+						<string>{{236, 815}, {37.75, 37.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{944, 3240}, {151, 151}}</string>
+						<string>{{944, 3260}, {151, 151}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Menu.png</string>
 						<key>Image-HD</key>
@@ -9996,7 +9996,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{944, 3240}</string>
+						<string>{944, 3260}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -10033,7 +10033,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					6q9WAwAAAAAIAAAABAMAAD3TWQMAAAAALAAA
+					6q9WAwAAAAAIAAAABAMAAGPWWQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -10045,12 +10045,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADvAAAA
-					AQIAADNhYWIzYmE1NTRjMmYyNzExZmMzMTk0
-					YWI1MDM5ODFjMjJjMGE3MmU7MDAwMDAwMDA7
+					AQIAAGIzZDQ3ZDk2OGNkNGJjM2Q3MmY5MjE3
+					OWNjNGM5ODEyZjYwOTYxZTA7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTlk
-					MzNkOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					NjYzOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21lbnUvbWVudV9wb3B1cC5wbmcA
@@ -10183,7 +10183,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAQtNZ
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAbdZZ
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -10195,12 +10195,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPYAAAABAgAAOWY0NmYwMmU3NWI3YjEw
-					NTNiYzdmOTcyMzE5MjI3MTI0MGM1NWQ0ZDsw
+					AAEAAPYAAAABAgAAYzJhMzIzOGJhOTEzOWM0
+					ZDhlYjZkNWY0MzJhOGM5ZjkxNWExOWYxZTsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1OWQzNDI7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1OWQ2NmQ7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9uZXh0X2xl
@@ -10269,9 +10269,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{236, 965}, {37.75, 37.75}}</string>
+						<string>{{236, 970}, {37.75, 37.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{944, 3860}, {151, 151}}</string>
+						<string>{{944, 3880}, {151, 151}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Menu.png</string>
 						<key>Image-HD</key>
@@ -10297,7 +10297,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{944, 3860}</string>
+						<string>{944, 3880}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -10334,7 +10334,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAQdNZ
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAbNZZ
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -10346,12 +10346,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPgAAAABAgAAYTcyOTY3NGE1MTcxZWE0
-					OTdkMjAxNTNlYTNjZjYwODFhZWE5YjBiYjsw
+					AAEAAPgAAAABAgAAZjE0MmU0YzA4YjRiOTNl
+					NTA3MGE2MTY2MDk4ZDU0M2FjNDMwYjNmZDsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1OWQzNDE7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1OWQ2NmM7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9uZXh0X2xl
@@ -10420,9 +10420,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{236, 927}, {37.75, 37.75}}</string>
+						<string>{{236, 932}, {37.75, 37.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{944, 3708}, {151, 151}}</string>
+						<string>{{944, 3728}, {151, 151}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Menu.png</string>
 						<key>Image-HD</key>
@@ -10448,7 +10448,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{944, 3708}</string>
+						<string>{944, 3728}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -10485,7 +10485,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					6q9WAwAAAAAIAAAABAMAADDTWQMAAAAALAAA
+					6q9WAwAAAAAIAAAABAMAAFrWWQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -10497,12 +10497,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADE2YTZmYzUxZGI1NGQ1ZGNjM2Q4ZTcw
-					ZDg2ZDgwZGQ2NDFkZGJmMzM7MDAwMDAwMDA7
+					AQIAAGI5OGYyZGY2Nzc0M2QwZjNkMTFiNzRi
+					NWMzN2MxY2IwYjM2NjU0MGI7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTlk
-					MzMwOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					NjVhOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21lbnUvcGxheV9hY3RpdmUucG5n
@@ -10635,7 +10635,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAAAv01kDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAABZ1lkDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -10647,12 +10647,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA1ZWEyYzIzNTIyMDk0OWNmNjlh
-					MzE0OGRmZDc5Yzk5YWUwZWJjMTA5OzAwMDAw
+					8gAAAAECAABmZGFhYWExNjk1ZTBiOWMxNTQ0
+					ZDIxNGQ4MDA0YTQ2ZmM4OWQ3ZDRmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDMyZjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZDY1OTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3BsYXlfaW5hY3Rp
@@ -10786,7 +10786,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABQ01kDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAB11lkDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -10798,12 +10798,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8wAAAAECAABhNjg5YTRmMmUwMDlhNWZkMDc2
-					MDhiY2QyNjc0MWZhMzI3MjQyNzczOzAwMDAw
+					8wAAAAECAAAyY2IxMDE0ZmIzNjlkYzczNDFh
+					ODZjNWVmZmQ3NmZlMDRmZGFlZWJmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM1MDsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZDY3NTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3RhcnRfYWN0
@@ -10872,9 +10872,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{276, 770}, {37.75, 37.75}}</string>
+						<string>{{281, 770}, {37.75, 37.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{1104, 3080}, {151, 151}}</string>
+						<string>{{1124, 3080}, {151, 151}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Menu.png</string>
 						<key>Image-HD</key>
@@ -10900,7 +10900,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{1104, 3080}</string>
+						<string>{1124, 3080}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -10937,7 +10937,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABP01kDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAB01lkDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -10949,12 +10949,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9QAAAAECAAA1YzBlZmY1NWI0MGFkNjFiOWY4
-					ZjY2YTgyMWE0MGJmMTNjYzBjM2ZjOzAwMDAw
+					9QAAAAECAABlZGM4MmY1OTM0NWIzOTdjNDg1
+					NmU5NmU4ZjhhNGIwZTVhNTQwZGU3OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM0ZjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZDY3NDsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3RhcnRfaW5h
@@ -11023,9 +11023,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{236, 849}, {37.75, 37.75}}</string>
+						<string>{{236, 854}, {37.75, 37.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{944, 3396}, {151, 151}}</string>
+						<string>{{944, 3416}, {151, 151}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Menu.png</string>
 						<key>Image-HD</key>
@@ -11051,7 +11051,7 @@
 						<key>OriginalSize</key>
 						<string>{156, 156}</string>
 						<key>Position</key>
-						<string>{944, 3396}</string>
+						<string>{944, 3416}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -11088,7 +11088,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABM01kDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAABx1lkDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -11100,12 +11100,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA0MjY1ZDg3NmM2ZjExNGQyNTQy
-					NTRkNjE2NTkwYTI2MmZhMjJmZjdhOzAwMDAw
+					8gAAAAECAABlZGFlZDY0YTE2ODJkZjhkZTRh
+					NWI2NTA2NDAyMWUxOWZkNjNkYWQzOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM0YzsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZDY3MTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3VtZV9hY3Rp
@@ -11239,7 +11239,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABL01kDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAABw1lkDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -11251,12 +11251,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAA0NmU5MzA5OGU3NGEzMjNhMWQ4
-					NjMwMTVmYzE5MjE1NTBhZDA5YWJjOzAwMDAw
+					9AAAAAECAAAzOTI5NzZhMzQ5ODE3NDM3OTIz
+					YzJiNjc2Mjg3NjkwNjQ3NDRiOWJmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM0YjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZDY3MDsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3VtZV9pbmFj
@@ -11325,9 +11325,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{315, 770}, {67, 18}}</string>
+						<string>{{320, 770}, {67, 18}}</string>
 						<key>Frame-HD</key>
-						<string>{{1260, 3080}, {268, 72}}</string>
+						<string>{{1280, 3080}, {268, 72}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Menu.png</string>
 						<key>Image-HD</key>
@@ -11353,7 +11353,7 @@
 						<key>OriginalSize</key>
 						<string>{268, 72}</string>
 						<key>Position</key>
-						<string>{1260, 3080}</string>
+						<string>{1280, 3080}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -11391,7 +11391,7 @@
 					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
 					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
 					AAAAAAgAAAAEAwAA6q9WAwAAAAAIAAAABAMA
-					AE7TWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AHPWWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
 					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
 					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
 					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
@@ -11402,12 +11402,12 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD9AAAAAQIAAGQ0NTk3Y2FlMjE1
-					NjIwZTQ3OGE4MjM3MWU1YmQxNDQwY2M1ODRm
-					NGY7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD9AAAAAQIAAGNmMmVkNTY5N2Q1
+					YzAwY2JmYTZmY2ZkNDFhOGM3YWNlZjhkZWM0
+					N2Q7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
-					MDAwMDAwMDAzNTlkMzRlOy91c2Vycy9zdGV2
+					MDAwMDAwMDAzNTlkNjczOy91c2Vycy9zdGV2
 					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
 					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
 					L3NyYy1hc3NldHMvaW1hZ2VzL21lbnUvdW5h
@@ -11476,9 +11476,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{191, 950}, {44, 44}}</string>
+						<string>{{191, 905}, {44, 44}}</string>
 						<key>Frame-HD</key>
-						<string>{{764, 3800}, {176, 176}}</string>
+						<string>{{764, 3620}, {176, 176}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Menu.png</string>
 						<key>Image-HD</key>
@@ -11504,7 +11504,7 @@
 						<key>OriginalSize</key>
 						<string>{176, 176}</string>
 						<key>Position</key>
-						<string>{764, 3800}</string>
+						<string>{764, 3620}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -11542,7 +11542,7 @@
 					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
 					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
 					095NAwAAAAAIAAAABAMAAOqvVgMAAAAACAAA
-					AAQDAABN01kDAAAAACwAAAABBgAA+AAAAAgB
+					AAQDAABy1lkDAAAAACwAAAABBgAA+AAAAAgB
 					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
 					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
 					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
@@ -11553,12 +11553,12 @@
 					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
 					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
 					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
-					BAAAAAMDAAAAAQAA/wAAAAECAAA0ODRiMzQz
-					Yjk5MDgzMjQ5ZmM0MTBhNDM2Njg1MmZkNDFk
-					M2E4OGJmOzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					BAAAAAMDAAAAAQAA/wAAAAECAABmYjg4MWNj
+					MTgyM2JiMGU5NmFhYTgxMmMzOTg0OGJiZmMy
+					NWIwNmY1OzAwMDAwMDAwOzAwMDAwMDAwMDAw
 					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
 					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
-					MDI7MDAwMDAwMDAwMzU5ZDM0ZDsvdXNlcnMv
+					MDI7MDAwMDAwMDAwMzU5ZDY3MjsvdXNlcnMv
 					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
 					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
 					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9tZW51
@@ -11627,9 +11627,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{191, 905}, {44, 44}}</string>
+						<string>{{191, 860}, {44, 44}}</string>
 						<key>Frame-HD</key>
-						<string>{{764, 3620}, {176, 176}}</string>
+						<string>{{764, 3440}, {176, 176}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Menu.png</string>
 						<key>Image-HD</key>
@@ -11655,7 +11655,7 @@
 						<key>OriginalSize</key>
 						<string>{176, 176}</string>
 						<key>Position</key>
-						<string>{764, 3620}</string>
+						<string>{764, 3440}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -11707,7 +11707,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAB701kDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAB721kDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -11719,12 +11719,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8QAAAAECAABlNTI4ZmU1MTM4MjRmNDA1ZmQw
-					ZTc3ZTJjZDgwMzUxN2MwYzVhNTQ4OzAwMDAw
+					8QAAAAECAABkNjdkY2M1NTE5NWYyMjI3ZDc0
+					NzEyYjMxMTA4OWFjYTVhYzdhMTE2OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM3YjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZGI3YjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcGxheV9pbmFjdGl2
@@ -11740,9 +11740,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{422, 25}, {37.75, 37.75}}</string>
+					<string>{{383, 34}, {37.75, 37.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{1688, 100}, {151, 151}}</string>
+					<string>{{1532, 136}, {151, 151}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -11779,7 +11779,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAAHzTWQMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAAHzbWQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -11791,12 +11791,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADvAAAA
-					AQIAADE5ZmRlZWNiYzE1ODQzNmUzZTc3YjE0
-					ZGVlZTk1ZTcxZjY2NzM5NmM7MDAwMDAwMDA7
+					AQIAADE4MTRkZTZkODhlZWYxNDMxMGZmMjcw
+					MWNkYWZlMmEwODU3YWEwOTg7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTlk
-					MzdjOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					YjdjOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC9wbGF5X2FjdGl2ZS5wbmcA
@@ -11811,9 +11811,9 @@
 					ALQCAAAAAAAAgPAAAMACAAAAAAAA
 					</data>
 					<key>Frame</key>
-					<string>{{306, 64}, {37.75, 37.75}}</string>
+					<string>{{422, 34}, {37.75, 37.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{1224, 256}, {151, 151}}</string>
+					<string>{{1688, 136}, {151, 151}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -11850,7 +11850,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAB301kDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAB321kDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -11862,12 +11862,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAxNTY4MDc3ZmIxZWM4NmU1NzNl
-					N2ZhNzliNzFmNDg5NTgzMTUyNjc5OzAwMDAw
+					8gAAAAECAABjN2YyNTk2M2ZkNzIwNmI2YWQy
+					MWZlNGYxYmRlYWY3Y2QwZTUzNGUxOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM3NzsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZGI3NzsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcGF1c2VfaW5hY3Rp
@@ -11883,9 +11883,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{344, 25}, {37.75, 37.75}}</string>
+					<string>{{306, 34}, {37.75, 37.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{1376, 100}, {151, 151}}</string>
+					<string>{{1224, 136}, {151, 151}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -11922,7 +11922,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					gulNAwAAAAAIAAAABAMAAHjTWQMAAAAALAAA
+					gulNAwAAAAAIAAAABAMAAHjbWQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -11934,12 +11934,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADlkZGQwN2RiY2Y4N2ZlMjA1MGQ1ZDE1
-					NWI4Y2U5NGM5NWQ2ZThkMmM7MDAwMDAwMDA7
+					AQIAAGVmNDliMzM0MTc0MDI3OGQwZDVlYzQx
+					NGFjMGU4YTJiOWE1MTA2MTk7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTlk
-					Mzc4Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					Yjc4Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL2h1ZC9wYXVzZV9hY3RpdmUucG5n
@@ -11954,9 +11954,9 @@
 					ALQCAAAAAAAAgPAAAMACAAAAAAAA
 					</data>
 					<key>Frame</key>
-					<string>{{383, 25}, {37.75, 37.75}}</string>
+					<string>{{344, 34}, {37.75, 37.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{1532, 100}, {151, 151}}</string>
+					<string>{{1376, 136}, {151, 151}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -12014,7 +12014,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAB501kDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAB521kDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -12026,12 +12026,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABmNmM1MjVmZjZkYzg0OWZjY2U0
-					Mjg4MmUxMGQyMTEzN2NkNzc5M2I2OzAwMDAw
+					9AAAAAECAAAyYzFiOGI2ZmMwMzhjYzU4MDkz
+					MWQ3OGU4ZTBjYzVmZWU3MWE3MjM1OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM3OTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZGI3OTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcmVzdGFydF9pbmFj
@@ -12047,9 +12047,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{306, 25}, {37.75, 37.75}}</string>
+					<string>{{260, 172}, {37.75, 37.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{1224, 100}, {151, 151}}</string>
+					<string>{{1040, 688}, {151, 151}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -12086,7 +12086,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAILpTQMAAAAACAAAAAQDAAB601kDAAAA
+					BAMAAILpTQMAAAAACAAAAAQDAAB621kDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -12098,12 +12098,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA2YzI5MmZjMzVmY2IzZGM2ZTNk
-					YmViMTIwOWQ5OTVmNWM2ZmNmNjliOzAwMDAw
+					8gAAAAECAAAyMmE4NmQ5ZmFkMTg4NGI5Y2Y2
+					NTc2ZmY0YTRiOTcxMzUxODZiMmQ3OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM3YTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZGI3YTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9odWQvcmVzdGFydF9hY3Rp
@@ -12119,9 +12119,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{260, 163}, {37.75, 37.75}}</string>
+					<string>{{306, 73}, {37.75, 37.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{1040, 652}, {151, 151}}</string>
+					<string>{{1224, 292}, {151, 151}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -12179,7 +12179,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAAAv01kDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAABZ1lkDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -12191,12 +12191,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA1ZWEyYzIzNTIyMDk0OWNmNjlh
-					MzE0OGRmZDc5Yzk5YWUwZWJjMTA5OzAwMDAw
+					8gAAAAECAABmZGFhYWExNjk1ZTBiOWMxNTQ0
+					ZDIxNGQ4MDA0YTQ2ZmM4OWQ3ZDRmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDMyZjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZDY1OTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3BsYXlfaW5hY3Rp
@@ -12251,7 +12251,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					6q9WAwAAAAAIAAAABAMAADDTWQMAAAAALAAA
+					6q9WAwAAAAAIAAAABAMAAFrWWQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -12263,12 +12263,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADE2YTZmYzUxZGI1NGQ1ZGNjM2Q4ZTcw
-					ZDg2ZDgwZGQ2NDFkZGJmMzM7MDAwMDAwMDA7
+					AQIAAGI5OGYyZGY2Nzc0M2QwZjNkMTFiNzRi
+					NWMzN2MxY2IwYjM2NjU0MGI7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTlk
-					MzMwOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					NjVhOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21lbnUvcGxheV9hY3RpdmUucG5n
@@ -12344,7 +12344,7 @@
 					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
 					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
 					AAAAAAgAAAAEAwAA6q9WAwAAAAAIAAAABAMA
-					ADPTWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AF/WWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
 					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
 					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
 					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
@@ -12355,12 +12355,12 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD9AAAAAQIAADEwNmU5MDdjY2E1
-					NTExMDRlMThmNTM2YzUyNjdkNTViN2JmOWM4
-					YTM7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD9AAAAAQIAADAxNTViYzMzMmIx
+					NjkzODRhMDdjZTA3MzNlODJjZDk0MjBmMWY0
+					MDE7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
-					MDAwMDAwMDAzNTlkMzMzOy91c2Vycy9zdGV2
+					MDAwMDAwMDAzNTlkNjVmOy91c2Vycy9zdGV2
 					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
 					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
 					L3NyYy1hc3NldHMvaW1hZ2VzL21lbnUvYXZh
@@ -12376,9 +12376,9 @@
 					AADAAgAAAAAAAIDwAADMAgAAAAAAAA==
 					</data>
 					<key>Frame</key>
-					<string>{{191, 815}, {44, 44}}</string>
+					<string>{{191, 770}, {44, 44}}</string>
 					<key>Frame-HD</key>
-					<string>{{764, 3260}, {176, 176}}</string>
+					<string>{{764, 3080}, {176, 176}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -12416,7 +12416,7 @@
 					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
 					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
 					AAAAAAgAAAAEAwAA6q9WAwAAAAAIAAAABAMA
-					ADTTWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AGDWWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
 					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
 					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
 					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
@@ -12427,12 +12427,12 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD7AAAAAQIAAGM1MDYyYzNhMDJk
-					MGNlOTcyOGU3ODA0YjQ1YzZiYWZiOTI1NDhl
-					Zjg7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD7AAAAAQIAAGY4ZmYyYjU3ZTFm
+					MDBmZjRkYWViNjFmMDdkMDlmMGUzY2M2ZWYx
+					NTU7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
-					MDAwMDAwMDAzNTlkMzM0Oy91c2Vycy9zdGV2
+					MDAwMDAwMDAzNTlkNjYwOy91c2Vycy9zdGV2
 					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
 					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
 					L3NyYy1hc3NldHMvaW1hZ2VzL21lbnUvYXZh
@@ -12448,9 +12448,9 @@
 					AAAAAAAAgPAAAMwCAAAAAAAA
 					</data>
 					<key>Frame</key>
-					<string>{{113, 939}, {44, 44}}</string>
+					<string>{{191, 950}, {44, 44}}</string>
 					<key>Frame-HD</key>
-					<string>{{452, 3756}, {176, 176}}</string>
+					<string>{{764, 3800}, {176, 176}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -12508,7 +12508,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAAAx01kDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAABb1lkDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -12520,12 +12520,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAxZDM5YjcyMjBhYWRhNGNjZGMx
-					MTI0OWYyOTEzMjA1MDQxNjNkMDNmOzAwMDAw
+					8gAAAAECAAA3ZTkwMDhiZjAyOTIwNGU5ZjQ1
+					NDRlNDBjMGNjMDczZmUyZjYyMTk2OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDMzMTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZDY1YjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L2JhY2tfaW5hY3Rp
@@ -12541,15 +12541,15 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{236, 770}, {39, 39}}</string>
+					<string>{{113, 939}, {59.75, 32.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{944, 3080}, {156, 156}}</string>
+					<string>{{452, 3756}, {239, 131}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
 					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Menu/Back_inactive.png</string>
 					<key>SpriteSize</key>
-					<string>{39, 39}</string>
+					<string>{59.75, 32.75}</string>
 					<key>TextureOffset</key>
 					<string>{0, -0}</string>
 					<key>delayPerUnit</key>
@@ -12580,7 +12580,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					6q9WAwAAAAAIAAAABAMAADLTWQMAAAAALAAA
+					6q9WAwAAAAAIAAAABAMAAFzWWQMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -12592,12 +12592,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADZkMGNhZjMzZDQ2YWNkYzEzNDg1ZDE1
-					YmE5OTY5NTE4MzNhMmQ0OTc7MDAwMDAwMDA7
+					AQIAADRkOTY0ZTRlZTgxYTEwYzc2ZGY5OGVk
+					MTE5MTkyOTllNzg3YTcxZWQ7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTlk
-					MzMyOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					NjVjOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21lbnUvYmFja19hY3RpdmUucG5n
@@ -12612,15 +12612,15 @@
 					ALQCAAAAAAAAgPAAAMACAAAAAAAA
 					</data>
 					<key>Frame</key>
-					<string>{{113, 984}, {39, 39}}</string>
+					<string>{{113, 972}, {59.75, 32.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{452, 3936}, {156, 156}}</string>
+					<string>{{452, 3888}, {239, 131}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
 					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Menu/Back_active.png</string>
 					<key>SpriteSize</key>
-					<string>{39, 39}</string>
+					<string>{59.75, 32.75}</string>
 					<key>TextureOffset</key>
 					<string>{0, -0}</string>
 					<key>delayPerUnit</key>
@@ -12672,7 +12672,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAANtNZ
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAYdZZ
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -12684,12 +12684,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPkAAAABAgAAMjZlM2FhNDA3YzBkNGNl
-					ODU0ZGVhNjBjMTc0N2EzYzIyMDdjMWQ3NTsw
+					AAEAAPkAAAABAgAANWE1YTk4ZWM3NWQ5Njhm
+					NjJkYmM0ODA2ZWM5ODBkYTA1Mjk1NWFkNjsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1OWQzMzY7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1OWQ2NjE7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9sZXZlbHNf
@@ -12705,9 +12705,9 @@
 					AACA8AAAyAIAAAAAAAA=
 					</data>
 					<key>Frame</key>
-					<string>{{236, 810}, {37.75, 37.75}}</string>
+					<string>{{236, 815}, {37.75, 37.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{944, 3240}, {151, 151}}</string>
+					<string>{{944, 3260}, {151, 151}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -12744,7 +12744,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAN9NZ
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAYtZZ
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -12756,12 +12756,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPcAAAABAgAAZmMyMTRmNDdkMzI3YjM4
-					ZDFjZjE5M2Q5ZTA4ZDFjNTk1ZWM1NzcxMjsw
+					AAEAAPcAAAABAgAAN2MzOWE3MzMyNjdkODhj
+					M2VlOWM0NDFlNzQ0NjI1YmU0MTk4ZGU1Mjsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1OWQzMzc7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1OWQ2NjI7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9sZXZlbHNf
@@ -12777,9 +12777,9 @@
 					AADIAgAAAAAAAA==
 					</data>
 					<key>Frame</key>
-					<string>{{236, 888}, {37.75, 37.75}}</string>
+					<string>{{236, 893}, {37.75, 37.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{944, 3552}, {151, 151}}</string>
+					<string>{{944, 3572}, {151, 151}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -12837,7 +12837,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABL01kDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAABw1lkDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -12849,12 +12849,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAA0NmU5MzA5OGU3NGEzMjNhMWQ4
-					NjMwMTVmYzE5MjE1NTBhZDA5YWJjOzAwMDAw
+					9AAAAAECAAAzOTI5NzZhMzQ5ODE3NDM3OTIz
+					YzJiNjc2Mjg3NjkwNjQ3NDRiOWJmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM0YjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZDY3MDsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3VtZV9pbmFj
@@ -12870,9 +12870,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{315, 770}, {67, 18}}</string>
+					<string>{{320, 770}, {67, 18}}</string>
 					<key>Frame-HD</key>
-					<string>{{1260, 3080}, {268, 72}}</string>
+					<string>{{1280, 3080}, {268, 72}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -12909,7 +12909,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABM01kDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAABx1lkDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -12921,12 +12921,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA0MjY1ZDg3NmM2ZjExNGQyNTQy
-					NTRkNjE2NTkwYTI2MmZhMjJmZjdhOzAwMDAw
+					8gAAAAECAABlZGFlZDY0YTE2ODJkZjhkZTRh
+					NWI2NTA2NDAyMWUxOWZkNjNkYWQzOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM0YzsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZDY3MTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3VtZV9hY3Rp
@@ -13003,7 +13003,7 @@
 					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
 					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
 					095NAwAAAAAIAAAABAMAAOqvVgMAAAAACAAA
-					AAQDAABN01kDAAAAACwAAAABBgAA+AAAAAgB
+					AAQDAABy1lkDAAAAACwAAAABBgAA+AAAAAgB
 					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
 					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
 					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
@@ -13014,12 +13014,12 @@
 					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
 					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
 					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
-					BAAAAAMDAAAAAQAA/wAAAAECAAA0ODRiMzQz
-					Yjk5MDgzMjQ5ZmM0MTBhNDM2Njg1MmZkNDFk
-					M2E4OGJmOzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					BAAAAAMDAAAAAQAA/wAAAAECAABmYjg4MWNj
+					MTgyM2JiMGU5NmFhYTgxMmMzOTg0OGJiZmMy
+					NWIwNmY1OzAwMDAwMDAwOzAwMDAwMDAwMDAw
 					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
 					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
-					MDI7MDAwMDAwMDAwMzU5ZDM0ZDsvdXNlcnMv
+					MDI7MDAwMDAwMDAwMzU5ZDY3MjsvdXNlcnMv
 					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
 					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
 					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9tZW51
@@ -13035,9 +13035,9 @@
 					AAAQ0AAAxAIAAAAAAACA8AAA0AIAAAAAAAA=
 					</data>
 					<key>Frame</key>
-					<string>{{191, 905}, {44, 44}}</string>
+					<string>{{191, 860}, {44, 44}}</string>
 					<key>Frame-HD</key>
-					<string>{{764, 3620}, {176, 176}}</string>
+					<string>{{764, 3440}, {176, 176}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -13075,7 +13075,7 @@
 					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
 					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
 					AAAAAAgAAAAEAwAA6q9WAwAAAAAIAAAABAMA
-					AE7TWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AHPWWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
 					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
 					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
 					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
@@ -13086,12 +13086,12 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD9AAAAAQIAAGQ0NTk3Y2FlMjE1
-					NjIwZTQ3OGE4MjM3MWU1YmQxNDQwY2M1ODRm
-					NGY7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD9AAAAAQIAAGNmMmVkNTY5N2Q1
+					YzAwY2JmYTZmY2ZkNDFhOGM3YWNlZjhkZWM0
+					N2Q7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
-					MDAwMDAwMDAzNTlkMzRlOy91c2Vycy9zdGV2
+					MDAwMDAwMDAzNTlkNjczOy91c2Vycy9zdGV2
 					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
 					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
 					L3NyYy1hc3NldHMvaW1hZ2VzL21lbnUvdW5h
@@ -13107,9 +13107,9 @@
 					AADAAgAAAAAAAIDwAADMAgAAAAAAAA==
 					</data>
 					<key>Frame</key>
-					<string>{{191, 950}, {44, 44}}</string>
+					<string>{{191, 905}, {44, 44}}</string>
 					<key>Frame-HD</key>
-					<string>{{764, 3800}, {176, 176}}</string>
+					<string>{{764, 3620}, {176, 176}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -13168,7 +13168,7 @@
 					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
 					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
 					AAAAAAgAAAAEAwAA6q9WAwAAAAAIAAAABAMA
-					AEPTWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AG7WWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
 					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
 					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
 					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
@@ -13179,12 +13179,12 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD9AAAAAQIAADc1YTc0MmE2YWEx
-					NjdkYzM0ODgwM2UxYmZhZjkzZDhkMjhjZDJk
-					MzA7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD9AAAAAQIAADVkZTZiODVjOTZi
+					ZGU2NzRkYjA4MDYxOTc5MGQ0YmE1NWVlODFl
+					NDU7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
-					MDAwMDAwMDAzNTlkMzQzOy91c2Vycy9zdGV2
+					MDAwMDAwMDAzNTlkNjZlOy91c2Vycy9zdGV2
 					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
 					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
 					L3NyYy1hc3NldHMvaW1hZ2VzL21lbnUvY29t
@@ -13200,9 +13200,9 @@
 					AADAAgAAAAAAAIDwAADMAgAAAAAAAA==
 					</data>
 					<key>Frame</key>
-					<string>{{191, 770}, {44, 44}}</string>
+					<string>{{236, 770}, {44, 44}}</string>
 					<key>Frame-HD</key>
-					<string>{{764, 3080}, {176, 176}}</string>
+					<string>{{944, 3080}, {176, 176}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -13240,7 +13240,7 @@
 					AACmxk0DAAAAAAgAAAAEAwAAp8ZNAwAAAAAI
 					AAAABAMAANDeTQMAAAAACAAAAAQDAADT3k0D
 					AAAAAAgAAAAEAwAA6q9WAwAAAAAIAAAABAMA
-					AEjTWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
+					AG/WWQMAAAAALAAAAAEGAAD0AAAABAEAABQB
 					AAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACE
 					AQAAlAEAABgAAAABAgAAAQAAAAAAAAAPAAAA
 					AAAAAAAAAAAAAAAAAAAAAAEFAAAEAAAAAwMA
@@ -13251,12 +13251,12 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD7AAAAAQIAADlkMDQ0YjJkZTc3
-					OWUxZGUyY2JhYjBhYzU1OTIyYzcyMGQ2MWU2
-					NDY7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD7AAAAAQIAAGJjODMzZWYzYWEw
+					YTQ0OGJjZTI4NTI2MGM4OWJiM2JiOGU4NzMw
+					ZGU7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
-					MDAwMDAwMDAzNTlkMzQ4Oy91c2Vycy9zdGV2
+					MDAwMDAwMDAzNTlkNjZmOy91c2Vycy9zdGV2
 					ZS9jb2RlL2NvbnF1ZXIvcGVuZ3VpbiByZXNj
 					dWUvcGVuZ3VpbiByZXNjdWUvcmVzb3VyY2Vz
 					L3NyYy1hc3NldHMvaW1hZ2VzL21lbnUvY29t
@@ -13272,9 +13272,9 @@
 					AAAAAAAAgPAAAMwCAAAAAAAA
 					</data>
 					<key>Frame</key>
-					<string>{{191, 860}, {44, 44}}</string>
+					<string>{{191, 815}, {44, 44}}</string>
 					<key>Frame-HD</key>
-					<string>{{764, 3440}, {176, 176}}</string>
+					<string>{{764, 3260}, {176, 176}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -13332,7 +13332,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAQdNZ
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAbNZZ
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -13344,12 +13344,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPgAAAABAgAAYTcyOTY3NGE1MTcxZWE0
-					OTdkMjAxNTNlYTNjZjYwODFhZWE5YjBiYjsw
+					AAEAAPgAAAABAgAAZjE0MmU0YzA4YjRiOTNl
+					NTA3MGE2MTY2MDk4ZDU0M2FjNDMwYjNmZDsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1OWQzNDE7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1OWQ2NmM7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9uZXh0X2xl
@@ -13365,9 +13365,9 @@
 					AADIAgAAAAAAAA==
 					</data>
 					<key>Frame</key>
-					<string>{{236, 927}, {37.75, 37.75}}</string>
+					<string>{{236, 932}, {37.75, 37.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{944, 3708}, {151, 151}}</string>
+					<string>{{944, 3728}, {151, 151}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -13404,7 +13404,7 @@
 					AAgAAAAEAwAAo8ZNAwAAAAAIAAAABAMAAKbG
 					TQMAAAAACAAAAAQDAACnxk0DAAAAAAgAAAAE
 					AwAA0N5NAwAAAAAIAAAABAMAANPeTQMAAAAA
-					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAQtNZ
+					CAAAAAQDAADqr1YDAAAAAAgAAAAEAwAAbdZZ
 					AwAAAAAsAAAAAQYAAPAAAAAAAQAAEAEAACAB
 					AAAwAQAAQAEAAFABAABgAQAAcAEAAIABAACQ
 					AQAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAA
@@ -13416,12 +13416,12 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPYAAAABAgAAOWY0NmYwMmU3NWI3YjEw
-					NTNiYzdmOTcyMzE5MjI3MTI0MGM1NWQ0ZDsw
+					AAEAAPYAAAABAgAAYzJhMzIzOGJhOTEzOWM0
+					ZDhlYjZkNWY0MzJhOGM5ZjkxNWExOWYxZTsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
-					MDAwMDM1OWQzNDI7L3VzZXJzL3N0ZXZlL2Nv
+					MDAwMDM1OWQ2NmQ7L3VzZXJzL3N0ZXZlL2Nv
 					ZGUvY29ucXVlci9wZW5ndWluIHJlc2N1ZS9w
 					ZW5ndWluIHJlc2N1ZS9yZXNvdXJjZXMvc3Jj
 					LWFzc2V0cy9pbWFnZXMvbWVudS9uZXh0X2xl
@@ -13437,9 +13437,9 @@
 					AADIAgAAAAAAAA==
 					</data>
 					<key>Frame</key>
-					<string>{{236, 965}, {37.75, 37.75}}</string>
+					<string>{{236, 970}, {37.75, 37.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{944, 3860}, {151, 151}}</string>
+					<string>{{944, 3880}, {151, 151}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -13497,7 +13497,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABP01kDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAB01lkDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -13509,12 +13509,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9QAAAAECAAA1YzBlZmY1NWI0MGFkNjFiOWY4
-					ZjY2YTgyMWE0MGJmMTNjYzBjM2ZjOzAwMDAw
+					9QAAAAECAABlZGM4MmY1OTM0NWIzOTdjNDg1
+					NmU5NmU4ZjhhNGIwZTVhNTQwZGU3OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM0ZjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZDY3NDsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3RhcnRfaW5h
@@ -13530,9 +13530,9 @@
 					AAAAAAAA
 					</data>
 					<key>Frame</key>
-					<string>{{236, 849}, {37.75, 37.75}}</string>
+					<string>{{236, 854}, {37.75, 37.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{944, 3396}, {151, 151}}</string>
+					<string>{{944, 3416}, {151, 151}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -13569,7 +13569,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAOqvVgMAAAAACAAAAAQDAABQ01kDAAAA
+					BAMAAOqvVgMAAAAACAAAAAQDAAB11lkDAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -13581,12 +13581,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8wAAAAECAABhNjg5YTRmMmUwMDlhNWZkMDc2
-					MDhiY2QyNjc0MWZhMzI3MjQyNzczOzAwMDAw
+					8wAAAAECAAAyY2IxMDE0ZmIzNjlkYzczNDFh
+					ODZjNWVmZmQ3NmZlMDRmZGFlZWJmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU5ZDM1MDsvdXNlcnMvc3RldmUvY29kZS9j
+					MzU5ZDY3NTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tZW51L3Jlc3RhcnRfYWN0
@@ -13602,9 +13602,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{276, 770}, {37.75, 37.75}}</string>
+					<string>{{281, 770}, {37.75, 37.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{1104, 3080}, {151, 151}}</string>
+					<string>{{1124, 3080}, {151, 151}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>

@@ -236,17 +236,23 @@
 	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
 	
 	//show the level name at the top
-	LHSprite* levelNamePopup = [_levelLoader createSpriteWithName:@"Level_Name_Popup" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
-	[levelNamePopup transformPosition: ccp(winSize.width/2,winSize.height+levelNamePopup.boundingBox.size.height/2)];
+	LHSprite* timeAndLevelPopup = [_levelLoader createSpriteWithName:@"Time_and_Level_Popup" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
+	[timeAndLevelPopup transformPosition: ccp(winSize.width/2,winSize.height+timeAndLevelPopup.boundingBox.size.height/2)];
 	CCLabelTTF* levelNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level: %@", [_levelData objectForKey:LEVELPACKMANAGER_KEY_NAME]] fontName:@"Helvetica" fontSize:18*SCALING_FACTOR_FONTS];
 	levelNameLabel.color = ccBLACK;
-	levelNameLabel.position = ccp(levelNamePopup.boundingBox.size.width/2, levelNamePopup.boundingBox.size.height/2);
-	[levelNamePopup addChild:levelNameLabel];
-	[levelNamePopup runAction:[CCSequence actions:
+	levelNameLabel.position = ccp(timeAndLevelPopup.boundingBox.size.width/2, timeAndLevelPopup.boundingBox.size.height - timeAndLevelPopup.boundingBox.size.height/4);
+	[timeAndLevelPopup addChild:levelNameLabel];
+	_timeElapsedLabel = [CCLabelTTF labelWithString:@"" fontName:@"Helvetica" fontSize:18*SCALING_FACTOR_FONTS];
+	_timeElapsedLabel.color = ccBLACK;
+	_timeElapsedLabel.position = ccp(timeAndLevelPopup.boundingBox.size.width/2, timeAndLevelPopup.boundingBox.size.height/4 + 2);
+	[timeAndLevelPopup addChild:_timeElapsedLabel];
+	
+	
+	[timeAndLevelPopup runAction:[CCSequence actions:
 		[CCDelayTime actionWithDuration:1.5f],
-		[CCMoveBy actionWithDuration:0.5f position:ccp(0,-levelNamePopup.boundingBox.size.height)],
+		[CCMoveBy actionWithDuration:0.5f position:ccp(0,-timeAndLevelPopup.boundingBox.size.height)],
 		[CCDelayTime actionWithDuration:2.5f],
-		[CCMoveBy actionWithDuration:0.5f position:ccp(0,levelNamePopup.boundingBox.size.height)],
+		[CCMoveBy actionWithDuration:0.5f position:ccp(0,timeAndLevelPopup.boundingBox.size.height/2 + 2)],
 		nil]];
 	
 	
@@ -1174,6 +1180,9 @@
 	}
 
 	/* Things that can occur while placing toolbox items or while running */
+	
+	double elapsedTime = [[NSDate date] timeIntervalSince1970] - _levelStartPlaceTime;
+	_timeElapsedLabel.string = [NSString stringWithFormat:@"%ds", (int)elapsedTime];
 	
 	//regenerate base feature maps if need be
 	if(_shouldRegenerateFeatureMaps) {

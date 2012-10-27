@@ -78,6 +78,7 @@ enum PROPAGATION_RESULT {
 	LHSprite* _playPauseButton;
 	LHSprite* _restartButton;
 	LHSprite* _menuPopupContainer;
+	CCLabelTTF* _timeElapsedLabel;
 	
 	bool _moveActiveToolboxItemIntoWorld;
 	LHSprite* _activeToolboxItem;
