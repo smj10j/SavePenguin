@@ -59,9 +59,20 @@
 		
 		
 		
-		
-		
-		
+		//TODO: fill this bad boy out with:
+			/*
+			Rate App
+			Email us
+			About the App
+			About Conquer
+			Version
+			*/
+		CCLabelTTF* TODOLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"TODO: Add an about page"] fontName:@"Helvetica" fontSize:48*SCALING_FACTOR_FONTS];
+		TODOLabel.color = ccWHITE;
+		TODOLabel.position = ccp(winSize.width/2, winSize.height/2);
+		[self addChild:TODOLabel];
+			
+			
 		
 		
 		
