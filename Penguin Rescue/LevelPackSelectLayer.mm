@@ -88,7 +88,10 @@
 			
 	for(int i = 0; i < levelPacksDictionary.count; i++) {
 	
-		CCLayer* scrollableLayer = [[CCLayer alloc] init];
+		CCLayer* scrollableLayer = [[CCLayerColor alloc]
+								initWithColor:ccc4(0,0,0,255)
+								width:winSize.width
+								height:winSize.height];
 		[scrollableLayers addObject:scrollableLayer];
 
 		NSDictionary* levelPackData = [levelPacksDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
@@ -162,7 +165,7 @@
 	
 	
 	// now create the scroller and pass-in the pages (set widthOffset to 0 for fullscreen pages)
-	CCScrollLayer *scroller = [[[CCScrollLayer alloc] initWithLayers:scrollableLayers widthOffset: 230] autorelease];
+	CCScrollLayer *scroller = [[[CCScrollLayer alloc] initWithLayers:scrollableLayers widthOffset: 0] autorelease];
 
 	// finally add the scroller to your scene
 	[self addChild:scroller];

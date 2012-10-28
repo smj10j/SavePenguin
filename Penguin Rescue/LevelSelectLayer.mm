@@ -14,6 +14,7 @@
 #import "LevelPackManager.h"
 #import "SettingsManager.h"
 #import "SimpleAudioEngine.h"
+#import "CCScrollLayer.h"
 
 
 #pragma mark - LevelSelectLayer
@@ -79,33 +80,48 @@
 	NSArray* completedLevels = [LevelPackManager completedLevelsInPack:_levelPackPath];
 	NSArray* availableLevels = [LevelPackManager availableLevelsInPack:_levelPackPath];
 	
+	NSMutableArray* scrollableLayers = [[[NSMutableArray alloc] init] autorelease];
 	
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
 	LHSprite* levelButton = [_levelLoader createSpriteWithName:@"Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	const CGSize levelButtonSize = levelButton.boundingBox.size;
 	const int levelButtonMargin = 50*SCALING_FACTOR_H;
-	const int columns = winSize.width / (levelButtonMargin+levelButtonSize.width);
+	const int columns = (winSize.width - levelButtonMargin*2) / (levelButtonMargin+levelButtonSize.width);
+	const int rows = (winSize.height - levelButtonMargin*2) / (levelButtonMargin+levelButtonSize.height);
 	const int levelButtonXInitial = winSize.width/2 - (columns/2 * (levelButtonSize.width+levelButtonMargin)) + (levelButtonSize.width+levelButtonMargin)/2;
+	const int levelButtonYInitial = winSize.height + levelButtonSize.height/2;
 	[levelButton removeSelf];
 
-	int levelButtonX = levelButtonXInitial;
-	int levelButtonY = winSize.height + levelButtonSize.height/2;
+	int levelButtonX;
+	int levelButtonY;
+	CCLayer* scrollableLayer;
 
 	for(int i = 0; i < levelsDictionary.count; i++) {
-	
+
+		if(i%(rows*columns) == 0) {
+			scrollableLayer = [[CCLayerColor alloc]
+								initWithColor:ccc4(arc4random()*255,arc4random()*255,arc4random()*255,255)
+								width:winSize.width
+								height:winSize.height];
+			[scrollableLayers addObject:scrollableLayer];
+			
+			levelButtonX = levelButtonXInitial;
+			levelButtonY = levelButtonYInitial;
+		}
+
 		if(i%columns == 0) {
 			//new row
 			levelButtonY-= (levelButtonSize.height + levelButtonMargin);
 			levelButtonX = levelButtonXInitial;
 		}
-
+		
 		NSDictionary* levelData = [levelsDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
 		NSString* levelName = [levelData objectForKey:LEVELPACKMANAGER_KEY_NAME];
 		NSString* levelPath = [levelData objectForKey:LEVELPACKMANAGER_KEY_PATH];
 		
 		//create the sprite
-		LHSprite* levelButton = [_levelLoader createSpriteWithName:@"Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+		LHSprite* levelButton = [_levelLoader createSpriteWithName:@"Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:scrollableLayer];
 		[levelButton prepareAnimationNamed:@"Menu_Level_Select_Button" fromSHScene:@"Spritesheet"];
 
 		bool isLocked = false;
@@ -155,6 +171,14 @@
 		levelButtonX+= levelButtonSize.width + levelButtonMargin;
 	}
 
+
+	
+	// now create the scroller and pass-in the pages (set widthOffset to 0 for fullscreen pages)
+	CCScrollLayer *scroller = [[[CCScrollLayer alloc] initWithLayers:scrollableLayers widthOffset: 0] autorelease];
+
+	// finally add the scroller to your scene
+	[self addChild:scroller];
+	
 }
 
 
