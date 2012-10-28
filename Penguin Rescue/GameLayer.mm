@@ -48,10 +48,12 @@
 -(id) init
 {
 	if( (self=[super initWithColor:ccc4(100, 100, 255, 50)])) {
-		
+						
 		// enable events
 		self.isTouchEnabled = YES;
 		
+		_inGameMenuAngle = 0;
+		_inGameMenuItems = [[NSMutableArray alloc] init];
 		_moveGridUpdateQueue = dispatch_queue_create("com.conquerllc.games.Penguin-Rescue.moveGridUpdateQueue", 0);
 		_isUpdatingSharkMoveGrids = false;
 		_isUpdatingPenguinMoveGrids = false;
@@ -238,17 +240,15 @@
 	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.boundingBox.size.width/2+HUD_BUTTON_MARGIN_H),_restartButton.boundingBox.size.height/2+HUD_BUTTON_MARGIN_V) ];
 	[_restartButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[_restartButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
-	
-	
-	_menuPopupContainer = [_levelLoader createBatchSpriteWithName:@"Menu_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet"];
-	[_menuPopupContainer transformPosition: ccp(5*SCALING_FACTOR_H + _menuPopupContainer.boundingBox.size.width/2,
-												-_menuPopupContainer.boundingBox.size.height)];
-	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:_menuPopupContainer];
+		
+	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_Button" fromSHScene:@"Spritesheet"];
-	[levelsMenuButton transformPosition: ccp(_menuPopupContainer.boundingBox.size.width/2,
-										_menuPopupContainer.boundingBox.size.height/2) ];
+	[levelsMenuButton transformPosition: ccp(0,0) ];
+	levelsMenuButton.opacity = 0;
+
 	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
 	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
+	[_inGameMenuItems addObject:levelsMenuButton];
 	
 	//show the level name at the top
 	LHSprite* timeAndLevelPopup = [_levelLoader createSpriteWithName:@"Time_and_Level_Popup" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
@@ -631,7 +631,6 @@
 
 -(void)onTouchEndedMainMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	//TODO: crash bug is still here
 	[self showMainMenuLayer];
 }
 
@@ -646,7 +645,6 @@
 
 -(void)onTouchEndedLevelsMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	//TODO: crash bug is still here
 	[self showLevelsMenuLayer];
 }
 
@@ -694,15 +692,30 @@
 -(void) showInGameMenu {
 	NSLog(@"Showing in-game menu");
 
-	[_menuPopupContainer runAction:[CCMoveTo actionWithDuration:0.40f position:
-								ccp(5*SCALING_FACTOR_H + _menuPopupContainer.boundingBox.size.width/2,
-									_menuPopupContainer.boundingBox.size.height/2 - 5)]];
+	[_playPauseButton runAction:[CCFadeTo actionWithDuration:0.5f opacity:150.0f]];
+	
+	for(LHSprite* menuItem in _inGameMenuItems) {
+
+		[menuItem setAnchorPoint:ccp(2.3,2.3)];
+		[menuItem transformRotation:-120.0f];
+	
+		[menuItem runAction:[CCFadeIn actionWithDuration:0.15f]];
+		[menuItem runAction:[CCRotateBy actionWithDuration:0.25f angle:-60.0f]];
+	}
+	
 }
 
 -(void) hideInGameMenu {
-	[_menuPopupContainer runAction:[CCMoveTo actionWithDuration:0.40f position:
-								ccp(5*SCALING_FACTOR_H + _menuPopupContainer.boundingBox.size.width/2,
-									-_menuPopupContainer.boundingBox.size.height)]];
+
+	[_playPauseButton runAction:[CCFadeTo actionWithDuration:0.5f opacity:255.0f]];
+
+	for(LHSprite* menuItem in _inGameMenuItems) {
+		[menuItem runAction:[CCFadeOut actionWithDuration:0.35f]];
+		[menuItem runAction:[CCSequence actions:
+			[CCRotateBy actionWithDuration:0.35f angle:100.0f],
+			nil
+		]];
+	}
 }
 
 -(void) resume {

@@ -43,6 +43,8 @@
 {
 	if( (self=[super init])) {
 		
+		self.isTouchEnabled = YES;
+
 		[LevelHelperLoader dontStretchArt];
 
 		//create a LevelHelperLoader object - we use an empty level
@@ -63,18 +65,6 @@
 		[backButton registerTouchBeganObserver:self selector:@selector(onTouchAnyButton:)];
 		[backButton registerTouchEndedObserver:self selector:@selector(onTouchEndedBack:)];
 
-
-		//TODO: implement loading/saving the file to iCloud: http://www.raywenderlich.com/6015/beginning-icloud-in-ios-5-tutorial-part-1
-		/*
-		NSURL *ubiq = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
-		if (ubiq) {
-			NSLog(@"iCloud access at %@", ubiq);
-			_iCloudPath = ubiq;
-		}else {
-			NSLog(@"No iCloud access");
-			_iCloudPath = nil;
-		}
-		*/
 	}
 	
 	NSLog(@"Initialized LevelSelectLayer");	
@@ -124,33 +114,30 @@
 		//create the sprite
 		LHSprite* levelButton = [_levelLoader createSpriteWithName:@"Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 		[levelButton prepareAnimationNamed:@"Menu_Level_Select_Button" fromSHScene:@"Spritesheet"];
+
+		bool isLocked = false;
 		
 		if([_completedLevels containsObject:levelPath]) {
 			NSLog(@"Level %@ is completed!", levelPath);
 
 			//add a checkmark on top
 			LHSprite* completedMark = [_levelLoader createSpriteWithName:@"Level_Completed" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelButton];
-			[completedMark transformPosition:ccp(levelButtonSize.width - completedMark.contentSize.width/2 - 20*SCALING_FACTOR_H,completedMark.contentSize.height/2 + 20*SCALING_FACTOR_V)];
+			[completedMark transformPosition:ccp(levelButtonSize.width - completedMark.contentSize.width/2 - 20*SCALING_FACTOR_H,completedMark.contentSize.height/2 + 10*SCALING_FACTOR_V)];
 			
-			//used when clicking the sprite
-			[_spriteNameToLevelPath setObject:levelPath forKey:levelButton.uniqueName];
-			[levelButton registerTouchBeganObserver:self selector:@selector(onTouchAnyButton:)];
-			[levelButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelSelect:)];
-					
+			
 		}else if([_availableLevels containsObject:levelPath]) {
 			NSLog(@"Level %@ is available!", levelPath);
 
-			//used when clicking the sprite
-			[_spriteNameToLevelPath setObject:levelPath forKey:levelButton.uniqueName];
-			[levelButton registerTouchBeganObserver:self selector:@selector(onTouchAnyButton:)];
-			[levelButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelSelect:)];
 					
 		}else {
 			NSLog(@"Level %@ is NOT available!", levelPath);
 
+			isLocked = true;
+
 			//add a lock on top
 			LHSprite* lockIcon = [_levelLoader createSpriteWithName:@"Level_Locked" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelButton];
-			[lockIcon transformPosition:ccp(levelButtonSize.width - lockIcon.contentSize.width/2 - 20*SCALING_FACTOR_H,lockIcon.contentSize.height/2 + 20*SCALING_FACTOR_V)];
+			[lockIcon transformPosition:ccp(levelButtonSize.width - lockIcon.contentSize.width/2 - 20*SCALING_FACTOR_H,
+											lockIcon.contentSize.height/2 + 10*SCALING_FACTOR_V)];
 
 		}
 		
@@ -159,6 +146,16 @@
 		levelNameLabel.color = ccBLACK;
 		levelNameLabel.position = ccp(levelButtonSize.width/2,levelButtonSize.height/2);
 		[levelButton addChild:levelNameLabel];
+		
+		
+		if(!isLocked) {
+			//used when clicking the sprite
+			[_spriteNameToLevelPath setObject:levelPath forKey:levelButton.uniqueName];
+			[levelButton registerTouchBeganObserver:self selector:@selector(onTouchAnyButton:)];
+			[levelButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelSelect:)];
+		}
+		
+		
 		
 		//positioning
 		[levelButton transformPosition: ccp(levelButtonX, levelButtonY)];

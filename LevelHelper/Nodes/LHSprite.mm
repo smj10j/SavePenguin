@@ -1511,7 +1511,7 @@ static int untitledSpritesCount = 0;
         info.touch = touch;
         info.sprite = self;
         info.delta = CGPointZero;
-
+		
         [LHObserverPair performObserverPair:touchBeginObserver object:info];
         [LHObserverPair performObserverPair:tagTouchBeginObserver object:info]; 
         return true;

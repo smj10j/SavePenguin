@@ -41,6 +41,8 @@
 {
 	if( (self=[super init])) {
 		
+		self.isTouchEnabled = YES;
+
 		[LevelHelperLoader dontStretchArt];
 
 		//create a LevelHelperLoader object - we use an empty level
@@ -60,19 +62,6 @@
 											20*SCALING_FACTOR_V + backButton.boundingBox.size.height/2)];
 		[backButton registerTouchBeganObserver:self selector:@selector(onTouchAnyButton:)];
 		[backButton registerTouchEndedObserver:self selector:@selector(onTouchEndedBack:)];
-
-
-		//TODO: implement loading/saving the file to iCloud: http://www.raywenderlich.com/6015/beginning-icloud-in-ios-5-tutorial-part-1
-		/*
-		NSURL *ubiq = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
-		if (ubiq) {
-			NSLog(@"iCloud access at %@", ubiq);
-			_iCloudPath = ubiq;
-		}else {
-			NSLog(@"No iCloud access");
-			_iCloudPath = nil;
-		}
-		*/
 		
 		[self loadLevelPacks];
 	}
@@ -103,9 +92,7 @@
 	LHSprite* levelPackButton = [_levelLoader createSpriteWithName:@"Level_Pack_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	const CGSize levelPackButtonSize = levelPackButton.boundingBox.size;
 	[levelPackButton removeSelf];
-	
-	//TODO: need to add ability to scroll the list of packs (swipe left to right)
-		
+			
 	for(int i = 0; i < _levelPacksDictionary.count; i++) {
 	
 		CCLayer* scrollableLayer = [[CCLayer alloc] init];

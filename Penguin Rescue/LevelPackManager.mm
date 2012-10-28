@@ -12,6 +12,18 @@ static NSString* sMainBundlePath;
 static NSString* sRootPath;
 
 
+		//TODO: implement loading/saving the level and pack completion state files to iCloud: http://www.raywenderlich.com/6015/beginning-icloud-in-ios-5-tutorial-part-1
+		/*
+		NSURL *ubiq = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+		if (ubiq) {
+			NSLog(@"iCloud access at %@", ubiq);
+			_iCloudPath = ubiq;
+		}else {
+			NSLog(@"No iCloud access");
+			_iCloudPath = nil;
+		}
+		*/
+
 
 @implementation LevelPackManager
 

@@ -851,7 +851,6 @@
 			children = (
 				AA6252531638032100A36D65 /* Penguin Rescue.entitlements */,
 				AA6DFB1516302C1A00F93350 /* Helpers */,
-				AA0E5CE3163C7D4600316B50 /* CCScrollLayer */,
 				AA62525B1638191C00A36D65 /* Constants.h */,
 				AA54C8C0162BB27E00DF56D0 /* AppDelegate.h */,
 				AA54C8C1162BB27E00DF56D0 /* AppDelegate.mm */,
@@ -1439,6 +1438,7 @@
 		AA6DFB1516302C1A00F93350 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				AA0E5CE3163C7D4600316B50 /* CCScrollLayer */,
 				AA6DFB1116302BFF00F93350 /* MoveGridData.h */,
 				AA6DFB1216302BFF00F93350 /* MoveGridData.mm */,
 				AA250B37163827A70080663E /* LevelPackManager.h */,
