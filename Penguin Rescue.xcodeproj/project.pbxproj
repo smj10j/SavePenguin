@@ -212,6 +212,8 @@
 		AA54C92A162BCDD600DF56D0 /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = AA54C929162BCDD600DF56D0 /* Levels */; };
 		AA54C933162BD64300DF56D0 /* Spritesheet.pshs in Resources */ = {isa = PBXBuildFile; fileRef = AA54C92F162BD64300DF56D0 /* Spritesheet.pshs */; };
 		AA6252561638097000A36D65 /* LevelPackSelectLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA6252551638097000A36D65 /* LevelPackSelectLayer.mm */; };
+		AA6A1A8E163CBB5700A9186D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6A1A8D163CBB5700A9186D /* Icon.png */; };
+		AA6A1A91163CBB6800A9186D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6A1A90163CBB6800A9186D /* Icon@2x.png */; };
 		AA6DFB1316302BFF00F93350 /* MoveGridData.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA6DFB1216302BFF00F93350 /* MoveGridData.mm */; };
 		AACE801C163992FB008C7E3B /* Score.mm in Sources */ = {isa = PBXBuildFile; fileRef = AACE801B163992FB008C7E3B /* Score.mm */; };
 		AAD7B65D163C296500B02521 /* AboutLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AAD7B65C163C296500B02521 /* AboutLayer.mm */; };
@@ -664,6 +666,8 @@
 		AA6252541638097000A36D65 /* LevelPackSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelPackSelectLayer.h; sourceTree = "<group>"; };
 		AA6252551638097000A36D65 /* LevelPackSelectLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LevelPackSelectLayer.mm; sourceTree = "<group>"; };
 		AA62525B1638191C00A36D65 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		AA6A1A8D163CBB5700A9186D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../../../../../Icon.png; sourceTree = "<group>"; };
+		AA6A1A90163CBB6800A9186D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../../../../../Icon@2x.png"; sourceTree = "<group>"; };
 		AA6DFB1116302BFF00F93350 /* MoveGridData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveGridData.h; sourceTree = "<group>"; };
 		AA6DFB1216302BFF00F93350 /* MoveGridData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoveGridData.mm; sourceTree = "<group>"; };
 		AACE801A163992FB008C7E3B /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
@@ -1440,6 +1444,8 @@
 		AAE60C70163CB86800CBE445 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				AA6A1A8D163CBB5700A9186D /* Icon.png */,
+				AA6A1A90163CBB6800A9186D /* Icon@2x.png */,
 				AAE60C85163CBA0900CBE445 /* Icon_144x144.png */,
 				AAE60C81163CB99800CBE445 /* Icon_72x72.png */,
 			);
@@ -1572,6 +1578,8 @@
 				AA0E5CE8163C7D4600316B50 /* README in Resources */,
 				AAE60C82163CB99800CBE445 /* Icon_72x72.png in Resources */,
 				AAE60C86163CBA0900CBE445 /* Icon_144x144.png in Resources */,
+				AA6A1A8E163CBB5700A9186D /* Icon.png in Resources */,
+				AA6A1A91163CBB6800A9186D /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

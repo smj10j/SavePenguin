@@ -1879,6 +1879,9 @@
 {
 	NSLog(@"GameLayer dealloc");
 
+	[_levelPath release];
+	[_levelPackPath release];
+
 	[_sharkMoveGridDatas removeAllObjects];
 	[_penguinMoveGridDatas removeAllObjects];
 	free(_penguinMapfeaturesGrid);

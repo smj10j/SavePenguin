@@ -1429,6 +1429,8 @@ CGSize  LHSizeFromString(NSString* val){
 {
 	NSString *path = [[NSBundle mainBundle] pathForResource:levelFile ofType:@"plhs" inDirectory:subfolder]; 
 	
+	NSLog(@"Loading level file named %@ in %@.", levelFile, subfolder);
+	
 	NSAssert(nil!=path, @"Invalid level file. Please add the LevelHelper scene file to Resource folder. Please do not add extension in the given string.");
 	
 	NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:path];

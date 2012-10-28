@@ -195,6 +195,8 @@
 {
 	NSLog(@"LevelSelectLayer dealloc");
 
+	[_levelPackPath release];
+
 	[_levelLoader release];
 	_levelLoader = nil;	
 	
