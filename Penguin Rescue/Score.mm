@@ -14,7 +14,7 @@
 	
 	if(self = [super init]) {
 		_score = score;
-		_sprite = [sprite retain];
+		_sprite = sprite;
 		_count = 1;
 	}
 	return self;
@@ -42,11 +42,6 @@
 
 -(void)setSprite:(LHSprite*)sprite {
 	_sprite = sprite;
-}
-
--(void)dealloc {
-	[_sprite release];
-	[super dealloc];
 }
 
 @end

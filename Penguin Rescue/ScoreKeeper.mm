@@ -45,8 +45,7 @@
 }
 
 -(void)dealloc {
-	[_scores release];
-	[super dealloc];
+	[_scores removeAllObjects];
 }
 
 @end

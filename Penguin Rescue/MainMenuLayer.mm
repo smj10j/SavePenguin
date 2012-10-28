@@ -197,9 +197,7 @@
 {
 	NSLog(@"MainMenuLayer dealloc");
 
-	[_levelLoader release];
 	_levelLoader = nil;	
 	
-	[super dealloc];
 }	
 @end

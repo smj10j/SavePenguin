@@ -70,7 +70,7 @@
 
 -(void) loadLevelsWithLevelPackPath:(NSString*)levelPackPath {
 
-	_levelPackPath = [levelPackPath retain];
+	_levelPackPath = levelPackPath;
 
 	//load all available levels for this pack
 	NSDictionary* levelsDictionary = [LevelPackManager allLevelsInPack:_levelPackPath];
@@ -175,7 +175,7 @@
 	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
 	
 	NSString* levelPath = [_spriteNameToLevelPath objectForKey:info.sprite.uniqueName];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:levelPath] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:[NSString stringWithFormat:@"%@", _levelPackPath] levelPath:levelPath] ]];
 }
 
 
@@ -197,13 +197,7 @@
 {
 	NSLog(@"LevelSelectLayer dealloc");
 
-	[_levelPackPath release];
-	[_spriteNameToLevelPath release];
-
-	[_levelLoader release];
 	_levelLoader = nil;	
-	
-	[super dealloc];
 }
 
 @end
