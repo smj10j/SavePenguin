@@ -50,6 +50,7 @@
 		//create a LevelHelperLoader object - we use an empty level
 		_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", @"Menu", @"LevelSelect"]];
 
+		_spriteNameToLevelPath = [[NSMutableDictionary alloc] init];
 		
 		LHSprite* backButton = [_levelLoader createSpriteWithName:@"Back_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 		[backButton prepareAnimationNamed:@"Menu_Back_Button" fromSHScene:@"Spritesheet"];
@@ -72,12 +73,11 @@
 	_levelPackPath = [levelPackPath retain];
 
 	//load all available levels for this pack
-	_levelsDictionary = [LevelPackManager allLevelsInPack:_levelPackPath];
+	NSDictionary* levelsDictionary = [LevelPackManager allLevelsInPack:_levelPackPath];
 	
 	//load all levels for this pack that the user has completed
-	_completedLevels = [LevelPackManager completedLevelsInPack:_levelPackPath];
-	_availableLevels = [LevelPackManager availableLevelsInPack:_levelPackPath];
-	_spriteNameToLevelPath = [[NSMutableDictionary alloc] init];
+	NSArray* completedLevels = [LevelPackManager completedLevelsInPack:_levelPackPath];
+	NSArray* availableLevels = [LevelPackManager availableLevelsInPack:_levelPackPath];
 	
 	
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -92,7 +92,7 @@
 	int levelButtonX = levelButtonXInitial;
 	int levelButtonY = winSize.height + levelButtonSize.height/2;
 
-	for(int i = 0; i < _levelsDictionary.count; i++) {
+	for(int i = 0; i < levelsDictionary.count; i++) {
 	
 		if(i%columns == 0) {
 			//new row
@@ -100,7 +100,7 @@
 			levelButtonX = levelButtonXInitial;
 		}
 
-		NSDictionary* levelData = [_levelsDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
+		NSDictionary* levelData = [levelsDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
 		NSString* levelName = [levelData objectForKey:LEVELPACKMANAGER_KEY_NAME];
 		NSString* levelPath = [levelData objectForKey:LEVELPACKMANAGER_KEY_PATH];
 		
@@ -110,7 +110,7 @@
 
 		bool isLocked = false;
 		
-		if([_completedLevels containsObject:levelPath]) {
+		if([completedLevels containsObject:levelPath]) {
 			NSLog(@"Level %@ is completed!", levelPath);
 
 			//add a checkmark on top
@@ -118,7 +118,7 @@
 			[completedMark transformPosition:ccp(levelButtonSize.width - completedMark.contentSize.width/2 - 20*SCALING_FACTOR_H,completedMark.contentSize.height/2 + 10*SCALING_FACTOR_V)];
 			
 			
-		}else if([_availableLevels containsObject:levelPath]) {
+		}else if([availableLevels containsObject:levelPath]) {
 			NSLog(@"Level %@ is available!", levelPath);
 
 					
@@ -173,7 +173,9 @@
 -(void)onTouchEndedLevelSelect:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:[_spriteNameToLevelPath objectForKey:info.sprite.uniqueName]] ]];
+	
+	NSString* levelPath = [_spriteNameToLevelPath objectForKey:info.sprite.uniqueName];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:levelPath] ]];
 }
 
 
@@ -196,6 +198,7 @@
 	NSLog(@"LevelSelectLayer dealloc");
 
 	[_levelPackPath release];
+	[_spriteNameToLevelPath release];
 
 	[_levelLoader release];
 	_levelLoader = nil;	

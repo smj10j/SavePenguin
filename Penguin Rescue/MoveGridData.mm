@@ -38,15 +38,7 @@
 		_moveHistoryIndex = 0;
 		_moveHistoryIsFull = false;
 	}
-	
-	//create a grouping of the objects by tags so we can share grids between them
-	NSMutableSet* moveGridDatas = [tagToMoveGridData objectForKey:_tag];
-	if(moveGridDatas == nil) {
-		moveGridDatas = [[NSMutableSet alloc] init];
-		[tagToMoveGridData setObject:moveGridDatas forKey:_tag];
-	}
-	[moveGridDatas addObject:self];
-	
+		
 	return self;
 }
 
@@ -284,6 +276,10 @@
 }
 
 -(void)dealloc {
+	if(_baseGrid != nil) {
+		free(_baseGrid);
+		_baseGrid = nil;
+	}
 	if(_moveGrid != nil) {
 		free(_moveGrid);
 		_moveGrid = nil;

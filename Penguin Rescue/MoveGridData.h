@@ -46,12 +46,6 @@
 @end
 
 
-static NSMutableDictionary* tagToMoveGridData = [[NSMutableDictionary alloc] init];
-
-
-
-
-
 #define INITIAL_GRID_WEIGHT 500
 #define HARD_BORDER_WEIGHT 10000
 

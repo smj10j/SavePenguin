@@ -48,6 +48,7 @@
 		//create a LevelHelperLoader object - we use an empty level
 		_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", @"Menu", @"LevelPackSelect"]];
 
+		_spriteNameToLevelPackPath = [[NSMutableDictionary alloc] init];
 		
 		LHSprite* backButton = [_levelLoader createSpriteWithName:@"Back_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 		[backButton prepareAnimationNamed:@"Menu_Back_Button" fromSHScene:@"Spritesheet"];
@@ -70,12 +71,11 @@
 -(void) loadLevelPacks {
 
 	//load all available level packs
-	_levelPacksDictionary = [LevelPackManager allLevelPacks];
+	NSDictionary* levelPacksDictionary = [LevelPackManager allLevelPacks];
 
 	//load ones the user has completed
-	_completedLevelPacks = [LevelPackManager completedPacks];
-	_availableLevelPacks = [LevelPackManager availablePacks];
-	_spriteNameToLevelPackPath = [[NSMutableDictionary alloc] init];
+	NSArray* completedLevelPacks = [LevelPackManager completedPacks];
+	NSArray* availableLevelPacks = [LevelPackManager availablePacks];
 
 
 	NSMutableArray* scrollableLayers = [[NSMutableArray alloc] init];
@@ -86,12 +86,12 @@
 	const CGSize levelPackButtonSize = levelPackButton.boundingBox.size;
 	[levelPackButton removeSelf];
 			
-	for(int i = 0; i < _levelPacksDictionary.count; i++) {
+	for(int i = 0; i < levelPacksDictionary.count; i++) {
 	
 		CCLayer* scrollableLayer = [[CCLayer alloc] init];
 		[scrollableLayers addObject:scrollableLayer];
 
-		NSDictionary* levelPackData = [_levelPacksDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
+		NSDictionary* levelPackData = [levelPacksDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
 		NSString* levelPackName = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_NAME];
 		NSString* levelPackPath = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_PATH];
 		NSArray* completedLevels = [LevelPackManager completedLevelsInPack:levelPackPath];
@@ -110,14 +110,14 @@
 		
 		bool isLocked = false;
 
-		if([_completedLevelPacks containsObject:levelPackPath]) {
+		if([completedLevelPacks containsObject:levelPackPath]) {
 			NSLog(@"Pack %@ is completed!", levelPackPath);
 
 			//add a checkmark on top
 			LHSprite* completedMark = [_levelLoader createSpriteWithName:@"Level_Pack_Completed" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
 			[completedMark transformPosition:ccp(levelPackButtonSize.width/2,levelPackButtonSize.height/2)];
 					
-		}else if([_availableLevelPacks containsObject:levelPackPath]) {
+		}else if([availableLevelPacks containsObject:levelPackPath]) {
 			NSLog(@"Pack %@ is available!", levelPackPath);
 					
 		}else {
@@ -209,6 +209,8 @@
 -(void) dealloc
 {
 	NSLog(@"LevelPackSelectLayer dealloc");
+
+	[_spriteNameToLevelPackPath release];
 
 	[_levelLoader release];
 	_levelLoader = nil;	

@@ -18,13 +18,7 @@
 	LevelHelperLoader* _levelLoader;
 
 	NSString* _levelPackPath;
-	
-	NSURL* _iCloudPath;
-	
-	NSDictionary* _levelsDictionary;
-	NSArray* _availableLevels;
-	NSArray* _completedLevels;
-	
+		
 	NSMutableDictionary* _spriteNameToLevelPath;
 }
 
