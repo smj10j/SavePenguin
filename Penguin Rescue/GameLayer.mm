@@ -52,6 +52,8 @@
 		// enable events
 		self.isTouchEnabled = YES;
 		
+		_instanceId = [[NSDate date] timeIntervalSince1970];
+		NSLog(@"Initializing GameLayer %f", _instanceId);
 		_inGameMenuAngle = 0;
 		_inGameMenuItems = [[NSMutableArray alloc] init];
 		_moveGridUpdateQueue = dispatch_queue_create("com.conquerllc.games.Penguin-Rescue.moveGridUpdateQueue", 0);
@@ -577,6 +579,10 @@
 
 
 -(void)onTouchBeganPlayPause:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
+	
+	NSLog(@"Touch began play pause on GameLayer instance %f", _instanceId);
+	
 	[_playPauseButton setFrame:_playPauseButton.currentFrame+1];	//active state
 	__DEBUG_TOUCH_SECONDS = [[NSDate date] timeIntervalSince1970];
 	
@@ -586,6 +592,7 @@
 }
 
 -(void)onTouchEndedPlayPause:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
 	
 	if(_state == PLACE) {
 		[self resume];
@@ -599,9 +606,6 @@
 		[self pause];
 		[_playPauseButton setFrame:3];	//pause active
 		[_playPauseButton setFrame:0];	//play inactive
-	}else if (_state == GAME_OVER) {
-		[self showInGameMenu];
-		[_playPauseButton setFrame:2];	//pause inactive
 	}
 
 	__DEBUG_TOUCH_SECONDS = 0;
@@ -617,6 +621,8 @@
 }
 
 -(void)onTouchEndedRestart:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
+	[info.sprite removeSelf];
 	[self restart];
 }
 
@@ -631,6 +637,7 @@
 
 -(void)onTouchEndedMainMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+	[info.sprite removeSelf];
 	[self showMainMenuLayer];
 }
 
@@ -645,6 +652,7 @@
 
 -(void)onTouchEndedLevelsMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+	[info.sprite removeSelf];
 	[self showLevelsMenuLayer];
 }
 
@@ -659,6 +667,7 @@
 
 -(void)onTouchEndedNextLevel:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+	[info.sprite removeSelf];
 	[self goToNextLevel];
 }
 
@@ -740,7 +749,7 @@
 		[self hideInGameMenu];
 			
 	}else if(_state == PLACE) {
-		NSLog(@"Starting game");
+		NSLog(@"Running game");
 		_state = RUNNING;
 		_levelStartRunningTime  = [[NSDate date] timeIntervalSince1970];
 
@@ -1029,10 +1038,12 @@
 }
 
 -(void) showMainMenuLayer {
+	NSLog(@"Showing MainMenuLayer in GameLayer instance %f", _instanceId);
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[MainMenuLayer scene] ]];
 }
 
 -(void) showLevelsMenuLayer {
+	NSLog(@"Showing LevelSelectLayer in GameLayer instance %f", _instanceId);
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[LevelSelectLayer sceneWithLevelPackPath:_levelPackPath] ]];
 }
 
@@ -1867,7 +1878,7 @@
 }
 
 -(void) onExit{
-	NSLog(@"GameLayer onExit");
+	NSLog(@"GameLayer %f onExit", _instanceId);
 	_state = PAUSE;
     [self unscheduleAllSelectors];
     [self unscheduleUpdate];
@@ -1877,7 +1888,7 @@
 
 -(void) dealloc
 {
-	NSLog(@"GameLayer dealloc");
+	NSLog(@"GameLayer %f dealloc", _instanceId);
 
 	[_levelPath release];
 	[_levelPackPath release];

@@ -47,6 +47,8 @@ enum PROPAGATION_RESULT {
 	b2World* _world;					// strong ref
 	GLESDebugDraw *_debugDraw;		// strong ref
 	
+	double _instanceId;
+	
 	NSString* _levelPath;
 	NSString* _levelPackPath;
 	NSDictionary* _levelData;
