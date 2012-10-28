@@ -81,7 +81,6 @@ enum PROPAGATION_RESULT {
 	LHSprite* _restartButton;
 	CCLabelTTF* _timeElapsedLabel;
 	
-	double _inGameMenuAngle;
 	NSMutableArray* _inGameMenuItems;
 	
 	bool _moveActiveToolboxItemIntoWorld;

@@ -54,7 +54,6 @@
 		
 		_instanceId = [[NSDate date] timeIntervalSince1970];
 		NSLog(@"Initializing GameLayer %f", _instanceId);
-		_inGameMenuAngle = 0;
 		_inGameMenuItems = [[NSMutableArray alloc] init];
 		_moveGridUpdateQueue = dispatch_queue_create("com.conquerllc.games.Penguin-Rescue.moveGridUpdateQueue", 0);
 		_isUpdatingSharkMoveGrids = false;
@@ -248,14 +247,21 @@
 	[_restartButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[_restartButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 		
-	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
-	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_Button" fromSHScene:@"Spritesheet"];
-	[levelsMenuButton transformPosition: ccp(-levelsMenuButton.contentSize.width/2,-levelsMenuButton.contentSize.height/2) ];
-	[levelsMenuButton setAnchorPoint:ccp(3.0,3.0)];
+	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_In_Game_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_In_Game_Button" fromSHScene:@"Spritesheet"];
+	[levelsMenuButton transformPosition: ccp(-levelsMenuButton.contentSize.width/2, -levelsMenuButton.contentSize.height/2) ];
 	levelsMenuButton.opacity = 0;
 	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
 	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
 	[_inGameMenuItems addObject:levelsMenuButton];
+	
+	LHSprite* mainMenuButton = [_levelLoader createSpriteWithName:@"Main_Menu_In_Game_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+	[mainMenuButton prepareAnimationNamed:@"Menu_Main_Menu_In_Game_Button" fromSHScene:@"Spritesheet"];
+	[mainMenuButton transformPosition: ccp(-mainMenuButton.contentSize.width/2, -mainMenuButton.contentSize.height/2) ];
+	mainMenuButton.opacity = 0;
+	[mainMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganMainMenu:)];
+	[mainMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedMainMenu:)];
+	[_inGameMenuItems addObject:mainMenuButton];
 	
 	//show the level name at the top
 	LHSprite* timeAndLevelPopup = [_levelLoader createSpriteWithName:@"Time_and_Level_Popup" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
@@ -718,13 +724,16 @@
 	NSLog(@"Showing in-game menu");
 
 	[_playPauseButton runAction:[CCFadeTo actionWithDuration:0.5f opacity:150.0f]];
-	
+		
+	double angle = 165;
+		
 	for(LHSprite* menuItem in _inGameMenuItems) {
-
-		[menuItem transformRotation:-120.0f];
 	
+		[menuItem setAnchorPoint:ccp(3.0,3.0)];
 		[menuItem runAction:[CCFadeIn actionWithDuration:0.15f]];
-		[menuItem runAction:[CCRotateBy actionWithDuration:0.25f angle:-60.0f]];
+		[menuItem runAction:[CCRotateBy actionWithDuration:0.25f angle:angle]];
+		
+		angle+= 30;
 	}
 	
 }
@@ -736,7 +745,9 @@
 	for(LHSprite* menuItem in _inGameMenuItems) {
 		[menuItem runAction:[CCFadeOut actionWithDuration:0.35f]];
 		[menuItem runAction:[CCSequence actions:
-			[CCRotateBy actionWithDuration:0.35f angle:100.0f],
+			[CCRotateBy actionWithDuration:0.35f angle:-180.0f],	//take offscreen
+			[CCRotateTo actionWithDuration:0.15f angle:0.0f],	//reliable positioning
+			[CCScaleTo actionWithDuration:0.15f scaleX:1.0f scaleY:1.0f],	//reliable scale
 			nil
 		]];
 	}

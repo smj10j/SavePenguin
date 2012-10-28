@@ -11,7 +11,7 @@
 
 
 
-#define TEST_MODE false
+#define TEST_MODE true
 #define TEST_LEVEL_PACK @"Arctic1"
 #define TEST_LEVEL @"DangerDanger"
 #define DEBUG_ALL_THE_THINGS false
