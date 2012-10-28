@@ -292,7 +292,6 @@
 		free(_moveHistory);
 		_moveHistory = nil;
 	}
-	[super dealloc];
 }
 
 

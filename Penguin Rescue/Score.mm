@@ -44,9 +44,4 @@
 	_sprite = sprite;
 }
 
--(void)dealloc {
-	[_sprite release];
-	[super dealloc];
-}
-
 @end

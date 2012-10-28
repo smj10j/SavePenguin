@@ -86,9 +86,9 @@
 
 -(void) startLevelWithLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
 
-	_levelPath = [levelPath retain];
-	_levelPackPath = [levelPackPath retain];
-	_levelData = [LevelPackManager level:_levelPath inPack:_levelPackPath];
+	_levelPath = levelPath;
+	_levelPackPath = levelPackPath;
+	_levelData =  [LevelPackManager level:_levelPath inPack:_levelPackPath];
 	[self loadLevel:_levelPath inLevelPack:_levelPackPath];
 	
 	//place the HUD items (pause, restart, etc.)
@@ -344,7 +344,7 @@
 			//NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", toolboxItem.uniqueName, (int)(100*scale));
 		}
 		
-		[toolboxContainer setUserData:topToolboxItem.uniqueName];
+		[toolboxContainer setUserData:(void*)topToolboxItem.uniqueName];
 		[toolboxContainer registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
 		[toolboxContainer registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
 
@@ -363,9 +363,6 @@
 	[LevelHelperLoader dontStretchArt];
 
 	//create a LevelHelperLoader object that has the data of the specified level
-	if(_levelLoader != nil) {
-		[_levelLoader release];
-	}
 	_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", levelPack, levelName]];
 	
 	//create all objects from the level file and adds them to the cocos2d layer (self)
@@ -1047,7 +1044,7 @@
 	nil];
 	[Flurry endTimedEvent:@"Play_Level" withParameters:flurryParams];
 
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:_levelPath]]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:[NSString stringWithFormat:@"%@", _levelPackPath] levelPath:[NSString stringWithFormat:@"%@", _levelPath]]]];
 }
 
 
@@ -1065,7 +1062,7 @@
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelPackSelectLayer scene] ]];
 	
 	}else {
-		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:nextLevelPath]]];
+		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:[NSString stringWithFormat:@"%@", nextLevelPath]]]];
 	}
 }
 
@@ -1076,7 +1073,7 @@
 
 -(void) showLevelsMenuLayer {
 	NSLog(@"Showing LevelSelectLayer in GameLayer instance %f", _instanceId);
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[LevelSelectLayer sceneWithLevelPackPath:_levelPackPath] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[LevelSelectLayer sceneWithLevelPackPath:[NSString stringWithFormat:@"%@", _levelPackPath]] ]];
 }
 
 -(void) showTutorial {
@@ -1179,7 +1176,6 @@
 				if(sharkGridPos.x >= _gridWidth || sharkGridPos.x < 0 || sharkGridPos.y >= _gridHeight || sharkGridPos.y < 0) {
 					NSLog(@"Shark %@ has moved offscreen to %f,%f - removing him", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
 					[shark removeSelf];
-					shark = nil;
 					continue;
 				}
 
@@ -1512,7 +1508,6 @@
 		if(sharkGridPos.x >= _gridWidth || sharkGridPos.x < 0 || sharkGridPos.y >= _gridHeight || sharkGridPos.y < 0) {
 			NSLog(@"Shark %@ has moved offscreen to %f,%f - removing him", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
 			[shark removeSelf];
-			shark = nil;
 			continue;
 		}
 		
@@ -1922,6 +1917,7 @@
 {
 	NSLog(@"GameLayer %f dealloc", _instanceId);
 
+
 	[_levelPath release];
 	[_levelPackPath release];
 
@@ -1932,11 +1928,8 @@
 	free(_penguinMapfeaturesGrid);
 	free(_sharkMapfeaturesGrid);
 	
-	[_levelLoader release];
 	_levelLoader = nil;	
 	
-	delete _world;
-	_world = NULL;
 	
 	if(DEBUG_ALL_THE_THINGS) {
 		delete _debugDraw;

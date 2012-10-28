@@ -210,12 +210,7 @@
 {
 	NSLog(@"LevelPackSelectLayer dealloc");
 
-	[_spriteNameToLevelPackPath release];
-
-	[_levelLoader release];
 	_levelLoader = nil;	
-	
-	[super dealloc];
 }	
 
 
