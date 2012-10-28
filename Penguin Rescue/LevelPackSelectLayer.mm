@@ -210,8 +210,11 @@
 {
 	NSLog(@"LevelPackSelectLayer dealloc");
 
-	_levelLoader = nil;	
-}	
+	[_levelLoader release];
+	_levelLoader = nil;
+
+	[super dealloc];
+}
 
 
 @end

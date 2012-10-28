@@ -215,7 +215,7 @@
 		AA6A1A8E163CBB5700A9186D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6A1A8D163CBB5700A9186D /* Icon.png */; };
 		AA6A1A91163CBB6800A9186D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6A1A90163CBB6800A9186D /* Icon@2x.png */; };
 		AA6DFB1316302BFF00F93350 /* MoveGridData.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA6DFB1216302BFF00F93350 /* MoveGridData.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		AACE801C163992FB008C7E3B /* Score.mm in Sources */ = {isa = PBXBuildFile; fileRef = AACE801B163992FB008C7E3B /* Score.mm */; };
+		AACE801C163992FB008C7E3B /* Score.mm in Sources */ = {isa = PBXBuildFile; fileRef = AACE801B163992FB008C7E3B /* Score.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AAD7B65D163C296500B02521 /* AboutLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AAD7B65C163C296500B02521 /* AboutLayer.mm */; };
 		AAD7B660163C34BB00B02521 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = AAD7B65F163C34BB00B02521 /* sounds */; };
 		AAE60C82163CB99800CBE445 /* Icon_72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE60C81163CB99800CBE445 /* Icon_72x72.png */; };

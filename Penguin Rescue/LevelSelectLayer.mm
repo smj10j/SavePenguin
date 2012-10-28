@@ -70,7 +70,7 @@
 
 -(void) loadLevelsWithLevelPackPath:(NSString*)levelPackPath {
 
-	_levelPackPath = levelPackPath;
+	_levelPackPath = [levelPackPath retain];
 
 	//load all available levels for this pack
 	NSDictionary* levelsDictionary = [LevelPackManager allLevelsInPack:_levelPackPath];
@@ -196,8 +196,13 @@
 -(void) dealloc
 {
 	NSLog(@"LevelSelectLayer dealloc");
+	
+	[_levelPackPath release];
 
-	_levelLoader = nil;	
+	[_levelLoader release];
+	_levelLoader = nil;
+	
+	[super dealloc];
 }
 
 @end

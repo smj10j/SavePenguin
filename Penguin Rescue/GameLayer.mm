@@ -86,8 +86,8 @@
 
 -(void) startLevelWithLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
 
-	_levelPath = levelPath;
-	_levelPackPath = levelPackPath;
+	_levelPath = [levelPath retain];
+	_levelPackPath = [levelPackPath retain];
 	_levelData =  [LevelPackManager level:_levelPath inPack:_levelPackPath];
 	[self loadLevel:_levelPath inLevelPack:_levelPackPath];
 	
@@ -1002,14 +1002,14 @@
 
 	/***** action butons ******/
 	
-	const int buttonYOffset = (-50 - (levelLostPopup.contentSize.height - winSize.height)*.9)*SCALING_FACTOR_V;
+	const int buttonYOffset = (-25 - (levelLostPopup.contentSize.height - winSize.height)*.9)*SCALING_FACTOR_V;
 
 	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	levelsMenuButton.opacity = 0;
 	levelsMenuButton.zOrder = levelLostPopup.zOrder+1;
 	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_Button" fromSHScene:@"Spritesheet"];
 	[levelsMenuButton transformPosition: ccp(winSize.width/2 - levelsMenuButton.boundingBox.size.width,
-										buttonYOffset + levelLostPopup.boundingBox.size.height/2 - levelsMenuButton.boundingBox.size.height/2) ];
+										buttonYOffset + levelLostPopup.boundingBox.size.height/2 - levelsMenuButton.boundingBox.size.height/2 + (IS_IPHONE ? -25 : 0)*SCALING_FACTOR_V) ];
 	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
 	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
 	
@@ -1017,7 +1017,7 @@
 	restartMenuButton.opacity = 0;
 	restartMenuButton.zOrder = levelLostPopup.zOrder+1;
 	[restartMenuButton prepareAnimationNamed:@"Menu_Restart_Button" fromSHScene:@"Spritesheet"];
-	[restartMenuButton transformPosition: ccp(winSize.width/2 + restartMenuButton.boundingBox.size.width, buttonYOffset + levelLostPopup.boundingBox.size.height/2 - restartMenuButton.boundingBox.size.height/2) ];
+	[restartMenuButton transformPosition: ccp(winSize.width/2 + restartMenuButton.boundingBox.size.width, buttonYOffset + levelLostPopup.boundingBox.size.height/2 - restartMenuButton.boundingBox.size.height/2 + (IS_IPHONE ? -25 : 0)*SCALING_FACTOR_V) ];
 	[restartMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[restartMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 
@@ -1916,7 +1916,6 @@
 -(void) dealloc
 {
 	NSLog(@"GameLayer %f dealloc", _instanceId);
-
 
 	[_levelPath release];
 	[_levelPackPath release];
