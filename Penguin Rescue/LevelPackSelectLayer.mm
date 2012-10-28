@@ -105,6 +105,7 @@
 		NSDictionary* allLevels = [LevelPackManager allLevelsInPack:levelPackPath];
 
 		//create the sprite
+		//TODO: this can cause a crash with LevelHelper because of the same sprite/touch delegate issue
 		LHSprite* levelPackButton = [_levelLoader createSpriteWithName:@"Level_Pack_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:scrollableLayer];
 		[levelPackButton prepareAnimationNamed:@"Menu_Level_Pack_Select_Button" fromSHScene:@"Spritesheet"];
 
