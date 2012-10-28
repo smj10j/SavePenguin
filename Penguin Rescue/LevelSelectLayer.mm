@@ -80,7 +80,7 @@
 	NSArray* completedLevels = [LevelPackManager completedLevelsInPack:_levelPackPath];
 	NSArray* availableLevels = [LevelPackManager availableLevelsInPack:_levelPackPath];
 	
-	NSMutableArray* scrollableLayers = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray* scrollableLayers = [[NSMutableArray alloc] init];
 	
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
@@ -93,8 +93,8 @@
 	const int levelButtonYInitial = winSize.height + levelButtonSize.height/2;
 	[levelButton removeSelf];
 
-	int levelButtonX;
-	int levelButtonY;
+	int levelButtonX = levelButtonXInitial;
+	int levelButtonY = levelButtonYInitial;
 	CCLayer* scrollableLayer;
 
 	for(int i = 0; i < levelsDictionary.count; i++) {
@@ -179,6 +179,7 @@
 	// finally add the scroller to your scene
 	[self addChild:scroller];
 	
+	[scrollableLayers release];
 }
 
 
@@ -222,6 +223,7 @@
 	NSLog(@"LevelSelectLayer dealloc");
 	
 	[_levelPackPath release];
+	[_spriteNameToLevelPath release];	
 
 	[_levelLoader release];
 	_levelLoader = nil;

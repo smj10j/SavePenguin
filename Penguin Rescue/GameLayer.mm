@@ -77,9 +77,10 @@
 		[self initPhysics];
 		
 		[self preloadSounds];
+
+		NSLog(@"GameLayer %f initialized", _instanceId);
 	}
 	
-	NSLog(@"GameLayer %f initialized", _instanceId);
 	
 	return self;
 }
@@ -301,6 +302,14 @@
 
 	NSArray* toolboxItems = [_levelLoader spritesWithTag:TOOLBOX_ITEM];
 	
+	if(_toolGroups != nil) {
+		for(id key in _toolGroups) {
+			NSMutableDictionary* toolGroup = [_toolGroups objectForKey:key];
+			[toolGroup release];
+		}
+		[_toolGroups release];	
+	}
+	
 	//get all the tools put on the level - they can be anywhere!
 	_toolGroups = [[NSMutableDictionary alloc] init];
 	for(LHSprite* toolboxItem in toolboxItems) {
@@ -461,7 +470,7 @@
 		//and add it to the map
 		MoveGridData* moveGridData = [_penguinMoveGridDatas objectForKey:penguin.uniqueName];
 		if(moveGridData == nil) {
-			moveGridData = [[[MoveGridData alloc] initWithGrid: penguinMoveGrid height:_gridHeight width:_gridWidth moveHistorySize:PENGUIN_MOVE_HISTORY_SIZE tag:@"PENGUIN"] autorelease];
+			moveGridData = [[MoveGridData alloc] initWithGrid: penguinMoveGrid height:_gridHeight width:_gridWidth moveHistorySize:PENGUIN_MOVE_HISTORY_SIZE tag:@"PENGUIN"];
 			[_penguinMoveGridDatas setObject:moveGridData forKey:penguin.uniqueName];
 		}else {
 			[moveGridData updateBaseGrid:penguinMoveGrid];
@@ -485,7 +494,7 @@
 		//and add it to the map
 		MoveGridData* moveGridData = [_sharkMoveGridDatas objectForKey:shark.uniqueName];
 		if(moveGridData == nil) {
-			moveGridData = [[[MoveGridData alloc] initWithGrid: sharkMoveGrid height:_gridHeight width:_gridWidth moveHistorySize:SHARK_MOVE_HISTORY_SIZE tag:@"SHARK"] autorelease];
+			moveGridData = [[MoveGridData alloc] initWithGrid: sharkMoveGrid height:_gridHeight width:_gridWidth moveHistorySize:SHARK_MOVE_HISTORY_SIZE tag:@"SHARK"];
 			[_sharkMoveGridDatas setObject:moveGridData forKey:shark.uniqueName];
 		}else {
 			[moveGridData updateBaseGrid:sharkMoveGrid];
@@ -1920,19 +1929,44 @@
 	[_levelPath release];
 	[_levelPackPath release];
 
-	[_inGameMenuItems removeAllObjects];
-
-	[_sharkMoveGridDatas removeAllObjects];
-	[_penguinMoveGridDatas removeAllObjects];
+	[_inGameMenuItems release];
+	
+	for(id key in _toolGroups) {
+		NSMutableDictionary* toolGroup = [_toolGroups objectForKey:key];
+		[toolGroup release];
+	}
+	[_toolGroups release];
+	[_placedToolboxItems release];
+	[_scoreKeeper release];
+	
+	[_penguinsToPutOnLand release];
+	for(id key in _sharkMoveGridDatas) {
+		MoveGridData* moveGriData = [_sharkMoveGridDatas objectForKey:key];
+		[moveGriData release];
+	}
+	[_sharkMoveGridDatas release];
+	for(id key in _penguinMoveGridDatas) {
+		MoveGridData* moveGriData = [_penguinMoveGridDatas objectForKey:key];
+		[moveGriData release];
+	}
+	[_penguinMoveGridDatas release];
+	
+	for(int i = 0; i < _gridWidth; i++) {
+		free(_penguinMapfeaturesGrid[i]);
+		free(_sharkMapfeaturesGrid[i]);
+	}
 	free(_penguinMapfeaturesGrid);
 	free(_sharkMapfeaturesGrid);
 	
-	_levelLoader = nil;	
+	[_levelLoader release];
+	_levelLoader = nil;
 	
+	delete _world;
+	_world = nil;
 	
 	if(DEBUG_ALL_THE_THINGS) {
 		delete _debugDraw;
-		_debugDraw = NULL;
+		_debugDraw = nil;
 	}
 	
 	[super dealloc];

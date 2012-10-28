@@ -11,7 +11,18 @@
 int main(int argc, char *argv[]) {
     
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    int retVal = UIApplicationMain(argc, argv, nil, @"AppController");
-    [pool release];
+
+    int retVal;
+    @try {
+        retVal = UIApplicationMain(argc, argv, nil, @"AppController");
+    }
+    @catch (NSException *exception) {
+        NSLog(@"CRASH: %@", exception);
+        NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+    }
+    @finally {
+        [pool release];
+    }	
+	
     return retVal;
 }

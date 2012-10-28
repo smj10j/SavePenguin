@@ -78,7 +78,7 @@
 	NSArray* availableLevelPacks = [LevelPackManager availablePacks];
 
 
-	NSMutableArray* scrollableLayers = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray* scrollableLayers = [[NSMutableArray alloc] init];
 
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
@@ -169,7 +169,8 @@
 
 	// finally add the scroller to your scene
 	[self addChild:scroller];
-
+	
+	[scrollableLayers release];
 }
 
 
@@ -213,6 +214,8 @@
 {
 	NSLog(@"LevelPackSelectLayer dealloc");
 
+	[_spriteNameToLevelPackPath release];
+	
 	[_levelLoader release];
 	_levelLoader = nil;
 

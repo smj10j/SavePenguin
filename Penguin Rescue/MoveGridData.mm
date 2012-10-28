@@ -76,6 +76,9 @@
 
 - (void)updateBaseGrid:(int**)baseGrid {
 	if(_baseGrid != nil) {
+		for(int i = 0; i < _gridWidth; i++) {
+			free(_baseGrid[i]);
+		}
 		free(_baseGrid);
 	}
 	_baseGrid = baseGrid;
@@ -191,7 +194,7 @@
 
 	if(_forceUpdateToMoveGrid || (_lastToTile.x != toTile.x || _lastToTile.y != toTile.y)) {
 
-		NSLog(@"Updating a %@ move grid", _tag);
+		//NSLog(@"Updating a %@ move grid", _tag);
 
 		_lastToTile = toTile;
 		_forceUpdateToMoveGrid = false;
@@ -276,22 +279,33 @@
 }
 
 -(void)dealloc {
+
+	NSLog(@"Deallocating MoveGrid");
+
 	if(_baseGrid != nil) {
+		for(int i = 0; i < _gridWidth; i++) {
+			free(_baseGrid[i]);
+		}
 		free(_baseGrid);
 		_baseGrid = nil;
 	}
 	if(_moveGrid != nil) {
+		for(int i = 0; i < _gridWidth; i++) {
+			free(_moveGrid[i]);
+		}
 		free(_moveGrid);
 		_moveGrid = nil;
 	}
 	if(_moveGridBuffer != nil) {
+		for(int i = 0; i < _gridWidth; i++) {
+			free(_moveGridBuffer[i]);
+		}
 		free(_moveGridBuffer);
 		_moveGridBuffer = nil;
 	}
-	if(_moveHistory != nil) {
-		free(_moveHistory);
-		_moveHistory = nil;
-	}
+
+	free(_moveHistory);
+	_moveHistory = nil;
 }
 
 

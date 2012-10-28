@@ -43,9 +43,9 @@ enum PROPAGATION_RESULT {
 // HelloWorldLayer
 @interface GameLayer : CCLayerColor
 {
-	CCTexture2D* _spriteTexture_;	// weak ref
-	b2World* _world;					// strong ref
-	GLESDebugDraw *_debugDraw;		// strong ref
+	b2World* _world;
+	GLESDebugDraw *_debugDraw;
+	LevelHelperLoader* _levelLoader;
 	
 	double _instanceId;
 	
@@ -53,7 +53,6 @@ enum PROPAGATION_RESULT {
 	NSString* _levelPackPath;
 	NSDictionary* _levelData;
 	
-	LevelHelperLoader* _levelLoader;
 	CGSize _levelSize;
 	LHLayer* _mainLayer;
 	LHBatch* _toolboxBatchNode;
