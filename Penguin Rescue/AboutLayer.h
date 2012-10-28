@@ -16,7 +16,6 @@
 @interface AboutLayer : CCLayer
 {
 	LevelHelperLoader* _levelLoader;
-	b2World* _world;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

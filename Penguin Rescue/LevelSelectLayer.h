@@ -16,7 +16,6 @@
 @interface LevelSelectLayer : CCLayer
 {
 	LevelHelperLoader* _levelLoader;
-	b2World* _world;
 
 	NSString* _levelPackPath;
 	

@@ -662,7 +662,7 @@ static int untitledSpritesCount = 0;
 -(bool) removeBodyFromWorld{
     
 //    NSLog(@"RMOVE BODY %p", body);
-    if(NULL != body){
+    if(NULL != body && nil != body){
 		b2World* _world = body->GetWorld();
 		if(0 != _world){
                        
