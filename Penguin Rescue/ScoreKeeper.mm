@@ -44,9 +44,4 @@
 	return total;
 }
 
--(void)dealloc {
-	[_scores release];
-	[super dealloc];
-}
-
 @end

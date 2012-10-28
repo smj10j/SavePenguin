@@ -36,7 +36,7 @@ static NSString* sRootPath;
 +(NSDictionary*)allLevelPacks {
 	[LevelPackManager setupPaths];
 	NSString* levelPacksPropertyListPath = [sMainBundlePath stringByAppendingPathComponent:@"Levels/Packs.plist"];
-	NSLog(@"Loading all level packs");
+	//NSLog(@"Loading all level packs");
 	return [NSDictionary dictionaryWithContentsOfFile:levelPacksPropertyListPath];
 }
 
@@ -44,7 +44,7 @@ static NSString* sRootPath;
 +(NSDictionary*)allLevelsInPack:(NSString*)packPath {
 	[LevelPackManager setupPaths];
 	NSString* levelsPropertyListPath = [sMainBundlePath stringByAppendingPathComponent:[NSString stringWithFormat:@"Levels/%@/Levels.plist", packPath]];
-	NSLog(@"Loading all levels in pack %@", packPath);
+	//NSLog(@"Loading all levels in pack %@", packPath);
 	return [NSDictionary dictionaryWithContentsOfFile:levelsPropertyListPath];
 }
 
@@ -53,7 +53,7 @@ static NSString* sRootPath;
 +(NSArray*)completedPacks {
 	[LevelPackManager setupPaths];
 	NSString* completedLevelPacksPropertyListPath = [sRootPath stringByAppendingPathComponent:@"CompletedPacks.plist"];
-	NSLog(@"Loading completed level packs");
+	//NSLog(@"Loading completed level packs");
 	NSDictionary* completedLevelPacksDictionary = [[NSDictionary alloc] initWithContentsOfFile:completedLevelPacksPropertyListPath];
 	if(completedLevelPacksPropertyListPath == nil) {
 		completedLevelPacksDictionary = [[NSDictionary alloc] init];
@@ -65,7 +65,7 @@ static NSString* sRootPath;
 +(NSArray*)completedLevelsInPack:(NSString*)packPath {
 	[LevelPackManager setupPaths];
 	NSString* completedLevelsPropertyListPath = [sRootPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-CompletedLevels.plist", packPath]];
-	NSLog(@"Loading completed levels in pack %@", packPath);
+	//NSLog(@"Loading completed levels in pack %@", packPath);
 	NSDictionary* completedLevelsDictionary = [[NSDictionary alloc] initWithContentsOfFile:completedLevelsPropertyListPath];
 	if(completedLevelsDictionary == nil) {
 		completedLevelsDictionary = [[NSDictionary alloc] init];
@@ -106,14 +106,14 @@ static NSString* sRootPath;
 			//requires a a fully or partially completed pack - let's see if we meet the number of levels required within the required pack
 			if(requiresNumPackLevelsCompleted == 0) {
 				//0 means 100% required, so let's not add it
-				NSLog(@"Pack %@ is not available because not 100%% of levels are completed in required pack %@", levelPackPath, requiresPack);
+				//NSLog(@"Pack %@ is not available because not 100%% of levels are completed in required pack %@", levelPackPath, requiresPack);
 				
 			}else {
 				NSArray* completedLevels = [LevelPackManager completedLevelsInPack:requiresPack];
 				if(completedLevels.count >= [requiresNumPackLevelsCompleted intValue]) {
 					[availableLevelPacks addObject:levelPackPath];
 				}else {
-					NSLog(@"Pack %@ is not available because %d/%d levels are completed in required pack %@", levelPackPath, completedLevels.count, [requiresNumPackLevelsCompleted intValue], requiresPack);
+					//NSLog(@"Pack %@ is not available because %d/%d levels are completed in required pack %@", levelPackPath, completedLevels.count, [requiresNumPackLevelsCompleted intValue], requiresPack);
 				}
 			}		
 		}
@@ -136,7 +136,7 @@ static NSString* sRootPath;
 		maxLevelIndex++;
 	}
 	
-	NSLog(@"Making available up to level %d in pack %@", maxLevelIndex, packPath);
+	//NSLog(@"Making available up to level %d in pack %@", maxLevelIndex, packPath);
 	//add the 3 levels after levelsDictionary last completed level
 	for(int i = 0; i < levelsDictionary.count && i <= maxLevelIndex; i++) {
 		NSDictionary* levelData = [levelsDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];

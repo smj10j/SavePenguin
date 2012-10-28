@@ -79,6 +79,9 @@
 		
 		[self preloadSounds];
 	}
+	
+	NSLog(@"GameLayer %f initialized", _instanceId);
+	
 	return self;
 }
 
@@ -118,7 +121,9 @@
 		_levelPackPath, @"Level_Pack",
 	nil];
 
-	[Flurry logEvent:@"Play_Level" withParameters:flurryParams timed:YES];		
+	[Flurry logEvent:@"Play_Level" withParameters:flurryParams timed:YES];
+
+	NSLog(@"GameLayer %f level loaded", _instanceId);
 
 }
 
@@ -231,13 +236,13 @@
 
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
-	_playPauseButton = [_levelLoader createBatchSpriteWithName:@"Play_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
+	_playPauseButton = [_levelLoader createSpriteWithName:@"Play_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[_playPauseButton prepareAnimationNamed:@"Play_Pause_Button" fromSHScene:@"Spritesheet"];
 	[_playPauseButton transformPosition: ccp(_playPauseButton.boundingBox.size.width/2+HUD_BUTTON_MARGIN_H,_playPauseButton.boundingBox.size.height/2+HUD_BUTTON_MARGIN_V)];
 	[_playPauseButton registerTouchBeganObserver:self selector:@selector(onTouchBeganPlayPause:)];
 	[_playPauseButton registerTouchEndedObserver:self selector:@selector(onTouchEndedPlayPause:)];
 		
-	_restartButton = [_levelLoader createBatchSpriteWithName:@"Restart_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
+	_restartButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[_restartButton prepareAnimationNamed:@"Restart_Button" fromSHScene:@"Spritesheet"];
 	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.boundingBox.size.width/2+HUD_BUTTON_MARGIN_H),_restartButton.boundingBox.size.height/2+HUD_BUTTON_MARGIN_V) ];
 	[_restartButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
@@ -245,9 +250,9 @@
 		
 	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_Button" fromSHScene:@"Spritesheet"];
-	[levelsMenuButton transformPosition: ccp(0,0) ];
+	[levelsMenuButton transformPosition: ccp(-levelsMenuButton.contentSize.width/2,-levelsMenuButton.contentSize.height/2) ];
+	[levelsMenuButton setAnchorPoint:ccp(3.0,3.0)];
 	levelsMenuButton.opacity = 0;
-
 	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
 	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
 	[_inGameMenuItems addObject:levelsMenuButton];
@@ -453,7 +458,7 @@
 		//and add it to the map
 		MoveGridData* moveGridData = [_penguinMoveGridDatas objectForKey:penguin.uniqueName];
 		if(moveGridData == nil) {
-			moveGridData = [[MoveGridData alloc] initWithGrid: penguinMoveGrid height:_gridHeight width:_gridWidth moveHistorySize:PENGUIN_MOVE_HISTORY_SIZE tag:@"PENGUIN"];
+			moveGridData = [[[MoveGridData alloc] initWithGrid: penguinMoveGrid height:_gridHeight width:_gridWidth moveHistorySize:PENGUIN_MOVE_HISTORY_SIZE tag:@"PENGUIN"] autorelease];
 			[_penguinMoveGridDatas setObject:moveGridData forKey:penguin.uniqueName];
 		}else {
 			[moveGridData updateBaseGrid:penguinMoveGrid];
@@ -477,7 +482,7 @@
 		//and add it to the map
 		MoveGridData* moveGridData = [_sharkMoveGridDatas objectForKey:shark.uniqueName];
 		if(moveGridData == nil) {
-			moveGridData = [[MoveGridData alloc] initWithGrid: sharkMoveGrid height:_gridHeight width:_gridWidth moveHistorySize:SHARK_MOVE_HISTORY_SIZE tag:@"SHARK"];
+			moveGridData = [[[MoveGridData alloc] initWithGrid: sharkMoveGrid height:_gridHeight width:_gridWidth moveHistorySize:SHARK_MOVE_HISTORY_SIZE tag:@"SHARK"] autorelease];
 			[_sharkMoveGridDatas setObject:moveGridData forKey:shark.uniqueName];
 		}else {
 			[moveGridData updateBaseGrid:sharkMoveGrid];
@@ -580,10 +585,8 @@
 
 -(void)onTouchBeganPlayPause:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	
-	NSLog(@"Touch began play pause on GameLayer instance %f", _instanceId);
-	
-	[_playPauseButton setFrame:_playPauseButton.currentFrame+1];	//active state
+		
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 	__DEBUG_TOUCH_SECONDS = [[NSDate date] timeIntervalSince1970];
 	
 	if([SettingsManager boolForKey:@"SoundEnabled"]) {
@@ -594,18 +597,20 @@
 -(void)onTouchEndedPlayPause:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	
+	NSLog(@"Touch ended play/pause on GameLayer instance %f with _state=%d", _instanceId, _state);
+	
 	if(_state == PLACE) {
 		[self resume];
-		[_playPauseButton setFrame:2];	//pause inactive
+		[info.sprite setFrame:2];	//pause inactive
 		
 	}else if(_state == PAUSE) {
 		[self resume];
-		[_playPauseButton setFrame:2];	//pause inactive
+		[info.sprite setFrame:2];	//pause inactive
 		
 	}else if(_state == RUNNING) {
 		[self pause];
-		[_playPauseButton setFrame:3];	//pause active
-		[_playPauseButton setFrame:0];	//play inactive
+		[info.sprite setFrame:3];	//pause active
+		[info.sprite setFrame:0];	//play inactive
 	}
 
 	__DEBUG_TOUCH_SECONDS = 0;
@@ -614,6 +619,8 @@
 -(void)onTouchBeganRestart:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];
+
+	NSLog(@"Touch began restart on GameLayer instance %f with _state=%d", _instanceId, _state);
 	
 	if([SettingsManager boolForKey:@"SoundEnabled"]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
@@ -630,6 +637,8 @@
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];
 	
+	NSLog(@"Touch began mainmenu on GameLayer instance %f with _state=%d", _instanceId, _state);
+
 	if([SettingsManager boolForKey:@"SoundEnabled"]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
 	}
@@ -644,6 +653,8 @@
 -(void)onTouchBeganLevelsMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];
+
+	NSLog(@"Touch began levels menu on GameLayer instance %f with _state=%d", _instanceId, _state);
 	
 	if([SettingsManager boolForKey:@"SoundEnabled"]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
@@ -652,6 +663,7 @@
 
 -(void)onTouchEndedLevelsMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+	NSLog(@"Touch ended levels menu on GameLayer instance %f with _state=%d", _instanceId, _state);
 	[info.sprite removeSelf];
 	[self showLevelsMenuLayer];
 }
@@ -660,6 +672,8 @@
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];
 	
+	NSLog(@"Touch began next level on GameLayer instance %f with _state=%d", _instanceId, _state);
+
 	if([SettingsManager boolForKey:@"SoundEnabled"]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
 	}
@@ -672,6 +686,8 @@
 }
 
 -(void)onTouchBeganTutorial:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
+	NSLog(@"Touch began tutorial on GameLayer instance %f with _state=%d", _instanceId, _state);
 	[self fadeOutAllTutorials];
 }
 
@@ -705,7 +721,6 @@
 	
 	for(LHSprite* menuItem in _inGameMenuItems) {
 
-		[menuItem setAnchorPoint:ccp(2.3,2.3)];
 		[menuItem transformRotation:-120.0f];
 	
 		[menuItem runAction:[CCFadeIn actionWithDuration:0.15f]];
@@ -970,7 +985,7 @@
 -(void)showLevelLostPopup {
 	//show a level won screen
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
-	LHSprite* levelLostPopup = [_levelLoader createSpriteWithName:@"Level_Lost_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:_mainLayer];
+	LHSprite* levelLostPopup = [_levelLoader createSpriteWithName:@"Level_Lost_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	levelLostPopup.opacity = 0;
 	levelLostPopup.zOrder = 10000;
 	[levelLostPopup transformPosition: ccp(winSize.width/2,winSize.height/2)];
@@ -979,24 +994,30 @@
 
 	/***** action butons ******/
 	
-	int buttonYOffset = -30*SCALING_FACTOR_V;
-	int buttonXOffset = 0;
+	const int buttonYOffset = (-50 - (levelLostPopup.contentSize.height - winSize.height)*.9)*SCALING_FACTOR_V;
 
-	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelLostPopup];
+	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+	levelsMenuButton.opacity = 0;
+	levelsMenuButton.zOrder = levelLostPopup.zOrder+1;
 	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_Button" fromSHScene:@"Spritesheet"];
-	[levelsMenuButton transformPosition: ccp(buttonXOffset + levelLostPopup.boundingBox.size.width/2 - levelsMenuButton.boundingBox.size.width, buttonYOffset + levelLostPopup.boundingBox.size.height/2 - levelsMenuButton.boundingBox.size.height/2) ];
+	[levelsMenuButton transformPosition: ccp(winSize.width/2 - levelsMenuButton.boundingBox.size.width,
+										buttonYOffset + levelLostPopup.boundingBox.size.height/2 - levelsMenuButton.boundingBox.size.height/2) ];
 	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
 	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
 	
-	LHSprite* restartMenuButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelLostPopup];
+	LHSprite* restartMenuButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+	restartMenuButton.opacity = 0;
+	restartMenuButton.zOrder = levelLostPopup.zOrder+1;
 	[restartMenuButton prepareAnimationNamed:@"Menu_Restart_Button" fromSHScene:@"Spritesheet"];
-	[restartMenuButton transformPosition: ccp(buttonXOffset + levelLostPopup.boundingBox.size.width/2 + restartMenuButton.boundingBox.size.width, buttonYOffset + levelLostPopup.boundingBox.size.height/2 - restartMenuButton.boundingBox.size.height/2) ];
+	[restartMenuButton transformPosition: ccp(winSize.width/2 + restartMenuButton.boundingBox.size.width, buttonYOffset + levelLostPopup.boundingBox.size.height/2 - restartMenuButton.boundingBox.size.height/2) ];
 	[restartMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[restartMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 
 
 	//show!!
 	[levelLostPopup runAction:[CCFadeIn actionWithDuration:0.5f]];
+	[levelsMenuButton runAction:[CCFadeIn actionWithDuration:0.5f]];
+	[restartMenuButton runAction:[CCFadeIn actionWithDuration:0.5f]];
 }
 
 -(void) restart {
@@ -1892,6 +1913,8 @@
 
 	[_levelPath release];
 	[_levelPackPath release];
+
+	[_inGameMenuItems removeAllObjects];
 
 	[_sharkMoveGridDatas removeAllObjects];
 	[_penguinMoveGridDatas removeAllObjects];

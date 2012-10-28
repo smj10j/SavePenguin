@@ -111,7 +111,7 @@
 		bool isLocked = false;
 		
 		if([completedLevels containsObject:levelPath]) {
-			NSLog(@"Level %@ is completed!", levelPath);
+			//NSLog(@"Level %@ is completed!", levelPath);
 
 			//add a checkmark on top
 			LHSprite* completedMark = [_levelLoader createSpriteWithName:@"Level_Completed" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelButton];
@@ -119,11 +119,11 @@
 			
 			
 		}else if([availableLevels containsObject:levelPath]) {
-			NSLog(@"Level %@ is available!", levelPath);
+			//NSLog(@"Level %@ is available!", levelPath);
 
 					
 		}else {
-			NSLog(@"Level %@ is NOT available!", levelPath);
+			//NSLog(@"Level %@ is NOT available!", levelPath);
 
 			isLocked = true;
 

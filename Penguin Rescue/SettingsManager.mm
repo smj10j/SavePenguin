@@ -20,7 +20,7 @@ static NSMutableDictionary* sSettings = nil;
 		if(sSettings == nil) {
 			sSettings = [[NSMutableDictionary alloc] init];
 		}
-		NSLog(@"Loaded user settings");
+		//NSLog(@"Loaded user settings");
 	//}
 }
 
@@ -40,6 +40,7 @@ static NSMutableDictionary* sSettings = nil;
 
 +(id)objectForKey:(NSString*)key {
 	[SettingsManager loadSettings];
+	NSLog(@"Loading settings value for key %@", key);
 	return [sSettings objectForKey:key];
 }
 +(NSString*)stringForKey:(NSString*)key {

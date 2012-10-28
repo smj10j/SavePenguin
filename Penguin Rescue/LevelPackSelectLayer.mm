@@ -78,7 +78,7 @@
 	NSArray* availableLevelPacks = [LevelPackManager availablePacks];
 
 
-	NSMutableArray* scrollableLayers = [[NSMutableArray alloc] init];
+	NSMutableArray* scrollableLayers = [[[NSMutableArray alloc] init] autorelease];
 
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
@@ -111,17 +111,17 @@
 		bool isLocked = false;
 
 		if([completedLevelPacks containsObject:levelPackPath]) {
-			NSLog(@"Pack %@ is completed!", levelPackPath);
+			//NSLog(@"Pack %@ is completed!", levelPackPath);
 
 			//add a checkmark on top
 			LHSprite* completedMark = [_levelLoader createSpriteWithName:@"Level_Pack_Completed" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
 			[completedMark transformPosition:ccp(levelPackButtonSize.width/2,levelPackButtonSize.height/2)];
 					
 		}else if([availableLevelPacks containsObject:levelPackPath]) {
-			NSLog(@"Pack %@ is available!", levelPackPath);
+			//NSLog(@"Pack %@ is available!", levelPackPath);
 					
 		}else {
-			NSLog(@"Pack %@ is NOT available!", levelPackPath);
+			//NSLog(@"Pack %@ is NOT available!", levelPackPath);
 
 			//add a lock on top
 			LHSprite* lockIcon = [_levelLoader createSpriteWithName:@"Level_Pack_Locked" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
@@ -162,7 +162,7 @@
 	
 	
 	// now create the scroller and pass-in the pages (set widthOffset to 0 for fullscreen pages)
-	CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:scrollableLayers widthOffset: 230];
+	CCScrollLayer *scroller = [[[CCScrollLayer alloc] initWithLayers:scrollableLayers widthOffset: 230] autorelease];
 
 	// finally add the scroller to your scene
 	[self addChild:scroller];
