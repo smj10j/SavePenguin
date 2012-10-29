@@ -205,7 +205,7 @@
 	}
 	[actors release];
 	
-	if(minScale < 1) {
+	if(minScale < 1 && _gridSize > MIN_GRID_SIZE) {
 		_gridSize*= minScale;
 		NSLog(@"Scaling down gridSize by %f to %d to account for scaled down actors", minScale, _gridSize);
 	}
@@ -387,15 +387,15 @@
 		if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
 			//display item power
 			ToolboxItem_Windmill* toolboxItemData = ((ToolboxItem_Windmill*)topToolboxItem.userInfo);
-			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"+%d%%", (int)toolboxItemData.power] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE];
-			powerLabel.color = ccRED;
-			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 25*SCALING_FACTOR_H, 10*SCALING_FACTOR_V);
+			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"+%d%%", (int)toolboxItemData.power] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_STATS_FONT_SIZE];
+			powerLabel.color = ccWHITE;
+			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 30*SCALING_FACTOR_H, 15*SCALING_FACTOR_V);
 			[toolboxContainer addChild:powerLabel];
 		}else if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
 			//display item density
-			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%dlbs", (int)(topToolboxItem.body->GetFixtureList()->GetDensity()*100)] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE];
-			powerLabel.color = ccRED;
-			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 25*SCALING_FACTOR_H, 10*SCALING_FACTOR_V);
+			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%dlbs", (int)(topToolboxItem.body->GetFixtureList()->GetDensity()*100)] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_STATS_FONT_SIZE];
+			powerLabel.color = ccWHITE;
+			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 30*SCALING_FACTOR_H, 15*SCALING_FACTOR_V);
 			[toolboxContainer addChild:powerLabel];
 		}
 
@@ -497,7 +497,7 @@
 		}
 			
 
-		NSLog(@"Land from %d,%d to %d,%d", minX, minY, maxX, maxY);
+		//NSLog(@"Land from %d,%d to %d,%d", minX, minY, maxX, maxY);
 	}
 
 

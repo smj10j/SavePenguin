@@ -86,10 +86,11 @@
 
 	LHSprite* levelButton = [_levelLoader createSpriteWithName:@"Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	const CGSize levelButtonSize = levelButton.boundingBox.size;
-	const int levelButtonMargin = 50*SCALING_FACTOR_H;
-	const int columns = (winSize.width - levelButtonMargin*2) / (levelButtonMargin+levelButtonSize.width);
-	const int rows = (winSize.height - levelButtonMargin*2) / (levelButtonMargin+levelButtonSize.height);
-	const int levelButtonXInitial = winSize.width/2 - (columns/2 * (levelButtonSize.width+levelButtonMargin)) + (levelButtonSize.width+levelButtonMargin)/2;
+	const int levelButtonMarginX = 50*SCALING_FACTOR_H;
+	const int levelButtonMarginY = 30*SCALING_FACTOR_V;
+	const int columns = (winSize.width - levelButtonMarginX*2) / (levelButtonMarginX+levelButtonSize.width);
+	const int rows = (winSize.height - levelButtonMarginY*2) / (levelButtonMarginY+levelButtonSize.height);
+	const int levelButtonXInitial = winSize.width/2 - (columns/2 * (levelButtonSize.width+levelButtonMarginX)) + (levelButtonSize.width+levelButtonMarginX)/2;
 	const int levelButtonYInitial = winSize.height + levelButtonSize.height/2;
 	[levelButton removeSelf];
 
@@ -112,7 +113,7 @@
 
 		if(i%columns == 0) {
 			//new row
-			levelButtonY-= (levelButtonSize.height + levelButtonMargin);
+			levelButtonY-= (levelButtonSize.height + levelButtonMarginY);
 			levelButtonX = levelButtonXInitial;
 		}
 		
@@ -168,7 +169,7 @@
 		
 		//positioning
 		[levelButton transformPosition: ccp(levelButtonX, levelButtonY)];
-		levelButtonX+= levelButtonSize.width + levelButtonMargin;
+		levelButtonX+= levelButtonSize.width + levelButtonMarginX;
 	}
 
 
