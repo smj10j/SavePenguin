@@ -118,10 +118,10 @@
 - (CGPoint)getBestMoveToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile {
 	CGPoint bestMove = ccp(-10000,-10000);
 	
-	double wN = _moveGrid[(int)fromTile.x][fromTile.y < _gridHeight-1 ? (int)fromTile.y+1 : 10000];
-	double wS = _moveGrid[(int)fromTile.x][fromTile.y > 0 ? (int)fromTile.y-1 : 10000];
-	double wE = _moveGrid[fromTile.x < _gridWidth-1 ? (int)fromTile.x+1 : 10000][(int)fromTile.y];
-	double wW = _moveGrid[fromTile.x > 0 ? (int)fromTile.x-1 : 10000][(int)fromTile.y];
+	double wN = fromTile.y < _gridHeight-1 ? _moveGrid[(int)fromTile.x][(int)fromTile.y+1] : 10000;
+	double wS = fromTile.y > 0 ? _moveGrid[(int)fromTile.x][(int)fromTile.y-1] : 10000;
+	double wE = fromTile.x < _gridWidth-1 ? _moveGrid[(int)fromTile.x+1][(int)fromTile.y] : 10000;
+	double wW = fromTile.x > 0 ? _moveGrid[(int)fromTile.x-1][(int)fromTile.y] : 10000;
 	
 	//makes backtracking less attractive
 	_moveGrid[(int)fromTile.x][(int)fromTile.y]++;
@@ -280,7 +280,7 @@
 
 -(void)dealloc {
 
-	NSLog(@"Deallocating MoveGrid");
+	//NSLog(@"Deallocating MoveGrid");
 
 	if(_baseGrid != nil) {
 		for(int i = 0; i < _gridWidth; i++) {
