@@ -189,12 +189,11 @@
 
 -(void)onTouchAnyButton:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 }
 
 -(void)onTouchEndedLevelSelect:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 	
 	if([SettingsManager boolForKey:@"SoundEnabled"]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
@@ -207,7 +206,7 @@
 
 -(void)onTouchEndedBack:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 	
 	if([SettingsManager boolForKey:@"SoundEnabled"]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];

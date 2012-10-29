@@ -115,10 +115,11 @@
 
 -(void)onTouchBeganAnyButton:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 }
 
 -(void)onPlay:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 	
 	if([SettingsManager boolForKey:@"SoundEnabled"]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
@@ -134,6 +135,8 @@
 }
 
 -(void)onInfo:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 	
 	if([SettingsManager boolForKey:@"SoundEnabled"]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
@@ -144,6 +147,7 @@
 
 -(void)onToggleSound:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 
 	bool isSoundEnabled = [SettingsManager boolForKey:@"SoundEnabled"];
 	NSLog(@"Sound was %d - setting to %d", isSoundEnabled, !isSoundEnabled);
@@ -165,6 +169,7 @@
 
 -(void)onToggleMusic:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 
 	if([SettingsManager boolForKey:@"SoundEnabled"]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];

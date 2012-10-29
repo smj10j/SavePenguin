@@ -645,18 +645,18 @@
 -(void)onTouchBeganPlayPause:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 		
-	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 	__DEBUG_TOUCH_SECONDS = [[NSDate date] timeIntervalSince1970];
-	
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
-		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
-	}
 }
 
 -(void)onTouchEndedPlayPause:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	
-	NSLog(@"Touch ended play/pause on GameLayer instance %f with _state=%d", _instanceId, _state);
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
+
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
+	}
+		
+	//NSLog(@"Touch ended play/pause on GameLayer instance %f with _state=%d", _instanceId, _state);
 	
 	if(_state == PLACE) {
 		[self resume];
@@ -677,69 +677,70 @@
 
 -(void)onTouchBeganRestart:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	[info.sprite setFrame:info.sprite.currentFrame+1];
-
-	NSLog(@"Touch began restart on GameLayer instance %f with _state=%d", _instanceId, _state);
-	
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
-		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
-	}
+	//NSLog(@"Touch began restart on GameLayer instance %f with _state=%d", _instanceId, _state);
 }
 
 -(void)onTouchEndedRestart:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
+
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
+	}
+	
 	[info.sprite removeSelf];
 	[self restart];
 }
 
 -(void)onTouchBeganMainMenu:(LHTouchInfo*)info {
-	if(info.sprite == nil) return;
-	[info.sprite setFrame:info.sprite.currentFrame+1];
-	
-	NSLog(@"Touch began mainmenu on GameLayer instance %f with _state=%d", _instanceId, _state);
-
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
-		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
-	}
+	if(info.sprite == nil) return;	
+	//NSLog(@"Touch began mainmenu on GameLayer instance %f with _state=%d", _instanceId, _state);
 }
 
 -(void)onTouchEndedMainMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
+
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
+	}
+	
 	[info.sprite removeSelf];
 	[self showMainMenuLayer];
 }
 
 -(void)onTouchBeganLevelsMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	[info.sprite setFrame:info.sprite.currentFrame+1];
-
-	NSLog(@"Touch began levels menu on GameLayer instance %f with _state=%d", _instanceId, _state);
-	
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
-		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
-	}
+	//NSLog(@"Touch began levels menu on GameLayer instance %f with _state=%d", _instanceId, _state);
 }
 
 -(void)onTouchEndedLevelsMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	NSLog(@"Touch ended levels menu on GameLayer instance %f with _state=%d", _instanceId, _state);
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
+
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
+	}
+	
+	//NSLog(@"Touch ended levels menu on GameLayer instance %f with _state=%d", _instanceId, _state);
+	
 	[info.sprite removeSelf];
 	[self showLevelsMenuLayer];
 }
 
 -(void)onTouchBeganNextLevel:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	[info.sprite setFrame:info.sprite.currentFrame+1];
-	
-	NSLog(@"Touch began next level on GameLayer instance %f with _state=%d", _instanceId, _state);
-
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
-		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
-	}
+	//NSLog(@"Touch began next level on GameLayer instance %f with _state=%d", _instanceId, _state);
 }
 
 -(void)onTouchEndedNextLevel:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
+
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
+	}
+	
 	[info.sprite removeSelf];
 	[self goToNextLevel];
 }
