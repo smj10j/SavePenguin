@@ -371,15 +371,15 @@
 		if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
 			//display item power
 			ToolboxItem_Windmill* toolboxItemData = ((ToolboxItem_Windmill*)topToolboxItem.userInfo);
-			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", (int)toolboxItemData.power] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE];
+			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"+%d%%", (int)toolboxItemData.power] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE];
 			powerLabel.color = ccRED;
-			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 20*SCALING_FACTOR_H, 10*SCALING_FACTOR_V);
+			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 25*SCALING_FACTOR_H, 10*SCALING_FACTOR_V);
 			[toolboxContainer addChild:powerLabel];
 		}else if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
 			//display item density
-			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", (int)topToolboxItem.body->GetFixtureList()->GetDensity()] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE];
+			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%dlbs", (int)(topToolboxItem.body->GetFixtureList()->GetDensity()*100)] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE];
 			powerLabel.color = ccRED;
-			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 20*SCALING_FACTOR_H, 10*SCALING_FACTOR_V);
+			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 25*SCALING_FACTOR_H, 10*SCALING_FACTOR_V);
 			[toolboxContainer addChild:powerLabel];
 		}
 

@@ -157,9 +157,9 @@
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
@@ -232,9 +232,9 @@
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0, -0.25}</string>
 								<key>UniqueName</key>
@@ -307,9 +307,9 @@
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0, -0.25}</string>
 								<key>UniqueName</key>
@@ -457,9 +457,9 @@
 								<key>SpriteSize</key>
 								<string>{187.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0, 0.125}</string>
 								<key>UniqueName</key>
@@ -2459,6 +2459,372 @@
 							</dict>
 							<key>UniqueName</key>
 							<string>Floating-Log_7</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict>
+								<key>AnimAtStart</key>
+								<true/>
+								<key>AnimLoop</key>
+								<true/>
+								<key>AnimName</key>
+								<string>Toolbox_Windmill</string>
+								<key>AnimRepetitions</key>
+								<integer>1</integer>
+								<key>AnimRestoreOriginalFrame</key>
+								<false/>
+								<key>AnimSpeed</key>
+								<real>0.029999999329447746</real>
+								<key>OtherAnimations</key>
+								<array/>
+								<key>SHScene</key>
+								<string>Spritesheet.pshs</string>
+							</dict>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>power</key>
+									<true/>
+									<key>reach</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+									<key>scale</key>
+									<true/>
+								</dict>
+								<key>ClassName</key>
+								<string>ToolboxItem_Windmill</string>
+								<key>ClassRepresentation</key>
+								<dict>
+									<key>placeCost</key>
+									<real>400</real>
+									<key>power</key>
+									<real>50</real>
+									<key>reach</key>
+									<real>5000</real>
+									<key>runningCost</key>
+									<real>600</real>
+									<key>scale</key>
+									<real>1</real>
+								</dict>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Toolbox</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Toolbox</string>
+							<key>SHSpriteName</key>
+							<string>Windmill_1</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Toolbox.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{38, 73}, {29, 43.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{173, 59}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{37.5, 50}</string>
+								<key>Tag</key>
+								<integer>13</integer>
+								<key>TagName</key>
+								<string>WINDMILL</string>
+								<key>TextureOffset</key>
+								<string>{0.25, -0.125}</string>
+								<key>UniqueName</key>
+								<string>Windmill_1_2</string>
+								<key>ZOrder</key>
+								<integer>19</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Windmill_1_2</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+									<key>scale</key>
+									<true/>
+								</dict>
+								<key>ClassName</key>
+								<string>ToolboxItem_Debris</string>
+								<key>ClassRepresentation</key>
+								<dict>
+									<key>placeCost</key>
+									<real>250</real>
+									<key>runningCost</key>
+									<real>350</real>
+									<key>scale</key>
+									<real>1</real>
+								</dict>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Toolbox</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>AngularDamping</key>
+								<real>2</real>
+								<key>AngularVelocity</key>
+								<real>0.0</real>
+								<key>CanSleep</key>
+								<true/>
+								<key>FixedRot</key>
+								<false/>
+								<key>GravityScale</key>
+								<real>1</real>
+								<key>HandledBySH</key>
+								<false/>
+								<key>IsBullet</key>
+								<false/>
+								<key>LinearDamping</key>
+								<real>2</real>
+								<key>LinearVelocity</key>
+								<string>{0, 0}</string>
+								<key>SH_ComplexShapes</key>
+								<array>
+									<dict>
+										<key>Category</key>
+										<integer>1</integer>
+										<key>Density</key>
+										<real>2</real>
+										<key>Fixture</key>
+										<array>
+											<array>
+												<string>{4.25, 7.5}</string>
+												<string>{4, 8}</string>
+												<string>{3.5, 7.5}</string>
+												<string>{0, -6.75}</string>
+											</array>
+											<array>
+												<string>{9.5, 8.75}</string>
+												<string>{9.25, 9}</string>
+												<string>{7, 7.75}</string>
+												<string>{8.75, -6.25}</string>
+											</array>
+											<array>
+												<string>{7.25, -7}</string>
+												<string>{8.75, -6.25}</string>
+												<string>{7, 7.75}</string>
+												<string>{5.5, 8}</string>
+												<string>{5.25, 7.5}</string>
+												<string>{0, -6.75}</string>
+											</array>
+											<array>
+												<string>{-16.5, -4.5}</string>
+												<string>{-15.25, -7.25}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-17.25, 1.25}</string>
+												<string>{-16.5, -4.5}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-16.25, 5.25}</string>
+												<string>{-17.25, 1.25}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-15.75, 6}</string>
+												<string>{-16.25, 5.25}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-14, 7.5}</string>
+												<string>{-15.75, 6}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-2.25, 7.75}</string>
+												<string>{-14, 7.5}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-2, 7.5}</string>
+												<string>{-2.25, 7.75}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-3, -7.5}</string>
+												<string>{-2, 7.5}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-3, -7.5}</string>
+												<string>{-6.75, -8.5}</string>
+												<string>{-4.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{14.75, 9}</string>
+												<string>{13.75, 9.75}</string>
+												<string>{12.75, 9.75}</string>
+												<string>{12.5, 9.5}</string>
+												<string>{18.5, 1.5}</string>
+											</array>
+											<array>
+												<string>{17.25, -5.5}</string>
+												<string>{18, -4.75}</string>
+												<string>{18.5, 1.5}</string>
+												<string>{12.5, 9.5}</string>
+												<string>{11.75, 9}</string>
+												<string>{12.5, -5.75}</string>
+											</array>
+											<array>
+												<string>{8.75, -6.25}</string>
+												<string>{11, -6.5}</string>
+												<string>{12.5, -5.75}</string>
+												<string>{11.75, 9}</string>
+												<string>{11.25, 9.25}</string>
+												<string>{9.5, 8.75}</string>
+											</array>
+											<array>
+												<string>{0, -6.75}</string>
+												<string>{5.25, 7.5}</string>
+												<string>{4.25, 7.5}</string>
+											</array>
+											<array>
+												<string>{0, -6.75}</string>
+												<string>{3.5, 7.5}</string>
+												<string>{0.5, 8.25}</string>
+												<string>{-1.25, 8}</string>
+												<string>{-2, 7.5}</string>
+												<string>{-3, -7.5}</string>
+											</array>
+											<array>
+												<string>{-10.75, -10.25}</string>
+												<string>{-6.75, -8.5}</string>
+												<string>{-15.25, -7.25}</string>
+												<string>{-12.25, -10}</string>
+											</array>
+										</array>
+										<key>Friction</key>
+										<real>0.20000000298023224</real>
+										<key>Group</key>
+										<integer>0</integer>
+										<key>IsCircle</key>
+										<false/>
+										<key>IsSensor</key>
+										<false/>
+										<key>LHHeight</key>
+										<real>37.5</real>
+										<key>LHShapePositionOffset</key>
+										<string>{-17.25, -9.75}</string>
+										<key>LHWidth</key>
+										<real>37.5</real>
+										<key>Mask</key>
+										<integer>65535</integer>
+										<key>Name</key>
+										<string>UntitledFixture</string>
+										<key>Restitution</key>
+										<real>0.20000000298023224</real>
+										<key>Tag</key>
+										<integer>0</integer>
+									</dict>
+								</array>
+								<key>Type</key>
+								<integer>2</integer>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Toolbox</string>
+							<key>SHSpriteName</key>
+							<string>Floating-Log</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Toolbox.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>90</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{217, 61}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{37.5, 37.5}</string>
+								<key>Tag</key>
+								<integer>9</integer>
+								<key>TagName</key>
+								<string>DEBRIS</string>
+								<key>TextureOffset</key>
+								<string>{0.5, -0.125}</string>
+								<key>UniqueName</key>
+								<string>Floating-Log_8</string>
+								<key>ZOrder</key>
+								<integer>19</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Floating-Log_8</string>
 						</dict>
 					</array>
 					<key>CustomClassInfo</key>
