@@ -1938,6 +1938,10 @@
 			if(_activeToolboxItem && ccpDistance(location, _activeToolboxItem.position) > 50*SCALING_FACTOR_GENERIC) {
 				//tapping a second finger on the screen when moving a toolbox item rotates the item
 				[_activeToolboxItem transformRotation:((int)_activeToolboxItem.rotation+90)%360];
+				
+				if([SettingsManager boolForKey:@"SoundEnabled"]) {
+					[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox-rotate.wav"];
+				}
 			}
 		}
 	}
