@@ -74,7 +74,7 @@
 
 - (void)forceUpdateToMoveGrid {
 	_forceUpdateToMoveGrid = true;
-	_foundRoute = false;
+	_minSearchPathFactor = 1.0;
 }
 
 - (void)updateBaseGrid:(int**)baseGrid {
