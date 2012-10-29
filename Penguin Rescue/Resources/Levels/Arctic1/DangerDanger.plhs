@@ -1155,7 +1155,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{60, 0}, {17.75, 71.75}}</string>
+								<string>{{38, 0}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1247,7 +1247,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{60, 0}, {17.75, 71.75}}</string>
+								<string>{{38, 0}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1418,6 +1418,8 @@
 					<real>1000</real>
 					<key>power</key>
 					<real>25</real>
+					<key>reach</key>
+					<real>5000</real>
 					<key>runningCost</key>
 					<real>1250</real>
 					<key>scale</key>

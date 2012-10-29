@@ -11,9 +11,9 @@
 
 
 
-#define TEST_MODE false
+#define TEST_MODE true
 #define TEST_LEVEL_PACK @"Arctic1"
-#define TEST_LEVEL @"DangerDanger"
+#define TEST_LEVEL @"ALightBreeze"
 #define DEBUG_ALL_THE_THINGS false
 #define DEBUG_PENGUIN false	//can be overridden in game
 #define DEBUG_SHARK false	//can be overridden in game

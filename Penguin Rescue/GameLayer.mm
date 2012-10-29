@@ -24,6 +24,8 @@
 #import "SettingsManager.h"
 #import "SimpleAudioEngine.h"
 
+#import "WindmillRaycastCallback.h"
+
 #pragma mark - GameLayer
 
 @implementation GameLayer
@@ -1190,27 +1192,35 @@
 					continue;
 				}
 
+				//set our search distance
+				double minDistance = 100000000;
+				if(!sharkData.targetAcquired) {
+					for(LHSprite* penguin in penguins) {
+						Penguin* penguinData = ((Penguin*)penguin.userInfo);
+						if(penguinData.isSafe || penguinData.isStuck) {
+							continue;
+						}
+
+						if(penguin.body->IsAwake()) {
+							//we smell blood...
+							minDistance = fmin(minDistance, sharkData.activeDetectionRadius * SCALING_FACTOR_GENERIC);
+							break;
+						}else {
+							minDistance = fmin(minDistance, sharkData.restingDetectionRadius * SCALING_FACTOR_GENERIC);
+						}
+					}
+				}
 
 				//find the nearest penguin
 				for(LHSprite* penguin in penguins) {
 					Penguin* penguinData = ((Penguin*)penguin.userInfo);
 					if(penguinData.isSafe || penguinData.isStuck) {
 						continue;
-					}
-
-					double minDistance = 100000000;
-					if(sharkData.targetAcquired) {
-						//any ol' penguin will do
-						minDistance = 1000000;
-					}else if(penguin.body->IsAwake()) {
-						//we smell blood...
-						minDistance = fmin(minDistance, sharkData.activeDetectionRadius * SCALING_FACTOR_GENERIC);
-					}else {
-						minDistance = fmin(minDistance, sharkData.restingDetectionRadius * SCALING_FACTOR_GENERIC);
-					}		
+					}	
 					
 					double dist = ccpDistance(shark.position, penguin.position);
 					if(dist < minDistance) {
+						//NSLog(@"Shark %@'s closest penguin is %@ at %f", shark.uniqueName, penguin.uniqueName, dist);
 						minDistance = dist;
 						targetPenguin = penguin;
 						sharkData.targetAcquired = true;
@@ -1576,33 +1586,69 @@
 
 			}
 		}
-		
+
+		double dxMod = 0;
+		double dyMod = 0;
+
+		//TODO: this is inefficient because it casts much more often than it needs to. optimize if need be
+		//adjust the shark speed by any movement altering affects in play (such as windmills)
+		NSArray* windmills = [_levelLoader spritesWithTag:WINDMILL];
+		for(LHSprite* windmill in windmills) {
+			ToolboxItem_Windmill* windmillData = ((ToolboxItem_Windmill*)windmill.userInfo);
+			//facing east by default
+			int rotation = ((int)(windmill.rotation+90))%360;
+			double xDir = sin(CC_DEGREES_TO_RADIANS(rotation));
+			double yDir = cos(CC_DEGREES_TO_RADIANS(rotation));
+			b2Vec2 windmillPos = windmill.body->GetPosition();
+			b2Vec2 directionVector = b2Vec2(windmillPos.x + windmillData.reach*xDir,
+											windmillPos.y + windmillData.reach*yDir);
+									
+			//returns if the shark is in front of the windmill
+			WindmillRaycastCallback callback;
+			_world->RayCast(&callback, windmillPos, directionVector);
+			 
+			if (callback._fixture) {
+				if (callback._fixture->GetBody() == shark.body) {
+					//shark is in the way!!
+					//NSLog(@"Shark %@ is in the way of a windmill %@! Applying effects...", shark.uniqueName, windmill.uniqueName);
+					
+					double dModSum = fabs(xDir) + fabs(yDir);
+					if(dModSum == 0) {
+						dModSum = 1;
+					}					
+					
+					dxMod = (xDir/dModSum)*(windmillData.power);
+					dyMod = (yDir/dModSum)*(windmillData.power);
+					
+				}
+			}
+		}
+				
 		double dSum = fabs(dx) + fabs(dy);
 		if(dSum == 0) {
 			//no best option?
 			//NSLog(@"No best option for shark %@ max(dx,dy) was 0", shark.uniqueName);
 			dSum = 1;
 		}
-
 		double normalizedX = (sharkSpeed*dx)/dSum;
 		double normalizedY = (sharkSpeed*dy)/dSum;
 
-		b2Vec2 prevVel = shark.body->GetLinearVelocity();
-		double targetVelX = dt * normalizedX;
-		double targetVelY = dt * normalizedY;
-		double weightedVelX = (prevVel.x * 9.0 + targetVelX)/10.0;
-		double weightedVelY = (prevVel.y * 9.0 + targetVelY)/10.0;
+		double impulseX = ((normalizedX+dxMod)*dt)*.1;
+		double impulseY = ((normalizedY+dyMod)*dt)*.1;
 		
-		double impulseX = targetVelX*.1;
-		double impulseY = targetVelY*.1;
-		
-		//NSLog(@"Applying impulse %f,%f to shark %@", impulseX, impulseY, shark.uniqueName);
-		
+		//NSLog(@"Shark %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", shark.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
+				
 		//we're using an impulse for the shark so they interact with things like Debris (physics)
 		//shark.body->SetLinearVelocity(b2Vec2(weightedVelX,weightedVelY));
 		shark.body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), shark.body->GetWorldCenter());
 		
 		//rotate shark
+		double targetVelX = dt * normalizedX;
+		double targetVelY = dt * normalizedY;
+		b2Vec2 prevVel = shark.body->GetLinearVelocity();
+		double weightedVelX = (prevVel.x * 9.0 + targetVelX)/10.0;
+		double weightedVelY = (prevVel.y * 9.0 + targetVelY)/10.0;
+
 		double radians = atan2(weightedVelX, weightedVelY); //this grabs the radians for us
 		double degrees = CC_RADIANS_TO_DEGREES(radians) - 90; //90 is because the sprit is facing right
 		[shark transformRotation:degrees];
@@ -1708,24 +1754,58 @@
 				NSLog(@"Penguin %@ is stuck (trying to move but can't) - giving him a bit of jitter", penguin.uniqueName);
 			}
 			
-			double dSum = fabs(dx) + fabs(dy);									
+
+			double dxMod = 0;
+			double dyMod = 0;
+
+			//TODO: this is inefficient because it casts much more often than it needs to. optimize if need be
+			//adjust the penguin speed by any movement altering affects in play (such as windmills)
+			NSArray* windmills = [_levelLoader spritesWithTag:WINDMILL];
+			for(LHSprite* windmill in windmills) {
+				ToolboxItem_Windmill* windmillData = ((ToolboxItem_Windmill*)windmill.userInfo);
+				//facing east by default
+				int rotation = ((int)(windmill.rotation+90))%360;
+				double xDir = sin(CC_DEGREES_TO_RADIANS(rotation));
+				double yDir = cos(CC_DEGREES_TO_RADIANS(rotation));
+				b2Vec2 windmillPos = windmill.body->GetPosition();
+				b2Vec2 directionVector = b2Vec2(windmillPos.x + windmillData.reach*xDir,
+												windmillPos.y + windmillData.reach*yDir);
+										
+				//returns if the shark is in front of the windmill
+				WindmillRaycastCallback callback;
+				_world->RayCast(&callback, windmillPos, directionVector);
+				 
+				if (callback._fixture) {
+					if (callback._fixture->GetBody() == penguin.body) {
+						//shark is in the way!!
+						//NSLog(@"Penguin %@ is in the way of a windmill %@! Applying effects...", penguin.uniqueName, windmill.uniqueName);
+						
+						double dModSum = fabs(xDir) + fabs(yDir);
+						if(dModSum == 0) {
+							dModSum = 1;
+						}					
+						
+						dxMod = (xDir/dModSum)*(windmillData.power);
+						dyMod = (yDir/dModSum)*(windmillData.power);
+						
+					}
+				}
+			}
+
+				
+			double dSum = fabs(dx) + fabs(dy);
 			if(dSum == 0) {
 				//no best option?
 				//NSLog(@"No best option for shark %@ max(dx,dy) was 0", shark.uniqueName);
 				dSum = 1;
 			}
-			
 			double normalizedX = (penguinSpeed*dx)/dSum;
 			double normalizedY = (penguinSpeed*dy)/dSum;
-		
-			double targetVelX = dt * normalizedX;
-			double targetVelY = dt * normalizedY;
-		
-			double impulseX = targetVelX*.1;
-			double impulseY = targetVelY*.1;
 			
-			//NSLog(@"Applying impulse %f,%f to penguin %@", impulseX, impulseY, penguin.uniqueName);
-		
+			double impulseX = ((normalizedX+dxMod)*dt)*.1;
+			double impulseY = ((normalizedY+dyMod)*dt)*.1;
+			
+			//NSLog(@"Penguin %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", penguin.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
 		
 			//TODO:! look into why on iPad Retina simulator the Penguin and Shark can't move at all????
 		

@@ -7523,111 +7523,111 @@
 								<key>Fixture</key>
 								<array>
 									<array>
-										<string>{4, 7.5}</string>
-										<string>{3.75, 8}</string>
-										<string>{3.25, 7.5}</string>
-										<string>{-0.25, -6.75}</string>
+										<string>{4.25, 7.5}</string>
+										<string>{4, 8}</string>
+										<string>{3.5, 7.5}</string>
+										<string>{0, -6.75}</string>
 									</array>
 									<array>
-										<string>{9.25, 8.75}</string>
-										<string>{9, 9}</string>
-										<string>{6.75, 7.75}</string>
-										<string>{8.5, -6.25}</string>
+										<string>{9.5, 8.75}</string>
+										<string>{9.25, 9}</string>
+										<string>{7, 7.75}</string>
+										<string>{8.75, -6.25}</string>
 									</array>
 									<array>
-										<string>{7, -7}</string>
-										<string>{8.5, -6.25}</string>
-										<string>{6.75, 7.75}</string>
-										<string>{5.25, 8}</string>
-										<string>{5, 7.5}</string>
-										<string>{-0.25, -6.75}</string>
+										<string>{7.25, -7}</string>
+										<string>{8.75, -6.25}</string>
+										<string>{7, 7.75}</string>
+										<string>{5.5, 8}</string>
+										<string>{5.25, 7.5}</string>
+										<string>{0, -6.75}</string>
 									</array>
 									<array>
-										<string>{-16.75, -4.5}</string>
-										<string>{-15.5, -7.25}</string>
-										<string>{-7, -8.5}</string>
+										<string>{-16.5, -4.5}</string>
+										<string>{-15.25, -7.25}</string>
+										<string>{-6.75, -8.5}</string>
 									</array>
 									<array>
-										<string>{-17.5, 1.25}</string>
-										<string>{-16.75, -4.5}</string>
-										<string>{-7, -8.5}</string>
+										<string>{-17.25, 1.25}</string>
+										<string>{-16.5, -4.5}</string>
+										<string>{-6.75, -8.5}</string>
 									</array>
 									<array>
-										<string>{-16.5, 5.25}</string>
-										<string>{-17.5, 1.25}</string>
-										<string>{-7, -8.5}</string>
+										<string>{-16.25, 5.25}</string>
+										<string>{-17.25, 1.25}</string>
+										<string>{-6.75, -8.5}</string>
 									</array>
 									<array>
-										<string>{-16, 6}</string>
-										<string>{-16.5, 5.25}</string>
-										<string>{-7, -8.5}</string>
+										<string>{-15.75, 6}</string>
+										<string>{-16.25, 5.25}</string>
+										<string>{-6.75, -8.5}</string>
 									</array>
 									<array>
-										<string>{-14.25, 7.5}</string>
-										<string>{-16, 6}</string>
-										<string>{-7, -8.5}</string>
+										<string>{-14, 7.5}</string>
+										<string>{-15.75, 6}</string>
+										<string>{-6.75, -8.5}</string>
 									</array>
 									<array>
-										<string>{-2.5, 7.75}</string>
-										<string>{-14.25, 7.5}</string>
-										<string>{-7, -8.5}</string>
+										<string>{-2.25, 7.75}</string>
+										<string>{-14, 7.5}</string>
+										<string>{-6.75, -8.5}</string>
 									</array>
 									<array>
-										<string>{-2.25, 7.5}</string>
-										<string>{-2.5, 7.75}</string>
-										<string>{-7, -8.5}</string>
+										<string>{-2, 7.5}</string>
+										<string>{-2.25, 7.75}</string>
+										<string>{-6.75, -8.5}</string>
 									</array>
 									<array>
-										<string>{-3.25, -7.5}</string>
-										<string>{-2.25, 7.5}</string>
-										<string>{-7, -8.5}</string>
+										<string>{-3, -7.5}</string>
+										<string>{-2, 7.5}</string>
+										<string>{-6.75, -8.5}</string>
 									</array>
 									<array>
-										<string>{-3.25, -7.5}</string>
-										<string>{-7, -8.5}</string>
-										<string>{-5, -8.5}</string>
+										<string>{-3, -7.5}</string>
+										<string>{-6.75, -8.5}</string>
+										<string>{-4.75, -8.5}</string>
 									</array>
 									<array>
-										<string>{14.5, 9}</string>
-										<string>{13.5, 9.75}</string>
-										<string>{12.5, 9.75}</string>
-										<string>{12.25, 9.5}</string>
-										<string>{18.25, 1.5}</string>
+										<string>{14.75, 9}</string>
+										<string>{13.75, 9.75}</string>
+										<string>{12.75, 9.75}</string>
+										<string>{12.5, 9.5}</string>
+										<string>{18.5, 1.5}</string>
 									</array>
 									<array>
-										<string>{17, -5.5}</string>
-										<string>{17.75, -4.75}</string>
-										<string>{18.25, 1.5}</string>
-										<string>{12.25, 9.5}</string>
-										<string>{11.5, 9}</string>
-										<string>{12.25, -5.75}</string>
+										<string>{17.25, -5.5}</string>
+										<string>{18, -4.75}</string>
+										<string>{18.5, 1.5}</string>
+										<string>{12.5, 9.5}</string>
+										<string>{11.75, 9}</string>
+										<string>{12.5, -5.75}</string>
 									</array>
 									<array>
-										<string>{8.5, -6.25}</string>
-										<string>{10.75, -6.5}</string>
-										<string>{12.25, -5.75}</string>
-										<string>{11.5, 9}</string>
-										<string>{11, 9.25}</string>
-										<string>{9.25, 8.75}</string>
+										<string>{8.75, -6.25}</string>
+										<string>{11, -6.5}</string>
+										<string>{12.5, -5.75}</string>
+										<string>{11.75, 9}</string>
+										<string>{11.25, 9.25}</string>
+										<string>{9.5, 8.75}</string>
 									</array>
 									<array>
-										<string>{-0.25, -6.75}</string>
-										<string>{5, 7.5}</string>
-										<string>{4, 7.5}</string>
+										<string>{0, -6.75}</string>
+										<string>{5.25, 7.5}</string>
+										<string>{4.25, 7.5}</string>
 									</array>
 									<array>
-										<string>{-0.25, -6.75}</string>
-										<string>{3.25, 7.5}</string>
-										<string>{0.25, 8.25}</string>
-										<string>{-1.5, 8}</string>
-										<string>{-2.25, 7.5}</string>
-										<string>{-3.25, -7.5}</string>
+										<string>{0, -6.75}</string>
+										<string>{3.5, 7.5}</string>
+										<string>{0.5, 8.25}</string>
+										<string>{-1.25, 8}</string>
+										<string>{-2, 7.5}</string>
+										<string>{-3, -7.5}</string>
 									</array>
 									<array>
-										<string>{-11, -10.25}</string>
-										<string>{-7, -8.5}</string>
-										<string>{-15.5, -7.25}</string>
-										<string>{-12.5, -10}</string>
+										<string>{-10.75, -10.25}</string>
+										<string>{-6.75, -8.5}</string>
+										<string>{-15.25, -7.25}</string>
+										<string>{-12.25, -10}</string>
 									</array>
 								</array>
 								<key>Friction</key>
@@ -7647,7 +7647,7 @@
 								<key>LHHeight</key>
 								<real>0.0</real>
 								<key>LHShapePositionOffset</key>
-								<string>{-17.5, -9.75}</string>
+								<string>{-17.25, -9.75}</string>
 								<key>LHWidth</key>
 								<real>0.0</real>
 								<key>Mask</key>
@@ -7734,9 +7734,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{57, 44}, {36, 20.75}}</string>
+						<string>{{57, 44}, {35.5, 19.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{228, 176}, {144, 81}}</string>
+						<string>{{228, 176}, {142, 79}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -7758,7 +7758,7 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/Toolbox/Floating-Log.png/</string>
 						<key>OriginalRect</key>
-						<string>{{5, 36}, {144, 81}}</string>
+						<string>{{6, 36}, {142, 79}}</string>
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
@@ -7772,7 +7772,7 @@
 						<key>Tag</key>
 						<integer>0</integer>
 						<key>TextureOffset</key>
-						<string>{0.5, -0.625}</string>
+						<string>{0.5, -0.125}</string>
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>

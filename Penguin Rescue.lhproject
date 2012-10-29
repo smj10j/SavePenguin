@@ -113,7 +113,9 @@
 				<key>placeCost</key>
 				<real>1000</real>
 				<key>power</key>
-				<real>25</real>
+				<real>50</real>
+				<key>reach</key>
+				<real>5000</real>
 				<key>runningCost</key>
 				<real>1250</real>
 				<key>scale</key>

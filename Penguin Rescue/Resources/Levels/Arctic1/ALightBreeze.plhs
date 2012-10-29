@@ -826,9 +826,9 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{233, 215}</string>
+								<string>{262, 216}</string>
 								<key>Scale</key>
-								<string>{0.69198846817016602, 0.69198846817016602}</string>
+								<string>{0.94249439239501953, 0.94249439239501953}</string>
 								<key>SpriteSize</key>
 								<string>{187.5, 37.5}</string>
 								<key>Tag</key>
@@ -901,9 +901,9 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{158, 215}</string>
+								<string>{169, 217}</string>
 								<key>Scale</key>
-								<string>{0.65838485956192017, 0.66961252689361572}</string>
+								<string>{0.46130430698394775, 0.9052194356918335}</string>
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
@@ -976,9 +976,9 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{308, 216}</string>
+								<string>{367, 217}</string>
 								<key>Scale</key>
-								<string>{0.75365090370178223, 0.75365090370178223}</string>
+								<string>{1.1432458162307739, 0.97060120105743408}</string>
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
@@ -1051,7 +1051,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{36, 143}</string>
+								<string>{39, 137}</string>
 								<key>Scale</key>
 								<string>{2.715998649597168, 2.0659909248352051}</string>
 								<key>SpriteSize</key>
@@ -1263,7 +1263,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{185, 54}</string>
+								<string>{283, 88}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1370,7 +1370,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{29, 196}</string>
+								<string>{39, 200}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1481,7 +1481,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{420, 19}</string>
+								<string>{292, 15}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1592,7 +1592,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{32, 78}</string>
+								<string>{32, 70}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1917,7 +1917,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{57, 44}, {36, 20.75}}</string>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1939,7 +1939,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.5, -0.625}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Floating-Log</string>
 								<key>ZOrder</key>
@@ -2008,7 +2008,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{57, 44}, {36, 20.75}}</string>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2030,7 +2030,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.5, -0.625}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Floating-Log_1</string>
 								<key>ZOrder</key>
@@ -2099,7 +2099,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{57, 44}, {36, 20.75}}</string>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2121,7 +2121,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.5, -0.625}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Floating-Log_2</string>
 								<key>ZOrder</key>
@@ -2190,7 +2190,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{57, 44}, {36, 20.75}}</string>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2212,7 +2212,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.5, -0.625}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Floating-Log_3</string>
 								<key>ZOrder</key>
@@ -2281,7 +2281,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{57, 44}, {36, 20.75}}</string>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2303,7 +2303,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.5, -0.625}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Floating-Log_4</string>
 								<key>ZOrder</key>
@@ -2372,7 +2372,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{57, 44}, {36, 20.75}}</string>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2394,7 +2394,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.5, -0.625}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Floating-Log_5</string>
 								<key>ZOrder</key>
@@ -2432,6 +2432,8 @@
 									<key>placeCost</key>
 									<true/>
 									<key>power</key>
+									<false/>
+									<key>reach</key>
 									<true/>
 									<key>runningCost</key>
 									<true/>
@@ -2446,6 +2448,8 @@
 									<real>1000</real>
 									<key>power</key>
 									<real>25</real>
+									<key>reach</key>
+									<real>5000</real>
 									<key>runningCost</key>
 									<real>1250</real>
 									<key>scale</key>
@@ -2544,6 +2548,8 @@
 									<key>placeCost</key>
 									<true/>
 									<key>power</key>
+									<false/>
+									<key>reach</key>
 									<true/>
 									<key>runningCost</key>
 									<true/>
@@ -2558,6 +2564,8 @@
 									<real>1000</real>
 									<key>power</key>
 									<real>25</real>
+									<key>reach</key>
+									<real>5000</real>
 									<key>runningCost</key>
 									<real>1250</real>
 									<key>scale</key>
@@ -2766,7 +2774,9 @@
 					<key>placeCost</key>
 					<real>1000</real>
 					<key>power</key>
-					<real>25</real>
+					<real>50</real>
+					<key>reach</key>
+					<real>5000</real>
 					<key>runningCost</key>
 					<real>1250</real>
 					<key>scale</key>
