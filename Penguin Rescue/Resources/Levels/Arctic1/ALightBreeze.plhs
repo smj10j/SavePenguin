@@ -151,15 +151,15 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{407, 163}</string>
+								<string>{414, 163}</string>
 								<key>Scale</key>
 								<string>{0.81888693571090698, 0.81888693571090698}</string>
 								<key>SpriteSize</key>
 								<string>{187.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0, 0.125}</string>
 								<key>UniqueName</key>
@@ -226,15 +226,15 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{407, 257}</string>
+								<string>{414, 258}</string>
 								<key>Scale</key>
 								<string>{1, 0.84924304485321045}</string>
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{-0.25, -0.625}</string>
 								<key>UniqueName</key>
@@ -301,15 +301,15 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{406, 69}</string>
+								<string>{413, 69}</string>
 								<key>Scale</key>
 								<string>{1, 0.8333011269569397}</string>
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{-0.25, -0.625}</string>
 								<key>UniqueName</key>
@@ -376,15 +376,15 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{282, 53}</string>
+								<string>{290, 53}</string>
 								<key>Scale</key>
 								<string>{0.48659813404083252, 0.48659813404083252}</string>
 								<key>SpriteSize</key>
 								<string>{187.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0, 0.125}</string>
 								<key>UniqueName</key>
@@ -451,15 +451,15 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{227, 54}</string>
+								<string>{235, 54}</string>
 								<key>Scale</key>
 								<string>{0.5643039345741272, 0.44311487674713135}</string>
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{-1, -1}</string>
 								<key>UniqueName</key>
@@ -526,15 +526,15 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{336, 53}</string>
+								<string>{344, 53}</string>
 								<key>Scale</key>
 								<string>{0.56123656034469604, 0.52278268337249756}</string>
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0.75, 0.25}</string>
 								<key>UniqueName</key>
@@ -601,15 +601,15 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{134, 102}</string>
+								<string>{142, 102}</string>
 								<key>Scale</key>
 								<string>{0.55655521154403687, 0.55655521154403687}</string>
 								<key>SpriteSize</key>
 								<string>{187.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0, 0.125}</string>
 								<key>UniqueName</key>
@@ -676,15 +676,15 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{134, 49}</string>
+								<string>{142, 49}</string>
 								<key>Scale</key>
 								<string>{0.54289871454238892, 0.49745839834213257}</string>
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0.375, -1.25}</string>
 								<key>UniqueName</key>
@@ -751,15 +751,15 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{134, 163}</string>
+								<string>{142, 164}</string>
 								<key>Scale</key>
 								<string>{0.54249447584152222, 0.54249447584152222}</string>
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{-0.25, -0.625}</string>
 								<key>UniqueName</key>
@@ -832,9 +832,9 @@
 								<key>SpriteSize</key>
 								<string>{187.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0, 0.125}</string>
 								<key>UniqueName</key>
@@ -907,9 +907,9 @@
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0.75, 0.25}</string>
 								<key>UniqueName</key>
@@ -982,9 +982,9 @@
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0.375, -1.25}</string>
 								<key>UniqueName</key>
@@ -1051,15 +1051,15 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{45, 143}</string>
+								<string>{36, 143}</string>
 								<key>Scale</key>
-								<string>{2.0659909248352051, 2.0659909248352051}</string>
+								<string>{2.715998649597168, 2.0659909248352051}</string>
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0, -0.25}</string>
 								<key>UniqueName</key>
@@ -1132,9 +1132,9 @@
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
@@ -1263,7 +1263,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{177, 54}</string>
+								<string>{185, 54}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
