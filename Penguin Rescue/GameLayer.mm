@@ -2058,13 +2058,13 @@
 
 	_state = PAUSE;
 
-	for(LHSprite* sprite in _levelLoader.allSprites) {
-		[sprite stopAnimation];
-	}		
-
     [self unscheduleAllSelectors];
     [self unscheduleUpdate];
-	
+
+	for(LHSprite* sprite in _levelLoader.allSprites) {
+		[sprite stopAnimation];
+	}
+		
     [super onExit];
 	
 	NSLog(@"End GameLayer %f onExit", _instanceId);
@@ -2075,6 +2075,8 @@
 {
 	NSLog(@"Begin GameLayer %f dealloc", _instanceId);
 	report_memory();
+	
+	[_levelLoader removeAllPhysics];
 
 	[_levelPath release];
 	[_levelPackPath release];
@@ -2111,14 +2113,14 @@
 	[_levelLoader release];
 	_levelLoader = nil;
 	
-	delete _world;
-	_world = nil;
-	
 	if(DEBUG_ALL_THE_THINGS) {
 		delete _debugDraw;
 		_debugDraw = nil;
 	}
 
+	delete _world;
+	_world = nil;
+	
 	[super dealloc];
 	
 	NSLog(@"End GameLayer %f dealloc", _instanceId);

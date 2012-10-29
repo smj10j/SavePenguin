@@ -442,6 +442,7 @@ CGSize  LHSizeFromString(NSString* val){
 #ifdef LH_USE_BOX2D
     if(nil != contactNode){
         [contactNode removeFromParentAndCleanup:YES];
+		contactNode = nil;
     }
 #endif
     
