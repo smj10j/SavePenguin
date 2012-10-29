@@ -138,9 +138,16 @@
 
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/button.wav"];
 	
-	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox-pickup.wav"];
-	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox-putback.wav"];
-	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox-place.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/pickup.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/return.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/rotate.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-border.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-debris.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-windmill.wav"];
+
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelLost/hoot.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelWon/reward.wav"];
 
 }
 
@@ -585,7 +592,7 @@
 	[self fadeOutAllTutorials];
 	
 	if([SettingsManager boolForKey:@"SoundEnabled"]) {
-		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox-pickup.wav"];
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/pickup.wav"];
 	}
 
 	_activeToolboxItem = toolboxItem;
@@ -626,7 +633,7 @@
 			_activeToolboxItem = nil;
 			
 			if([SettingsManager boolForKey:@"SoundEnabled"]) {
-				[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox-putback.wav"];
+				[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/return.wav"];
 			}
 			
 		}else {
@@ -692,7 +699,6 @@
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
 	}
 	
-	[info.sprite removeSelf];
 	[self restart];
 }
 
@@ -709,7 +715,6 @@
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
 	}
 	
-	[info.sprite removeSelf];
 	[self showMainMenuLayer];
 }
 
@@ -728,7 +733,6 @@
 	
 	//NSLog(@"Touch ended levels menu on GameLayer instance %f with _state=%d", _instanceId, _state);
 	
-	[info.sprite removeSelf];
 	[self showLevelsMenuLayer];
 }
 
@@ -745,7 +749,6 @@
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
 	}
 	
-	[info.sprite removeSelf];
 	[self goToNextLevel];
 }
 
@@ -864,6 +867,10 @@
 		return;
 	}
 	_state = GAME_OVER;
+	
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelWon/reward.wav"];
+	}
 	
 	for(LHSprite* sprite in _levelLoader.allSprites) {
 		[sprite stopAnimation];
@@ -1004,10 +1011,17 @@
 		return;
 	}
 	_state = GAME_OVER;
+
+	
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelLost/hoot.wav"];
+	}
+	
 	
 	for(LHSprite* sprite in _levelLoader.allSprites) {
 		[sprite stopAnimation];
-	}	
+	}
+
 
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -1030,6 +1044,10 @@
 		return;
 	}
 	_state = GAME_OVER;
+
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelLost/hoot.wav"];
+	}
 
 	for(LHSprite* sprite in _levelLoader.allSprites) {
 		[sprite stopAnimation];
@@ -1409,23 +1427,28 @@
 	if(_activeToolboxItem != nil && _moveActiveToolboxItemIntoWorld) {
 	
 		NSLog(@"Adding toolbox item %@ to world", _activeToolboxItem.userInfoClassName);
+		
+		NSString* soundFileName = @"place.wav";
 	
 		//StaticToolboxItem are things penguins and sharks can't move through
 		if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
 			_activeToolboxItem.tag = DEBRIS;
 			[_activeToolboxItem makeDynamic];
 			[_activeToolboxItem setSensor:false];
+			soundFileName = @"place-debris.wav";
 			
 		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Border"]) {
 			_activeToolboxItem.tag = BORDER;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:false];
 			_shouldRegenerateFeatureMaps = true;
+			soundFileName = @"place-border.wav";
 
 		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
 			_activeToolboxItem.tag = WINDMILL;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
+			soundFileName = @"place-windmill.wav";
 		
 		}
 
@@ -1449,7 +1472,7 @@
 		[Flurry logEvent:@"Place_Toolbox_Item" withParameters:flurryParams];				
 
 		if([SettingsManager boolForKey:@"SoundEnabled"]) {
-			[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox-place.wav"];
+			[[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"sounds/game/toolbox/%@", soundFileName ]];
 		}
 	
 		_activeToolboxItem = nil;
@@ -1961,7 +1984,7 @@
 				[_activeToolboxItem transformRotation:((int)_activeToolboxItem.rotation+90)%360];
 				
 				if([SettingsManager boolForKey:@"SoundEnabled"]) {
-					[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox-rotate.wav"];
+					[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/rotate.wav"];
 				}
 			}
 		}
