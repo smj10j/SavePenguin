@@ -159,9 +159,7 @@
 			[levelPackButton addChild:percentCompleteLabel];
 			
 		}
-		
-	report_memory();
-		
+				
 		//positioning
 		[levelPackButton transformPosition: ccp(winSize.width/2, winSize.height/2 + 20*SCALING_FACTOR_V)];
 	}

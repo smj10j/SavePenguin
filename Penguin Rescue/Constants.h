@@ -16,7 +16,7 @@
 #define TEST_LEVEL @"WayWayUpThere"
 
 #define DEBUG_ALL_THE_THINGS false
-#define DEBUG_MEMORY true || DEBUG_ALL_THE_THINGS
+#define DEBUG_MEMORY false || DEBUG_ALL_THE_THINGS
 #define DEBUG_PENGUIN false || DEBUG_ALL_THE_THINGS	//can be overridden in game
 #define DEBUG_SHARK false || DEBUG_ALL_THE_THINGS	//can be overridden in game
 

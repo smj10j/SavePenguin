@@ -137,7 +137,7 @@
 
 			//add a checkmark on top
 			LHSprite* completedMark = [_levelLoader createSpriteWithName:@"Level_Completed" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelButton];
-			[completedMark transformPosition:ccp(levelButtonSize.width - completedMark.contentSize.width/2 - 20*SCALING_FACTOR_H,completedMark.contentSize.height/2 + 10*SCALING_FACTOR_V)];
+			[completedMark transformPosition:ccp(levelButtonSize.width - completedMark.contentSize.width/2 - 15*SCALING_FACTOR_H,completedMark.contentSize.height/2 + 15*SCALING_FACTOR_V)];
 			
 			
 		}else if([availableLevels containsObject:levelPath]) {
@@ -151,8 +151,8 @@
 
 			//add a lock on top
 			LHSprite* lockIcon = [_levelLoader createSpriteWithName:@"Level_Locked" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelButton];
-			[lockIcon transformPosition:ccp(levelButtonSize.width - lockIcon.contentSize.width/2 - 20*SCALING_FACTOR_H,
-											lockIcon.contentSize.height/2 + 10*SCALING_FACTOR_V)];
+			[lockIcon transformPosition:ccp(levelButtonSize.width - lockIcon.contentSize.width/2 - 15*SCALING_FACTOR_H,
+											lockIcon.contentSize.height/2 + 15*SCALING_FACTOR_V)];
 
 		}
 		
