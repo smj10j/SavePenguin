@@ -1415,13 +1415,13 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1000</real>
+					<real>400</real>
 					<key>power</key>
-					<real>25</real>
+					<real>50</real>
 					<key>reach</key>
 					<real>5000</real>
 					<key>runningCost</key>
-					<real>1250</real>
+					<real>600</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>

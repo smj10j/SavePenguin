@@ -90,4 +90,10 @@
 	[super onEnter];
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[MainMenuLayer scene] ]];
 }
+
+-(void) onExit {
+	NSLog(@"IntroLayer onExit");
+
+	[super onExit];
+}
 @end

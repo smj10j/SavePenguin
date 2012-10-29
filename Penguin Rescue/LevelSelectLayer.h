@@ -11,6 +11,7 @@
 #import "cocos2d.h"
 #import "LevelHelperLoader.h"
 #import "Constants.h"
+#import "CCScrollLayer.h"
 
 // IntroLayer
 @interface LevelSelectLayer : CCLayer
@@ -18,6 +19,7 @@
 	LevelHelperLoader* _levelLoader;
 
 	NSString* _levelPackPath;
+	CCScrollLayer *_scrollLayer;
 		
 	NSMutableDictionary* _spriteNameToLevelPath;
 }

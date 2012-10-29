@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Flurry.h"
 
 int main(int argc, char *argv[]) {
     
@@ -19,6 +20,7 @@ int main(int argc, char *argv[]) {
     @catch (NSException *exception) {
         NSLog(@"CRASH: %@", exception);
         NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+		[Flurry logError:@"Uncaught" message:@"Crash!" exception:exception];
     }
     @finally {
         [pool release];

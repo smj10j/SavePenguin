@@ -81,7 +81,8 @@
 
 	}
 	
-	NSLog(@"Initialized AboutLayer");	
+	NSLog(@"Initialized AboutLayer");
+	report_memory();
 	
 	return self;
 }
@@ -115,6 +116,15 @@
 }
 
 
+-(void) onExit {
+	NSLog(@"AboutLayer onExit");
+
+	for(LHSprite* sprite in _levelLoader.allSprites) {
+		[sprite stopAnimation];
+	}			
+	
+	[super onExit];
+}
 
 -(void) dealloc
 {
@@ -124,6 +134,8 @@
 	_levelLoader = nil;	
 	
 	[super dealloc];
+	
+	report_memory();
 }	
 
 @end

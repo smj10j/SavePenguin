@@ -56,3 +56,9 @@
 
 
 #endif
+
+
+
+#import <mach/mach.h>
+void report_memory(void);
+

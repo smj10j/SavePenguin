@@ -61,6 +61,7 @@
 	}
 	
 	NSLog(@"Initialized LevelPackSelectLayer");
+	report_memory();
 	
 	return self;
 }
@@ -93,6 +94,7 @@
 								width:winSize.width
 								height:winSize.height];
 		[scrollableLayers addObject:scrollableLayer];
+		[scrollableLayer release];
 
 		NSDictionary* levelPackData = [levelPacksDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
 		NSString* levelPackName = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_NAME];
@@ -158,6 +160,7 @@
 			
 		}
 		
+	report_memory();
 		
 		//positioning
 		[levelPackButton transformPosition: ccp(winSize.width/2, winSize.height/2 + 20*SCALING_FACTOR_V)];
@@ -165,12 +168,12 @@
 	
 	
 	// now create the scroller and pass-in the pages (set widthOffset to 0 for fullscreen pages)
-	CCScrollLayer *scroller = [[[CCScrollLayer alloc] initWithLayers:scrollableLayers widthOffset: 0] autorelease];
+	_scrollLayer = [[CCScrollLayer alloc] initWithLayers:scrollableLayers widthOffset: 0];
+	[scrollableLayers release];
 
 	// finally add the scroller to your scene
-	[self addChild:scroller];
+	[self addChild:_scrollLayer];
 	
-	[scrollableLayers release];
 }
 
 
@@ -214,16 +217,33 @@
 }
 
 
+-(void) onExit {
+	NSLog(@"LevelPackSelectLayer onExit");
+
+	for(LHSprite* sprite in _levelLoader.allSprites) {
+		[sprite stopAnimation];
+	}	
+
+	[super onExit];
+}
+
+
 -(void) dealloc
 {
 	NSLog(@"LevelPackSelectLayer dealloc");
 
+	//[[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+
 	[_spriteNameToLevelPackPath release];
+	
+	[_scrollLayer release];
 	
 	[_levelLoader release];
 	_levelLoader = nil;
 
 	[super dealloc];
+	
+	report_memory();
 }
 
 

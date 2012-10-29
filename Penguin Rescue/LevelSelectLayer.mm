@@ -63,6 +63,7 @@
 	}
 	
 	NSLog(@"Initialized LevelSelectLayer");	
+	report_memory();
 	
 	return self;
 }
@@ -96,11 +97,15 @@
 
 	int levelButtonX = levelButtonXInitial;
 	int levelButtonY = levelButtonYInitial;
-	CCLayer* scrollableLayer;
+	CCLayer* scrollableLayer = nil;
 
 	for(int i = 0; i < levelsDictionary.count; i++) {
 
 		if(i%(rows*columns) == 0) {
+			if(scrollableLayer != nil) {
+				[scrollableLayer release];
+				scrollableLayer = nil;
+			}
 			scrollableLayer = [[CCLayerColor alloc]
 								initWithColor:ccc4(arc4random()*255,arc4random()*255,arc4random()*255,255)
 								width:winSize.width
@@ -171,16 +176,19 @@
 		[levelButton transformPosition: ccp(levelButtonX, levelButtonY)];
 		levelButtonX+= levelButtonSize.width + levelButtonMarginX;
 	}
-
+	if(scrollableLayer != nil) {
+		[scrollableLayer release];
+		scrollableLayer = nil;
+	}
 
 	
 	// now create the scroller and pass-in the pages (set widthOffset to 0 for fullscreen pages)
-	CCScrollLayer *scroller = [[[CCScrollLayer alloc] initWithLayers:scrollableLayers widthOffset: 0] autorelease];
+	_scrollLayer = [[CCScrollLayer alloc] initWithLayers:scrollableLayers widthOffset: 0];
+	[scrollableLayers release];
 
 	// finally add the scroller to your scene
-	[self addChild:scroller];
+	[self addChild:_scrollLayer];
 	
-	[scrollableLayers release];
 }
 
 
@@ -189,11 +197,11 @@
 
 -(void)onTouchAnyButton:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 }
 
 -(void)onTouchEndedLevelSelect:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 	
 	if([SettingsManager boolForKey:@"SoundEnabled"]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
@@ -223,17 +231,30 @@
 }
 
 
+-(void) onExit {
+	NSLog(@"LevelSelectLayer onExit");
+
+	for(LHSprite* sprite in _levelLoader.allSprites) {
+		[sprite stopAnimation];
+	}	
+	
+	[super onExit];
+}
+
 -(void) dealloc
 {
 	NSLog(@"LevelSelectLayer dealloc");
 	
 	[_levelPackPath release];
 	[_spriteNameToLevelPath release];	
+	[_scrollLayer release];
 
 	[_levelLoader release];
 	_levelLoader = nil;
 	
 	[super dealloc];
+	
+	report_memory();
 }
 
 @end

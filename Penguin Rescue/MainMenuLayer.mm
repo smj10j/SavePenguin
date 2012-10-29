@@ -109,6 +109,7 @@
 	}
 	
 	NSLog(@"Initialized MainMenuLayer");
+	report_memory();
 	
 	return self;
 }
@@ -199,6 +200,17 @@
 	[super onEnter];
 }
 
+
+-(void) onExit {
+	NSLog(@"MainMenuLayer onExit");
+
+	for(LHSprite* sprite in _levelLoader.allSprites) {
+		[sprite stopAnimation];
+	}
+	
+	[super onExit];
+}
+
 -(void) dealloc
 {
 	NSLog(@"MainMenuLayer dealloc");
@@ -207,5 +219,8 @@
 	_levelLoader = nil;	
 	
 	[super dealloc];
+	
+	report_memory();
+
 }	
 @end

@@ -105,6 +105,8 @@ static int untitledSpritesCount = 0;
 
 -(void) dealloc{
 
+	//NSLog(@"LHSprite %@ start dealloc", uniqueName);
+	
     [self stopAnimation];
     [self stopPathMovement];
 //    [self removeTouchObserver];//this is called in onExit
@@ -169,7 +171,9 @@ static int untitledSpritesCount = 0;
     
     if(imageFile)
         [imageFile release];
-        
+
+	//NSLog(@"LHSprite %@ end dealloc", uniqueName);
+    
     [uniqueName release];
 #endif    
 //    touchBeginObserver = nil;
@@ -179,6 +183,8 @@ static int untitledSpritesCount = 0;
 #ifndef LH_ARC_ENABLED   
 	[super dealloc];
 #endif
+
+
 }
 ////////////////////////////////////////////////////////////////////////////////
 -(void) loadUserCustomInfoFromDictionary:(NSDictionary*)dictionary{

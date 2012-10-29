@@ -81,6 +81,8 @@
 		[self preloadSounds];
 
 		NSLog(@"GameLayer %f initialized", _instanceId);
+		
+		report_memory();
 	}
 	
 	
@@ -93,10 +95,7 @@
 	_levelPackPath = [levelPackPath retain];
 	_levelData =  [LevelPackManager level:_levelPath inPack:_levelPackPath];
 	[self loadLevel:_levelPath inLevelPack:_levelPackPath];
-	
-	//place the HUD items (pause, restart, etc.)
-	[self drawHUD];		
-	
+		
 	//set the grid size and create various arrays
 	[self initializeMapGrid];
 	
@@ -105,7 +104,10 @@
 	
 	//various handlers
 	[self setupCollisionHandling];
-			
+
+	//place the HUD items (pause, restart, etc.)
+	[self drawHUD];		
+
 	//start the game
 	_state = PLACE;
 	_levelStartPlaceTime  = [[NSDate date] timeIntervalSince1970];
@@ -126,6 +128,7 @@
 	[Flurry logEvent:@"Play_Level" withParameters:flurryParams timed:YES];
 
 	NSLog(@"GameLayer %f level loaded", _instanceId);
+	report_memory();
 
 }
 
@@ -259,13 +262,14 @@
 	[_playPauseButton transformPosition: ccp(_playPauseButton.boundingBox.size.width/2+HUD_BUTTON_MARGIN_H,_playPauseButton.boundingBox.size.height/2+HUD_BUTTON_MARGIN_V)];
 	[_playPauseButton registerTouchBeganObserver:self selector:@selector(onTouchBeganPlayPause:)];
 	[_playPauseButton registerTouchEndedObserver:self selector:@selector(onTouchEndedPlayPause:)];
-		
+				
 	_restartButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[_restartButton prepareAnimationNamed:@"Restart_Button" fromSHScene:@"Spritesheet"];
 	[_restartButton transformPosition: ccp(winSize.width - (_restartButton.boundingBox.size.width/2+HUD_BUTTON_MARGIN_H),_restartButton.boundingBox.size.height/2+HUD_BUTTON_MARGIN_V) ];
 	[_restartButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[_restartButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 		
+	
 	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_In_Game_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_In_Game_Button" fromSHScene:@"Spritesheet"];
 	[levelsMenuButton transformPosition: ccp(-levelsMenuButton.contentSize.width/2, -levelsMenuButton.contentSize.height/2) ];
@@ -273,7 +277,7 @@
 	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
 	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
 	[_inGameMenuItems addObject:levelsMenuButton];
-	
+		
 	LHSprite* mainMenuButton = [_levelLoader createSpriteWithName:@"Main_Menu_In_Game_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	[mainMenuButton prepareAnimationNamed:@"Menu_Main_Menu_In_Game_Button" fromSHScene:@"Spritesheet"];
 	[mainMenuButton transformPosition: ccp(-mainMenuButton.contentSize.width/2, -mainMenuButton.contentSize.height/2) ];
@@ -281,7 +285,7 @@
 	[mainMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganMainMenu:)];
 	[mainMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedMainMenu:)];
 	[_inGameMenuItems addObject:mainMenuButton];
-	
+		
 	//show the level name at the top
 	LHSprite* timeAndLevelPopup = [_levelLoader createSpriteWithName:@"Time_and_Level_Popup" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[timeAndLevelPopup transformPosition: ccp(winSize.width/2,winSize.height+timeAndLevelPopup.boundingBox.size.height/2)];
@@ -293,26 +297,26 @@
 	_timeElapsedLabel.color = ccBLACK;
 	_timeElapsedLabel.position = ccp(timeAndLevelPopup.boundingBox.size.width/2, timeAndLevelPopup.boundingBox.size.height/4 + 2*SCALING_FACTOR_V);
 	[timeAndLevelPopup addChild:_timeElapsedLabel];
-	
-	
+		
 	[timeAndLevelPopup runAction:[CCSequence actions:
 		[CCDelayTime actionWithDuration:1.5f],
 		[CCMoveBy actionWithDuration:0.5f position:ccp(0,-timeAndLevelPopup.boundingBox.size.height)],
 		[CCDelayTime actionWithDuration:2.5f],
 		[CCMoveBy actionWithDuration:0.5f position:ccp(0,timeAndLevelPopup.boundingBox.size.height/2 + 2*SCALING_FACTOR_V)],
-		nil]];
-	
-	
-	//get the toolbox item size for scaling purposes
-	LHSprite* toolboxContainer = [_levelLoader createBatchSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
-	[toolboxContainer removeSelf];
-	_toolboxItemSize = toolboxContainer.boundingBox.size;
+		nil]];	
 }
 
 //TODO: random crash still occasionally occurs after prolonged use - remember to look into it!
 
 -(void) updateToolbox {
 	NSLog(@"Updating Toolbox");
+	
+	if(_toolboxItemSize.width == 0) {
+		//get the toolbox item size for scaling purposes
+		LHSprite* toolboxContainer = [_levelLoader createBatchSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
+		[toolboxContainer removeSelf];
+		_toolboxItemSize = toolboxContainer.boundingBox.size;
+	}
 	
 	for(LHSprite* toolboxItemContainer in [_levelLoader spritesWithTag:TOOLBOX_ITEM_CONTAINER]) {
 		[toolboxItemContainer removeSelf];
@@ -2046,18 +2050,31 @@
 	}
 }
 
+
+
 -(void) onExit{
-	NSLog(@"GameLayer %f onExit", _instanceId);
+	NSLog(@"Begin GameLayer %f onExit", _instanceId);
+	report_memory();
+
 	_state = PAUSE;
+
+	for(LHSprite* sprite in _levelLoader.allSprites) {
+		[sprite stopAnimation];
+	}		
+
     [self unscheduleAllSelectors];
     [self unscheduleUpdate];
-    [[CCTextureCache sharedTextureCache] removeAllTextures];
+	
     [super onExit];
+	
+	NSLog(@"End GameLayer %f onExit", _instanceId);
+	report_memory();
 }
 
 -(void) dealloc
 {
-	NSLog(@"GameLayer %f dealloc", _instanceId);
+	NSLog(@"Begin GameLayer %f dealloc", _instanceId);
+	report_memory();
 
 	[_levelPath release];
 	[_levelPackPath release];
@@ -2101,8 +2118,11 @@
 		delete _debugDraw;
 		_debugDraw = nil;
 	}
-	
+
 	[super dealloc];
+	
+	NSLog(@"End GameLayer %f dealloc", _instanceId);
+	report_memory();
 }	
 
 @end
