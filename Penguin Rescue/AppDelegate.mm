@@ -155,6 +155,7 @@
 // purge memory
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
+	NSLog(@"@@@@@@@@@@@Low memory warning@@@@@@@@@@@@");;
 	[[CCDirector sharedDirector] purgeCachedData];
 }
 

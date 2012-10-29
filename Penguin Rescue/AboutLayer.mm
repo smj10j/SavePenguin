@@ -90,16 +90,17 @@
 -(void)onTouchBeganAnyButton:(LHTouchInfo*)info {
 	if(info.sprite != nil)
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
-	
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
-		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
-	}
 }
 
 
 -(void)onBack:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
+	
+	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
+	}	
+	
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[MainMenuLayer scene] ]];
 }
 
