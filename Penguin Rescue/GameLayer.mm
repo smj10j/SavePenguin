@@ -291,6 +291,8 @@
 	_toolboxItemSize = toolboxContainer.boundingBox.size;
 }
 
+//TODO: random crash still occasionally occurs - remember to look into it!
+
 -(void) updateToolbox {
 	NSLog(@"Updating Toolbox");
 	
@@ -540,8 +542,8 @@
 	_activeToolboxItem = toolboxItem;
 			
 	_activeToolboxItemOriginalPosition = _activeToolboxItem.position;
-	[_activeToolboxItem transformScaleX: 1];
-	[_activeToolboxItem transformScaleY: 1];
+	ToolboxItem_Border* toolboxItemData = ((ToolboxItem_Border*)_activeToolboxItem.userInfo);	//ToolboxItem_Border is used because all ToolboxItem classes have a "scale" property
+	[_activeToolboxItem transformScale: toolboxItemData.scale];
 	NSLog(@"Scaling up toolboxitem %@ to full-size", _activeToolboxItem.uniqueName);
 }
 
@@ -1332,7 +1334,7 @@
 		_levelPlaceTimeDuration+= dt;
 	}
 	
-	double elapsedTime = [[NSDate date] timeIntervalSince1970] - _levelStartPlaceTime;
+	double elapsedTime = _levelRunningTimeDuration+_levelPlaceTimeDuration;
 	_timeElapsedLabel.string = [NSString stringWithFormat:@"%d", (int)elapsedTime];
 	
 	//regenerate base feature maps if need be
@@ -1357,17 +1359,20 @@
 			[_activeToolboxItem makeDynamic];
 			[_activeToolboxItem setSensor:false];
 			
-			[self scoreToolboxItemPlacement:_activeToolboxItem];
-			
 		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Border"]) {
 			_activeToolboxItem.tag = BORDER;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:false];
 			_shouldRegenerateFeatureMaps = true;
 
-			[self scoreToolboxItemPlacement:_activeToolboxItem];
-
+		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
+			_activeToolboxItem.tag = WINDMILL;
+			[_activeToolboxItem makeStatic];
+			[_activeToolboxItem setSensor:true];
+		
 		}
+
+		[self scoreToolboxItemPlacement:_activeToolboxItem];
 		
 		//move it into the main layer so it's under the HUD
 		if(_activeToolboxItem.parent == _toolboxBatchNode) {

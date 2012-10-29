@@ -1425,7 +1425,24 @@
 					<array>
 						<dict>
 							<key>AnimationsProperties</key>
-							<dict/>
+							<dict>
+								<key>AnimAtStart</key>
+								<true/>
+								<key>AnimLoop</key>
+								<true/>
+								<key>AnimName</key>
+								<string>Toolbox_Laser_Beam</string>
+								<key>AnimRepetitions</key>
+								<integer>1</integer>
+								<key>AnimRestoreOriginalFrame</key>
+								<false/>
+								<key>AnimSpeed</key>
+								<real>0.02500000037252903</real>
+								<key>OtherAnimations</key>
+								<array/>
+								<key>SHScene</key>
+								<string>Spritesheet.pshs</string>
+							</dict>
 							<key>Children</key>
 							<array/>
 							<key>CustomClassInfo</key>
@@ -1436,6 +1453,8 @@
 									<true/>
 									<key>runningCost</key>
 									<true/>
+									<key>scale</key>
+									<true/>
 								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Border</string>
@@ -1445,6 +1464,8 @@
 									<real>750</real>
 									<key>runningCost</key>
 									<real>1000</real>
+									<key>scale</key>
+									<real>1</real>
 								</dict>
 							</dict>
 							<key>NodeType</key>
@@ -1465,7 +1486,7 @@
 							<key>SHSheetName</key>
 							<string>Toolbox</string>
 							<key>SHSpriteName</key>
-							<string>Metal-Gate</string>
+							<string>Laser_Beam_1</string>
 							<key>SheetImage</key>
 							<string>Spritesheet_Toolbox.png</string>
 							<key>TextureProperties</key>
@@ -1479,7 +1500,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 0}, {21.75, 89.75}}</string>
+								<string>{{60, 0}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1495,13 +1516,13 @@
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{21.25, 89.25}</string>
+								<string>{21.25, 75}</string>
 								<key>Tag</key>
 								<integer>8</integer>
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.25, -0.25}</string>
+								<string>{0.25, 0.125}</string>
 								<key>UniqueName</key>
 								<string>Metal-Gate</string>
 								<key>ZOrder</key>
@@ -1512,7 +1533,24 @@
 						</dict>
 						<dict>
 							<key>AnimationsProperties</key>
-							<dict/>
+							<dict>
+								<key>AnimAtStart</key>
+								<true/>
+								<key>AnimLoop</key>
+								<true/>
+								<key>AnimName</key>
+								<string>Toolbox_Laser_Beam</string>
+								<key>AnimRepetitions</key>
+								<integer>1</integer>
+								<key>AnimRestoreOriginalFrame</key>
+								<false/>
+								<key>AnimSpeed</key>
+								<real>0.02500000037252903</real>
+								<key>OtherAnimations</key>
+								<array/>
+								<key>SHScene</key>
+								<string>Spritesheet.pshs</string>
+							</dict>
 							<key>Children</key>
 							<array/>
 							<key>CustomClassInfo</key>
@@ -1523,6 +1561,8 @@
 									<true/>
 									<key>runningCost</key>
 									<true/>
+									<key>scale</key>
+									<true/>
 								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Border</string>
@@ -1532,6 +1572,8 @@
 									<real>750</real>
 									<key>runningCost</key>
 									<real>1000</real>
+									<key>scale</key>
+									<real>1</real>
 								</dict>
 							</dict>
 							<key>NodeType</key>
@@ -1552,7 +1594,7 @@
 							<key>SHSheetName</key>
 							<string>Toolbox</string>
 							<key>SHSpriteName</key>
-							<string>Metal-Gate</string>
+							<string>Laser_Beam_1</string>
 							<key>SheetImage</key>
 							<string>Spritesheet_Toolbox.png</string>
 							<key>TextureProperties</key>
@@ -1566,7 +1608,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 0}, {21.75, 89.75}}</string>
+								<string>{{60, 0}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1582,13 +1624,13 @@
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{21.25, 89.25}</string>
+								<string>{21.25, 75}</string>
 								<key>Tag</key>
 								<integer>8</integer>
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.25, -0.25}</string>
+								<string>{0.25, 0.125}</string>
 								<key>UniqueName</key>
 								<string>Metal-Gate_1</string>
 								<key>ZOrder</key>
@@ -1599,7 +1641,24 @@
 						</dict>
 						<dict>
 							<key>AnimationsProperties</key>
-							<dict/>
+							<dict>
+								<key>AnimAtStart</key>
+								<true/>
+								<key>AnimLoop</key>
+								<true/>
+								<key>AnimName</key>
+								<string>Toolbox_Laser_Beam</string>
+								<key>AnimRepetitions</key>
+								<integer>1</integer>
+								<key>AnimRestoreOriginalFrame</key>
+								<false/>
+								<key>AnimSpeed</key>
+								<real>0.02500000037252903</real>
+								<key>OtherAnimations</key>
+								<array/>
+								<key>SHScene</key>
+								<string>Spritesheet.pshs</string>
+							</dict>
 							<key>Children</key>
 							<array/>
 							<key>CustomClassInfo</key>
@@ -1610,6 +1669,8 @@
 									<true/>
 									<key>runningCost</key>
 									<true/>
+									<key>scale</key>
+									<true/>
 								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Border</string>
@@ -1619,6 +1680,8 @@
 									<real>750</real>
 									<key>runningCost</key>
 									<real>1000</real>
+									<key>scale</key>
+									<real>1</real>
 								</dict>
 							</dict>
 							<key>NodeType</key>
@@ -1639,7 +1702,7 @@
 							<key>SHSheetName</key>
 							<string>Toolbox</string>
 							<key>SHSpriteName</key>
-							<string>Metal-Gate</string>
+							<string>Laser_Beam_1</string>
 							<key>SheetImage</key>
 							<string>Spritesheet_Toolbox.png</string>
 							<key>TextureProperties</key>
@@ -1653,7 +1716,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 0}, {21.75, 89.75}}</string>
+								<string>{{60, 0}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1669,13 +1732,13 @@
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{21.25, 89.25}</string>
+								<string>{21.25, 75}</string>
 								<key>Tag</key>
 								<integer>8</integer>
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.25, -0.25}</string>
+								<string>{0.25, 0.125}</string>
 								<key>UniqueName</key>
 								<string>Metal-Gate_2</string>
 								<key>ZOrder</key>
@@ -1686,7 +1749,24 @@
 						</dict>
 						<dict>
 							<key>AnimationsProperties</key>
-							<dict/>
+							<dict>
+								<key>AnimAtStart</key>
+								<true/>
+								<key>AnimLoop</key>
+								<true/>
+								<key>AnimName</key>
+								<string>Toolbox_Laser_Beam</string>
+								<key>AnimRepetitions</key>
+								<integer>1</integer>
+								<key>AnimRestoreOriginalFrame</key>
+								<false/>
+								<key>AnimSpeed</key>
+								<real>0.02500000037252903</real>
+								<key>OtherAnimations</key>
+								<array/>
+								<key>SHScene</key>
+								<string>Spritesheet.pshs</string>
+							</dict>
 							<key>Children</key>
 							<array/>
 							<key>CustomClassInfo</key>
@@ -1697,6 +1777,8 @@
 									<true/>
 									<key>runningCost</key>
 									<true/>
+									<key>scale</key>
+									<true/>
 								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Border</string>
@@ -1706,6 +1788,8 @@
 									<real>750</real>
 									<key>runningCost</key>
 									<real>1000</real>
+									<key>scale</key>
+									<real>1</real>
 								</dict>
 							</dict>
 							<key>NodeType</key>
@@ -1726,7 +1810,7 @@
 							<key>SHSheetName</key>
 							<string>Toolbox</string>
 							<key>SHSpriteName</key>
-							<string>Metal-Gate</string>
+							<string>Laser_Beam_1</string>
 							<key>SheetImage</key>
 							<string>Spritesheet_Toolbox.png</string>
 							<key>TextureProperties</key>
@@ -1740,7 +1824,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 0}, {21.75, 89.75}}</string>
+								<string>{{60, 0}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1756,13 +1840,13 @@
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{21.25, 89.25}</string>
+								<string>{21.25, 75}</string>
 								<key>Tag</key>
 								<integer>8</integer>
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.25, -0.25}</string>
+								<string>{0.25, 0.125}</string>
 								<key>UniqueName</key>
 								<string>Metal-Gate_3</string>
 								<key>ZOrder</key>
@@ -1773,7 +1857,24 @@
 						</dict>
 						<dict>
 							<key>AnimationsProperties</key>
-							<dict/>
+							<dict>
+								<key>AnimAtStart</key>
+								<true/>
+								<key>AnimLoop</key>
+								<true/>
+								<key>AnimName</key>
+								<string>Toolbox_Laser_Beam</string>
+								<key>AnimRepetitions</key>
+								<integer>1</integer>
+								<key>AnimRestoreOriginalFrame</key>
+								<false/>
+								<key>AnimSpeed</key>
+								<real>0.02500000037252903</real>
+								<key>OtherAnimations</key>
+								<array/>
+								<key>SHScene</key>
+								<string>Spritesheet.pshs</string>
+							</dict>
 							<key>Children</key>
 							<array/>
 							<key>CustomClassInfo</key>
@@ -1784,6 +1885,8 @@
 									<true/>
 									<key>runningCost</key>
 									<true/>
+									<key>scale</key>
+									<true/>
 								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Border</string>
@@ -1793,6 +1896,8 @@
 									<real>750</real>
 									<key>runningCost</key>
 									<real>1000</real>
+									<key>scale</key>
+									<real>1</real>
 								</dict>
 							</dict>
 							<key>NodeType</key>
@@ -1813,7 +1918,7 @@
 							<key>SHSheetName</key>
 							<string>Toolbox</string>
 							<key>SHSpriteName</key>
-							<string>Metal-Gate</string>
+							<string>Laser_Beam_1</string>
 							<key>SheetImage</key>
 							<string>Spritesheet_Toolbox.png</string>
 							<key>TextureProperties</key>
@@ -1827,7 +1932,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 0}, {21.75, 89.75}}</string>
+								<string>{{60, 0}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1843,13 +1948,13 @@
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{21.25, 89.25}</string>
+								<string>{21.25, 75}</string>
 								<key>Tag</key>
 								<integer>8</integer>
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.25, -0.25}</string>
+								<string>{0.25, 0.125}</string>
 								<key>UniqueName</key>
 								<string>Metal-Gate_4</string>
 								<key>ZOrder</key>
@@ -1860,7 +1965,24 @@
 						</dict>
 						<dict>
 							<key>AnimationsProperties</key>
-							<dict/>
+							<dict>
+								<key>AnimAtStart</key>
+								<true/>
+								<key>AnimLoop</key>
+								<true/>
+								<key>AnimName</key>
+								<string>Toolbox_Laser_Beam</string>
+								<key>AnimRepetitions</key>
+								<integer>1</integer>
+								<key>AnimRestoreOriginalFrame</key>
+								<false/>
+								<key>AnimSpeed</key>
+								<real>0.02500000037252903</real>
+								<key>OtherAnimations</key>
+								<array/>
+								<key>SHScene</key>
+								<string>Spritesheet.pshs</string>
+							</dict>
 							<key>Children</key>
 							<array/>
 							<key>CustomClassInfo</key>
@@ -1871,6 +1993,8 @@
 									<true/>
 									<key>runningCost</key>
 									<true/>
+									<key>scale</key>
+									<true/>
 								</dict>
 								<key>ClassName</key>
 								<string>ToolboxItem_Border</string>
@@ -1880,6 +2004,8 @@
 									<real>750</real>
 									<key>runningCost</key>
 									<real>1000</real>
+									<key>scale</key>
+									<real>1</real>
 								</dict>
 							</dict>
 							<key>NodeType</key>
@@ -1900,7 +2026,7 @@
 							<key>SHSheetName</key>
 							<string>Toolbox</string>
 							<key>SHSpriteName</key>
-							<string>Metal-Gate</string>
+							<string>Laser_Beam_1</string>
 							<key>SheetImage</key>
 							<string>Spritesheet_Toolbox.png</string>
 							<key>TextureProperties</key>
@@ -1914,7 +2040,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 0}, {21.75, 89.75}}</string>
+								<string>{{60, 0}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1930,13 +2056,13 @@
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{21.25, 89.25}</string>
+								<string>{21.25, 75}</string>
 								<key>Tag</key>
 								<integer>8</integer>
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.25, -0.25}</string>
+								<string>{0.25, 0.125}</string>
 								<key>UniqueName</key>
 								<string>Metal-Gate_5</string>
 								<key>ZOrder</key>
@@ -2148,7 +2274,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{61, 116}, {36, 20.75}}</string>
+								<string>{{23, 73}, {36, 20.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2293,6 +2419,8 @@
 					<real>750</real>
 					<key>runningCost</key>
 					<real>1000</real>
+					<key>scale</key>
+					<real>1</real>
 				</dict>
 			</dict>
 			<dict>
@@ -2304,24 +2432,23 @@
 					<real>250</real>
 					<key>runningCost</key>
 					<real>350</real>
+					<key>scale</key>
+					<real>1</real>
 				</dict>
 			</dict>
 			<dict>
 				<key>ClassName</key>
-				<string>ToolboxItem_SlowDown</string>
+				<string>ToolboxItem_Windmill</string>
 				<key>ClassRepresentation</key>
 				<dict>
-					<key>amount</key>
-					<real>0.20000000298023224</real>
-				</dict>
-			</dict>
-			<dict>
-				<key>ClassName</key>
-				<string>ToolboxItem_SpeedUp</string>
-				<key>ClassRepresentation</key>
-				<dict>
-					<key>amount</key>
-					<real>0.20000000298023224</real>
+					<key>placeCost</key>
+					<real>1000</real>
+					<key>power</key>
+					<real>25</real>
+					<key>runningCost</key>
+					<real>1250</real>
+					<key>scale</key>
+					<real>1</real>
 				</dict>
 			</dict>
 		</array>
@@ -2353,11 +2480,10 @@
 			<string>BORDER</string>
 			<string>TOOLBOX_ITEM</string>
 			<string>DEBRIS</string>
-			<string>SLOWDOWN</string>
-			<string>SPEEDUP</string>
 			<string>TOOLBOX_ITEM_CONTAINER</string>
 			<string>BACKGROUND</string>
 			<string>TUTORIAL</string>
+			<string>WINDMILL</string>
 		</array>
 		<key>ZoomValue</key>
 		<real>0.0</real>

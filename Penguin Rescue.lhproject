@@ -88,6 +88,8 @@
 				<real>750</real>
 				<key>runningCost</key>
 				<real>1000</real>
+				<key>scale</key>
+				<real>1</real>
 			</dict>
 		</dict>
 		<dict>
@@ -99,24 +101,23 @@
 				<real>250</real>
 				<key>runningCost</key>
 				<real>350</real>
+				<key>scale</key>
+				<real>1</real>
 			</dict>
 		</dict>
 		<dict>
 			<key>ClassName</key>
-			<string>ToolboxItem_SlowDown</string>
+			<string>ToolboxItem_Windmill</string>
 			<key>ClassRepresentation</key>
 			<dict>
-				<key>amount</key>
-				<real>0.20000000298023224</real>
-			</dict>
-		</dict>
-		<dict>
-			<key>ClassName</key>
-			<string>ToolboxItem_SpeedUp</string>
-			<key>ClassRepresentation</key>
-			<dict>
-				<key>amount</key>
-				<real>0.20000000298023224</real>
+				<key>placeCost</key>
+				<real>1000</real>
+				<key>power</key>
+				<real>25</real>
+				<key>runningCost</key>
+				<real>1250</real>
+				<key>scale</key>
+				<real>1</real>
 			</dict>
 		</dict>
 	</array>
@@ -129,7 +130,7 @@
 	<key>HDSuffix</key>
 	<string>-hd</string>
 	<key>LastLevelLoaded</key>
-	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Arctic1/TestLevel.plhs</string>
+	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Template.plhs</string>
 	<key>Orientation</key>
 	<integer>1</integer>
 	<key>ProjectName</key>
@@ -169,11 +170,10 @@
 		<string>BORDER</string>
 		<string>TOOLBOX_ITEM</string>
 		<string>DEBRIS</string>
-		<string>SLOWDOWN</string>
-		<string>SPEEDUP</string>
 		<string>TOOLBOX_ITEM_CONTAINER</string>
 		<string>BACKGROUND</string>
 		<string>TUTORIAL</string>
+		<string>WINDMILL</string>
 	</array>
 </dict>
 </plist>

@@ -19,16 +19,4 @@
 		Path = OpenWater;
 		Name = "Open Water";
 	};
-	5 = {
-		Path = Archipelago;
-		Name = Archipelago;
-	};
-	6 = {
-		Path = TwoBirds;
-		Name = "Two Birds";
-	};
-	7 = {
-		Path = AHelpingHand;
-		Name = "A Helping Hand";
-	};
 }

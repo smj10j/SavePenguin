@@ -7,6 +7,5 @@
 #import "Shark.h"
 #import "ToolboxItem_Border.h"
 #import "ToolboxItem_Debris.h"
-#import "ToolboxItem_SlowDown.h"
-#import "ToolboxItem_SpeedUp.h"
+#import "ToolboxItem_Windmill.h"
 

@@ -3,11 +3,14 @@
 //For more info please visit: www.levelhelper.org
 
 
-@interface ToolboxItem_SpeedUp : NSObject
+@interface ToolboxItem_Windmill : NSObject
 {
 
 
-	float amount;
+	float placeCost;
+	float power;
+	float runningCost;
+	float scale;
 
 
 #if __has_feature(objc_arc) && __clang_major__ >= 3
@@ -18,9 +21,12 @@
 #endif // __has_feature(objc_arc)
 
 }
-@property float amount;
+@property float placeCost;
+@property float power;
+@property float runningCost;
+@property float scale;
 
-+(ToolboxItem_SpeedUp*) customClassInstance;
++(ToolboxItem_Windmill*) customClassInstance;
 
 -(NSString*) className;
 

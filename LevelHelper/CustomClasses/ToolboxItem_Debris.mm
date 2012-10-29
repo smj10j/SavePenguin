@@ -9,6 +9,7 @@
 
 
 @synthesize runningCost;
+@synthesize scale;
 @synthesize placeCost;
 
 
@@ -39,6 +40,9 @@ return NSStringFromClass([self class]);
 
 	if([dictionary objectForKey:@"runningCost"])
 		[self setRunningCost:[[dictionary objectForKey:@"runningCost"] floatValue]];
+
+	if([dictionary objectForKey:@"scale"])
+		[self setScale:[[dictionary objectForKey:@"scale"] floatValue]];
 
 	if([dictionary objectForKey:@"placeCost"])
 		[self setPlaceCost:[[dictionary objectForKey:@"placeCost"] floatValue]];

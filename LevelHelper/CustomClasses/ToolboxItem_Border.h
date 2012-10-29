@@ -8,6 +8,7 @@
 
 
 	float runningCost;
+	float scale;
 	float placeCost;
 
 
@@ -20,6 +21,7 @@
 
 }
 @property float runningCost;
+@property float scale;
 @property float placeCost;
 
 +(ToolboxItem_Border*) customClassInstance;

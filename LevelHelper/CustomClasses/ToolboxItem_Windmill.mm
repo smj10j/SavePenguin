@@ -3,14 +3,15 @@
 //For more info please visit: www.levelhelper.org
 
 
-#import "ToolboxItem_Border.h"
+#import "ToolboxItem_Windmill.h"
 
-@implementation ToolboxItem_Border
+@implementation ToolboxItem_Windmill
 
 
+@synthesize placeCost;
+@synthesize power;
 @synthesize runningCost;
 @synthesize scale;
-@synthesize placeCost;
 
 
 -(void) dealloc{
@@ -24,11 +25,11 @@
 #endif // __has_feature(objc_arc)
 }
 
-+(ToolboxItem_Border*) customClassInstance{
++(ToolboxItem_Windmill*) customClassInstance{
 #if __has_feature(objc_arc) && __clang_major__ >= 3
-return [[ToolboxItem_Border alloc] init];
+return [[ToolboxItem_Windmill alloc] init];
 #else
-return [[[ToolboxItem_Border alloc] init] autorelease];
+return [[[ToolboxItem_Windmill alloc] init] autorelease];
 #endif
 }
 
@@ -38,14 +39,17 @@ return NSStringFromClass([self class]);
 -(void) setPropertiesFromDictionary:(NSDictionary*)dictionary
 {
 
+	if([dictionary objectForKey:@"placeCost"])
+		[self setPlaceCost:[[dictionary objectForKey:@"placeCost"] floatValue]];
+
+	if([dictionary objectForKey:@"power"])
+		[self setPower:[[dictionary objectForKey:@"power"] floatValue]];
+
 	if([dictionary objectForKey:@"runningCost"])
 		[self setRunningCost:[[dictionary objectForKey:@"runningCost"] floatValue]];
 
 	if([dictionary objectForKey:@"scale"])
 		[self setScale:[[dictionary objectForKey:@"scale"] floatValue]];
-
-	if([dictionary objectForKey:@"placeCost"])
-		[self setPlaceCost:[[dictionary objectForKey:@"placeCost"] floatValue]];
 
 }
 

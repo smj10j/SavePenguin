@@ -88,7 +88,6 @@
     id animEndedAllRepObserver;
     
     bool prepareAnimInProgress; //we use this in order to stop onExit event to remove the touch handling
-	bool needsToRemoveTouchObserver;//and this to make sure it gets removed afterwards
     
     LHPathNode* pathNode;
     id pathEndedObserver;

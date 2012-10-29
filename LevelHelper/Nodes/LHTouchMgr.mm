@@ -86,10 +86,11 @@
 }
 //------------------------------------------------------------------------------
 +(void)performObserverPair:(LHObserverPair*)pair object:(id)info{
-    if(pair && pair.object != nil){
+    if(pair && pair.object){
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [pair.object performSelector:pair.selector withObject:info];
+        [pair.object performSelector:pair.selector 
+                                        withObject:info];
 #pragma clang diagnostic pop        
     }        
 
