@@ -147,7 +147,7 @@
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-windmill.wav"];
 
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelLost/hoot.wav"];
-	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelWon/reward.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelWon/reward.mp3"];
 
 }
 
@@ -869,7 +869,7 @@
 	_state = GAME_OVER;
 	
 	if([SettingsManager boolForKey:@"SoundEnabled"]) {
-		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelWon/reward.wav"];
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelWon/reward.mp3"];
 	}
 	
 	for(LHSprite* sprite in _levelLoader.allSprites) {
