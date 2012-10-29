@@ -194,6 +194,22 @@
 			NSLog(@"Using a grid size for a newer iPad");
 		}
 	}
+	
+	double minScale = 1;
+	NSMutableArray* actors = [[NSMutableArray alloc] initWithArray:[_levelLoader spritesWithTag:SHARK]];
+	[actors addObjectsFromArray:[_levelLoader spritesWithTag:PENGUIN]];
+	for(LHSprite* actor in actors) {
+		if(actor.scale < minScale) {
+			minScale = actor.scale;
+		}
+	}
+	[actors release];
+	
+	if(minScale < 1) {
+		_gridSize*= minScale;
+		NSLog(@"Scaling down gridSize by %f to %d to account for scaled down actors", minScale, _gridSize);
+	}
+
 		
 	_gridWidth = ceil(_levelSize.width/_gridSize);
 	_gridHeight = ceil(_levelSize.height/_gridSize);
@@ -1660,8 +1676,8 @@
 		double normalizedX = (sharkSpeed*dx)/dSum;
 		double normalizedY = (sharkSpeed*dy)/dSum;
 
-		double impulseX = ((normalizedX+dxMod)*dt)*.1;
-		double impulseY = ((normalizedY+dyMod)*dt)*.1;
+		double impulseX = ((normalizedX+dxMod)*dt)*.1*pow(shark.scale,2);
+		double impulseY = ((normalizedY+dyMod)*dt)*.1*pow(shark.scale,2);
 		
 		//NSLog(@"Shark %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", shark.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
 				
@@ -1829,8 +1845,8 @@
 			double normalizedX = (penguinSpeed*dx)/dSum;
 			double normalizedY = (penguinSpeed*dy)/dSum;
 			
-			double impulseX = ((normalizedX+dxMod)*dt)*.1;
-			double impulseY = ((normalizedY+dyMod)*dt)*.1;
+			double impulseX = ((normalizedX+dxMod)*dt)*.1*pow(penguin.scale,2);
+			double impulseY = ((normalizedY+dyMod)*dt)*.1*pow(penguin.scale,2);
 			
 			//NSLog(@"Penguin %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", penguin.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
 		
