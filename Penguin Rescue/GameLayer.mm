@@ -17,7 +17,6 @@
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
-#import "LoadGameLayer.h"
 #import "LevelSelectLayer.h"
 #import "LevelPackSelectLayer.h"
 #import "MainMenuLayer.h"
