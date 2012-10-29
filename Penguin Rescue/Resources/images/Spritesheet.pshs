@@ -14364,13 +14364,13 @@
 			<key>Repetitions</key>
 			<integer>1</integer>
 			<key>RestoreOriginalFrame</key>
-			<false/>
+			<true/>
 			<key>SheetImage</key>
 			<string>Spritesheet_HUD.png</string>
 			<key>SheetName</key>
 			<string>HUD</string>
 			<key>StartAtLaunch</key>
-			<true/>
+			<false/>
 			<key>UniqueName</key>
 			<string>Restart_Button</string>
 		</dict>
@@ -14528,7 +14528,7 @@
 			<key>Repetitions</key>
 			<integer>1</integer>
 			<key>RestoreOriginalFrame</key>
-			<false/>
+			<true/>
 			<key>SheetImage</key>
 			<string>Spritesheet_Menu.png</string>
 			<key>SheetName</key>
@@ -14692,7 +14692,7 @@
 			<key>Repetitions</key>
 			<integer>1</integer>
 			<key>RestoreOriginalFrame</key>
-			<false/>
+			<true/>
 			<key>SheetImage</key>
 			<string>Spritesheet_Menu.png</string>
 			<key>SheetName</key>
@@ -14857,7 +14857,7 @@
 			<key>Repetitions</key>
 			<integer>1</integer>
 			<key>RestoreOriginalFrame</key>
-			<false/>
+			<true/>
 			<key>SheetImage</key>
 			<string>Spritesheet_Menu.png</string>
 			<key>SheetName</key>
@@ -15022,7 +15022,7 @@
 			<key>Repetitions</key>
 			<integer>1</integer>
 			<key>RestoreOriginalFrame</key>
-			<false/>
+			<true/>
 			<key>SheetImage</key>
 			<string>Spritesheet_Menu.png</string>
 			<key>SheetName</key>
@@ -15187,7 +15187,7 @@
 			<key>Repetitions</key>
 			<integer>1</integer>
 			<key>RestoreOriginalFrame</key>
-			<false/>
+			<true/>
 			<key>SheetImage</key>
 			<string>Spritesheet_Menu.png</string>
 			<key>SheetName</key>
@@ -15352,7 +15352,7 @@
 			<key>Repetitions</key>
 			<integer>1</integer>
 			<key>RestoreOriginalFrame</key>
-			<false/>
+			<true/>
 			<key>SheetImage</key>
 			<string>Spritesheet_Menu.png</string>
 			<key>SheetName</key>
@@ -15431,7 +15431,7 @@
 					<key>TextureOffset</key>
 					<string>{0, 0.125}</string>
 					<key>delayPerUnit</key>
-					<real>1</real>
+					<real>0.0</real>
 					<key>notifications</key>
 					<dict/>
 					<key>offset</key>
@@ -15516,7 +15516,7 @@
 			<key>Repetitions</key>
 			<integer>1</integer>
 			<key>RestoreOriginalFrame</key>
-			<false/>
+			<true/>
 			<key>SheetImage</key>
 			<string>Spritesheet_Menu.png</string>
 			<key>SheetName</key>
@@ -15987,7 +15987,7 @@
 			<key>Repetitions</key>
 			<integer>1</integer>
 			<key>RestoreOriginalFrame</key>
-			<false/>
+			<true/>
 			<key>SheetImage</key>
 			<string>Spritesheet_Menu.png</string>
 			<key>SheetName</key>
@@ -16480,7 +16480,7 @@
 			<key>Repetitions</key>
 			<integer>1</integer>
 			<key>RestoreOriginalFrame</key>
-			<false/>
+			<true/>
 			<key>SheetImage</key>
 			<string>Spritesheet_Menu.png</string>
 			<key>SheetName</key>
@@ -16645,7 +16645,7 @@
 			<key>Repetitions</key>
 			<integer>1</integer>
 			<key>RestoreOriginalFrame</key>
-			<false/>
+			<true/>
 			<key>SheetImage</key>
 			<string>Spritesheet_Menu.png</string>
 			<key>SheetName</key>
@@ -16810,7 +16810,7 @@
 			<key>Repetitions</key>
 			<integer>1</integer>
 			<key>RestoreOriginalFrame</key>
-			<false/>
+			<true/>
 			<key>SheetImage</key>
 			<string>Spritesheet_Menu.png</string>
 			<key>SheetName</key>

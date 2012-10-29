@@ -88,13 +88,14 @@
 
 
 -(void)onTouchBeganAnyButton:(LHTouchInfo*)info {
-	if(info.sprite != nil) return;
+	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 }
 
 
 -(void)onBack:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
+	[info.sprite setFrame:info.sprite.currentFrame-1];	//active state
 	
 	if([SettingsManager boolForKey:@"SoundEnabled"]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
