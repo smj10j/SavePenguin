@@ -16,6 +16,9 @@
 	int _gridWidth;
 	int _gridHeight;
 
+	bool _foundRoute;
+	double _minSearchPathFactor;
+
 	CGPoint _lastToTile;
 	bool _forceUpdateToMoveGrid;
 	

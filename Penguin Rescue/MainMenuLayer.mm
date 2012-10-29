@@ -108,8 +108,8 @@
 		}
 	}
 	
-	NSLog(@"Initialized MainMenuLayer");
-	report_memory();
+	if(DEBUG_MEMORY) NSLog(@"Initialized MainMenuLayer");
+	if(DEBUG_MEMORY) report_memory();
 	
 	return self;
 }
@@ -202,7 +202,7 @@
 
 
 -(void) onExit {
-	NSLog(@"MainMenuLayer onExit");
+	if(DEBUG_MEMORY) NSLog(@"MainMenuLayer onExit");
 
 	for(LHSprite* sprite in _levelLoader.allSprites) {
 		[sprite stopAnimation];

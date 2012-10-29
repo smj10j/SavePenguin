@@ -32,7 +32,9 @@
 			}
 		}
 		_forceUpdateToMoveGrid = false;
-				
+		_foundRoute = false;
+		_minSearchPathFactor = 1;
+						
 		_moveHistorySize = moveHistorySize;
 		_moveHistory = new CGPoint[_moveHistorySize];
 		_moveHistoryIndex = 0;
@@ -44,20 +46,20 @@
 
 - (void)copyBaseGridToMoveGridBuffer {
 	if(_gridWidth > 0 && _gridHeight > 0 && _baseGrid != nil && _moveGridBuffer != nil) {
-		for(int x = 0; x < _gridWidth; x++) {
-			for(int y = 0; y < _gridHeight; y++) {
-				_moveGridBuffer[x][y] = _baseGrid[x][y];
-			}
+		int rowSize = sizeof(int) * _gridHeight;
+		for(int i = 0; i < _gridWidth; i++) {
+			//NSLog(@"memcpy: %d bytes from _baseGrid[%d] to _moveGridBuffer[%d]", rowSize, i, i);
+			memcpy(_moveGridBuffer[i], (void*)_baseGrid[i], rowSize);
 		}
 	}
 }
 
 - (void)copyMoveGridBufferToMoveGrid {
 	if(_gridWidth > 0 && _gridHeight > 0 && _moveGrid != nil && _moveGridBuffer != nil) {
-		for(int x = 0; x < _gridWidth; x++) {
-			for(int y = 0; y < _gridHeight; y++) {
-				_moveGrid[x][y] = _moveGridBuffer[x][y];
-			}
+		int rowSize = sizeof(int) * _gridHeight;
+		for(int i = 0; i < _gridWidth; i++) {
+			//NSLog(@"memcpy: %d bytes from _moveGridBufferp[%d] to _moveGrid[%d]", rowSize, i, i);
+			memcpy(_moveGrid[i], (void*)_moveGridBuffer[i], rowSize);
 		}
 	}
 }
@@ -72,6 +74,7 @@
 
 - (void)forceUpdateToMoveGrid {
 	_forceUpdateToMoveGrid = true;
+	_foundRoute = false;
 }
 
 - (void)updateBaseGrid:(int**)baseGrid {
@@ -189,8 +192,11 @@
 	return bestMove;
 }
 
-
 - (void)updateMoveGridToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile {
+	[self updateMoveGridToTile:toTile fromTile:fromTile attemptsRemaining:4];
+}
+
+- (void)updateMoveGridToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile attemptsRemaining:(int)attemptsRemaining {
 
 	if(_forceUpdateToMoveGrid || (_lastToTile.x != toTile.x || _lastToTile.y != toTile.y)) {
 
@@ -198,14 +204,41 @@
 
 		_lastToTile = toTile;
 		_forceUpdateToMoveGrid = false;
+		
+		double start = [[NSDate date] timeIntervalSince1970];
 
 		bool foundRoute = false;
 		[self copyBaseGridToMoveGridBuffer];
 		_moveGridBuffer[(int)toTile.x][(int)toTile.y] = 0;
 		[self propagateGridCostToX:toTile.x y:toTile.y fromTile:fromTile foundRoute:&foundRoute];
-		[self copyMoveGridBufferToMoveGrid];
 		
-		//NSLog(@"Foundroute: %d", foundRoute);
+		if(foundRoute) {
+			[self copyMoveGridBufferToMoveGrid];
+			_foundRoute = true;
+			_minSearchPathFactor-= .25;
+			if(_minSearchPathFactor < .5) {
+				_minSearchPathFactor = .5;
+			}
+		}else {
+			if(_foundRoute) {
+				//don't copy - use the old route
+			}else {
+				//we have no idea what's going on - go ahead and use what we found while we're searching
+				[self copyMoveGridBufferToMoveGrid];
+			}
+			_minSearchPathFactor*= 2;
+			if(_minSearchPathFactor > 5) {
+				_minSearchPathFactor = 5;
+			}
+			
+			//go try again!
+			if(attemptsRemaining > 0) {
+				[self updateMoveGridToTile:toTile fromTile:fromTile attemptsRemaining:attemptsRemaining-1];
+			}
+		}
+		
+		NSLog(@"Foundroute=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for a %@ move grid in %f seconds", foundRoute, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - start);
+		
 	}
 }
 
@@ -227,7 +260,7 @@
 	}
 	
 	double w = _moveGridBuffer[x][y];
-	if(w > _gridWidth*4) {
+	if(w > (_gridWidth*_minSearchPathFactor)) {
 		//this is an approximation to increase speed - it can cause failures to find any path at all (very complex ones)
 		return;
 	}

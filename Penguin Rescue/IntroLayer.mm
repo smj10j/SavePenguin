@@ -80,7 +80,7 @@
 		[SettingsManager setDouble:[[NSDate date] timeIntervalSince1970] forKey:@"LastRunTimestamp"];
 	}
 	
-	NSLog(@"Initialized IntroLayer");	
+	if(DEBUG_MEMORY) NSLog(@"Initialized IntroLayer");	
 	
 	return self;
 }
@@ -92,7 +92,7 @@
 }
 
 -(void) onExit {
-	NSLog(@"IntroLayer onExit");
+	if(DEBUG_MEMORY) NSLog(@"IntroLayer onExit");
 
 	[super onExit];
 }

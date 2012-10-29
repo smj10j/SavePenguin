@@ -17,6 +17,7 @@
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
+#import "LoadGameLayer.h"
 #import "LevelSelectLayer.h"
 #import "LevelPackSelectLayer.h"
 #import "MainMenuLayer.h"
@@ -57,7 +58,10 @@
 		_instanceId = [[NSDate date] timeIntervalSince1970];
 		NSLog(@"Initializing GameLayer %f", _instanceId);
 		_inGameMenuItems = [[NSMutableArray alloc] init];
-		_moveGridUpdateQueue = dispatch_queue_create("com.conquerllc.games.Penguin-Rescue.moveGridUpdateQueue", 0);
+		_moveGridSharkUpdateQueue = dispatch_queue_create("com.conquerllc.games.Penguin-Rescue.moveGridSharkUpdateQueue", 0);	//serial
+		_moveGridPenguinUpdateQueue = dispatch_queue_create("com.conquerllc.games.Penguin-Rescue.moveGridPenguinUpdateQueue", 0);	//serial
+		//_moveGridSharkUpdateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);	//concurrent
+		//_moveGridPenguinUpdateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);	//concurrent
 		_isUpdatingSharkMoveGrids = false;
 		_isUpdatingPenguinMoveGrids = false;
 		_shouldRegenerateFeatureMaps = false;
@@ -80,9 +84,8 @@
 		
 		[self preloadSounds];
 
-		NSLog(@"GameLayer %f initialized", _instanceId);
-		
-		report_memory();
+		if(DEBUG_MEMORY) NSLog(@"GameLayer %f initialized", _instanceId);
+		if(DEBUG_MEMORY) report_memory();
 	}
 	
 	
@@ -127,8 +130,8 @@
 
 	[Flurry logEvent:@"Play_Level" withParameters:flurryParams timed:YES];
 
-	NSLog(@"GameLayer %f level loaded", _instanceId);
-	report_memory();
+	if(DEBUG_MEMORY) NSLog(@"GameLayer %f level loaded", _instanceId);
+	if(DEBUG_MEMORY) report_memory();
 
 }
 
@@ -511,11 +514,10 @@
 
 		//first create a copy of the feature map
 		int** penguinMoveGrid = new int*[_gridWidth];
+		int rowSize = _gridHeight * sizeof(int);
 		for(int x = 0; x < _gridWidth; x++) {
 			penguinMoveGrid[x] = new int[_gridHeight];
-			for(int y = 0; y < _gridHeight; y++) {
-				penguinMoveGrid[x][y] = _penguinMapfeaturesGrid[x][y];
-			}
+			memcpy(penguinMoveGrid[x], (void*)_penguinMapfeaturesGrid[x], rowSize);
 		}
 		
 		//and add it to the map
@@ -535,11 +537,10 @@
 		
 		//first create a copy of the feature map
 		int** sharkMoveGrid = new int*[_gridWidth];
+		int rowSize = _gridHeight * sizeof(int);
 		for(int x = 0; x < _gridWidth; x++) {
 			sharkMoveGrid[x] = new int[_gridHeight];
-			for(int y = 0; y < _gridHeight; y++) {
-				sharkMoveGrid[x][y] = _sharkMapfeaturesGrid[x][y];
-			}
+			memcpy(sharkMoveGrid[x], (void*)_sharkMapfeaturesGrid[x], rowSize);
 		}
 		
 		//and add it to the map
@@ -1105,7 +1106,7 @@
 	nil];
 	[Flurry endTimedEvent:@"Play_Level" withParameters:flurryParams];
 
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:[NSString stringWithFormat:@"%@", _levelPackPath] levelPath:[NSString stringWithFormat:@"%@", _levelPath]]]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:_levelPath]]];
 }
 
 
@@ -1123,7 +1124,7 @@
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelPackSelectLayer scene] ]];
 	
 	}else {
-		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:[NSString stringWithFormat:@"%@", nextLevelPath]]]];
+		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:nextLevelPath]]];
 	}
 }
 
@@ -1220,10 +1221,73 @@
 	if((!force && _state != RUNNING)) {
 		return;
 	}
+	
+	if(!_isUpdatingPenguinMoveGrids) {
+		_isUpdatingPenguinMoveGrids = true;
+		dispatch_async(_moveGridPenguinUpdateQueue, ^(void) {
+	
+			NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
+			for(LHSprite* penguin in penguins) {
+				
+				CGPoint penguinGridPos = [self toGrid:penguin.position];
+				Penguin* penguinData = ((Penguin*)penguin.userInfo);
+				
+				if(penguinData.isSafe || penguinData.isStuck) {
+					continue;
+				}
+				
+				if(penguinGridPos.x > _gridWidth-1 || penguinGridPos.x < 0 || penguinGridPos.y > _gridHeight-1 || penguinGridPos.y < 0) {
+					NSLog(@"Penguin %@ is offscreen at %f,%f - showing level lost", penguin.uniqueName, penguinGridPos.x, penguinGridPos.y);
+					[self levelLostWithOffscreenPenguin:penguin];
+					return;
+				}
+				
+				if(!penguinData.hasSpottedShark) {
+					NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
+					for(LHSprite* shark in sharks) {
+						double dist = ccpDistance(shark.position, penguin.position);
+						if(dist < penguinData.detectionRadius*SCALING_FACTOR_GENERIC) {
+						
+							penguinData.hasSpottedShark = true;
+							
+							//TODOO: play some kind of penguin animation with an alert dialog and a squawk sound
+							
+							[penguin prepareAnimationNamed:@"Penguin_Waddle" fromSHScene:@"Spritesheet"];
+							if(_state == RUNNING) {
+								[penguin playAnimation];
+							}
+							break;
+						}
+					}
+				}
+				
+				if(penguinData.hasSpottedShark) {
+				
+					//AHHH!!!
+
+					LHSprite* targetLand = nil;
+					double minDistance = 10000;
+					NSArray* lands = [_levelLoader spritesWithTag:LAND];
+					for(LHSprite* land in lands) {
+						double dist = ccpDistance(land.position, penguin.position);
+						if(dist < minDistance) {
+							minDistance = dist;
+							targetLand = land;
+						}
+					}
+					CGPoint targetLandGridPos = [self toGrid:targetLand.position];
+
+					MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
+					[penguinMoveGridData updateMoveGridToTile:targetLandGridPos fromTile:penguinGridPos];
+				}
+			}
+			_isUpdatingPenguinMoveGrids = false;
+		});
+	}
 			
 	if(!_isUpdatingSharkMoveGrids) {
 		_isUpdatingSharkMoveGrids = true;
-		dispatch_async(_moveGridUpdateQueue, ^(void) {
+		dispatch_async(_moveGridSharkUpdateQueue, ^(void) {
 
 			NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
 			NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
@@ -1284,70 +1348,6 @@
 			}
 			
 			_isUpdatingSharkMoveGrids = false;
-		});
-	}
-	
-		
-	if(!_isUpdatingPenguinMoveGrids) {
-		_isUpdatingPenguinMoveGrids = true;
-		dispatch_async(_moveGridUpdateQueue, ^(void) {
-	
-			NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
-			for(LHSprite* penguin in penguins) {
-				
-				CGPoint penguinGridPos = [self toGrid:penguin.position];
-				Penguin* penguinData = ((Penguin*)penguin.userInfo);
-				
-				if(penguinData.isSafe || penguinData.isStuck) {
-					continue;
-				}
-				
-				if(penguinGridPos.x > _gridWidth-1 || penguinGridPos.x < 0 || penguinGridPos.y > _gridHeight-1 || penguinGridPos.y < 0) {
-					NSLog(@"Penguin %@ is offscreen at %f,%f - showing level lost", penguin.uniqueName, penguinGridPos.x, penguinGridPos.y);
-					[self levelLostWithOffscreenPenguin:penguin];
-					return;
-				}
-				
-				if(!penguinData.hasSpottedShark) {
-					NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
-					for(LHSprite* shark in sharks) {
-						double dist = ccpDistance(shark.position, penguin.position);
-						if(dist < penguinData.detectionRadius*SCALING_FACTOR_GENERIC) {
-						
-							penguinData.hasSpottedShark = true;
-							
-							//TODOO: play some kind of penguin animation with an alert dialog and a squawk sound
-							
-							[penguin prepareAnimationNamed:@"Penguin_Waddle" fromSHScene:@"Spritesheet"];
-							if(_state == RUNNING) {
-								[penguin playAnimation];
-							}
-							break;
-						}
-					}
-				}
-				
-				if(penguinData.hasSpottedShark) {
-				
-					//AHHH!!!
-
-					LHSprite* targetLand = nil;
-					double minDistance = 10000;
-					NSArray* lands = [_levelLoader spritesWithTag:LAND];
-					for(LHSprite* land in lands) {
-						double dist = ccpDistance(land.position, penguin.position);
-						if(dist < minDistance) {
-							minDistance = dist;
-							targetLand = land;
-						}
-					}
-					CGPoint targetLandGridPos = [self toGrid:targetLand.position];
-
-					MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
-					[penguinMoveGridData updateMoveGridToTile:targetLandGridPos fromTile:penguinGridPos];
-				}
-			}
-			_isUpdatingPenguinMoveGrids = false;
 		});
 	}
 }
@@ -1467,7 +1467,7 @@
 			self.color = ccBLACK;
 			NSArray* backgrounds = [_levelLoader spritesWithTag:BACKGROUND];
 			for(LHSprite* background in backgrounds) {
-				[background removeSelf];
+				[background setVisible:false];
 			}
 			
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -1484,7 +1484,7 @@
 			self.color = ccBLACK;
 			NSArray* backgrounds = [_levelLoader spritesWithTag:BACKGROUND];
 			for(LHSprite* background in backgrounds) {
-				[background removeSelf];
+				[background setVisible:false];
 			}
 			
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -1492,6 +1492,23 @@
 				_levelPackPath, @"Level_Pack",
 			nil];
 			[Flurry logEvent:@"Debug_Penguins_Enabled" withParameters:flurryParams];		
+		}
+		if(elapsed >= 5 && (__DEBUG_PENGUINS || __DEBUG_SHARKS)) {
+			NSLog(@"Disable debug penguins and sharks");
+			__DEBUG_PENGUINS = false;
+			__DEBUG_SHARKS = false;
+			self.color = __DEBUG_ORIG_BACKGROUND_COLOR;
+			self.color = ccBLACK;
+			NSArray* backgrounds = [_levelLoader spritesWithTag:BACKGROUND];
+			for(LHSprite* background in backgrounds) {
+				[background setVisible:true];
+			}
+			
+			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+				_levelPath, @"Level_Name", 
+				_levelPackPath, @"Level_Pack",
+			nil];
+			[Flurry logEvent:@"Disable_Debug_Penguins_and_Sharks" withParameters:flurryParams];		
 		}
 	}
 	
@@ -1779,7 +1796,7 @@
 				penguin.body->SetAngularVelocity(0);
 				
 				continue;
-		
+
 			}else {
 				//convert returned velocities to position..
 				bestOptionPos = ccp(penguin.position.x+bestOptionPos.x, penguin.position.y+bestOptionPos.y);
@@ -2053,10 +2070,10 @@
 
 
 -(void) onExit{
-	NSLog(@"Begin GameLayer %f onExit", _instanceId);
-	report_memory();
+	if(DEBUG_MEMORY) NSLog(@"Begin GameLayer %f onExit", _instanceId);
+	if(DEBUG_MEMORY) report_memory();
 
-	_state = PAUSE;
+	_state = GAME_OVER;
 
     [self unscheduleAllSelectors];
     [self unscheduleUpdate];
@@ -2067,14 +2084,14 @@
 		
     [super onExit];
 	
-	NSLog(@"End GameLayer %f onExit", _instanceId);
-	report_memory();
+	if(DEBUG_MEMORY) NSLog(@"End GameLayer %f onExit", _instanceId);
+	if(DEBUG_MEMORY) report_memory();
 }
 
 -(void) dealloc
 {
-	NSLog(@"Begin GameLayer %f dealloc", _instanceId);
-	report_memory();
+	if(DEBUG_MEMORY) NSLog(@"Begin GameLayer %f dealloc", _instanceId);
+	if(DEBUG_MEMORY) report_memory();
 	
 	[_levelLoader removeAllPhysics];
 
@@ -2123,8 +2140,8 @@
 	
 	[super dealloc];
 	
-	NSLog(@"End GameLayer %f dealloc", _instanceId);
-	report_memory();
+	if(DEBUG_MEMORY) NSLog(@"End GameLayer %f dealloc", _instanceId);
+	if(DEBUG_MEMORY) report_memory();
 }	
 
 @end

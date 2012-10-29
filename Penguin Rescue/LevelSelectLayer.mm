@@ -62,8 +62,8 @@
 
 	}
 	
-	NSLog(@"Initialized LevelSelectLayer");	
-	report_memory();
+	if(DEBUG_MEMORY) NSLog(@"Initialized LevelSelectLayer");	
+	if(DEBUG_MEMORY) report_memory();
 	
 	return self;
 }
@@ -232,7 +232,7 @@
 
 
 -(void) onExit {
-	NSLog(@"LevelSelectLayer onExit");
+	if(DEBUG_MEMORY) NSLog(@"LevelSelectLayer onExit");
 
 	for(LHSprite* sprite in _levelLoader.allSprites) {
 		[sprite stopAnimation];
@@ -243,7 +243,7 @@
 
 -(void) dealloc
 {
-	NSLog(@"LevelSelectLayer dealloc");
+	if(DEBUG_MEMORY) NSLog(@"LevelSelectLayer dealloc");
 	
 	[_levelPackPath release];
 	[_spriteNameToLevelPath release];	
@@ -254,7 +254,7 @@
 	
 	[super dealloc];
 	
-	report_memory();
+	if(DEBUG_MEMORY) report_memory();
 }
 
 @end

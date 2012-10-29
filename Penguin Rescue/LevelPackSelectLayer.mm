@@ -60,8 +60,8 @@
 		[self loadLevelPacks];
 	}
 	
-	NSLog(@"Initialized LevelPackSelectLayer");
-	report_memory();
+	if(DEBUG_MEMORY) NSLog(@"Initialized LevelPackSelectLayer");
+	if(DEBUG_MEMORY) report_memory();
 	
 	return self;
 }
@@ -218,7 +218,7 @@
 
 
 -(void) onExit {
-	NSLog(@"LevelPackSelectLayer onExit");
+	if(DEBUG_MEMORY) NSLog(@"LevelPackSelectLayer onExit");
 
 	for(LHSprite* sprite in _levelLoader.allSprites) {
 		[sprite stopAnimation];
@@ -230,7 +230,7 @@
 
 -(void) dealloc
 {
-	NSLog(@"LevelPackSelectLayer dealloc");
+	if(DEBUG_MEMORY) NSLog(@"LevelPackSelectLayer dealloc");
 
 	//[[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 
@@ -243,7 +243,7 @@
 
 	[super dealloc];
 	
-	report_memory();
+	if(DEBUG_MEMORY) report_memory();
 }
 
 

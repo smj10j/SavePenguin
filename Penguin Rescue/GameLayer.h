@@ -67,7 +67,8 @@ enum PROPAGATION_RESULT {
 	NSMutableDictionary* _penguinMoveGridDatas;
 	bool _isUpdatingSharkMoveGrids;
 	bool _isUpdatingPenguinMoveGrids;
-	dispatch_queue_t _moveGridUpdateQueue;
+	dispatch_queue_t _moveGridSharkUpdateQueue;
+	dispatch_queue_t _moveGridPenguinUpdateQueue;
 
 	
 	int _gridSize;
@@ -112,7 +113,6 @@ enum PROPAGATION_RESULT {
 	ccColor3B __DEBUG_ORIG_BACKGROUND_COLOR;
 }
 
-// returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) sceneWithLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath;
 
 @end

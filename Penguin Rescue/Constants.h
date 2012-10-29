@@ -14,9 +14,11 @@
 #define TEST_MODE false
 #define TEST_LEVEL_PACK @"Arctic1"
 #define TEST_LEVEL @"WayWayUpThere"
+
 #define DEBUG_ALL_THE_THINGS false
-#define DEBUG_PENGUIN false	//can be overridden in game
-#define DEBUG_SHARK false	//can be overridden in game
+#define DEBUG_MEMORY true || DEBUG_ALL_THE_THINGS
+#define DEBUG_PENGUIN false || DEBUG_ALL_THE_THINGS	//can be overridden in game
+#define DEBUG_SHARK false || DEBUG_ALL_THE_THINGS	//can be overridden in game
 
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 #define SCALING_FACTOR_H (IS_IPHONE ? 480.0/1024.0 : 1.0)
