@@ -293,7 +293,7 @@
 	_toolboxItemSize = toolboxContainer.boundingBox.size;
 }
 
-//TODO: random crash still occasionally occurs - remember to look into it!
+//TODO: random crash still occasionally occurs after prolonged use - remember to look into it!
 
 -(void) updateToolbox {
 	NSLog(@"Updating Toolbox");
@@ -317,10 +317,20 @@
 	//get all the tools put on the level - they can be anywhere!
 	_toolGroups = [[NSMutableDictionary alloc] init];
 	for(LHSprite* toolboxItem in toolboxItems) {
-		NSMutableSet* toolGroup = [_toolGroups objectForKey:toolboxItem.userInfoClassName];
+	
+		//generate the grouping key for toolbox items
+		NSString* toolgroupKey = toolboxItem.userInfoClassName;
+		if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
+			ToolboxItem_Windmill* toolboxItemData = ((ToolboxItem_Windmill*)toolboxItem.userInfo);
+			toolgroupKey = [toolgroupKey stringByAppendingString:[NSString stringWithFormat:@"-%@:%f", @"Power", toolboxItemData.power]];
+		}else if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
+			toolgroupKey = [toolgroupKey stringByAppendingString:[NSString stringWithFormat:@"-%@:%f", @"Density", toolboxItem.body->GetFixtureList()->GetDensity()]];
+		}
+	
+		NSMutableSet* toolGroup = [_toolGroups objectForKey:toolgroupKey];
 		if(toolGroup == nil) {
 			toolGroup = [[NSMutableSet alloc] init];
-			[_toolGroups setObject:toolGroup forKey:toolboxItem.userInfoClassName];
+			[_toolGroups setObject:toolGroup forKey:toolgroupKey];
 		}
 		[toolGroup addObject:toolboxItem];
 	}
@@ -356,6 +366,23 @@
 			[toolboxItem transformScale: scale];
 			//NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", toolboxItem.uniqueName, (int)(100*scale));
 		}
+		
+		//helpful tidbits
+		if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
+			//display item power
+			ToolboxItem_Windmill* toolboxItemData = ((ToolboxItem_Windmill*)topToolboxItem.userInfo);
+			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", (int)toolboxItemData.power] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE];
+			powerLabel.color = ccRED;
+			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 20*SCALING_FACTOR_H, 10*SCALING_FACTOR_V);
+			[toolboxContainer addChild:powerLabel];
+		}else if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
+			//display item density
+			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", (int)topToolboxItem.body->GetFixtureList()->GetDensity()] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_CONTAINER_COUNT_FONT_SIZE];
+			powerLabel.color = ccRED;
+			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 20*SCALING_FACTOR_H, 10*SCALING_FACTOR_V);
+			[toolboxContainer addChild:powerLabel];
+		}
+
 		
 		[toolboxContainer setUserData:(void*)topToolboxItem.uniqueName];
 		[toolboxContainer registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];

@@ -1177,13 +1177,13 @@
 								<key>ClassRepresentation</key>
 								<dict>
 									<key>placeCost</key>
-									<real>1000</real>
+									<real>400</real>
 									<key>power</key>
 									<real>50</real>
 									<key>reach</key>
 									<real>5000</real>
 									<key>runningCost</key>
-									<real>1250</real>
+									<real>600</real>
 									<key>scale</key>
 									<real>1</real>
 								</dict>
@@ -1238,9 +1238,9 @@
 								<key>SpriteSize</key>
 								<string>{37.5, 50}</string>
 								<key>Tag</key>
-								<integer>13</integer>
+								<integer>8</integer>
 								<key>TagName</key>
-								<string>WINDMILL</string>
+								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
 								<string>{0.25, -0.125}</string>
 								<key>UniqueName</key>
@@ -1293,13 +1293,13 @@
 								<key>ClassRepresentation</key>
 								<dict>
 									<key>placeCost</key>
-									<real>1000</real>
+									<real>400</real>
 									<key>power</key>
 									<real>50</real>
 									<key>reach</key>
 									<real>5000</real>
 									<key>runningCost</key>
-									<real>1250</real>
+									<real>600</real>
 									<key>scale</key>
 									<real>1</real>
 								</dict>
@@ -1354,9 +1354,9 @@
 								<key>SpriteSize</key>
 								<string>{37.5, 50}</string>
 								<key>Tag</key>
-								<integer>13</integer>
+								<integer>8</integer>
 								<key>TagName</key>
-								<string>WINDMILL</string>
+								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
 								<string>{0.25, -0.125}</string>
 								<key>UniqueName</key>
@@ -1504,13 +1504,13 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1000</real>
+					<real>400</real>
 					<key>power</key>
 					<real>50</real>
 					<key>reach</key>
 					<real>5000</real>
 					<key>runningCost</key>
-					<real>1250</real>
+					<real>600</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
