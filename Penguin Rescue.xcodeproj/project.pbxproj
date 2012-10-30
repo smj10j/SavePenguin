@@ -219,6 +219,8 @@
 		AAC6E5731640071300FD549F /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6E5701640071300FD549F /* JSONKit.m */; };
 		AAC6E5741640071300FD549F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AAC6E5711640071300FD549F /* README.md */; };
 		AAC6E5821640103600FD549F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6E5811640103600FD549F /* Reachability.m */; };
+		AAC6E5851640226300FD549F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC6E5841640226300FD549F /* Security.framework */; };
+		AAC6E59F164022AE00FD549F /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6E58D164022AE00FD549F /* SSKeychain.m */; };
 		AACE801C163992FB008C7E3B /* Score.mm in Sources */ = {isa = PBXBuildFile; fileRef = AACE801B163992FB008C7E3B /* Score.mm */; };
 		AAD7B65D163C296500B02521 /* AboutLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AAD7B65C163C296500B02521 /* AboutLayer.mm */; };
 		AAD7B660163C34BB00B02521 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = AAD7B65F163C34BB00B02521 /* sounds */; };
@@ -684,6 +686,9 @@
 		AAC6E5801640103600FD549F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		AAC6E5811640103600FD549F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		AAC6E583164017E800FD549F /* Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		AAC6E5841640226300FD549F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		AAC6E58C164022AE00FD549F /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
+		AAC6E58D164022AE00FD549F /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
 		AACE801A163992FB008C7E3B /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		AACE801B163992FB008C7E3B /* Score.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Score.mm; sourceTree = "<group>"; };
 		AACF346D163E843200A50636 /* WindmillRaycastCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindmillRaycastCallback.h; sourceTree = "<group>"; };
@@ -730,6 +735,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC6E5851640226300FD549F /* Security.framework in Frameworks */,
 				AA4C8D8D1637C53100C55554 /* SystemConfiguration.framework in Frameworks */,
 				AA54C695162BB27A00DF56D0 /* QuartzCore.framework in Frameworks */,
 				AA54C697162BB27A00DF56D0 /* OpenGLES.framework in Frameworks */,
@@ -840,6 +846,7 @@
 		AA54C693162BB27A00DF56D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AAC6E5841640226300FD549F /* Security.framework */,
 				AA4C8D8C1637C53100C55554 /* SystemConfiguration.framework */,
 				AA54C694162BB27A00DF56D0 /* QuartzCore.framework */,
 				AA54C696162BB27A00DF56D0 /* OpenGLES.framework */,
@@ -907,6 +914,7 @@
 		AA54C6C5162BB27A00DF56D0 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				AAC6E586164022AE00FD549F /* SSKeychain */,
 				AA54C7E7162BB27C00DF56D0 /* LICENSE_cocos2d.txt */,
 				AA54C7F6162BB27C00DF56D0 /* LICENSE_CocosDenshion.txt */,
 				AA54C828162BB27D00DF56D0 /* LICENSE_Kazmath.txt */,
@@ -1482,6 +1490,16 @@
 			path = libs/Reachability;
 			sourceTree = "<group>";
 		};
+		AAC6E586164022AE00FD549F /* SSKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				AAC6E58C164022AE00FD549F /* SSKeychain.h */,
+				AAC6E58D164022AE00FD549F /* SSKeychain.m */,
+			);
+			name = SSKeychain;
+			path = libs/SSKeychain;
+			sourceTree = "<group>";
+		};
 		AACF3471163E843A00A50636 /* Toolbox */ = {
 			isa = PBXGroup;
 			children = (
@@ -1850,6 +1868,7 @@
 				250e1473997f280a794687eb /* SHDocumentLoader.mm in Sources */,
 				AAC6E5731640071300FD549F /* JSONKit.m in Sources */,
 				AAC6E5821640103600FD549F /* Reachability.m in Sources */,
+				AAC6E59F164022AE00FD549F /* SSKeychain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

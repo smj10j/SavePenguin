@@ -14,6 +14,7 @@
 #import "SettingsManager.h"
 #import "SimpleAudioEngine.h"
 #import "Utilities.h"
+#import "SSKeychain.h"
 
 #pragma mark - IntroLayer
 
@@ -77,17 +78,33 @@
 			[SettingsManager setBool:true forKey:@"SoundEnabled"];
 			[SettingsManager setBool:true forKey:@"MusicEnabled"];
 			
+			
+			
+			
+			
 			//set a user id
 			//first see if the userId is in the keychain
-			NSString* UUID = nil;//[SSKeychain passwordForService:COMPANY_IDENTIFIER account:@"user"];
+			NSError *error = nil;
+			NSString* UUID = [SSKeychain passwordForService:COMPANY_IDENTIFIER account:@"user" error:&error];
+			if (error != nil) {
+				NSLog(@"@@@@ ERROR SSKeychain passwordForService error code: %d", [error code]);
+			}
 			if(UUID == nil) {
 				UUID = [Utilities UUID];
+				NSLog(@"Created a new UserId");
+				
+				//store the userId to the keychain
+				error = nil;
+				[SSKeychain setPassword:UUID forService:COMPANY_IDENTIFIER account:@"user" error:&error];
+				if (error!= nil) {
+					NSLog(@"@@@@ ERROR SSKeychain setPassword error code: %d", [error code]);
+				}
+				
+			}else {
+				NSLog(@"Retrieved UserId from the keychain!");
 			}
 			[SettingsManager setString:UUID forKey:SETTING_USER_ID];
-			
-			//store the userId to the keychain
-			//[SSKeychain setPassword:UUID forService:COMPANY_IDENTIFIER account:@"user"];
-			
+						
 			//TODO: also store this to iCloud: refer to: http://stackoverflow.com/questions/7273014/ios-unique-user-identifier
 			/*
 				To make sure ALL devices have the same UUID in the Keychain.
@@ -97,7 +114,13 @@
 				Pass the UUID in NSUserDefaults to the Cloud with Key-Value Data Store.
 				On App first run, Check if the Cloud Data is available and set the UUID in the Keychain on the New Device.
 			*/
+			
+			
+			
 		}
+		
+		//output our UserId
+		NSLog(@"Launching with UserId=%@", [SettingsManager stringForKey:SETTING_USER_ID]);
 		
 		//set our boot time (can be used for applying settings on updates
 		[SettingsManager setDouble:[[NSDate date] timeIntervalSince1970] forKey:SETTING_LAST_RUN_TIMESTAMP];
