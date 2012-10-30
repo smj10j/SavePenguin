@@ -122,6 +122,19 @@
 				<real>1</real>
 			</dict>
 		</dict>
+		<dict>
+			<key>ClassName</key>
+			<string>MovingDoodad</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>pathName</key>
+				<string>Default</string>
+				<key>restartAtOtherEnd</key>
+				<true/>
+				<key>timeToCompletePath</key>
+				<real>60</real>
+			</dict>
+		</dict>
 	</array>
 	<key>CustomScreenSize</key>
 	<string>{480, 320}</string>
@@ -132,7 +145,7 @@
 	<key>HDSuffix</key>
 	<string>-hd</string>
 	<key>LastLevelLoaded</key>
-	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Arctic1/Archipelago.plhs</string>
+	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Arctic1/DangerDanger.plhs</string>
 	<key>Orientation</key>
 	<integer>1</integer>
 	<key>ProjectName</key>
@@ -177,6 +190,7 @@
 		<string>TUTORIAL</string>
 		<string>WINDMILL</string>
 		<string>DOODAD</string>
+		<string>DOODAD_PATH</string>
 	</array>
 </dict>
 </plist>

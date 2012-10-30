@@ -75,7 +75,9 @@ enum LevelHelper_TAG
 	BACKGROUND 			= 11,
 	TUTORIAL 			= 12,
 	WINDMILL 			= 13,
-	NUMBER_OF_TAGS 	= 14
+	DOODAD 			= 14,
+	DOODAD_PATH 			= 15,
+	NUMBER_OF_TAGS 	= 16
 };
 
 CGSize  LHSizeFromString(NSString* val);

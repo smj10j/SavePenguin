@@ -110,6 +110,9 @@
 	//place the HUD items (pause, restart, etc.)
 	[self drawHUD];		
 
+	//place any moving doodads
+	[self setupDoodads];
+
 	//start the game
 	_state = PLACE;
 	_levelStartPlaceTime  = [[NSDate date] timeIntervalSince1970];
@@ -315,7 +318,25 @@
 		nil]];	
 }
 
-//TODO: random crash still occasionally occurs after prolonged use - remember to look into it!
+-(void) setupDoodads {
+
+	NSArray* doodads = [_levelLoader spritesWithTag:DOODAD];
+	for(LHSprite* doodad in doodads) {
+		if([doodad.userInfoClassName isEqualToString:@"MovingDoodad"]) {
+			MovingDoodad* doodadData = ((MovingDoodad*)doodad.userInfo);
+		
+			[doodad prepareMovementOnPathWithUniqueName:doodadData.pathName];
+			
+			[doodad setPathMovementOrientation:LH_X_AXIT_ORIENTATION];
+			[doodad setPathMovementOrientation:LH_Y_AXIS_ORIENTATION];
+			[doodad setPathMovementRestartsAtOtherEnd:doodadData.restartAtOtherEnd];
+			[doodad setPathMovementIsCyclic:doodadData.restartAtOtherEnd];
+			[doodad setPathMovementSpeed:doodadData.timeToCompletePath]; //moving from start to end in X seconds
+			
+			[doodad startPathMovement];
+		}
+	}
+}
 
 -(void) updateToolbox {
 	NSLog(@"Updating Toolbox");

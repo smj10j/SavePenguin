@@ -306,7 +306,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 207}, {22.5, 17.75}}</string>
+								<string>{{0, 226}, {22.5, 17.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2671,6 +2671,19 @@
 					<real>1</real>
 				</dict>
 			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>MovingDoodad</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>pathName</key>
+					<string>Default</string>
+					<key>restartAtOtherEnd</key>
+					<true/>
+					<key>timeToCompletePath</key>
+					<real>60</real>
+				</dict>
+			</dict>
 		</array>
 		<key>Device</key>
 		<integer>2</integer>
@@ -2705,6 +2718,7 @@
 			<string>TUTORIAL</string>
 			<string>WINDMILL</string>
 			<string>DOODAD</string>
+			<string>DOODAD_PATH</string>
 		</array>
 		<key>ZoomValue</key>
 		<real>0.0</real>

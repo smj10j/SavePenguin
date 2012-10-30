@@ -787,7 +787,7 @@ CGSize  LHSizeFromString(NSString* val){
 //------------------------------------------------------------------------------
 -(void) dealloc{  
     
-   //NSLog(@"LH DEALLOC %p", self);
+   NSLog(@"LH DEALLOC %p", self);
 
 #ifdef LH_USE_BOX2D
     [[LHCuttingEngineMgr sharedInstance] destroyAllPrevioslyCutSprites];

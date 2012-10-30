@@ -11,7 +11,7 @@
 	<key>JOINTS_INFO</key>
 	<array/>
 	<key>LHVersion</key>
-	<string>1.4.966</string>
+	<string>1.4.967</string>
 	<key>NODES_INFO</key>
 	<array>
 		<dict>
@@ -139,7 +139,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{190, 37}, {36.5, 33.5}}</string>
+								<string>{{36, 151}, {36.5, 33.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -214,7 +214,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{190, 37}, {36.5, 33.5}}</string>
+								<string>{{36, 151}, {36.5, 33.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -289,7 +289,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{190, 37}, {36.5, 33.5}}</string>
+								<string>{{36, 151}, {36.5, 33.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -675,7 +675,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{60, 0}, {17.75, 71.75}}</string>
+								<string>{{38, 0}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -783,7 +783,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{60, 0}, {17.75, 71.75}}</string>
+								<string>{{38, 0}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -874,7 +874,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{23, 73}, {36, 20.75}}</string>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -896,7 +896,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.5, -0.625}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Floating-Log</string>
 								<key>ZOrder</key>
@@ -965,7 +965,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{23, 73}, {36, 20.75}}</string>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -987,7 +987,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.5, -0.625}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Floating-Log_1</string>
 								<key>ZOrder</key>
@@ -1056,7 +1056,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{23, 73}, {36, 20.75}}</string>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1078,7 +1078,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.5, -0.625}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Floating-Log_2</string>
 								<key>ZOrder</key>
@@ -1147,7 +1147,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{23, 73}, {36, 20.75}}</string>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1169,7 +1169,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.5, -0.625}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Floating-Log_3</string>
 								<key>ZOrder</key>
@@ -1238,7 +1238,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{23, 73}, {36, 20.75}}</string>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1260,7 +1260,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.5, -0.625}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Floating-Log_4</string>
 								<key>ZOrder</key>
@@ -1329,7 +1329,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{23, 73}, {36, 20.75}}</string>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1351,7 +1351,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.5, -0.625}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Floating-Log_5</string>
 								<key>ZOrder</key>
@@ -1420,7 +1420,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{23, 73}, {36, 20.75}}</string>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1442,7 +1442,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.5, -0.625}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Floating-Log_6</string>
 								<key>ZOrder</key>
@@ -1511,7 +1511,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{23, 73}, {36, 20.75}}</string>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1533,7 +1533,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.5, -0.625}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Floating-Log_7</string>
 								<key>ZOrder</key>
@@ -1602,7 +1602,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{23, 73}, {36, 20.75}}</string>
+								<string>{{57, 44}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1624,7 +1624,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.5, -0.625}</string>
+								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Floating-Log_8</string>
 								<key>ZOrder</key>
@@ -1770,13 +1770,28 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1000</real>
+					<real>400</real>
 					<key>power</key>
-					<real>25</real>
+					<real>50</real>
+					<key>reach</key>
+					<real>5000</real>
 					<key>runningCost</key>
-					<real>1250</real>
+					<real>600</real>
 					<key>scale</key>
 					<real>1</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>MovingDoodad</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>pathName</key>
+					<string>Default</string>
+					<key>restartAtOtherEnd</key>
+					<true/>
+					<key>timeToCompletePath</key>
+					<real>60</real>
 				</dict>
 			</dict>
 		</array>
@@ -1791,7 +1806,7 @@
 		<key>PanValue</key>
 		<string>{0, 0}</string>
 		<key>ProjectName</key>
-		<string>Penguin Rescue</string>
+		<string></string>
 		<key>ProjectPath</key>
 		<string>/Users/Steve/Code/Conquer/Penguin Rescue</string>
 		<key>SafeFrame</key>
@@ -1812,6 +1827,8 @@
 			<string>BACKGROUND</string>
 			<string>TUTORIAL</string>
 			<string>WINDMILL</string>
+			<string>DOODAD</string>
+			<string>DOODAD_PATH</string>
 		</array>
 		<key>ZoomValue</key>
 		<real>0.0</real>
