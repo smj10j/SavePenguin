@@ -23,6 +23,7 @@ if($method == 'POST') {
 		
 		$uuid = $_POST['UUID'];
 		$score = $_POST['score'];
+		if($score < 0) $score = 0;
 		$levelPackPath = $_POST['levelPackPath'];
 		$levelPath = $_POST['levelPath'];
 
@@ -145,41 +146,22 @@ if($method == 'GET') {
 		$result = mysql_query("SELECT ".
 							"(SELECT level_pack_path FROM level_packs lp WHERE lp.level_pack_id=s.level_pack_id ) as 'level_pack_path', ".
 							"(SELECT level_path FROM levels l WHERE l.level_id=s.level_id ) as 'level_path', ". 
-							"sum(score)/count(*) as 'scoreMean' FROM scores s GROUP BY level_pack_id,level_id");
+							"sum(score)/count(*) as 'scoreMean',stddev(score) as 'scoreStdDev' FROM scores s GROUP BY level_pack_id,level_id");
 		while ($row = mysql_fetch_array($result)) {
 			$levels[$row["level_pack_path"].":".$row["level_path"]]["scoreMean"] = floor($row["scoreMean"]);
+			$levels[$row["level_pack_path"].":".$row["level_path"]]["scoreStdDev"] = floor($row["scoreStdDev"]);
 		}
 
 		foreach($levels as $key => $level) {
 			//median score
 			$oneQuarters = 1*floor($level['totalWins']/4);
-			$twoQuarters = 2*floor($level['totalWins']/4);
-			$threeQuarters = 3*floor($level['totalWins']/4);
 			$levelPackId = $level["levelPackId"];
 			$levelId = $level["levelId"];
 			
 			$result = mysql_query("SELECT score FROM scores WHERE level_pack_id=$levelPackId AND level_id=$levelId ORDER BY score ASC LIMIT $twoQuarters,1");
 			while ($row = mysql_fetch_array($result)) {
 				$levels[$key]["scoreMedian"] = $row["score"];
-			}
-			
-			
-			$oneQuartersScore = 0;
-			$result = mysql_query("SELECT score FROM scores WHERE level_pack_id=$levelPackId AND level_id=$levelId ORDER BY score ASC LIMIT $oneQuarters,1");
-			while ($row = mysql_fetch_array($result)) {
-				$oneQuartersScore = $row["score"];
-			}
-			
-			$threeQuartersScore = 0;
-			$result = mysql_query("SELECT score FROM scores WHERE level_pack_id=$levelPackId AND level_id=$levelId ORDER BY score ASC LIMIT $threeQuarters,1");
-			while ($row = mysql_fetch_array($result)) {
-				$threeQuartersScore = $row["score"];
-			}
-			
-			//TODO: learn how to calculate a STD DEV approximation efficiently and with reasonable accuracy
-			//echo "$oneQuartersScore $threeQuartersScore";
-			
-			$levels[$key]["scoreStdDev"] = floor(((($threeQuartersScore - $levels[$key]["scoreMedian"]) + ($levels[$key]["scoreMedian"] - $oneQuartersScore))/2)/2);
+			}			
 		}
 					
 		returnJSON(array(

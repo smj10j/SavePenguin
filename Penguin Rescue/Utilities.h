@@ -13,6 +13,10 @@
 
 }
 
+
++(int)percentileFromZScore:(double)zScore;
+
+
 + (NSString*)UUID;
 
 +(void)startAnalytics;

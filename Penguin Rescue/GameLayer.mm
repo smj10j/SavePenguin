@@ -939,11 +939,28 @@
 	const int timeScoreDeduction = placeTimeScore + runningTimeScore;
 	scoreDeductions+= timeScoreDeduction;
 	
-	const int finalScore = SCORING_MAX_SCORE_POSSIBLE - scoreDeductions;
+	const int finalScore = scoreDeductions > SCORING_MAX_SCORE_POSSIBLE ? 0 : SCORING_MAX_SCORE_POSSIBLE - scoreDeductions;
 	
 	//post the score to the server or queue for online processing
 	NSString* UUID = [SettingsManager stringForKey:SETTING_UUID];
 	[ScoreKeeper saveScore:finalScore UUID:UUID levelPackPath:_levelPackPath levelPath:_levelPath];
+			
+	//get the world numbers from the server
+	NSDictionary* worldScores = [ScoreKeeper worldScoresForLevelPackPath:_levelPackPath levelPath:_levelPath];
+	DebugLog(@"going to display worldScores data: %@" , worldScores);
+	int worldPercentComplete = (([(NSNumber*)[worldScores objectForKey:@"uniqueWins"] intValue] * 1.0f) / [(NSNumber*)[worldScores objectForKey:@"uniquePlays"] intValue] * 100.0);
+	int worldScoreMean = [(NSNumber*)[worldScores objectForKey:@"scoreMean"] intValue];
+	int worldScoreStdDev = [(NSNumber*)[worldScores objectForKey:@"scoreStdDev"] intValue];
+	double zScore = ((finalScore - worldScoreMean) / (1.0f*worldScoreStdDev));
+	int worldPercentile = [Utilities percentileFromZScore:zScore];
+	
+
+			
+			
+			
+			
+			
+			
 			
 	
 	//show a level won screen
@@ -1019,13 +1036,7 @@
 
 	const int competitiveTextXOffset = (172 + (IS_IPHONE ? 15 : 0))*SCALING_FACTOR_H;
 	const int competitiveTextYOffset = 130*SCALING_FACTOR_V;
-
-	//get the numbers from the server
-	NSDictionary* worldScores = [ScoreKeeper worldScoresForLevelPackPath:_levelPackPath levelPath:_levelPath];
-	DebugLog(@"going to display worldScores data: %@" , worldScores);
-	int worldPercentComplete = (([(NSNumber*)[worldScores objectForKey:@"uniqueWins"] intValue] * 1.0f) / [(NSNumber*)[worldScores objectForKey:@"uniquePlays"] intValue] * 100.0);
-	int worldScoreMean = [(NSNumber*)[worldScores objectForKey:@"scoreMean"] intValue];
-	int worldPercentile = 10;	//TODO: calculate
+	
 	
 	CCLabelTTF* worldPercentCompleteLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", worldPercentComplete] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 	worldPercentCompleteLabel.color = SCORING_FONT_COLOR3;
