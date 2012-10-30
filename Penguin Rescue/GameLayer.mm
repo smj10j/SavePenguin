@@ -947,7 +947,6 @@
 			
 	//get the world numbers from the server
 	NSDictionary* worldScores = [ScoreKeeper worldScoresForLevelPackPath:_levelPackPath levelPath:_levelPath];
-	DebugLog(@"going to display worldScores data: %@" , worldScores);
 	int worldPercentComplete = (([(NSNumber*)[worldScores objectForKey:@"uniqueWins"] intValue] * 1.0f) / [(NSNumber*)[worldScores objectForKey:@"uniquePlays"] intValue] * 100.0);
 	int worldScoreMean = [(NSNumber*)[worldScores objectForKey:@"scoreMean"] intValue];
 	int worldScoreStdDev = [(NSNumber*)[worldScores objectForKey:@"scoreStdDev"] intValue];

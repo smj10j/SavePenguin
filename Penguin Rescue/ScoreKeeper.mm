@@ -19,9 +19,7 @@
 	if(self = [super init]) {
 	
 		_scores = [[NSMutableDictionary alloc] init];
-	
-		DebugLog(@"SERVER AVAILALBE? %d", isServerAvailable());
-	
+		
 		[ScoreKeeper updateWorldScoresFromServer];
 		
 		//now send any queued up scores from when we may have been offline
