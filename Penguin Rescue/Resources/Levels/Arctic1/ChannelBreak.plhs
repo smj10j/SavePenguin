@@ -985,7 +985,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 71}, {34.75, 39.5}}</string>
+								<string>{{74, 86}, {34.75, 39.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1096,7 +1096,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 0}, {58.75, 29}}</string>
+								<string>{{0, 58}, {65.75, 27.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1112,13 +1112,13 @@
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{62.5, 31.25}</string>
+								<string>{67.5, 31.25}</string>
 								<key>Tag</key>
 								<integer>2</integer>
 								<key>TagName</key>
 								<string>SHARK</string>
 								<key>TextureOffset</key>
-								<string>{0.375, -0.125}</string>
+								<string>{0.125, -0.5}</string>
 								<key>UniqueName</key>
 								<string>Shark</string>
 								<key>ZOrder</key>
