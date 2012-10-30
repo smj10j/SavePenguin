@@ -13,6 +13,7 @@
 #import "LevelPackManager.h"
 #import "Reachability.h"
 #import "Utilities.h"
+#import "ScoreKeeper.h"
 
 @implementation AppController
 
@@ -206,13 +207,15 @@
         {
             DebugLog(@"A gateway to the host server is working via WIFI.");
 			setServerAvailable(true);
+			[ScoreKeeper emptyLocalSendQueue];
             break;
         }
         case ReachableViaWWAN:
         {
             DebugLog(@"A gateway to the host server is working via WWAN.");
 			setServerAvailable(true);
-            break;
+ 			[ScoreKeeper emptyLocalSendQueue];
+           break;
         }
     }
 }

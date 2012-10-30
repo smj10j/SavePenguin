@@ -22,10 +22,10 @@
 	
 		DebugLog(@"SERVER AVAILALBE? %d", isServerAvailable());
 	
-		[self updateWorldScoresFromServer];
+		[ScoreKeeper updateWorldScoresFromServer];
 		
 		//now send any queued up scores from when we may have been offline
-		[self emptyLocalSendQueue];
+		[ScoreKeeper emptyLocalSendQueue];
 		
 	}
 
@@ -55,12 +55,6 @@
 }
 
 
-
-
--(NSDictionary*)worldScoresForLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
-	NSDictionary* worldScores = [self getWorldScores];
-	return [worldScores objectForKey:[NSString stringWithFormat:@"%@:%@", levelPackPath, levelPath]];
-}
 
 
 
@@ -101,7 +95,7 @@
 
 */
 
--(void)updateWorldScoresFromServer {
++(void)updateWorldScoresFromServer {
 	NSDictionary* worldScores = [self getWorldScores];
 	
 	//if we have no world scores data or the last time it was updated was over 12 hours ago, request form the server
@@ -128,14 +122,21 @@
 	}
 }
 
--(NSDictionary*)getWorldScores {
+
++(NSDictionary*)worldScoresForLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
+	NSDictionary* worldScores = [self getWorldScores];
+	return [worldScores objectForKey:[NSString stringWithFormat:@"%@:%@", levelPackPath, levelPath]];
+}
+
+
++(NSDictionary*)getWorldScores {
 	NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	NSString* worldScoresPropertyListPath = [rootPath stringByAppendingPathComponent:@"WorldScores.plist"];
 	NSMutableDictionary* worldScoresDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:worldScoresPropertyListPath];
 	return [worldScoresDictionary objectForKey:@"levels"];
 }
 
--(void)saveWorldScoresLocally:(NSDictionary*)worldScoresDictionary {
++(void)saveWorldScoresLocally:(NSDictionary*)worldScoresDictionary {
 	NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	NSString* worldScoresPropertyListPath = [rootPath stringByAppendingPathComponent:@"WorldScores.plist"];
 	
@@ -147,7 +148,7 @@
 	if(DEBUG_SCORING) DebugLog(@"Saved world scores in local plist");
 }
 
--(void)savePlayForUUID:(NSString*)UUID levelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
++(void)savePlayForUUID:(NSString*)UUID levelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
 	
 	if(isServerAvailable()) {
 					
@@ -189,7 +190,7 @@
 	}
 }
 
--(void)saveScore:(int)score UUID:(NSString*)UUID levelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
++(void)saveScore:(int)score UUID:(NSString*)UUID levelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
 	
 	if(isServerAvailable()) {
 					
@@ -231,7 +232,7 @@
 	}	
 }
 
--(void)emptyLocalSendQueue {
++(void)emptyLocalSendQueue {
 
 	if(isServerAvailable()) {
 		NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -270,7 +271,7 @@
 }
 
 
--(void)addScoreDataToLocalSendQueue:(NSDictionary*)scoreData {
++(void)addScoreDataToLocalSendQueue:(NSDictionary*)scoreData {
 	NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	NSString* localScoreSendQueuePropertyListPath = [rootPath stringByAppendingPathComponent:@"LocalScoreSendQueue.plist"];
 

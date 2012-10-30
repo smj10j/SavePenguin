@@ -115,33 +115,74 @@ if($method == 'GET') {
 		
 		//TODO: build summary tables to store this data
 		
+		$levels = array();
 		
-		//TODO: get data from database
-
-		//$result = mysql_query("SELECT concat(level_pack_id,':',level_packcount(distinct user_id) FROM scores GROUP BY level_pack_id,level_id");
-
-		
-
-
-		$result = mysql_query("SELECT * FROM scores");
+		//plays
+		$result = mysql_query("SELECT level_pack_id,level_id,".
+							"(SELECT level_pack_path FROM level_packs lp WHERE lp.level_pack_id=p.level_pack_id ) as 'level_pack_path', ".
+							"(SELECT level_path FROM levels l WHERE l.level_id=p.level_id ) as 'level_path', ". 
+							"count(distinct user_id) as 'uniquePlays',count(*) as 'totalPlays' FROM plays p GROUP BY level_pack_id,level_id");
 		while ($row = mysql_fetch_array($result)) {
-			print_r($row);
+			$levels[$row["level_pack_path"].":".$row["level_path"]] = array(
+				"levelPackId"	=> $row["level_pack_id"],
+				"levelId"	=> $row["level_id"],
+				"uniquePlays"	=> $row["uniquePlays"],
+				"totalPlays"	=> $row["totalPlays"]				
+			);
 		}
 
-		$resp = array(
-			"levels" => array(
-				"Arctic1:DangerDanger" => array(
-					"uniquePlays" 	=> 4000,
-					"uniqueWins" 	=> 3000,
-					"scoreMean"		=> 7500,
-					"scoreMedian"	=> 7400,
-					"scoreStdDev"	=> 500
-				)
-			)
-		
-		);
+		//wins
+		$result = mysql_query("SELECT ".
+							"(SELECT level_pack_path FROM level_packs lp WHERE lp.level_pack_id=s.level_pack_id ) as 'level_pack_path', ".
+							"(SELECT level_path FROM levels l WHERE l.level_id=s.level_id ) as 'level_path', ". 
+							"count(distinct user_id) as 'uniqueWins',count(*) as 'totalWins' FROM scores s GROUP BY level_pack_id,level_id");
+		while ($row = mysql_fetch_array($result)) {
+			$levels[$row["level_pack_path"].":".$row["level_path"]]["uniqueWins"] = $row["uniqueWins"];
+			$levels[$row["level_pack_path"].":".$row["level_path"]]["totalWins"] = $row["totalWins"];
+		}
+
+		//mean score
+		$result = mysql_query("SELECT ".
+							"(SELECT level_pack_path FROM level_packs lp WHERE lp.level_pack_id=s.level_pack_id ) as 'level_pack_path', ".
+							"(SELECT level_path FROM levels l WHERE l.level_id=s.level_id ) as 'level_path', ". 
+							"sum(score)/count(*) as 'scoreMean' FROM scores s GROUP BY level_pack_id,level_id");
+		while ($row = mysql_fetch_array($result)) {
+			$levels[$row["level_pack_path"].":".$row["level_path"]]["scoreMean"] = floor($row["scoreMean"]);
+		}
+
+		foreach($levels as $key => $level) {
+			//median score
+			$oneQuarters = 1*floor($level['totalWins']/4);
+			$twoQuarters = 2*floor($level['totalWins']/4);
+			$threeQuarters = 3*floor($level['totalWins']/4);
+			$levelPackId = $level["levelPackId"];
+			$levelId = $level["levelId"];
 			
-		returnJSON($resp);
+			$result = mysql_query("SELECT score FROM scores WHERE level_pack_id=$levelPackId AND level_id=$levelId ORDER BY score ASC LIMIT $twoQuarters,1");
+			while ($row = mysql_fetch_array($result)) {
+				$levels[$key]["scoreMedian"] = $row["score"];
+			}
+			
+			//TODO: learn how to calculate a STD DEV approximation efficiently and with reasonable accuracy
+			
+			$oneQuartersScore = 0;
+			$result = mysql_query("SELECT score FROM scores WHERE level_pack_id=$levelPackId AND level_id=$levelId ORDER BY score ASC LIMIT $oneQuarters,1");
+			while ($row = mysql_fetch_array($result)) {
+				$oneQuartersScore = $row["score"];
+			}
+			
+			$threeQuartersScore = 0;
+			$result = mysql_query("SELECT score FROM scores WHERE level_pack_id=$levelPackId AND level_id=$levelId ORDER BY score ASC LIMIT $threeQuarters,1");
+			while ($row = mysql_fetch_array($result)) {
+				$threeQuartersScore = $row["score"];
+			}
+			
+			//echo "$oneQuartersScore $threeQuartersScore";
+		}
+					
+		returnJSON(array(
+			"levels" => levels
+		));
 	
 	}else {
 		die("error: Unknown action '$action'");

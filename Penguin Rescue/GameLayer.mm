@@ -116,7 +116,7 @@
 	//record the play
 	//post the score to the server or queue for online processing
 	NSString* UUID = [SettingsManager stringForKey:SETTING_UUID];
-	[_scoreKeeper savePlayForUUID:UUID levelPackPath:_levelPackPath levelPath:_levelPath];
+	[ScoreKeeper savePlayForUUID:UUID levelPackPath:_levelPackPath levelPath:_levelPath];
 
 
 	//start the game
@@ -943,7 +943,7 @@
 	
 	//post the score to the server or queue for online processing
 	NSString* UUID = [SettingsManager stringForKey:SETTING_UUID];
-	[_scoreKeeper saveScore:finalScore UUID:UUID levelPackPath:_levelPackPath levelPath:_levelPath];
+	[ScoreKeeper saveScore:finalScore UUID:UUID levelPackPath:_levelPackPath levelPath:_levelPath];
 			
 	
 	//show a level won screen
@@ -1021,7 +1021,7 @@
 	const int competitiveTextYOffset = 130*SCALING_FACTOR_V;
 
 	//get the numbers from the server
-	NSDictionary* worldScores = [_scoreKeeper worldScoresForLevelPackPath:_levelPackPath levelPath:_levelPath];
+	NSDictionary* worldScores = [ScoreKeeper worldScoresForLevelPackPath:_levelPackPath levelPath:_levelPath];
 	DebugLog(@"going to display worldScores data: %@" , worldScores);
 	int worldPercentComplete = (([(NSNumber*)[worldScores objectForKey:@"uniqueWins"] intValue] * 1.0f) / [(NSNumber*)[worldScores objectForKey:@"uniquePlays"] intValue] * 100.0);
 	int worldScoreMean = [(NSNumber*)[worldScores objectForKey:@"scoreMean"] intValue];
