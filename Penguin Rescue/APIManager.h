@@ -18,6 +18,10 @@
 
 
 
+
 +(void)getWorldScoresAndOnSuccess:(void(^)(NSMutableDictionary*))onSuccess onError:(void(^)(NSError*))onError;
 
+
+
++(void)createUserOnServer;
 @end

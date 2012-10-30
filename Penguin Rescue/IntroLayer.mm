@@ -120,20 +120,7 @@
 			
 			
 		}
-		
-		//create the user on the server
-		if(![SettingsManager boolForKey:SETTING_HAS_CREATED_UUID_ON_SERVER]) {
-			[APIManager addUserWithUUID:[SettingsManager stringForKey:SETTING_UUID] 
-				onSuccess:^(NSDictionary* response) {
-					if(DEBUG_SCORING) DebugLog(@"Added new user to server. response = %@", response);
-					[SettingsManager setBool:true forKey:SETTING_HAS_CREATED_UUID_ON_SERVER];
-				}
-				onError:^(NSError* error) {
-					if(DEBUG_SCORING) DebugLog(@"Error sending new user data to server: %@", error.localizedDescription);
-					[SettingsManager setBool:false forKey:SETTING_HAS_CREATED_UUID_ON_SERVER];
-				}
-			];
-		}
+		[APIManager createUserOnServer];
 		
 		//output our UserId
 		DebugLog(@"Launching with uuid=%@", [SettingsManager stringForKey:SETTING_UUID]);

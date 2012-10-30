@@ -287,7 +287,7 @@
         return;
     }
 	[localScoreSendQueue release];
-	if(DEBUG_SCORING) DebugLog(@"Added local score to send queue plist");
+	if(DEBUG_SCORING) DebugLog(@"Added local score (score=%d) to send queue plist", [(NSNumber*)[scoreData objectForKey:@"score"] intValue]);
 }
 
 
