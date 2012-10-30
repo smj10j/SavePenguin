@@ -14,12 +14,13 @@ if($method == 'POST') {
 		
 	$action = $_POST['action'];
 
-	initDatabase();
 
 	//save data to database
 
 	if($action == 'saveScore') {
 	
+		initDatabase();
+		
 		$uuid = $_POST['UUID'];
 		$score = $_POST['score'];
 		$levelPackPath = $_POST['levelPackPath'];
@@ -48,6 +49,8 @@ if($method == 'POST') {
 		
 	}else if($action == 'savePlay') {
 
+		initDatabase();
+
 		$uuid = $_POST['UUID'];
 		$levelPackPath = $_POST['levelPackPath'];
 		$levelPath = $_POST['levelPath'];
@@ -72,6 +75,8 @@ if($method == 'POST') {
 		));		
 
 	}else if($action == 'saveUser') {
+
+		initDatabase();
 
 		$uuid = $_POST['UUID'];
 
@@ -108,9 +113,14 @@ if($method == 'GET') {
 	
 		initDatabase();
 		
+		//TODO: build summary tables to store this data
+		
+		
 		//TODO: get data from database
 
-		//$result = mysql_query("SELECT count(distinct user_id) FROM scores WHERE level_pack_path=");
+		//$result = mysql_query("SELECT concat(level_pack_id,':',level_packcount(distinct user_id) FROM scores GROUP BY level_pack_id,level_id");
+
+		
 
 
 		$result = mysql_query("SELECT * FROM scores");
@@ -234,6 +244,6 @@ function returnJSON($obj) {
 }
 
 function initDatabase() {
-	mysql_pconnect("localhost", "smjoneze_cqrpr2", "") or die(mysql_error());
+	mysql_pconnect("localhost", "smjoneze_cqrpr2", "g-)+f+=UByQ;C,S^gO") or die(mysql_error());
 	mysql_select_db("smjoneze_conquerllc-games-penguinrescue") or die(mysql_error());
 }
