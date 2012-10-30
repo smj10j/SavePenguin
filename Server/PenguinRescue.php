@@ -30,7 +30,7 @@ if($method == 'POST') {
 		$levelId = getLevelIdFromLevelPath($levelPath);
 			
 		//record a win
-		$result = mysql_query("INSERT INTO scores (user_id, level_pack_id, level_id, score) VALUES ("
+		$result = mysql_query("INSERT INTO scores (user_id, level_pack_id, level_id, score) VALUES (".
 			'"'.mysql_escape_string($userId).'",'.
 			'"'.mysql_escape_string($levelPackId).'",'.
 			'"'.mysql_escape_string($levelId).'",'.
@@ -57,7 +57,7 @@ if($method == 'POST') {
 		$levelId = getLevelIdFromLevelPath($levelPath);
 		
 		//record a play
-		$result = mysql_query("INSERT INTO plays (user_id, level_pack_id, level_id) VALUES ("
+		$result = mysql_query("INSERT INTO plays (user_id, level_pack_id, level_id) VALUES (".
 			'"'.mysql_escape_string($userId).'",'.
 			'"'.mysql_escape_string($levelPackId).'",'.
 			'"'.mysql_escape_string($levelId).'"'.
@@ -76,7 +76,7 @@ if($method == 'POST') {
 		$uuid = $_POST['UUID'];
 
 		//create a user_id for the given uuid
-		$result = mysql_query("INSERT IGNORE INTO users (uuid) VALUES ("
+		$result = mysql_query("INSERT IGNORE INTO users (uuid) VALUES (".
 			'"'.mysql_escape_string($uuid).'"'.
 		")") or die(mysql_error()); 
 		
@@ -190,6 +190,6 @@ function returnJSON($obj) {
 }
 
 function initDatabase() {
-	mysql_pconnect("localhost", "smjoneze_cqrpr", "f=~6G$g%N-*A-KgF%m123") or die(mysql_error());
+	mysql_pconnect("localhost", "smjoneze_cqrpr", "f=~6G$g%N-*A-KgF%m") or die(mysql_error());
 	mysql_select_db("smjoneze_conquerllc-games-penguinrescue") or die(mysql_error());
 }

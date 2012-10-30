@@ -131,7 +131,7 @@
 -(NSDictionary*)getWorldScores {
 	NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	NSString* worldScoresPropertyListPath = [rootPath stringByAppendingPathComponent:@"WorldScores.plist"];
-	NSMutableDictionary* worldScoresDictionary = [[[NSMutableDictionary alloc] initWithContentsOfFile:worldScoresPropertyListPath] autorelease];
+	NSMutableDictionary* worldScoresDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:worldScoresPropertyListPath];
 	return [worldScoresDictionary objectForKey:@"levels"];
 }
 
