@@ -790,6 +790,7 @@
 		
 		for(LHSprite* sprite in _levelLoader.allSprites) {
 			[sprite pauseAnimation];
+			[sprite pausePathMovement];
 		}
 		
 		//analytics logging
@@ -845,6 +846,7 @@
 			if(sprite.numberOfFrames > 1) {
 				[sprite playAnimation];
 			}
+			[sprite startPathMovement];
 		}
 		
 		//analytics loggin
@@ -895,6 +897,7 @@
 	
 	for(LHSprite* sprite in _levelLoader.allSprites) {
 		[sprite stopAnimation];
+		[sprite stopPathMovement];
 	}
 	
 	//store the level as being completed
@@ -1041,6 +1044,7 @@
 	
 	for(LHSprite* sprite in _levelLoader.allSprites) {
 		[sprite stopAnimation];
+		[sprite stopPathMovement];
 	}
 
 
@@ -1072,6 +1076,7 @@
 
 	for(LHSprite* sprite in _levelLoader.allSprites) {
 		[sprite stopAnimation];
+		[sprite stopPathMovement];
 	}
 
 	//analytics logging
@@ -1135,6 +1140,7 @@
 
 	for(LHSprite* sprite in _levelLoader.allSprites) {
 		[sprite stopAnimation];
+		[sprite stopPathMovement];
 	}
 
 	//analytics logging
@@ -2123,6 +2129,7 @@
 
 	for(LHSprite* sprite in _levelLoader.allSprites) {
 		[sprite stopAnimation];
+		[sprite stopPathMovement];
 	}
 		
     [super onExit];
