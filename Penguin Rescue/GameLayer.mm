@@ -21,6 +21,7 @@
 #import "MoveGridData.h"
 #import "SettingsManager.h"
 #import "SimpleAudioEngine.h"
+#import "APIManager.h"
 
 #import "WindmillRaycastCallback.h"
 #import "Utilities.h"
@@ -111,6 +112,18 @@
 
 	//place any moving doodads
 	[self setupDoodads];
+	
+	//record the play
+	//post the score to the server or queue for online processing
+	NSString* UUID = [SettingsManager stringForKey:SETTING_UUID];
+	[APIManager savePlayForUserWithUUID:UUID levelPackPath:levelPackPath levelPath:levelPath
+		onSuccess:^(NSDictionary* response) {
+			if(DEBUG_SCORING) DebugLog(@"Sent data about a play occuring to server. response = %@", response);
+		}
+		onError:^(NSError* error) {
+			if(DEBUG_SCORING) DebugLog(@"Error sending play data to server: %@", error.localizedDescription);
+		}
+	];
 
 	//start the game
 	_state = PLACE;
@@ -935,8 +948,8 @@
 	const int finalScore = SCORING_MAX_SCORE_POSSIBLE - scoreDeductions;
 	
 	//post the score to the server or queue for online processing
-	NSString* userId = [SettingsManager stringForKey:SETTING_USER_ID];
-	[_scoreKeeper saveScore:finalScore userId:userId levelPackPath:_levelPackPath levelPath:_levelPath];
+	NSString* UUID = [SettingsManager stringForKey:SETTING_UUID];
+	[_scoreKeeper saveScore:finalScore UUID:UUID levelPackPath:_levelPackPath levelPath:_levelPath];
 			
 	
 	//show a level won screen

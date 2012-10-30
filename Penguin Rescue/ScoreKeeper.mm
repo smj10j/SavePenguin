@@ -8,8 +8,7 @@
 
 #import "ScoreKeeper.h"
 #import "Utilities.h"
-#import "ASIHTTPRequest.h"
-#import "ASIFormDataRequest.h"
+#import "APIManager.h"
 
 
 @implementation ScoreKeeper
@@ -112,31 +111,18 @@
 				([[NSDate date] timeIntervalSince1970] - [((NSNumber*)[worldScores objectForKey:@"timestamp"]) doubleValue] > 43200)))
 	{
 			
-		NSURL* url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@?action=%@", SERVER_URL, @"getWorldScores"]];
-		ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
-		[request setTimeOutSeconds:20];
-
-		// Ah, success, parse the returned JSON data into a NSDictionary
-		[request setCompletionBlock:^{
-			NSData* data = [request responseData];
+		[APIManager getWorldScoresAndOnSuccess:^(NSMutableDictionary* worldScores) {
+				[worldScores setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"timestamp"];
 			
-			NSMutableDictionary* worldScores = [data mutableObjectFromJSONData];
-			[worldScores setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"timestamp"];
+				if(DEBUG_SCORING) DebugLog(@"Loaded world scores data from server: %@", worldScores);
 			
-			if(DEBUG_SCORING) DebugLog(@"Loaded world scores data from server: %@", worldScores);
-			
-			[self saveWorldScoresLocally:worldScores];			
-		}];
-
-		// Oops, failed, let's see why
-		[request setFailedBlock:^{
-			NSError* error = [request error];
-			if(DEBUG_SCORING) DebugLog(@"Error retrieving world scores from server: %@", error.localizedDescription);
-		}];
-
-		[request startAsynchronous];
-		[url release];
-	
+				[self saveWorldScoresLocally:worldScores];			
+			}
+			onError:^(NSError* error) {
+				if(DEBUG_SCORING) DebugLog(@"Error retrieving world scores from server: %@", error.localizedDescription);
+			}
+		];			
+		
 	}else {
 		if(DEBUG_SCORING) DebugLog(@"Using world scores data from local plist: %@", worldScores);
 	}
@@ -161,53 +147,35 @@
 	if(DEBUG_SCORING) DebugLog(@"Saved world scores in local plist");
 }
 
--(void)saveScore:(int)score userId:(NSString*)userId levelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
+-(void)saveScore:(int)score UUID:(NSString*)UUID levelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
 	
-	NSMutableDictionary* scoreData = [[NSMutableDictionary alloc] init];
-	[scoreData setObject:[NSNumber numberWithInt:score] forKey:@"score"];
-	[scoreData setObject:userId forKey:@"userId"];
-	[scoreData setObject:levelPackPath forKey:@"levelPackPath"];
-	[scoreData setObject:levelPath forKey:@"levelPath"];
-	
-
 	if(isServerAvailable()) {
 			
 		//send score to server
-		
-		NSURL* url = [[NSURL alloc] initWithString:SERVER_URL];
-		ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:url];
-		[request setTimeOutSeconds:20];
-		
-		for(NSString* key in scoreData) {
-			[request addPostValue:[scoreData objectForKey:key] forKey:key];
-		}
-
-		// Ah, success, parse the returned JSON data into a NSDictionary
-		[request setCompletionBlock:^{
-			NSData* data = [request responseData];
-			
-			NSDictionary* response = [data objectFromJSONData];			
-			if(DEBUG_SCORING) DebugLog(@"Sent score data to server. response = %@", response);
-			
-			//now send any queued up scores from when we may have been offline
-			[self emptyLocalSendQueue];
-		}];
-
-		// Oops, failed, let's see why
-		[request setFailedBlock:^{
-			NSError* error = [request error];
-			if(DEBUG_SCORING) DebugLog(@"Error posting score data to server: %@", error.localizedDescription);
-		}];
-
-		[request startAsynchronous];
-		[url release];
+		[APIManager saveScoreForUserWithUUID:UUID score:score levelPackPath:levelPackPath levelPath:levelPath
+			onSuccess:^(NSDictionary* response) {
+				if(DEBUG_SCORING) DebugLog(@"Sent score data to server. response = %@", response);
+				
+				//now send any queued up scores from when we may have been offline
+				[self emptyLocalSendQueue];			
+			}
+			onError:^(NSError* error) {
+				if(DEBUG_SCORING) DebugLog(@"Error posting score data to server: %@", error.localizedDescription);
+			}
+		];	
 		
 	}else {
 		//save local queue for sending to server if we're offline
+		NSMutableDictionary* scoreData = [[NSMutableDictionary alloc] init];
+		[scoreData setObject:[NSNumber numberWithInt:score] forKey:@"score"];
+		[scoreData setObject:UUID forKey:@"UUID"];
+		[scoreData setObject:levelPackPath forKey:@"levelPackPath"];
+		[scoreData setObject:levelPath forKey:@"levelPath"];
+			
 		[self addScoreDataToLocalSendQueue:scoreData];
-	}
-	
-	[scoreData release];
+		
+		[scoreData release];
+	}	
 }
 
 -(void)emptyLocalSendQueue {
@@ -232,7 +200,7 @@
 		if(DEBUG_SCORING) DebugLog(@"Sending %d queued scores to server", localScoreSendQueue.count);
 		for(NSDictionary* scoreData in localScoreSendQueue) {
 			[self saveScore:[(NSNumber*)[scoreData objectForKey:@"score"] intValue]
-					userId:[scoreData objectForKey:@"userId"]
+					UUID:[scoreData objectForKey:@"UUID"]
 					levelPackPath:[scoreData objectForKey:@"levelPackPath"]
 					levelPath:[scoreData objectForKey:@"levelPath"]
 			];

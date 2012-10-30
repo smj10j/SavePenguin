@@ -15,6 +15,7 @@
 #import "SimpleAudioEngine.h"
 #import "Utilities.h"
 #import "SSKeychain.h"
+#import "APIManager.h"
 
 #pragma mark - IntroLayer
 
@@ -82,6 +83,7 @@
 			
 			
 			
+			
 			//set a user id
 			//first see if the userId is in the keychain
 			NSError *error = nil;
@@ -91,8 +93,8 @@
 			}
 			if(UUID == nil) {
 				UUID = [Utilities UUID];
-				DebugLog(@"Created a new UserId");
-				
+				DebugLog(@"Created a new uuid");
+								
 				//store the userId to the keychain
 				error = nil;
 				[SSKeychain setPassword:UUID forService:COMPANY_IDENTIFIER account:@"user" error:&error];
@@ -101,9 +103,9 @@
 				}
 				
 			}else {
-				DebugLog(@"Retrieved UserId from the keychain!");
+				DebugLog(@"Retrieved uuid from the keychain!");
 			}
-			[SettingsManager setString:UUID forKey:SETTING_USER_ID];
+			[SettingsManager setString:UUID forKey:SETTING_UUID];
 						
 			//TODO: also store this to iCloud: refer to: http://stackoverflow.com/questions/7273014/ios-unique-user-identifier
 			/*
@@ -119,8 +121,22 @@
 			
 		}
 		
+		//create the user on the server
+		if(![SettingsManager boolForKey:SETTING_HAS_CREATED_UUID_ON_SERVER]) {
+			[APIManager addUserWithUUID:[SettingsManager stringForKey:SETTING_UUID] 
+				onSuccess:^(NSDictionary* response) {
+					if(DEBUG_SCORING) DebugLog(@"Added new user to server. response = %@", response);
+					[SettingsManager setBool:true forKey:SETTING_HAS_CREATED_UUID_ON_SERVER];
+				}
+				onError:^(NSError* error) {
+					if(DEBUG_SCORING) DebugLog(@"Error sending new user data to server: %@", error.localizedDescription);
+					[SettingsManager setBool:false forKey:SETTING_HAS_CREATED_UUID_ON_SERVER];
+				}
+			];
+		}
+		
 		//output our UserId
-		DebugLog(@"Launching with UserId=%@", [SettingsManager stringForKey:SETTING_USER_ID]);
+		DebugLog(@"Launching with uuid=%@", [SettingsManager stringForKey:SETTING_UUID]);
 		
 		//set our boot time (can be used for applying settings on updates
 		[SettingsManager setDouble:[[NSDate date] timeIntervalSince1970] forKey:SETTING_LAST_RUN_TIMESTAMP];

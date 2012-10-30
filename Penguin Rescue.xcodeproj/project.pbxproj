@@ -231,6 +231,7 @@
 		AAC6E5CC16403B4300FD549F /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6E5C416403B4300FD549F /* ASINetworkQueue.m */; };
 		AAC6E5CE16403B6900FD549F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC6E5CD16403B6900FD549F /* CFNetwork.framework */; };
 		AAC6E5D016403BD300FD549F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC6E5CF16403BD300FD549F /* MobileCoreServices.framework */; };
+		AAC6E5D31640499C00FD549F /* APIManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = AAC6E5D21640499C00FD549F /* APIManager.mm */; };
 		AACE801C163992FB008C7E3B /* Score.mm in Sources */ = {isa = PBXBuildFile; fileRef = AACE801B163992FB008C7E3B /* Score.mm */; };
 		AAD7B65D163C296500B02521 /* AboutLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AAD7B65C163C296500B02521 /* AboutLayer.mm */; };
 		AAD7B660163C34BB00B02521 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = AAD7B65F163C34BB00B02521 /* sounds */; };
@@ -721,6 +722,8 @@
 		AAC6E5C516403B4300FD549F /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIProgressDelegate.h; path = libs/ASIHttpRequest/Classes/ASIProgressDelegate.h; sourceTree = "<group>"; };
 		AAC6E5CD16403B6900FD549F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		AAC6E5CF16403BD300FD549F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		AAC6E5D11640499C00FD549F /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		AAC6E5D21640499C00FD549F /* APIManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = APIManager.mm; sourceTree = "<group>"; };
 		AACE801A163992FB008C7E3B /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		AACE801B163992FB008C7E3B /* Score.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Score.mm; sourceTree = "<group>"; };
 		AACF346D163E843200A50636 /* WindmillRaycastCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindmillRaycastCallback.h; sourceTree = "<group>"; };
@@ -1501,6 +1504,8 @@
 				AA250B3C163903D30080663E /* SettingsManager.mm */,
 				AAC6E583164017E800FD549F /* Utilities.h */,
 				AA24E293163ED5FB003EA5D0 /* Utilities.mm */,
+				AAC6E5D11640499C00FD549F /* APIManager.h */,
+				AAC6E5D21640499C00FD549F /* APIManager.mm */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1941,6 +1946,7 @@
 				AAC6E5CA16403B4300FD549F /* ASIFormDataRequest.m in Sources */,
 				AAC6E5CB16403B4300FD549F /* ASIInputStream.m in Sources */,
 				AAC6E5CC16403B4300FD549F /* ASINetworkQueue.m in Sources */,
+				AAC6E5D31640499C00FD549F /* APIManager.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

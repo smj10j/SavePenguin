@@ -32,7 +32,7 @@
 
 
 
-#define SETTING_USER_ID @"UserId"
+#define SETTING_UUID @"UUID"
 #define SETTING_SOUND_ENABLED @"SoundEnabled"
 #define SETTING_MUSIC_ENABLED @"MusicEnabled"
 
@@ -41,5 +41,7 @@
 #define SETTING_HAS_SEEN_TUTORIAL_3 @"HasSeenTutorial3"
 
 #define SETTING_LAST_RUN_TIMESTAMP @"LastRunTimestamp"
+
+#define SETTING_HAS_CREATED_UUID_ON_SERVER @"HasCreatedUUIDOnServer"
 
 
