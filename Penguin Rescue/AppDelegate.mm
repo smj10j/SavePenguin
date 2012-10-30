@@ -98,7 +98,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
 
     // check if a pathway to conquerllc.com exists
-    _hostReachable = [[Reachability reachabilityWithHostName: @"www.conquerllc.com"] retain];
+    _hostReachable = [[Reachability reachabilityWithHostName: SERVER_HOST] retain];
     [_hostReachable startNotifier];
 	
 	return YES;
