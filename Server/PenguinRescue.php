@@ -25,7 +25,7 @@ if($method == 'POST') {
 		$levelPackPath = $_POST['levelPackPath'];
 		$levelPath = $_POST['levelPath'];
 
-		$userId = getUserFromUUID($uuid);
+		$userId = getUserIdFromUUID($uuid);
 		$levelPackId = getLevelPackIdFromLevelPackPath($levelPackPath);
 		$levelId = getLevelIdFromLevelPath($levelPath);
 			
@@ -52,7 +52,7 @@ if($method == 'POST') {
 		$levelPackPath = $_POST['levelPackPath'];
 		$levelPath = $_POST['levelPath'];
 
-		$userId = getUserFromUUID($uuid);
+		$userId = getUserIdFromUUID($uuid);
 		$levelPackId = getLevelPackIdFromLevelPackPath($levelPackPath);
 		$levelId = getLevelIdFromLevelPath($levelPath);
 		
@@ -76,11 +76,8 @@ if($method == 'POST') {
 		$uuid = $_POST['UUID'];
 
 		//create a user_id for the given uuid
-		$result = mysql_query("INSERT IGNORE INTO users (uuid) VALUES (".
-			'"'.mysql_escape_string($uuid).'"'.
-		")") or die(mysql_error()); 
-		
-		$userId = getUserFromUUID($uuid);
+		createUserWithUUID($uuid);
+		$userId = getUserIdFromUUID($uuid);
 		
 		returnJSON(array(
 			"status" 		=> "ok",
@@ -157,31 +154,78 @@ if($method == 'GET') {
 
 
 
+function createUserWithUUID($uuid) {
+	$result = mysql_query("INSERT IGNORE INTO users (uuid) VALUES (".
+		'"'.mysql_escape_string($uuid).'"'.
+	")") or die(mysql_error()); 
+}
+
+function createLevelPackWithLevelPackPath($levelPackPath) {
+	$result = mysql_query("INSERT IGNORE INTO level_packs (level_pack_path) VALUES (".
+		'"'.mysql_escape_string($levelPackPath).'"'.
+	")") or die(mysql_error()); 
+}
+
+function createLevelWithLevelPath($levelPath) {
+	$result = mysql_query("INSERT IGNORE INTO levels (level_path) VALUES (".
+		'"'.mysql_escape_string($levelPath).'"'.
+	")") or die(mysql_error()); 
+}
 
 
-function getUserFromUUID($uuid) {
+
+
+function getUserIdFromUUID($uuid, $createIfNotExists=true) {
 	$result = mysql_query("SELECT * FROM users WHERE uuid='".mysql_escape_string($uuid)."' LIMIT 1");
 	while ($row = mysql_fetch_array($result)) {
 		return $row['user_id'];
 	}
+	
+	if($createIfNotExists) {
+		//try and create
+		createUserWithUUID($uuid);
+	
+		//and fetch again
+		return getUserIdFromUUID($uuid, false);
+	}
 	return null;
 }
 
-function getLevelPackIdFromLevelPackPath($levelPackPath) {
+function getLevelPackIdFromLevelPackPath($levelPackPath, $createIfNotExists=true) {
 	$result = mysql_query("SELECT * FROM level_packs WHERE level_pack_path='".mysql_escape_string($levelPackPath)."' LIMIT 1");
 	while ($row = mysql_fetch_array($result)) {
 		return $row['level_pack_id'];
 	}
+	
+	if($createIfNotExists) {
+		//try and create
+		createLevelPackWithLevelPackPath($levelPackPath);
+	
+		//and fetch again
+		return getLevelPackIdFromLevelPackPath($levelPackPath, false);
+	}
 	return null;
 }
 
-function getLevelIdFromLevelPath($levelPath) {
+function getLevelIdFromLevelPath($levelPath, $createIfNotExists=true) {
 	$result = mysql_query("SELECT * FROM levels WHERE level_path='".mysql_escape_string($levelPath)."' LIMIT 1");
 	while ($row = mysql_fetch_array($result)) {
 		return $row['level_id'];
 	}
+	
+	if($createIfNotExists) {
+		//try and create
+		createLevelWithLevelPath($levelPath);
+	
+		//and fetch again
+		return getLevelIdFromLevelPath($levelPath, false);
+	}
 	return null;
 }
+
+
+
+
 
 
 function returnJSON($obj) {
@@ -190,6 +234,6 @@ function returnJSON($obj) {
 }
 
 function initDatabase() {
-	mysql_pconnect("localhost", "smjoneze_cqrpr", "f=~6G$g%N-*A-KgF%m") or die(mysql_error());
+	mysql_pconnect("localhost", "smjoneze_cqrpr2", "") or die(mysql_error());
 	mysql_select_db("smjoneze_conquerllc-games-penguinrescue") or die(mysql_error());
 }
