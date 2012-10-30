@@ -61,7 +61,7 @@
 		[self loadLevelPacks];
 	}
 	
-	if(DEBUG_MEMORY) NSLog(@"Initialized LevelPackSelectLayer");
+	if(DEBUG_MEMORY) DebugLog(@"Initialized LevelPackSelectLayer");
 	if(DEBUG_MEMORY) report_memory();
 	
 	return self;
@@ -117,17 +117,17 @@
 		bool isLocked = false;
 
 		if([completedLevelPacks containsObject:levelPackPath]) {
-			//NSLog(@"Pack %@ is completed!", levelPackPath);
+			//DebugLog(@"Pack %@ is completed!", levelPackPath);
 
 			//add a checkmark on top
 			LHSprite* completedMark = [_levelLoader createSpriteWithName:@"Level_Pack_Completed" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
 			[completedMark transformPosition:ccp(levelPackButtonSize.width/2,levelPackButtonSize.height/2)];
 					
 		}else if([availableLevelPacks containsObject:levelPackPath]) {
-			//NSLog(@"Pack %@ is available!", levelPackPath);
+			//DebugLog(@"Pack %@ is available!", levelPackPath);
 					
 		}else {
-			//NSLog(@"Pack %@ is NOT available!", levelPackPath);
+			//DebugLog(@"Pack %@ is NOT available!", levelPackPath);
 
 			//add a lock on top
 			LHSprite* lockIcon = [_levelLoader createSpriteWithName:@"Level_Pack_Locked" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
@@ -217,7 +217,7 @@
 
 
 -(void) onExit {
-	if(DEBUG_MEMORY) NSLog(@"LevelPackSelectLayer onExit");
+	if(DEBUG_MEMORY) DebugLog(@"LevelPackSelectLayer onExit");
 
 	for(LHSprite* sprite in _levelLoader.allSprites) {
 		[sprite stopAnimation];
@@ -229,7 +229,7 @@
 
 -(void) dealloc
 {
-	if(DEBUG_MEMORY) NSLog(@"LevelPackSelectLayer dealloc");
+	if(DEBUG_MEMORY) DebugLog(@"LevelPackSelectLayer dealloc");
 
 	//[[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 

@@ -61,7 +61,7 @@
 -(void) onEnter
 {
 	[super onEnter];
-	NSLog(@"Showing ToolSelectLayer...");
+	DebugLog(@"Showing ToolSelectLayer...");
 	
 }
 @end

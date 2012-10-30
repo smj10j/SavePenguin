@@ -62,6 +62,7 @@ static int untitledSpritesCount = 0;
 ////////////////////////////////////////////////////////////////////////////////
 @implementation LHSprite
 @synthesize usesOverloadedTransformations;
+@synthesize usesUVTransformation;
 @synthesize realScale;
 @synthesize swallowTouches;
 @synthesize touchPriority;
@@ -292,9 +293,6 @@ static int untitledSpritesCount = 0;
     bDefaultLinearDamping = [dictionary floatForKey:@"LinearDamping"];
     bDefaultAngularDamping = [dictionary floatForKey:@"AngularDamping"];
     
-    
-//    b2BodyDef bodyDef;	
-	
     int pType = [dictionary intForKey:@"Type"];//LH
     
 	if(pType == 3) //"NO_PHYSIC"
@@ -393,26 +391,34 @@ static int untitledSpritesCount = 0;
     
     //CGRect rectInPixels = self.textureRect;
     CGRect rectInPixels = [shTexDict rectForKey:@"Frame"];
-    
-   // [[LHSettings sharedInstance] transformedTextureRect:self.textureRect forImage:[self imageFile]];
-    
-    rectInPixels = [[LHSettings sharedInstance] transformedTextureRect:rectInPixels forImage:[self imageFile]];
-    rectInPixels = CC_RECT_POINTS_TO_PIXELS(rectInPixels);
-    
     CGSize contentSize = [shTexDict sizeForKey:@"SpriteSize"];
-    
-    contentSize = [[LHSettings sharedInstance] transformedSize:contentSize forImage:[self imageFile]];
-    contentSize.width *= CC_CONTENT_SCALE_FACTOR();
-    contentSize.height*= CC_CONTENT_SCALE_FACTOR();
-
     originalTextureOffset = [shTexDict pointForKey:@"TextureOffset"];
-              
-    CGSize texOffsetSize = [[LHSettings sharedInstance] transformedSize:CGSizeMake(originalTextureOffset.x, originalTextureOffset.y) forImage:[self imageFile]];        
-    originalTextureOffset.x = texOffsetSize.width;
-    originalTextureOffset.y = texOffsetSize.height;
-    originalTextureOffset.x *= CC_CONTENT_SCALE_FACTOR();
-    originalTextureOffset.y *= CC_CONTENT_SCALE_FACTOR();
+    
+    NSString* sheetImg = [dictionary objectForKey:@"SheetImage"];
+    NSString* sheetImgHD = [dictionary objectForKey:@"SheetImage-HD"];
+    //if image and image hd are the same it means no-resampling has been used
+    //and we should not transform the texture rectagnel
+    usesUVTransformation = true;
+    
+    if(sheetImgHD != nil && [sheetImg isEqualToString:sheetImgHD]){
+        usesUVTransformation = false;
+    }
+        
+    if(usesUVTransformation){
+        rectInPixels = [[LHSettings sharedInstance] transformedTextureRect:rectInPixels forImage:[self imageFile]];
+        rectInPixels = CC_RECT_POINTS_TO_PIXELS(rectInPixels);
+    
+        contentSize = [[LHSettings sharedInstance] transformedSize:contentSize forImage:[self imageFile]];
+        contentSize.width *= CC_CONTENT_SCALE_FACTOR();
+        contentSize.height*= CC_CONTENT_SCALE_FACTOR();
 
+        CGSize texOffsetSize = [[LHSettings sharedInstance] transformedSize:CGSizeMake(originalTextureOffset.x, originalTextureOffset.y) forImage:[self imageFile]];
+        originalTextureOffset.x = texOffsetSize.width;
+        originalTextureOffset.y = texOffsetSize.height;
+        originalTextureOffset.x *= CC_CONTENT_SCALE_FACTOR();
+        originalTextureOffset.y *= CC_CONTENT_SCALE_FACTOR();
+    }
+    
 //    NSLog(@"SPRITE INFO %@", uniqueName);
 //    NSLog(@"....................................................................");
 //    NSLog(@"CONTENT SIZE %f %f", contentSize.width, contentSize.height);
@@ -438,18 +444,24 @@ static int untitledSpritesCount = 0;
     [self setFlipX:flipX];
     [self setFlipY:flipY];
     
-    CGPoint scale = [[LHSettings sharedInstance] transformedScalePointToCocos2d:[texDict pointForKey:@"Scale"]];
+    CGPoint scale = [texDict pointForKey:@"Scale"];
+    
+    if(usesUVTransformation)
+        scale = [[LHSettings sharedInstance] transformedScalePointToCocos2d:scale];
     
     [self setScaleX:(scale.x)];
     [self setScaleY:(scale.y)];
     
-//    NSLog(@"SCALE %f %f", scale.x, scale.y);
+    realScale = CGSizeMake(scale.x, scale.y);
+
+    if(usesUVTransformation)
+        realScale = CGSizeMake(scale.x*[[LHSettings sharedInstance] convertRatio].x,
+                               scale.y*[[LHSettings sharedInstance] convertRatio].y);
     
-//    realScale = CGSizeMake(scale.x, scale.y);
-    realScale = CGSizeMake(scale.x*[[LHSettings sharedInstance] convertRatio].x,
-                           scale.y*[[LHSettings sharedInstance] convertRatio].y);
-    
-    CGPoint position = [[LHSettings sharedInstance] transformedPointToCocos2d:[texDict pointForKey:@"Position"]];
+    CGPoint position = [texDict pointForKey:@"Position"];
+
+    if(usesUVTransformation)
+        position = [[LHSettings sharedInstance] transformedPointToCocos2d:position];
 
     [self setPosition:ccp((int)position.x, (int)position.y)];
     
@@ -498,7 +510,6 @@ static int untitledSpritesCount = 0;
     
     usesOverloadedTransformations = false;
 
-        
     [LevelHelperLoader setTouchDispatcherForObject:self tag:(int)[self tag]];
     
     [self scheduleUpdate];
@@ -534,17 +545,12 @@ static int untitledSpritesCount = 0;
     NSDictionary* texDict = [dictionary objectForKey:@"TextureProperties"];
     CGRect rect = LHRectFromString([texDict objectForKey:@"Frame"]);    
 
-//    NSLog(@"BATCH IMAGE PATH %@", [batch imagePath]);
-    
     rect = [[LHSettings sharedInstance] transformedTextureRect:rect forImage:[batch imagePath]];
         
 #if COCOS2D_VERSION >= 0x00020000
     self = [super initWithTexture:[batch texture] rect:rect];
     
     [self setBatchNode:batch];
-//    if([self batchNode]){
-//        [[self batchNode] addChild:self z:zOrder_];
-//    }
 #else
     self = [super initWithBatchNode:batch rect:rect];
 #endif
@@ -552,33 +558,34 @@ static int untitledSpritesCount = 0;
     if (self != nil){        
         [self setImageFile:[batch imagePath]];        
         [self loadInformationFromDictionary:dictionary];
-        
-    //    [batch addChild:self];
     }
     return self;
 }
 //------------------------------------------------------------------------------
 +(id)batchSpriteWithDictionary:(NSDictionary*)dictionary batch:(LHBatch*)batch{
 
-    Class baseClass = [[LHCustomSpriteMgr sharedInstance] baseClass];
-
 #ifndef LH_ARC_ENABLED
-    return [[[baseClass alloc] initBatchSpriteWithDictionary:dictionary batch:batch] autorelease];
+    return [[[self alloc] initBatchSpriteWithDictionary:dictionary batch:batch] autorelease];
 #else
-    return [[baseClass alloc] initBatchSpriteWithDictionary:dictionary batch:batch];
+    return [[self alloc] initBatchSpriteWithDictionary:dictionary batch:batch];
 #endif     
 }
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 -(id)initWithDictionary:(NSDictionary*)dictionary{
     
-    NSString* imgPath = [[LHSettings sharedInstance] imagePath:[dictionary objectForKey:@"SheetImage"]];
+    NSString* sheetImg = [dictionary objectForKey:@"SheetImage"];
+    NSString* imgPath = [[LHSettings sharedInstance] imagePath:sheetImg];
     NSAssert(imgPath!=nil, @"Image path must not be nil");
     
     NSDictionary* texDict = [dictionary objectForKey:@"TextureProperties"];
     CGRect rect = LHRectFromString([texDict objectForKey:@"Frame"]);
     
-    rect = [[LHSettings sharedInstance] transformedTextureRect:rect forImage:imgPath];
+    NSString* sheetImgHD = [dictionary objectForKey:@"SheetImage-HD"];
+    //if image and image hd are the same it means no-resampling has been used
+    //and we should not transform the texture rectagnel
+    if(![sheetImg isEqualToString:sheetImgHD])
+        rect = [[LHSettings sharedInstance] transformedTextureRect:rect forImage:imgPath];
     
     self = [super initWithFile:imgPath rect:rect];    
     if (self != nil){
@@ -590,12 +597,10 @@ static int untitledSpritesCount = 0;
 //------------------------------------------------------------------------------
 +(id)spriteWithDictionary:(NSDictionary*)dictionary{
     
-    Class baseClass = [[LHCustomSpriteMgr sharedInstance] baseClass];
-    
 #ifndef LH_ARC_ENABLED
-    return [[[baseClass alloc] initWithDictionary:dictionary] autorelease];
+    return [[[self alloc] initWithDictionary:dictionary] autorelease];
 #else
-    return [[baseClass alloc] initWithDictionary:dictionary];
+    return [[self alloc] initWithDictionary:dictionary];
 #endif 
 }
 -(void)postInit{

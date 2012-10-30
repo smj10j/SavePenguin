@@ -9,8 +9,6 @@
 // Import the interfaces
 #import "GameLayer.h"
 
-#import "Flurry.h"
-
 // Not included in "cocos2d.h"
 #import "CCPhysicsSprite.h"
 
@@ -56,7 +54,7 @@
 		self.isTouchEnabled = YES;
 		
 		_instanceId = [[NSDate date] timeIntervalSince1970];
-		NSLog(@"Initializing GameLayer %f", _instanceId);
+		DebugLog(@"Initializing GameLayer %f", _instanceId);
 		_inGameMenuItems = [[NSMutableArray alloc] init];
 		_moveGridSharkUpdateQueue = dispatch_queue_create("com.conquerllc.games.Penguin-Rescue.moveGridSharkUpdateQueue", 0);	//serial
 		_moveGridPenguinUpdateQueue = dispatch_queue_create("com.conquerllc.games.Penguin-Rescue.moveGridPenguinUpdateQueue", 0);	//serial
@@ -84,7 +82,7 @@
 		
 		[self preloadSounds];
 
-		if(DEBUG_MEMORY) NSLog(@"GameLayer %f initialized", _instanceId);
+		if(DEBUG_MEMORY) DebugLog(@"GameLayer %f initialized", _instanceId);
 		if(DEBUG_MEMORY) report_memory();
 	}
 	
@@ -120,20 +118,16 @@
 	_levelPlaceTimeDuration = 0;
 	_levelRunningTimeDuration = 0;
 
-	CCDirectorIOS* director = (CCDirectorIOS*) [CCDirector sharedDirector];
-	[director setAnimationInterval:1.0/TARGET_FPS];
 	[self scheduleUpdate];
 	
-
 	
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		_levelPath, @"Level_Name",
 		_levelPackPath, @"Level_Pack",
 	nil];
+	[Utilities logEvent:@"Play_Level" withParameters:flurryParams timed:YES];
 
-	[Flurry logEvent:@"Play_Level" withParameters:flurryParams timed:YES];
-
-	if(DEBUG_MEMORY) NSLog(@"GameLayer %f level loaded", _instanceId);
+	if(DEBUG_MEMORY) DebugLog(@"GameLayer %f level loaded", _instanceId);
 	if(DEBUG_MEMORY) report_memory();
 
 }
@@ -157,7 +151,7 @@
 
 -(void) initPhysics
 {
-	NSLog(@"Initializing physics...");
+	DebugLog(@"Initializing physics...");
 	b2Vec2 gravity;
 	gravity.Set(0.0f, 0.0f);
 	_world = new b2World(gravity);
@@ -192,22 +186,22 @@
 		if(winSizeInPixels.width == 480) {
 			//low-res - probably a slower processor
 			_gridSize = 16;
-			NSLog(@"Using a grid size for an older iPhone");
+			DebugLog(@"Using a grid size for an older iPhone");
 		}else {
 			//high-res 4+
 			_gridSize = 8;
-			NSLog(@"Using a grid size for a newer iPhone");
+			DebugLog(@"Using a grid size for a newer iPhone");
 		}
 	}else {
 		//iPad
 		if(winSizeInPixels.width == 1024) {
 			//low-res - probably a slower processor
 			_gridSize = 20;
-			NSLog(@"Using a grid size for an older iPad");
+			DebugLog(@"Using a grid size for an older iPad");
 		}else {
 			//high-res 4+
 			_gridSize = 12;
-			NSLog(@"Using a grid size for a newer iPad");
+			DebugLog(@"Using a grid size for a newer iPad");
 		}
 	}
 	
@@ -223,14 +217,14 @@
 	
 	if(minScale < 1 && _gridSize > MIN_GRID_SIZE) {
 		_gridSize*= minScale;
-		NSLog(@"Scaling down gridSize by %f to %d to account for scaled down actors", minScale, _gridSize);
+		DebugLog(@"Scaling down gridSize by %f to %d to account for scaled down actors", minScale, _gridSize);
 	}
 
 		
 	_gridWidth = ceil(_levelSize.width/_gridSize);
 	_gridHeight = ceil(_levelSize.height/_gridSize);
 
-	NSLog(@"Setting up grid with size=%d, width=%d, height=%d", _gridSize, _gridWidth, _gridHeight);
+	DebugLog(@"Setting up grid with size=%d, width=%d, height=%d", _gridSize, _gridWidth, _gridHeight);
 
 	_sharkMapfeaturesGrid = new int*[_gridWidth];
 	_penguinMapfeaturesGrid = new int*[_gridWidth];
@@ -266,7 +260,7 @@
 }
 
 -(void) drawHUD {
-	NSLog(@"Drawing HUD");
+	DebugLog(@"Drawing HUD");
 
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
@@ -349,7 +343,7 @@
 }
 
 -(void) updateToolbox {
-	NSLog(@"Updating Toolbox");
+	DebugLog(@"Updating Toolbox");
 	
 	if(_toolboxItemSize.width == 0) {
 		//get the toolbox item size for scaling purposes
@@ -424,7 +418,7 @@
 			[toolboxItem transformPosition: ccp(toolGroupX, toolGroupY)];
 			double scale = fmin((_toolboxItemSize.width-TOOLBOX_ITEM_CONTAINER_PADDING_H)/toolboxItem.contentSize.width, (_toolboxItemSize.height-TOOLBOX_ITEM_CONTAINER_PADDING_V)/toolboxItem.contentSize.height);
 			[toolboxItem transformScale: scale];
-			//NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", toolboxItem.uniqueName, (int)(100*scale));
+			//DebugLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", toolboxItem.uniqueName, (int)(100*scale));
 		}
 		
 		//helpful tidbits
@@ -469,7 +463,7 @@
 	[_levelLoader addObjectsToWorld:_world cocos2dLayer:self];
 
 	_levelSize = winSize.width < _levelLoader.gameWorldSize.size.width ? _levelLoader.gameWorldSize.size : winSize;
-	NSLog(@"Level size: %f x %f", _levelSize.width, _levelSize.height);
+	DebugLog(@"Level size: %f x %f", _levelSize.width, _levelSize.height);
 
 	_mainLayer = [_levelLoader layerWithUniqueName:@"MAIN_LAYER"];
 	_toolboxBatchNode = [_levelLoader batchWithUniqueName:@"Toolbox"];
@@ -504,7 +498,7 @@
 
 	//TODO: consider if we should "unStuck" all penguins/sharks whenever we regenerate the feature map
 
-	NSLog(@"Generating feature maps...");
+	DebugLog(@"Generating feature maps...");
 
 	//fresh start
 	for(int x = 0; x < _gridWidth; x++) {
@@ -521,7 +515,7 @@
 	NSMutableArray* unpassableAreas = [NSMutableArray arrayWithArray:lands];
 	[unpassableAreas addObjectsFromArray:borders];
 	
-	NSLog(@"Num safe lands: %d, Num borders: %d", [lands count], [borders count]);
+	DebugLog(@"Num safe lands: %d, Num borders: %d", [lands count], [borders count]);
 	
 	for(LHSprite* land in unpassableAreas) {
 					
@@ -541,7 +535,7 @@
 		}
 			
 
-		//NSLog(@"Land from %d,%d to %d,%d", minX, minY, maxX, maxY);
+		//DebugLog(@"Land from %d,%d to %d,%d", minX, minY, maxX, maxY);
 	}
 
 
@@ -590,7 +584,7 @@
 		}
 	}
 	
-	NSLog(@"Done generating feature maps");
+	DebugLog(@"Done generating feature maps");
 	
 	//force a move grid update early
 	[self updateMoveGrids:true];
@@ -631,7 +625,7 @@
 	_activeToolboxItemOriginalPosition = _activeToolboxItem.position;
 	ToolboxItem_Border* toolboxItemData = ((ToolboxItem_Border*)_activeToolboxItem.userInfo);	//ToolboxItem_Border is used because all ToolboxItem classes have a "scale" property
 	[_activeToolboxItem transformScale: toolboxItemData.scale];
-	NSLog(@"Scaling up toolboxitem %@ to full-size", _activeToolboxItem.uniqueName);
+	DebugLog(@"Scaling up toolboxitem %@ to full-size", _activeToolboxItem.uniqueName);
 }
 
 -(void)onTouchEndedToolboxItem:(LHTouchInfo*)info {
@@ -650,8 +644,8 @@
 			[_activeToolboxItem transformPosition:_activeToolboxItemOriginalPosition];
 			double scale = fmin((_toolboxItemSize.width-TOOLBOX_ITEM_CONTAINER_PADDING_H)/_activeToolboxItem.contentSize.width, (_toolboxItemSize.height-TOOLBOX_ITEM_CONTAINER_PADDING_V)/_activeToolboxItem.contentSize.height);
 			[_activeToolboxItem transformScale: scale];
-			//NSLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", _activeToolboxItem.uniqueName, (int)(100*scale));
-			NSLog(@"Placing toolbox item back into the HUD");
+			//DebugLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", _activeToolboxItem.uniqueName, (int)(100*scale));
+			DebugLog(@"Placing toolbox item back into the HUD");
 			
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 				_levelPath, @"Level_Name", 
@@ -659,7 +653,7 @@
 				_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
 				_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
 			nil];
-			[Flurry logEvent:@"Undo_Place_Toolbox_Item" withParameters:flurryParams];		
+			[Utilities logEvent:@"Undo_Place_Toolbox_Item" withParameters:flurryParams];		
 			
 			_activeToolboxItem = nil;
 			
@@ -698,7 +692,7 @@
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
 	}
 		
-	//NSLog(@"Touch ended play/pause on GameLayer instance %f with _state=%d", _instanceId, _state);
+	//DebugLog(@"Touch ended play/pause on GameLayer instance %f with _state=%d", _instanceId, _state);
 	
 	if(_state == PLACE) {
 		[self resume];
@@ -720,7 +714,7 @@
 -(void)onTouchBeganRestart:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
-	//NSLog(@"Touch began restart on GameLayer instance %f with _state=%d", _instanceId, _state);
+	//DebugLog(@"Touch began restart on GameLayer instance %f with _state=%d", _instanceId, _state);
 }
 
 -(void)onTouchEndedRestart:(LHTouchInfo*)info {
@@ -736,7 +730,7 @@
 -(void)onTouchBeganMainMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;	
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
-	//NSLog(@"Touch began mainmenu on GameLayer instance %f with _state=%d", _instanceId, _state);
+	//DebugLog(@"Touch began mainmenu on GameLayer instance %f with _state=%d", _instanceId, _state);
 }
 
 -(void)onTouchEndedMainMenu:(LHTouchInfo*)info {
@@ -752,7 +746,7 @@
 -(void)onTouchBeganLevelsMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
-	//NSLog(@"Touch began levels menu on GameLayer instance %f with _state=%d", _instanceId, _state);
+	//DebugLog(@"Touch began levels menu on GameLayer instance %f with _state=%d", _instanceId, _state);
 }
 
 -(void)onTouchEndedLevelsMenu:(LHTouchInfo*)info {
@@ -762,7 +756,7 @@
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
 	}
 	
-	//NSLog(@"Touch ended levels menu on GameLayer instance %f with _state=%d", _instanceId, _state);
+	//DebugLog(@"Touch ended levels menu on GameLayer instance %f with _state=%d", _instanceId, _state);
 	
 	[self showLevelsMenuLayer];
 }
@@ -770,7 +764,7 @@
 -(void)onTouchBeganNextLevel:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
-	//NSLog(@"Touch began next level on GameLayer instance %f with _state=%d", _instanceId, _state);
+	//DebugLog(@"Touch began next level on GameLayer instance %f with _state=%d", _instanceId, _state);
 }
 
 -(void)onTouchEndedNextLevel:(LHTouchInfo*)info {
@@ -785,7 +779,7 @@
 
 -(void)onTouchBeganTutorial:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	NSLog(@"Touch began tutorial on GameLayer instance %f with _state=%d", _instanceId, _state);
+	DebugLog(@"Touch began tutorial on GameLayer instance %f with _state=%d", _instanceId, _state);
 	[self fadeOutAllTutorials];
 }
 
@@ -795,7 +789,7 @@
 
 -(void) pause {
 	if(_state == RUNNING) {
-		NSLog(@"Pausing game");
+		DebugLog(@"Pausing game");
 		_state = PAUSE;
 		
 		for(LHSprite* sprite in _levelLoader.allSprites) {
@@ -810,13 +804,13 @@
 			_levelPath, @"Level_Name", 
 			_levelPackPath, @"Level_Pack",
 		nil];
-		[Flurry logEvent:@"Pause_level" withParameters:flurryParams];		
+		[Utilities logEvent:@"Pause_level" withParameters:flurryParams];		
 	}
 	[self showInGameMenu];
 }
 
 -(void) showInGameMenu {
-	NSLog(@"Showing in-game menu");
+	DebugLog(@"Showing in-game menu");
 
 	[_playPauseButton runAction:[CCFadeTo actionWithDuration:0.5f opacity:150.0f]];
 		
@@ -851,7 +845,7 @@
 -(void) resume {
 
 	if(_state == PAUSE) {
-		NSLog(@"Resuming game");
+		DebugLog(@"Resuming game");
 		_state = RUNNING;
 		
 		for(LHSprite* sprite in _levelLoader.allSprites) {
@@ -866,12 +860,12 @@
 			_levelPath, @"Level_Name", 
 			_levelPackPath, @"Level_Pack",
 		nil];
-		[Flurry logEvent:@"Resume_level" withParameters:flurryParams];		
+		[Utilities logEvent:@"Resume_level" withParameters:flurryParams];		
 
 		[self hideInGameMenu];
 			
 	}else if(_state == PLACE) {
-		NSLog(@"Running game");
+		DebugLog(@"Running game");
 		_state = RUNNING;
 		_levelStartRunningTime  = [[NSDate date] timeIntervalSince1970];
 
@@ -888,7 +882,7 @@
 			_levelPath, @"Level_Name", 
 			_levelPackPath, @"Level_Pack",
 		nil];
-		[Flurry logEvent:@"Start_level" withParameters:flurryParams];
+		[Utilities logEvent:@"Start_level" withParameters:flurryParams];
 
 	}
 	
@@ -919,9 +913,9 @@
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"Won", @"Level_Status",
 	nil];
-	[Flurry endTimedEvent:@"Play_Level" withParameters:flurryParams];
+	[Utilities endTimedEvent:@"Play_Level" withParameters:flurryParams];
 	
-	NSLog(@"Showing level won animations");
+	DebugLog(@"Showing level won animations");
 	
 	
 	//TODO: show some happy penguins and sad sharks
@@ -1067,9 +1061,9 @@
 		@"Lost", @"Level_Status",
 		@"Offscreen Penguin", @"Level_Lost_Reason",
 	nil];
-	[Flurry endTimedEvent:@"Play_Level" withParameters:flurryParams];
+	[Utilities endTimedEvent:@"Play_Level" withParameters:flurryParams];
 
-	NSLog(@"Showing level lost animations for offscreen penguin");
+	DebugLog(@"Showing level lost animations for offscreen penguin");
 	
 
 	//TODO: show some kind of information about how penguins have to reach the safety point
@@ -1098,9 +1092,9 @@
 		@"Lost", @"Level_Status",
 		@"Shark Collision", @"Level_Lost_Reason",
 	nil];
-	[Flurry endTimedEvent:@"Play_Level" withParameters:flurryParams];
+	[Utilities endTimedEvent:@"Play_Level" withParameters:flurryParams];
 
-	NSLog(@"Showing level lost animations for penguin/shark collision");
+	DebugLog(@"Showing level lost animations for penguin/shark collision");
 	
 
 	//TODO: show some happy sharks and sad penguins (if any are left!)
@@ -1149,7 +1143,7 @@
 
 -(void) restart {
 
-	NSLog(@"Restarting");
+	DebugLog(@"Restarting");
 	_state = GAME_OVER;
 
 	for(LHSprite* sprite in _levelLoader.allSprites) {
@@ -1162,7 +1156,7 @@
 		@"Lost", @"Level_Status",
 		@"Restart", @"Level_Lost_Reason",
 	nil];
-	[Flurry endTimedEvent:@"Play_Level" withParameters:flurryParams];
+	[Utilities endTimedEvent:@"Play_Level" withParameters:flurryParams];
 
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:_levelPath]]];
 }
@@ -1175,7 +1169,7 @@
 
 -(void) goToNextLevel {
 	NSString* nextLevelPath = [LevelPackManager levelAfter:_levelPath inPack:_levelPackPath];
-	NSLog(@"Going to next level %@", nextLevelPath);
+	DebugLog(@"Going to next level %@", nextLevelPath);
 	
 	if(nextLevelPath == nil) {
 		//TODO: show some kind of pack completed notification
@@ -1187,12 +1181,12 @@
 }
 
 -(void) showMainMenuLayer {
-	NSLog(@"Showing MainMenuLayer in GameLayer instance %f", _instanceId);
+	DebugLog(@"Showing MainMenuLayer in GameLayer instance %f", _instanceId);
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[MainMenuLayer scene] ]];
 }
 
 -(void) showLevelsMenuLayer {
-	NSLog(@"Showing LevelSelectLayer in GameLayer instance %f", _instanceId);
+	DebugLog(@"Showing LevelSelectLayer in GameLayer instance %f", _instanceId);
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[LevelSelectLayer sceneWithLevelPackPath:[NSString stringWithFormat:@"%@", _levelPackPath]] ]];
 }
 
@@ -1207,7 +1201,7 @@
 		//is this tutorial available on this level?
 		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial1"];
 		if(tutorial != nil) {
-			NSLog(@"Showing tutorial 1");
+			DebugLog(@"Showing tutorial 1");
 			//[SettingsManager setBool:true forKey:SETTING_HAS_SEEN_TUTORIAL_1];
 		}
 	}
@@ -1215,7 +1209,7 @@
 		//is this tutorial available on this level?
 		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial2"];
 		if(tutorial != nil) {
-			NSLog(@"Showing tutorial 2");
+			DebugLog(@"Showing tutorial 2");
 			//[SettingsManager setBool:true forKey:SETTING_HAS_SEEN_TUTORIAL_2];
 		}
 	}
@@ -1223,7 +1217,7 @@
 		//is this tutorial available on this level?
 		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial3"];
 		if(tutorial != nil) {
-			NSLog(@"Showing tutorial 3");
+			DebugLog(@"Showing tutorial 3");
 			//[SettingsManager setBool:true forKey:SETTING_HAS_SEEN_TUTORIAL_3];
 		}
 	}
@@ -1295,7 +1289,7 @@
 				}
 				
 				if(penguinGridPos.x > _gridWidth-1 || penguinGridPos.x < 0 || penguinGridPos.y > _gridHeight-1 || penguinGridPos.y < 0) {
-					NSLog(@"Penguin %@ is offscreen at %f,%f - showing level lost", penguin.uniqueName, penguinGridPos.x, penguinGridPos.y);
+					DebugLog(@"Penguin %@ is offscreen at %f,%f - showing level lost", penguin.uniqueName, penguinGridPos.x, penguinGridPos.y);
 					[self levelLostWithOffscreenPenguin:penguin];
 					return;
 				}
@@ -1357,7 +1351,7 @@
 				CGPoint sharkGridPos = [self toGrid:shark.position];
 
 				if(sharkGridPos.x >= _gridWidth || sharkGridPos.x < 0 || sharkGridPos.y >= _gridHeight || sharkGridPos.y < 0) {
-					NSLog(@"Shark %@ has moved offscreen to %f,%f - removing him", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
+					DebugLog(@"Shark %@ has moved offscreen to %f,%f - removing him", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
 					[shark removeSelf];
 					continue;
 				}
@@ -1390,7 +1384,7 @@
 					
 					double dist = ccpDistance(shark.position, penguin.position);
 					if(dist < minDistance) {
-						//NSLog(@"Shark %@'s closest penguin is %@ at %f", shark.uniqueName, penguin.uniqueName, dist);
+						//DebugLog(@"Shark %@'s closest penguin is %@ at %f", shark.uniqueName, penguin.uniqueName, dist);
 						minDistance = dist;
 						targetPenguin = penguin;
 						sharkData.targetAcquired = true;
@@ -1437,7 +1431,7 @@
 
 -(void) update: (ccTime) dt
 {
-	if(DEBUG_ALL_THE_THINGS) NSLog(@"Update tick");
+	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Update tick");
 	if(_state != RUNNING && _state != PLACE) {
 		return;
 	}
@@ -1467,7 +1461,7 @@
 	//drop any toolbox items if need be
 	if(_activeToolboxItem != nil && _moveActiveToolboxItemIntoWorld) {
 	
-		NSLog(@"Adding toolbox item %@ to world", _activeToolboxItem.userInfoClassName);
+		DebugLog(@"Adding toolbox item %@ to world", _activeToolboxItem.userInfoClassName);
 		
 		NSString* soundFileName = @"place.wav";
 	
@@ -1510,7 +1504,7 @@
 			_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
 			NSStringFromCGPoint(_activeToolboxItem.position), @"Location",
 		nil];
-		[Flurry logEvent:@"Place_Toolbox_Item" withParameters:flurryParams];				
+		[Utilities logEvent:@"Place_Toolbox_Item" withParameters:flurryParams];				
 
 		if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 			[[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"sounds/game/toolbox/%@", soundFileName ]];
@@ -1524,7 +1518,7 @@
 	if(__DEBUG_TOUCH_SECONDS != 0) {
 		double elapsed = ([[NSDate date] timeIntervalSince1970] - __DEBUG_TOUCH_SECONDS);
 		if(elapsed >= 1 && !__DEBUG_SHARKS) {
-			NSLog(@"Enabling debug sharks");
+			DebugLog(@"Enabling debug sharks");
 			__DEBUG_SHARKS = true;
 			__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
 			self.color = ccBLACK;
@@ -1537,11 +1531,11 @@
 				_levelPath, @"Level_Name", 
 				_levelPackPath, @"Level_Pack",
 			nil];
-			[Flurry logEvent:@"Debug_Sharks_Enabled" withParameters:flurryParams];		
+			[Utilities logEvent:@"Debug_Sharks_Enabled" withParameters:flurryParams];		
 			
 		}
 		if(elapsed >= 2 && !__DEBUG_PENGUINS) {
-			NSLog(@"Enabling debug penguins");
+			DebugLog(@"Enabling debug penguins");
 			__DEBUG_PENGUINS = true;
 			__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
 			self.color = ccBLACK;
@@ -1554,10 +1548,10 @@
 				_levelPath, @"Level_Name", 
 				_levelPackPath, @"Level_Pack",
 			nil];
-			[Flurry logEvent:@"Debug_Penguins_Enabled" withParameters:flurryParams];		
+			[Utilities logEvent:@"Debug_Penguins_Enabled" withParameters:flurryParams];		
 		}
 		if(elapsed >= 5 && (__DEBUG_PENGUINS || __DEBUG_SHARKS)) {
-			NSLog(@"Disable debug penguins and sharks");
+			DebugLog(@"Disable debug penguins and sharks");
 			__DEBUG_PENGUINS = false;
 			__DEBUG_SHARKS = false;
 			self.color = __DEBUG_ORIG_BACKGROUND_COLOR;
@@ -1571,7 +1565,7 @@
 				_levelPath, @"Level_Name", 
 				_levelPackPath, @"Level_Pack",
 			nil];
-			[Flurry logEvent:@"Disable_Debug_Penguins_and_Sharks" withParameters:flurryParams];		
+			[Utilities logEvent:@"Disable_Debug_Penguins_and_Sharks" withParameters:flurryParams];		
 		}
 	}
 	
@@ -1598,7 +1592,7 @@
 	[self updateMoveGrids];
 	
 	
-	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done with game state update");
+	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with game state update");
 
 
 
@@ -1615,7 +1609,7 @@
 	// generally best to keep the time step and iterations fixed.
 	_world->Step(dt, velocityIterations, positionIterations);
 	
-	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done with world step");
+	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with world step");
 	
 	//Iterate over the bodies in the physics world
 	for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
@@ -1635,7 +1629,7 @@
         }
 	}
 
-	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done with update tick");
+	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with update tick");
 }
 
 //TODO: add a shark *thrashing* animation when it slows down to indicate a struggle. make it look mad!
@@ -1644,7 +1638,7 @@
 -(void) moveSharks:(ccTime)dt {
 		
 	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
-	if(DEBUG_ALL_THE_THINGS) NSLog(@"Moving %d sharks...", [sharks count]);
+	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Moving %d sharks...", [sharks count]);
 	
 	if([sharks count] == 0) {
 		//winna winna chicken dinna!
@@ -1658,7 +1652,7 @@
 		CGPoint sharkGridPos = [self toGrid:shark.position];
 
 		if(sharkGridPos.x >= _gridWidth || sharkGridPos.x < 0 || sharkGridPos.y >= _gridHeight || sharkGridPos.y < 0) {
-			NSLog(@"Shark %@ has moved offscreen to %f,%f - removing him", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
+			DebugLog(@"Shark %@ has moved offscreen to %f,%f - removing him", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
 			[shark removeSelf];
 			continue;
 		}
@@ -1667,18 +1661,18 @@
 		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
 		CGPoint bestOptionPos = [sharkMoveGridData getBestMoveToTile:sharkMoveGridData.lastTargetTile fromTile:sharkGridPos];
 		
-		//NSLog(@"Best Option Pos: %f,%f", bestOptionPos.x,bestOptionPos.y);
+		//DebugLog(@"Best Option Pos: %f,%f", bestOptionPos.x,bestOptionPos.y);
 		if(bestOptionPos.x == -10000 && bestOptionPos.y == -10000) {
 			//this occurs when the shark has no route to the penguin - he literally has no idea which way to go
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
 				sharkData.isStuck = true;
-				NSLog(@"Shark %@ is stuck (no where to go) - we're removing him", shark.uniqueName);
+				DebugLog(@"Shark %@ is stuck (no where to go) - we're removing him", shark.uniqueName);
 				//TODO: make the shark spin around in circles and explode in frustration!
 				[shark removeSelf];
 				continue;
 			}else {
-				NSLog(@"Shark %@ is stuck (no where to go) - we're letting him keep at it", shark.uniqueName);
+				DebugLog(@"Shark %@ is stuck (no where to go) - we're letting him keep at it", shark.uniqueName);
 				bestOptionPos = ccp(shark.position.x+((arc4random()%10)-5)/10.0,shark.position.y+((arc4random()%10)-5)/10.0);
 				//TODO: make the shark show some kind of frustration (perhaps smoke in nostrils/grimac)
 			}
@@ -1701,7 +1695,7 @@
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
 				sharkData.isStuck = true;
-				NSLog(@"Shark %@ is stuck (trying to move, but not making progress) - we're removing him", shark.uniqueName);
+				DebugLog(@"Shark %@ is stuck (trying to move, but not making progress) - we're removing him", shark.uniqueName);
 				//TODO: make the shark spin around in circles and explode in frustration!
 				[shark removeSelf];
 			}else {
@@ -1710,7 +1704,7 @@
 				dx+= ((arc4random()%200)-100)/1000;
 				dy+= ((arc4random()%200)-100)/1000;
 				sharkSpeed*= 5;
-				NSLog(@"Shark %@ is stuck (trying to move but can't) - giving him a bit of jitter", shark.uniqueName);
+				DebugLog(@"Shark %@ is stuck (trying to move but can't) - giving him a bit of jitter", shark.uniqueName);
 
 			}
 		}
@@ -1738,7 +1732,7 @@
 			if (callback._fixture) {
 				if (callback._fixture->GetBody() == shark.body) {
 					//shark is in the way!!
-					//NSLog(@"Shark %@ is in the way of a windmill %@! Applying effects...", shark.uniqueName, windmill.uniqueName);
+					//DebugLog(@"Shark %@ is in the way of a windmill %@! Applying effects...", shark.uniqueName, windmill.uniqueName);
 					
 					double dModSum = fabs(xDir) + fabs(yDir);
 					if(dModSum == 0) {
@@ -1755,7 +1749,7 @@
 		double dSum = fabs(dx) + fabs(dy);
 		if(dSum == 0) {
 			//no best option?
-			//NSLog(@"No best option for shark %@ max(dx,dy) was 0", shark.uniqueName);
+			//DebugLog(@"No best option for shark %@ max(dx,dy) was 0", shark.uniqueName);
 			dSum = 1;
 		}
 		double normalizedX = (sharkSpeed*dx)/dSum;
@@ -1764,7 +1758,7 @@
 		double impulseX = ((normalizedX+dxMod)*dt)*.1*pow(shark.scale,2);
 		double impulseY = ((normalizedY+dyMod)*dt)*.1*pow(shark.scale,2);
 		
-		//NSLog(@"Shark %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", shark.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
+		//DebugLog(@"Shark %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", shark.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
 				
 		//we're using an impulse for the shark so they interact with things like Debris (physics)
 		//shark.body->SetLinearVelocity(b2Vec2(weightedVelX,weightedVelY));
@@ -1784,13 +1778,13 @@
 		//TODO: add a waddle animation
 	}
 	
-	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done moving %d sharks...", [sharks count]);
+	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done moving %d sharks...", [sharks count]);
 }
 
 -(void) movePenguins:(ccTime)dt {
 
 	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
-	if(DEBUG_ALL_THE_THINGS) NSLog(@"Moving %d penguins...", [penguins count]);
+	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Moving %d penguins...", [penguins count]);
 
 	bool hasWon = true;
 	for(LHSprite* penguin in penguins) {
@@ -1801,7 +1795,7 @@
 		}
 	}
 	if(hasWon) {
-		NSLog(@"All penguins have made it to safety!");
+		DebugLog(@"All penguins have made it to safety!");
 		[self levelWon];
 		return;
 	}
@@ -1817,7 +1811,7 @@
 		}
 		
 		if(penguinGridPos.x > _gridWidth-1 || penguinGridPos.x < 0 || penguinGridPos.y > _gridHeight-1 || penguinGridPos.y < 0) {
-			NSLog(@"Penguin %@ is offscreen at %f,%f - showing level lost", penguin.uniqueName, penguinGridPos.x, penguinGridPos.y);
+			DebugLog(@"Penguin %@ is offscreen at %f,%f - showing level lost", penguin.uniqueName, penguinGridPos.x, penguinGridPos.y);
 			[self levelLostWithOffscreenPenguin:penguin];
 			return;
 		}
@@ -1850,7 +1844,7 @@
 			CGPoint bestOptionPos = [penguinMoveGridData getBestMoveToTile:penguinMoveGridData.lastTargetTile fromTile:penguinGridPos];
 					
 			if(bestOptionPos.x == -10000 && bestOptionPos.y == -10000) {
-				NSLog(@"Penguin %@ is stuck (nowhere to go)!", penguin.uniqueName);
+				DebugLog(@"Penguin %@ is stuck (nowhere to go)!", penguin.uniqueName);
 				penguinData.isStuck = true;
 				//TODO: show a confused expression. possibly raising wings into the air in a "oh well" gesture
 				
@@ -1879,7 +1873,7 @@
 				dx+= ((arc4random()%200)-100)/1000;
 				dy+= ((arc4random()%200)-100)/1000;
 				penguinSpeed*= 5;
-				NSLog(@"Penguin %@ is stuck (trying to move but can't) - giving him a bit of jitter", penguin.uniqueName);
+				DebugLog(@"Penguin %@ is stuck (trying to move but can't) - giving him a bit of jitter", penguin.uniqueName);
 			}
 			
 
@@ -1906,7 +1900,7 @@
 				if (callback._fixture) {
 					if (callback._fixture->GetBody() == penguin.body) {
 						//shark is in the way!!
-						//NSLog(@"Penguin %@ is in the way of a windmill %@! Applying effects...", penguin.uniqueName, windmill.uniqueName);
+						//DebugLog(@"Penguin %@ is in the way of a windmill %@! Applying effects...", penguin.uniqueName, windmill.uniqueName);
 						
 						double dModSum = fabs(xDir) + fabs(yDir);
 						if(dModSum == 0) {
@@ -1924,7 +1918,7 @@
 			double dSum = fabs(dx) + fabs(dy);
 			if(dSum == 0) {
 				//no best option?
-				//NSLog(@"No best option for shark %@ max(dx,dy) was 0", shark.uniqueName);
+				//DebugLog(@"No best option for shark %@ max(dx,dy) was 0", shark.uniqueName);
 				dSum = 1;
 			}
 			double normalizedX = (penguinSpeed*dx)/dSum;
@@ -1933,7 +1927,7 @@
 			double impulseX = ((normalizedX+dxMod)*dt)*.1*pow(penguin.scale,2);
 			double impulseY = ((normalizedY+dyMod)*dt)*.1*pow(penguin.scale,2);
 			
-			//NSLog(@"Penguin %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", penguin.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
+			//DebugLog(@"Penguin %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", penguin.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
 		
 			//TODO:! look into why on iPad Retina simulator the Penguin and Shark can't move at all????
 		
@@ -1942,7 +1936,7 @@
 		}
 	}
 
-	if(DEBUG_ALL_THE_THINGS) NSLog(@"Done moving %d penguins...", [penguins count]);
+	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done moving %d penguins...", [penguins count]);
 
 }
 
@@ -1957,7 +1951,7 @@
     {
 		if(!penguinData.isDead) {
 			penguinData.isDead = true;
-			NSLog(@"Shark %@ has collided with penguin %@!", shark.uniqueName, penguin.uniqueName);
+			DebugLog(@"Shark %@ has collided with penguin %@!", shark.uniqueName, penguin.uniqueName);
 			[self levelLostWithShark:shark andPenguin:penguin];
 		}
     }
@@ -1974,7 +1968,7 @@
 		if(!penguinData.isSafe) {
 			penguinData.isSafe = true;
 			[_penguinsToPutOnLand setObject:land forKey:penguin.uniqueName];
-			NSLog(@"Penguin %@ has collided with some land!", penguin.uniqueName);
+			DebugLog(@"Penguin %@ has collided with some land!", penguin.uniqueName);
 		}
 		
 		//TODO: replace penguin a happy animation
@@ -2133,7 +2127,7 @@
 
 
 -(void) onExit{
-	if(DEBUG_MEMORY) NSLog(@"Begin GameLayer %f onExit", _instanceId);
+	if(DEBUG_MEMORY) DebugLog(@"Begin GameLayer %f onExit", _instanceId);
 	if(DEBUG_MEMORY) report_memory();
 
 	_state = GAME_OVER;
@@ -2148,13 +2142,13 @@
 		
     [super onExit];
 	
-	if(DEBUG_MEMORY) NSLog(@"End GameLayer %f onExit", _instanceId);
+	if(DEBUG_MEMORY) DebugLog(@"End GameLayer %f onExit", _instanceId);
 	if(DEBUG_MEMORY) report_memory();
 }
 
 -(void) dealloc
 {
-	if(DEBUG_MEMORY) NSLog(@"Begin GameLayer %f dealloc", _instanceId);
+	if(DEBUG_MEMORY) DebugLog(@"Begin GameLayer %f dealloc", _instanceId);
 	if(DEBUG_MEMORY) report_memory();
 	
 	[_levelLoader removeAllPhysics];
@@ -2204,7 +2198,7 @@
 	
 	[super dealloc];
 	
-	if(DEBUG_MEMORY) NSLog(@"End GameLayer %f dealloc", _instanceId);
+	if(DEBUG_MEMORY) DebugLog(@"End GameLayer %f dealloc", _instanceId);
 	if(DEBUG_MEMORY) report_memory();
 }	
 

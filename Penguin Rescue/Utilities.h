@@ -15,6 +15,13 @@
 
 + (NSString*)UUID;
 
++(void)startAnalytics;
++(void)logEvent:(NSString*)eventName withParameters:(NSDictionary*)parameters timed:(bool)timed;
++(void)logEvent:(NSString*)eventName withParameters:(NSDictionary*)parameters;
++(void)logError:(NSString*)error message:(NSString*)message exception:(NSException*)exception;
++(void)endTimedEvent:(NSString*)eventName withParameters:(NSDictionary*)parameters;
+
+
 @end
 
 void report_memory(void);

@@ -28,11 +28,16 @@
 
     point.x *= scale.x*flipx;
     point.y *= scale.y*flipy;
-    
-    if([[LHSettings sharedInstance] isHDImage:[sprite imageFile]]){
+
+    if([sprite usesUVTransformation] &&
+       [[LHSettings sharedInstance] isHDImage:[sprite imageFile]]){
         point.x *=2.0f;
         point.y *=2.0f;
-
+    }
+    else if(![sprite usesUVTransformation])
+    {
+        point.x /=CC_CONTENT_SCALE_FACTOR();
+        point.y /=CC_CONTENT_SCALE_FACTOR();
     }
 
     return b2Vec2(point.x/ptm, point.y/ptm);
@@ -101,7 +106,6 @@
                     const int idx = (flipx < 0 && flipy >= 0) || (flipx >= 0 && flipy < 0) ? count - i - 1 : i;
                     
                     CGPoint point = LHPointFromString([fixInfo objectAtIndex:(NSUInteger)j]);
-                    
                     verts[idx] = [self transformPoint:point sprite:sprite offset:offset scale:scale];
                     
                     ++i;
@@ -126,8 +130,6 @@
     #else
                 fixture.userData = (__bridge void*)self;
     #endif
-                
-                
                 //------------------------------------------------------------------            
                 fixture.shape = &shapeDef;
                 body->CreateFixture(&fixture);
@@ -162,10 +164,16 @@
             //------------------------------------------------------------------            
             
             CGPoint origin = ccp(offset.x*scale.x*flipx,  -offset.y*scale.y*flipy);
-            if([[LHSettings sharedInstance] isHDImage:[sprite imageFile]])
+            if([sprite usesUVTransformation] &&
+               [[LHSettings sharedInstance] isHDImage:[sprite imageFile]])
             {
                 origin.x *=2.0f;
                 origin.y *=2.0f;
+            }
+            else if(![sprite usesUVTransformation])
+            {
+                origin.x /=CC_CONTENT_SCALE_FACTOR();
+                origin.y /=CC_CONTENT_SCALE_FACTOR();
             }
             
             if(isCircle)
@@ -181,6 +189,12 @@
                     circleScale = -circleScale;
                 
                 float radius = (width*circleScale)/ptm;
+                
+                if(![sprite usesUVTransformation])
+                {
+                    radius = width/CC_CONTENT_SCALE_FACTOR()/ptm;
+                }
+                
                 
                 if(![[LHSettings sharedInstance] isHDImage:[sprite imageFile]]){
                     radius /=2.0f;

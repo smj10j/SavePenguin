@@ -18,7 +18,7 @@
 	
 		_scores = [[NSMutableDictionary alloc] init];
 	
-		NSLog(@"SERVER AVAILALBE? %d", isServerAvailable());
+		DebugLog(@"SERVER AVAILALBE? %d", isServerAvailable());
 	
 		[self updateWorldScoresFromServer];
 		
@@ -115,12 +115,12 @@
 		
 		NSMutableDictionary* worldScores = [response mutableObjectFromJSONString];
 		[worldScores setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"timestamp"];
-		if(DEBUG_SCORING) NSLog(@"Loaded world scores data from server: %@", worldScores);
+		if(DEBUG_SCORING) DebugLog(@"Loaded world scores data from server: %@", worldScores);
 		
 		[self saveWorldScoresLocally:worldScores];
 		
 	}else {
-		if(DEBUG_SCORING) NSLog(@"Using world scores data from local plist: %@", worldScores);
+		if(DEBUG_SCORING) DebugLog(@"Using world scores data from local plist: %@", worldScores);
 	}
 }
 
@@ -137,10 +137,10 @@
 	
 	//write to file!
 	if(![worldScoresDictionary writeToFile:worldScoresPropertyListPath atomically: YES]) {
-        NSLog(@"---- Failed to save world scores in local plist!! - %@ -----", worldScoresPropertyListPath);
+        DebugLog(@"---- Failed to save world scores in local plist!! - %@ -----", worldScoresPropertyListPath);
         return;
     }
-	if(DEBUG_SCORING) NSLog(@"Saved world scores in local plist");
+	if(DEBUG_SCORING) DebugLog(@"Saved world scores in local plist");
 }
 
 -(void)saveScore:(int)score userId:(NSString*)userId levelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
@@ -160,7 +160,7 @@
 		
 		
 		
-		if(DEBUG_SCORING) NSLog(@"Sent score data to server");
+		if(DEBUG_SCORING) DebugLog(@"Sent score data to server");
 		
 		//now send any queued up scores from when we may have been offline
 		[self emptyLocalSendQueue];
@@ -186,13 +186,13 @@
 
 		//write an empty array to file!
 		if(![[NSArray arrayWithObjects:nil] writeToFile:localScoreSendQueuePropertyListPath atomically: YES]) {
-			NSLog(@"---- Failed to save emptied score queue plist!! - %@ -----", localScoreSendQueuePropertyListPath);
+			DebugLog(@"---- Failed to save emptied score queue plist!! - %@ -----", localScoreSendQueuePropertyListPath);
 			return;
 		}
-		if(DEBUG_SCORING) NSLog(@"Saved emptied send queue plist");
+		if(DEBUG_SCORING) DebugLog(@"Saved emptied send queue plist");
 		
 		//now iterate to empty
-		if(DEBUG_SCORING) NSLog(@"Sending %d queued scores to server", localScoreSendQueue.count);
+		if(DEBUG_SCORING) DebugLog(@"Sending %d queued scores to server", localScoreSendQueue.count);
 		for(NSDictionary* scoreData in localScoreSendQueue) {
 			[self saveScore:[(NSNumber*)[scoreData objectForKey:@"score"] intValue]
 					userId:[scoreData objectForKey:@"userId"]
@@ -216,12 +216,12 @@
 	
 	//write to file!
 	if(![localScoreSendQueue writeToFile:localScoreSendQueuePropertyListPath atomically: YES]) {
-        NSLog(@"---- Failed to save local score to send queue plist!! - %@ -----", localScoreSendQueuePropertyListPath);
+        DebugLog(@"---- Failed to save local score to send queue plist!! - %@ -----", localScoreSendQueuePropertyListPath);
 		[localScoreSendQueue release];
         return;
     }
 	[localScoreSendQueue release];
-	if(DEBUG_SCORING) NSLog(@"Added local score to send queue plist");
+	if(DEBUG_SCORING) DebugLog(@"Added local score to send queue plist");
 }
 
 

@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Conquer LLC. All rights reserved.
 //
 
+#import "Constants.h"
 #import "SettingsManager.h"
 
 static NSMutableDictionary* sSettings = nil;
@@ -20,7 +21,7 @@ static NSMutableDictionary* sSettings = nil;
 		if(sSettings == nil) {
 			sSettings = [[NSMutableDictionary alloc] init];
 		}
-		//NSLog(@"Loaded user settings");
+		//DebugLog(@"Loaded user settings");
 	//}
 }
 
@@ -30,7 +31,7 @@ static NSMutableDictionary* sSettings = nil;
 	NSString* settingsPlistPath = [rootPath stringByAppendingPathComponent:@"UserSettings.plist"];
 
 	if(![sSettings writeToFile:settingsPlistPath atomically: YES]) {
-        NSLog(@"---- Failed to save user settings!! - %@ -----", settingsPlistPath);
+        DebugLog(@"---- Failed to save user settings!! - %@ -----", settingsPlistPath);
         return;
     }
 }
@@ -40,7 +41,7 @@ static NSMutableDictionary* sSettings = nil;
 
 +(id)objectForKey:(NSString*)key {
 	[SettingsManager loadSettings];
-	NSLog(@"Loading settings value for key %@", key);
+	DebugLog(@"Loading settings value for key %@", key);
 	return [sSettings objectForKey:key];
 }
 +(NSString*)stringForKey:(NSString*)key {

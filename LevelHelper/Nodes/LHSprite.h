@@ -138,9 +138,11 @@
     bool usesOverloadedTransformations; //false uses native Cocos2d setPosition setRotation - true uses LH (may cause problems in certain game logics)
     
     bool usePhysicsForTouches;
-    
     id  userCustomInfo;
+    
+    bool usesUVTransformation;
 }
+@property (readonly) bool usesUVTransformation; //used internally by supporting code to figure out if a sh document was created using "No resampling or not"
 @property (readwrite) CGSize realScale;
 @property (readwrite) bool swallowTouches;
 @property (readwrite) bool touchesDisabled;

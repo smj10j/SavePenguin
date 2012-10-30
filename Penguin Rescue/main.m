@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Flurry.h"
+#import "Constants.h"
+#import "Utilities.h"
 
 int main(int argc, char *argv[]) {
     
@@ -18,9 +19,9 @@ int main(int argc, char *argv[]) {
         retVal = UIApplicationMain(argc, argv, nil, @"AppController");
     }
     @catch (NSException *exception) {
-        NSLog(@"CRASH: %@", exception);
-        NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
-		[Flurry logError:@"Uncaught" message:@"Crash!" exception:exception];
+        DebugLog(@"CRASH: %@", exception);
+        DebugLog(@"Stack Trace: %@", [exception callStackSymbols]);
+		[Utilities logError:@"Uncaught" message:@"Crash!" exception:exception];
     }
     @finally {
         [pool release];

@@ -68,7 +68,7 @@
 		
 		
 		double lastRun = [SettingsManager doubleForKey:SETTING_LAST_RUN_TIMESTAMP];
-		NSLog(@"Last run was: %f", lastRun);
+		DebugLog(@"Last run was: %f", lastRun);
 		
 		//INITIAL SETTINGS TIME!!
 		if(lastRun == 0) {
@@ -87,21 +87,21 @@
 			NSError *error = nil;
 			NSString* UUID = [SSKeychain passwordForService:COMPANY_IDENTIFIER account:@"user" error:&error];
 			if (error != nil) {
-				NSLog(@"@@@@ ERROR SSKeychain passwordForService error code: %d", [error code]);
+				DebugLog(@"@@@@ ERROR SSKeychain passwordForService error code: %d", [error code]);
 			}
 			if(UUID == nil) {
 				UUID = [Utilities UUID];
-				NSLog(@"Created a new UserId");
+				DebugLog(@"Created a new UserId");
 				
 				//store the userId to the keychain
 				error = nil;
 				[SSKeychain setPassword:UUID forService:COMPANY_IDENTIFIER account:@"user" error:&error];
 				if (error!= nil) {
-					NSLog(@"@@@@ ERROR SSKeychain setPassword error code: %d", [error code]);
+					DebugLog(@"@@@@ ERROR SSKeychain setPassword error code: %d", [error code]);
 				}
 				
 			}else {
-				NSLog(@"Retrieved UserId from the keychain!");
+				DebugLog(@"Retrieved UserId from the keychain!");
 			}
 			[SettingsManager setString:UUID forKey:SETTING_USER_ID];
 						
@@ -120,13 +120,13 @@
 		}
 		
 		//output our UserId
-		NSLog(@"Launching with UserId=%@", [SettingsManager stringForKey:SETTING_USER_ID]);
+		DebugLog(@"Launching with UserId=%@", [SettingsManager stringForKey:SETTING_USER_ID]);
 		
 		//set our boot time (can be used for applying settings on updates
 		[SettingsManager setDouble:[[NSDate date] timeIntervalSince1970] forKey:SETTING_LAST_RUN_TIMESTAMP];
 	}
 	
-	if(DEBUG_MEMORY) NSLog(@"Initialized IntroLayer");	
+	if(DEBUG_MEMORY) DebugLog(@"Initialized IntroLayer");	
 	
 	return self;
 }
@@ -138,7 +138,7 @@
 }
 
 -(void) onExit {
-	if(DEBUG_MEMORY) NSLog(@"IntroLayer onExit");
+	if(DEBUG_MEMORY) DebugLog(@"IntroLayer onExit");
 
 	[super onExit];
 }

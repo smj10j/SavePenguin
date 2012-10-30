@@ -8,6 +8,7 @@
 
 #include "Constants.h"
 #include "Utilities.h"
+#include "Flurry.h"
 
 @implementation Utilities
 
@@ -20,6 +21,40 @@
   CFRelease(theUUID);
   return [(NSString *)string autorelease];
 }
+
++(void)startAnalytics {
+#if DISTRIBUTION_MODE
+	//[Flurry setDebugLogEnabled:true];
+	//[Flurry setShowErrorInLogEnabled:true];
+	[Flurry setEventLoggingEnabled:true];
+	[Flurry startSession:@"6DDZY62RXJWGMWHGYVQ3"];
+#endif
+}
+
++(void)logEvent:(NSString*)eventName withParameters:(NSDictionary*)parameters timed:(bool)timed {
+#if DISTRIBUTION_MODE
+	[Flurry logEvent:eventName withParameters:parameters timed:timed];
+#endif
+}
+
++(void)logEvent:(NSString*)eventName withParameters:(NSDictionary*)parameters {
+#if DISTRIBUTION_MODE
+	[Flurry logEvent:eventName withParameters:parameters];
+#endif
+}
+
++(void)logError:(NSString*)error message:(NSString*)message exception:(NSException*)exception {
+#if DISTRIBUTION_MODE
+	[Flurry logError:error message:message exception:exception];
+#endif
+}
+
++(void)endTimedEvent:(NSString*)eventName withParameters:(NSDictionary*)parameters {
+#if DISTRIBUTION_MODE
+	[Flurry endTimedEvent:eventName withParameters:parameters];
+#endif
+}
+
 
 @end
 
@@ -51,7 +86,7 @@ void report_memory(void) {
 
     if (true || memUsageDiff > 100000 || memUsageDiff < -100000) {
         prevMemUsage = curMemUsage;
-        NSLog(@"Memory used %7.1f (%+5.0f), free %7.1f kb", curMemUsage/1000.0f, memUsageDiff/1000.0f, freeMemory()/1000.0f);
+        DebugLog(@"Memory used %7.1f (%+5.0f), free %7.1f kb", curMemUsage/1000.0f, memUsageDiff/1000.0f, freeMemory()/1000.0f);
     }
 }
 

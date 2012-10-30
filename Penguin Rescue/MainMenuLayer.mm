@@ -94,7 +94,7 @@
 		if(isSoundEnabled) {
 			[toggleSoundButton setFrame:toggleSoundButton.currentFrame+1];	//active state
 		}
-		NSLog(@"Music is %@. Sound is %@", isMusicEnabled ? @"ON": @"OFF", isSoundEnabled ? @"ON" : @"OFF");
+		DebugLog(@"Music is %@. Sound is %@", isMusicEnabled ? @"ON": @"OFF", isSoundEnabled ? @"ON" : @"OFF");
 		
 		
 		
@@ -109,7 +109,7 @@
 		}
 	}
 	
-	if(DEBUG_MEMORY) NSLog(@"Initialized MainMenuLayer");
+	if(DEBUG_MEMORY) DebugLog(@"Initialized MainMenuLayer");
 	if(DEBUG_MEMORY) report_memory();
 	
 	return self;
@@ -154,7 +154,7 @@
 	if(info.sprite == nil) return;
 
 	bool isSoundEnabled = [SettingsManager boolForKey:SETTING_SOUND_ENABLED];
-	NSLog(@"Sound was %d - setting to %d", isSoundEnabled, !isSoundEnabled);
+	DebugLog(@"Sound was %d - setting to %d", isSoundEnabled, !isSoundEnabled);
 
 	if(isSoundEnabled) {
 		[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
@@ -179,7 +179,7 @@
 	}
 
 	bool isMusicEnabled = [SettingsManager boolForKey:SETTING_MUSIC_ENABLED];
-	NSLog(@"Music was %d - setting to %d", isMusicEnabled, !isMusicEnabled);
+	DebugLog(@"Music was %d - setting to %d", isMusicEnabled, !isMusicEnabled);
 
 	if(isMusicEnabled) {
 		[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
@@ -203,7 +203,7 @@
 
 
 -(void) onExit {
-	if(DEBUG_MEMORY) NSLog(@"MainMenuLayer onExit");
+	if(DEBUG_MEMORY) DebugLog(@"MainMenuLayer onExit");
 
 	for(LHSprite* sprite in _levelLoader.allSprites) {
 		[sprite stopAnimation];
@@ -214,7 +214,7 @@
 
 -(void) dealloc
 {
-	NSLog(@"MainMenuLayer dealloc");
+	DebugLog(@"MainMenuLayer dealloc");
 
 	[_levelLoader release];
 	_levelLoader = nil;	

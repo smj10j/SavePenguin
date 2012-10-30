@@ -48,7 +48,7 @@
 	if(_gridWidth > 0 && _gridHeight > 0 && _baseGrid != nil && _moveGridBuffer != nil) {
 		int rowSize = sizeof(int) * _gridHeight;
 		for(int i = 0; i < _gridWidth; i++) {
-			//NSLog(@"memcpy: %d bytes from _baseGrid[%d] to _moveGridBuffer[%d]", rowSize, i, i);
+			//DebugLog(@"memcpy: %d bytes from _baseGrid[%d] to _moveGridBuffer[%d]", rowSize, i, i);
 			memcpy(_moveGridBuffer[i], (void*)_baseGrid[i], rowSize);
 		}
 	}
@@ -58,7 +58,7 @@
 	if(_gridWidth > 0 && _gridHeight > 0 && _moveGrid != nil && _moveGridBuffer != nil) {
 		int rowSize = sizeof(int) * _gridHeight;
 		for(int i = 0; i < _gridWidth; i++) {
-			//NSLog(@"memcpy: %d bytes from _moveGridBufferp[%d] to _moveGrid[%d]", rowSize, i, i);
+			//DebugLog(@"memcpy: %d bytes from _moveGridBufferp[%d] to _moveGrid[%d]", rowSize, i, i);
 			memcpy(_moveGrid[i], (void*)_moveGridBuffer[i], rowSize);
 		}
 	}
@@ -129,7 +129,7 @@
 	//makes backtracking less attractive
 	_moveGrid[(int)fromTile.x][(int)fromTile.y]++;
 	
-	//NSLog(@"tag %@ weights: %f, %f, %f, %f", _tag, wN, wS, wE, wW);
+	//DebugLog(@"tag %@ weights: %f, %f, %f, %f", _tag, wN, wS, wE, wW);
 	
 	if(wW == wE && wE == wN && wN == wS) {
 				
@@ -184,10 +184,10 @@
 		/*bestOptionPos = ccp(shark.position.x + (fabs(wE) > fabs(wW) ? wE : wW),
 							shark.position.y + (fabs(wN) > fabs(wS) ? wN : wS)
 						);*/
-		//NSLog(@"best: %f,%f", bestOptionPos.x,bestOptionPos.y);
+		//DebugLog(@"best: %f,%f", bestOptionPos.x,bestOptionPos.y);
 	}
 	
-	//NSLog(@"Returning best move: %f,%f fromTile: %f,%f", bestMove.x,bestMove.y,fromTile.x,fromTile.y);
+	//DebugLog(@"Returning best move: %f,%f fromTile: %f,%f", bestMove.x,bestMove.y,fromTile.x,fromTile.y);
 	
 	return bestMove;
 }
@@ -200,7 +200,7 @@
 
 	if(_forceUpdateToMoveGrid || (_lastToTile.x != toTile.x || _lastToTile.y != toTile.y)) {
 
-		//NSLog(@"Updating a %@ move grid", _tag);
+		//DebugLog(@"Updating a %@ move grid", _tag);
 
 		_lastToTile = toTile;
 		_forceUpdateToMoveGrid = false;
@@ -237,7 +237,7 @@
 			}
 		}
 		
-		//NSLog(@"Foundroute=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for a %@ move grid in %f seconds", foundRoute, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - start);
+		//DebugLog(@"Foundroute=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for a %@ move grid in %f seconds", foundRoute, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - start);
 		
 	}
 }
@@ -270,7 +270,7 @@
 	double wW = x-1 < 0 ? -10000 : _moveGridBuffer[x-1][y];
 
 	/*if(w < 50) {
-		NSLog(@"tag %@ %d,%d = %f", _tag, x, y, w);
+		DebugLog(@"tag %@ %d,%d = %f", _tag, x, y, w);
 	}*/
 	
 	bool changedN = false;
@@ -313,7 +313,7 @@
 
 -(void)dealloc {
 
-	//NSLog(@"Deallocating MoveGrid");
+	//DebugLog(@"Deallocating MoveGrid");
 
 	if(_baseGrid != nil) {
 		for(int i = 0; i < _gridWidth; i++) {

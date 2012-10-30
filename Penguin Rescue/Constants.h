@@ -9,17 +9,23 @@
 #ifndef Penguin_Rescue_Constants_h
 #define Penguin_Rescue_Constants_h
 
+//true to disable all output and send analytics data
+#define DISTRIBUTION_MODE true
+
 
 
 #define TEST_MODE false
 #define TEST_LEVEL_PACK @"Arctic1"
 #define TEST_LEVEL @"WayWayUpThere"
 
-#define DEBUG_ALL_THE_THINGS false
-#define DEBUG_SCORING true || DEBUG_ALL_THE_THINGS
-#define DEBUG_MEMORY false || DEBUG_ALL_THE_THINGS
-#define DEBUG_PENGUIN false || DEBUG_ALL_THE_THINGS	//can be overridden in game
-#define DEBUG_SHARK false || DEBUG_ALL_THE_THINGS	//can be overridden in game
+ 
+
+
+#define DEBUG_ALL_THE_THINGS	(false							&& !DISTRIBUTION_MODE)
+#define DEBUG_SCORING			(true || DEBUG_ALL_THE_THINGS)	&& !DISTRIBUTION_MODE
+#define DEBUG_MEMORY			(false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE
+#define DEBUG_PENGUIN			(false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE	//can be overridden in game
+#define DEBUG_SHARK				(false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE		//can be overridden in game
 
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 #define SCALING_FACTOR_H (IS_IPHONE ? 480.0/1024.0 : 1.0)
@@ -63,6 +69,17 @@
 
 #define COMPANY_IDENTIFIER @"com.conquerllc"
 
+
+
+
+
+
+
+#if !DISTRIBUTION_MODE
+#define DebugLog( s, ... ) NSLog( @"<%@:(%d)> %@", [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
+#else
+#define DebugLog( s, ... )
+#endif
 
 #endif
 

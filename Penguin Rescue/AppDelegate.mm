@@ -8,8 +8,6 @@
 
 #import "cocos2d.h"
 
-#import "Flurry.h"
-
 #import "AppDelegate.h"
 #import "IntroLayer.h"
 #import "LevelPackManager.h"
@@ -27,10 +25,6 @@
 	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 	
 	//start analytics
-	//[Flurry setDebugLogEnabled:true];
-	//[Flurry setShowErrorInLogEnabled:true];
-	[Flurry setEventLoggingEnabled:true];
-	[Flurry startSession:@"6DDZY62RXJWGMWHGYVQ3"];
 	
 	// Create the main window
 	_window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -56,7 +50,7 @@
 	[_director setDisplayStats:YES];
 	
 	// set FPS at 60
-	[_director setAnimationInterval:1.0/60];
+	[_director setAnimationInterval:1.0/TARGET_FPS];
 	
 	// attach the openglView to the director
 	[_director setView:glView];
@@ -164,11 +158,11 @@
 // purge memory
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
-	NSLog(@"@@@@@@@@@@@ Low memory warning @@@@@@@@@@@@");;
-	NSLog(@"@@@@@@@@@@@ Low memory warning @@@@@@@@@@@@");;
+	DebugLog(@"@@@@@@@@@@@ Low memory warning @@@@@@@@@@@@");;
+	DebugLog(@"@@@@@@@@@@@ Low memory warning @@@@@@@@@@@@");;
 	report_memory();
-	NSLog(@"@@@@@@@@@@@ Low memory warning @@@@@@@@@@@@");;
-	NSLog(@"@@@@@@@@@@@ Low memory warning @@@@@@@@@@@@");;
+	DebugLog(@"@@@@@@@@@@@ Low memory warning @@@@@@@@@@@@");;
+	DebugLog(@"@@@@@@@@@@@ Low memory warning @@@@@@@@@@@@");;
 	
 	[[CCDirector sharedDirector] purgeCachedData];
 }
@@ -204,19 +198,19 @@
     {
         case NotReachable:
         {
-            NSLog(@"A gateway to the host server is down.");
+            DebugLog(@"A gateway to the host server is down.");
 			setServerAvailable(false);
             break;
         }
         case ReachableViaWiFi:
         {
-            NSLog(@"A gateway to the host server is working via WIFI.");
+            DebugLog(@"A gateway to the host server is working via WIFI.");
 			setServerAvailable(true);
             break;
         }
         case ReachableViaWWAN:
         {
-            NSLog(@"A gateway to the host server is working via WWAN.");
+            DebugLog(@"A gateway to the host server is working via WWAN.");
 			setServerAvailable(true);
             break;
         }
@@ -233,8 +227,8 @@
 
 //send uncaught exceptions to Flurry
 void uncaughtExceptionHandler(NSException *exception) {
-	NSLog(@"Uncaught exception: %@ - %@", exception.name, exception.reason);
-	[Flurry logError:@"Uncaught" message:@"Crash!" exception:exception];
+	DebugLog(@"Uncaught exception: %@ - %@", exception.name, exception.reason);
+	[Utilities logError:@"Uncaught" message:@"Crash!" exception:exception];
 }
 
 

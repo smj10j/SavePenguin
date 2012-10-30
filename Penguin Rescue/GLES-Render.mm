@@ -226,7 +226,7 @@ void GLESDebugDraw::DrawPoint(const b2Vec2& p, float32 size, const b2Color& colo
 
 void GLESDebugDraw::DrawString(int x, int y, const char *string, ...)
 {
-	//	NSLog(@"DrawString: unsupported: %s", string);
+	//	DebugLog(@"DrawString: unsupported: %s", string);
 	//printf(string);
 	/* Unsupported as yet. Could replace with bitmap font renderer at a later date */
 }

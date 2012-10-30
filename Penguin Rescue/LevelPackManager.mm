@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Conquer LLC. All rights reserved.
 //
 
+#import "Constants.h"
 #import "LevelPackManager.h"
 
 static NSString* sMainBundlePath;
@@ -16,10 +17,10 @@ static NSString* sRootPath;
 		/*
 		NSURL *ubiq = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
 		if (ubiq) {
-			NSLog(@"iCloud access at %@", ubiq);
+			DebugLog(@"iCloud access at %@", ubiq);
 			_iCloudPath = ubiq;
 		}else {
-			NSLog(@"No iCloud access");
+			DebugLog(@"No iCloud access");
 			_iCloudPath = nil;
 		}
 		*/
@@ -36,7 +37,7 @@ static NSString* sRootPath;
 +(NSDictionary*)allLevelPacks {
 	[LevelPackManager setupPaths];
 	NSString* levelPacksPropertyListPath = [sMainBundlePath stringByAppendingPathComponent:@"Levels/Packs.plist"];
-	//NSLog(@"Loading all level packs");
+	//DebugLog(@"Loading all level packs");
 	return [NSDictionary dictionaryWithContentsOfFile:levelPacksPropertyListPath];
 }
 
@@ -44,7 +45,7 @@ static NSString* sRootPath;
 +(NSDictionary*)allLevelsInPack:(NSString*)packPath {
 	[LevelPackManager setupPaths];
 	NSString* levelsPropertyListPath = [sMainBundlePath stringByAppendingPathComponent:[NSString stringWithFormat:@"Levels/%@/Levels.plist", packPath]];
-	//NSLog(@"Loading all levels in pack %@", packPath);
+	//DebugLog(@"Loading all levels in pack %@", packPath);
 	return [NSDictionary dictionaryWithContentsOfFile:levelsPropertyListPath];
 }
 
@@ -53,7 +54,7 @@ static NSString* sRootPath;
 +(NSArray*)completedPacks {
 	[LevelPackManager setupPaths];
 	NSString* completedLevelPacksPropertyListPath = [sRootPath stringByAppendingPathComponent:@"CompletedPacks.plist"];
-	//NSLog(@"Loading completed level packs");
+	//DebugLog(@"Loading completed level packs");
 	NSDictionary* completedLevelPacksDictionary = [NSDictionary dictionaryWithContentsOfFile:completedLevelPacksPropertyListPath];
 	if(completedLevelPacksPropertyListPath == nil) {
 		return nil;
@@ -65,7 +66,7 @@ static NSString* sRootPath;
 +(NSArray*)completedLevelsInPack:(NSString*)packPath {
 	[LevelPackManager setupPaths];
 	NSString* completedLevelsPropertyListPath = [sRootPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-CompletedLevels.plist", packPath]];
-	//NSLog(@"Loading completed levels in pack %@", packPath);
+	//DebugLog(@"Loading completed levels in pack %@", packPath);
 	NSDictionary* completedLevelsDictionary = [NSDictionary dictionaryWithContentsOfFile:completedLevelsPropertyListPath];
 	if(completedLevelsDictionary == nil) {
 		return nil;
@@ -106,14 +107,14 @@ static NSString* sRootPath;
 			//requires a a fully or partially completed pack - let's see if we meet the number of levels required within the required pack
 			if(requiresNumPackLevelsCompleted == 0) {
 				//0 means 100% required, so let's not add it
-				//NSLog(@"Pack %@ is not available because not 100%% of levels are completed in required pack %@", levelPackPath, requiresPack);
+				//DebugLog(@"Pack %@ is not available because not 100%% of levels are completed in required pack %@", levelPackPath, requiresPack);
 				
 			}else {
 				NSArray* completedLevels = [LevelPackManager completedLevelsInPack:requiresPack];
 				if(completedLevels.count >= [requiresNumPackLevelsCompleted intValue]) {
 					[availableLevelPacks addObject:levelPackPath];
 				}else {
-					//NSLog(@"Pack %@ is not available because %d/%d levels are completed in required pack %@", levelPackPath, completedLevels.count, [requiresNumPackLevelsCompleted intValue], requiresPack);
+					//DebugLog(@"Pack %@ is not available because %d/%d levels are completed in required pack %@", levelPackPath, completedLevels.count, [requiresNumPackLevelsCompleted intValue], requiresPack);
 				}
 			}		
 		}
@@ -136,7 +137,7 @@ static NSString* sRootPath;
 		maxLevelIndex++;
 	}
 	
-	//NSLog(@"Making available up to level %d in pack %@", maxLevelIndex, packPath);
+	//DebugLog(@"Making available up to level %d in pack %@", maxLevelIndex, packPath);
 	//add the 3 levels after levelsDictionary last completed level
 	for(int i = 0; i < levelsDictionary.count && i <= maxLevelIndex; i++) {
 		NSDictionary* levelData = [levelsDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
@@ -175,7 +176,7 @@ static NSString* sRootPath;
 	//create the completed levels array
 	NSMutableArray* completedLevels = [NSMutableArray arrayWithArray:[LevelPackManager completedLevelsInPack:packPath]];
 	if([completedLevels containsObject:levelPath]) {
-		NSLog(@"Level %@ in pack %@ already completed", levelPath, packPath);
+		DebugLog(@"Level %@ in pack %@ already completed", levelPath, packPath);
 		return;
 	}
 	[completedLevels addObject:levelPath];
@@ -190,10 +191,10 @@ static NSString* sRootPath;
 	
 	//write to file!
 	if(![completedLevelsDictionary writeToFile:completedLevelsPropertyListPath atomically: YES]) {
-        NSLog(@"---- Failed to save level completion!! - %@ -----", completedLevelsPropertyListPath);
+        DebugLog(@"---- Failed to save level completion!! - %@ -----", completedLevelsPropertyListPath);
         return;
     }
-	NSLog(@"Marked level %@ in pack %@ as completed", levelPath, packPath);
+	DebugLog(@"Marked level %@ in pack %@ as completed", levelPath, packPath);
 	
 	//save the pack as being completed if necessary
 	NSDictionary* allLevelsInPack = [LevelPackManager allLevelsInPack:packPath];
@@ -210,7 +211,7 @@ static NSString* sRootPath;
 	//create the completed levels array
 	NSMutableArray* completedPacks = [NSMutableArray arrayWithArray:[LevelPackManager completedPacks]];
 	if([completedPacks containsObject:packPath]) {
-		NSLog(@"Pack %@ already completed", packPath);
+		DebugLog(@"Pack %@ already completed", packPath);
 		return;
 	}
 	[completedPacks addObject:packPath];
@@ -225,10 +226,10 @@ static NSString* sRootPath;
 	
 	//write to file!
 	if(![completedLevelPacksDictionary writeToFile:completedLevelPacksPropertyListPath atomically: YES]) {
-        NSLog(@"---- Failed to save level pack completion!! - %@ -----", completedLevelPacksPropertyListPath);
+        DebugLog(@"---- Failed to save level pack completion!! - %@ -----", completedLevelPacksPropertyListPath);
         return;
     }
-	NSLog(@"Marked pack %@ as completed", packPath);
+	DebugLog(@"Marked pack %@ as completed", packPath);
 }
 
 

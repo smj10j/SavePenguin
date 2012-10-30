@@ -80,7 +80,9 @@
     id customSpriteClass = [classesDictionary objectForKey:[NSNumber numberWithInt:tag]];
     
     if(customSpriteClass == nil)
-        customSpriteClass = [LHSprite class];
+    {
+        return [self baseClass];
+    }
     
     return customSpriteClass;
 }
