@@ -39,6 +39,7 @@
 	if(score == nil) {
 		score = [[Score alloc] initWithScore:value sprite:sprite];
 		[_scores setObject:score forKey:scoresKey];
+		[score release];
 	}else {
 		score.count++;
 	}

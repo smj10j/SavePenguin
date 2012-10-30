@@ -29,7 +29,7 @@
 	}
 
 	NSURL* url = [[NSURL alloc] initWithString:SERVER_URL];
-	ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:url];
+	__block ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:url];
 	[request setTimeOutSeconds:20];
 
 	[request addPostValue:@"saveUser" forKey:@"action"];
@@ -68,7 +68,7 @@
 	}
 	
 	NSURL* url = [[NSURL alloc] initWithString:SERVER_URL];
-	ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:url];
+	__block ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:url];
 	[request setTimeOutSeconds:20];
 
 	[request addPostValue:@"savePlay" forKey:@"action"];
@@ -108,7 +108,7 @@
 	}
 
 	NSURL* url = [[NSURL alloc] initWithString:SERVER_URL];
-	ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:url];
+	__block ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:url];
 	[request setTimeOutSeconds:20];
 
 	[request addPostValue:@"saveScore" forKey:@"action"];
@@ -152,7 +152,7 @@
 	}
 	
 	NSURL* url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@?action=%@", SERVER_URL, @"getWorldScores"]];
-	ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
+	__block ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
 	[request setTimeOutSeconds:20];
 
 	// Ah, success, parse the returned JSON data into a NSDictionary

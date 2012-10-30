@@ -69,6 +69,8 @@
 	
 	if(DEBUG_SCORING) DebugLog(@"With zScore=%f we found percentile=%d", zScore, (int)cumulScore);
 	
+	[zTable release];
+	
 	return (int)cumulScore;
 }
 
