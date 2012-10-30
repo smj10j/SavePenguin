@@ -11,7 +11,7 @@
 	<key>JOINTS_INFO</key>
 	<array/>
 	<key>LHVersion</key>
-	<string>1.4.966</string>
+	<string>1.4.967</string>
 	<key>NODES_INFO</key>
 	<array>
 		<dict>
@@ -139,7 +139,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{190, 37}, {36.5, 33.5}}</string>
+								<string>{{36, 151}, {36.5, 33.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -214,7 +214,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{190, 37}, {36.5, 33.5}}</string>
+								<string>{{36, 151}, {36.5, 33.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -289,13 +289,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{135, 84}, {187.5, 32.75}}</string>
+								<string>{{0, 118}, {187.5, 32.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<true/>
+								<false/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -364,7 +364,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 185}, {36.75, 32}}</string>
+								<string>{{73, 151}, {36.75, 32}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -439,7 +439,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 218}, {36, 30.5}}</string>
+								<string>{{36, 186}, {36, 30.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -514,7 +514,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 185}, {37, 27.75}}</string>
+								<string>{{111, 151}, {37, 27.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -589,13 +589,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{101, 84}, {187.5, 32.75}}</string>
+								<string>{{0, 84}, {187.5, 32.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<true/>
+								<false/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -664,7 +664,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{190, 37}, {36.5, 33.5}}</string>
+								<string>{{36, 151}, {36.5, 33.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -694,6 +694,190 @@
 							</dict>
 							<key>UniqueName</key>
 							<string>Debris_Island2_2</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict>
+								<key>AnimAtStart</key>
+								<true/>
+								<key>AnimLoop</key>
+								<true/>
+								<key>AnimName</key>
+								<string>Doodad_Polar_Bear</string>
+								<key>AnimRepetitions</key>
+								<integer>1</integer>
+								<key>AnimRestoreOriginalFrame</key>
+								<false/>
+								<key>AnimSpeed</key>
+								<real>0.05000000074505806</real>
+								<key>OtherAnimations</key>
+								<array/>
+								<key>SHScene</key>
+								<string>Spritesheet.pshs</string>
+							</dict>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Doodad_Polar_Bear_1</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>180</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<true/>
+								<key>Frame</key>
+								<string>{{149, 151}, {21.75, 17.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{233.5, 139.625}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{25, 21.25}</string>
+								<key>Tag</key>
+								<integer>14</integer>
+								<key>TagName</key>
+								<string>DOODAD</string>
+								<key>TextureOffset</key>
+								<string>{0.125, -0.25}</string>
+								<key>UniqueName</key>
+								<string>Doodad_Polar_Bear_1</string>
+								<key>ZOrder</key>
+								<integer>3</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Doodad_Polar_Bear_1</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict>
+								<key>AnimAtStart</key>
+								<true/>
+								<key>AnimLoop</key>
+								<true/>
+								<key>AnimName</key>
+								<string>Doodad_Polar_Bear</string>
+								<key>AnimRepetitions</key>
+								<integer>1</integer>
+								<key>AnimRestoreOriginalFrame</key>
+								<false/>
+								<key>AnimSpeed</key>
+								<real>0.05000000074505806</real>
+								<key>OtherAnimations</key>
+								<array/>
+								<key>SHScene</key>
+								<string>Spritesheet.pshs</string>
+							</dict>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Doodad_Polar_Bear_1</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{149, 151}, {21.75, 17.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{336.5, 140.625}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{25, 21.25}</string>
+								<key>Tag</key>
+								<integer>14</integer>
+								<key>TagName</key>
+								<string>DOODAD</string>
+								<key>TextureOffset</key>
+								<string>{0.125, -0.25}</string>
+								<key>UniqueName</key>
+								<string>Doodad_Polar_Bear_1_1</string>
+								<key>ZOrder</key>
+								<integer>3</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Doodad_Polar_Bear_1_1</string>
 						</dict>
 					</array>
 					<key>CustomClassInfo</key>
@@ -1839,13 +2023,13 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1000</real>
+					<real>400</real>
 					<key>power</key>
-					<real>25</real>
+					<real>50</real>
 					<key>reach</key>
 					<real>5000</real>
 					<key>runningCost</key>
-					<real>1250</real>
+					<real>600</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -1862,7 +2046,7 @@
 		<key>PanValue</key>
 		<string>{0, 0}</string>
 		<key>ProjectName</key>
-		<string>Penguin Rescue</string>
+		<string></string>
 		<key>ProjectPath</key>
 		<string>/Users/Steve/Code/Conquer/Penguin Rescue</string>
 		<key>SafeFrame</key>
@@ -1883,6 +2067,7 @@
 			<string>BACKGROUND</string>
 			<string>TUTORIAL</string>
 			<string>WINDMILL</string>
+			<string>DOODAD</string>
 		</array>
 		<key>ZoomValue</key>
 		<real>0.0</real>
