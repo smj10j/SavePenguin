@@ -10,17 +10,23 @@
 #import "cocos2d.h"
 #import "Constants.h"
 
+@class Reachability;
+
 @interface AppController : NSObject <UIApplicationDelegate, CCDirectorDelegate>
 {
-	UIWindow *window_;
-	UINavigationController *navController_;
+	UIWindow* _window;
+	UINavigationController* _navController;
 	
-	CCDirectorIOS	*director_;							// weak ref
+	CCDirectorIOS* _director_;							// weak ref
 	
+	Reachability* _hostReachable;
 }
 
 @property (nonatomic, retain) UIWindow *window;
 @property (readonly) UINavigationController *navController;
 @property (readonly) CCDirectorIOS *director;
+
+
+-(void) checkNetworkStatus:(NSNotification *)notice;
 
 @end

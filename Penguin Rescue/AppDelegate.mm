@@ -13,10 +13,11 @@
 #import "AppDelegate.h"
 #import "IntroLayer.h"
 #import "LevelPackManager.h"
+#import "Reachability.h"
 
 @implementation AppController
 
-@synthesize window=window_, navController=navController_, director=director_;
+@synthesize window=_window, navController=_navController, director=_director;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -31,11 +32,11 @@
 	[Flurry startSession:@"6DDZY62RXJWGMWHGYVQ3"];
 	
 	// Create the main window
-	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	_window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
 	
 	// Create an CCGLView with a RGB565 color buffer, and a depth buffer of 0-bits
-	CCGLView *glView = [CCGLView viewWithFrame:[window_ bounds]
+	CCGLView *glView = [CCGLView viewWithFrame:[_window bounds]
 								   pixelFormat:kEAGLColorFormatRGB565	//kEAGLColorFormatRGBA8
 								   depthFormat:0	//GL_DEPTH_COMPONENT24_OES
 							preserveBackbuffer:NO
@@ -46,28 +47,28 @@
 	// Enable multiple touches
 	[glView setMultipleTouchEnabled:YES];
 
-	director_ = (CCDirectorIOS*) [CCDirector sharedDirector];
+	_director = (CCDirectorIOS*) [CCDirector sharedDirector];
 	
-	director_.wantsFullScreenLayout = YES;
+	_director.wantsFullScreenLayout = YES;
 	
 	// Display FSP and SPF
-	[director_ setDisplayStats:YES];
+	[_director setDisplayStats:YES];
 	
 	// set FPS at 60
-	[director_ setAnimationInterval:1.0/60];
+	[_director setAnimationInterval:1.0/60];
 	
 	// attach the openglView to the director
-	[director_ setView:glView];
+	[_director setView:glView];
 	
 	// for rotation and other messages
-	[director_ setDelegate:self];
+	[_director setDelegate:self];
 	
 	// 2D projection
-	[director_ setProjection:kCCDirectorProjection2D];
+	[_director setProjection:kCCDirectorProjection2D];
 	//	[director setProjection:kCCDirectorProjection3D];
 	
 	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-	if( ! [director_ enableRetinaDisplay:YES] )
+	if( ! [_director enableRetinaDisplay:YES] )
 		CCLOG(@"Retina Display Not supported");
 	
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
@@ -89,14 +90,21 @@
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 	
 	// Create a Navigation Controller with the Director
-	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
-	navController_.navigationBarHidden = YES;
+	_navController = [[UINavigationController alloc] initWithRootViewController:_director];
+	_navController.navigationBarHidden = YES;
 	
 	// set the Navigation Controller as the root view controller
-	[window_ setRootViewController:navController_];
+	[_window setRootViewController:_navController];
 	
 	// make main window visible
-	[window_ makeKeyAndVisible];
+	[_window makeKeyAndVisible];
+	
+	// register for network status notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+
+    // check if a pathway to conquerllc.com exists
+    _hostReachable = [[Reachability reachabilityWithHostName: @"www.conquerllc.com"] retain];
+    [_hostReachable startNotifier];
 	
 	return YES;
 }
@@ -123,27 +131,27 @@
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application
 {
-	if( [navController_ visibleViewController] == director_ )
-		[director_ pause];
+	if( [_navController visibleViewController] == _director )
+		[_director pause];
 }
 
 // call got rejected
 -(void) applicationDidBecomeActive:(UIApplication *)application
 {
-	if( [navController_ visibleViewController] == director_ )
-		[director_ resume];
+	if( [_navController visibleViewController] == _director )
+		[_director resume];
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
-	if( [navController_ visibleViewController] == director_ )
-		[director_ stopAnimation];
+	if( [_navController visibleViewController] == _director )
+		[_director stopAnimation];
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
-	if( [navController_ visibleViewController] == director_ )
-		[director_ startAnimation];
+	if( [_navController visibleViewController] == _director )
+		[_director startAnimation];
 }
 
 // application will be killed
@@ -172,13 +180,47 @@
 
 - (void) dealloc
 {
-	[window_ release];
-	[navController_ release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+	[_window release];
+	[_navController release];
 	
 	[super dealloc];
 }
 
 
+
+
+
+
+
+
+-(void) checkNetworkStatus:(NSNotification *)notice
+{
+    // called after network status changes
+    NetworkStatus hostStatus = [_hostReachable currentReachabilityStatus];
+    switch (hostStatus)
+    {
+        case NotReachable:
+        {
+            NSLog(@"A gateway to the host server is down.");
+			setServerAvailable(false);
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            NSLog(@"A gateway to the host server is working via WIFI.");
+			setServerAvailable(true);
+            break;
+        }
+        case ReachableViaWWAN:
+        {
+            NSLog(@"A gateway to the host server is working via WWAN.");
+			setServerAvailable(true);
+            break;
+        }
+    }
+}
 
 
 

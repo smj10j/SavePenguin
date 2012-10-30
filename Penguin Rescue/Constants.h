@@ -16,6 +16,7 @@
 #define TEST_LEVEL @"WayWayUpThere"
 
 #define DEBUG_ALL_THE_THINGS false
+#define DEBUG_SCORING false || DEBUG_ALL_THE_THINGS
 #define DEBUG_MEMORY false || DEBUG_ALL_THE_THINGS
 #define DEBUG_PENGUIN false || DEBUG_ALL_THE_THINGS	//can be overridden in game
 #define DEBUG_SHARK false || DEBUG_ALL_THE_THINGS	//can be overridden in game
@@ -64,3 +65,5 @@
 #import <mach/mach.h>
 void report_memory(void);
 
+bool isServerAvailable(void);
+void setServerAvailable(bool isServerAvailable);

@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Constants.h"
 #import "LHSprite.h"
 #import "Score.h"
+#import "JSONKit.h"
 
 @interface ScoreKeeper : NSObject {
 
@@ -21,5 +23,8 @@
 -(void)addScore:(int)score description:(NSString*)tag sprite:(LHSprite*)sprite group:(bool)group;
 
 -(int)totalScore;
+
+-(NSDictionary*)worldScoresForLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath;
+-(void)saveScore:(int)score userId:(NSString*)userId levelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath;
 
 @end

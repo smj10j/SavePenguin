@@ -68,12 +68,16 @@
 		double lastRun = [SettingsManager doubleForKey:@"LastRunTimestamp"];
 		NSLog(@"Last run was: %f", lastRun);
 		
-		//INITIAL SETTING TIME!!
+		//INITIAL SETTINGS TIME!!
 		if(lastRun == 0) {
 			//first run
 			
+			//set up the default user preferences
 			[SettingsManager setBool:true forKey:@"SoundEnabled"];
 			[SettingsManager setBool:true forKey:@"MusicEnabled"];
+			
+			//TODO: set a user id
+			[SettingsManager setString:@"" forKey:@"UserId"];
 		}
 		
 		//set our boot time (can be used for applying settings on updates

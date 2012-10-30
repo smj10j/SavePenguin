@@ -938,8 +938,10 @@
 	scoreDeductions+= timeScoreDeduction;
 	
 	const int finalScore = SCORING_MAX_SCORE_POSSIBLE - scoreDeductions;
-	//TODO: post the score to the server or queue for online processing
-
+	
+	//post the score to the server or queue for online processing
+	NSString* userId = [SettingsManager stringForKey:@"UserId"];
+	[_scoreKeeper saveScore:finalScore userId:userId levelPackPath:_levelPackPath levelPath:_levelPath];
 			
 	
 	//show a level won screen

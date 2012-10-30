@@ -37,3 +37,14 @@ void report_memory(void) {
         NSLog(@"Memory used %7.1f (%+5.0f), free %7.1f kb", curMemUsage/1000.0f, memUsageDiff/1000.0f, freeMemory()/1000.0f);
     }
 }
+
+
+
+
+static bool __isServerAvailable = false;
+bool isServerAvailable(void) {
+	return __isServerAvailable;
+}
+void setServerAvailable(bool isServerAvailable) {
+	__isServerAvailable = isServerAvailable;
+}
