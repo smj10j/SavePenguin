@@ -10,7 +10,7 @@
 #define Penguin_Rescue_Constants_h
 
 //true to disable all output and send analytics data
-#define DISTRIBUTION_MODE false
+#define DISTRIBUTION_MODE true
 
 
 
@@ -22,11 +22,11 @@
 
 
 #define DEBUG_ALL_THE_THINGS	(false							&& !DISTRIBUTION_MODE)
-#define DEBUG_SCORING			(false || DEBUG_ALL_THE_THINGS)	&& !DISTRIBUTION_MODE
-#define DEBUG_SETTINGS			(false || DEBUG_ALL_THE_THINGS)	&& !DISTRIBUTION_MODE
-#define DEBUG_MEMORY			(false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE
-#define DEBUG_PENGUIN			(false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE	//can be overridden in game
-#define DEBUG_SHARK				(false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE		//can be overridden in game
+#define DEBUG_SCORING			((false || DEBUG_ALL_THE_THINGS)	&& !DISTRIBUTION_MODE)
+#define DEBUG_SETTINGS			((false || DEBUG_ALL_THE_THINGS)	&& !DISTRIBUTION_MODE)
+#define DEBUG_MEMORY			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
+#define DEBUG_PENGUIN			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)	//can be overridden in game
+#define DEBUG_SHARK				((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)		//can be overridden in game
 
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 #define SCALING_FACTOR_H (IS_IPHONE ? 480.0/1024.0 : 1.0)

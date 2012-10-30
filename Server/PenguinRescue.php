@@ -118,6 +118,13 @@ if($method == 'GET') {
 		
 		$levels = array();
 		
+		//total users
+		$totalUsers = 0;
+		$result = mysql_query("SELECT count(*) as 'count' from users");
+		while ($row = mysql_fetch_array($result)) {
+			$totalUsers = $row['count'];
+		}		
+		
 		//plays
 		$result = mysql_query("SELECT level_pack_id,level_id,".
 							"(SELECT level_pack_path FROM level_packs lp WHERE lp.level_pack_id=p.level_pack_id ) as 'level_pack_path', ".
@@ -126,7 +133,8 @@ if($method == 'GET') {
 		while ($row = mysql_fetch_array($result)) {
 			$levels[$row["level_pack_path"].":".$row["level_path"]] = array(
 				"levelPackId"	=> $row["level_pack_id"],
-				"levelId"	=> $row["level_id"],
+				"levelId"		=> $row["level_id"],
+				"totalUsers"	=> $totalUsers,
 				"uniquePlays"	=> $row["uniquePlays"],
 				"totalPlays"	=> $row["totalPlays"]				
 			);
