@@ -24,7 +24,7 @@
 			<key>MaxSheetSize</key>
 			<integer>4096</integer>
 			<key>NpotSize</key>
-			<string>{908, 1088}</string>
+			<string>{756, 984}</string>
 			<key>Padding</key>
 			<integer>8</integer>
 			<key>PixelFormat</key>
@@ -59,7 +59,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPjeTQMAAAAACAAAAAQDAADer1YDAAAA
+					BAMAAPjeTQMAAAAACAAAAAQDAADZk14DAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -71,12 +71,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAzNjViZmVlMzI1MWNjNWYzZjEx
-					NGQ0YWU2ODQwYmM4OGVjMjNmYmNkOzAwMDAw
+					8gAAAAECAAA1NzBhYmNjYTJjNzQ1Y2E4OTlk
+					OGI2YzAzOTIxYWYyMTAxOGRiNzk5OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU2YWZkZTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVlOTNkOTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tYXAvZGVicmlzX2lzbGFu
@@ -308,9 +308,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{190, 0}, {34.5, 35.75}}</string>
+						<string>{{0, 151}, {34.5, 35.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{760, 0}, {138, 143}}</string>
+						<string>{{0, 604}, {138, 143}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -336,7 +336,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{760, 0}</string>
+						<string>{0, 604}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -373,7 +373,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPjeTQMAAAAACAAAAAQDAADfr1YDAAAA
+					BAMAAPjeTQMAAAAACAAAAAQDAADYk14DAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -385,12 +385,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAABjMmU2MWU4OTdlZjBiMWI4Y2E3
-					ZjIyYzc4MWZhZDY3Njg3YTM1YjYyOzAwMDAw
+					8gAAAAECAAA4MzMyZTliMWQxMjU4YTU3YzE5
+					MDFiMzE4YTJmOWExN2IyZjM5YzUxOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzU2YWZkZjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzVlOTNkODsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy9tYXAvZGVicmlzX2lzbGFu
@@ -598,9 +598,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{190, 37}, {36.5, 33.5}}</string>
+						<string>{{36, 151}, {36.5, 33.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{760, 148}, {146, 134}}</string>
+						<string>{{144, 604}, {146, 134}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -626,7 +626,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{760, 148}</string>
+						<string>{144, 604}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -637,6 +637,761 @@
 						<integer>0</integer>
 						<key>TextureOffset</key>
 						<string>{0, -0.25}</string>
+						<key>UsesBatchRendering</key>
+						<true/>
+						<key>ZOrder</key>
+						<integer>2</integer>
+					</dict>
+				</dict>
+				<key>Doodad_Eskimo_Ice_Fisher_1</key>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va/QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAA2AMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAAAwAAAAEBAABNYXAAHgAAAAEBAABEb29k
+					YWRfRXNraW1vX0ljZV9GaXNoZXJfMS5wbmcA
+					ACwAAAABBgAABAAAABQAAAAkAAAAMAAAAEAA
+					AABAAAAAWAAAAGwAAACAAAAAkAAAAJwAAAAI
+					AAAABAMAAHIAAAAAAAAACAAAAAQDAABbtw4A
+					AAAAAAgAAAAEAwAA69EOAAAAAAAIAAAABAMA
+					AO3RDgAAAAAACAAAAAQDAACjxk0DAAAAAAgA
+					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
+					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
+					095NAwAAAAAIAAAABAMAAPjeTQMAAAAACAAA
+					AAQDAADgk14DAAAAACwAAAABBgAA+AAAAAgB
+					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
+					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
+					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
+					AAMDAAACAAAABAAAAAMDAAAEAAAACAAAAAQD
+					AAAJAAAAAAAAAAQAAAADAwAA9QEAAAwAAAAB
+					AQAATWFjaW50b3NoIEhECAAAAAQDAAAAgIE9
+					dAAAAAgAAAAABAAAQbQMGj4AAAAkAAAAAQEA
+					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
+					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
+					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
+					BAAAAAMDAAAAAQAA/gAAAAECAABmZTE2ZmNk
+					ZWNlMWMzN2UyYjZhOTczZGM4NDQ3NGE1ZmVj
+					ZTQ1YTgzOzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
+					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
+					MDI7MDAwMDAwMDAwMzVlOTNlMDsvdXNlcnMv
+					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
+					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
+					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9tYXAv
+					ZG9vZGFkX2Vza2ltb19pY2VfZmlzaGVyXzEu
+					cG5nAAAA5AAAAP7///8BAAAAAAAAABIAAAAE
+					EAAAxAAAAAAAAAAFEAAAqAEAAAAAAAAQEAAA
+					3AEAAAAAAABUEAAABAIAAAAAAABVEAAAEAIA
+					AAAAAABWEAAA/AEAAAAAAAACIAAAuAIAAAAA
+					AAAQIAAAOAIAAAAAAAARIAAAbAIAAAAAAAAS
+					IAAATAIAAAAAAAATIAAAXAIAAAAAAAAgIAAA
+					mAIAAAAAAAAwIAAA/AEAAAAAAAABwAAAHAIA
+					AAAAAAARwAAAFAAAAAAAAAASwAAALAIAAAAA
+					AAAQ0AAAxAIAAAAAAACA8AAA0AIAAAAAAAA=
+					</data>
+					<key>IsSHSprite</key>
+					<true/>
+					<key>PhysicProperties</key>
+					<dict>
+						<key>AngularDamping</key>
+						<real>0.0</real>
+						<key>AngularVelocity</key>
+						<real>0.0</real>
+						<key>CanSleep</key>
+						<true/>
+						<key>FixedRot</key>
+						<false/>
+						<key>GravityScale</key>
+						<real>1</real>
+						<key>HandledBySH</key>
+						<true/>
+						<key>IsBullet</key>
+						<false/>
+						<key>LinearDamping</key>
+						<real>0.0</real>
+						<key>LinearVelocity</key>
+						<string>{0, 0}</string>
+						<key>SH_ComplexShapes</key>
+						<array/>
+						<key>Type</key>
+						<integer>3</integer>
+					</dict>
+					<key>SHSheetName</key>
+					<string>Map</string>
+					<key>SHSpriteName</key>
+					<string>Doodad_Eskimo_Ice_Fisher_1</string>
+					<key>SheetImage</key>
+					<string>Spritesheet_Map.png</string>
+					<key>SheetImage-HD</key>
+					<string>Spritesheet_Map-ipadhd.png</string>
+					<key>TextureProperties</key>
+					<dict>
+						<key>Angle</key>
+						<integer>0</integer>
+						<key>Border</key>
+						<integer>0</integer>
+						<key>CanBeTrimmed</key>
+						<true/>
+						<key>Color</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>ConvertedFromOldFormat</key>
+						<false/>
+						<key>CustomClassName</key>
+						<string></string>
+						<key>FlipX</key>
+						<false/>
+						<key>FlipY</key>
+						<false/>
+						<key>Frame</key>
+						<string>{{0, 207}, {22.5, 17.75}}</string>
+						<key>Frame-HD</key>
+						<string>{{0, 828}, {90, 71}}</string>
+						<key>Image</key>
+						<string>Spritesheet_Map.png</string>
+						<key>Image-HD</key>
+						<string>Spritesheet_Map-ipadhd.png</string>
+						<key>IsCropped</key>
+						<false/>
+						<key>IsDrawable</key>
+						<true/>
+						<key>IsRotated</key>
+						<false/>
+						<key>IsTrimmed</key>
+						<true/>
+						<key>Name</key>
+						<string>Doodad_Eskimo_Ice_Fisher_1</string>
+						<key>Opacity</key>
+						<real>1</real>
+						<key>OriginalImage</key>
+						<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_1.png</string>
+						<key>OriginalImage_RelativePath</key>
+						<string>../src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_1.png/</string>
+						<key>OriginalRect</key>
+						<string>{{5, 7}, {90, 71}}</string>
+						<key>OriginalSize</key>
+						<string>{100, 85}</string>
+						<key>Position</key>
+						<string>{0, 828}</string>
+						<key>Scale</key>
+						<string>{1, 1}</string>
+						<key>SpriteSize</key>
+						<string>{25, 21.25}</string>
+						<key>SpriteWasBreaked</key>
+						<false/>
+						<key>Tag</key>
+						<integer>0</integer>
+						<key>TextureOffset</key>
+						<string>{0, -0}</string>
+						<key>UsesBatchRendering</key>
+						<true/>
+						<key>ZOrder</key>
+						<integer>2</integer>
+					</dict>
+				</dict>
+				<key>Doodad_Eskimo_Ice_Fisher_2</key>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va/QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAA2AMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAAAwAAAAEBAABNYXAAHgAAAAEBAABEb29k
+					YWRfRXNraW1vX0ljZV9GaXNoZXJfMi5wbmcA
+					ACwAAAABBgAABAAAABQAAAAkAAAAMAAAAEAA
+					AABAAAAAWAAAAGwAAACAAAAAkAAAAJwAAAAI
+					AAAABAMAAHIAAAAAAAAACAAAAAQDAABbtw4A
+					AAAAAAgAAAAEAwAA69EOAAAAAAAIAAAABAMA
+					AO3RDgAAAAAACAAAAAQDAACjxk0DAAAAAAgA
+					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
+					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
+					095NAwAAAAAIAAAABAMAAPjeTQMAAAAACAAA
+					AAQDAADhk14DAAAAACwAAAABBgAA+AAAAAgB
+					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
+					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
+					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
+					AAMDAAACAAAABAAAAAMDAAAEAAAACAAAAAQD
+					AAAJAAAAAAAAAAQAAAADAwAA9QEAAAwAAAAB
+					AQAATWFjaW50b3NoIEhECAAAAAQDAAAAgIE9
+					dAAAAAgAAAAABAAAQbQMGj4AAAAkAAAAAQEA
+					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
+					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
+					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
+					BAAAAAMDAAAAAQAA/gAAAAECAABmNTM2YjRi
+					YzFmYTQ2YzRhZDU3NGY2MWI2ZDU2NzBjZWFm
+					ZTk0MDgzOzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
+					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
+					MDI7MDAwMDAwMDAwMzVlOTNlMTsvdXNlcnMv
+					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
+					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
+					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9tYXAv
+					ZG9vZGFkX2Vza2ltb19pY2VfZmlzaGVyXzIu
+					cG5nAAAA5AAAAP7///8BAAAAAAAAABIAAAAE
+					EAAAxAAAAAAAAAAFEAAAqAEAAAAAAAAQEAAA
+					3AEAAAAAAABUEAAABAIAAAAAAABVEAAAEAIA
+					AAAAAABWEAAA/AEAAAAAAAACIAAAuAIAAAAA
+					AAAQIAAAOAIAAAAAAAARIAAAbAIAAAAAAAAS
+					IAAATAIAAAAAAAATIAAAXAIAAAAAAAAgIAAA
+					mAIAAAAAAAAwIAAA/AEAAAAAAAABwAAAHAIA
+					AAAAAAARwAAAFAAAAAAAAAASwAAALAIAAAAA
+					AAAQ0AAAxAIAAAAAAACA8AAA0AIAAAAAAAA=
+					</data>
+					<key>IsSHSprite</key>
+					<true/>
+					<key>PhysicProperties</key>
+					<dict>
+						<key>AngularDamping</key>
+						<real>0.0</real>
+						<key>AngularVelocity</key>
+						<real>0.0</real>
+						<key>CanSleep</key>
+						<true/>
+						<key>FixedRot</key>
+						<false/>
+						<key>GravityScale</key>
+						<real>1</real>
+						<key>HandledBySH</key>
+						<true/>
+						<key>IsBullet</key>
+						<false/>
+						<key>LinearDamping</key>
+						<real>0.0</real>
+						<key>LinearVelocity</key>
+						<string>{0, 0}</string>
+						<key>SH_ComplexShapes</key>
+						<array/>
+						<key>Type</key>
+						<integer>3</integer>
+					</dict>
+					<key>SHSheetName</key>
+					<string>Map</string>
+					<key>SHSpriteName</key>
+					<string>Doodad_Eskimo_Ice_Fisher_2</string>
+					<key>SheetImage</key>
+					<string>Spritesheet_Map.png</string>
+					<key>SheetImage-HD</key>
+					<string>Spritesheet_Map-ipadhd.png</string>
+					<key>TextureProperties</key>
+					<dict>
+						<key>Angle</key>
+						<integer>0</integer>
+						<key>Border</key>
+						<integer>0</integer>
+						<key>CanBeTrimmed</key>
+						<true/>
+						<key>Color</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>ConvertedFromOldFormat</key>
+						<false/>
+						<key>CustomClassName</key>
+						<string></string>
+						<key>FlipX</key>
+						<false/>
+						<key>FlipY</key>
+						<false/>
+						<key>Frame</key>
+						<string>{{0, 226}, {22.75, 17.75}}</string>
+						<key>Frame-HD</key>
+						<string>{{0, 904}, {89, 71}}</string>
+						<key>Image</key>
+						<string>Spritesheet_Map.png</string>
+						<key>Image-HD</key>
+						<string>Spritesheet_Map-ipadhd.png</string>
+						<key>IsCropped</key>
+						<false/>
+						<key>IsDrawable</key>
+						<true/>
+						<key>IsRotated</key>
+						<false/>
+						<key>IsTrimmed</key>
+						<true/>
+						<key>Name</key>
+						<string>Doodad_Eskimo_Ice_Fisher_2</string>
+						<key>Opacity</key>
+						<real>1</real>
+						<key>OriginalImage</key>
+						<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_2.png</string>
+						<key>OriginalImage_RelativePath</key>
+						<string>../src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_2.png/</string>
+						<key>OriginalRect</key>
+						<string>{{5, 7}, {89, 71}}</string>
+						<key>OriginalSize</key>
+						<string>{100, 85}</string>
+						<key>Position</key>
+						<string>{0, 904}</string>
+						<key>Scale</key>
+						<string>{1, 1}</string>
+						<key>SpriteSize</key>
+						<string>{25, 21.25}</string>
+						<key>SpriteWasBreaked</key>
+						<false/>
+						<key>Tag</key>
+						<integer>0</integer>
+						<key>TextureOffset</key>
+						<string>{0.125, -0}</string>
+						<key>UsesBatchRendering</key>
+						<true/>
+						<key>ZOrder</key>
+						<integer>2</integer>
+					</dict>
+				</dict>
+				<key>Doodad_Eskimo_Ice_Fisher_3</key>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va/QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAA2AMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAAAwAAAAEBAABNYXAAHgAAAAEBAABEb29k
+					YWRfRXNraW1vX0ljZV9GaXNoZXJfMy5wbmcA
+					ACwAAAABBgAABAAAABQAAAAkAAAAMAAAAEAA
+					AABAAAAAWAAAAGwAAACAAAAAkAAAAJwAAAAI
+					AAAABAMAAHIAAAAAAAAACAAAAAQDAABbtw4A
+					AAAAAAgAAAAEAwAA69EOAAAAAAAIAAAABAMA
+					AO3RDgAAAAAACAAAAAQDAACjxk0DAAAAAAgA
+					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
+					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
+					095NAwAAAAAIAAAABAMAAPjeTQMAAAAACAAA
+					AAQDAADik14DAAAAACwAAAABBgAA+AAAAAgB
+					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
+					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
+					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
+					AAMDAAACAAAABAAAAAMDAAAEAAAACAAAAAQD
+					AAAJAAAAAAAAAAQAAAADAwAA9QEAAAwAAAAB
+					AQAATWFjaW50b3NoIEhECAAAAAQDAAAAgIE9
+					dAAAAAgAAAAABAAAQbQMGj4AAAAkAAAAAQEA
+					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
+					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
+					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
+					BAAAAAMDAAAAAQAA/gAAAAECAAAxNTU4NTEz
+					NmM3NDFiYmU3YjA1ZTBiM2NiYjVkZjBkMTE1
+					ZWE3Njk2OzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
+					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
+					MDI7MDAwMDAwMDAwMzVlOTNlMjsvdXNlcnMv
+					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
+					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
+					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9tYXAv
+					ZG9vZGFkX2Vza2ltb19pY2VfZmlzaGVyXzMu
+					cG5nAAAA5AAAAP7///8BAAAAAAAAABIAAAAE
+					EAAAxAAAAAAAAAAFEAAAqAEAAAAAAAAQEAAA
+					3AEAAAAAAABUEAAABAIAAAAAAABVEAAAEAIA
+					AAAAAABWEAAA/AEAAAAAAAACIAAAuAIAAAAA
+					AAAQIAAAOAIAAAAAAAARIAAAbAIAAAAAAAAS
+					IAAATAIAAAAAAAATIAAAXAIAAAAAAAAgIAAA
+					mAIAAAAAAAAwIAAA/AEAAAAAAAABwAAAHAIA
+					AAAAAAARwAAAFAAAAAAAAAASwAAALAIAAAAA
+					AAAQ0AAAxAIAAAAAAACA8AAA0AIAAAAAAAA=
+					</data>
+					<key>IsSHSprite</key>
+					<true/>
+					<key>PhysicProperties</key>
+					<dict>
+						<key>AngularDamping</key>
+						<real>0.0</real>
+						<key>AngularVelocity</key>
+						<real>0.0</real>
+						<key>CanSleep</key>
+						<true/>
+						<key>FixedRot</key>
+						<false/>
+						<key>GravityScale</key>
+						<real>1</real>
+						<key>HandledBySH</key>
+						<true/>
+						<key>IsBullet</key>
+						<false/>
+						<key>LinearDamping</key>
+						<real>0.0</real>
+						<key>LinearVelocity</key>
+						<string>{0, 0}</string>
+						<key>SH_ComplexShapes</key>
+						<array/>
+						<key>Type</key>
+						<integer>3</integer>
+					</dict>
+					<key>SHSheetName</key>
+					<string>Map</string>
+					<key>SHSpriteName</key>
+					<string>Doodad_Eskimo_Ice_Fisher_3</string>
+					<key>SheetImage</key>
+					<string>Spritesheet_Map.png</string>
+					<key>SheetImage-HD</key>
+					<string>Spritesheet_Map-ipadhd.png</string>
+					<key>TextureProperties</key>
+					<dict>
+						<key>Angle</key>
+						<integer>0</integer>
+						<key>Border</key>
+						<integer>0</integer>
+						<key>CanBeTrimmed</key>
+						<true/>
+						<key>Color</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>ConvertedFromOldFormat</key>
+						<false/>
+						<key>CustomClassName</key>
+						<string></string>
+						<key>FlipX</key>
+						<false/>
+						<key>FlipY</key>
+						<false/>
+						<key>Frame</key>
+						<string>{{126, 57}, {22.5, 17.75}}</string>
+						<key>Frame-HD</key>
+						<string>{{504, 228}, {90, 71}}</string>
+						<key>Image</key>
+						<string>Spritesheet_Map.png</string>
+						<key>Image-HD</key>
+						<string>Spritesheet_Map-ipadhd.png</string>
+						<key>IsCropped</key>
+						<false/>
+						<key>IsDrawable</key>
+						<true/>
+						<key>IsRotated</key>
+						<false/>
+						<key>IsTrimmed</key>
+						<true/>
+						<key>Name</key>
+						<string>Doodad_Eskimo_Ice_Fisher_3</string>
+						<key>Opacity</key>
+						<real>1</real>
+						<key>OriginalImage</key>
+						<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_3.png</string>
+						<key>OriginalImage_RelativePath</key>
+						<string>../src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_3.png/</string>
+						<key>OriginalRect</key>
+						<string>{{4, 7}, {90, 71}}</string>
+						<key>OriginalSize</key>
+						<string>{100, 85}</string>
+						<key>Position</key>
+						<string>{504, 228}</string>
+						<key>Scale</key>
+						<string>{1, 1}</string>
+						<key>SpriteSize</key>
+						<string>{25, 21.25}</string>
+						<key>SpriteWasBreaked</key>
+						<false/>
+						<key>Tag</key>
+						<integer>0</integer>
+						<key>TextureOffset</key>
+						<string>{-0.25, -0}</string>
+						<key>UsesBatchRendering</key>
+						<true/>
+						<key>ZOrder</key>
+						<integer>2</integer>
+					</dict>
+				</dict>
+				<key>Doodad_Eskimo_Ice_Fisher_4</key>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va/QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAA2AMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAAAwAAAAEBAABNYXAAHgAAAAEBAABEb29k
+					YWRfRXNraW1vX0ljZV9GaXNoZXJfNC5wbmcA
+					ACwAAAABBgAABAAAABQAAAAkAAAAMAAAAEAA
+					AABAAAAAWAAAAGwAAACAAAAAkAAAAJwAAAAI
+					AAAABAMAAHIAAAAAAAAACAAAAAQDAABbtw4A
+					AAAAAAgAAAAEAwAA69EOAAAAAAAIAAAABAMA
+					AO3RDgAAAAAACAAAAAQDAACjxk0DAAAAAAgA
+					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
+					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
+					095NAwAAAAAIAAAABAMAAPjeTQMAAAAACAAA
+					AAQDAADjk14DAAAAACwAAAABBgAA+AAAAAgB
+					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
+					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
+					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
+					AAMDAAACAAAABAAAAAMDAAAEAAAACAAAAAQD
+					AAAJAAAAAAAAAAQAAAADAwAA9QEAAAwAAAAB
+					AQAATWFjaW50b3NoIEhECAAAAAQDAAAAgIE9
+					dAAAAAgAAAAABAAAQbQMGj4AAAAkAAAAAQEA
+					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
+					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
+					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
+					BAAAAAMDAAAAAQAA/gAAAAECAABlMGE1ZTgy
+					ZTNkOTViYWU2MmFkNmRkZTM0ZmIyOWQ2YTVk
+					NTA4ODk1OzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
+					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
+					MDI7MDAwMDAwMDAwMzVlOTNlMzsvdXNlcnMv
+					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
+					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
+					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9tYXAv
+					ZG9vZGFkX2Vza2ltb19pY2VfZmlzaGVyXzQu
+					cG5nAAAA5AAAAP7///8BAAAAAAAAABIAAAAE
+					EAAAxAAAAAAAAAAFEAAAqAEAAAAAAAAQEAAA
+					3AEAAAAAAABUEAAABAIAAAAAAABVEAAAEAIA
+					AAAAAABWEAAA/AEAAAAAAAACIAAAuAIAAAAA
+					AAAQIAAAOAIAAAAAAAARIAAAbAIAAAAAAAAS
+					IAAATAIAAAAAAAATIAAAXAIAAAAAAAAgIAAA
+					mAIAAAAAAAAwIAAA/AEAAAAAAAABwAAAHAIA
+					AAAAAAARwAAAFAAAAAAAAAASwAAALAIAAAAA
+					AAAQ0AAAxAIAAAAAAACA8AAA0AIAAAAAAAA=
+					</data>
+					<key>IsSHSprite</key>
+					<true/>
+					<key>PhysicProperties</key>
+					<dict>
+						<key>AngularDamping</key>
+						<real>0.0</real>
+						<key>AngularVelocity</key>
+						<real>0.0</real>
+						<key>CanSleep</key>
+						<true/>
+						<key>FixedRot</key>
+						<false/>
+						<key>GravityScale</key>
+						<real>1</real>
+						<key>HandledBySH</key>
+						<true/>
+						<key>IsBullet</key>
+						<false/>
+						<key>LinearDamping</key>
+						<real>0.0</real>
+						<key>LinearVelocity</key>
+						<string>{0, 0}</string>
+						<key>SH_ComplexShapes</key>
+						<array/>
+						<key>Type</key>
+						<integer>3</integer>
+					</dict>
+					<key>SHSheetName</key>
+					<string>Map</string>
+					<key>SHSpriteName</key>
+					<string>Doodad_Eskimo_Ice_Fisher_4</string>
+					<key>SheetImage</key>
+					<string>Spritesheet_Map.png</string>
+					<key>SheetImage-HD</key>
+					<string>Spritesheet_Map-ipadhd.png</string>
+					<key>TextureProperties</key>
+					<dict>
+						<key>Angle</key>
+						<integer>0</integer>
+						<key>Border</key>
+						<integer>0</integer>
+						<key>CanBeTrimmed</key>
+						<true/>
+						<key>Color</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>ConvertedFromOldFormat</key>
+						<false/>
+						<key>CustomClassName</key>
+						<string></string>
+						<key>FlipX</key>
+						<false/>
+						<key>FlipY</key>
+						<false/>
+						<key>Frame</key>
+						<string>{{150, 57}, {22.5, 17.75}}</string>
+						<key>Frame-HD</key>
+						<string>{{600, 228}, {90, 71}}</string>
+						<key>Image</key>
+						<string>Spritesheet_Map.png</string>
+						<key>Image-HD</key>
+						<string>Spritesheet_Map-ipadhd.png</string>
+						<key>IsCropped</key>
+						<false/>
+						<key>IsDrawable</key>
+						<true/>
+						<key>IsRotated</key>
+						<false/>
+						<key>IsTrimmed</key>
+						<true/>
+						<key>Name</key>
+						<string>Doodad_Eskimo_Ice_Fisher_4</string>
+						<key>Opacity</key>
+						<real>1</real>
+						<key>OriginalImage</key>
+						<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_4.png</string>
+						<key>OriginalImage_RelativePath</key>
+						<string>../src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_4.png/</string>
+						<key>OriginalRect</key>
+						<string>{{4, 7}, {90, 71}}</string>
+						<key>OriginalSize</key>
+						<string>{100, 85}</string>
+						<key>Position</key>
+						<string>{600, 228}</string>
+						<key>Scale</key>
+						<string>{1, 1}</string>
+						<key>SpriteSize</key>
+						<string>{25, 21.25}</string>
+						<key>SpriteWasBreaked</key>
+						<false/>
+						<key>Tag</key>
+						<integer>0</integer>
+						<key>TextureOffset</key>
+						<string>{-0.25, -0}</string>
+						<key>UsesBatchRendering</key>
+						<true/>
+						<key>ZOrder</key>
+						<integer>2</integer>
+					</dict>
+				</dict>
+				<key>Doodad_Eskimo_Ice_Fisher_5</key>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va/QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAA2AMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAAAwAAAAEBAABNYXAAHgAAAAEBAABEb29k
+					YWRfRXNraW1vX0ljZV9GaXNoZXJfNS5wbmcA
+					ACwAAAABBgAABAAAABQAAAAkAAAAMAAAAEAA
+					AABAAAAAWAAAAGwAAACAAAAAkAAAAJwAAAAI
+					AAAABAMAAHIAAAAAAAAACAAAAAQDAABbtw4A
+					AAAAAAgAAAAEAwAA69EOAAAAAAAIAAAABAMA
+					AO3RDgAAAAAACAAAAAQDAACjxk0DAAAAAAgA
+					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
+					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
+					095NAwAAAAAIAAAABAMAAPjeTQMAAAAACAAA
+					AAQDAADkk14DAAAAACwAAAABBgAA+AAAAAgB
+					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
+					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
+					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
+					AAMDAAACAAAABAAAAAMDAAAEAAAACAAAAAQD
+					AAAJAAAAAAAAAAQAAAADAwAA9QEAAAwAAAAB
+					AQAATWFjaW50b3NoIEhECAAAAAQDAAAAgIE9
+					dAAAAAgAAAAABAAAQbQMGj4AAAAkAAAAAQEA
+					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
+					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
+					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
+					BAAAAAMDAAAAAQAA/gAAAAECAAA1ZThkYzQ1
+					ZmRkODdjMWFlYmUzOGFmYWY5YjU0ZjAyYTAx
+					N2UxNzllOzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
+					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
+					MDI7MDAwMDAwMDAwMzVlOTNlNDsvdXNlcnMv
+					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
+					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
+					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9tYXAv
+					ZG9vZGFkX2Vza2ltb19pY2VfZmlzaGVyXzUu
+					cG5nAAAA5AAAAP7///8BAAAAAAAAABIAAAAE
+					EAAAxAAAAAAAAAAFEAAAqAEAAAAAAAAQEAAA
+					3AEAAAAAAABUEAAABAIAAAAAAABVEAAAEAIA
+					AAAAAABWEAAA/AEAAAAAAAACIAAAuAIAAAAA
+					AAAQIAAAOAIAAAAAAAARIAAAbAIAAAAAAAAS
+					IAAATAIAAAAAAAATIAAAXAIAAAAAAAAgIAAA
+					mAIAAAAAAAAwIAAA/AEAAAAAAAABwAAAHAIA
+					AAAAAAARwAAAFAAAAAAAAAASwAAALAIAAAAA
+					AAAQ0AAAxAIAAAAAAACA8AAA0AIAAAAAAAA=
+					</data>
+					<key>IsSHSprite</key>
+					<true/>
+					<key>PhysicProperties</key>
+					<dict>
+						<key>AngularDamping</key>
+						<real>0.0</real>
+						<key>AngularVelocity</key>
+						<real>0.0</real>
+						<key>CanSleep</key>
+						<true/>
+						<key>FixedRot</key>
+						<false/>
+						<key>GravityScale</key>
+						<real>1</real>
+						<key>HandledBySH</key>
+						<true/>
+						<key>IsBullet</key>
+						<false/>
+						<key>LinearDamping</key>
+						<real>0.0</real>
+						<key>LinearVelocity</key>
+						<string>{0, 0}</string>
+						<key>SH_ComplexShapes</key>
+						<array/>
+						<key>Type</key>
+						<integer>3</integer>
+					</dict>
+					<key>SHSheetName</key>
+					<string>Map</string>
+					<key>SHSpriteName</key>
+					<string>Doodad_Eskimo_Ice_Fisher_5</string>
+					<key>SheetImage</key>
+					<string>Spritesheet_Map.png</string>
+					<key>SheetImage-HD</key>
+					<string>Spritesheet_Map-ipadhd.png</string>
+					<key>TextureProperties</key>
+					<dict>
+						<key>Angle</key>
+						<integer>0</integer>
+						<key>Border</key>
+						<integer>0</integer>
+						<key>CanBeTrimmed</key>
+						<true/>
+						<key>Color</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>ConvertedFromOldFormat</key>
+						<false/>
+						<key>CustomClassName</key>
+						<string></string>
+						<key>FlipX</key>
+						<false/>
+						<key>FlipY</key>
+						<false/>
+						<key>Frame</key>
+						<string>{{0, 188}, {22.5, 17.75}}</string>
+						<key>Frame-HD</key>
+						<string>{{0, 752}, {90, 71}}</string>
+						<key>Image</key>
+						<string>Spritesheet_Map.png</string>
+						<key>Image-HD</key>
+						<string>Spritesheet_Map-ipadhd.png</string>
+						<key>IsCropped</key>
+						<false/>
+						<key>IsDrawable</key>
+						<true/>
+						<key>IsRotated</key>
+						<false/>
+						<key>IsTrimmed</key>
+						<true/>
+						<key>Name</key>
+						<string>Doodad_Eskimo_Ice_Fisher_5</string>
+						<key>Opacity</key>
+						<real>1</real>
+						<key>OriginalImage</key>
+						<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_5.png</string>
+						<key>OriginalImage_RelativePath</key>
+						<string>../src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_5.png/</string>
+						<key>OriginalRect</key>
+						<string>{{5, 7}, {90, 71}}</string>
+						<key>OriginalSize</key>
+						<string>{100, 85}</string>
+						<key>Position</key>
+						<string>{0, 752}</string>
+						<key>Scale</key>
+						<string>{1, 1}</string>
+						<key>SpriteSize</key>
+						<string>{25, 21.25}</string>
+						<key>SpriteWasBreaked</key>
+						<false/>
+						<key>Tag</key>
+						<integer>0</integer>
+						<key>TextureOffset</key>
+						<string>{0, -0}</string>
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
@@ -663,7 +1418,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					+N5NAwAAAAAIAAAABAMAAOGvVgMAAAAALAAA
+					+N5NAwAAAAAIAAAABAMAANeTXgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -675,12 +1430,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAAGQ5MDQxZWRkMGIxZWM1N2JhNDE4NzI5
-					Yjg3ZTVlNGJhN2NmMzhmNzE7MDAwMDAwMDA7
+					AQIAAGUzYmNjNDFiNTQzZjMwNjVkMTkxNGMx
+					ZjQ4MDk4YTBmNTIxMjc4YTk7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTZh
-					ZmUxOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWU5
+					M2Q3Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21hcC9zYWZlX2lzbGFuZDEucG5n
@@ -870,7 +1625,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					+N5NAwAAAAAIAAAABAMAAOKvVgMAAAAALAAA
+					+N5NAwAAAAAIAAAABAMAANyTXgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -882,12 +1637,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAADBmMGYzODhjMGViODZmODhjYmIxODJj
-					MDJkYmQyNWE0OTg4MjBmYjc7MDAwMDAwMDA7
+					AQIAAGJhMDdjMTQ0ZWI2M2I1MmIwMzgwMWM3
+					YWRhMTIxYzExY2JmMzk3ZWY7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTZh
-					ZmUyOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWU5
+					M2RjOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21hcC93YWxsX2VuZDEucG5nAAAA
@@ -1070,9 +1825,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{0, 185}, {36.75, 32}}</string>
+						<string>{{73, 151}, {36.75, 32}}</string>
 						<key>Frame-HD</key>
-						<string>{{0, 740}, {147, 128}}</string>
+						<string>{{292, 604}, {147, 128}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -1098,7 +1853,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{0, 740}</string>
+						<string>{292, 604}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -1135,7 +1890,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					+N5NAwAAAAAIAAAABAMAAOOvVgMAAAAALAAA
+					+N5NAwAAAAAIAAAABAMAAN2TXgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -1147,12 +1902,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAADQ3NzMyYmRhYzU3MWVkYTNlZjhmMjUw
-					NzY0ZTJlYzUyYWI5YTdjMTM7MDAwMDAwMDA7
+					AQIAADNiOGU5NzgwMzM2Zjc4MTY4ZTY4YzI1
+					MmVmOGRkNzliMWZhODFiOTY7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTZh
-					ZmUzOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWU5
+					M2RkOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21hcC93YWxsX2VuZDIucG5nAAAA
@@ -1341,9 +2096,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{0, 218}, {36, 30.5}}</string>
+						<string>{{36, 186}, {36, 30.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{0, 872}, {144, 122}}</string>
+						<string>{{144, 744}, {144, 122}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -1369,7 +2124,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{0, 872}</string>
+						<string>{144, 744}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -1406,7 +2161,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					+N5NAwAAAAAIAAAABAMAAOSvVgMAAAAALAAA
+					+N5NAwAAAAAIAAAABAMAAN6TXgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -1418,12 +2173,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAADk1MDhlZGFjMTEyZTc1YzUwNWI5NWVm
-					MmJkYTM0ZjMyMThiMGM0YmU7MDAwMDAwMDA7
+					AQIAADQzMzIyMmM4NTEzMjQ2NDhiZjc2OTdk
+					OGM3NDhmZTFkMWU1YWNmODM7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTZh
-					ZmU0Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWU5
+					M2RlOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21hcC93YWxsX2VuZDMucG5nAAAA
@@ -1618,9 +2373,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{38, 214}, {35.5, 28.5}}</string>
+						<string>{{36, 217}, {35.5, 28.5}}</string>
 						<key>Frame-HD</key>
-						<string>{{152, 856}, {142, 114}}</string>
+						<string>{{144, 868}, {142, 114}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -1646,7 +2401,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{152, 856}</string>
+						<string>{144, 868}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -1683,7 +2438,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					+N5NAwAAAAAIAAAABAMAAOWvVgMAAAAALAAA
+					+N5NAwAAAAAIAAAABAMAAN+TXgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -1695,12 +2450,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAAGI3OGEyYjI4MDE3NzEzOWZlMjBjMjI3
-					YWZlYWM0NGQ1ZGY0ZjhhMWU7MDAwMDAwMDA7
+					AQIAADVmMDI4N2UxYzM4ZDRhOWZjZTI1OTk1
+					YmUwYTI4MTM2NzBkOTViZWY7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTZh
-					ZmU1Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWU5
+					M2RmOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21hcC93YWxsX2VuZDQucG5nAAAA
@@ -1833,9 +2588,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{38, 185}, {37, 27.75}}</string>
+						<string>{{111, 151}, {37, 27.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{152, 740}, {148, 111}}</string>
+						<string>{{444, 604}, {148, 111}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -1861,7 +2616,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{152, 740}</string>
+						<string>{444, 604}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -1898,7 +2653,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					+N5NAwAAAAAIAAAABAMAAOavVgMAAAAALAAA
+					+N5NAwAAAAAIAAAABAMAANqTXgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -1910,12 +2665,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADA1MWVkN2RjZDhmMjhhZjljOGEwZTZh
-					Zjg1ZTRhNGJhNzhjODA5N2U7MDAwMDAwMDA7
+					AQIAADM5MGMzZmQzZGE4MWYxMzI2ODBmNTRk
+					MjZhOWE3M2JiNWJjNThmNjY7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTZh
-					ZmU2Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWU5
+					M2RhOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21hcC93YWxsX21pZGRsZTEucG5n
@@ -2000,13 +2755,13 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{-12, 0.10000000000002274}</string>
-									<string>{-2.9999999999999929, 121}</string>
-									<string>{-0.099999999999951683, 693}</string>
-									<string>{-11.999999999999957, 749}</string>
-									<string>{-124.99999999999996, 749.10000000000002}</string>
-									<string>{-128.09999999999999, 148}</string>
-									<string>{-124, 0}</string>
+									<string>{0.100000000000022, 12}</string>
+									<string>{121, 3.0000000000000004}</string>
+									<string>{693, 0.099999999999994121}</string>
+									<string>{749, 12.000000000000004}</string>
+									<string>{749.10000000000002, 125}</string>
+									<string>{148, 128.09999999999999}</string>
+									<string>{-7.5928101547135902e-15, 124}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
@@ -2046,9 +2801,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{135, 84}, {187.5, 32.75}}</string>
+						<string>{{0, 118}, {187.5, 32.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{540, 336}, {750, 129}}</string>
+						<string>{{0, 472}, {750, 129}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -2058,7 +2813,7 @@
 						<key>IsDrawable</key>
 						<true/>
 						<key>IsRotated</key>
-						<true/>
+						<false/>
 						<key>IsTrimmed</key>
 						<true/>
 						<key>Name</key>
@@ -2074,7 +2829,7 @@
 						<key>OriginalSize</key>
 						<string>{750, 150}</string>
 						<key>Position</key>
-						<string>{540, 336}</string>
+						<string>{0, 472}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -2111,7 +2866,7 @@
 					AKPGTQMAAAAACAAAAAQDAACmxk0DAAAAAAgA
 					AAAEAwAAp8ZNAwAAAAAIAAAABAMAANDeTQMA
 					AAAACAAAAAQDAADT3k0DAAAAAAgAAAAEAwAA
-					+N5NAwAAAAAIAAAABAMAAOevVgMAAAAALAAA
+					+N5NAwAAAAAIAAAABAMAANuTXgMAAAAALAAA
 					AAEGAADoAAAA+AAAAAgBAAAYAQAAKAEAADgB
 					AABIAQAAWAEAAGgBAAB4AQAAiAEAABgAAAAB
 					AgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
@@ -2123,12 +2878,12 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAAGNjMjM2YTI3ZTZiOGFiNGFlMGFiNzY5
-					MWY3NjUxZDY1Y2Q2Y2U3M2U7MDAwMDAwMDA7
+					AQIAAGQzYTExYzFlYWJhYWQyN2E4ZjU1ZjE2
+					NDMyMmRmNzQzZTg0MzE5MDc7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
-					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNTZh
-					ZmU3Oy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
+					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWU5
+					M2RiOy91c2Vycy9zdGV2ZS9jb2RlL2NvbnF1
 					ZXIvcGVuZ3VpbiByZXNjdWUvcGVuZ3VpbiBy
 					ZXNjdWUvcmVzb3VyY2VzL3NyYy1hc3NldHMv
 					aW1hZ2VzL21hcC93YWxsX21pZGRsZTIucG5n
@@ -2239,15 +2994,15 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{-13, 0.10000000000002274}</string>
-									<string>{4.2632564145606011e-14, 635}</string>
-									<string>{-1.9999999999999574, 671}</string>
-									<string>{-12.999999999999957, 749}</string>
-									<string>{-124.99999999999996, 749.10000000000002}</string>
-									<string>{-129.99999999999994, 728}</string>
-									<string>{-130.09999999999997, 617}</string>
-									<string>{-127.99999999999999, 120}</string>
-									<string>{-125, 0}</string>
+									<string>{0.10000000000002195, 13}</string>
+									<string>{635, -3.7500282726775448e-15}</string>
+									<string>{671, 1.9999999999999984}</string>
+									<string>{749, 13.000000000000004}</string>
+									<string>{749.10000000000002, 125}</string>
+									<string>{728, 130}</string>
+									<string>{617, 130.09999999999999}</string>
+									<string>{119.99999999999999, 128}</string>
+									<string>{-7.6540424946709578e-15, 125}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
@@ -2287,9 +3042,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{101, 84}, {187.5, 32.75}}</string>
+						<string>{{0, 84}, {187.5, 32.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{404, 336}, {750, 131}}</string>
+						<string>{{0, 336}, {750, 131}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -2299,7 +3054,7 @@
 						<key>IsDrawable</key>
 						<true/>
 						<key>IsRotated</key>
-						<true/>
+						<false/>
 						<key>IsTrimmed</key>
 						<true/>
 						<key>Name</key>
@@ -2315,7 +3070,7 @@
 						<key>OriginalSize</key>
 						<string>{750, 150}</string>
 						<key>Position</key>
-						<string>{404, 336}</string>
+						<string>{0, 336}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -2365,8 +3120,8 @@
 					MDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0RUY1
 					ODhGGAAAAAECAACBAAAAAQAIAO8/AAABAAgA
 					AAAAAAAAAAABAAAAAQEAAC8AAAAEAAAAAwMA
-					AAABAADxAAAAAQIAADU2MzNmNjJiMTc3NmU1
-					NTU5ZDIxZjNiYTA1YzFlYjllZWQzMGI1MDg7
+					AAABAADxAAAAAQIAADRmOWU4YTc5MDJhNDJh
+					NGY4YjM5MWU2MzkxMzNkN2Y4ZmIxNWNiMGU7
 					MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAyMDtj
 					b20uYXBwbGUuYXBwLXNhbmRib3gucmVhZC13
 					cml0ZTswMDAwMDAwMTswZTAwMDAwMjswMDAw
@@ -2484,143 +3239,6 @@
 						<integer>1</integer>
 					</dict>
 				</dict>
-				<key>Water_1</key>
-				<dict>
-					<key>DocumentSecurityImageBookmark</key>
-					<data>
-					Ym9va3gDAAAAAAQQMAAAAAAAAAAAAAAAAAAA
-					AAAAAAAAAAAAAAAAAAAAAAAAAAAAXAIAAAUA
-					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
-					AAAABgAAAAEBAAAuVHJhc2gAAAsAAAABAQAA
-					V2F0ZXJfMS5wbmcAEAAAAAEGAAAEAAAAFAAA
-					ACQAAAA0AAAACAAAAAQDAAByAAAAAAAAAAgA
-					AAAEAwAAW7cOAAAAAAAIAAAABAMAAIFU4gAA
-					AAAACAAAAAQDAADor1YDAAAAABAAAAABBgAA
-					YAAAAHAAAACAAAAAkAAAABgAAAABAgAAAQAA
-					AAAAAAAPAAAAAAAAAAAAAAAAAAAAAAAAAAEF
-					AAAEAAAAAwMAAAcAAAAEAAAAAwMAAAIAAAAI
-					AAAABAMAAAIAAAAAAAAABAAAAAMDAAD1AQAA
-					DAAAAAEBAABNYWNpbnRvc2ggSEQIAAAABAMA
-					AACAgT10AAAACAAAAAAEAABBtAwaPgAAACQA
-					AAABAQAANzAxQjdFMDUtOUUwNS0zN0YzLTk2
-					RUYtOUVEMjg0RUY1ODhGGAAAAAECAACBAAAA
-					AQAIAO8/AAABAAgAAAAAAAAAAAABAAAAAQEA
-					AC8AAAAEAAAAAwMAAAABAACnAAAAAQIAADFl
-					ZTZlMGU4MjU3ZmNjNmVjMjk4NjYwNWFiNTk2
-					NWYzOTU0YTMxZjM7MDAwMDAwMDA7MDAwMDAw
-					MDAwMDAwMDAyMDtjb20uYXBwbGUuYXBwLXNh
-					bmRib3gucmVhZC13cml0ZTswMDAwMDAwMTsw
-					ZTAwMDAwMjswMDAwMDAwMDAzNTZhZmU4Oy91
-					c2Vycy9zdGV2ZS8udHJhc2gvd2F0ZXJfMS5w
-					bmcAAOQAAAD+////AQAAAAAAAAASAAAABBAA
-					AEgAAAAAAAAABRAAAKAAAAAAAAAAEBAAALgA
-					AAAAAAAAVBAAAOAAAAAAAAAAVRAAAOwAAAAA
-					AAAAVhAAANgAAAAAAAAAAiAAAJQBAAAAAAAA
-					ECAAABQBAAAAAAAAESAAAEgBAAAAAAAAEiAA
-					ACgBAAAAAAAAEyAAADgBAAAAAAAAICAAAHQB
-					AAAAAAAAMCAAANgAAAAAAAAAAcAAAPgAAAAA
-					AAAAEcAAABQAAAAAAAAAEsAAAAgBAAAAAAAA
-					ENAAAKABAAAAAAAAgPAAAKwBAAAAAAAA
-					</data>
-					<key>IsSHSprite</key>
-					<true/>
-					<key>PhysicProperties</key>
-					<dict>
-						<key>AngularDamping</key>
-						<real>0.0</real>
-						<key>AngularVelocity</key>
-						<real>0.0</real>
-						<key>CanSleep</key>
-						<true/>
-						<key>FixedRot</key>
-						<false/>
-						<key>GravityScale</key>
-						<real>1</real>
-						<key>HandledBySH</key>
-						<true/>
-						<key>IsBullet</key>
-						<false/>
-						<key>LinearDamping</key>
-						<real>0.0</real>
-						<key>LinearVelocity</key>
-						<string>{0, 0}</string>
-						<key>SH_ComplexShapes</key>
-						<array/>
-						<key>Type</key>
-						<integer>3</integer>
-					</dict>
-					<key>SHSheetName</key>
-					<string>Map</string>
-					<key>SHSpriteName</key>
-					<string>Water_1</string>
-					<key>SheetImage</key>
-					<string>Spritesheet_Map.png</string>
-					<key>SheetImage-HD</key>
-					<string>Spritesheet_Map-ipadhd.png</string>
-					<key>TextureProperties</key>
-					<dict>
-						<key>Angle</key>
-						<integer>0</integer>
-						<key>Border</key>
-						<integer>0</integer>
-						<key>CanBeTrimmed</key>
-						<true/>
-						<key>Color</key>
-						<string>{{1, 1}, {1, 1}}</string>
-						<key>ConvertedFromOldFormat</key>
-						<false/>
-						<key>CustomClassName</key>
-						<string></string>
-						<key>FlipX</key>
-						<false/>
-						<key>FlipY</key>
-						<false/>
-						<key>Frame</key>
-						<string>{{0, 84}, {100, 100}}</string>
-						<key>Frame-HD</key>
-						<string>{{0, 336}, {400, 400}}</string>
-						<key>Image</key>
-						<string>Spritesheet_Map.png</string>
-						<key>Image-HD</key>
-						<string>Spritesheet_Map-ipadhd.png</string>
-						<key>IsCropped</key>
-						<false/>
-						<key>IsDrawable</key>
-						<true/>
-						<key>IsRotated</key>
-						<false/>
-						<key>IsTrimmed</key>
-						<true/>
-						<key>Name</key>
-						<string>Water_1</string>
-						<key>Opacity</key>
-						<real>1</real>
-						<key>OriginalImage</key>
-						<string>/Users/Steve/.Trash/Water_1.png</string>
-						<key>OriginalImage_RelativePath</key>
-						<string>../../../../../../.Trash/Water_1.png/</string>
-						<key>OriginalRect</key>
-						<string>{{0, 0}, {400, 400}}</string>
-						<key>OriginalSize</key>
-						<string>{400, 400}</string>
-						<key>Position</key>
-						<string>{0, 336}</string>
-						<key>Scale</key>
-						<string>{1, 1}</string>
-						<key>SpriteSize</key>
-						<string>{100, 100}</string>
-						<key>SpriteWasBreaked</key>
-						<false/>
-						<key>Tag</key>
-						<integer>0</integer>
-						<key>TextureOffset</key>
-						<string>{0, -0}</string>
-						<key>UsesBatchRendering</key>
-						<true/>
-						<key>ZOrder</key>
-						<integer>1</integer>
-					</dict>
-				</dict>
 				<key>Water_2</key>
 				<dict>
 					<key>DocumentSecurityImageBookmark</key>
@@ -2642,9 +3260,9 @@
 					AAABAQAANzAxQjdFMDUtOUUwNS0zN0YzLTk2
 					RUYtOUVEMjg0RUY1ODhGGAAAAAECAACBAAAA
 					AQAIAO8/AAABAAgAAAAAAAAAAAABAAAAAQEA
-					AC8AAAAEAAAAAwMAAAABAACnAAAAAQIAADdi
-					MTdhZGM0M2ZiZDUxNDczMjZmNGVhYTAyYzVj
-					NWY5NzVhM2JkN2I7MDAwMDAwMDA7MDAwMDAw
+					AC8AAAAEAAAAAwMAAAABAACnAAAAAQIAADE0
+					YWYyOTI3NzQxMWU1YjdiNmNhYTZmYWU1NDI3
+					YzA0ZTA3YjY5NGQ7MDAwMDAwMDA7MDAwMDAw
 					MDAwMDAwMDAyMDtjb20uYXBwbGUuYXBwLXNh
 					bmRib3gucmVhZC13cml0ZTswMDAwMDAwMTsw
 					ZTAwMDAwMjswMDAwMDAwMDAzNTZhZmU5Oy91
@@ -2713,9 +3331,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{126, 57}, {8, 8}}</string>
+						<string>{{173, 57}, {8, 8}}</string>
 						<key>Frame-HD</key>
-						<string>{{504, 228}, {32, 32}}</string>
+						<string>{{692, 228}, {32, 32}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Map.png</string>
 						<key>Image-HD</key>
@@ -2741,7 +3359,7 @@
 						<key>OriginalSize</key>
 						<string>{32, 32}</string>
 						<key>Position</key>
-						<string>{504, 228}</string>
+						<string>{692, 228}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -2755,12 +3373,12 @@
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
-						<integer>0</integer>
+						<integer>1</integer>
 					</dict>
 				</dict>
 			</dict>
 			<key>Size</key>
-			<string>{1024, 2048}</string>
+			<string>{1024, 1024}</string>
 			<key>Trim</key>
 			<true/>
 			<key>ZOrder</key>
@@ -2829,8 +3447,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADuAAAA
-					AQIAADY0ZTU2YTE0YzFmM2FjMTI1MTY3NjA2
-					MWRlZWQxMDdlZjdhYzhlZjU7MDAwMDAwMDA7
+					AQIAADY3MzU0Y2ExZTRmYTExYWUzNjg2YTQ2
+					ZGI0MDdhMWI2MGUxOWEzMDE7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
@@ -3036,8 +3654,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA2ZWViZGEyNTkxOTliNTdjN2Qy
-					MTQ3OTAxNzMwNGNhMmM1ZDcyMTAxOzAwMDAw
+					8gAAAAECAABiOWJkMzRmZjcwNDU4ZDIzN2E1
+					MDM3ZjNkY2JjYTBiMjA0YTU4NDU3OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -3187,9 +3805,9 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD4AAAAAQIAAGI2OGUwNmE2Njdi
-					MWQxZGQwOTFmNTc4YWNjYWMzN2VlNTQ4ZDhl
-					ZjI7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD4AAAAAQIAAGVkMGZmOGYzYWNk
+					ZDhiOTBlYjc3OTZjYTM0ZGRkMTU2NzQ3YjBm
+					MWE7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
 					MDAwMDAwMDAzNWExZDgxOy91c2Vycy9zdGV2
@@ -3338,9 +3956,9 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD5AAAAAQIAADM5ZjlmNDAyYzI2
-					NWFjMTIwZDc0YjlhNDc3M2QyN2QwMjAxMTk3
-					ZWY7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD5AAAAAQIAADU3YWFlYjFjNTQ3
+					OTdiNjZiODg2NWNjODAzMjgxMDkyYTI3NWZm
+					OWE7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
 					MDAwMDAwMDAzNWExZDgwOy91c2Vycy9zdGV2
@@ -3489,8 +4107,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADsAAAA
-					AQIAADViYWFkNTYxMGEwZTM2MDEyMDQ3NzEw
-					YWI5NTRmYWY4NWI3NGRkZmI7MDAwMDAwMDA7
+					AQIAADM0MTc3YzllMTdhNWIxN2Q5OTVhODRj
+					NTAxOGZhYjZkMTdjNzA3MmM7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
@@ -3823,8 +4441,8 @@
 					OTZFRi05RUQyODRFRjU4OEYYAAAAAQIAAIEA
 					AAABAAgA7z8AAAEACAAAAAAAAAAAAAEAAAAB
 					AQAALwAAAAQAAAADAwAAAAEAAOkAAAABAgAA
-					ZjhmYzcxZjk1ODY3Y2I3Zjk0YmM4ZDRmYWY3
-					NDUwMjVlYzZiM2Q3ODswMDAwMDAwMDswMDAw
+					MjI2OWM0YTJhYjQxOTc0NTliZjAyMTBjYzhm
+					ZGYwODgwYWQxMzA2MzswMDAwMDAwMDswMDAw
 					MDAwMDAwMDAwMDIwO2NvbS5hcHBsZS5hcHAt
 					c2FuZGJveC5yZWFkLXdyaXRlOzAwMDAwMDAx
 					OzBlMDAwMDAyOzAwMDAwMDAwMDM1YWRjMGY7
@@ -3973,8 +4591,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAAGMwNjRjMTkyZmZmYWQxZGJhZTk1YTY4
-					ZTNmMmIwNDUyOGI4MjRlNzk7MDAwMDAwMDA7
+					AQIAADMyNWQ4YWEyMjBmNjFjY2E0YTJiYTgz
+					MDNiMjk4OGNjMDBhZWY3NzY7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWFk
@@ -4122,9 +4740,9 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAABjYmQ2
-					MmZmODAzYWNlNDI2ZDUwNzc3NzE4MjU2ZDUx
-					OWEwNzU2YjQwOzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAAA1YzE2
+					MzFiYzIwOGNiN2RiOTNjMDg0ZjNlNThjZTlh
+					YzNiNjM3YjU4OzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
 					MDAwMDI7MDAwMDAwMDAwMzVhZGMxNDsvdXNl
@@ -4272,9 +4890,9 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAAA4ZDQy
-					YWE1NGFmMmRhMTBjMGRkM2UzMGRhMWMwMzVj
-					ZDJiM2ExNGZlOzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAAAxODQw
+					YTA4MDk4MzdlNTljN2FjNmIzNTZhNjk5YjE1
+					NGM0OTA4MTBkOzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
 					MDAwMDI7MDAwMDAwMDAwMzVhZGMxNTsvdXNl
@@ -4422,9 +5040,9 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAAAxOGQw
-					OGFjNzk1MGRkOGUyZTkwZmQyZmY3YmExYjM1
-					MzA2Y2I1NjcyOzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAAAyNjQ5
+					ZmNlMzlhMTUxNjMzNGM3Nzc4ZTAyMjgxNmM5
+					NTExNWRlYTlhOzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
 					MDAwMDI7MDAwMDAwMDAwMzVhZGMxNjsvdXNl
@@ -4572,9 +5190,9 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAAA0ZmE4
-					NzAzZGQ4MjJkNzM5ZWM3MjBhZWZjZjg0Y2Rj
-					ZmUyYTQ1MmYwOzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAABkNjJk
+					YTQ5MTI5ZWU5YjIxOWNhNDFjZTA3NzY3NTYy
+					MmQ2YjUyZjE4OzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
 					MDAwMDI7MDAwMDAwMDAwMzVhZGMxNzsvdXNl
@@ -4722,9 +5340,9 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAABkMDFm
-					ODQxZmFlNWM3NGVkOTI0MTI5MDUwZGIxOWVi
-					ODI1NzdlNGZjOzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAABkNGZi
+					NmJkZDE1MDA5NzllNGIxNGZkMDY2ODc5MTQ5
+					MDFkOTlhYTM4OzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
 					MDAwMDI7MDAwMDAwMDAwMzVhZGMxODsvdXNl
@@ -4872,9 +5490,9 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAABiYjE3
-					MGQ4YmU5N2EzMGFkODVmOTlmOGM5NjlmNzVl
-					YTUyZjE3OTVkOzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAABiYWM2
+					NzA0YmFhZDFkMDBhNzNjZTM0MjY3NDA3NDJh
+					YzU5NWE0MGNhOzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
 					MDAwMDI7MDAwMDAwMDAwMzVhZGMxOTsvdXNl
@@ -5022,9 +5640,9 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAABlNjk0
-					ZTlkYzUwN2Y4M2U2YzFhMzUyZTUxODllOGVi
-					OWE2MDliMzU5OzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAABiOGE1
+					OTI4MDllMmMwNTE3YzkzZjUyZjYxNTFjZTc1
+					MmUxNDE4MDE2OzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
 					MDAwMDI7MDAwMDAwMDAwMzVhZGMxYTsvdXNl
@@ -5172,9 +5790,9 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAABkOGUy
-					ZGRjZmE0ZTc3N2I3NzUyNjFhNTE1YmFmMTQx
-					NzQwMjY0MTM5OzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAABjOGZl
+					NzZkYjRmYTI0MDA5ZDc4OGE2Y2VlMmEyYmIz
+					MmVmOWZlNmFmOzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
 					MDAwMDI7MDAwMDAwMDAwMzVhZGMxYjsvdXNl
@@ -5322,9 +5940,9 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAAA4ZjA0
-					YjFmMWZmOTI4MjRkYzQ2ZWU5YmE2OGVhMDI2
-					Yzc1NmY5ZjUxOzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAABlOTUz
+					MjVmOGMzODBiNWI4ZjVhNzk5ZmYzMjM0MjE4
+					YmQ2ZDJkMmNlOzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
 					MDAwMDI7MDAwMDAwMDAwMzVhZGMxYzsvdXNl
@@ -5472,9 +6090,9 @@
 					AQEAADcwMUI3RTA1LTlFMDUtMzdGMy05NkVG
 					LTlFRDI4NEVGNTg4RhgAAAABAgAAgQAAAAEA
 					CADvPwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAv
-					AAAABAAAAAMDAAAAAQAA6AAAAAECAAA5NTVk
-					MzI0NDdjMDg0MjJhNWIyMmU5YzA0Yjk3YTkw
-					Y2Y2NTQ4ZWFiOzAwMDAwMDAwOzAwMDAwMDAw
+					AAAABAAAAAMDAAAAAQAA6AAAAAECAABjOWJh
+					ODhmYjlkN2M1ZDM3ZDg0NGZmZGJlMGI1MDQ2
+					YzY3YzkyODU0OzAwMDAwMDAwOzAwMDAwMDAw
 					MDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5k
 					Ym94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
 					MDAwMDI7MDAwMDAwMDAwMzVhZGMxZDsvdXNl
@@ -5623,8 +6241,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAAGExNjM0ZGJhZDMwNDFmNzExNGMwMDEx
-					NmQ3NDY2NTcyZjRlMmZmNzM7MDAwMDAwMDA7
+					AQIAADcwMDAyYTdlMTQxMmNkZWQyNjc1N2Ex
+					NTUwYjUwOWIyN2Y2YjE5NTE7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWFk
@@ -5773,8 +6391,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAyMjAxZGI1YmUzMjQxNzExY2Rj
-					OGQ1ZGJhMTViNjQzMzg1NjFmNzgyOzAwMDAw
+					8gAAAAECAABmNmUxZTBhOGIxMTQ2MTAzMzgx
+					ZDA4YzI2NTU2MzkwZmEyODlmYWVmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -5924,8 +6542,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADvAAAA
-					AQIAADI5NWU3ODA1NGUxODYxYTFjYTFiZWMw
-					ODQxMDhiMWFkMjRkY2FmYTA7MDAwMDAwMDA7
+					AQIAAGVmODdlMDQ3Zjc3NWVhZWUxN2JkOTEw
+					MWM1NGZiOTgzM2U5YTJhZTc7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWFk
@@ -6074,8 +6692,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8QAAAAECAABjNzY1NTQwYTVjM2Y4YjUwODk1
-					NjdiY2YzZDE3NDY5NDlhOTJjZWRhOzAwMDAw
+					8QAAAAECAABmMzUzY2I2ZGJlNGRhODQ1NGZl
+					NWU5MzYwNTIxY2JmMWQ2YzMzNDI1OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -6225,8 +6843,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAABhNTA3YzY4NzRkMTVhMDYwZWJm
-					YjE0MzM0NDNlMTdjYTM5MjNiNjU5OzAwMDAw
+					8gAAAAECAAA0MDQ4NjhhYTgzYzZiOWQxZjBi
+					NDJiNmQzM2NjYzE5OTRmYzAxYjMwOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -6376,8 +6994,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABiNzNkN2QzNmZmNTY2OWFkYWM3
-					ODkzNDMzMDg1MTQ0NWM1NjU5MDZjOzAwMDAw
+					9AAAAAECAABkMTYwYWJlMDNkNGQ3MmQyNjQ5
+					MmU4NzczZDQ5MDQxMDIzNDFkMDU5OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -6527,8 +7145,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPgAAAABAgAAODkwODljZWNhNGYyZmZm
-					YTE0YTQ4YWIxZDZlZTMzNTVkNmY5YWUyZDsw
+					AAEAAPgAAAABAgAANWI5ZTU3OWM3MDBmZjM3
+					NGZhZjQ4MDhiNzQ3OGNjYzZlZmIzNmJhMTsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -6678,9 +7296,9 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD6AAAAAQIAADYzMWY2NzQyYzAw
-					ZTA2OWFjYTkzOTZhYzcyODY5NmViOTFjYmE4
-					NzY7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD6AAAAAQIAAGMwMjc3ZGM4ZWM1
+					MDNkNjEwNWRiMzE1MmYyNTc4MDk5NWM5MDFj
+					YTE7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
 					MDAwMDAwMDAzNWFkYzA4Oy91c2Vycy9zdGV2
@@ -6829,9 +7447,9 @@
 					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
 					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
 					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
-					BAAAAAMDAAAAAQAAAAEAAAECAABjMzhmOWFh
-					NzI3NTZjOTdkNjZiMThjYTU0ZDVkYjdkMjJk
-					NmRmNTJhOzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					BAAAAAMDAAAAAQAAAAEAAAECAABhZTJjNmJi
+					YTljZjA2NWMwZDM2ZjJjNDNiNmM0N2IxNjA5
+					ODllMTU3OzAwMDAwMDAwOzAwMDAwMDAwMDAw
 					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
 					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
 					MDI7MDAwMDAwMDAwMzVhZGMwOTsvdXNlcnMv
@@ -6980,8 +7598,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAADBlYTUzZmYxYzI5NWQ2MWVjZGFiZjZl
-					MzJhMzgwNDc4NDU5Y2JlMjE7MDAwMDAwMDA7
+					AQIAADJmZjc2ZDZmM2YyYjIwMTllYzAxYTJh
+					MTlkMDdlOTk4YzM3MWMxZTk7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWFk
@@ -7130,8 +7748,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAADRmMTU1ZGYwNmIzMTUzZjE4MTRkNTVl
-					OTgyMjU2MzEwODliZjM1ODg7MDAwMDAwMDA7
+					AQIAADYwZTNjNDRjODBkYTYzNzA4NjdiZDYw
+					ZjQ2ZDUzNzhhZDIwNjdjMzE7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWFk
@@ -7280,8 +7898,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADtAAAA
-					AQIAADcwZmIyMzU5OTRiZjc4NjE5NTFmMDNi
-					Y2NlMDU1NjU2YmRkMjk1ZmI7MDAwMDAwMDA7
+					AQIAADczMzNmODM0ZDA3MDE2NzQ5ZWFjMzI2
+					ZjM5NDVkYzUwMThlOTVhN2E7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWFk
@@ -7469,8 +8087,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABiYTQ5Yzg4Y2U0YTIwY2M3ZWQy
-					MTgwZmY1ZWM3ZDZmMWM1NDIwNjY0OzAwMDAw
+					9AAAAAECAABkMDM2NmRhMDJhMTQ1MTQwNmNi
+					MTM1MmYwZGMyODUxYjk4ZmVmZmQ3OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -7678,7 +8296,7 @@
 									<string>{4, 18}</string>
 									<string>{0, 34}</string>
 									<string>{3, 57}</string>
-									<string>{7.9999999999999991, 68}</string>
+									<string>{8, 68}</string>
 									<string>{20, 79}</string>
 									<string>{26, 80}</string>
 									<string>{42, 73}</string>
@@ -7811,8 +8429,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAAwZjViMzVjZDY0MWUzZWNjMDll
-					NzUzMDRmYmUzZDM4YmEzOTkyNzA4OzAwMDAw
+					9AAAAAECAAAxMzM0ZjdiNDNkN2ViNTIzODc4
+					OGE3OTlmMTQ4Y2FmYjAxNDQ4ZDkyOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -8019,8 +8637,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAA5NTJhYmI2NjY1MTE1MGUwOTA3
-					ZmQxNjg4NTA3OTU0OWUzMDMxNDI2OzAwMDAw
+					9AAAAAECAABhYzBhNGFmYTc1MTA2MDhjOTY0
+					MDAyY2Q3YWM3MzcxYTFhNjgzOGY0OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -8227,8 +8845,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABjYzNkYTM5OTlkMTY1ZjM0ZTZl
-					M2JjMGMwNTM1ZTg5YjQ2NDUwYWY0OzAwMDAw
+					9AAAAAECAAAxZDI3NzE0MzE4YThkZjMyMzUy
+					NzkwNmVhNmUyOWIxYzlhODVlNDMxOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -8435,8 +9053,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAwYmRiZWI5ZGJkYzUzMDY3MzFm
-					ZTA2MDM4ZjAxMTA3NDVjZTY3MTIwOzAwMDAw
+					8gAAAAECAAA2NzY5OWNjOWM3MjlkM2IyOGM1
+					OTE3MjZmOWFkM2U0M2YyMWZlYjcwOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -8643,8 +9261,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAABhMWU1ZGViZjg5Njc0MmQzNmYz
-					ZjQ2NWU2MDU4OGRlNTM5ODM4ZTlmOzAwMDAw
+					8gAAAAECAAAzNTdhMDczNGJlMGU0YWIwZGZi
+					YzI4OTZmMGE1NjMwY2VkYTIzZGZkOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -8851,8 +9469,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAABlZDI5NGVlMzI5YzYwYTgzZTA4
-					ZGZlZDM3Zjc0NWEzYjg1ODEwNDdhOzAwMDAw
+					8gAAAAECAAAxYmMwOWM4NzJkYTc0NjRmNWYw
+					NjVjNzk4MDIwZmNkYzBjNjJhMDRlOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -9098,8 +9716,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAAGRjNTcyZTBmNTJkMzM3NDJhMjVlMGJl
-					YTU3ODlhMGI0MTcwMTk5MTM7MDAwMDAwMDA7
+					AQIAADdlODg2MTk0Y2JhZDY4ODU1YTU1Njkw
+					OWI4OWNiM2YzZTE0MjMyYzc7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWJm
@@ -9248,8 +9866,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAABjYzdhMGIyY2U5Nzc0OTQ3MjJm
-					MTYyYTI3M2EzMDU5OTBhOGMzNDcyOzAwMDAw
+					8gAAAAECAABmMGUwZjVmNjc1YjM3ZTE1MTc2
+					NTFkODI3NmU0YjVmNmE3ZTM4MTFmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -9399,8 +10017,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAAGM5NDQwMDBhN2Q5OTMyNGI3MzViMzBi
-					MWQzMzgwMDZhMTVhODYxNzk7MDAwMDAwMDA7
+					AQIAADk1OGM5NjYwODhjMDI1MjNlNzdiOTlh
+					MGViNDMyYTM2YjI4OTdiMGI7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWJm
@@ -9549,8 +10167,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA3ZGMyOWQzYmE3YzkzY2JkYzBj
-					ZGIyNTFmYzU0MWYzNWE0ZjMwMGVlOzAwMDAw
+					8gAAAAECAAAwOTJhZGE3NjFlMjYwN2U5NTMw
+					YTkwNWQwZTFmNDVkNmQwMWVlM2FiOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -9700,8 +10318,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAA4MGZjODU1YmE5NjZhOWMyMzMz
-					ODIxZmExZGUwMjA4MDZmNjYwOWU0OzAwMDAw
+					9AAAAAECAAA5OGEzNmFjZWIzNTdiYzE0Njhj
+					ZjZiMjkxYmYxZjUzNzdmYzhjYmZiOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -9851,8 +10469,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADxAAAA
-					AQIAADc0MDcyYzQyZTgyYjkxYjMyM2E3YThh
-					NjkzOTQzMWRiOWE5OTA5OGE7MDAwMDAwMDA7
+					AQIAADg1MWE2ZDA0Y2IyNDNkY2UwYWU1YzAw
+					YTllOTMyNWI4NDFmYmUxNDY7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWMw
@@ -10001,8 +10619,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9QAAAAECAABiNTJhZjA0YWY0MDRmMzUwY2Iz
-					MGFmNzMwYWFiNzcyNjQ5NTU3ZDJhOzAwMDAw
+					9QAAAAECAABlMjNjZmM0MjE3NjQxZjY5YmU2
+					NjIwODQ5OTExZjNjNjVjNDYwOGY2OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -10152,8 +10770,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPkAAAABAgAANWUzMTkxN2Q1ZDJmMTkz
-					MDBmYjRjZDc3YzliZjU5NzRmNzI3MTZjMTsw
+					AAEAAPkAAAABAgAANzViZWVhZTU3MWIyYTZi
+					ODc4NTY3Y2MxMDdmYzJlN2FkNmQ3MTliYjsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -10303,8 +10921,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPYAAAABAgAAZDJiNzRlM2VlNzc4MmE1
-					ZjVkOTE5M2JiZmI5NmM1YmE0OTIwYTA3OTsw
+					AAEAAPYAAAABAgAANTkzY2QyY2U3ZWE5Nzk4
+					ZTBjNWVlNTUzMmFkZDhjYzVlN2ZmZTQ5Mzsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -10454,8 +11072,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPYAAAABAgAANDFkZmM0MGY5M2M4YjVi
-					MzkxOWY3NmQwNjViZmVlMzI5MjlhMWNjZTsw
+					AAEAAPYAAAABAgAAODJkN2M5ODZhNTU3M2E5
+					ZGRjOWZjODczNDU5YmJiNDMyZjc4YWQ4NDsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -10605,8 +11223,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPgAAAABAgAANjg4NWZkYThmZGRlNDI2
-					Y2YxOWViYzBiNjA0OTcyZjM4MWNkMDE3Mzsw
+					AAEAAPgAAAABAgAAZGFjMjRmZTRmZDE5YmJm
+					MTdlYWU2Y2JjZDY3NmYyZTQ0OTIxZmQ1Mjsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -10756,8 +11374,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAA0ZTk0ZDE0OWM2Yzk0YmE5Mjgx
-					Mzc0MWZlYTZlNGZhMjA3ODBkNzI5OzAwMDAw
+					9AAAAAECAABjMmVhNGQ1OGIxZTEzYWEzZjgz
+					ZDZmMTM0M2Y3ZGIwOTY1MzlmN2ZjOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -10907,8 +11525,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADxAAAA
-					AQIAAGY2ZWY2ODkzMzRiYzk5MmMwNThlMzY2
-					N2Y2NzdjMGE3N2Y1ZjVjMTI7MDAwMDAwMDA7
+					AQIAAGMyODdmMTNmMDM2ZGQwNWQ3ZWJmMmUy
+					YmYwNjVjYzUwZWIyNTkzZmM7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWMw
@@ -11057,8 +11675,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8wAAAAECAAA1NTVmMDUwYTE3MDE1YWJjNTYz
-					YjZjYWQ4ZmZlODM5OTE2ZWI0ODBmOzAwMDAw
+					8wAAAAECAABhNzY3MzBlMmY4NmJlYzU0MjA5
+					YTkwMmU1OWI2NmRjNzFmNjhhZWFlOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -11208,9 +11826,9 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD6AAAAAQIAAGVkYzYwNGM2YjRm
-					NGViNjBhNjllMmFkOTcyNDIxNWUyYzc0MmU1
-					NWU7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD6AAAAAQIAADdkOTA0YWQyZWQx
+					MmUwMzIxMjM1NWU3ZTAzZjhhNGVjMGM2MmY2
+					MmE7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
 					MDAwMDAwMDAzNWMwM2I4Oy91c2Vycy9zdGV2
@@ -11359,9 +11977,9 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD8AAAAAQIAADE3ZDYxOWUyZjFk
-					NGJmOTNlYTRmMTk5MzI3NThiYzA3NjlmNTBi
-					MjU7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD8AAAAAQIAADYwYmI5NTFiMGUw
+					ZGU1OWIzOGQxODE1NWNiMGY1MTc3MGIzNzU3
+					MmY7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
 					MDAwMDAwMDAzNWMwM2I5Oy91c2Vycy9zdGV2
@@ -11510,8 +12128,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPcAAAABAgAAMjU5M2MxYzhjY2M0ZTdi
-					Y2VhZjI4ZTFlM2Q1MDBkYWM4NDdmM2FlZjsw
+					AAEAAPcAAAABAgAAZmU3OWQ4MjczMzJjZjhl
+					N2MwNmY5ODgyOTZlYWY1NWE1M2U0YTQ3YTsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -11661,8 +12279,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPkAAAABAgAANzliODZhODZjZTEyODMy
-					NWIwMzM3NmZmYjQ2NTBiNGYyYmExZjhlMjsw
+					AAEAAPkAAAABAgAAYjIyNzk5NGZkMmZlZDQ3
+					ZDc5YTAzNjA0MmQwZTViNDBkOGQzZTU0Yzsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -11812,9 +12430,9 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD9AAAAAQIAADNjMjE2MDU5ZDcz
-					NzBjNzNjZjY0NmYzOGU1MGU1YjQ5MDdmNTJh
-					OTM7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD9AAAAAQIAADJmODU4OTNhY2Rh
+					MjhmZWM1MzE2ZTliNDY3YzY4Y2U0ODllZTRk
+					ZDE7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
 					MDAwMDAwMDAzNWMwM2JiOy91c2Vycy9zdGV2
@@ -11963,9 +12581,9 @@
 					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
 					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
 					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
-					BAAAAAMDAAAAAQAA/wAAAAECAAA1YzZlMGU0
-					YjU1Mjk5MWZjOTk3MTFhNjMxODU3ZTE1YTcw
-					Y2MxZTc5OzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					BAAAAAMDAAAAAQAA/wAAAAECAAA3YmM5NDIz
+					YTQzODU1ZjFkNjk2MGM2MDM4ZDk3NzQ0Mjg2
+					NzE5OTA1OzAwMDAwMDAwOzAwMDAwMDAwMDAw
 					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
 					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
 					MDI7MDAwMDAwMDAwMzVjMDNiYzsvdXNlcnMv
@@ -12114,8 +12732,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9QAAAAECAAAzOWZhZmQ1OWQwYzdmNWE4ZjU3
-					YWM0YTIzYWVhYTkxZGRjNjZjYzIzOzAwMDAw
+					9QAAAAECAAA3NjYyNGM1NzYyYzI0MDZjOGU2
+					MmI4YzhlMjQxMWJkMTYyZGJjMTBmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -12265,8 +12883,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPcAAAABAgAAZjYyNTdlNzdmZDI0MjVh
-					MDZmOTJiY2E3MTZkYzZlYTViYjhkMmFmNDsw
+					AAEAAPcAAAABAgAAYTMzZTJlNDUxZjI5NDg3
+					YjViZDIwODA2ODZmYTkxNTMxN2I5OTAzNTsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -12416,8 +13034,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADxAAAA
-					AQIAAGRmYjVjOWIwZGYzYmM0YmY5MDQ1YjYy
-					ZmRjOTRmZDE4NjlmNjZjOTE7MDAwMDAwMDA7
+					AQIAADE3YzBjMGEzYmIyN2FkNjVmYzBjZjU0
+					NTc5NTU0YjE3ZTVmOTg3ODA7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWJm
@@ -12566,8 +13184,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8wAAAAECAABlN2ZjNjY3MDg1MzFiMWEzZDE2
-					MjFkOWYxMzgxODA0ZTUzZTEyNDBkOzAwMDAw
+					8wAAAAECAAA2MTBlMGM3ZDY2NzA0NTg4NzNl
+					MWQwMWM0NDRjODliNWUwZGI1ODZjOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -12717,8 +13335,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPYAAAABAgAAYWVmZmQ4MWNjMzcxMjU5
-					YzJhMDMxMGU3MWE3MDMwY2YwNzE0NWJhYzsw
+					AAEAAPYAAAABAgAAYmUwZDE3NjI4MjEyY2Yx
+					OGYzNmNkMmNiY2QwYmE0YzVjOGU0ODQyYjsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -12868,8 +13486,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPgAAAABAgAAZDQxNGI2ZDZjYjE5MzM0
-					MDRhOTQ5ZTdkNzRkODk3YzgzOWE3YmRiOTsw
+					AAEAAPgAAAABAgAAZGU5YTNlNjM0MjY3NTE0
+					MjA1MjIzOGM2MWZlZTU0MzY0Njc5NGQ5Yzsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -13019,8 +13637,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADdlMTdlZmNjYTZjODA1NWE0MTIxZGZk
-					NWMxZjIxNTI2ZjliMDY3N2I7MDAwMDAwMDA7
+					AQIAADZlNmQyNTAxZTFjYWZiMDgxZDk2N2Q2
+					YjJkYjU2NTQ2YThmZTUwYmU7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWMw
@@ -13169,8 +13787,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA1YjEzYTIwNGExY2U4ZWYxYjgx
-					YzFhMDQ4MTQ3Njg5ZGY4MTQ4ZmMwOzAwMDAw
+					8gAAAAECAABkZjU5ODAyMjIyMWVkY2ZiMGRi
+					NGZlMTI0ZWEyOWYzZjEyMzUxMzY0OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -13320,8 +13938,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8wAAAAECAAAwY2NmN2FjNDhjZmZiMGJjZTFm
-					MGZhMzQyMGVhMTU1NDg1NmE4N2Q3OzAwMDAw
+					8wAAAAECAAA2YTkwY2Y3M2QwNjZjMjQwNmZm
+					ZDBmNzA4NGNjZThiMzM1Yzc3ZTNmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -13471,8 +14089,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9QAAAAECAAA0NDkzNzAwM2UxODMzNjExOGI1
-					OTA1NTk3MWJhMDgzMTc4NWE4MTFmOzAwMDAw
+					9QAAAAECAABmYjZiNWYzYTM5YWU5NThhNjU3
+					YWJhMGViMDhjNjcwMzI2MTg1ZDBiOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -13622,8 +14240,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADxAAAA
-					AQIAAGFlMzVhNzg5NGVlZTNhZTc1NGIxYTVi
-					YjYxOTdjMTQyZjU5YTc2N2M7MDAwMDAwMDA7
+					AQIAADNkMTMxYzYzMmEzMWY3MDUxMDI3OTY2
+					NjZkMmMwNTY0MGQ4OGJlNDQ7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWJm
@@ -13772,8 +14390,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8wAAAAECAAAyNzk0YjVmNzcyZTVlYzUwNjU5
-					MTcyYjU3YmYxYWI4MjY4MDA3ZDBlOzAwMDAw
+					8wAAAAECAAAzYzdiOTBjNjc3MTU5MWU2MGFk
+					OGY4MDhjZjZjYmFlMTEwMDAyZTU2OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -13938,8 +14556,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8QAAAAECAABjNzY1NTQwYTVjM2Y4YjUwODk1
-					NjdiY2YzZDE3NDY5NDlhOTJjZWRhOzAwMDAw
+					8QAAAAECAABmMzUzY2I2ZGJlNGRhODQ1NGZl
+					NWU5MzYwNTIxY2JmMWQ2YzMzNDI1OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -14010,8 +14628,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADvAAAA
-					AQIAADI5NWU3ODA1NGUxODYxYTFjYTFiZWMw
-					ODQxMDhiMWFkMjRkY2FmYTA7MDAwMDAwMDA7
+					AQIAAGVmODdlMDQ3Zjc3NWVhZWUxN2JkOTEw
+					MWM1NGZiOTgzM2U5YTJhZTc7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWFk
@@ -14081,8 +14699,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAyMjAxZGI1YmUzMjQxNzExY2Rj
-					OGQ1ZGJhMTViNjQzMzg1NjFmNzgyOzAwMDAw
+					8gAAAAECAABmNmUxZTBhOGIxMTQ2MTAzMzgx
+					ZDA4YzI2NTU2MzkwZmEyODlmYWVmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -14153,8 +14771,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAAGExNjM0ZGJhZDMwNDFmNzExNGMwMDEx
-					NmQ3NDY2NTcyZjRlMmZmNzM7MDAwMDAwMDA7
+					AQIAADcwMDAyYTdlMTQxMmNkZWQyNjc1N2Ex
+					NTUwYjUwOWIyN2Y2YjE5NTE7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWFk
@@ -14245,8 +14863,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABiNzNkN2QzNmZmNTY2OWFkYWM3
-					ODkzNDMzMDg1MTQ0NWM1NjU5MDZjOzAwMDAw
+					9AAAAAECAABkMTYwYWJlMDNkNGQ3MmQyNjQ5
+					MmU4NzczZDQ5MDQxMDIzNDFkMDU5OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -14317,8 +14935,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAABhNTA3YzY4NzRkMTVhMDYwZWJm
-					YjE0MzM0NDNlMTdjYTM5MjNiNjU5OzAwMDAw
+					8gAAAAECAAA0MDQ4NjhhYTgzYzZiOWQxZjBi
+					NDJiNmQzM2NjYzE5OTRmYzAxYjMwOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -14410,8 +15028,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA1YjEzYTIwNGExY2U4ZWYxYjgx
-					YzFhMDQ4MTQ3Njg5ZGY4MTQ4ZmMwOzAwMDAw
+					8gAAAAECAABkZjU5ODAyMjIyMWVkY2ZiMGRi
+					NGZlMTI0ZWEyOWYzZjEyMzUxMzY0OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -14482,8 +15100,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAADdlMTdlZmNjYTZjODA1NWE0MTIxZGZk
-					NWMxZjIxNTI2ZjliMDY3N2I7MDAwMDAwMDA7
+					AQIAADZlNmQyNTAxZTFjYWZiMDgxZDk2N2Q2
+					YjJkYjU2NTQ2YThmZTUwYmU7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWMw
@@ -14574,8 +15192,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAABjYzdhMGIyY2U5Nzc0OTQ3MjJm
-					MTYyYTI3M2EzMDU5OTBhOGMzNDcyOzAwMDAw
+					8gAAAAECAABmMGUwZjVmNjc1YjM3ZTE1MTc2
+					NTFkODI3NmU0YjVmNmE3ZTM4MTFmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -14646,8 +15264,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAAGRjNTcyZTBmNTJkMzM3NDJhMjVlMGJl
-					YTU3ODlhMGI0MTcwMTk5MTM7MDAwMDAwMDA7
+					AQIAADdlODg2MTk0Y2JhZDY4ODU1YTU1Njkw
+					OWI4OWNiM2YzZTE0MjMyYzc7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWJm
@@ -14738,8 +15356,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPkAAAABAgAANzliODZhODZjZTEyODMy
-					NWIwMzM3NmZmYjQ2NTBiNGYyYmExZjhlMjsw
+					AAEAAPkAAAABAgAAYjIyNzk5NGZkMmZlZDQ3
+					ZDc5YTAzNjA0MmQwZTViNDBkOGQzZTU0Yzsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -14810,8 +15428,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPcAAAABAgAAMjU5M2MxYzhjY2M0ZTdi
-					Y2VhZjI4ZTFlM2Q1MDBkYWM4NDdmM2FlZjsw
+					AAEAAPcAAAABAgAAZmU3OWQ4MjczMzJjZjhl
+					N2MwNmY5ODgyOTZlYWY1NWE1M2U0YTQ3YTsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -14903,8 +15521,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPgAAAABAgAAZDQxNGI2ZDZjYjE5MzM0
-					MDRhOTQ5ZTdkNzRkODk3YzgzOWE3YmRiOTsw
+					AAEAAPgAAAABAgAAZGU5YTNlNjM0MjY3NTE0
+					MjA1MjIzOGM2MWZlZTU0MzY0Njc5NGQ5Yzsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -14975,8 +15593,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPYAAAABAgAAYWVmZmQ4MWNjMzcxMjU5
-					YzJhMDMxMGU3MWE3MDMwY2YwNzE0NWJhYzsw
+					AAEAAPYAAAABAgAAYmUwZDE3NjI4MjEyY2Yx
+					OGYzNmNkMmNiY2QwYmE0YzVjOGU0ODQyYjsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -15068,8 +15686,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9QAAAAECAAA0NDkzNzAwM2UxODMzNjExOGI1
-					OTA1NTk3MWJhMDgzMTc4NWE4MTFmOzAwMDAw
+					9QAAAAECAABmYjZiNWYzYTM5YWU5NThhNjU3
+					YWJhMGViMDhjNjcwMzI2MTg1ZDBiOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -15140,8 +15758,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8wAAAAECAAAwY2NmN2FjNDhjZmZiMGJjZTFm
-					MGZhMzQyMGVhMTU1NDg1NmE4N2Q3OzAwMDAw
+					8wAAAAECAAA2YTkwY2Y3M2QwNjZjMjQwNmZm
+					ZDBmNzA4NGNjZThiMzM1Yzc3ZTNmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -15233,8 +15851,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPgAAAABAgAANjg4NWZkYThmZGRlNDI2
-					Y2YxOWViYzBiNjA0OTcyZjM4MWNkMDE3Mzsw
+					AAEAAPgAAAABAgAAZGFjMjRmZTRmZDE5YmJm
+					MTdlYWU2Y2JjZDY3NmYyZTQ0OTIxZmQ1Mjsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -15305,8 +15923,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPYAAAABAgAANDFkZmM0MGY5M2M4YjVi
-					MzkxOWY3NmQwNjViZmVlMzI5MjlhMWNjZTsw
+					AAEAAPYAAAABAgAAODJkN2M5ODZhNTU3M2E5
+					ZGRjOWZjODczNDU5YmJiNDMyZjc4YWQ4NDsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -15398,8 +16016,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8wAAAAECAAA1NTVmMDUwYTE3MDE1YWJjNTYz
-					YjZjYWQ4ZmZlODM5OTE2ZWI0ODBmOzAwMDAw
+					8wAAAAECAABhNzY3MzBlMmY4NmJlYzU0MjA5
+					YTkwMmU1OWI2NmRjNzFmNjhhZWFlOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -15470,8 +16088,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADxAAAA
-					AQIAAGY2ZWY2ODkzMzRiYzk5MmMwNThlMzY2
-					N2Y2NzdjMGE3N2Y1ZjVjMTI7MDAwMDAwMDA7
+					AQIAAGMyODdmMTNmMDM2ZGQwNWQ3ZWJmMmUy
+					YmYwNjVjYzUwZWIyNTkzZmM7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWMw
@@ -15562,8 +16180,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADuAAAA
-					AQIAADY0ZTU2YTE0YzFmM2FjMTI1MTY3NjA2
-					MWRlZWQxMDdlZjdhYzhlZjU7MDAwMDAwMDA7
+					AQIAADY3MzU0Y2ExZTRmYTExYWUzNjg2YTQ2
+					ZGI0MDdhMWI2MGUxOWEzMDE7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
@@ -15633,9 +16251,9 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD5AAAAAQIAADM5ZjlmNDAyYzI2
-					NWFjMTIwZDc0YjlhNDc3M2QyN2QwMjAxMTk3
-					ZWY7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD5AAAAAQIAADU3YWFlYjFjNTQ3
+					OTdiNjZiODg2NWNjODAzMjgxMDkyYTI3NWZm
+					OWE7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
 					MDAwMDAwMDAzNWExZDgwOy91c2Vycy9zdGV2
@@ -15705,8 +16323,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADuAAAA
-					AQIAADY0ZTU2YTE0YzFmM2FjMTI1MTY3NjA2
-					MWRlZWQxMDdlZjdhYzhlZjU7MDAwMDAwMDA7
+					AQIAADY3MzU0Y2ExZTRmYTExYWUzNjg2YTQ2
+					ZGI0MDdhMWI2MGUxOWEzMDE7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWEx
@@ -15776,9 +16394,9 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD4AAAAAQIAAGI2OGUwNmE2Njdi
-					MWQxZGQwOTFmNTc4YWNjYWMzN2VlNTQ4ZDhl
-					ZjI7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD4AAAAAQIAAGVkMGZmOGYzYWNk
+					ZDhiOTBlYjc3OTZjYTM0ZGRkMTU2NzQ3YjBm
+					MWE7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
 					MDAwMDAwMDAzNWExZDgxOy91c2Vycy9zdGV2
@@ -15869,8 +16487,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA3ZGMyOWQzYmE3YzkzY2JkYzBj
-					ZGIyNTFmYzU0MWYzNWE0ZjMwMGVlOzAwMDAw
+					8gAAAAECAAAwOTJhZGE3NjFlMjYwN2U5NTMw
+					YTkwNWQwZTFmNDVkNmQwMWVlM2FiOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -15941,8 +16559,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADwAAAA
-					AQIAAGM5NDQwMDBhN2Q5OTMyNGI3MzViMzBi
-					MWQzMzgwMDZhMTVhODYxNzk7MDAwMDAwMDA7
+					AQIAADk1OGM5NjYwODhjMDI1MjNlNzdiOTlh
+					MGViNDMyYTM2YjI4OTdiMGI7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWJm
@@ -16033,8 +16651,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8wAAAAECAABlN2ZjNjY3MDg1MzFiMWEzZDE2
-					MjFkOWYxMzgxODA0ZTUzZTEyNDBkOzAwMDAw
+					8wAAAAECAAA2MTBlMGM3ZDY2NzA0NTg4NzNl
+					MWQwMWM0NDRjODliNWUwZGI1ODZjOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -16105,8 +16723,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADxAAAA
-					AQIAAGRmYjVjOWIwZGYzYmM0YmY5MDQ1YjYy
-					ZmRjOTRmZDE4NjlmNjZjOTE7MDAwMDAwMDA7
+					AQIAADE3YzBjMGEzYmIyN2FkNjVmYzBjZjU0
+					NTc5NTU0YjE3ZTVmOTg3ODA7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWJm
@@ -16197,8 +16815,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8wAAAAECAAAyNzk0YjVmNzcyZTVlYzUwNjU5
-					MTcyYjU3YmYxYWI4MjY4MDA3ZDBlOzAwMDAw
+					8wAAAAECAAAzYzdiOTBjNjc3MTU5MWU2MGFk
+					OGY4MDhjZjZjYmFlMTEwMDAyZTU2OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -16269,8 +16887,8 @@
 					N0YzLTk2RUYtOUVEMjg0RUY1ODhGGAAAAAEC
 					AACBAAAAAQAIAO8/AAABAAgAAAAAAAAAAAAB
 					AAAAAQEAAC8AAAAEAAAAAwMAAAABAADxAAAA
-					AQIAAGFlMzVhNzg5NGVlZTNhZTc1NGIxYTVi
-					YjYxOTdjMTQyZjU5YTc2N2M7MDAwMDAwMDA7
+					AQIAADNkMTMxYzYzMmEzMWY3MDUxMDI3OTY2
+					NjZkMmMwNTY0MGQ4OGJlNDQ7MDAwMDAwMDA7
 					MDAwMDAwMDAwMDAwMDAyMDtjb20uYXBwbGUu
 					YXBwLXNhbmRib3gucmVhZC13cml0ZTswMDAw
 					MDAwMTswZTAwMDAwMjswMDAwMDAwMDAzNWJm
@@ -16361,8 +16979,8 @@
 					NS05RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4
 					OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
 					AAAAAAAAAAEAAAABAQAALwAAAAQAAAADAwAA
-					AAEAAPcAAAABAgAAZjYyNTdlNzdmZDI0MjVh
-					MDZmOTJiY2E3MTZkYzZlYTViYjhkMmFmNDsw
+					AAEAAPcAAAABAgAAYTMzZTJlNDUxZjI5NDg3
+					YjViZDIwODA2ODZmYTkxNTMxN2I5OTAzNTsw
 					MDAwMDAwMDswMDAwMDAwMDAwMDAwMDIwO2Nv
 					bS5hcHBsZS5hcHAtc2FuZGJveC5yZWFkLXdy
 					aXRlOzAwMDAwMDAxOzBlMDAwMDAyOzAwMDAw
@@ -16433,8 +17051,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9QAAAAECAAAzOWZhZmQ1OWQwYzdmNWE4ZjU3
-					YWM0YTIzYWVhYTkxZGRjNjZjYzIzOzAwMDAw
+					9QAAAAECAAA3NjYyNGM1NzYyYzI0MDZjOGU2
+					MmI4YzhlMjQxMWJkMTYyZGJjMTBmOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -16526,9 +17144,9 @@
 					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
 					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
 					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
-					BAAAAAMDAAAAAQAA/wAAAAECAAA1YzZlMGU0
-					YjU1Mjk5MWZjOTk3MTFhNjMxODU3ZTE1YTcw
-					Y2MxZTc5OzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					BAAAAAMDAAAAAQAA/wAAAAECAAA3YmM5NDIz
+					YTQzODU1ZjFkNjk2MGM2MDM4ZDk3NzQ0Mjg2
+					NzE5OTA1OzAwMDAwMDAwOzAwMDAwMDAwMDAw
 					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
 					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
 					MDI7MDAwMDAwMDAwMzVjMDNiYzsvdXNlcnMv
@@ -16598,9 +17216,9 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD9AAAAAQIAADNjMjE2MDU5ZDcz
-					NzBjNzNjZjY0NmYzOGU1MGU1YjQ5MDdmNTJh
-					OTM7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD9AAAAAQIAADJmODU4OTNhY2Rh
+					MjhmZWM1MzE2ZTliNDY3YzY4Y2U0ODllZTRk
+					ZDE7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
 					MDAwMDAwMDAzNWMwM2JiOy91c2Vycy9zdGV2
@@ -16691,9 +17309,9 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD8AAAAAQIAADE3ZDYxOWUyZjFk
-					NGJmOTNlYTRmMTk5MzI3NThiYzA3NjlmNTBi
-					MjU7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD8AAAAAQIAADYwYmI5NTFiMGUw
+					ZGU1OWIzOGQxODE1NWNiMGY1MTc3MGIzNzU3
+					MmY7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
 					MDAwMDAwMDAzNWMwM2I5Oy91c2Vycy9zdGV2
@@ -16763,9 +17381,9 @@
 					QjdFMDUtOUUwNS0zN0YzLTk2RUYtOUVEMjg0
 					RUY1ODhGGAAAAAECAACBAAAAAQAIAO8/AAAB
 					AAgAAAAAAAAAAAABAAAAAQEAAC8AAAAEAAAA
-					AwMAAAABAAD6AAAAAQIAAGVkYzYwNGM2YjRm
-					NGViNjBhNjllMmFkOTcyNDIxNWUyYzc0MmU1
-					NWU7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
+					AwMAAAABAAD6AAAAAQIAADdkOTA0YWQyZWQx
+					MmUwMzIxMjM1NWU3ZTAzZjhhNGVjMGM2MmY2
+					MmE7MDAwMDAwMDA7MDAwMDAwMDAwMDAwMDAy
 					MDtjb20uYXBwbGUuYXBwLXNhbmRib3gucmVh
 					ZC13cml0ZTswMDAwMDAwMTswZTAwMDAwMjsw
 					MDAwMDAwMDAzNWMwM2I4Oy91c2Vycy9zdGV2
@@ -16856,8 +17474,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAAwZjViMzVjZDY0MWUzZWNjMDll
-					NzUzMDRmYmUzZDM4YmEzOTkyNzA4OzAwMDAw
+					9AAAAAECAAAxMzM0ZjdiNDNkN2ViNTIzODc4
+					OGE3OTlmMTQ4Y2FmYjAxNDQ4ZDkyOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -16928,8 +17546,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAA5NTJhYmI2NjY1MTE1MGUwOTA3
-					ZmQxNjg4NTA3OTU0OWUzMDMxNDI2OzAwMDAw
+					9AAAAAECAABhYzBhNGFmYTc1MTA2MDhjOTY0
+					MDAyY2Q3YWM3MzcxYTFhNjgzOGY0OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -17000,8 +17618,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABjYzNkYTM5OTlkMTY1ZjM0ZTZl
-					M2JjMGMwNTM1ZTg5YjQ2NDUwYWY0OzAwMDAw
+					9AAAAAECAAAxZDI3NzE0MzE4YThkZjMyMzUy
+					NzkwNmVhNmUyOWIxYzlhODVlNDMxOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -17072,8 +17690,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAA5NTJhYmI2NjY1MTE1MGUwOTA3
-					ZmQxNjg4NTA3OTU0OWUzMDMxNDI2OzAwMDAw
+					9AAAAAECAABhYzBhNGFmYTc1MTA2MDhjOTY0
+					MDAyY2Q3YWM3MzcxYTFhNjgzOGY0OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -17165,8 +17783,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAwYmRiZWI5ZGJkYzUzMDY3MzFm
-					ZTA2MDM4ZjAxMTA3NDVjZTY3MTIwOzAwMDAw
+					8gAAAAECAAA2NzY5OWNjOWM3MjlkM2IyOGM1
+					OTE3MjZmOWFkM2U0M2YyMWZlYjcwOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -17237,8 +17855,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAABhMWU1ZGViZjg5Njc0MmQzNmYz
-					ZjQ2NWU2MDU4OGRlNTM5ODM4ZTlmOzAwMDAw
+					8gAAAAECAAAzNTdhMDczNGJlMGU0YWIwZGZi
+					YzI4OTZmMGE1NjMwY2VkYTIzZGZkOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -17309,8 +17927,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAABlZDI5NGVlMzI5YzYwYTgzZTA4
-					ZGZlZDM3Zjc0NWEzYjg1ODEwNDdhOzAwMDAw
+					8gAAAAECAAAxYmMwOWM4NzJkYTc0NjRmNWYw
+					NjVjNzk4MDIwZmNkYzBjNjJhMDRlOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -17381,8 +17999,8 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAABhMWU1ZGViZjg5Njc0MmQzNmYz
-					ZjQ2NWU2MDU4OGRlNTM5ODM4ZTlmOzAwMDAw
+					8gAAAAECAAAzNTdhMDczNGJlMGU0YWIwZGZi
+					YzI4OTZmMGE1NjMwY2VkYTIzZGZkOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
@@ -17438,6 +18056,603 @@
 			<key>UniqueName</key>
 			<string>Toolbox_Windmill</string>
 		</dict>
+		<dict>
+			<key>DelayPerUnit</key>
+			<real>0.05000000074505806</real>
+			<key>Frames</key>
+			<array>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va/QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAA2AMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAAAwAAAAEBAABNYXAAHgAAAAEBAABEb29k
+					YWRfRXNraW1vX0ljZV9GaXNoZXJfMS5wbmcA
+					ACwAAAABBgAABAAAABQAAAAkAAAAMAAAAEAA
+					AABAAAAAWAAAAGwAAACAAAAAkAAAAJwAAAAI
+					AAAABAMAAHIAAAAAAAAACAAAAAQDAABbtw4A
+					AAAAAAgAAAAEAwAA69EOAAAAAAAIAAAABAMA
+					AO3RDgAAAAAACAAAAAQDAACjxk0DAAAAAAgA
+					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
+					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
+					095NAwAAAAAIAAAABAMAAPjeTQMAAAAACAAA
+					AAQDAADgk14DAAAAACwAAAABBgAA+AAAAAgB
+					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
+					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
+					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
+					AAMDAAACAAAABAAAAAMDAAAEAAAACAAAAAQD
+					AAAJAAAAAAAAAAQAAAADAwAA9QEAAAwAAAAB
+					AQAATWFjaW50b3NoIEhECAAAAAQDAAAAgIE9
+					dAAAAAgAAAAABAAAQbQMGj4AAAAkAAAAAQEA
+					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
+					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
+					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
+					BAAAAAMDAAAAAQAA/gAAAAECAABmZTE2ZmNk
+					ZWNlMWMzN2UyYjZhOTczZGM4NDQ3NGE1ZmVj
+					ZTQ1YTgzOzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
+					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
+					MDI7MDAwMDAwMDAwMzVlOTNlMDsvdXNlcnMv
+					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
+					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
+					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9tYXAv
+					ZG9vZGFkX2Vza2ltb19pY2VfZmlzaGVyXzEu
+					cG5nAAAA5AAAAP7///8BAAAAAAAAABIAAAAE
+					EAAAxAAAAAAAAAAFEAAAqAEAAAAAAAAQEAAA
+					3AEAAAAAAABUEAAABAIAAAAAAABVEAAAEAIA
+					AAAAAABWEAAA/AEAAAAAAAACIAAAuAIAAAAA
+					AAAQIAAAOAIAAAAAAAARIAAAbAIAAAAAAAAS
+					IAAATAIAAAAAAAATIAAAXAIAAAAAAAAgIAAA
+					mAIAAAAAAAAwIAAA/AEAAAAAAAABwAAAHAIA
+					AAAAAAARwAAAFAAAAAAAAAASwAAALAIAAAAA
+					AAAQ0AAAxAIAAAAAAACA8AAA0AIAAAAAAAA=
+					</data>
+					<key>Frame</key>
+					<string>{{0, 207}, {22.5, 17.75}}</string>
+					<key>Frame-HD</key>
+					<string>{{0, 828}, {90, 71}}</string>
+					<key>IsRotated</key>
+					<false/>
+					<key>OriginalImage</key>
+					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_1.png</string>
+					<key>SpriteSize</key>
+					<string>{25, 21.75}</string>
+					<key>TextureOffset</key>
+					<string>{0, 0.25}</string>
+					<key>delayPerUnit</key>
+					<real>160</real>
+					<key>notifications</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>Doodad_Eskimo_Ice_Fisher_1</string>
+				</dict>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va/QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAA2AMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAAAwAAAAEBAABNYXAAHgAAAAEBAABEb29k
+					YWRfRXNraW1vX0ljZV9GaXNoZXJfMi5wbmcA
+					ACwAAAABBgAABAAAABQAAAAkAAAAMAAAAEAA
+					AABAAAAAWAAAAGwAAACAAAAAkAAAAJwAAAAI
+					AAAABAMAAHIAAAAAAAAACAAAAAQDAABbtw4A
+					AAAAAAgAAAAEAwAA69EOAAAAAAAIAAAABAMA
+					AO3RDgAAAAAACAAAAAQDAACjxk0DAAAAAAgA
+					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
+					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
+					095NAwAAAAAIAAAABAMAAPjeTQMAAAAACAAA
+					AAQDAADhk14DAAAAACwAAAABBgAA+AAAAAgB
+					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
+					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
+					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
+					AAMDAAACAAAABAAAAAMDAAAEAAAACAAAAAQD
+					AAAJAAAAAAAAAAQAAAADAwAA9QEAAAwAAAAB
+					AQAATWFjaW50b3NoIEhECAAAAAQDAAAAgIE9
+					dAAAAAgAAAAABAAAQbQMGj4AAAAkAAAAAQEA
+					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
+					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
+					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
+					BAAAAAMDAAAAAQAA/gAAAAECAABmNTM2YjRi
+					YzFmYTQ2YzRhZDU3NGY2MWI2ZDU2NzBjZWFm
+					ZTk0MDgzOzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
+					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
+					MDI7MDAwMDAwMDAwMzVlOTNlMTsvdXNlcnMv
+					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
+					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
+					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9tYXAv
+					ZG9vZGFkX2Vza2ltb19pY2VfZmlzaGVyXzIu
+					cG5nAAAA5AAAAP7///8BAAAAAAAAABIAAAAE
+					EAAAxAAAAAAAAAAFEAAAqAEAAAAAAAAQEAAA
+					3AEAAAAAAABUEAAABAIAAAAAAABVEAAAEAIA
+					AAAAAABWEAAA/AEAAAAAAAACIAAAuAIAAAAA
+					AAAQIAAAOAIAAAAAAAARIAAAbAIAAAAAAAAS
+					IAAATAIAAAAAAAATIAAAXAIAAAAAAAAgIAAA
+					mAIAAAAAAAAwIAAA/AEAAAAAAAABwAAAHAIA
+					AAAAAAARwAAAFAAAAAAAAAASwAAALAIAAAAA
+					AAAQ0AAAxAIAAAAAAACA8AAA0AIAAAAAAAA=
+					</data>
+					<key>Frame</key>
+					<string>{{0, 226}, {22.75, 17.75}}</string>
+					<key>Frame-HD</key>
+					<string>{{0, 904}, {89, 71}}</string>
+					<key>IsRotated</key>
+					<false/>
+					<key>OriginalImage</key>
+					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_2.png</string>
+					<key>SpriteSize</key>
+					<string>{25, 21.75}</string>
+					<key>TextureOffset</key>
+					<string>{0.125, 0.25}</string>
+					<key>delayPerUnit</key>
+					<real>2</real>
+					<key>notifications</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>Doodad_Eskimo_Ice_Fisher_2</string>
+				</dict>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va/QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAA2AMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAAAwAAAAEBAABNYXAAHgAAAAEBAABEb29k
+					YWRfRXNraW1vX0ljZV9GaXNoZXJfMy5wbmcA
+					ACwAAAABBgAABAAAABQAAAAkAAAAMAAAAEAA
+					AABAAAAAWAAAAGwAAACAAAAAkAAAAJwAAAAI
+					AAAABAMAAHIAAAAAAAAACAAAAAQDAABbtw4A
+					AAAAAAgAAAAEAwAA69EOAAAAAAAIAAAABAMA
+					AO3RDgAAAAAACAAAAAQDAACjxk0DAAAAAAgA
+					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
+					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
+					095NAwAAAAAIAAAABAMAAPjeTQMAAAAACAAA
+					AAQDAADik14DAAAAACwAAAABBgAA+AAAAAgB
+					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
+					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
+					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
+					AAMDAAACAAAABAAAAAMDAAAEAAAACAAAAAQD
+					AAAJAAAAAAAAAAQAAAADAwAA9QEAAAwAAAAB
+					AQAATWFjaW50b3NoIEhECAAAAAQDAAAAgIE9
+					dAAAAAgAAAAABAAAQbQMGj4AAAAkAAAAAQEA
+					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
+					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
+					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
+					BAAAAAMDAAAAAQAA/gAAAAECAAAxNTU4NTEz
+					NmM3NDFiYmU3YjA1ZTBiM2NiYjVkZjBkMTE1
+					ZWE3Njk2OzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
+					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
+					MDI7MDAwMDAwMDAwMzVlOTNlMjsvdXNlcnMv
+					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
+					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
+					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9tYXAv
+					ZG9vZGFkX2Vza2ltb19pY2VfZmlzaGVyXzMu
+					cG5nAAAA5AAAAP7///8BAAAAAAAAABIAAAAE
+					EAAAxAAAAAAAAAAFEAAAqAEAAAAAAAAQEAAA
+					3AEAAAAAAABUEAAABAIAAAAAAABVEAAAEAIA
+					AAAAAABWEAAA/AEAAAAAAAACIAAAuAIAAAAA
+					AAAQIAAAOAIAAAAAAAARIAAAbAIAAAAAAAAS
+					IAAATAIAAAAAAAATIAAAXAIAAAAAAAAgIAAA
+					mAIAAAAAAAAwIAAA/AEAAAAAAAABwAAAHAIA
+					AAAAAAARwAAAFAAAAAAAAAASwAAALAIAAAAA
+					AAAQ0AAAxAIAAAAAAACA8AAA0AIAAAAAAAA=
+					</data>
+					<key>Frame</key>
+					<string>{{126, 57}, {22.5, 17.75}}</string>
+					<key>Frame-HD</key>
+					<string>{{504, 228}, {90, 71}}</string>
+					<key>IsRotated</key>
+					<false/>
+					<key>OriginalImage</key>
+					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_3.png</string>
+					<key>SpriteSize</key>
+					<string>{25, 21.75}</string>
+					<key>TextureOffset</key>
+					<string>{-0.25, 0.25}</string>
+					<key>delayPerUnit</key>
+					<real>2</real>
+					<key>notifications</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>Doodad_Eskimo_Ice_Fisher_3</string>
+				</dict>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va/QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAA2AMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAAAwAAAAEBAABNYXAAHgAAAAEBAABEb29k
+					YWRfRXNraW1vX0ljZV9GaXNoZXJfNC5wbmcA
+					ACwAAAABBgAABAAAABQAAAAkAAAAMAAAAEAA
+					AABAAAAAWAAAAGwAAACAAAAAkAAAAJwAAAAI
+					AAAABAMAAHIAAAAAAAAACAAAAAQDAABbtw4A
+					AAAAAAgAAAAEAwAA69EOAAAAAAAIAAAABAMA
+					AO3RDgAAAAAACAAAAAQDAACjxk0DAAAAAAgA
+					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
+					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
+					095NAwAAAAAIAAAABAMAAPjeTQMAAAAACAAA
+					AAQDAADjk14DAAAAACwAAAABBgAA+AAAAAgB
+					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
+					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
+					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
+					AAMDAAACAAAABAAAAAMDAAAEAAAACAAAAAQD
+					AAAJAAAAAAAAAAQAAAADAwAA9QEAAAwAAAAB
+					AQAATWFjaW50b3NoIEhECAAAAAQDAAAAgIE9
+					dAAAAAgAAAAABAAAQbQMGj4AAAAkAAAAAQEA
+					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
+					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
+					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
+					BAAAAAMDAAAAAQAA/gAAAAECAABlMGE1ZTgy
+					ZTNkOTViYWU2MmFkNmRkZTM0ZmIyOWQ2YTVk
+					NTA4ODk1OzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
+					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
+					MDI7MDAwMDAwMDAwMzVlOTNlMzsvdXNlcnMv
+					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
+					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
+					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9tYXAv
+					ZG9vZGFkX2Vza2ltb19pY2VfZmlzaGVyXzQu
+					cG5nAAAA5AAAAP7///8BAAAAAAAAABIAAAAE
+					EAAAxAAAAAAAAAAFEAAAqAEAAAAAAAAQEAAA
+					3AEAAAAAAABUEAAABAIAAAAAAABVEAAAEAIA
+					AAAAAABWEAAA/AEAAAAAAAACIAAAuAIAAAAA
+					AAAQIAAAOAIAAAAAAAARIAAAbAIAAAAAAAAS
+					IAAATAIAAAAAAAATIAAAXAIAAAAAAAAgIAAA
+					mAIAAAAAAAAwIAAA/AEAAAAAAAABwAAAHAIA
+					AAAAAAARwAAAFAAAAAAAAAASwAAALAIAAAAA
+					AAAQ0AAAxAIAAAAAAACA8AAA0AIAAAAAAAA=
+					</data>
+					<key>Frame</key>
+					<string>{{150, 57}, {22.5, 17.75}}</string>
+					<key>Frame-HD</key>
+					<string>{{600, 228}, {90, 71}}</string>
+					<key>IsRotated</key>
+					<false/>
+					<key>OriginalImage</key>
+					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_4.png</string>
+					<key>SpriteSize</key>
+					<string>{25, 21.75}</string>
+					<key>TextureOffset</key>
+					<string>{-0.25, 0.25}</string>
+					<key>delayPerUnit</key>
+					<real>1</real>
+					<key>notifications</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>Doodad_Eskimo_Ice_Fisher_4</string>
+				</dict>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va/QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAA2AMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAAAwAAAAEBAABNYXAAHgAAAAEBAABEb29k
+					YWRfRXNraW1vX0ljZV9GaXNoZXJfNS5wbmcA
+					ACwAAAABBgAABAAAABQAAAAkAAAAMAAAAEAA
+					AABAAAAAWAAAAGwAAACAAAAAkAAAAJwAAAAI
+					AAAABAMAAHIAAAAAAAAACAAAAAQDAABbtw4A
+					AAAAAAgAAAAEAwAA69EOAAAAAAAIAAAABAMA
+					AO3RDgAAAAAACAAAAAQDAACjxk0DAAAAAAgA
+					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
+					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
+					095NAwAAAAAIAAAABAMAAPjeTQMAAAAACAAA
+					AAQDAADkk14DAAAAACwAAAABBgAA+AAAAAgB
+					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
+					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
+					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
+					AAMDAAACAAAABAAAAAMDAAAEAAAACAAAAAQD
+					AAAJAAAAAAAAAAQAAAADAwAA9QEAAAwAAAAB
+					AQAATWFjaW50b3NoIEhECAAAAAQDAAAAgIE9
+					dAAAAAgAAAAABAAAQbQMGj4AAAAkAAAAAQEA
+					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
+					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
+					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
+					BAAAAAMDAAAAAQAA/gAAAAECAAA1ZThkYzQ1
+					ZmRkODdjMWFlYmUzOGFmYWY5YjU0ZjAyYTAx
+					N2UxNzllOzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
+					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
+					MDI7MDAwMDAwMDAwMzVlOTNlNDsvdXNlcnMv
+					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
+					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
+					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9tYXAv
+					ZG9vZGFkX2Vza2ltb19pY2VfZmlzaGVyXzUu
+					cG5nAAAA5AAAAP7///8BAAAAAAAAABIAAAAE
+					EAAAxAAAAAAAAAAFEAAAqAEAAAAAAAAQEAAA
+					3AEAAAAAAABUEAAABAIAAAAAAABVEAAAEAIA
+					AAAAAABWEAAA/AEAAAAAAAACIAAAuAIAAAAA
+					AAAQIAAAOAIAAAAAAAARIAAAbAIAAAAAAAAS
+					IAAATAIAAAAAAAATIAAAXAIAAAAAAAAgIAAA
+					mAIAAAAAAAAwIAAA/AEAAAAAAAABwAAAHAIA
+					AAAAAAARwAAAFAAAAAAAAAASwAAALAIAAAAA
+					AAAQ0AAAxAIAAAAAAACA8AAA0AIAAAAAAAA=
+					</data>
+					<key>Frame</key>
+					<string>{{0, 188}, {22.5, 17.75}}</string>
+					<key>Frame-HD</key>
+					<string>{{0, 752}, {90, 71}}</string>
+					<key>IsRotated</key>
+					<false/>
+					<key>OriginalImage</key>
+					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_5.png</string>
+					<key>SpriteSize</key>
+					<string>{25, 21.75}</string>
+					<key>TextureOffset</key>
+					<string>{0, 0.25}</string>
+					<key>delayPerUnit</key>
+					<real>3</real>
+					<key>notifications</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>Doodad_Eskimo_Ice_Fisher_5</string>
+				</dict>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va/QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAA2AMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAAAwAAAAEBAABNYXAAHgAAAAEBAABEb29k
+					YWRfRXNraW1vX0ljZV9GaXNoZXJfNC5wbmcA
+					ACwAAAABBgAABAAAABQAAAAkAAAAMAAAAEAA
+					AABAAAAAWAAAAGwAAACAAAAAkAAAAJwAAAAI
+					AAAABAMAAHIAAAAAAAAACAAAAAQDAABbtw4A
+					AAAAAAgAAAAEAwAA69EOAAAAAAAIAAAABAMA
+					AO3RDgAAAAAACAAAAAQDAACjxk0DAAAAAAgA
+					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
+					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
+					095NAwAAAAAIAAAABAMAAPjeTQMAAAAACAAA
+					AAQDAADjk14DAAAAACwAAAABBgAA+AAAAAgB
+					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
+					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
+					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
+					AAMDAAACAAAABAAAAAMDAAAEAAAACAAAAAQD
+					AAAJAAAAAAAAAAQAAAADAwAA9QEAAAwAAAAB
+					AQAATWFjaW50b3NoIEhECAAAAAQDAAAAgIE9
+					dAAAAAgAAAAABAAAQbQMGj4AAAAkAAAAAQEA
+					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
+					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
+					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
+					BAAAAAMDAAAAAQAA/gAAAAECAABlMGE1ZTgy
+					ZTNkOTViYWU2MmFkNmRkZTM0ZmIyOWQ2YTVk
+					NTA4ODk1OzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
+					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
+					MDI7MDAwMDAwMDAwMzVlOTNlMzsvdXNlcnMv
+					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
+					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
+					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9tYXAv
+					ZG9vZGFkX2Vza2ltb19pY2VfZmlzaGVyXzQu
+					cG5nAAAA5AAAAP7///8BAAAAAAAAABIAAAAE
+					EAAAxAAAAAAAAAAFEAAAqAEAAAAAAAAQEAAA
+					3AEAAAAAAABUEAAABAIAAAAAAABVEAAAEAIA
+					AAAAAABWEAAA/AEAAAAAAAACIAAAuAIAAAAA
+					AAAQIAAAOAIAAAAAAAARIAAAbAIAAAAAAAAS
+					IAAATAIAAAAAAAATIAAAXAIAAAAAAAAgIAAA
+					mAIAAAAAAAAwIAAA/AEAAAAAAAABwAAAHAIA
+					AAAAAAARwAAAFAAAAAAAAAASwAAALAIAAAAA
+					AAAQ0AAAxAIAAAAAAACA8AAA0AIAAAAAAAA=
+					</data>
+					<key>Frame</key>
+					<string>{{150, 57}, {22.5, 17.75}}</string>
+					<key>Frame-HD</key>
+					<string>{{600, 228}, {90, 71}}</string>
+					<key>IsRotated</key>
+					<false/>
+					<key>OriginalImage</key>
+					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_4.png</string>
+					<key>SpriteSize</key>
+					<string>{25, 21.75}</string>
+					<key>TextureOffset</key>
+					<string>{-0.25, 0.25}</string>
+					<key>delayPerUnit</key>
+					<real>3</real>
+					<key>notifications</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>Doodad_Eskimo_Ice_Fisher_4</string>
+				</dict>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va/QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAA2AMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAAAwAAAAEBAABNYXAAHgAAAAEBAABEb29k
+					YWRfRXNraW1vX0ljZV9GaXNoZXJfMy5wbmcA
+					ACwAAAABBgAABAAAABQAAAAkAAAAMAAAAEAA
+					AABAAAAAWAAAAGwAAACAAAAAkAAAAJwAAAAI
+					AAAABAMAAHIAAAAAAAAACAAAAAQDAABbtw4A
+					AAAAAAgAAAAEAwAA69EOAAAAAAAIAAAABAMA
+					AO3RDgAAAAAACAAAAAQDAACjxk0DAAAAAAgA
+					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
+					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
+					095NAwAAAAAIAAAABAMAAPjeTQMAAAAACAAA
+					AAQDAADik14DAAAAACwAAAABBgAA+AAAAAgB
+					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
+					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
+					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
+					AAMDAAACAAAABAAAAAMDAAAEAAAACAAAAAQD
+					AAAJAAAAAAAAAAQAAAADAwAA9QEAAAwAAAAB
+					AQAATWFjaW50b3NoIEhECAAAAAQDAAAAgIE9
+					dAAAAAgAAAAABAAAQbQMGj4AAAAkAAAAAQEA
+					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
+					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
+					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
+					BAAAAAMDAAAAAQAA/gAAAAECAAAxNTU4NTEz
+					NmM3NDFiYmU3YjA1ZTBiM2NiYjVkZjBkMTE1
+					ZWE3Njk2OzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
+					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
+					MDI7MDAwMDAwMDAwMzVlOTNlMjsvdXNlcnMv
+					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
+					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
+					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9tYXAv
+					ZG9vZGFkX2Vza2ltb19pY2VfZmlzaGVyXzMu
+					cG5nAAAA5AAAAP7///8BAAAAAAAAABIAAAAE
+					EAAAxAAAAAAAAAAFEAAAqAEAAAAAAAAQEAAA
+					3AEAAAAAAABUEAAABAIAAAAAAABVEAAAEAIA
+					AAAAAABWEAAA/AEAAAAAAAACIAAAuAIAAAAA
+					AAAQIAAAOAIAAAAAAAARIAAAbAIAAAAAAAAS
+					IAAATAIAAAAAAAATIAAAXAIAAAAAAAAgIAAA
+					mAIAAAAAAAAwIAAA/AEAAAAAAAABwAAAHAIA
+					AAAAAAARwAAAFAAAAAAAAAASwAAALAIAAAAA
+					AAAQ0AAAxAIAAAAAAACA8AAA0AIAAAAAAAA=
+					</data>
+					<key>Frame</key>
+					<string>{{126, 57}, {22.5, 17.75}}</string>
+					<key>Frame-HD</key>
+					<string>{{504, 228}, {90, 71}}</string>
+					<key>IsRotated</key>
+					<false/>
+					<key>OriginalImage</key>
+					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_3.png</string>
+					<key>SpriteSize</key>
+					<string>{25, 21.75}</string>
+					<key>TextureOffset</key>
+					<string>{-0.25, 0.25}</string>
+					<key>delayPerUnit</key>
+					<real>2</real>
+					<key>notifications</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>Doodad_Eskimo_Ice_Fisher_3</string>
+				</dict>
+				<dict>
+					<key>DocumentSecurityImageBookmark</key>
+					<data>
+					Ym9va/QEAAAAAAQQMAAAAAAAAAAAAAAAAAAA
+					AAAAAAAAAAAAAAAAAAAAAAAAAAAA2AMAAAUA
+					AAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZl
+					AAAABAAAAAEBAABDb2RlBwAAAAEBAABDb25x
+					dWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUA
+					AAkAAAABAQAAUmVzb3VyY2VzAAAACgAAAAEB
+					AABzcmMtYXNzZXRzAAAGAAAAAQEAAGltYWdl
+					cwAAAwAAAAEBAABNYXAAHgAAAAEBAABEb29k
+					YWRfRXNraW1vX0ljZV9GaXNoZXJfMi5wbmcA
+					ACwAAAABBgAABAAAABQAAAAkAAAAMAAAAEAA
+					AABAAAAAWAAAAGwAAACAAAAAkAAAAJwAAAAI
+					AAAABAMAAHIAAAAAAAAACAAAAAQDAABbtw4A
+					AAAAAAgAAAAEAwAA69EOAAAAAAAIAAAABAMA
+					AO3RDgAAAAAACAAAAAQDAACjxk0DAAAAAAgA
+					AAAEAwAApsZNAwAAAAAIAAAABAMAAKfGTQMA
+					AAAACAAAAAQDAADQ3k0DAAAAAAgAAAAEAwAA
+					095NAwAAAAAIAAAABAMAAPjeTQMAAAAACAAA
+					AAQDAADhk14DAAAAACwAAAABBgAA+AAAAAgB
+					AAAYAQAAKAEAADgBAABIAQAAWAEAAGgBAAB4
+					AQAAiAEAAJgBAAAYAAAAAQIAAAEAAAAAAAAA
+					DwAAAAAAAAAAAAAAAAAAAAAAAAABBQAABAAA
+					AAMDAAACAAAABAAAAAMDAAAEAAAACAAAAAQD
+					AAAJAAAAAAAAAAQAAAADAwAA9QEAAAwAAAAB
+					AQAATWFjaW50b3NoIEhECAAAAAQDAAAAgIE9
+					dAAAAAgAAAAABAAAQbQMGj4AAAAkAAAAAQEA
+					ADcwMUI3RTA1LTlFMDUtMzdGMy05NkVGLTlF
+					RDI4NEVGNTg4RhgAAAABAgAAgQAAAAEACADv
+					PwAAAQAIAAAAAAAAAAAAAQAAAAEBAAAvAAAA
+					BAAAAAMDAAAAAQAA/gAAAAECAABmNTM2YjRi
+					YzFmYTQ2YzRhZDU3NGY2MWI2ZDU2NzBjZWFm
+					ZTk0MDgzOzAwMDAwMDAwOzAwMDAwMDAwMDAw
+					MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94
+					LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUwMDAw
+					MDI7MDAwMDAwMDAwMzVlOTNlMTsvdXNlcnMv
+					c3RldmUvY29kZS9jb25xdWVyL3Blbmd1aW4g
+					cmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291
+					cmNlcy9zcmMtYXNzZXRzL2ltYWdlcy9tYXAv
+					ZG9vZGFkX2Vza2ltb19pY2VfZmlzaGVyXzIu
+					cG5nAAAA5AAAAP7///8BAAAAAAAAABIAAAAE
+					EAAAxAAAAAAAAAAFEAAAqAEAAAAAAAAQEAAA
+					3AEAAAAAAABUEAAABAIAAAAAAABVEAAAEAIA
+					AAAAAABWEAAA/AEAAAAAAAACIAAAuAIAAAAA
+					AAAQIAAAOAIAAAAAAAARIAAAbAIAAAAAAAAS
+					IAAATAIAAAAAAAATIAAAXAIAAAAAAAAgIAAA
+					mAIAAAAAAAAwIAAA/AEAAAAAAAABwAAAHAIA
+					AAAAAAARwAAAFAAAAAAAAAASwAAALAIAAAAA
+					AAAQ0AAAxAIAAAAAAACA8AAA0AIAAAAAAAA=
+					</data>
+					<key>Frame</key>
+					<string>{{0, 226}, {22.75, 17.75}}</string>
+					<key>Frame-HD</key>
+					<string>{{0, 904}, {89, 71}}</string>
+					<key>IsRotated</key>
+					<false/>
+					<key>OriginalImage</key>
+					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Map/Doodad_Eskimo_Ice_Fisher_2.png</string>
+					<key>SpriteSize</key>
+					<string>{25, 21.75}</string>
+					<key>TextureOffset</key>
+					<string>{0.125, 0.25}</string>
+					<key>delayPerUnit</key>
+					<real>1</real>
+					<key>notifications</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>Doodad_Eskimo_Ice_Fisher_2</string>
+				</dict>
+			</array>
+			<key>Loop</key>
+			<true/>
+			<key>Repetitions</key>
+			<integer>1</integer>
+			<key>RestoreOriginalFrame</key>
+			<false/>
+			<key>SheetImage</key>
+			<string>Spritesheet_Map.png</string>
+			<key>SheetName</key>
+			<string>Map</string>
+			<key>StartAtLaunch</key>
+			<false/>
+			<key>UniqueName</key>
+			<string>Doodad_Eskimo_Ice_Fisher</string>
+		</dict>
 	</array>
 	<key>SaveSettings</key>
 	<dict>
@@ -17477,8 +18692,8 @@
 	AAAAAAgAAAAEAwAABgAAAAAAAAAEAAAAAwMAAPUBAAAMAAAAAQEAAE1hY2ludG9zaCBI
 	RAgAAAAEAwAAAICBPXQAAAAIAAAAAAQAAEG0DBo+AAAAJAAAAAEBAAA3MDFCN0UwNS05
 	RTA1LTM3RjMtOTZFRi05RUQyODRFRjU4OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAA
-	AAAAAAAAAAEAAAABAQAALwAAAAAAAAABBQAABAAAAAMDAAAAAQAA0AAAAAECAAA5Zjgx
-	YWM2MmJjZGVkZDg5ZWI2NGRlYmY4YjFiNTUwMThmNjJjNTg1OzAwMDAwMDAwOzAwMDAw
+	AAAAAAAAAAEAAAABAQAALwAAAAAAAAABBQAABAAAAAMDAAAAAQAA0AAAAAECAAAwOWE1
+	N2U2YmJlYzdjNmRiMjMxYjBlODQ1NjEwNmFjM2UxMzg1ZjFiOzAwMDAwMDAwOzAwMDAw
 	MDAwMDAwMDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7MDAwMDAw
 	MDE7MGUwMDAwMDI7MDAwMDAwMDAwMzRkZGY1ZTsvdXNlcnMvc3RldmUvY29kZS9jb25x
 	dWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1aW4gcmVzY3VlL3Jlc291cmNlcy9pbWFnZXMA

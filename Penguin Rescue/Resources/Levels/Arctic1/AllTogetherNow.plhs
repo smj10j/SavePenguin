@@ -11,7 +11,7 @@
 	<key>JOINTS_INFO</key>
 	<array/>
 	<key>LHVersion</key>
-	<string>1.4.966</string>
+	<string>1.4.967</string>
 	<key>NODES_INFO</key>
 	<array>
 		<dict>
@@ -139,7 +139,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{190, 0}, {34.5, 35.75}}</string>
+								<string>{{0, 151}, {34.5, 35.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -214,7 +214,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{190, 37}, {36.5, 33.5}}</string>
+								<string>{{36, 151}, {36.5, 33.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -289,7 +289,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{190, 37}, {36.5, 33.5}}</string>
+								<string>{{36, 151}, {36.5, 33.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -364,7 +364,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 185}, {36.75, 32}}</string>
+								<string>{{73, 151}, {36.75, 32}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -439,13 +439,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{135, 84}, {187.5, 32.75}}</string>
+								<string>{{0, 118}, {187.5, 32.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<true/>
+								<false/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -2986,7 +2986,7 @@
 		<key>PanValue</key>
 		<string>{0, 0}</string>
 		<key>ProjectName</key>
-		<string>Penguin Rescue</string>
+		<string></string>
 		<key>ProjectPath</key>
 		<string>/Users/Steve/Code/Conquer/Penguin Rescue</string>
 		<key>SafeFrame</key>
@@ -3007,6 +3007,7 @@
 			<string>BACKGROUND</string>
 			<string>TUTORIAL</string>
 			<string>WINDMILL</string>
+			<string>DOODAD</string>
 		</array>
 		<key>ZoomValue</key>
 		<real>0.0</real>

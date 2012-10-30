@@ -132,7 +132,7 @@
 	<key>HDSuffix</key>
 	<string>-hd</string>
 	<key>LastLevelLoaded</key>
-	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Arctic1/FigureEight.plhs</string>
+	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Arctic1/Archipelago.plhs</string>
 	<key>Orientation</key>
 	<integer>1</integer>
 	<key>ProjectName</key>
@@ -176,6 +176,7 @@
 		<string>BACKGROUND</string>
 		<string>TUTORIAL</string>
 		<string>WINDMILL</string>
+		<string>DOODAD</string>
 	</array>
 </dict>
 </plist>
