@@ -7,6 +7,7 @@
 //
 
 #import "ScoreKeeper.h"
+#import "Utilities.h"
 
 @implementation ScoreKeeper
 
@@ -179,28 +180,26 @@
 		NSString* localScoreSendQueuePropertyListPath = [rootPath stringByAppendingPathComponent:@"LocalScoreSendQueue.plist"];
 
 		NSMutableArray* localScoreSendQueue = [NSMutableArray arrayWithContentsOfFile:localScoreSendQueuePropertyListPath];
-		if(localScoreSendQueue == nil) {
+		if(localScoreSendQueue == nil || localScoreSendQueue.count == 0) {
 			return;
 		}
 
-		//write to file!
-		if(![localScoreSendQueue writeToFile:localScoreSendQueuePropertyListPath atomically: YES]) {
+		//write an empty array to file!
+		if(![[NSArray arrayWithObjects:nil] writeToFile:localScoreSendQueuePropertyListPath atomically: YES]) {
 			NSLog(@"---- Failed to save emptied score queue plist!! - %@ -----", localScoreSendQueuePropertyListPath);
-			[localScoreSendQueue release];
 			return;
 		}
 		if(DEBUG_SCORING) NSLog(@"Saved emptied send queue plist");
 		
 		//now iterate to empty
+		if(DEBUG_SCORING) NSLog(@"Sending %d queued scores to server", localScoreSendQueue.count);
 		for(NSDictionary* scoreData in localScoreSendQueue) {
 			[self saveScore:[(NSNumber*)[scoreData objectForKey:@"score"] intValue]
 					userId:[scoreData objectForKey:@"userId"]
 					levelPackPath:[scoreData objectForKey:@"levelPackPath"]
 					levelPath:[scoreData objectForKey:@"levelPath"]
 			];
-		}
-		
-		[localScoreSendQueue release];
+		}		
 	}
 }
 
@@ -209,7 +208,7 @@
 	NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	NSString* localScoreSendQueuePropertyListPath = [rootPath stringByAppendingPathComponent:@"LocalScoreSendQueue.plist"];
 
-	NSMutableArray* localScoreSendQueue = [NSMutableArray arrayWithContentsOfFile:localScoreSendQueuePropertyListPath];
+	NSMutableArray* localScoreSendQueue = [[NSMutableArray alloc] initWithContentsOfFile:localScoreSendQueuePropertyListPath];
 	if(localScoreSendQueue == nil) {
 		localScoreSendQueue = [[NSMutableArray alloc] init];
 	}

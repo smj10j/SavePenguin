@@ -25,6 +25,7 @@
 #import "SimpleAudioEngine.h"
 
 #import "WindmillRaycastCallback.h"
+#import "Utilities.h"
 
 #pragma mark - GameLayer
 
@@ -621,7 +622,7 @@
 	//hide any tutorials
 	[self fadeOutAllTutorials];
 	
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/pickup.wav"];
 	}
 
@@ -662,7 +663,7 @@
 			
 			_activeToolboxItem = nil;
 			
-			if([SettingsManager boolForKey:@"SoundEnabled"]) {
+			if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 				[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/return.wav"];
 			}
 			
@@ -693,7 +694,7 @@
 -(void)onTouchEndedPlayPause:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
 	}
 		
@@ -725,7 +726,7 @@
 -(void)onTouchEndedRestart:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
 	}
 	
@@ -741,7 +742,7 @@
 -(void)onTouchEndedMainMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
 	}
 	
@@ -757,7 +758,7 @@
 -(void)onTouchEndedLevelsMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
 	}
 	
@@ -775,7 +776,7 @@
 -(void)onTouchEndedNextLevel:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
 	}
 	
@@ -902,7 +903,7 @@
 	}
 	_state = GAME_OVER;
 	
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelWon/reward.mp3"];
 	}
 	
@@ -940,7 +941,7 @@
 	const int finalScore = SCORING_MAX_SCORE_POSSIBLE - scoreDeductions;
 	
 	//post the score to the server or queue for online processing
-	NSString* userId = [SettingsManager stringForKey:@"UserId"];
+	NSString* userId = [SettingsManager stringForKey:SETTING_USER_ID];
 	[_scoreKeeper saveScore:finalScore userId:userId levelPackPath:_levelPackPath levelPath:_levelPath];
 			
 	
@@ -1050,7 +1051,7 @@
 	_state = GAME_OVER;
 
 	
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelLost/hoot.wav"];
 	}
 	
@@ -1083,7 +1084,7 @@
 	}
 	_state = GAME_OVER;
 
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelLost/hoot.wav"];
 	}
 
@@ -1202,28 +1203,28 @@
 	//NOTE: maybe we always show tutorials for these levels?
 
 	//have we shown this tutorial yet?
-	if(![SettingsManager boolForKey:@"HasSeenTutorial1"]) {
+	if(![SettingsManager boolForKey:SETTING_HAS_SEEN_TUTORIAL_1]) {
 		//is this tutorial available on this level?
 		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial1"];
 		if(tutorial != nil) {
 			NSLog(@"Showing tutorial 1");
-			//[SettingsManager setBool:true forKey:@"HasSeenTutorial1"];
+			//[SettingsManager setBool:true forKey:SETTING_HAS_SEEN_TUTORIAL_1];
 		}
 	}
-	if(tutorial == nil && ![SettingsManager boolForKey:@"HasSeenTutorial2"]) {
+	if(tutorial == nil && ![SettingsManager boolForKey:SETTING_HAS_SEEN_TUTORIAL_2]) {
 		//is this tutorial available on this level?
 		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial2"];
 		if(tutorial != nil) {
 			NSLog(@"Showing tutorial 2");
-			//[SettingsManager setBool:true forKey:@"HasSeenTutorial2"];
+			//[SettingsManager setBool:true forKey:SETTING_HAS_SEEN_TUTORIAL_2];
 		}
 	}
-	if(tutorial == nil && ![SettingsManager boolForKey:@"HasSeenTutorial3"]) {
+	if(tutorial == nil && ![SettingsManager boolForKey:SETTING_HAS_SEEN_TUTORIAL_3]) {
 		//is this tutorial available on this level?
 		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial3"];
 		if(tutorial != nil) {
 			NSLog(@"Showing tutorial 3");
-			//[SettingsManager setBool:true forKey:@"HasSeenTutorial3"];
+			//[SettingsManager setBool:true forKey:SETTING_HAS_SEEN_TUTORIAL_3];
 		}
 	}
 	
@@ -1511,7 +1512,7 @@
 		nil];
 		[Flurry logEvent:@"Place_Toolbox_Item" withParameters:flurryParams];				
 
-		if([SettingsManager boolForKey:@"SoundEnabled"]) {
+		if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 			[[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"sounds/game/toolbox/%@", soundFileName ]];
 		}
 	
@@ -2023,7 +2024,7 @@
 				//tapping a second finger on the screen when moving a toolbox item rotates the item
 				[_activeToolboxItem transformRotation:((int)_activeToolboxItem.rotation+90)%360];
 				
-				if([SettingsManager boolForKey:@"SoundEnabled"]) {
+				if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 					[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/rotate.wav"];
 				}
 			}

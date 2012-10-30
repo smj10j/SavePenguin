@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "SettingsManager.h"
 #import "SimpleAudioEngine.h"
+#import "Utilities.h"
 
 #pragma mark - IntroLayer
 
@@ -65,7 +66,7 @@
 		
 		
 		
-		double lastRun = [SettingsManager doubleForKey:@"LastRunTimestamp"];
+		double lastRun = [SettingsManager doubleForKey:SETTING_LAST_RUN_TIMESTAMP];
 		NSLog(@"Last run was: %f", lastRun);
 		
 		//INITIAL SETTINGS TIME!!
@@ -76,12 +77,30 @@
 			[SettingsManager setBool:true forKey:@"SoundEnabled"];
 			[SettingsManager setBool:true forKey:@"MusicEnabled"];
 			
-			//TODO: set a user id
-			[SettingsManager setString:@"" forKey:@"UserId"];
+			//set a user id
+			//first see if the userId is in the keychain
+			NSString* UUID = nil;//[SSKeychain passwordForService:COMPANY_IDENTIFIER account:@"user"];
+			if(UUID == nil) {
+				UUID = [Utilities UUID];
+			}
+			[SettingsManager setString:UUID forKey:SETTING_USER_ID];
+			
+			//store the userId to the keychain
+			//[SSKeychain setPassword:UUID forService:COMPANY_IDENTIFIER account:@"user"];
+			
+			//TODO: also store this to iCloud: refer to: http://stackoverflow.com/questions/7273014/ios-unique-user-identifier
+			/*
+				To make sure ALL devices have the same UUID in the Keychain.
+
+				Setup your app to use iCloud.
+				Save the UUID that is in the Keychain to NSUserDefaults as well.
+				Pass the UUID in NSUserDefaults to the Cloud with Key-Value Data Store.
+				On App first run, Check if the Cloud Data is available and set the UUID in the Keychain on the New Device.
+			*/
 		}
 		
 		//set our boot time (can be used for applying settings on updates
-		[SettingsManager setDouble:[[NSDate date] timeIntervalSince1970] forKey:@"LastRunTimestamp"];
+		[SettingsManager setDouble:[[NSDate date] timeIntervalSince1970] forKey:SETTING_LAST_RUN_TIMESTAMP];
 	}
 	
 	if(DEBUG_MEMORY) NSLog(@"Initialized IntroLayer");	

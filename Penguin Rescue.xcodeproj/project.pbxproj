@@ -683,6 +683,7 @@
 		AAC6E5711640071300FD549F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		AAC6E5801640103600FD549F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		AAC6E5811640103600FD549F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		AAC6E583164017E800FD549F /* Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		AACE801A163992FB008C7E3B /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		AACE801B163992FB008C7E3B /* Score.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Score.mm; sourceTree = "<group>"; };
 		AACF346D163E843200A50636 /* WindmillRaycastCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindmillRaycastCallback.h; sourceTree = "<group>"; };
@@ -1453,6 +1454,7 @@
 				AACE801B163992FB008C7E3B /* Score.mm */,
 				AA250B3B163903D30080663E /* SettingsManager.h */,
 				AA250B3C163903D30080663E /* SettingsManager.mm */,
+				AAC6E583164017E800FD549F /* Utilities.h */,
 				AA24E293163ED5FB003EA5D0 /* Utilities.mm */,
 			);
 			name = Helpers;

@@ -13,6 +13,7 @@
 #import "LevelPackSelectLayer.h"
 #import "GameLayer.h"
 #import "SimpleAudioEngine.h"
+#import "Utilities.h"
 
 
 #pragma mark - MainMenuLayer
@@ -84,8 +85,8 @@
 
 		
 			
-		bool isMusicEnabled = [SettingsManager boolForKey:@"MusicEnabled"];
-		bool isSoundEnabled = [SettingsManager boolForKey:@"SoundEnabled"];
+		bool isMusicEnabled = [SettingsManager boolForKey:SETTING_MUSIC_ENABLED];
+		bool isSoundEnabled = [SettingsManager boolForKey:SETTING_SOUND_ENABLED];
 	
 		if(isMusicEnabled) {
 			[toggleMusicButton setFrame:toggleMusicButton.currentFrame+1];	//active state
@@ -125,7 +126,7 @@
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
 	
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
 	}
 	
@@ -142,7 +143,7 @@
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
 	
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
 	}
 
@@ -152,7 +153,7 @@
 -(void)onToggleSound:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 
-	bool isSoundEnabled = [SettingsManager boolForKey:@"SoundEnabled"];
+	bool isSoundEnabled = [SettingsManager boolForKey:SETTING_SOUND_ENABLED];
 	NSLog(@"Sound was %d - setting to %d", isSoundEnabled, !isSoundEnabled);
 
 	if(isSoundEnabled) {
@@ -161,11 +162,11 @@
 		[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 	}
 	
-	[SettingsManager setBool:!isSoundEnabled forKey:@"SoundEnabled"];
+	[SettingsManager setBool:!isSoundEnabled forKey:SETTING_SOUND_ENABLED];
 	
 	
 	
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
 	}
 }
@@ -173,11 +174,11 @@
 -(void)onToggleMusic:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
 	}
 
-	bool isMusicEnabled = [SettingsManager boolForKey:@"MusicEnabled"];
+	bool isMusicEnabled = [SettingsManager boolForKey:SETTING_MUSIC_ENABLED];
 	NSLog(@"Music was %d - setting to %d", isMusicEnabled, !isMusicEnabled);
 
 	if(isMusicEnabled) {
@@ -189,7 +190,7 @@
 	}
 	
 	
-	[SettingsManager setBool:!isMusicEnabled forKey:@"MusicEnabled"];
+	[SettingsManager setBool:!isMusicEnabled forKey:SETTING_MUSIC_ENABLED];
 }
 
 

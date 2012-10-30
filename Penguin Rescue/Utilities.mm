@@ -7,6 +7,23 @@
 //
 
 #include "Constants.h"
+#include "Utilities.h"
+
+@implementation Utilities
+
+
+
+
++ (NSString *)UUID {
+  CFUUIDRef theUUID = CFUUIDCreate(NULL);
+  CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+  CFRelease(theUUID);
+  return [(NSString *)string autorelease];
+}
+
+@end
+
+
 
 vm_size_t usedMemory(void) {
     struct task_basic_info info;
@@ -48,3 +65,6 @@ bool isServerAvailable(void) {
 void setServerAvailable(bool isServerAvailable) {
 	__isServerAvailable = isServerAvailable;
 }
+
+
+

@@ -14,6 +14,7 @@
 #import "IntroLayer.h"
 #import "LevelPackManager.h"
 #import "Reachability.h"
+#import "Utilities.h"
 
 @implementation AppController
 

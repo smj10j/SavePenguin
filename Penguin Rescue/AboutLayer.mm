@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "SettingsManager.h"
 #import "SimpleAudioEngine.h"
+#import "Utilities.h"
 
 #pragma mark - AboutLayer
 
@@ -98,7 +99,7 @@
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame-1];	//active state
 	
-	if([SettingsManager boolForKey:@"SoundEnabled"]) {
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
 	}	
 	
