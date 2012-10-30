@@ -1026,21 +1026,25 @@
 	const int competitiveTextXOffset = (172 + (IS_IPHONE ? 15 : 0))*SCALING_FACTOR_H;
 	const int competitiveTextYOffset = 130*SCALING_FACTOR_V;
 
-	//TODO: get the numbers from the server (or cached copy!)
-
-	CCLabelTTF* worldPercentCompleteLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", 45] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
+	//get the numbers from the server
+	NSDictionary* worldScores = [_scoreKeeper worldScoresForLevelPackPath:_levelPackPath levelPath:_levelPath];
+	int worldPercentComplete = (([(NSNumber*)[worldScores objectForKey:@"uniqueWins"] intValue] * 1.0f) / [(NSNumber*)[worldScores objectForKey:@"uniquePlays"] intValue] * 100.0);
+	int worldScoreMean = [(NSNumber*)[worldScores objectForKey:@"scoreMean"] intValue];
+	int worldPercentile = 10;	//TODO: calculate
+	
+	CCLabelTTF* worldPercentCompleteLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", worldPercentComplete] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 	worldPercentCompleteLabel.color = SCORING_FONT_COLOR3;
 	worldPercentCompleteLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
 											240*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? 0 : 0));
 	[self addChild:worldPercentCompleteLabel];
 
-	CCLabelTTF* worldAverageScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", 8000] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
+	CCLabelTTF* worldAverageScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", worldScoreMean] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 	worldAverageScoreLabel.color = SCORING_FONT_COLOR3;
 	worldAverageScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
 										170*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -7 : 0));
 	[self addChild:worldAverageScoreLabel];
 
-	CCLabelTTF* worldPercentileLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", 10] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
+	CCLabelTTF* worldPercentileLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", worldPercentile] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
 	worldPercentileLabel.color = SCORING_FONT_COLOR2;
 	worldPercentileLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
 										95*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
@@ -1787,8 +1791,6 @@
 		double radians = atan2(weightedVelX, weightedVelY); //this grabs the radians for us
 		double degrees = CC_RADIANS_TO_DEGREES(radians) - 90; //90 is because the sprit is facing right
 		[shark transformRotation:degrees];
-		
-		//TODO: add a waddle animation
 	}
 	
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done moving %d sharks...", [sharks count]);
@@ -2004,7 +2006,7 @@
 		if([touches count] == 1) {
 			if(_activeToolboxItem != nil) {
 				//toolbox item drag
-				//TODO: add some kind of crosshair so you know where the item is if it's tiny and under your finger
+				//TODO: add some kind of crosshair or arrow so you know where the item is if it's tiny and under your finger
 				[_activeToolboxItem transformPosition:location];
 			}/*else if(_startTouch.x != 0 && _startTouch.y != 0) {
 				//slide the main layer

@@ -131,8 +131,8 @@
 -(NSDictionary*)getWorldScores {
 	NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	NSString* worldScoresPropertyListPath = [rootPath stringByAppendingPathComponent:@"WorldScores.plist"];
-	NSMutableDictionary* worldScoresDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:worldScoresPropertyListPath];
-	return [worldScoresDictionary autorelease];
+	NSMutableDictionary* worldScoresDictionary = [[[NSMutableDictionary alloc] initWithContentsOfFile:worldScoresPropertyListPath] autorelease];
+	return [worldScoresDictionary objectForKey:@"levels"];
 }
 
 -(void)saveWorldScoresLocally:(NSDictionary*)worldScoresDictionary {
@@ -161,6 +161,17 @@
 			}
 			onError:^(NSError* error) {
 				if(DEBUG_SCORING) DebugLog(@"Error posting score data to server: %@", error.localizedDescription);
+				
+				//save local queue for sending to server later
+				NSMutableDictionary* scoreData = [[NSMutableDictionary alloc] init];
+				[scoreData setObject:[NSNumber numberWithInt:score] forKey:@"score"];
+				[scoreData setObject:UUID forKey:@"UUID"];
+				[scoreData setObject:levelPackPath forKey:@"levelPackPath"];
+				[scoreData setObject:levelPath forKey:@"levelPath"];
+					
+				[self addScoreDataToLocalSendQueue:scoreData];
+				
+				[scoreData release];				
 			}
 		];	
 		
