@@ -105,8 +105,8 @@
     
     CGSize realScale; //used for the joints in case you create a level with SD graphics using ipad template
     
-    LHParallaxNode* parallaxFollowingThisSprite;
-    LHParallaxNode* spriteIsInParallax;
+    __unsafe_unretained LHParallaxNode* parallaxFollowingThisSprite;
+    __unsafe_unretained LHParallaxNode* spriteIsInParallax;
     
     //this also serves as left mouse events on mac
     LHObserverPair* touchBeginObserver;

@@ -42,6 +42,7 @@
 //------------------------------------------------------------------------------
 -(void)dealloc
 {
+    baseSpritesClass = nil;
 #ifndef LH_ARC_ENABLED
 	[classesDictionary release];
 	[super dealloc];
@@ -52,11 +53,24 @@
 {
 	self = [super init];
 	if (self != nil) {
-        classesDictionary = [[NSMutableDictionary alloc] init];        
+        classesDictionary = [[NSMutableDictionary alloc] init];
+        baseSpritesClass = nil;
 	}
 	return self;
 }
 //------------------------------------------------------------------------------
+-(void) registerBaseSpriteClass:(Class)base{
+    baseSpritesClass = base;
+}
+-(Class) baseClass{
+    
+    if(baseSpritesClass == nil){
+        return [LHSprite class];
+    }
+    
+    return baseSpritesClass;
+}
+
 -(void) registerCustomSpriteClass:(Class)customSpriteClass forTag:(int)tag{
     [classesDictionary setObject:customSpriteClass forKey:[NSNumber numberWithInt:tag]];
 }

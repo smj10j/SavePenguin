@@ -95,12 +95,19 @@
         isCoronaUser = false;
         preloadBatchNodes = false;
         
+        [self setSafeFrame:CGSizeMake(480, 320)]; //universal
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        [self setConvertRatio:CGPointMake(winSize.width/safeFrame.width,
+                                          winSize.height/safeFrame.height)];
+
         activeFolder = [[NSMutableString alloc] init];
 #ifdef LH_USE_BOX2D
         activeBox2dWorld = NULL;
 #endif
         hdSuffix = [[NSMutableString alloc] initWithString:@"-hd"];
         hd2xSuffix = [[NSMutableString alloc] initWithString:@"-ipadhd"];
+        
+        [self setDevice:2];//universal
 	}
 	return self;
 }

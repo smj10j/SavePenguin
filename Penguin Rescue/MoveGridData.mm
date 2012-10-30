@@ -227,8 +227,8 @@
 				[self copyMoveGridBufferToMoveGrid];
 			}
 			_minSearchPathFactor*= 2;
-			if(_minSearchPathFactor > 5) {
-				_minSearchPathFactor = 5;
+			if(_minSearchPathFactor > 6) {
+				_minSearchPathFactor = 6;
 			}
 			
 			//go try again!
@@ -237,7 +237,7 @@
 			}
 		}
 		
-		NSLog(@"Foundroute=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for a %@ move grid in %f seconds", foundRoute, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - start);
+		//NSLog(@"Foundroute=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for a %@ move grid in %f seconds", foundRoute, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - start);
 		
 	}
 }

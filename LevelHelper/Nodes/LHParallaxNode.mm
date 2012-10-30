@@ -116,7 +116,8 @@
 
 -(void) dealloc{	
 
-//    NSLog(@"LHParallaxNode DEALLOC %p", self);
+    NSLog(@"LHParallaxNode DEALLOC %p", self);
+    lhLoader = nil;
     
     for(LHParallaxPointObject* pt in sprites){
         if(pt.ccsprite){
@@ -266,7 +267,10 @@
 	}
     
     if([sprites count] == 0){
-        if(lhLoader)[lhLoader removeParallaxNode:self];                     
+        if(lhLoader){
+            [lhLoader removeParallaxNode:self];
+            lhLoader = nil;
+        }
     }
 }
 ////////////////////////////////////////////////////////////////////////////////

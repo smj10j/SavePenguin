@@ -7,10 +7,10 @@
 {
 
 
-	float scale;
+	float reach;
 	float power;
 	float runningCost;
-	float reach;
+	float scale;
 	float placeCost;
 
 
@@ -22,10 +22,10 @@
 #endif // __has_feature(objc_arc)
 
 }
-@property float scale;
+@property float reach;
 @property float power;
 @property float runningCost;
-@property float reach;
+@property float scale;
 @property float placeCost;
 
 +(ToolboxItem_Windmill*) customClassInstance;

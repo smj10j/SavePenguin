@@ -31,7 +31,7 @@
 #import "LHSprite.h"
 #import "LHLayer.h"
 #import <Availability.h>
-
+#import "LHCustomClasses.h"
 #import "LHDictionaryExt.h"
 
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
@@ -155,15 +155,7 @@ typedef struct lhV3F_Line
     
     [LevelHelperLoader removeTouchDispatcherFromObject:self];
 
-#ifdef LH_USE_BOX2D
-	if(NULL != body){
-		b2World* _world = body->GetWorld();
-		if(0 != _world){
-			_world->DestroyBody(body);
-			body = NULL;
-		}
-	}
-#endif
+    [self removeBodyFromWorld];
     
 #ifndef LH_ARC_ENABLED    
     
@@ -188,6 +180,18 @@ typedef struct lhV3F_Line
 	[trianglesHolder release];
 
 	[super dealloc];
+#endif
+}
+
+-(void)removeBodyFromWorld{
+#ifdef LH_USE_BOX2D
+	if(NULL != body){
+		b2World* _world = body->GetWorld();
+		if(0 != _world){
+			_world->DestroyBody(body);
+			body = NULL;
+		}
+	}
 #endif
 }
 
@@ -244,15 +248,15 @@ typedef struct lhV3F_Line
 {
 	trianglesHolder = [[NSMutableArray alloc] init];
     
-    float scale = 1;
-
-    if([[LHSettings sharedInstance] isIphone5])
-        scale = [[CCDirector sharedDirector] contentScaleFactor];
+//#if COCOS2D_VERSION >= 0x00020000
+//    float scale = 1;
+//#else
+//    float scale = CC_CONTENT_SCALE_FACTOR();
+//#endif
+//
+//    NSLog(@"SCALE IS %f", scale);
     
-	CGPoint convert = [[LHSettings sharedInstance] convertRatio];
-    CGPoint pos_offset = [[LHSettings sharedInstance] possitionOffset];
-    CGPoint user_offset = [[LHSettings sharedInstance] userOffset];
-
+    
 	for(NSArray* fix in fixtures)
 	{
 		NSMutableArray* triangle = [[NSMutableArray alloc] init];
@@ -260,16 +264,7 @@ typedef struct lhV3F_Line
 		{
 			CGPoint point = LHPointFromString(pt);
 			
-            
-            
-			point.x = point.x* convert.x;
-			point.y = winSize.height - point.y*convert.y;
-            
-            point.x += pos_offset.x/scale;
-            point.y -= pos_offset.y/scale;
-
-            point.x += user_offset.x/scale;
-            point.y -= user_offset.y/scale;
+            point = [[LHSettings sharedInstance] transformedPointToCocos2d:point];
 
 			[triangle addObject:LHValueWithCGPoint(point)];
 		}
@@ -310,29 +305,8 @@ typedef struct lhV3F_Line
 					
 					if(!firstPt)
 					{
-						CGPoint pt1 = CGPointMake(prevPoint.x*convert.x, 
-												  winSize.height - prevPoint.y*convert.y);
-						CGPoint pt2 = CGPointMake(vPoint.x*convert.x, 
-												  winSize.height - vPoint.y*convert.y);
-						
-//                        pt1.x *= scale;
-//                        pt1.y *= scale;
-//                        
-//                        pt2.x *= scale;
-//                        pt2.y *= scale;
-                        
-                        pt1.x += pos_offset.x/scale;
-                        pt1.y -= pos_offset.y/scale;
-                        
-                        pt2.x += pos_offset.x/scale;
-                        pt2.y -= pos_offset.y/scale;
-                        
-                        pt1.x += user_offset.x;
-                        pt1.y -= user_offset.y;
-                        
-                        pt2.x += user_offset.x;
-                        pt2.y -= user_offset.y;
-                        
+                        CGPoint pt1 = [[LHSettings sharedInstance] transformedPointToCocos2d:prevPoint];
+                        CGPoint pt2 = [[LHSettings sharedInstance] transformedPointToCocos2d:vPoint];
                         
 						[linesHolder addObject:LHValueWithCGPoint(pt1)];
 						[linesHolder addObject:LHValueWithCGPoint(pt2)];
@@ -344,30 +318,8 @@ typedef struct lhV3F_Line
 			else
 			{
 				
-				CGPoint pos1 = CGPointMake(startPt.x*convert.x, 
-										   winSize.height - startPt.y*convert.y);
-				CGPoint pos2 = CGPointMake(endPt.x*convert.x, 
-										   winSize.height - endPt.y*convert.y);
-				
-//                pos1.x *= scale;
-//                pos1.y *= scale;
-//                
-//                pos2.x *= scale;
-//                pos2.y *= scale;
-                
-                pos1.x += pos_offset.x/scale;
-                pos1.y -= pos_offset.y/scale;
-                
-                pos2.x += pos_offset.x/scale;
-                pos2.y -= pos_offset.y/scale;
-                
-                
-                pos1.x += user_offset.x/scale;
-                pos1.y -= user_offset.y/scale;
-                
-                pos2.x += user_offset.x/scale;
-                pos2.y -= user_offset.y/scale;
-
+                CGPoint pos1 = [[LHSettings sharedInstance] transformedPointToCocos2d:startPt];
+                CGPoint pos2 = [[LHSettings sharedInstance] transformedPointToCocos2d:endPt];
                 
 				[linesHolder addObject:LHValueWithCGPoint(pos1)];
 				[linesHolder addObject:LHValueWithCGPoint(pos2)];
@@ -376,6 +328,7 @@ typedef struct lhV3F_Line
 		}
 	}
 }
+
 ////////////////////////////////////////////////////////////////////////////////
 -(void) initPathPointsFromDictionary:(NSDictionary*)bezierDict
 {
@@ -383,8 +336,18 @@ typedef struct lhV3F_Line
 	
     NSArray* curvesInShape = [bezierDict objectForKey:@"Curves"];    
     int MAX_STEPS = 25;    
-	CGPoint conv = [[LHSettings sharedInstance] convertRatio];
+//	CGPoint conv = [[LHSettings sharedInstance] convertRatio];
 	int i = 0;
+    
+    
+//    float scale = 1;
+//    if([[LHSettings sharedInstance] isIphone5])
+//        scale = [[CCDirector sharedDirector] contentScaleFactor];
+
+    
+//    CGPoint pos_offset = [[LHSettings sharedInstance] possitionOffset];
+//    CGPoint user_offset = [[LHSettings sharedInstance] userOffset];
+    
     for(NSDictionary* curvDict in curvesInShape)
     {
         CGPoint endCtrlPt   = [curvDict pointForKey:@"EndControlPoint"];
@@ -392,8 +355,7 @@ typedef struct lhV3F_Line
         CGPoint endPt       = [curvDict pointForKey:@"EndPoint"];
         CGPoint startPt     = [curvDict pointForKey:@"StartPoint"];
 		
-		CGPoint pos_offset = [[LHSettings sharedInstance] possitionOffset];
-        
+		
 		if(!isLine)
         {
             for(float t = 0; t <= (1 + (1.0f / MAX_STEPS)); t += 1.0f / MAX_STEPS)
@@ -403,11 +365,17 @@ typedef struct lhV3F_Line
 														 p3:endCtrlPt
 														 p4:endPt
 														  t:t];
-				vPoint = CGPointMake(vPoint.x*conv.x, 
-                                     winSize.height - vPoint.y*conv.y);
-
-                vPoint.x += pos_offset.x;
-                vPoint.y -= pos_offset.y;
+                
+                vPoint = [[LHSettings sharedInstance] transformedPointToCocos2d:vPoint];
+//                
+//				vPoint = CGPointMake(vPoint.x*conv.x, 
+//                                     winSize.height - vPoint.y*conv.y);
+//
+//                vPoint.x += pos_offset.x/scale;
+//                vPoint.y -= pos_offset.y/scale;
+//                
+//                vPoint.x += user_offset.x/scale;
+//                vPoint.y -= user_offset.y/scale;
                 
                 [pathPoints addObject:LHValueWithCGPoint(vPoint)];
             }
@@ -416,21 +384,32 @@ typedef struct lhV3F_Line
         }
         else
         {
-            CGPoint sPoint = CGPointMake(startPt.x*conv.x, 
-                                 winSize.height - startPt.y*conv.y);
+            CGPoint sPoint = [[LHSettings sharedInstance] transformedPointToCocos2d:startPt];
             
-            sPoint.x += pos_offset.x;
-            sPoint.y -= pos_offset.y;
+//            CGPoint sPoint = CGPointMake(startPt.x*conv.x, 
+//                                 winSize.height - startPt.y*conv.y);
+//            
+//            sPoint.x += pos_offset.x/scale;
+//            sPoint.y -= pos_offset.y/scale;
+//            
+//            sPoint.x += user_offset.x/scale;
+//            sPoint.y -= user_offset.y/scale;
+//            
             
             [pathPoints addObject:LHValueWithCGPoint(sPoint)];            
             
             if(i == (int)[curvesInShape count]-1)
             {
-                CGPoint ePoint = CGPointMake(endPt.x*conv.x, 
-                                             winSize.height - endPt.y*conv.y);
+                CGPoint ePoint = [[LHSettings sharedInstance] transformedPointToCocos2d:endPt];
                 
-                ePoint.x += pos_offset.x;
-                ePoint.y -= pos_offset.y;
+//                CGPoint ePoint = CGPointMake(endPt.x*conv.x, 
+//                                             winSize.height - endPt.y*conv.y);
+//                
+//                ePoint.x += pos_offset.x/scale;
+//                ePoint.y -= pos_offset.y/scale;
+//                
+//                ePoint.x += user_offset.x/scale;
+//                ePoint.y -= user_offset.y/scale;
                 
                 [pathPoints addObject:LHValueWithCGPoint(ePoint)]; 
             }
@@ -614,6 +593,29 @@ typedef struct lhV3F_Line
 #endif
 }
 #endif
+
+-(void) loadUserCustomInfoFromDictionary:(NSDictionary*)dictionary{
+    userCustomInfo = nil;
+    if(!dictionary)return;
+    
+    NSString* className = [dictionary stringForKey:@"ClassName"];
+    Class customClass = NSClassFromString(className);
+    
+    if(!customClass) return;
+    
+    userCustomInfo = [customClass performSelector:@selector(customClassInstance)];
+#ifndef LH_ARC_ENABLED
+    [userCustomInfo retain];
+#endif
+    [userCustomInfo performSelector:@selector(setPropertiesFromDictionary:) withObject:[dictionary objectForKey:@"ClassRepresentation"]];
+}
+-(NSString*)userInfoClassName{
+    if(userCustomInfo)
+        return NSStringFromClass([userCustomInfo class]);
+    return @"No Class";
+}
+//------------------------------------------------------------------------------
+
 ////////////////////////////////////////////////////////////////////////////////
 -(id) initWithDictionary:(NSDictionary*)dictionary 
 {
@@ -759,12 +761,6 @@ typedef struct lhV3F_Line
         [shaderProgram_ setUniformForModelViewProjectionMatrix];
     #endif
     
-    float scale = 1;
-    
-    //#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-    //        scale = [[CCDirector sharedDirector] contentScaleFactor];
-    //#endif
-    
     int size = (int)[trianglesHolder count];
     
     lhV3F_C4B_T2F_Triangle points[size];// = new ccV3F_C4B_T2F_Triangle[size];
@@ -783,9 +779,6 @@ typedef struct lhV3F_Line
             NSValue* val  = [fix objectAtIndex:(NSUInteger)j];
             
             CGPoint pt = LHPointFromValue(val);
-            
-            pt.x *=scale;
-            pt.y *=scale;
             
             ccVertex3F vert = {pt.x, pt.y, 0};
             ccTex2F tex = { (pt.x/imageSize.width), 
@@ -926,6 +919,8 @@ typedef struct lhV3F_Line
 {
     if(!isVisible)
         return;
+    
+    float scale = CC_CONTENT_SCALE_FACTOR();
 
 	if(0.0f != [[LHSettings sharedInstance] customAlpha])
 	{
@@ -942,12 +937,7 @@ typedef struct lhV3F_Line
 		
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		
-        float scale = 1;
-#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-        scale = [[CCDirector sharedDirector] contentScaleFactor];
-#endif
-        
+		        
         int size = (int)[trianglesHolder count];
         CGPoint* glVertices = new CGPoint[size*3];
         CGPoint* glUV = new CGPoint[size*3];
@@ -961,8 +951,10 @@ typedef struct lhV3F_Line
                 
 				CGPoint pt = LHPointFromValue(val);
                 
-                pt.x *=scale;
-                pt.y *=scale;
+                pt.x *= scale;
+                pt.y *= scale;
+
+                
 				glVertices[k*3 +j] =pt;
 				
 				glUV[k*3+j].x = (pt.x/imageSize.width);
@@ -1032,6 +1024,12 @@ typedef struct lhV3F_Line
             {
                 CGPoint pt1 = LHPointFromValue([linesHolder objectAtIndex:i]);
                 CGPoint pt2 = LHPointFromValue([linesHolder objectAtIndex:i+1]);
+                
+                pt1.x *= scale;
+                pt1.y *= scale;
+                
+                pt2.x *= scale;
+                pt2.y *= scale;
                 
                 line_verts[i] = pt1;
                 line_verts[i+1] = pt2;            
@@ -1523,27 +1521,6 @@ typedef struct lhV3F_Line
 #endif
 //------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------
--(void) loadUserCustomInfoFromDictionary:(NSDictionary*)dictionary{
-    userCustomInfo = nil;
-    if(!dictionary)return;
-    
-    NSString* className = [dictionary stringForKey:@"ClassName"];
-    Class customClass = NSClassFromString(className);
-    
-    if(!customClass) return;
-    
-    userCustomInfo = [customClass performSelector:@selector(customClassInstance)];
-#ifndef LH_ARC_ENABLED
-    [userCustomInfo retain];
-#endif
-    [userCustomInfo performSelector:@selector(setPropertiesFromDictionary:) withObject:[dictionary objectForKey:@"ClassRepresentation"]];
-}
--(NSString*)userInfoClassName{
-    if(userCustomInfo)
-        return NSStringFromClass([userCustomInfo class]);
-    return @"No Class";
-}
 //------------------------------------------------------------------------------
 -(id)userInfo{
     return userCustomInfo;

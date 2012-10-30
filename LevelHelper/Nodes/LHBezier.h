@@ -178,6 +178,8 @@
 +(LHBezier*) bezierForBody:(b2Body*)body;
 +(int) tagForBody:(b2Body*)body;
 
+-(void)removeBodyFromWorld;
+
 -(void)setCollisionFilterCategory:(int)category;
 -(void)setCollisionFilterMask:(int)mask;
 -(void)setCollisionFilterGroup:(int)group;

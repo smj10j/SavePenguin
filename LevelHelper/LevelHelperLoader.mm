@@ -433,6 +433,11 @@ CGSize  LHSizeFromString(NSString* val){
         [aSprite makeNoPhysics];
     }
     
+    NSArray* allBeziers = [self allBeziers];
+    for(LHBezier* bez in allBeziers){
+        [bez removeBodyFromWorld];
+    }
+    
     [[LHCuttingEngineMgr sharedInstance] destroyAllPrevioslyCutSprites];
 #endif
     
@@ -442,7 +447,7 @@ CGSize  LHSizeFromString(NSString* val){
 #ifdef LH_USE_BOX2D
     if(nil != contactNode){
         [contactNode removeFromParentAndCleanup:YES];
-		contactNode = nil;
+        contactNode = nil;
     }
 #endif
     
@@ -782,25 +787,29 @@ CGSize  LHSizeFromString(NSString* val){
 //------------------------------------------------------------------------------
 -(void) dealloc{  
     
-//   NSLog(@"LH DEALLOC %p", self);
+   //NSLog(@"LH DEALLOC %p", self);
 
 #ifdef LH_USE_BOX2D
     [[LHCuttingEngineMgr sharedInstance] destroyAllPrevioslyCutSprites];
 #endif
+
+    NSArray* keys = [parallaxesInLevel allKeys];
+    for(NSString* key in keys)
+    {
+        LHParallaxNode* node = [parallaxesInLevel objectForKey:key];
+        
+        NSLog(@"SHOULD REMOVE PARALLAX %@", [node uniqueName]);
+        
+        [node removeFromParentAndCleanup:YES];
+        node = nil;
+    }
+    [parallaxesInLevel removeAllObjects];
+
     
     [[LHTouchMgr sharedInstance] removeTouchBeginObserver:cocosLayer];
     
     [[LHSettings sharedInstance] removeLHMainLayer:mainLHLayer];
     
-    NSArray* keys = [parallaxesInLevel allKeys];
-    
-    for(NSString* key in keys)
-    {
-        LHParallaxNode* node = [parallaxesInLevel objectForKey:key];
-        
-        [node removeFromParentAndCleanup:YES];
-    }
-    [parallaxesInLevel removeAllObjects];
     
     
     [jointsInLevel removeAllObjects];

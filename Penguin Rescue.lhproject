@@ -34,7 +34,95 @@
 	<key>CodePathRelative</key>
 	<string>..</string>
 	<key>CustomClasses</key>
-	<array/>
+	<array>
+		<dict>
+			<key>ClassName</key>
+			<string>Penguin</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>alertRadius</key>
+				<real>300</real>
+				<key>detectionRadius</key>
+				<real>2048</real>
+				<key>hasSpottedShark</key>
+				<false/>
+				<key>isDead</key>
+				<false/>
+				<key>isSafe</key>
+				<false/>
+				<key>isStuck</key>
+				<false/>
+				<key>speed</key>
+				<real>40</real>
+			</dict>
+		</dict>
+		<dict>
+			<key>ClassName</key>
+			<string>Shark</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>activeDetectionRadius</key>
+				<real>2048</real>
+				<key>activeSpeed</key>
+				<real>75</real>
+				<key>endpointX</key>
+				<real>1024</real>
+				<key>endpointY</key>
+				<real>400</real>
+				<key>isStuck</key>
+				<false/>
+				<key>restingDetectionRadius</key>
+				<real>2048</real>
+				<key>restingSpeed</key>
+				<real>25</real>
+				<key>targetAcquired</key>
+				<false/>
+			</dict>
+		</dict>
+		<dict>
+			<key>ClassName</key>
+			<string>ToolboxItem_Border</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>placeCost</key>
+				<real>750</real>
+				<key>runningCost</key>
+				<real>1000</real>
+				<key>scale</key>
+				<real>1</real>
+			</dict>
+		</dict>
+		<dict>
+			<key>ClassName</key>
+			<string>ToolboxItem_Debris</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>placeCost</key>
+				<real>250</real>
+				<key>runningCost</key>
+				<real>350</real>
+				<key>scale</key>
+				<real>1</real>
+			</dict>
+		</dict>
+		<dict>
+			<key>ClassName</key>
+			<string>ToolboxItem_Windmill</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>placeCost</key>
+				<real>400</real>
+				<key>power</key>
+				<real>50</real>
+				<key>reach</key>
+				<real>5000</real>
+				<key>runningCost</key>
+				<real>600</real>
+				<key>scale</key>
+				<real>1</real>
+			</dict>
+		</dict>
+	</array>
 	<key>CustomScreenSize</key>
 	<string>{480, 320}</string>
 	<key>Device</key>
@@ -44,7 +132,7 @@
 	<key>HDSuffix</key>
 	<string>-hd</string>
 	<key>LastLevelLoaded</key>
-	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Arctic1/WayWayUpThere.plhs</string>
+	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Arctic1/FigureEight.plhs</string>
 	<key>Orientation</key>
 	<integer>1</integer>
 	<key>ProjectName</key>

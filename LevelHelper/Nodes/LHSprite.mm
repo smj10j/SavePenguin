@@ -105,8 +105,6 @@ static int untitledSpritesCount = 0;
 
 -(void) dealloc{
 
-	//NSLog(@"LHSprite %@ start dealloc", uniqueName);
-	
     [self stopAnimation];
     [self stopPathMovement];
 //    [self removeTouchObserver];//this is called in onExit
@@ -171,9 +169,7 @@ static int untitledSpritesCount = 0;
     
     if(imageFile)
         [imageFile release];
-
-	//NSLog(@"LHSprite %@ end dealloc", uniqueName);
-    
+        
     [uniqueName release];
 #endif    
 //    touchBeginObserver = nil;
@@ -183,8 +179,6 @@ static int untitledSpritesCount = 0;
 #ifndef LH_ARC_ENABLED   
 	[super dealloc];
 #endif
-
-
 }
 ////////////////////////////////////////////////////////////////////////////////
 -(void) loadUserCustomInfoFromDictionary:(NSDictionary*)dictionary{
@@ -565,10 +559,13 @@ static int untitledSpritesCount = 0;
 }
 //------------------------------------------------------------------------------
 +(id)batchSpriteWithDictionary:(NSDictionary*)dictionary batch:(LHBatch*)batch{
+
+    Class baseClass = [[LHCustomSpriteMgr sharedInstance] baseClass];
+
 #ifndef LH_ARC_ENABLED
-    return [[[self alloc] initBatchSpriteWithDictionary:dictionary batch:batch] autorelease];
+    return [[[baseClass alloc] initBatchSpriteWithDictionary:dictionary batch:batch] autorelease];
 #else
-    return [[self alloc] initBatchSpriteWithDictionary:dictionary batch:batch];
+    return [[baseClass alloc] initBatchSpriteWithDictionary:dictionary batch:batch];
 #endif     
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -592,10 +589,13 @@ static int untitledSpritesCount = 0;
 }
 //------------------------------------------------------------------------------
 +(id)spriteWithDictionary:(NSDictionary*)dictionary{
+    
+    Class baseClass = [[LHCustomSpriteMgr sharedInstance] baseClass];
+    
 #ifndef LH_ARC_ENABLED
-    return [[[self alloc] initWithDictionary:dictionary] autorelease];
+    return [[[baseClass alloc] initWithDictionary:dictionary] autorelease];
 #else
-    return [[self alloc] initWithDictionary:dictionary];
+    return [[baseClass alloc] initWithDictionary:dictionary];
 #endif 
 }
 -(void)postInit{

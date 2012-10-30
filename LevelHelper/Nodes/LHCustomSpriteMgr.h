@@ -29,9 +29,15 @@
 @interface LHCustomSpriteMgr : NSObject
 {
     NSMutableDictionary* classesDictionary;
+    Class baseSpritesClass;
 }
 
 +(LHCustomSpriteMgr*) sharedInstance;
+
+//when specified the base class of all sprites will be this
+//base class needs to be a subclass of LHSprite
+-(void) registerBaseSpriteClass:(Class)base;
+-(Class) baseClass;
 
 -(void) registerCustomSpriteClass:(Class)customSpriteClass forTag:(int)tag;
 -(Class) customSpriteClassForTag:(int)tag;
