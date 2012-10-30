@@ -1237,6 +1237,114 @@
 							<key>UniqueName</key>
 							<string>Doodad_Eskimo_Ice_Fisher_1</string>
 						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict>
+								<key>AnimAtStart</key>
+								<true/>
+								<key>AnimLoop</key>
+								<true/>
+								<key>AnimName</key>
+								<string>Doodad_Flying_Bird</string>
+								<key>AnimRepetitions</key>
+								<integer>1</integer>
+								<key>AnimRestoreOriginalFrame</key>
+								<false/>
+								<key>AnimSpeed</key>
+								<real>0.05000000074505806</real>
+								<key>OtherAnimations</key>
+								<array/>
+								<key>SHScene</key>
+								<string>Spritesheet.pshs</string>
+							</dict>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict>
+									<key>pathName</key>
+									<false/>
+									<key>restartAtOtherEnd</key>
+									<true/>
+									<key>timeToCompletePath</key>
+									<true/>
+								</dict>
+								<key>ClassName</key>
+								<string>MovingDoodad</string>
+								<key>ClassRepresentation</key>
+								<dict>
+									<key>pathName</key>
+									<string>Flying_Bird_Path_1</string>
+									<key>restartAtOtherEnd</key>
+									<true/>
+									<key>timeToCompletePath</key>
+									<real>60</real>
+								</dict>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Doodad_Flying_Bird_1</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{126, 76}, {16, 8.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{-59.021363577490831, -92.207991935082873}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{20, 10}</string>
+								<key>Tag</key>
+								<integer>14</integer>
+								<key>TagName</key>
+								<string>DOODAD</string>
+								<key>TextureOffset</key>
+								<string>{0.25, -0.625}</string>
+								<key>UniqueName</key>
+								<string>Doodad_Flying_Bird_1</string>
+								<key>ZOrder</key>
+								<integer>3</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Doodad_Flying_Bird_1</string>
+						</dict>
 					</array>
 					<key>CustomClassInfo</key>
 					<dict>
@@ -2753,6 +2861,202 @@
 					<string>Toolbox</string>
 					<key>ZOrder</key>
 					<integer>30</integer>
+				</dict>
+				<dict>
+					<key>Children</key>
+					<array/>
+					<key>CustomClassInfo</key>
+					<dict>
+						<key>ClassName</key>
+						<string>No Class</string>
+					</dict>
+					<key>NodeType</key>
+					<string>LHBezier</string>
+					<key>ParentClass</key>
+					<string>LHLayer</string>
+					<key>ParentName</key>
+					<string>MAIN_LAYER</string>
+					<key>PhysicsProperties</key>
+					<dict>
+						<key>AngularDamping</key>
+						<real>0.0</real>
+						<key>AngularVelocity</key>
+						<real>0.0</real>
+						<key>CanSleep</key>
+						<true/>
+						<key>Category</key>
+						<integer>1</integer>
+						<key>Density</key>
+						<real>0.20000000298023224</real>
+						<key>FixedRot</key>
+						<false/>
+						<key>Fixture</key>
+						<array/>
+						<key>Friction</key>
+						<real>0.20000000298023224</real>
+						<key>GravityScale</key>
+						<real>1</real>
+						<key>Group</key>
+						<integer>0</integer>
+						<key>HandledBySH</key>
+						<false/>
+						<key>IsBullet</key>
+						<false/>
+						<key>IsCircle</key>
+						<false/>
+						<key>IsSensor</key>
+						<false/>
+						<key>LHHeight</key>
+						<real>0.0</real>
+						<key>LHShapePositionOffset</key>
+						<string>{0, 0}</string>
+						<key>LHWidth</key>
+						<real>0.0</real>
+						<key>LinearDamping</key>
+						<real>0.0</real>
+						<key>LinearVelocity</key>
+						<string>{0, 0}</string>
+						<key>Mask</key>
+						<integer>65535</integer>
+						<key>Name</key>
+						<string>LH_Generic_Fixture</string>
+						<key>Restitution</key>
+						<real>0.20000000298023224</real>
+						<key>Tag</key>
+						<integer>0</integer>
+						<key>TileOptimization</key>
+						<real>3</real>
+						<key>TileVertices</key>
+						<array/>
+						<key>Type</key>
+						<integer>3</integer>
+					</dict>
+					<key>TextureProperties</key>
+					<dict>
+						<key>Angle</key>
+						<integer>0</integer>
+						<key>Color</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>Curves</key>
+						<array>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{489.91794254585341, 174.87967179448322}</string>
+								<key>EndPoint</key>
+								<string>{446.46103527351454, 260.91171906621173}</string>
+								<key>StartControlPoint</key>
+								<string>{469.91794254585341, 174.87967179448322}</string>
+								<key>StartPoint</key>
+								<string>{513.37484981819227, 88.847624522754728}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{408.66545345588759, 295.56351588399127}</string>
+								<key>EndPoint</key>
+								<string>{350.86987163826063, 330.21531270177081}</string>
+								<key>StartControlPoint</key>
+								<string>{388.66545345588759, 295.56351588399127}</string>
+								<key>StartPoint</key>
+								<string>{446.46103527351454, 260.91171906621173}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{286.18927504821852, 139.032985431263}</string>
+								<key>EndPoint</key>
+								<string>{201.50867845817641, -52.149341839244784}</string>
+								<key>StartControlPoint</key>
+								<string>{266.18927504821852, 139.032985431263}</string>
+								<key>StartPoint</key>
+								<string>{350.86987163826063, 330.21531270177081}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{93.812058232270033, 70.924281341144621}</string>
+								<key>EndPoint</key>
+								<string>{-33.884561993636339, 193.99790452153402}</string>
+								<key>StartControlPoint</key>
+								<string>{73.812058232270033, 70.924281341144621}</string>
+								<key>StartPoint</key>
+								<string>{201.50867845817641, -52.149341839244784}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{93.214613459549696, 235.81903861195758}</string>
+								<key>EndPoint</key>
+								<string>{200.31378891273573, 277.64017270238116}</string>
+								<key>StartControlPoint</key>
+								<string>{73.214613459549696, 235.81903861195758}</string>
+								<key>StartPoint</key>
+								<string>{-33.884561993636339, 193.99790452153402}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{368.63665368362501, 135.44831679494098}</string>
+								<key>EndPoint</key>
+								<string>{516.9595184545143, -6.7435391124991781}</string>
+								<key>StartControlPoint</key>
+								<string>{348.63665368362501, 135.44831679494098}</string>
+								<key>StartPoint</key>
+								<string>{200.31378891273573, 277.64017270238116}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{525.76462890907362, 39.259708386966764}</string>
+								<key>EndPoint</key>
+								<string>{514.56973936363295, 85.262955886432707}</string>
+								<key>StartControlPoint</key>
+								<string>{505.76462890907362, 39.259708386966764}</string>
+								<key>StartPoint</key>
+								<string>{516.9595184545143, -6.7435391124991781}</string>
+							</dict>
+						</array>
+						<key>DrawBorder</key>
+						<true/>
+						<key>FlipX</key>
+						<false/>
+						<key>FlipY</key>
+						<false/>
+						<key>Image</key>
+						<string>No Image</string>
+						<key>ImageFile</key>
+						<string>No Image</string>
+						<key>IsClosed</key>
+						<false/>
+						<key>IsDrawable</key>
+						<true/>
+						<key>IsExpanded</key>
+						<false/>
+						<key>IsPath</key>
+						<false/>
+						<key>IsSimpleLine</key>
+						<false/>
+						<key>IsTile</key>
+						<false/>
+						<key>LineColor</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>LineWidth</key>
+						<real>1</real>
+						<key>Locked</key>
+						<false/>
+						<key>Opacity</key>
+						<real>1</real>
+						<key>Position</key>
+						<string>{513.37484981819227, 88.847624522754728}</string>
+						<key>Scale</key>
+						<string>{1, 1}</string>
+						<key>SpriteSize</key>
+						<string>{0, 0}</string>
+						<key>Tag</key>
+						<integer>15</integer>
+						<key>TagName</key>
+						<string>DOODAD_PATH</string>
+						<key>UniqueName</key>
+						<string>Flying_Bird_Path_1</string>
+						<key>ZOrder</key>
+						<integer>0</integer>
+					</dict>
+					<key>UniqueName</key>
+					<string>Flying_Bird_Path_1</string>
 				</dict>
 			</array>
 			<key>CustomClassInfo</key>

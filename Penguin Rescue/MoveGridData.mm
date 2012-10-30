@@ -205,7 +205,7 @@
 		_lastToTile = toTile;
 		_forceUpdateToMoveGrid = false;
 		
-		double start = [[NSDate date] timeIntervalSince1970];
+		//double start = [[NSDate date] timeIntervalSince1970];
 
 		bool foundRoute = false;
 		[self copyBaseGridToMoveGridBuffer];

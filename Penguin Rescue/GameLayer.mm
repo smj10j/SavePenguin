@@ -323,6 +323,15 @@
 	NSArray* doodads = [_levelLoader spritesWithTag:DOODAD];
 	for(LHSprite* doodad in doodads) {
 		if([doodad.userInfoClassName isEqualToString:@"MovingDoodad"]) {
+		
+			//move it into the main layer so it's under the HUD but above actors
+			if(doodad.parent == _mapBatchNode) {
+				[_mapBatchNode removeChild:doodad cleanup:NO];
+			}
+			[_mainLayer addChild:doodad];
+			doodad.zOrder = _actorsBatchNode.zOrder+1;
+		
+						
 			MovingDoodad* doodadData = ((MovingDoodad*)doodad.userInfo);
 		
 			[doodad prepareMovementOnPathWithUniqueName:doodadData.pathName];
@@ -789,8 +798,10 @@
 		_state = PAUSE;
 		
 		for(LHSprite* sprite in _levelLoader.allSprites) {
-			[sprite pauseAnimation];
-			[sprite pausePathMovement];
+			if(![sprite.userInfoClassName isEqualToString:@"MovingDoodad"]) {
+				[sprite pauseAnimation];
+				[sprite pausePathMovement];
+			}
 		}
 		
 		//analytics logging
