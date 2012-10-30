@@ -163,7 +163,6 @@ if($method == 'GET') {
 				$levels[$key]["scoreMedian"] = $row["score"];
 			}
 			
-			//TODO: learn how to calculate a STD DEV approximation efficiently and with reasonable accuracy
 			
 			$oneQuartersScore = 0;
 			$result = mysql_query("SELECT score FROM scores WHERE level_pack_id=$levelPackId AND level_id=$levelId ORDER BY score ASC LIMIT $oneQuarters,1");
@@ -177,11 +176,14 @@ if($method == 'GET') {
 				$threeQuartersScore = $row["score"];
 			}
 			
+			//TODO: learn how to calculate a STD DEV approximation efficiently and with reasonable accuracy
 			//echo "$oneQuartersScore $threeQuartersScore";
+			
+			$levels[$key]["scoreStdDev"] = floor(((($threeQuartersScore - $levels[$key]["scoreMedian"]) + ($levels[$key]["scoreMedian"] - $oneQuartersScore))/2)/2);
 		}
 					
 		returnJSON(array(
-			"levels" => levels
+			"levels" => $levels
 		));
 	
 	}else {

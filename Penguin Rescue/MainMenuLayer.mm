@@ -214,7 +214,7 @@
 
 -(void) dealloc
 {
-	DebugLog(@"MainMenuLayer dealloc");
+	if(DEBUG_MEMORY) DebugLog(@"MainMenuLayer dealloc");
 
 	[_levelLoader release];
 	_levelLoader = nil;	
