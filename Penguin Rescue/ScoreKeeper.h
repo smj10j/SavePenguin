@@ -26,5 +26,11 @@
 
 -(NSDictionary*)worldScoresForLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath;
 -(void)saveScore:(int)score UUID:(NSString*)UUID levelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath;
+-(void)savePlayForUUID:(NSString*)UUID levelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath;
 
 @end
+
+
+
+
+#define SCORE_KEEPER_NO_SCORE 1000000

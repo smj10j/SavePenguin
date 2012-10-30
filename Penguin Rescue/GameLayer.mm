@@ -116,14 +116,8 @@
 	//record the play
 	//post the score to the server or queue for online processing
 	NSString* UUID = [SettingsManager stringForKey:SETTING_UUID];
-	[APIManager savePlayForUserWithUUID:UUID levelPackPath:levelPackPath levelPath:levelPath
-		onSuccess:^(NSDictionary* response) {
-			if(DEBUG_SCORING) DebugLog(@"Sent data about a play occuring to server. response = %@", response);
-		}
-		onError:^(NSError* error) {
-			if(DEBUG_SCORING) DebugLog(@"Error sending play data to server: %@", error.localizedDescription);
-		}
-	];
+	[_scoreKeeper savePlayForUUID:UUID levelPackPath:_levelPackPath levelPath:_levelPath];
+
 
 	//start the game
 	_state = PLACE;

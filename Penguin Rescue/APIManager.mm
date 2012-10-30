@@ -8,6 +8,7 @@
 
 #import "APIManager.h"
 #import "Constants.h"
+#import "Utilities.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
@@ -17,6 +18,14 @@
 
 +(void)addUserWithUUID:(NSString*)UUID
 	onSuccess:(void(^)(NSDictionary*))onSuccess onError:(void(^)(NSError*))onError {
+
+	if(!isServerAvailable()) {
+		if(onError) {
+			NSError* error = [NSError errorWithDomain:@"com.conquerllc.games - The server is not available" code:500 userInfo:nil];
+			onError(error);
+		}
+		return;
+	}
 
 	NSURL* url = [[NSURL alloc] initWithString:SERVER_URL];
 	ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:url];
@@ -49,6 +58,14 @@
 +(void)savePlayForUserWithUUID:(NSString*)UUID levelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath
 	onSuccess:(void(^)(NSDictionary*))onSuccess onError:(void(^)(NSError*))onError {
 
+	if(!isServerAvailable()) {
+		if(onError) {
+			NSError* error = [NSError errorWithDomain:@"com.conquerllc.games - The server is not available" code:500 userInfo:nil];
+			onError(error);
+		}
+		return;
+	}
+	
 	NSURL* url = [[NSURL alloc] initWithString:SERVER_URL];
 	ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:url];
 	[request setTimeOutSeconds:20];
@@ -80,6 +97,14 @@
 }
 
 +(void)saveScoreForUserWithUUID:(NSString*)UUID score:(int)score levelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath onSuccess:(void(^)(NSDictionary*))onSuccess onError:(void(^)(NSError*))onError {
+
+	if(!isServerAvailable()) {
+		if(onError) {
+			NSError* error = [NSError errorWithDomain:@"com.conquerllc.games - The server is not available" code:500 userInfo:nil];
+			onError(error);
+		}
+		return;
+	}
 
 	NSURL* url = [[NSURL alloc] initWithString:SERVER_URL];
 	ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:url];
@@ -117,10 +142,17 @@
 
 +(void)getWorldScoresAndOnSuccess:(void(^)(NSMutableDictionary*))onSuccess onError:(void(^)(NSError*))onError {
 
+	if(!isServerAvailable()) {
+		if(onError) {
+			NSError* error = [NSError errorWithDomain:@"com.conquerllc.games - The server is not available" code:500 userInfo:nil];
+			onError(error);
+		}
+		return;
+	}
+	
 	NSURL* url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@?action=%@", SERVER_URL, @"getWorldScores"]];
 	ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
 	[request setTimeOutSeconds:20];
-
 
 	// Ah, success, parse the returned JSON data into a NSDictionary
 	[request setCompletionBlock:^{

@@ -147,10 +147,52 @@
 	if(DEBUG_SCORING) DebugLog(@"Saved world scores in local plist");
 }
 
+-(void)savePlayForUUID:(NSString*)UUID levelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
+	
+	if(isServerAvailable()) {
+					
+		//send score to server
+		[APIManager savePlayForUserWithUUID:UUID levelPackPath:levelPackPath levelPath:levelPath
+			onSuccess:^(NSDictionary* response) {
+				if(DEBUG_SCORING) DebugLog(@"Sent play data to server. response = %@", response);
+				
+				//now send any queued up scores from when we may have been offline
+				[self emptyLocalSendQueue];	
+			}
+			onError:^(NSError* error) {
+				if(DEBUG_SCORING) DebugLog(@"Error posting play data to server: %@", error.localizedDescription);
+				
+				//save local queue for sending to server later
+				NSMutableDictionary* scoreData = [[NSMutableDictionary alloc] init];
+				[scoreData setObject:[NSNumber numberWithInt:SCORE_KEEPER_NO_SCORE] forKey:@"score"];
+				[scoreData setObject:UUID forKey:@"UUID"];
+				[scoreData setObject:levelPackPath forKey:@"levelPackPath"];
+				[scoreData setObject:levelPath forKey:@"levelPath"];
+					
+				[self addScoreDataToLocalSendQueue:scoreData];
+				
+				[scoreData release];				
+			}
+		];	
+		
+	}else {
+		//save local queue for sending to server if we're offline
+		NSMutableDictionary* scoreData = [[NSMutableDictionary alloc] init];
+		[scoreData setObject:[NSNumber numberWithInt:SCORE_KEEPER_NO_SCORE] forKey:@"score"];
+		[scoreData setObject:UUID forKey:@"UUID"];
+		[scoreData setObject:levelPackPath forKey:@"levelPackPath"];
+		[scoreData setObject:levelPath forKey:@"levelPath"];
+			
+		[self addScoreDataToLocalSendQueue:scoreData];
+		
+		[scoreData release];
+	}
+}
+
 -(void)saveScore:(int)score UUID:(NSString*)UUID levelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
 	
 	if(isServerAvailable()) {
-			
+					
 		//send score to server
 		[APIManager saveScoreForUserWithUUID:UUID score:score levelPackPath:levelPackPath levelPath:levelPath
 			onSuccess:^(NSDictionary* response) {
@@ -208,13 +250,21 @@
 		if(DEBUG_SCORING) DebugLog(@"Saved emptied send queue plist");
 		
 		//now iterate to empty
-		if(DEBUG_SCORING) DebugLog(@"Sending %d queued scores to server", localScoreSendQueue.count);
+		if(DEBUG_SCORING) DebugLog(@"Sending %d queued scores/plays to server", localScoreSendQueue.count);
 		for(NSDictionary* scoreData in localScoreSendQueue) {
-			[self saveScore:[(NSNumber*)[scoreData objectForKey:@"score"] intValue]
+			int score = [(NSNumber*)[scoreData objectForKey:@"score"] intValue];
+			if(score == SCORE_KEEPER_NO_SCORE) {
+				[self savePlayForUUID:[scoreData objectForKey:@"UUID"]
+					levelPackPath:[scoreData objectForKey:@"levelPackPath"]
+					levelPath:[scoreData objectForKey:@"levelPath"]
+				];
+			}else {
+				[self saveScore:score
 					UUID:[scoreData objectForKey:@"UUID"]
 					levelPackPath:[scoreData objectForKey:@"levelPackPath"]
 					levelPath:[scoreData objectForKey:@"levelPath"]
-			];
+				];
+			}
 		}		
 	}
 }
