@@ -1521,7 +1521,7 @@
 		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Obstruction"]) {
 			_activeToolboxItem.tag = OBSTRUCTION;
 			[_activeToolboxItem makeStatic];
-			[_activeToolboxItem setSensor:true];
+			[_activeToolboxItem setSensor:false];
 			_shouldRegenerateFeatureMaps = true;
 			soundFileName = @"place-obstruction.wav";
 

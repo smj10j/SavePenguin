@@ -9550,7 +9550,7 @@
 			<key>MaxSheetSize</key>
 			<integer>4096</integer>
 			<key>NpotSize</key>
-			<string>{392, 468}</string>
+			<string>{344, 468}</string>
 			<key>Padding</key>
 			<integer>8</integer>
 			<key>PixelFormat</key>
@@ -9585,7 +9585,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPavVgMAAAAACAAAAAQDAAAJ5FwDAAAA
+					BAMAAPavVgMAAAAACAAAAAQDAAAl02ADAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -9597,12 +9597,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABkMDM2NmRhMDJhMTQ1MTQwNmNi
-					MTM1MmYwZGMyODUxYjk4ZmVmZmQ3OzAwMDAw
+					9AAAAAECAABkNzRhZDQ1MDI2M2E0ODk0Y2Zh
+					NTQ1OTdiNWQ0MzRhZWE0YjIwM2RlOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVjZTQwOTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzYwZDMyNTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy90b29sYm94L2Zsb2F0aW5n
@@ -9786,43 +9786,43 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{119, 1}</string>
-									<string>{116, 3}</string>
-									<string>{114, 2}</string>
-									<string>{107, 4}</string>
-									<string>{106, 3}</string>
-									<string>{97, 8}</string>
-									<string>{91, 7}</string>
-									<string>{90, 9}</string>
-									<string>{86, 9}</string>
-									<string>{85, 7}</string>
-									<string>{83, 9}</string>
-									<string>{71, 6}</string>
-									<string>{64, 7}</string>
-									<string>{61, 9}</string>
-									<string>{60, 8}</string>
-									<string>{13, 9}</string>
-									<string>{6, 15}</string>
-									<string>{4, 18}</string>
-									<string>{0, 34}</string>
-									<string>{3, 57}</string>
-									<string>{8, 68}</string>
-									<string>{20, 79}</string>
-									<string>{26, 80}</string>
-									<string>{42, 73}</string>
-									<string>{50, 73}</string>
-									<string>{57, 69}</string>
-									<string>{69, 66}</string>
-									<string>{98, 67}</string>
-									<string>{104, 64}</string>
-									<string>{113, 65}</string>
-									<string>{119, 62}</string>
-									<string>{138, 61}</string>
-									<string>{141, 58}</string>
-									<string>{143, 33}</string>
-									<string>{128, 3}</string>
-									<string>{124, 0}</string>
-									<string>{120, 0}</string>
+									<string>{-0.99999999999999267, 119}</string>
+									<string>{-2.9999999999999929, 116}</string>
+									<string>{-1.9999999999999931, 114}</string>
+									<string>{-3.9999999999999933, 107}</string>
+									<string>{-2.9999999999999933, 106}</string>
+									<string>{-7.9999999999999938, 97}</string>
+									<string>{-6.9999999999999947, 91}</string>
+									<string>{-8.9999999999999947, 90}</string>
+									<string>{-8.9999999999999947, 86}</string>
+									<string>{-6.9999999999999947, 85}</string>
+									<string>{-8.9999999999999947, 83}</string>
+									<string>{-5.9999999999999956, 71}</string>
+									<string>{-6.9999999999999964, 64}</string>
+									<string>{-8.9999999999999964, 61}</string>
+									<string>{-7.9999999999999964, 60}</string>
+									<string>{-9, 13}</string>
+									<string>{-15, 6.0000000000000009}</string>
+									<string>{-18, 4.0000000000000009}</string>
+									<string>{-34, 2.0818995585505003e-15}</string>
+									<string>{-57, 3.0000000000000036}</string>
+									<string>{-68, 8.0000000000000036}</string>
+									<string>{-79, 20.000000000000004}</string>
+									<string>{-80, 26.000000000000004}</string>
+									<string>{-73, 42.000000000000007}</string>
+									<string>{-73, 50.000000000000007}</string>
+									<string>{-69, 57.000000000000007}</string>
+									<string>{-66, 69}</string>
+									<string>{-67, 98}</string>
+									<string>{-63.999999999999993, 104}</string>
+									<string>{-65, 113}</string>
+									<string>{-61.999999999999993, 119}</string>
+									<string>{-60.999999999999993, 138}</string>
+									<string>{-57.999999999999993, 141}</string>
+									<string>{-32.999999999999993, 143}</string>
+									<string>{-2.999999999999992, 128}</string>
+									<string>{7.5928101547135902e-15, 124}</string>
+									<string>{7.3478807948841199e-15, 120}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
@@ -9862,9 +9862,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{57, 44}, {35.5, 19.75}}</string>
+						<string>{{61, 0}, {35.5, 19.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{228, 176}, {142, 79}}</string>
+						<string>{{244, 0}, {142, 79}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -9874,7 +9874,7 @@
 						<key>IsDrawable</key>
 						<true/>
 						<key>IsRotated</key>
-						<false/>
+						<true/>
 						<key>IsTrimmed</key>
 						<true/>
 						<key>Name</key>
@@ -9890,7 +9890,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 150}</string>
 						<key>Position</key>
-						<string>{228, 176}</string>
+						<string>{244, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -9927,7 +9927,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPavVgMAAAAACAAAAAQDAAAK5FwDAAAA
+					BAMAAPavVgMAAAAACAAAAAQDAAAm02ADAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -9939,12 +9939,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAAxMzM0ZjdiNDNkN2ViNTIzODc4
-					OGE3OTlmMTQ4Y2FmYjAxNDQ4ZDkyOzAwMDAw
+					9AAAAAECAAA3NDgwYjc1MDMwNGIwOWU4ZGM3
+					ZDYwZmRhODI4NzU1YWQwOWZhYWUyOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVjZTQwYTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzYwZDMyNjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy90b29sYm94L2xhc2VyX2Jl
@@ -10000,8 +10000,16 @@
 										<string>{1.875, -35.25}</string>
 									</array>
 									<array>
+										<string>{5.375, 29.25}</string>
+										<string>{8.625, 29.25}</string>
+										<string>{8.625, 30.25}</string>
+										<string>{5.875, 33.5}</string>
+										<string>{3.625, 35}</string>
+									</array>
+									<array>
 										<string>{-5.375, 34}</string>
-										<string>{-8.625, 30.75}</string>
+										<string>{-8.125, 31.5}</string>
+										<string>{-8.875, 30.25}</string>
 										<string>{-8.625, 29.25}</string>
 										<string>{-5.375, 29.25}</string>
 										<string>{-2.125, 35.75}</string>
@@ -10009,16 +10017,10 @@
 									<array>
 										<string>{-5.375, -28.75}</string>
 										<string>{-8.625, -28.75}</string>
-										<string>{-8.625, -30.25}</string>
+										<string>{-8.875, -29.75}</string>
+										<string>{-8.125, -31}</string>
 										<string>{-5.375, -33.5}</string>
 										<string>{-1.125, -35.5}</string>
-									</array>
-									<array>
-										<string>{5.375, 29.25}</string>
-										<string>{8.625, 29.25}</string>
-										<string>{8.625, 30.25}</string>
-										<string>{5.875, 33.5}</string>
-										<string>{3.625, 35}</string>
 									</array>
 									<array>
 										<string>{-4.625, -28}</string>
@@ -10069,46 +10071,48 @@
 								<key>LHHeight</key>
 								<real>0.0</real>
 								<key>LHShapePositionOffset</key>
-								<string>{-8.625, -36}</string>
+								<string>{-8.875, -36}</string>
 								<key>LHWidth</key>
 								<real>0.0</real>
 								<key>Mask</key>
 								<integer>65535</integer>
 								<key>Name</key>
-								<string>UntitledFixture_1</string>
+								<string>UntitledFixture</string>
 								<key>Restitution</key>
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{29, 1}</string>
-									<string>{26, 1}</string>
-									<string>{13, 8}</string>
-									<string>{0, 21}</string>
-									<string>{0, 27}</string>
-									<string>{13, 27}</string>
-									<string>{16, 30}</string>
-									<string>{16, 256}</string>
-									<string>{13, 259}</string>
-									<string>{0, 259}</string>
-									<string>{0, 265}</string>
-									<string>{13, 278}</string>
-									<string>{30, 286}</string>
-									<string>{42, 285}</string>
-									<string>{59, 275}</string>
-									<string>{68, 265}</string>
-									<string>{69, 259}</string>
-									<string>{56, 259}</string>
-									<string>{55, 257}</string>
-									<string>{52, 256}</string>
-									<string>{52, 30}</string>
-									<string>{55, 29}</string>
-									<string>{56, 27}</string>
-									<string>{69, 27}</string>
-									<string>{69, 23}</string>
-									<string>{58, 10}</string>
-									<string>{49, 4}</string>
-									<string>{38, 0}</string>
-									<string>{30, 0}</string>
+									<string>{30, 1}</string>
+									<string>{27, 1}</string>
+									<string>{14, 8}</string>
+									<string>{3, 18}</string>
+									<string>{0, 23}</string>
+									<string>{1, 27}</string>
+									<string>{14, 27}</string>
+									<string>{17, 30}</string>
+									<string>{17, 256}</string>
+									<string>{14, 259}</string>
+									<string>{1, 259}</string>
+									<string>{0, 263}</string>
+									<string>{3, 268}</string>
+									<string>{14, 278}</string>
+									<string>{31, 286}</string>
+									<string>{43, 285}</string>
+									<string>{60, 275}</string>
+									<string>{69, 265}</string>
+									<string>{70, 259}</string>
+									<string>{57, 259}</string>
+									<string>{56, 257}</string>
+									<string>{53, 256}</string>
+									<string>{53, 30}</string>
+									<string>{56, 29}</string>
+									<string>{57, 27}</string>
+									<string>{70, 27}</string>
+									<string>{70, 23}</string>
+									<string>{59, 10}</string>
+									<string>{50, 4}</string>
+									<string>{39, 0}</string>
+									<string>{31, 0}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
@@ -10148,9 +10152,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{38, 0}, {17.75, 71.75}}</string>
+						<string>{{38, 45}, {17.75, 71.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{152, 0}, {71, 287}}</string>
+						<string>{{152, 180}, {71, 287}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -10172,21 +10176,21 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/Toolbox/Laser_Beam_1.png/</string>
 						<key>OriginalRect</key>
-						<string>{{8, 6}, {71, 287}}</string>
+						<string>{{7, 26}, {71, 287}}</string>
 						<key>OriginalSize</key>
-						<string>{85, 300}</string>
+						<string>{85, 340}</string>
 						<key>Position</key>
-						<string>{152, 0}</string>
+						<string>{152, 180}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
-						<string>{21.25, 75}</string>
+						<string>{21.25, 85}</string>
 						<key>SpriteWasBreaked</key>
 						<false/>
 						<key>Tag</key>
 						<integer>0</integer>
 						<key>TextureOffset</key>
-						<string>{0.25, 0.125}</string>
+						<string>{0, 0.125}</string>
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
@@ -10213,7 +10217,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPavVgMAAAAACAAAAAQDAAAL5FwDAAAA
+					BAMAAPavVgMAAAAACAAAAAQDAAAr02ADAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -10225,12 +10229,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABhYzBhNGFmYTc1MTA2MDhjOTY0
-					MDAyY2Q3YWM3MzcxYTFhNjgzOGY0OzAwMDAw
+					9AAAAAECAABlZTc1ZWRlNTM0ZGU3YTdmOTVk
+					NTE0MDIwMGU5YjE0NDQyZTFkZWVlOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVjZTQwYjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzYwZDMyYjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy90b29sYm94L2xhc2VyX2Jl
@@ -10279,63 +10283,63 @@
 								<key>Fixture</key>
 								<array>
 									<array>
-										<string>{6.125, -32.75}</string>
-										<string>{8.375, -30.25}</string>
-										<string>{8.625, -28.75}</string>
-										<string>{5.375, -28.75}</string>
-										<string>{1.875, -35.25}</string>
+										<string>{5.875, -32.75}</string>
+										<string>{8.125, -30.25}</string>
+										<string>{8.375, -28.75}</string>
+										<string>{5.125, -28.75}</string>
+										<string>{1.625, -35.25}</string>
 									</array>
 									<array>
-										<string>{-5.375, 34}</string>
-										<string>{-8.625, 30.75}</string>
-										<string>{-8.625, 29.25}</string>
-										<string>{-5.375, 29.25}</string>
-										<string>{-2.125, 35.75}</string>
+										<string>{-5.625, 34}</string>
+										<string>{-8.875, 30.75}</string>
+										<string>{-8.875, 29.25}</string>
+										<string>{-5.625, 29.25}</string>
+										<string>{-2.375, 35.75}</string>
 									</array>
 									<array>
-										<string>{-5.375, -28.75}</string>
-										<string>{-8.625, -28.75}</string>
-										<string>{-8.625, -30.25}</string>
-										<string>{-5.375, -33.5}</string>
-										<string>{-1.125, -35.5}</string>
+										<string>{-5.625, -28.75}</string>
+										<string>{-8.875, -28.75}</string>
+										<string>{-8.875, -30.25}</string>
+										<string>{-5.625, -33.5}</string>
+										<string>{-1.375, -35.5}</string>
 									</array>
 									<array>
-										<string>{5.375, 29.25}</string>
-										<string>{8.625, 29.25}</string>
-										<string>{8.625, 30.25}</string>
-										<string>{5.875, 33.5}</string>
-										<string>{3.625, 35}</string>
+										<string>{5.125, 29.25}</string>
+										<string>{8.375, 29.25}</string>
+										<string>{8.375, 30.25}</string>
+										<string>{5.625, 33.5}</string>
+										<string>{3.375, 35}</string>
 									</array>
 									<array>
-										<string>{-4.625, -28}</string>
-										<string>{-5.375, -28.75}</string>
-										<string>{-1.125, -35.5}</string>
-										<string>{1.875, -35.25}</string>
-										<string>{5.375, -28.75}</string>
-										<string>{5.125, -28.25}</string>
-										<string>{4.375, -28}</string>
+										<string>{-4.875, -28}</string>
+										<string>{-5.625, -28.75}</string>
+										<string>{-1.375, -35.5}</string>
+										<string>{1.625, -35.25}</string>
+										<string>{5.125, -28.75}</string>
+										<string>{4.875, -28.25}</string>
+										<string>{4.125, -28}</string>
 									</array>
 									<array>
-										<string>{-2.125, 35.75}</string>
-										<string>{-4.625, 28.5}</string>
-										<string>{-4.625, -28}</string>
-										<string>{4.375, -28}</string>
-										<string>{4.375, 28.5}</string>
-										<string>{-1.375, 35.75}</string>
+										<string>{-2.375, 35.75}</string>
+										<string>{-4.875, 28.5}</string>
+										<string>{-4.875, -28}</string>
+										<string>{4.125, -28}</string>
+										<string>{4.125, 28.5}</string>
+										<string>{-1.625, 35.75}</string>
 									</array>
 									<array>
-										<string>{-2.125, 35.75}</string>
-										<string>{-5.375, 29.25}</string>
-										<string>{-4.625, 28.5}</string>
+										<string>{-2.375, 35.75}</string>
+										<string>{-5.625, 29.25}</string>
+										<string>{-4.875, 28.5}</string>
 									</array>
 									<array>
-										<string>{5.375, 29.25}</string>
-										<string>{3.625, 35}</string>
-										<string>{0.875, 36}</string>
-										<string>{-1.125, 36}</string>
-										<string>{-1.375, 35.75}</string>
-										<string>{4.375, 28.5}</string>
-										<string>{5.125, 28.75}</string>
+										<string>{5.125, 29.25}</string>
+										<string>{3.375, 35}</string>
+										<string>{0.625, 36}</string>
+										<string>{-1.375, 36}</string>
+										<string>{-1.625, 35.75}</string>
+										<string>{4.125, 28.5}</string>
+										<string>{4.875, 28.75}</string>
 									</array>
 								</array>
 								<key>Friction</key>
@@ -10355,7 +10359,7 @@
 								<key>LHHeight</key>
 								<real>0.0</real>
 								<key>LHShapePositionOffset</key>
-								<string>{-8.625, -36}</string>
+								<string>{-8.875, -36}</string>
 								<key>LHWidth</key>
 								<real>0.0</real>
 								<key>Mask</key>
@@ -10434,9 +10438,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{19, 0}, {17.75, 71.75}}</string>
+						<string>{{19, 45}, {17.75, 71.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{76, 0}, {71, 287}}</string>
+						<string>{{76, 180}, {71, 287}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -10458,21 +10462,21 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/Toolbox/Laser_Beam_2.png/</string>
 						<key>OriginalRect</key>
-						<string>{{8, 6}, {71, 287}}</string>
+						<string>{{7, 26}, {71, 287}}</string>
 						<key>OriginalSize</key>
-						<string>{85, 300}</string>
+						<string>{85, 340}</string>
 						<key>Position</key>
-						<string>{76, 0}</string>
+						<string>{76, 180}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
-						<string>{21.25, 75}</string>
+						<string>{21.25, 85}</string>
 						<key>SpriteWasBreaked</key>
 						<false/>
 						<key>Tag</key>
 						<integer>0</integer>
 						<key>TextureOffset</key>
-						<string>{0.25, 0.125}</string>
+						<string>{0, 0.125}</string>
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
@@ -10499,7 +10503,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPavVgMAAAAACAAAAAQDAAAM5FwDAAAA
+					BAMAAPavVgMAAAAACAAAAAQDAAAs02ADAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -10511,12 +10515,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAAxZDI3NzE0MzE4YThkZjMyMzUy
-					NzkwNmVhNmUyOWIxYzlhODVlNDMxOzAwMDAw
+					9AAAAAECAABiNGI1MTVkNmJhZTRlNWVhODYx
+					ZTE3ODczNDM5ODFmMTk0OTVjMDgxOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVjZTQwYzsvdXNlcnMvc3RldmUvY29kZS9j
+					MzYwZDMyYzsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy90b29sYm94L2xhc2VyX2Jl
@@ -10565,63 +10569,63 @@
 								<key>Fixture</key>
 								<array>
 									<array>
-										<string>{6.125, -32.75}</string>
-										<string>{8.375, -30.25}</string>
-										<string>{8.625, -28.75}</string>
-										<string>{5.375, -28.75}</string>
-										<string>{1.875, -35.25}</string>
+										<string>{5.875, -32.75}</string>
+										<string>{8.125, -30.25}</string>
+										<string>{8.375, -28.75}</string>
+										<string>{5.125, -28.75}</string>
+										<string>{1.625, -35.25}</string>
 									</array>
 									<array>
-										<string>{-5.375, 34}</string>
-										<string>{-8.625, 30.75}</string>
-										<string>{-8.625, 29.25}</string>
-										<string>{-5.375, 29.25}</string>
-										<string>{-2.125, 35.75}</string>
+										<string>{-5.625, 34}</string>
+										<string>{-8.875, 30.75}</string>
+										<string>{-8.875, 29.25}</string>
+										<string>{-5.625, 29.25}</string>
+										<string>{-2.375, 35.75}</string>
 									</array>
 									<array>
-										<string>{-5.375, -28.75}</string>
-										<string>{-8.625, -28.75}</string>
-										<string>{-8.625, -30.25}</string>
-										<string>{-5.375, -33.5}</string>
-										<string>{-1.125, -35.5}</string>
+										<string>{-5.625, -28.75}</string>
+										<string>{-8.875, -28.75}</string>
+										<string>{-8.875, -30.25}</string>
+										<string>{-5.625, -33.5}</string>
+										<string>{-1.375, -35.5}</string>
 									</array>
 									<array>
-										<string>{5.375, 29.25}</string>
-										<string>{8.625, 29.25}</string>
-										<string>{8.625, 30.25}</string>
-										<string>{5.875, 33.5}</string>
-										<string>{3.625, 35}</string>
+										<string>{5.125, 29.25}</string>
+										<string>{8.375, 29.25}</string>
+										<string>{8.375, 30.25}</string>
+										<string>{5.625, 33.5}</string>
+										<string>{3.375, 35}</string>
 									</array>
 									<array>
-										<string>{-4.625, -28}</string>
-										<string>{-5.375, -28.75}</string>
-										<string>{-1.125, -35.5}</string>
-										<string>{1.875, -35.25}</string>
-										<string>{5.375, -28.75}</string>
-										<string>{5.125, -28.25}</string>
-										<string>{4.375, -28}</string>
+										<string>{-4.875, -28}</string>
+										<string>{-5.625, -28.75}</string>
+										<string>{-1.375, -35.5}</string>
+										<string>{1.625, -35.25}</string>
+										<string>{5.125, -28.75}</string>
+										<string>{4.875, -28.25}</string>
+										<string>{4.125, -28}</string>
 									</array>
 									<array>
-										<string>{-2.125, 35.75}</string>
-										<string>{-4.625, 28.5}</string>
-										<string>{-4.625, -28}</string>
-										<string>{4.375, -28}</string>
-										<string>{4.375, 28.5}</string>
-										<string>{-1.375, 35.75}</string>
+										<string>{-2.375, 35.75}</string>
+										<string>{-4.875, 28.5}</string>
+										<string>{-4.875, -28}</string>
+										<string>{4.125, -28}</string>
+										<string>{4.125, 28.5}</string>
+										<string>{-1.625, 35.75}</string>
 									</array>
 									<array>
-										<string>{-2.125, 35.75}</string>
-										<string>{-5.375, 29.25}</string>
-										<string>{-4.625, 28.5}</string>
+										<string>{-2.375, 35.75}</string>
+										<string>{-5.625, 29.25}</string>
+										<string>{-4.875, 28.5}</string>
 									</array>
 									<array>
-										<string>{5.375, 29.25}</string>
-										<string>{3.625, 35}</string>
-										<string>{0.875, 36}</string>
-										<string>{-1.125, 36}</string>
-										<string>{-1.375, 35.75}</string>
-										<string>{4.375, 28.5}</string>
-										<string>{5.125, 28.75}</string>
+										<string>{5.125, 29.25}</string>
+										<string>{3.375, 35}</string>
+										<string>{0.625, 36}</string>
+										<string>{-1.375, 36}</string>
+										<string>{-1.625, 35.75}</string>
+										<string>{4.125, 28.5}</string>
+										<string>{4.875, 28.75}</string>
 									</array>
 								</array>
 								<key>Friction</key>
@@ -10641,7 +10645,7 @@
 								<key>LHHeight</key>
 								<real>0.0</real>
 								<key>LHShapePositionOffset</key>
-								<string>{-8.625, -36}</string>
+								<string>{-8.875, -36}</string>
 								<key>LHWidth</key>
 								<real>0.0</real>
 								<key>Mask</key>
@@ -10720,9 +10724,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{0, 0}, {17.75, 71.75}}</string>
+						<string>{{0, 45}, {17.75, 71.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{0, 0}, {71, 287}}</string>
+						<string>{{0, 180}, {71, 287}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -10744,21 +10748,21 @@
 						<key>OriginalImage_RelativePath</key>
 						<string>../src-assets/images/Toolbox/Laser_Beam_3.png/</string>
 						<key>OriginalRect</key>
-						<string>{{8, 6}, {71, 287}}</string>
+						<string>{{7, 26}, {71, 287}}</string>
 						<key>OriginalSize</key>
-						<string>{85, 300}</string>
+						<string>{85, 340}</string>
 						<key>Position</key>
-						<string>{0, 0}</string>
+						<string>{0, 180}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
-						<string>{21.25, 75}</string>
+						<string>{21.25, 85}</string>
 						<key>SpriteWasBreaked</key>
 						<false/>
 						<key>Tag</key>
 						<integer>0</integer>
 						<key>TextureOffset</key>
-						<string>{0.25, 0.125}</string>
+						<string>{0, 0.125}</string>
 						<key>UsesBatchRendering</key>
 						<true/>
 						<key>ZOrder</key>
@@ -10785,7 +10789,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPavVgMAAAAACAAAAAQDAAAN5FwDAAAA
+					BAMAAPavVgMAAAAACAAAAAQDAAAw02ADAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -10797,12 +10801,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA2NzY5OWNjOWM3MjlkM2IyOGM1
-					OTE3MjZmOWFkM2U0M2YyMWZlYjcwOzAwMDAw
+					8gAAAAECAAAzNjlmYjY2YmI3MTExY2QyZTFj
+					NzE2NmZhMzgxYTRiZjU0OTc1ZWJjOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVjZTQwZDsvdXNlcnMvc3RldmUvY29kZS9j
+					MzYwZDMzMDsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy90b29sYm94L3dpbmRtaWxs
@@ -10928,9 +10932,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{38, 73}, {29, 43.75}}</string>
+						<string>{{31, 0}, {29, 43.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{152, 292}, {116, 173}}</string>
+						<string>{{124, 0}, {116, 173}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -10956,7 +10960,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 200}</string>
 						<key>Position</key>
-						<string>{152, 292}</string>
+						<string>{124, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -10993,7 +10997,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPavVgMAAAAACAAAAAQDAAAO5FwDAAAA
+					BAMAAPavVgMAAAAACAAAAAQDAAA202ADAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -11005,12 +11009,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAzNTdhMDczNGJlMGU0YWIwZGZi
-					YzI4OTZmMGE1NjMwY2VkYTIzZGZkOzAwMDAw
+					8gAAAAECAAAxNTg4MzU4YzdhM2E4NGI3N2Mx
+					MWNjMmUyNDkyOGI5ZDM3MDRjZTc0OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVjZTQwZTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzYwZDMzNjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy90b29sYm94L3dpbmRtaWxs
@@ -11136,9 +11140,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{57, 0}, {28.75, 43.75}}</string>
+						<string>{{57, 45}, {28.75, 43.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{228, 0}, {115, 173}}</string>
+						<string>{{228, 180}, {115, 173}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -11164,7 +11168,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 200}</string>
 						<key>Position</key>
-						<string>{228, 0}</string>
+						<string>{228, 180}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -11201,7 +11205,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPavVgMAAAAACAAAAAQDAAAP5FwDAAAA
+					BAMAAPavVgMAAAAACAAAAAQDAAA+02ADAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -11213,12 +11217,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAxYmMwOWM4NzJkYTc0NjRmNWYw
-					NjVjNzk4MDIwZmNkYzBjNjJhMDRlOzAwMDAw
+					8gAAAAECAABkMDUzOGU5ODc1N2VkZmRkNGJi
+					OGY2YzZkNTg4ZTI4YzFlOWM5MmM4OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVjZTQwZjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzYwZDMzZTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy90b29sYm94L3dpbmRtaWxs
@@ -11344,9 +11348,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{68, 73}, {29.75, 43.75}}</string>
+						<string>{{0, 0}, {29.75, 43.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{272, 292}, {119, 173}}</string>
+						<string>{{0, 0}, {119, 173}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -11372,7 +11376,7 @@
 						<key>OriginalSize</key>
 						<string>{150, 200}</string>
 						<key>Position</key>
-						<string>{272, 292}</string>
+						<string>{0, 0}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -19206,7 +19210,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPavVgMAAAAACAAAAAQDAAAK5FwDAAAA
+					BAMAAPavVgMAAAAACAAAAAQDAAAm02ADAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -19218,12 +19222,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAAxMzM0ZjdiNDNkN2ViNTIzODc4
-					OGE3OTlmMTQ4Y2FmYjAxNDQ4ZDkyOzAwMDAw
+					9AAAAAECAAA3NDgwYjc1MDMwNGIwOWU4ZGM3
+					ZDYwZmRhODI4NzU1YWQwOWZhYWUyOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVjZTQwYTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzYwZDMyNjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy90b29sYm94L2xhc2VyX2Jl
@@ -19239,17 +19243,17 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{38, 0}, {17.75, 71.75}}</string>
+					<string>{{38, 45}, {17.75, 71.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{152, 0}, {71, 287}}</string>
+					<string>{{152, 180}, {71, 287}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
 					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Toolbox/Laser_Beam_1.png</string>
 					<key>SpriteSize</key>
-					<string>{21.75, 75}</string>
+					<string>{21.75, 85}</string>
 					<key>TextureOffset</key>
-					<string>{0, 0.125}</string>
+					<string>{-0.25, 0.125}</string>
 					<key>delayPerUnit</key>
 					<real>1</real>
 					<key>notifications</key>
@@ -19278,7 +19282,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPavVgMAAAAACAAAAAQDAAAL5FwDAAAA
+					BAMAAPavVgMAAAAACAAAAAQDAAAr02ADAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -19290,12 +19294,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABhYzBhNGFmYTc1MTA2MDhjOTY0
-					MDAyY2Q3YWM3MzcxYTFhNjgzOGY0OzAwMDAw
+					9AAAAAECAABlZTc1ZWRlNTM0ZGU3YTdmOTVk
+					NTE0MDIwMGU5YjE0NDQyZTFkZWVlOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVjZTQwYjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzYwZDMyYjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy90b29sYm94L2xhc2VyX2Jl
@@ -19311,17 +19315,17 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{19, 0}, {17.75, 71.75}}</string>
+					<string>{{19, 45}, {17.75, 71.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{76, 0}, {71, 287}}</string>
+					<string>{{76, 180}, {71, 287}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
 					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Toolbox/Laser_Beam_2.png</string>
 					<key>SpriteSize</key>
-					<string>{21.75, 75}</string>
+					<string>{21.75, 85}</string>
 					<key>TextureOffset</key>
-					<string>{0, 0.125}</string>
+					<string>{-0.25, 0.125}</string>
 					<key>delayPerUnit</key>
 					<real>1</real>
 					<key>notifications</key>
@@ -19350,7 +19354,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPavVgMAAAAACAAAAAQDAAAM5FwDAAAA
+					BAMAAPavVgMAAAAACAAAAAQDAAAs02ADAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -19362,12 +19366,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAAAxZDI3NzE0MzE4YThkZjMyMzUy
-					NzkwNmVhNmUyOWIxYzlhODVlNDMxOzAwMDAw
+					9AAAAAECAABiNGI1MTVkNmJhZTRlNWVhODYx
+					ZTE3ODczNDM5ODFmMTk0OTVjMDgxOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVjZTQwYzsvdXNlcnMvc3RldmUvY29kZS9j
+					MzYwZDMyYzsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy90b29sYm94L2xhc2VyX2Jl
@@ -19383,17 +19387,17 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{0, 0}, {17.75, 71.75}}</string>
+					<string>{{0, 45}, {17.75, 71.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{0, 0}, {71, 287}}</string>
+					<string>{{0, 180}, {71, 287}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
 					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Toolbox/Laser_Beam_3.png</string>
 					<key>SpriteSize</key>
-					<string>{21.75, 75}</string>
+					<string>{21.75, 85}</string>
 					<key>TextureOffset</key>
-					<string>{0, 0.125}</string>
+					<string>{-0.25, 0.125}</string>
 					<key>delayPerUnit</key>
 					<real>1</real>
 					<key>notifications</key>
@@ -19422,7 +19426,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPavVgMAAAAACAAAAAQDAAAL5FwDAAAA
+					BAMAAPavVgMAAAAACAAAAAQDAAAr02ADAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -19434,12 +19438,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					9AAAAAECAABhYzBhNGFmYTc1MTA2MDhjOTY0
-					MDAyY2Q3YWM3MzcxYTFhNjgzOGY0OzAwMDAw
+					9AAAAAECAABlZTc1ZWRlNTM0ZGU3YTdmOTVk
+					NTE0MDIwMGU5YjE0NDQyZTFkZWVlOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVjZTQwYjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzYwZDMyYjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy90b29sYm94L2xhc2VyX2Jl
@@ -19455,17 +19459,17 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{19, 0}, {17.75, 71.75}}</string>
+					<string>{{19, 45}, {17.75, 71.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{76, 0}, {71, 287}}</string>
+					<string>{{76, 180}, {71, 287}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
 					<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/src-assets/images/Toolbox/Laser_Beam_2.png</string>
 					<key>SpriteSize</key>
-					<string>{21.75, 75}</string>
+					<string>{21.75, 85}</string>
 					<key>TextureOffset</key>
-					<string>{0, 0.125}</string>
+					<string>{-0.25, 0.125}</string>
 					<key>delayPerUnit</key>
 					<real>1</real>
 					<key>notifications</key>
@@ -19515,7 +19519,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPavVgMAAAAACAAAAAQDAAAN5FwDAAAA
+					BAMAAPavVgMAAAAACAAAAAQDAAAw02ADAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -19527,12 +19531,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAA2NzY5OWNjOWM3MjlkM2IyOGM1
-					OTE3MjZmOWFkM2U0M2YyMWZlYjcwOzAwMDAw
+					8gAAAAECAAAzNjlmYjY2YmI3MTExY2QyZTFj
+					NzE2NmZhMzgxYTRiZjU0OTc1ZWJjOzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVjZTQwZDsvdXNlcnMvc3RldmUvY29kZS9j
+					MzYwZDMzMDsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy90b29sYm94L3dpbmRtaWxs
@@ -19548,9 +19552,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{38, 73}, {29, 43.75}}</string>
+					<string>{{31, 0}, {29, 43.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{152, 292}, {116, 173}}</string>
+					<string>{{124, 0}, {116, 173}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -19587,7 +19591,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPavVgMAAAAACAAAAAQDAAAO5FwDAAAA
+					BAMAAPavVgMAAAAACAAAAAQDAAA202ADAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -19599,12 +19603,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAzNTdhMDczNGJlMGU0YWIwZGZi
-					YzI4OTZmMGE1NjMwY2VkYTIzZGZkOzAwMDAw
+					8gAAAAECAAAxNTg4MzU4YzdhM2E4NGI3N2Mx
+					MWNjMmUyNDkyOGI5ZDM3MDRjZTc0OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVjZTQwZTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzYwZDMzNjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy90b29sYm94L3dpbmRtaWxs
@@ -19620,9 +19624,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{57, 0}, {28.75, 43.75}}</string>
+					<string>{{57, 45}, {28.75, 43.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{228, 0}, {115, 173}}</string>
+					<string>{{228, 180}, {115, 173}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -19659,7 +19663,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPavVgMAAAAACAAAAAQDAAAP5FwDAAAA
+					BAMAAPavVgMAAAAACAAAAAQDAAA+02ADAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -19671,12 +19675,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAxYmMwOWM4NzJkYTc0NjRmNWYw
-					NjVjNzk4MDIwZmNkYzBjNjJhMDRlOzAwMDAw
+					8gAAAAECAABkMDUzOGU5ODc1N2VkZmRkNGJi
+					OGY2YzZkNTg4ZTI4YzFlOWM5MmM4OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVjZTQwZjsvdXNlcnMvc3RldmUvY29kZS9j
+					MzYwZDMzZTsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy90b29sYm94L3dpbmRtaWxs
@@ -19692,9 +19696,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{68, 73}, {29.75, 43.75}}</string>
+					<string>{{0, 0}, {29.75, 43.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{272, 292}, {119, 173}}</string>
+					<string>{{0, 0}, {119, 173}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -19731,7 +19735,7 @@
 					AAQDAACjxk0DAAAAAAgAAAAEAwAApsZNAwAA
 					AAAIAAAABAMAAKfGTQMAAAAACAAAAAQDAADQ
 					3k0DAAAAAAgAAAAEAwAA095NAwAAAAAIAAAA
-					BAMAAPavVgMAAAAACAAAAAQDAAAO5FwDAAAA
+					BAMAAPavVgMAAAAACAAAAAQDAAA202ADAAAA
 					ACwAAAABBgAA7AAAAPwAAAAMAQAAHAEAACwB
 					AAA8AQAATAEAAFwBAABsAQAAfAEAAIwBAAAY
 					AAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAA
@@ -19743,12 +19747,12 @@
 					MDUtMzdGMy05NkVGLTlFRDI4NEVGNTg4RhgA
 					AAABAgAAgQAAAAEACADvPwAAAQAIAAAAAAAA
 					AAAAAQAAAAEBAAAvAAAABAAAAAMDAAAAAQAA
-					8gAAAAECAAAzNTdhMDczNGJlMGU0YWIwZGZi
-					YzI4OTZmMGE1NjMwY2VkYTIzZGZkOzAwMDAw
+					8gAAAAECAAAxNTg4MzU4YzdhM2E4NGI3N2Mx
+					MWNjMmUyNDkyOGI5ZDM3MDRjZTc0OzAwMDAw
 					MDAwOzAwMDAwMDAwMDAwMDAwMjA7Y29tLmFw
 					cGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7
 					MDAwMDAwMDE7MGUwMDAwMDI7MDAwMDAwMDAw
-					MzVjZTQwZTsvdXNlcnMvc3RldmUvY29kZS9j
+					MzYwZDMzNjsvdXNlcnMvc3RldmUvY29kZS9j
 					b25xdWVyL3Blbmd1aW4gcmVzY3VlL3Blbmd1
 					aW4gcmVzY3VlL3Jlc291cmNlcy9zcmMtYXNz
 					ZXRzL2ltYWdlcy90b29sYm94L3dpbmRtaWxs
@@ -19764,9 +19768,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{57, 0}, {28.75, 43.75}}</string>
+					<string>{{57, 45}, {28.75, 43.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{228, 0}, {115, 173}}</string>
+					<string>{{228, 180}, {115, 173}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
