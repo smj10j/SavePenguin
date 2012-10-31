@@ -224,7 +224,7 @@
 		_lastToTile = toTile;
 		_forceUpdateToMoveGrid = false;
 		
-		double startTime = [[NSDate date] timeIntervalSince1970];
+		//double startTime = [[NSDate date] timeIntervalSince1970];
 
 		int bestFoundRouteWeight = -1;
 		[self copyBaseGridToMoveGridBuffer];
@@ -257,7 +257,7 @@
 			}
 		}
 		
-		DebugLog(@"bestFoundRouteWeight=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for a %@ move grid in %f seconds", bestFoundRouteWeight, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - startTime);
+		//DebugLog(@"bestFoundRouteWeight=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for a %@ move grid in %f seconds", bestFoundRouteWeight, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - startTime);
 
 	}
 }

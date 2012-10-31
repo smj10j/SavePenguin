@@ -572,7 +572,6 @@
 		//if on some land, move him off it!
 		CGPoint penguinGridPos = [self toGrid:penguin.position];
 		while(_penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT) {
-			DebugLog(@"Moving penguin %@ off of border land", penguin.uniqueName);
 			//move back onto land
 			double wN = penguinGridPos.y+1 > _gridHeight-1 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1];
 			double wS = penguinGridPos.y-1 < 0 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1];
