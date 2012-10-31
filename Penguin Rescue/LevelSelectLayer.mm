@@ -141,9 +141,10 @@
 			LHSprite* completedMark = [_levelLoader createSpriteWithName:@"Level_Completed" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelButton];
 			[completedMark transformPosition:ccp(levelButtonSize.width - completedMark.contentSize.width/2 - 15*SCALING_FACTOR_H,completedMark.contentSize.height/2 + 15*SCALING_FACTOR_V)];
 			*/
-				
+
 			//display the grade
-			double zScore = [(NSNumber*)[completedLevels valueForKey:levelPath] doubleValue];
+			double score = [(NSNumber*)[completedLevels valueForKey:levelPath] doubleValue];
+			double zScore = [ScoreKeeper zScoreFromScore:score withLevelPackPath:_levelPackPath levelPath:levelPath];
 			CCLabelTTF* gradeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", [ScoreKeeper gradeFromZScore:zScore]] fontName:@"Helvetica" fontSize:20*SCALING_FACTOR_FONTS];
 			gradeLabel.color = ccBLACK;
 			gradeLabel.position = ccp(levelButtonSize.width - 30*SCALING_FACTOR_H, 25*SCALING_FACTOR_V);

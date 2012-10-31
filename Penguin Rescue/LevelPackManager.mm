@@ -166,20 +166,20 @@ static NSString* sRootPath;
 
 
 //completes a level and, if necessary, the pack
-+(void)completeLevel:(NSString*)levelPath inPack:(NSString*)packPath withZScore:(double)zScore {
++(void)completeLevel:(NSString*)levelPath inPack:(NSString*)packPath withScore:(double)score {
 	
 	[LevelPackManager setupPaths];
 
 	//create the completed levels array
 	NSMutableDictionary* completedLevelsDictionary = [NSMutableDictionary dictionaryWithDictionary:[LevelPackManager completedLevelsInPack:packPath]];
 	if([completedLevelsDictionary valueForKey:levelPath] != nil) {
-		double prevZScore = [(NSNumber*)[completedLevelsDictionary valueForKey:levelPath] doubleValue];
-		if(prevZScore > zScore) {
-			DebugLog(@"Level %@ in pack %@ already completed with higher zScore %f > %f", levelPath, packPath, prevZScore, zScore);
+		double prevScore = [(NSNumber*)[completedLevelsDictionary valueForKey:levelPath] doubleValue];
+		if(prevScore > score) {
+			DebugLog(@"Level %@ in pack %@ already completed with higher score %f > %f", levelPath, packPath, prevScore, score);
 			return;
 		}
 	}
-	[completedLevelsDictionary setObject:[NSNumber numberWithDouble:zScore] forKey:levelPath];
+	[completedLevelsDictionary setObject:[NSNumber numberWithDouble:score] forKey:levelPath];
 				
 	//put it into the dictionary
 	NSString* completedLevelsPropertyListPath = [sRootPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-CompletedLevels.plist", packPath]];

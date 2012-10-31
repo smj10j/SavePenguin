@@ -24,7 +24,7 @@
 
 +(NSDictionary*)level:(NSString*)levelPath inPack:(NSString*)packPath;
 
-+(void)completeLevel:(NSString*)levelPath inPack:(NSString*)packPath withZScore:(double)zScore;
++(void)completeLevel:(NSString*)levelPath inPack:(NSString*)packPath withScore:(double)score;
 
 
 +(NSString*)levelAfter:(NSString*)levelPath inPack:(NSString*)packPath;

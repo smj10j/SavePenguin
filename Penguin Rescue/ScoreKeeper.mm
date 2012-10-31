@@ -20,7 +20,7 @@
 	
 		_scores = [[NSMutableDictionary alloc] init];
 		
-		[ScoreKeeper updateWorldScoresFromServer];
+		[ScoreKeeper updateWorldScoresFromServer:false];
 		
 		//now send any queued up scores from when we may have been offline
 		[ScoreKeeper emptyLocalSendQueue];
@@ -94,12 +94,13 @@
 
 */
 
-+(void)updateWorldScoresFromServer {
++(void)updateWorldScoresFromServer:(bool)force {
 
 	NSDictionary* worldScoresDictionary = [self getWorldScoresDictionary];
 		
 	//if we have no world scores data or the last time it was updated was over 12 hours ago, request form the server
 	if(	isServerAvailable() && (
+				force ||
 				//DEBUG_SCORING ||
 				worldScoresDictionary == nil ||
 				([[NSDate date] timeIntervalSince1970] - [((NSNumber*)[worldScoresDictionary objectForKey:@"timestamp"]) doubleValue] > 43200)))
@@ -125,7 +126,12 @@
 
 +(NSDictionary*)worldScoresForLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
 	NSDictionary* worldScores = [self getWorldScores];
-	return [worldScores objectForKey:[NSString stringWithFormat:@"%@:%@", levelPackPath, levelPath]];
+	NSDictionary* worldScoresForLevel = [worldScores objectForKey:[NSString stringWithFormat:@"%@:%@", levelPackPath, levelPath]];
+	if(worldScoresForLevel == nil) {
+		//we need an update - this shouldn't really happen in production
+		[self updateWorldScoresFromServer:true];
+	}
+	return worldScoresForLevel;
 }
 
 +(NSDictionary*)getWorldScoresDictionary {
@@ -419,7 +425,14 @@
 	return (int)cumulScore;
 }
 
-
++(double)zScoreFromScore:(double)score withLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
+	//get the world numbers from the server
+	NSDictionary* worldScores = [ScoreKeeper worldScoresForLevelPackPath:levelPackPath levelPath:levelPath];
+	int worldScoreMean = [(NSNumber*)[worldScores objectForKey:@"scoreMean"] intValue];
+	int worldScoreStdDev = [(NSNumber*)[worldScores objectForKey:@"scoreStdDev"] intValue];
+	double zScore = ((score - worldScoreMean) / (1.0f*worldScoreStdDev));
+	return zScore;
+}
 
 
 

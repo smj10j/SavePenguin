@@ -944,12 +944,11 @@
 	NSDictionary* worldScores = [ScoreKeeper worldScoresForLevelPackPath:_levelPackPath levelPath:_levelPath];
 	int worldPercentComplete = (([(NSNumber*)[worldScores objectForKey:@"uniqueWins"] intValue] * 1.0f) / [(NSNumber*)[worldScores objectForKey:@"totalUsers"] intValue] * 100.0);
 	int worldScoreMean = [(NSNumber*)[worldScores objectForKey:@"scoreMean"] intValue];
-	int worldScoreStdDev = [(NSNumber*)[worldScores objectForKey:@"scoreStdDev"] intValue];
-	double zScore = ((finalScore - worldScoreMean) / (1.0f*worldScoreStdDev));
+	double zScore = [ScoreKeeper zScoreFromScore:finalScore withLevelPackPath:_levelPackPath levelPath:_levelPath];
 	NSString* grade = [ScoreKeeper gradeFromZScore:zScore];
 	
 	//store the level as being completed
-	[LevelPackManager completeLevel:_levelPath inPack:_levelPackPath withZScore:zScore];
+	[LevelPackManager completeLevel:_levelPath inPack:_levelPackPath withScore:finalScore];
 			
 			
 			
@@ -1049,7 +1048,7 @@
 		CCLabelTTF* gradeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", grade] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
 		gradeLabel.color = SCORING_FONT_COLOR3;
 		gradeLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
-									100*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
+									100*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -13 : 0));
 		[self addChild:gradeLabel];
 		
 	}else {
