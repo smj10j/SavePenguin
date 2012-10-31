@@ -1033,7 +1033,7 @@
 	const int competitiveTextYOffset = 130*SCALING_FACTOR_V;
 	
 	
-	if(false && worldScores != nil) {
+	if(worldScores != nil) {
 		CCLabelTTF* worldPercentCompleteLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", worldPercentComplete] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 		worldPercentCompleteLabel.color = SCORING_FONT_COLOR3;
 		worldPercentCompleteLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
@@ -2018,6 +2018,7 @@
 				//toolbox item drag
 				//TODO: add some kind of crosshair or arrow so you know where the item is if it's tiny and under your finger
 				[_activeToolboxItem transformPosition:location];
+
 			}/*else if(_startTouch.x != 0 && _startTouch.y != 0) {
 				//slide the main layer
 				_mapBatchNode.position = ccp(_mapBatchNode.position.x+location.x-_lastTouch.x, _mapBatchNode.position.y+location.y-_lastTouch.y);
@@ -2042,6 +2043,17 @@
 			if(_activeToolboxItem && ccpDistance(location, _activeToolboxItem.position) > 50*SCALING_FACTOR_GENERIC) {
 				//tapping a second finger on the screen when moving a toolbox item rotates the item
 				[_activeToolboxItem transformRotation:((int)_activeToolboxItem.rotation+90)%360];
+				
+				//scale up and down for visual effect
+				ToolboxItem_Border* toolboxItemData = ((ToolboxItem_Border*)_activeToolboxItem.userInfo);	//ToolboxItem_Border is used because all ToolboxItem classes have a "scale" property
+				
+				[_activeToolboxItem runAction:[CCSequence actions:
+					[CCScaleTo actionWithDuration:0.05f scale:toolboxItemData.scale*2],
+					[CCDelayTime actionWithDuration:0.20f],
+					[CCScaleTo actionWithDuration:0.10f scale:toolboxItemData.scale],
+					nil]
+				];
+
 				
 				if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 					[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/rotate.wav"];
