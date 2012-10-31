@@ -10,12 +10,12 @@
 #import "SettingsManager.h"
 #import "SSKeychain.h"
 
-static NSMutableDictionary* sSettings = nil;
 
 @implementation SettingsManager
 
-+(void)loadSettings {
-	//if(sSettings == nil) {
++(NSMutableDictionary*)loadSettings {
+	static NSMutableDictionary* sSettings = nil;
+	if(sSettings == nil) {
 		NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 		NSString* settingsPlistPath = [rootPath stringByAppendingPathComponent:@"UserSettings.plist"];
 		sSettings = [NSMutableDictionary dictionaryWithContentsOfFile:settingsPlistPath];
@@ -23,41 +23,44 @@ static NSMutableDictionary* sSettings = nil;
 			sSettings = [[NSMutableDictionary alloc] init];
 		}
 		if(DEBUG_SETTINGS) DebugLog(@"Loaded user settings");
-	//}
+	}
+	return sSettings;
 }
 
 +(void)saveSettings {
 	//write to file!
 	NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	NSString* settingsPlistPath = [rootPath stringByAppendingPathComponent:@"UserSettings.plist"];
+	NSMutableDictionary* settings = [self loadSettings];
 
-	if(![sSettings writeToFile:settingsPlistPath atomically: YES]) {
+	if(![settings writeToFile:settingsPlistPath atomically: YES]) {
         DebugLog(@"---- Failed to save user settings!! - %@ -----", settingsPlistPath);
         return;
     }
+		if(DEBUG_SETTINGS) DebugLog(@"Saved user settings");
 }
 
 
 
 
 +(id)objectForKey:(NSString*)key {
-	[SettingsManager loadSettings];
+	NSMutableDictionary* settings = [self loadSettings];
 	if(DEBUG_SETTINGS) DebugLog(@"Loading settings value for key %@", key);
-	return [sSettings objectForKey:key];
+	return [settings objectForKey:key];
 }
 +(NSString*)stringForKey:(NSString*)key {
-	return [SettingsManager objectForKey:key];
+	return [self objectForKey:key];
 }
 +(bool)boolForKey:(NSString*)key {
-	id value = [SettingsManager objectForKey:key];
+	id value = [self objectForKey:key];
 	return value == nil ? nil : [((NSNumber*)value) boolValue];
 }
 +(int)intForKey:(NSString*)key {
-	id value = [SettingsManager objectForKey:key];
+	id value = [self objectForKey:key];
 	return value == nil ? nil :  [((NSNumber*)value) intValue];
 }
 +(double)doubleForKey:(NSString*)key {
-	id value = [SettingsManager objectForKey:key];
+	id value = [self objectForKey:key];
 	return value == nil ? nil :  [((NSNumber*)value) doubleValue];
 }
 
@@ -65,35 +68,35 @@ static NSMutableDictionary* sSettings = nil;
 
 
 +(void)setObject:(id)value forKey:(NSString*)key {
-	[SettingsManager loadSettings];
+	NSMutableDictionary* settings = [self loadSettings];
 	if(value != nil) {
-		[sSettings setObject:value forKey:key];
+		[settings setObject:value forKey:key];
 	}else {
-		[sSettings removeObjectForKey:key];
+		[settings removeObjectForKey:key];
 	}
-	[SettingsManager saveSettings];
+	[self saveSettings];
 }
 
 +(void)remove:(NSString*)key {
-	[SettingsManager setObject:nil forKey:key];
+	[self setObject:nil forKey:key];
 }
 +(void)setString:(NSString*)value forKey:(NSString*)key {
-	[SettingsManager setObject:value forKey:key];
+	[self setObject:value forKey:key];
 }
 +(void)setBool:(bool)value forKey:(NSString*)key {
-	[SettingsManager setObject:[NSNumber numberWithBool:value] forKey:key];
+	[self setObject:[NSNumber numberWithBool:value] forKey:key];
 }
 +(void)setInt:(int)value forKey:(NSString*)key {
-	[SettingsManager setObject:[NSNumber numberWithInt:value] forKey:key];
+	[self setObject:[NSNumber numberWithInt:value] forKey:key];
 }
 +(void)setDouble:(double)value forKey:(NSString*)key {
-	[SettingsManager setObject:[NSNumber numberWithDouble:value] forKey:key];
+	[self setObject:[NSNumber numberWithDouble:value] forKey:key];
 }
 
 
 +(NSString*)getUUID {
 
-	NSString* UUID = [SettingsManager stringForKey:SETTING_UUID];
+	NSString* UUID = [self stringForKey:SETTING_UUID];
 	
 	if(UUID == nil) {
 		//create a user id
@@ -122,7 +125,7 @@ static NSMutableDictionary* sSettings = nil;
 		}else {
 			DebugLog(@"Retrieved uuid from the keychain!");
 		}
-		[SettingsManager setString:UUID forKey:SETTING_UUID];
+		[self setString:UUID forKey:SETTING_UUID];
 					
 		//TODO: also store this to iCloud: refer to: http://stackoverflow.com/questions/7273014/ios-unique-user-identifier
 		/*
