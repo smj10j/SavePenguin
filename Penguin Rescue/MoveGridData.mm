@@ -79,7 +79,7 @@
 		_scheduledUpdateMoveGridTimer = nil;
 	}
 	_forceUpdateToMoveGrid = true;
-	_minSearchPathFactor = 4;
+	_minSearchPathFactor = 0.5;
 }
 
 - (void)scheduleUpdateToMoveGridIn:(NSTimeInterval)timeInterval {
@@ -217,14 +217,14 @@
 
 - (void)updateMoveGridToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile attemptsRemaining:(int)attemptsRemaining {
 
-	if(_forceUpdateToMoveGrid || (_lastToTile.x != toTile.x || _lastToTile.y != toTile.y)) {
+	if(!_foundRoute || _forceUpdateToMoveGrid || (_lastToTile.x != toTile.x || _lastToTile.y != toTile.y)) {
 
 		//DebugLog(@"Updating a %@ move grid", _tag);
 
 		_lastToTile = toTile;
 		_forceUpdateToMoveGrid = false;
 		
-		//double start = [[NSDate date] timeIntervalSince1970];
+		double startTime = [[NSDate date] timeIntervalSince1970];
 
 		int bestFoundRouteWeight = -1;
 		[self copyBaseGridToMoveGridBuffer];
@@ -257,8 +257,8 @@
 			}
 		}
 		
-		//DebugLog(@"bestFoundRouteWeight=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for a %@ move grid in %f seconds", bestFoundRouteWeight, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - start);
-		
+		DebugLog(@"bestFoundRouteWeight=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for a %@ move grid in %f seconds", bestFoundRouteWeight, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - startTime);
+
 	}
 }
 

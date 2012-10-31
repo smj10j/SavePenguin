@@ -543,9 +543,9 @@
 		}
 			
 		//all items are set as sensors to give a more natural movement feel around edges
-		if(land.tag == BORDER || land.tag == LAND) {
+		/*if(land.tag == BORDER || land.tag == LAND) {
 			[land setSensor:true];
-		}
+		}*/
 
 		//DebugLog(@"Land from %d,%d to %d,%d", minX, minY, maxX, maxY);
 	}
@@ -1703,6 +1703,25 @@
 			continue;
 		}
 		
+		//readjust if we are somehow on top of land - this can happen when fans blow an actor on land, for example
+		if(_sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT) {
+			//move back onto land
+			double wN = sharkGridPos.y+1 > _gridHeight-1 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1];
+			double wS = sharkGridPos.y-1 < 0 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1];
+			double wE = sharkGridPos.x+1 > _gridWidth-1 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y];
+			double wW = sharkGridPos.x-1 < 0 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y];
+			double wMin = fmin(fmin(fmin(wN,wS),wE),wW);
+			if(wN == wMin) {
+				[shark transformPosition:ccp(shark.position.x, shark.position.y+5*SCALING_FACTOR_V)];
+			}else if(wS == wMin) {
+				[shark transformPosition:ccp(shark.position.x, shark.position.y-5*SCALING_FACTOR_V)];
+			}else if(wE == wMin) {
+				[shark transformPosition:ccp(shark.position.x+5*SCALING_FACTOR_H, shark.position.y)];
+			}else if(wW == wMin) {
+				[shark transformPosition:ccp(shark.position.x-5*SCALING_FACTOR_H, shark.position.y)];
+			}
+		}
+		
 		//use the best route algorithm
 		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
 		CGPoint bestOptionPos = [sharkMoveGridData getBestMoveToTile:sharkMoveGridData.lastTargetTile fromTile:sharkGridPos];
@@ -1885,6 +1904,26 @@
 					}
 				}
 			}
+			
+			//readjust if we are somehow on top of land - this can happen when fans blow an actor on land, for example
+			if(_penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT) {
+				//move back onto land
+				double wN = penguinGridPos.y+1 > _gridHeight-1 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1];
+				double wS = penguinGridPos.y-1 < 0 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1];
+				double wE = penguinGridPos.x+1 > _gridWidth-1 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y];
+				double wW = penguinGridPos.x-1 < 0 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y];
+				double wMin = fmin(fmin(fmin(wN,wS),wE),wW);
+				if(wN == wMin) {
+					[penguin transformPosition:ccp(penguin.position.x, penguin.position.y+5*SCALING_FACTOR_V)];
+				}else if(wS == wMin) {
+					[penguin transformPosition:ccp(penguin.position.x, penguin.position.y-5*SCALING_FACTOR_V)];
+				}else if(wE == wMin) {
+					[penguin transformPosition:ccp(penguin.position.x+5*SCALING_FACTOR_H, penguin.position.y)];
+				}else if(wW == wMin) {
+					[penguin transformPosition:ccp(penguin.position.x-5*SCALING_FACTOR_H, penguin.position.y)];
+				}
+			}
+		
 
 			//use the best route algorithm
 			CGPoint bestOptionPos = [penguinMoveGridData getBestMoveToTile:penguinMoveGridData.lastTargetTile fromTile:penguinGridPos];
