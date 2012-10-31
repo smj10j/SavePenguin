@@ -1314,7 +1314,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{126, 76}, {16, 8.75}}</string>
+								<string>{{0, 244}, {16, 8.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1336,7 +1336,7 @@
 								<key>TagName</key>
 								<string>DOODAD</string>
 								<key>TextureOffset</key>
-								<string>{0.25, -0.625}</string>
+								<string>{0.25, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Doodad_Flying_Bird_1</string>
 								<key>ZOrder</key>
@@ -1451,7 +1451,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 71}, {34.75, 39.5}}</string>
+								<string>{{74, 116}, {34.75, 39.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1558,7 +1558,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 71}, {34.75, 39.5}}</string>
+								<string>{{74, 116}, {34.75, 39.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1669,7 +1669,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 0}, {58.75, 29}}</string>
+								<string>{{0, 86}, {58.75, 29}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1681,11 +1681,11 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{292, 15}</string>
+								<string>{291, 21}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{62.5, 31.25}</string>
+								<string>{70, 31.25}</string>
 								<key>Tag</key>
 								<integer>2</integer>
 								<key>TagName</key>
@@ -1780,7 +1780,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 0}, {58.75, 29}}</string>
+								<string>{{0, 86}, {58.75, 29}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1796,7 +1796,7 @@
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{62.5, 31.25}</string>
+								<string>{70, 31.25}</string>
 								<key>Tag</key>
 								<integer>2</integer>
 								<key>TagName</key>
