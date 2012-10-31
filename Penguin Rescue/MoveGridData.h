@@ -21,6 +21,7 @@
 
 	CGPoint _lastToTile;
 	bool _forceUpdateToMoveGrid;
+	NSTimer* _scheduledUpdateMoveGridTimer;
 	
 	CGPoint* _moveHistory;
 	int _moveHistoryIndex;
@@ -44,6 +45,8 @@
 
 - (void)updateMoveGridToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile;
 - (CGPoint)getBestMoveToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile;
+- (void)forceUpdateToMoveGrid;
+- (void)scheduleUpdateToMoveGridIn:(NSTimeInterval)timeInterval;
 
 
 @end

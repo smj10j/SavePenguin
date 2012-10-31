@@ -1314,7 +1314,7 @@
 				if(penguinData.isSafe || penguinData.isStuck) {
 					continue;
 				}
-				
+								
 				if(penguinGridPos.x > _gridWidth-1 || penguinGridPos.x < 0 || penguinGridPos.y > _gridHeight-1 || penguinGridPos.y < 0) {
 					DebugLog(@"Penguin %@ is offscreen at %f,%f - showing level lost", penguin.uniqueName, penguinGridPos.x, penguinGridPos.y);
 					[self levelLostWithOffscreenPenguin:penguin];
@@ -1343,7 +1343,7 @@
 				if(penguinData.hasSpottedShark) {
 				
 					//AHHH!!!
-
+					
 					LHSprite* targetLand = nil;
 					double minDistance = 10000;
 					NSArray* lands = [_levelLoader spritesWithTag:LAND];
@@ -1769,6 +1769,8 @@
 					dxMod = (xDir/dModSum)*(windmillData.power);
 					dyMod = (yDir/dModSum)*(windmillData.power);
 					
+					
+					[sharkMoveGridData scheduleUpdateToMoveGridIn:0.5f];
 				}
 			}
 		}
@@ -1935,6 +1937,7 @@
 						dxMod = (xDir/dModSum)*(windmillData.power);
 						dyMod = (yDir/dModSum)*(windmillData.power);
 						
+						[penguinMoveGridData scheduleUpdateToMoveGridIn:0.5f];
 					}
 				}
 			}

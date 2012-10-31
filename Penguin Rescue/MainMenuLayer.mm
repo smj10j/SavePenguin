@@ -221,7 +221,7 @@
 	
 	[super dealloc];
 	
-	report_memory();
+	if(DEBUG_MEMORY) report_memory();
 
 }	
 @end

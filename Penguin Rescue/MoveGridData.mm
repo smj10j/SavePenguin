@@ -8,6 +8,7 @@
 
 #import "cocos2d.h"
 #import "MoveGridData.h"
+#import "Constants.h"
 
 @implementation MoveGridData
 
@@ -31,9 +32,9 @@
 				}
 			}
 		}
-		_forceUpdateToMoveGrid = false;
 		_foundRoute = false;
-		_minSearchPathFactor = 1;
+		_scheduledUpdateMoveGridTimer = nil;
+		[self forceUpdateToMoveGrid];
 						
 		_moveHistorySize = moveHistorySize;
 		_moveHistory = new CGPoint[_moveHistorySize];
@@ -73,8 +74,26 @@
 }
 
 - (void)forceUpdateToMoveGrid {
+	if(_scheduledUpdateMoveGridTimer != nil) {
+		[_scheduledUpdateMoveGridTimer invalidate];
+		_scheduledUpdateMoveGridTimer = nil;
+	}
 	_forceUpdateToMoveGrid = true;
-	_minSearchPathFactor = 1.0;
+	_minSearchPathFactor = 4;
+}
+
+- (void)scheduleUpdateToMoveGridIn:(NSTimeInterval)timeInterval {
+	
+	if(_scheduledUpdateMoveGridTimer != nil) {
+		//only allow one at a time
+		return;
+	}
+	
+	_scheduledUpdateMoveGridTimer = [NSTimer scheduledTimerWithTimeInterval:2.0
+		target:self
+		selector:@selector(forceUpdateToMoveGrid)
+		userInfo:nil
+		repeats:NO];	
 }
 
 - (void)updateBaseGrid:(int**)baseGrid {
@@ -205,14 +224,14 @@
 		_lastToTile = toTile;
 		_forceUpdateToMoveGrid = false;
 		
-		//double start = [[NSDate date] timeIntervalSince1970];
+		double start = [[NSDate date] timeIntervalSince1970];
 
-		bool foundRoute = false;
+		int bestFoundRouteWeight = -1;
 		[self copyBaseGridToMoveGridBuffer];
 		_moveGridBuffer[(int)toTile.x][(int)toTile.y] = 0;
-		[self propagateGridCostToX:toTile.x y:toTile.y fromTile:fromTile foundRoute:&foundRoute];
+		[self propagateGridCostToX:toTile.x y:toTile.y fromTile:fromTile bestFoundRouteWeight:&bestFoundRouteWeight];
 		
-		if(foundRoute) {
+		if(bestFoundRouteWeight >= 0) {
 			[self copyMoveGridBufferToMoveGrid];
 			_foundRoute = true;
 			_minSearchPathFactor-= .25;
@@ -234,16 +253,17 @@
 			//go try again!
 			if(attemptsRemaining > 0) {
 				[self updateMoveGridToTile:toTile fromTile:fromTile attemptsRemaining:attemptsRemaining-1];
+				return;
 			}
 		}
 		
-		//DebugLog(@"Foundroute=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for a %@ move grid in %f seconds", foundRoute, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - start);
+		DebugLog(@"bestFoundRouteWeight=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for a %@ move grid in %f seconds", bestFoundRouteWeight, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - start);
 		
 	}
 }
 
 
--(void) propagateGridCostToX:(int)x y:(int)y fromTile:(CGPoint)fromTile foundRoute:(bool*)foundRoute{
+-(void) propagateGridCostToX:(int)x y:(int)y fromTile:(CGPoint)fromTile bestFoundRouteWeight:(int*)bestFoundRouteWeight {
 
 	if(x < 0 || x >= _gridWidth) {
 		return;
@@ -252,18 +272,18 @@
 		return;
 	}
 
+	double w = _moveGridBuffer[x][y];
+
 	if(fromTile.x >= 0 && fromTile.y >= 0 && fromTile.x == x && fromTile.y == y) {
 		//find the fastest route - not necessarily the best
-		if(foundRoute != nil) {
-			*foundRoute = true;
-		}
+		*bestFoundRouteWeight = w;
 	}
 	
-	double w = _moveGridBuffer[x][y];
-	if(w > (_gridWidth*_minSearchPathFactor)) {
+	if((*bestFoundRouteWeight >= 0 && w > *bestFoundRouteWeight) || w > (_gridWidth*_minSearchPathFactor)) {
 		//this is an approximation to increase speed - it can cause failures to find any path at all (very complex ones)
 		return;
 	}
+	
 	double wN = y+1 > _gridHeight-1 ? -10000 : _moveGridBuffer[x][y+1];
 	double wS = y-1 < 0 ? -10000 : _moveGridBuffer[x][y-1];
 	double wE = x+1 > _gridWidth-1 ? -10000 : _moveGridBuffer[x+1][y];
@@ -297,16 +317,16 @@
 	}
 	
 	if(changedN) {
-		[self propagateGridCostToX:x y:y+1 fromTile:fromTile foundRoute:foundRoute];
+		[self propagateGridCostToX:x y:y+1 fromTile:fromTile bestFoundRouteWeight:bestFoundRouteWeight];
 	}
 	if(changedS) {
-		[self propagateGridCostToX:x y:y-1 fromTile:fromTile foundRoute:foundRoute];
+		[self propagateGridCostToX:x y:y-1 fromTile:fromTile bestFoundRouteWeight:bestFoundRouteWeight];
 	}
 	if(changedE) {
-		[self propagateGridCostToX:x+1 y:y fromTile:fromTile foundRoute:foundRoute];
+		[self propagateGridCostToX:x+1 y:y fromTile:fromTile bestFoundRouteWeight:bestFoundRouteWeight];
 	}
 	if(changedW) {
-		[self propagateGridCostToX:x-1 y:y fromTile:fromTile foundRoute:foundRoute];
+		[self propagateGridCostToX:x-1 y:y fromTile:fromTile bestFoundRouteWeight:bestFoundRouteWeight];
 	}
 	
 }

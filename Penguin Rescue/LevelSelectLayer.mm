@@ -146,7 +146,7 @@
 			double zScore = [(NSNumber*)[completedLevels valueForKey:levelPath] doubleValue];
 			CCLabelTTF* gradeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", [ScoreKeeper gradeFromZScore:zScore]] fontName:@"Helvetica" fontSize:20*SCALING_FACTOR_FONTS];
 			gradeLabel.color = ccBLACK;
-			gradeLabel.position = ccp(levelButtonSize.width - 30*SCALING_FACTOR_H, 20*SCALING_FACTOR_V);
+			gradeLabel.position = ccp(levelButtonSize.width - 30*SCALING_FACTOR_H, 25*SCALING_FACTOR_V);
 			[levelButton addChild:gradeLabel];
 			
 		}else if([availableLevels containsObject:levelPath]) {
