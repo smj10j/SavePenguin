@@ -95,21 +95,22 @@
 */
 
 +(void)updateWorldScoresFromServer {
-	NSDictionary* worldScores = [self getWorldScores];
-	
+
+	NSDictionary* worldScoresDictionary = [self getWorldScoresDictionary];
+		
 	//if we have no world scores data or the last time it was updated was over 12 hours ago, request form the server
 	if(	isServerAvailable() && (
-				DEBUG_SCORING ||
-				worldScores == nil ||
-				([[NSDate date] timeIntervalSince1970] - [((NSNumber*)[worldScores objectForKey:@"timestamp"]) doubleValue] > 43200)))
+				//DEBUG_SCORING ||
+				worldScoresDictionary == nil ||
+				([[NSDate date] timeIntervalSince1970] - [((NSNumber*)[worldScoresDictionary objectForKey:@"timestamp"]) doubleValue] > 43200)))
 	{
 			
-		[APIManager getWorldScoresAndOnSuccess:^(NSMutableDictionary* worldScores) {
-				[worldScores setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"timestamp"];
+		[APIManager getWorldScoresAndOnSuccess:^(NSMutableDictionary* worldScoresDictionary) {
+				[worldScoresDictionary setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"timestamp"];
 			
-				if(DEBUG_SCORING) DebugLog(@"Loaded world scores data from server: %@", worldScores);
+				if(DEBUG_SCORING) DebugLog(@"Loaded world scores data from server: %@", worldScoresDictionary);
 			
-				[self saveWorldScoresLocally:worldScores];			
+				[self saveWorldScoresLocally:worldScoresDictionary];			
 			}
 			onError:^(NSError* error) {
 				if(DEBUG_SCORING) DebugLog(@"Error retrieving world scores from server: %@", error.localizedDescription);
@@ -117,7 +118,7 @@
 		];			
 		
 	}else {
-		if(DEBUG_SCORING) DebugLog(@"Using world scores data from local plist: %@", worldScores);
+		if(DEBUG_SCORING) DebugLog(@"Using world scores data from local plist: %@", worldScoresDictionary);
 	}
 }
 
@@ -127,11 +128,15 @@
 	return [worldScores objectForKey:[NSString stringWithFormat:@"%@:%@", levelPackPath, levelPath]];
 }
 
-
-+(NSDictionary*)getWorldScores {
++(NSDictionary*)getWorldScoresDictionary {
 	NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	NSString* worldScoresPropertyListPath = [rootPath stringByAppendingPathComponent:@"WorldScores.plist"];
-	NSMutableDictionary* worldScoresDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:worldScoresPropertyListPath];
+	NSDictionary* worldScoresDictionary = [NSDictionary dictionaryWithContentsOfFile:worldScoresPropertyListPath];
+	return worldScoresDictionary;
+}
+
++(NSDictionary*)getWorldScores {
+	NSDictionary* worldScoresDictionary = [self getWorldScoresDictionary];
 	return [worldScoresDictionary objectForKey:@"levels"];
 }
 
@@ -289,6 +294,141 @@
 	[localScoreSendQueue release];
 	if(DEBUG_SCORING) DebugLog(@"Added local score (score=%d) to send queue plist", [(NSNumber*)[scoreData objectForKey:@"score"] intValue]);
 }
+
+
+
+
+
+
+
+
+
+
++(NSString*)gradeFromZScore:(double)zScore {
+
+	int percentile = [self percentileFromZScore:zScore];
+
+
+	if(percentile < 10) {
+		return @"F-";
+	}else if(percentile < 15) {
+		return @"F";
+	}else if(percentile < 20) {
+		return @"F+";
+		
+		
+	}else if(percentile < 25) {
+		return @"D-";
+	}else if(percentile < 30) {
+		return @"D";
+	}else if(percentile < 36) {
+		return @"D+";
+		
+		
+	}else if(percentile < 42) {
+		return @"C-";
+	}else if(percentile < 50) {
+		return @"C";
+	}else if(percentile < 55) {
+		return @"C+";
+		
+		
+	}else if(percentile < 60) {
+		return @"B-";
+	}else if(percentile < 65) {
+		return @"B";
+	}else if(percentile < 74) {
+		return @"B+";
+		
+		
+	}else if(percentile < 86) {
+		return @"A-";
+	}else if(percentile < 89) {
+		return @"A";
+	}else if(percentile < 93) {
+		return @"A+";
+	}else if(percentile < 97) {
+		return @"A++";
+		
+		
+	}else {
+		return @"A+++";
+	}
+
+}
+
+
++(int)percentileFromZScore:(double)zScore {
+	
+	NSMutableDictionary* zTable = [[NSMutableDictionary alloc] init];
+	[zTable setObject:[NSNumber numberWithDouble:1.5] forKey:[NSNumber numberWithDouble:-2.2]];
+	[zTable setObject:[NSNumber numberWithDouble:6] forKey:[NSNumber numberWithDouble:-1.6]];
+	[zTable setObject:[NSNumber numberWithDouble:12] forKey:[NSNumber numberWithDouble:-1.2]];
+	[zTable setObject:[NSNumber numberWithDouble:16] forKey:[NSNumber numberWithDouble:-1.0]];
+	[zTable setObject:[NSNumber numberWithDouble:18] forKey:[NSNumber numberWithDouble:-0.9]];
+	[zTable setObject:[NSNumber numberWithDouble:21] forKey:[NSNumber numberWithDouble:-0.8]];
+	[zTable setObject:[NSNumber numberWithDouble:24] forKey:[NSNumber numberWithDouble:-0.7]];
+	[zTable setObject:[NSNumber numberWithDouble:27] forKey:[NSNumber numberWithDouble:-0.6]];
+	[zTable setObject:[NSNumber numberWithDouble:31] forKey:[NSNumber numberWithDouble:-0.5]];
+	[zTable setObject:[NSNumber numberWithDouble:35] forKey:[NSNumber numberWithDouble:-0.4]];
+	[zTable setObject:[NSNumber numberWithDouble:38] forKey:[NSNumber numberWithDouble:-0.3]];
+	[zTable setObject:[NSNumber numberWithDouble:42] forKey:[NSNumber numberWithDouble:-0.2]];
+	[zTable setObject:[NSNumber numberWithDouble:46] forKey:[NSNumber numberWithDouble:-0.1]];
+	[zTable setObject:[NSNumber numberWithDouble:50] forKey:[NSNumber numberWithDouble:0.0]];
+				
+	[zTable setObject:[NSNumber numberWithDouble:54] forKey:[NSNumber numberWithDouble:0.1]];
+	[zTable setObject:[NSNumber numberWithDouble:58] forKey:[NSNumber numberWithDouble:0.2]];
+	[zTable setObject:[NSNumber numberWithDouble:62] forKey:[NSNumber numberWithDouble:0.3]];
+	[zTable setObject:[NSNumber numberWithDouble:65] forKey:[NSNumber numberWithDouble:0.4]];
+	[zTable setObject:[NSNumber numberWithDouble:69] forKey:[NSNumber numberWithDouble:0.5]];
+	[zTable setObject:[NSNumber numberWithDouble:72] forKey:[NSNumber numberWithDouble:0.6]];
+	[zTable setObject:[NSNumber numberWithDouble:76] forKey:[NSNumber numberWithDouble:0.7]];
+	[zTable setObject:[NSNumber numberWithDouble:79] forKey:[NSNumber numberWithDouble:0.8]];
+	[zTable setObject:[NSNumber numberWithDouble:82] forKey:[NSNumber numberWithDouble:0.9]];
+	[zTable setObject:[NSNumber numberWithDouble:84] forKey:[NSNumber numberWithDouble:1.0]];
+	[zTable setObject:[NSNumber numberWithDouble:86] forKey:[NSNumber numberWithDouble:1.1]];
+	[zTable setObject:[NSNumber numberWithDouble:88] forKey:[NSNumber numberWithDouble:1.2]];
+	[zTable setObject:[NSNumber numberWithDouble:90] forKey:[NSNumber numberWithDouble:1.3]];
+	[zTable setObject:[NSNumber numberWithDouble:92] forKey:[NSNumber numberWithDouble:1.4]];
+	[zTable setObject:[NSNumber numberWithDouble:93] forKey:[NSNumber numberWithDouble:1.5]];
+	[zTable setObject:[NSNumber numberWithDouble:94] forKey:[NSNumber numberWithDouble:1.6]];
+	[zTable setObject:[NSNumber numberWithDouble:95] forKey:[NSNumber numberWithDouble:1.7]];
+	[zTable setObject:[NSNumber numberWithDouble:96] forKey:[NSNumber numberWithDouble:1.8]];
+	[zTable setObject:[NSNumber numberWithDouble:97] forKey:[NSNumber numberWithDouble:1.9]];
+	[zTable setObject:[NSNumber numberWithDouble:97.5] forKey:[NSNumber numberWithDouble:2.0]];
+	[zTable setObject:[NSNumber numberWithDouble:98] forKey:[NSNumber numberWithDouble:2.1]];
+	[zTable setObject:[NSNumber numberWithDouble:99] forKey:[NSNumber numberWithDouble:2.2]];
+	
+	
+	double cumulScore = 0;
+	double totalScalars = 0;
+	for(NSNumber* zScoreKey in zTable) {
+		double aZScore = [zScoreKey doubleValue];
+		double percentile = [(NSNumber*)[zTable objectForKey:zScoreKey] doubleValue];
+		
+		double scalar = zScore == aZScore ? 1000 : fmin(1.0/fabs(zScore-aZScore), 1000);
+		cumulScore+= (scalar * percentile);
+		totalScalars+= scalar;
+	}
+	cumulScore/= totalScalars;
+	
+	if(DEBUG_SCORING) DebugLog(@"With zScore=%f we found percentile=%d", zScore, (int)cumulScore);
+	
+	[zTable release];
+	
+	return (int)cumulScore;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 -(void)dealloc {

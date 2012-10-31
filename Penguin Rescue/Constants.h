@@ -10,7 +10,7 @@
 #define Penguin_Rescue_Constants_h
 
 //true to disable all output and send analytics data
-#define DISTRIBUTION_MODE true
+#define DISTRIBUTION_MODE false
 
 
 
@@ -21,9 +21,9 @@
  
 
 
-#define DEBUG_ALL_THE_THINGS	(false							&& !DISTRIBUTION_MODE)
-#define DEBUG_SCORING			((false || DEBUG_ALL_THE_THINGS)	&& !DISTRIBUTION_MODE)
-#define DEBUG_SETTINGS			((false || DEBUG_ALL_THE_THINGS)	&& !DISTRIBUTION_MODE)
+#define DEBUG_ALL_THE_THINGS	( false							 && !DISTRIBUTION_MODE)
+#define DEBUG_SCORING			((true || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
+#define DEBUG_SETTINGS			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
 #define DEBUG_MEMORY			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
 #define DEBUG_PENGUIN			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)	//can be overridden in game
 #define DEBUG_SHARK				((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)		//can be overridden in game
@@ -56,6 +56,7 @@
 
 #define SCORING_FONT_SIZE1 24*SCALING_FACTOR_FONTS
 #define SCORING_FONT_SIZE2 30*SCALING_FACTOR_FONTS
+#define SCORING_FONT_SIZE3 16*SCALING_FACTOR_FONTS
 #define SCORING_FONT_COLOR1 ccRED
 #define SCORING_FONT_COLOR2 ccBLACK
 #define SCORING_FONT_COLOR3 ccWHITE

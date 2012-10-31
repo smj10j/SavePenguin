@@ -8,6 +8,7 @@
 
 #import "Constants.h"
 #import "SettingsManager.h"
+#import "SSKeychain.h"
 
 static NSMutableDictionary* sSettings = nil;
 
@@ -88,6 +89,56 @@ static NSMutableDictionary* sSettings = nil;
 +(void)setDouble:(double)value forKey:(NSString*)key {
 	[SettingsManager setObject:[NSNumber numberWithDouble:value] forKey:key];
 }
+
+
++(NSString*)getUUID {
+
+	NSString* UUID = [SettingsManager stringForKey:SETTING_UUID];
+	
+	if(UUID == nil) {
+		//create a user id
+	
+		//first see if the userId is in the keychain
+		NSError *error = nil;
+		UUID = [SSKeychain passwordForService:COMPANY_IDENTIFIER account:@"user" error:&error];
+		if (error != nil) {
+			DebugLog(@"@@@@ ERROR SSKeychain passwordForService error code: %d", [error code]);
+		}
+		if(UUID == nil) {
+
+			CFUUIDRef cfUUID = CFUUIDCreate(NULL);
+			CFStringRef strUUUID = CFUUIDCreateString(NULL, cfUUID);
+			CFRelease(cfUUID);
+			UUID = (__bridge NSString*)strUUUID;
+			DebugLog(@"Created a new uuid");
+							
+			//store the userId to the keychain
+			error = nil;
+			[SSKeychain setPassword:UUID forService:COMPANY_IDENTIFIER account:@"user" error:&error];
+			if (error!= nil) {
+				DebugLog(@"@@@@ ERROR SSKeychain setPassword error code: %d", [error code]);
+			}
+			
+		}else {
+			DebugLog(@"Retrieved uuid from the keychain!");
+		}
+		[SettingsManager setString:UUID forKey:SETTING_UUID];
+					
+		//TODO: also store this to iCloud: refer to: http://stackoverflow.com/questions/7273014/ios-unique-user-identifier
+		/*
+			To make sure ALL devices have the same UUID in the Keychain.
+
+			Setup your app to use iCloud.
+			Save the UUID that is in the Keychain to NSUserDefaults as well.
+			Pass the UUID in NSUserDefaults to the Cloud with Key-Value Data Store.
+			On App first run, Check if the Cloud Data is available and set the UUID in the Keychain on the New Device.
+		*/
+	}
+	
+	
+	return UUID;
+}
+
 
 @end
 

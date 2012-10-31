@@ -14,10 +14,6 @@
 }
 
 
-+(int)percentileFromZScore:(double)zScore;
-
-
-+ (NSString*)UUID;
 
 +(void)startAnalytics;
 +(void)logEvent:(NSString*)eventName withParameters:(NSDictionary*)parameters timed:(bool)timed;
@@ -27,6 +23,9 @@
 
 
 @end
+
+
+
 
 void report_memory(void);
 

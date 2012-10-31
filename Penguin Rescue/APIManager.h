@@ -23,5 +23,5 @@
 
 
 
-+(void)createUserOnServer;
++(void)createUser;
 @end

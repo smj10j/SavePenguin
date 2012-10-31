@@ -115,8 +115,7 @@
 	
 	//record the play
 	//post the score to the server or queue for online processing
-	NSString* UUID = [SettingsManager stringForKey:SETTING_UUID];
-	[ScoreKeeper savePlayForUUID:UUID levelPackPath:_levelPackPath levelPath:_levelPath];
+	[ScoreKeeper savePlayForUUID:[SettingsManager getUUID] levelPackPath:_levelPackPath levelPath:_levelPath];
 
 
 	//start the game
@@ -912,10 +911,7 @@
 		[sprite stopAnimation];
 		[sprite stopPathMovement];
 	}
-	
-	//store the level as being completed
-	[LevelPackManager completeLevel:_levelPath inPack:_levelPackPath];
-	
+		
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"Won", @"Level_Status",
@@ -942,8 +938,7 @@
 	const int finalScore = scoreDeductions > SCORING_MAX_SCORE_POSSIBLE ? 0 : SCORING_MAX_SCORE_POSSIBLE - scoreDeductions;
 	
 	//post the score to the server or queue for online processing
-	NSString* UUID = [SettingsManager stringForKey:SETTING_UUID];
-	[ScoreKeeper saveScore:finalScore UUID:UUID levelPackPath:_levelPackPath levelPath:_levelPath];
+	[ScoreKeeper saveScore:finalScore UUID:[SettingsManager getUUID] levelPackPath:_levelPackPath levelPath:_levelPath];
 			
 	//get the world numbers from the server
 	NSDictionary* worldScores = [ScoreKeeper worldScoresForLevelPackPath:_levelPackPath levelPath:_levelPath];
@@ -951,9 +946,10 @@
 	int worldScoreMean = [(NSNumber*)[worldScores objectForKey:@"scoreMean"] intValue];
 	int worldScoreStdDev = [(NSNumber*)[worldScores objectForKey:@"scoreStdDev"] intValue];
 	double zScore = ((finalScore - worldScoreMean) / (1.0f*worldScoreStdDev));
-	int worldPercentile = [Utilities percentileFromZScore:zScore];
+	NSString* grade = [ScoreKeeper gradeFromZScore:zScore];
 	
-
+	//store the level as being completed
+	[LevelPackManager completeLevel:_levelPath inPack:_levelPackPath withZScore:zScore];
 			
 			
 			
@@ -1037,24 +1033,33 @@
 	const int competitiveTextYOffset = 130*SCALING_FACTOR_V;
 	
 	
-	CCLabelTTF* worldPercentCompleteLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", worldPercentComplete] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
-	worldPercentCompleteLabel.color = SCORING_FONT_COLOR3;
-	worldPercentCompleteLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
-											240*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? 0 : 0));
-	[self addChild:worldPercentCompleteLabel];
+	if(false && worldScores != nil) {
+		CCLabelTTF* worldPercentCompleteLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", worldPercentComplete] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
+		worldPercentCompleteLabel.color = SCORING_FONT_COLOR3;
+		worldPercentCompleteLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
+												240*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? 0 : 0));
+		[self addChild:worldPercentCompleteLabel];
 
-	CCLabelTTF* worldAverageScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", worldScoreMean] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
-	worldAverageScoreLabel.color = SCORING_FONT_COLOR3;
-	worldAverageScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
-										170*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -7 : 0));
-	[self addChild:worldAverageScoreLabel];
+		CCLabelTTF* worldAverageScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", worldScoreMean] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
+		worldAverageScoreLabel.color = SCORING_FONT_COLOR3;
+		worldAverageScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
+											170*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -7 : 0));
+		[self addChild:worldAverageScoreLabel];
 
-	CCLabelTTF* worldPercentileLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", worldPercentile] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
-	worldPercentileLabel.color = SCORING_FONT_COLOR2;
-	worldPercentileLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
-										95*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
-	[self addChild:worldPercentileLabel];
-
+		CCLabelTTF* gradeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", grade] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
+		gradeLabel.color = SCORING_FONT_COLOR3;
+		gradeLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
+									100*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
+		[self addChild:gradeLabel];
+		
+	}else {
+		//show info about needed to connect
+		CCLabelTTF* goOnlineForScoresLabel = [CCLabelTTF labelWithString:@"Connect to the Internet to see how your score compares with other players!" fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE3 dimensions:CGSizeMake(200*SCALING_FACTOR_H,200*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
+		goOnlineForScoresLabel.color = SCORING_FONT_COLOR2;
+		goOnlineForScoresLabel.position = ccp(winSize.width/2 - competitiveTextXOffset,
+									120*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
+		[self addChild:goOnlineForScoresLabel];	
+	}
 
 }
 

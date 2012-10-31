@@ -16,6 +16,8 @@
 +(int)intForKey:(NSString*)key;
 +(double)doubleForKey:(NSString*)key;
 
++(NSString*)getUUID;
+
 
 +(void)setString:(NSString*)value forKey:(NSString*)key;
 +(void)setBool:(bool)value forKey:(NSString*)key;

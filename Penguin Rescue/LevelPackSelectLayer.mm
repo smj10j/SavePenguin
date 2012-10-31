@@ -100,7 +100,7 @@
 		NSDictionary* levelPackData = [levelPacksDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
 		NSString* levelPackName = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_NAME];
 		NSString* levelPackPath = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_PATH];
-		NSArray* completedLevels = [LevelPackManager completedLevelsInPack:levelPackPath];
+		NSDictionary* completedLevels = [LevelPackManager completedLevelsInPack:levelPackPath];
 		NSDictionary* allLevels = [LevelPackManager allLevelsInPack:levelPackPath];
 
 		//create the sprite

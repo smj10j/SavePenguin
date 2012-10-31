@@ -79,7 +79,7 @@
 	NSDictionary* levelsDictionary = [LevelPackManager allLevelsInPack:_levelPackPath];
 	
 	//load all levels for this pack that the user has completed
-	NSArray* completedLevels = [LevelPackManager completedLevelsInPack:_levelPackPath];
+	NSDictionary* completedLevels = [LevelPackManager completedLevelsInPack:_levelPackPath];
 	NSArray* availableLevels = [LevelPackManager availableLevelsInPack:_levelPackPath];
 	
 	NSMutableArray* scrollableLayers = [[NSMutableArray alloc] init];
@@ -133,13 +133,21 @@
 
 		bool isLocked = false;
 		
-		if([completedLevels containsObject:levelPath]) {
+		if([completedLevels valueForKey:levelPath] != nil) {
 			//DebugLog(@"Level %@ is completed!", levelPath);
 
+			/*
 			//add a checkmark on top
 			LHSprite* completedMark = [_levelLoader createSpriteWithName:@"Level_Completed" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelButton];
 			[completedMark transformPosition:ccp(levelButtonSize.width - completedMark.contentSize.width/2 - 15*SCALING_FACTOR_H,completedMark.contentSize.height/2 + 15*SCALING_FACTOR_V)];
-			
+			*/
+				
+			//display the grade
+			double zScore = [(NSNumber*)[completedLevels valueForKey:levelPath] doubleValue];
+			CCLabelTTF* gradeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", [ScoreKeeper gradeFromZScore:zScore]] fontName:@"Helvetica" fontSize:20*SCALING_FACTOR_FONTS];
+			gradeLabel.color = ccBLACK;
+			gradeLabel.position = ccp(levelButtonSize.width - 30*SCALING_FACTOR_H, 20*SCALING_FACTOR_V);
+			[levelButton addChild:gradeLabel];
 			
 		}else if([availableLevels containsObject:levelPath]) {
 			//DebugLog(@"Level %@ is available!", levelPath);

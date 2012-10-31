@@ -17,14 +17,14 @@
 +(NSDictionary*)allLevelsInPack:(NSString*)packPath;
 
 +(NSArray*)completedPacks;
-+(NSArray*)completedLevelsInPack:(NSString*)packPath;
++(NSDictionary*)completedLevelsInPack:(NSString*)packPath;
 
 +(NSArray*)availablePacks;
 +(NSArray*)availableLevelsInPack:(NSString*)packPath;
 
 +(NSDictionary*)level:(NSString*)levelPath inPack:(NSString*)packPath;
 
-+(void)completeLevel:(NSString*)levelPath inPack:(NSString*)packPath;
++(void)completeLevel:(NSString*)levelPath inPack:(NSString*)packPath withZScore:(double)zScore;
 
 
 +(NSString*)levelAfter:(NSString*)levelPath inPack:(NSString*)packPath;
@@ -37,7 +37,6 @@
 
 
 
-#define LEVELPACKMANAGER_KEY_USER_COMPLETED_LEVELS @"CompletedLevels"
 #define LEVELPACKMANAGER_KEY_USER_COMPLETED_PACKS @"CompletedPacks"
 
 #define LEVELPACKMANAGER_KEY_NAME @"Name"

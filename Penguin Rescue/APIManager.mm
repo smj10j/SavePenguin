@@ -178,10 +178,13 @@
 
 
 
-+(void)createUserOnServer {
++(void)createUser {
+
+	NSString* UUID = [SettingsManager getUUID];
+
 	//create the user on the server
 	if(![SettingsManager boolForKey:SETTING_HAS_CREATED_UUID_ON_SERVER]) {
-		[APIManager addUserWithUUID:[SettingsManager stringForKey:SETTING_UUID] 
+		[APIManager addUserWithUUID:UUID 
 			onSuccess:^(NSDictionary* response) {
 				if(DEBUG_SCORING) DebugLog(@"Added new user to server. response = %@", response);
 				[SettingsManager setBool:true forKey:SETTING_HAS_CREATED_UUID_ON_SERVER];

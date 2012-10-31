@@ -35,6 +35,10 @@
 +(void)emptyLocalSendQueue;
 
 
+
++(NSString*)gradeFromZScore:(double)zScore;
+
+
 @end
 
 
