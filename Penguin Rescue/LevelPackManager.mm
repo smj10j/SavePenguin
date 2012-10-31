@@ -8,7 +8,7 @@
 
 #import "Constants.h"
 #import "LevelPackManager.h"
-
+#import "SettingsManager.h"
 
 		//TODO: implement loading/saving the level and pack completion state files to iCloud: http://www.raywenderlich.com/6015/beginning-icloud-in-ios-5-tutorial-part-1
 		/*
@@ -244,6 +244,18 @@ static NSMutableDictionary* sCompletedLevelsInPackDictionary = nil;
     }
 	if(DEBUG_LEVELS) DebugLog(@"Marked pack %@ as completed", packPath);
 	sCompletedLevelPacksDictionary = nil;
+	
+	
+	if([SettingsManager stringForKey:SETTING_LEFT_REVIEW_VERSION] == nil) {
+		//TODO: hasn't left a review and just completed a pack - prompt!
+		if(DEBUG_REVIEWS) DebugLog(@"PROMPTING FOR A FIRST-TIME REVIEW!!!");
+	}
+	
+	//TODO: figure out when to prompt for a review after an update
+	if(![[SettingsManager stringForKey:SETTING_LEFT_REVIEW_VERSION] isEqualToString:[SettingsManager stringForKey:SETTING_CURRENT_VERSION]]) {
+		if(DEBUG_REVIEWS) DebugLog(@"PROMPTING FOR AN UPDATE REVIEW!!!");
+		
+	}
 }
 
 

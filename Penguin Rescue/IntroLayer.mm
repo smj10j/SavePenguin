@@ -81,9 +81,13 @@
 			
 		}
 		[APIManager createUser];
+		DebugLog(@"Launching with uuid=%@", [SettingsManager getUUID]);
 		
-		//output our UserId
-		DebugLog(@"Launching with uuid=%@", [SettingsManager stringForKey:SETTING_UUID]);
+		//set our current version (can be used in future version to test for update
+		NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+		NSString* version = [infoDict objectForKey:@"CFBundleShortVersionString"];
+		[SettingsManager setString:version forKey:SETTING_CURRENT_VERSION];
+		if(DEBUG_SETTINGS) DebugLog(@"Updated Current Version setting to %@", version);
 		
 		//set our boot time (can be used for applying settings on updates
 		[SettingsManager setDouble:[[NSDate date] timeIntervalSince1970] forKey:SETTING_LAST_RUN_TIMESTAMP];
