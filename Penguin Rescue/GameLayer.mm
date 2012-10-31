@@ -1770,7 +1770,7 @@
 					dyMod = (yDir/dModSum)*(windmillData.power);
 					
 					
-					[sharkMoveGridData scheduleUpdateToMoveGridIn:0.5f];
+					[sharkMoveGridData scheduleUpdateToMoveGridIn:0.25f];
 				}
 			}
 		}
@@ -1937,7 +1937,7 @@
 						dxMod = (xDir/dModSum)*(windmillData.power);
 						dyMod = (yDir/dModSum)*(windmillData.power);
 						
-						[penguinMoveGridData scheduleUpdateToMoveGridIn:0.5f];
+						[penguinMoveGridData scheduleUpdateToMoveGridIn:0.25f];
 					}
 				}
 			}

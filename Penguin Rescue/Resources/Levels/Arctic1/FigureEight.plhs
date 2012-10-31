@@ -151,9 +151,9 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{227, 99}</string>
+								<string>{226.97262859344482, 101.97262859344482}</string>
 								<key>Scale</key>
-								<string>{3.014394998550415, 3.014394998550415}</string>
+								<string>{2.7185401916503906, 2.7185401916503906}</string>
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
@@ -551,7 +551,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 71}, {34.75, 39.5}}</string>
+								<string>{{74, 116}, {34.75, 39.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -662,7 +662,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 0}, {58.75, 29}}</string>
+								<string>{{0, 86}, {58.75, 29}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -678,7 +678,7 @@
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{62.5, 31.25}</string>
+								<string>{70, 31.25}</string>
 								<key>Tag</key>
 								<integer>2</integer>
 								<key>TagName</key>
@@ -2759,7 +2759,7 @@
 								<key>EndControlPoint</key>
 								<string>{168.5, 158.25}</string>
 								<key>EndPoint</key>
-								<string>{150, 33.25}</string>
+								<string>{150, 32}</string>
 								<key>StartControlPoint</key>
 								<string>{148.5, 158.25}</string>
 								<key>StartPoint</key>
@@ -2773,7 +2773,7 @@
 								<key>StartControlPoint</key>
 								<string>{219.5, 31.25}</string>
 								<key>StartPoint</key>
-								<string>{150, 33.25}</string>
+								<string>{150, 32}</string>
 							</dict>
 							<dict>
 								<key>EndControlPoint</key>
