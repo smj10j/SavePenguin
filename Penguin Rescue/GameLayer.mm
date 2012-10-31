@@ -1124,41 +1124,6 @@
 
 }
 
-//TODO: can this even happen anymore
--(void) levelLostWithOffscreenPenguin:(LHSprite*)penguin {
-
-	if(_state == GAME_OVER) {
-		return;
-	}
-	_state = GAME_OVER;
-
-	
-	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
-		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelLost/hoot.wav"];
-	}
-	
-	
-	for(LHSprite* sprite in _levelLoader.allSprites) {
-		[sprite stopAnimation];
-		[sprite stopPathMovement];
-	}
-
-
-	//analytics logging
-	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-		@"Lost", @"Level_Status",
-		@"Offscreen Penguin", @"Level_Lost_Reason",
-	nil];
-	[Utilities endTimedEvent:@"Play_Level" withParameters:flurryParams];
-
-	DebugLog(@"Showing level lost animations for offscreen penguin");
-	
-
-	//TODO: show some kind of information about how penguins have to reach the safety point
-	
-	[self showLevelLostPopup];
-}
-
 -(void) levelLostWithShark:(LHSprite*)shark andPenguin:(LHSprite*)penguin {
 
 	if(_state == GAME_OVER) {
@@ -1377,9 +1342,8 @@
 				}
 								
 				if(penguinGridPos.x > _gridWidth-1 || penguinGridPos.x < 0 || penguinGridPos.y > _gridHeight-1 || penguinGridPos.y < 0) {
-					DebugLog(@"Penguin %@ is offscreen at %f,%f - showing level lost", penguin.uniqueName, penguinGridPos.x, penguinGridPos.y);
-					[self levelLostWithOffscreenPenguin:penguin];
-					return;
+					//ignore and let movePenguins handle it
+					continue;
 				}
 				
 				if(!penguinData.hasSpottedShark) {
@@ -1439,8 +1403,7 @@
 				CGPoint sharkGridPos = [self toGrid:shark.position];
 
 				if(sharkGridPos.x >= _gridWidth || sharkGridPos.x < 0 || sharkGridPos.y >= _gridHeight || sharkGridPos.y < 0) {
-					DebugLog(@"Shark %@ has moved offscreen to %f,%f - removing him", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
-					[shark removeSelf];
+					//offscreen - ignore and let moveSharks handle it
 					continue;
 				}
 
@@ -1740,19 +1703,32 @@
 		CGPoint sharkGridPos = [self toGrid:shark.position];
 
 		if(sharkGridPos.x >= _gridWidth || sharkGridPos.x < 0 || sharkGridPos.y >= _gridHeight || sharkGridPos.y < 0) {
-			DebugLog(@"Shark %@ has moved offscreen to %f,%f - removing him", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
-			[shark removeSelf];
+			DebugLog(@"Shark %@ is offscreen at %f,%f - moving him back on", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
+			
+			if(sharkGridPos.x > _gridWidth-1) {
+				sharkGridPos.x--;
+			}else if(sharkGridPos.x < 0) {
+				sharkGridPos.x++;
+			}else if(sharkGridPos.y > _gridHeight-1) {
+				sharkGridPos.y--;
+			}else if(sharkGridPos.y < 0) {
+				sharkGridPos.y++;
+			}
+			
+			[shark transformPosition:ccp(sharkGridPos.x*_gridSize -_gridSize/2, sharkGridPos.y*_gridSize - _gridSize/2)];
 			continue;
 		}
 		
+		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];		
+		
 		//readjust if we are somehow on top of land - this can happen when fans blow an actor on land, for example
-		if(_sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT) {
+		if(sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT) {
 			//move back onto land
-			double wN = sharkGridPos.y+1 > _gridHeight-1 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1];
-			double wS = sharkGridPos.y-1 < 0 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1];
-			double wE = sharkGridPos.x+1 > _gridWidth-1 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y];
-			double wW = sharkGridPos.x-1 < 0 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y];
-			double wMin = fmin(fmin(fmin(wN,wS),wE),wW);
+			double wN = sharkGridPos.y+1 > _gridHeight-1 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1];
+			double wS = sharkGridPos.y-1 < 0 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1];
+			double wE = sharkGridPos.x+1 > _gridWidth-1 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y];
+			double wW = sharkGridPos.x-1 < 0 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y];
+			double wMin = fmax(fmin(fmin(wN,wS),wE),wW);
 			if(wN == wMin) {
 				[shark transformPosition:ccp(shark.position.x, shark.position.y+5*SCALING_FACTOR_V)];
 			}else if(wS == wMin) {
@@ -1765,7 +1741,6 @@
 		}
 		
 		//use the best route algorithm
-		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
 		CGPoint bestOptionPos = [sharkMoveGridData getBestMoveToTile:sharkMoveGridData.lastTargetTile fromTile:sharkGridPos];
 		
 		//DebugLog(@"Best Option Pos: %f,%f", bestOptionPos.x,bestOptionPos.y);
@@ -1918,9 +1893,20 @@
 		}
 		
 		if(penguinGridPos.x > _gridWidth-1 || penguinGridPos.x < 0 || penguinGridPos.y > _gridHeight-1 || penguinGridPos.y < 0) {
-			DebugLog(@"Penguin %@ is offscreen at %f,%f - showing level lost", penguin.uniqueName, penguinGridPos.x, penguinGridPos.y);
-			[self levelLostWithOffscreenPenguin:penguin];
-			return;
+			DebugLog(@"Penguin %@ is offscreen at %f,%f - moving him back on", penguin.uniqueName, penguinGridPos.x, penguinGridPos.y);
+			
+			if(penguinGridPos.x > _gridWidth-1) {
+				penguinGridPos.x--;
+			}else if(penguinGridPos.x < 0) {
+				penguinGridPos.x++;
+			}else if(penguinGridPos.y > _gridHeight-1) {
+				penguinGridPos.y--;
+			}else if(penguinGridPos.y < 0) {
+				penguinGridPos.y++;
+			}
+			
+			[penguin transformPosition:ccp(penguinGridPos.x*_gridSize -_gridSize/2, penguinGridPos.y*_gridSize - _gridSize/2)];
+			continue;
 		}
 		
 		if(penguinData.hasSpottedShark) {
@@ -1948,12 +1934,12 @@
 			}
 			
 			//readjust if we are somehow on top of land - this can happen when fans blow an actor on land, for example
-			if(_penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT) {
+			if(penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT) {
 				//move back onto land
-				double wN = penguinGridPos.y+1 > _gridHeight-1 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1];
-				double wS = penguinGridPos.y-1 < 0 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1];
-				double wE = penguinGridPos.x+1 > _gridWidth-1 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y];
-				double wW = penguinGridPos.x-1 < 0 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y];
+				double wN = penguinGridPos.y+1 > _gridHeight-1 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1];
+				double wS = penguinGridPos.y-1 < 0 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1];
+				double wE = penguinGridPos.x+1 > _gridWidth-1 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y];
+				double wW = penguinGridPos.x-1 < 0 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y];
 				double wMin = fmin(fmin(fmin(wN,wS),wE),wW);
 				if(wN == wMin) {
 					[penguin transformPosition:ccp(penguin.position.x, penguin.position.y+5*SCALING_FACTOR_V)];
