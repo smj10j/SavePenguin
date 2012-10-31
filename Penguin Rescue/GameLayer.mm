@@ -536,7 +536,7 @@
 		for(int x = minX; x < maxX; x++) {
 			for(int y = minY; y < maxY; y++) {
 				_sharkMapfeaturesGrid[(int)(x/_gridSize)][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
-				if(land.tag == BORDER) {
+				if(land.tag == BORDER || land.tag == OBSTRUCTION) {
 					_penguinMapfeaturesGrid[(int)(x/_gridSize)][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
 				}
 			}
