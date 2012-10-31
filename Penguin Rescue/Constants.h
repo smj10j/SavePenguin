@@ -22,8 +22,9 @@
 
 
 #define DEBUG_ALL_THE_THINGS	( false							 && !DISTRIBUTION_MODE)
-#define DEBUG_SCORING			((true || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
+#define DEBUG_SCORING			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
 #define DEBUG_SETTINGS			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
+#define DEBUG_LEVELS			((true	|| DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
 #define DEBUG_MEMORY			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
 #define DEBUG_PENGUIN			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)	//can be overridden in game
 #define DEBUG_SHARK				((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)		//can be overridden in game

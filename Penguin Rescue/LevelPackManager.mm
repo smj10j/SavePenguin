@@ -9,9 +9,6 @@
 #import "Constants.h"
 #import "LevelPackManager.h"
 
-static NSString* sMainBundlePath;
-static NSString* sRootPath;
-
 
 		//TODO: implement loading/saving the level and pack completion state files to iCloud: http://www.raywenderlich.com/6015/beginning-icloud-in-ios-5-tutorial-part-1
 		/*
@@ -25,49 +22,73 @@ static NSString* sRootPath;
 		}
 		*/
 
+static NSDictionary* sCompletedLevelPacksDictionary = nil;
+static NSMutableDictionary* sCompletedLevelsInPackDictionary = nil;
+
 
 @implementation LevelPackManager
 
-+(void)setupPaths {
-	sMainBundlePath = [[NSBundle mainBundle] bundlePath];
-	sRootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-}
 
 //fetch all available level packs
 +(NSDictionary*)allLevelPacks {
-	[LevelPackManager setupPaths];
-	NSString* levelPacksPropertyListPath = [sMainBundlePath stringByAppendingPathComponent:@"Levels/Packs.plist"];
-	//DebugLog(@"Loading all level packs");
-	return [NSDictionary dictionaryWithContentsOfFile:levelPacksPropertyListPath];
+	static NSDictionary* sLevelPacksDictionary = nil;
+	if(sLevelPacksDictionary == nil) {
+		NSString* levelPacksPropertyListPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Levels/Packs.plist"];
+		sLevelPacksDictionary = [[NSDictionary alloc] initWithContentsOfFile:levelPacksPropertyListPath];
+		if(DEBUG_LEVELS) DebugLog(@"Loading all level packs");
+	}
+	return sLevelPacksDictionary;
 }
 
 //load all available levels for a given pack
 +(NSDictionary*)allLevelsInPack:(NSString*)packPath {
-	[LevelPackManager setupPaths];
-	NSString* levelsPropertyListPath = [sMainBundlePath stringByAppendingPathComponent:[NSString stringWithFormat:@"Levels/%@/Levels.plist", packPath]];
-	//DebugLog(@"Loading all levels in pack %@", packPath);
-	return [NSDictionary dictionaryWithContentsOfFile:levelsPropertyListPath];
+	static NSMutableDictionary* sLevelsDictionary = nil;
+	if(sLevelsDictionary == nil) {
+		sLevelsDictionary = [[NSMutableDictionary alloc] init];
+	}
+	
+	NSDictionary* levelDictionary = [sLevelsDictionary objectForKey:packPath];
+	if(levelDictionary == nil) {
+		NSString* levelPropertyListPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"Levels/%@/Levels.plist", packPath]];
+		levelDictionary = [NSDictionary dictionaryWithContentsOfFile:levelPropertyListPath];
+		[sLevelsDictionary setObject:levelDictionary forKey:packPath];
+		if(DEBUG_LEVELS) DebugLog(@"Loading all levels in pack %@", packPath);
+	}
+	return levelDictionary;
 }
 
 
 //gets all the completed packs by the user
 +(NSArray*)completedPacks {
-	[LevelPackManager setupPaths];
-	NSString* completedLevelPacksPropertyListPath = [sRootPath stringByAppendingPathComponent:@"CompletedPacks.plist"];
-	//DebugLog(@"Loading completed level packs");
-	NSDictionary* completedLevelPacksDictionary = [NSDictionary dictionaryWithContentsOfFile:completedLevelPacksPropertyListPath];
-	if(completedLevelPacksPropertyListPath == nil) {
-		return nil;
+	if(sCompletedLevelPacksDictionary == nil) {
+		NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		NSString* completedLevelPacksPropertyListPath = [rootPath stringByAppendingPathComponent:@"CompletedPacks.plist"];
+		if(DEBUG_LEVELS) DebugLog(@"Loading completed level packs");
+		sCompletedLevelPacksDictionary = [[NSDictionary alloc] initWithContentsOfFile:completedLevelPacksPropertyListPath];
+		if(sCompletedLevelPacksDictionary == nil) {
+			sCompletedLevelPacksDictionary = [[NSDictionary alloc] init];
+		}
 	}
-	return [completedLevelPacksDictionary objectForKey:LEVELPACKMANAGER_KEY_USER_COMPLETED_PACKS];
+	return [sCompletedLevelPacksDictionary objectForKey:LEVELPACKMANAGER_KEY_USER_COMPLETED_PACKS];
 }
 
 //gets all the levels completed by the user
 +(NSDictionary*)completedLevelsInPack:(NSString*)packPath {
-	[LevelPackManager setupPaths];
-	NSString* completedLevelsPropertyListPath = [sRootPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-CompletedLevels.plist", packPath]];
-	//DebugLog(@"Loading completed levels in pack %@", packPath);
-	NSDictionary* completedLevelsDictionary = [NSDictionary dictionaryWithContentsOfFile:completedLevelsPropertyListPath];
+	if(sCompletedLevelsInPackDictionary == nil) {
+		sCompletedLevelsInPackDictionary = [[NSMutableDictionary alloc] init];
+	}
+	
+	NSDictionary* completedLevelsDictionary = [sCompletedLevelsInPackDictionary objectForKey:packPath];
+	if(completedLevelsDictionary == nil) {
+		NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		NSString* completedLevelsPropertyListPath = [rootPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-CompletedLevels.plist", packPath]];
+		completedLevelsDictionary = [NSDictionary dictionaryWithContentsOfFile:completedLevelsPropertyListPath];
+		if(completedLevelsDictionary == nil) {
+			completedLevelsDictionary = [NSDictionary dictionaryWithDictionary:nil];//could use alloc but this is used for consistency with other parts of the code have elements within static dictionaries auto-managed
+		}
+		[sCompletedLevelsInPackDictionary setObject:completedLevelsDictionary forKey:packPath];
+		if(DEBUG_LEVELS) DebugLog(@"Loading completed levels in pack %@", packPath);
+	}
 	return completedLevelsDictionary;
 }
 
@@ -148,8 +169,6 @@ static NSString* sRootPath;
 
 //returns level information
 +(NSDictionary*)level:(NSString*)levelPath inPack:(NSString*)packPath {
-	[LevelPackManager setupPaths];
-
 	NSDictionary* levelsDictionary = [LevelPackManager allLevelsInPack:packPath];
 	for(int i = 0; i < levelsDictionary.count; i++) {
 		NSDictionary* levelData = [levelsDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
@@ -168,28 +187,28 @@ static NSString* sRootPath;
 //completes a level and, if necessary, the pack
 +(void)completeLevel:(NSString*)levelPath inPack:(NSString*)packPath withScore:(double)score {
 	
-	[LevelPackManager setupPaths];
-
 	//create the completed levels array
 	NSMutableDictionary* completedLevelsDictionary = [NSMutableDictionary dictionaryWithDictionary:[LevelPackManager completedLevelsInPack:packPath]];
 	if([completedLevelsDictionary valueForKey:levelPath] != nil) {
 		double prevScore = [(NSNumber*)[completedLevelsDictionary valueForKey:levelPath] doubleValue];
 		if(prevScore > score) {
-			DebugLog(@"Level %@ in pack %@ already completed with higher score %f > %f", levelPath, packPath, prevScore, score);
+			if(DEBUG_LEVELS) DebugLog(@"Level %@ in pack %@ already completed with higher score %f > %f", levelPath, packPath, prevScore, score);
 			return;
 		}
 	}
 	[completedLevelsDictionary setObject:[NSNumber numberWithDouble:score] forKey:levelPath];
 				
 	//put it into the dictionary
-	NSString* completedLevelsPropertyListPath = [sRootPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-CompletedLevels.plist", packPath]];
+	NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	NSString* completedLevelsPropertyListPath = [rootPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-CompletedLevels.plist", packPath]];
 	
 	//write to file!
 	if(![completedLevelsDictionary writeToFile:completedLevelsPropertyListPath atomically: YES]) {
         DebugLog(@"---- Failed to save level completion!! - %@ -----", completedLevelsPropertyListPath);
         return;
     }
-	DebugLog(@"Marked level %@ in pack %@ as completed", levelPath, packPath);
+	if(DEBUG_LEVELS) DebugLog(@"Marked level %@ in pack %@ as completed", levelPath, packPath);
+	sCompletedLevelsInPackDictionary = nil;
 	
 	//save the pack as being completed if necessary
 	NSDictionary* allLevelsInPack = [LevelPackManager allLevelsInPack:packPath];
@@ -201,18 +220,17 @@ static NSString* sRootPath;
 //private - completes a pack
 +(void)completePack:(NSString*)packPath {
 
-	[LevelPackManager setupPaths];
-
 	//create the completed levels array
 	NSMutableArray* completedPacks = [NSMutableArray arrayWithArray:[LevelPackManager completedPacks]];
 	if([completedPacks containsObject:packPath]) {
-		DebugLog(@"Pack %@ already completed", packPath);
+		if(DEBUG_LEVELS) DebugLog(@"Pack %@ already completed", packPath);
 		return;
 	}
 	[completedPacks addObject:packPath];
 	
 	//put it into the dictionary
-	NSString* completedLevelPacksPropertyListPath = [sRootPath stringByAppendingPathComponent:@"CompletedPacks.plist"];
+	NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	NSString* completedLevelPacksPropertyListPath = [rootPath stringByAppendingPathComponent:@"CompletedPacks.plist"];
 	NSMutableDictionary* completedLevelPacksDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:completedLevelPacksPropertyListPath];
 	if(completedLevelPacksDictionary == nil) {
 		completedLevelPacksDictionary = [[NSMutableDictionary alloc] init];
@@ -224,7 +242,8 @@ static NSString* sRootPath;
         DebugLog(@"---- Failed to save level pack completion!! - %@ -----", completedLevelPacksPropertyListPath);
         return;
     }
-	DebugLog(@"Marked pack %@ as completed", packPath);
+	if(DEBUG_LEVELS) DebugLog(@"Marked pack %@ as completed", packPath);
+	sCompletedLevelPacksDictionary = nil;
 }
 
 

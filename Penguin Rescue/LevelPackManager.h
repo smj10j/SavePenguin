@@ -10,9 +10,6 @@
 
 @interface LevelPackManager : NSObject
 
-+(void)setupPaths;
-
-
 +(NSDictionary*)allLevelPacks;
 +(NSDictionary*)allLevelsInPack:(NSString*)packPath;
 
