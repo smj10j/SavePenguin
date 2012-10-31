@@ -543,9 +543,9 @@
 		}
 			
 		//all items are set as sensors to give a more natural movement feel around edges
-		/*if(land.tag == BORDER || land.tag == LAND) {
+		if(land.tag == BORDER || land.tag == LAND) {
 			[land setSensor:true];
-		}*/
+		}
 
 		//DebugLog(@"Land from %d,%d to %d,%d", minX, minY, maxX, maxY);
 	}
@@ -568,6 +568,28 @@
 	//create a set of maps for each penguin
 	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
 	for(LHSprite* penguin in penguins) {
+	
+		//if on some land, move him off it!
+		CGPoint penguinGridPos = [self toGrid:penguin.position];
+		while(_penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT) {
+			DebugLog(@"Moving penguin %@ off of border land", penguin.uniqueName);
+			//move back onto land
+			double wN = penguinGridPos.y+1 > _gridHeight-1 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1];
+			double wS = penguinGridPos.y-1 < 0 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1];
+			double wE = penguinGridPos.x+1 > _gridWidth-1 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y];
+			double wW = penguinGridPos.x-1 < 0 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y];
+			double wMin = fmin(fmin(fmin(wN,wS),wE),wW);
+			if(wN == wMin) {
+				penguinGridPos.y++;
+			}else if(wS == wMin) {
+				penguinGridPos.y--;
+			}else if(wE == wMin) {
+				penguinGridPos.x++;
+			}else if(wW == wMin) {
+				penguinGridPos.x--;
+			}
+		}
+		[penguin transformPosition:ccp(penguinGridPos.x*_gridSize -_gridSize/2, penguinGridPos.y*_gridSize - _gridSize/2)];
 
 		//first create a copy of the feature map
 		int** penguinMoveGrid = new int*[_gridWidth];
@@ -591,6 +613,27 @@
 	//create a set of maps for each shark
 	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
 	for(LHSprite* shark in sharks) {
+
+		//if on some land, move him off it!
+		CGPoint sharkGridPos = [self toGrid:shark.position];
+		while(_sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT) {
+			//move back onto land
+			double wN = sharkGridPos.y+1 > _gridHeight-1 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1];
+			double wS = sharkGridPos.y-1 < 0 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1];
+			double wE = sharkGridPos.x+1 > _gridWidth-1 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y];
+			double wW = sharkGridPos.x-1 < 0 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y];
+			double wMin = fmin(fmin(fmin(wN,wS),wE),wW);
+			if(wN == wMin) {
+				sharkGridPos.y++;
+			}else if(wS == wMin) {
+				sharkGridPos.y--;
+			}else if(wE == wMin) {
+				sharkGridPos.x++;
+			}else if(wW == wMin) {
+				sharkGridPos.x--;
+			}
+		}
+		[shark transformPosition:ccp(sharkGridPos.x*_gridSize -_gridSize/2, sharkGridPos.y*_gridSize - _gridSize/2)];
 		
 		//first create a copy of the feature map
 		int** sharkMoveGrid = new int*[_gridWidth];
