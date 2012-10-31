@@ -5,7 +5,7 @@
 
 #import "Penguin.h"
 #import "Shark.h"
-#import "ToolboxItem_Border.h"
+#import "ToolboxItem_Obstruction.h"
 #import "ToolboxItem_Debris.h"
 #import "ToolboxItem_Windmill.h"
 #import "MovingDoodad.h"

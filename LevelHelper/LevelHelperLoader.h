@@ -77,7 +77,8 @@ enum LevelHelper_TAG
 	WINDMILL 			= 13,
 	DOODAD 			= 14,
 	DOODAD_PATH 			= 15,
-	NUMBER_OF_TAGS 	= 16
+	OBSTRUCTION 			= 16,
+	NUMBER_OF_TAGS 	= 17
 };
 
 CGSize  LHSizeFromString(NSString* val);

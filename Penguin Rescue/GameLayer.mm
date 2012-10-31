@@ -146,7 +146,7 @@
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/return.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/rotate.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place.wav"];
-	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-border.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-obstruction.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-debris.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-windmill.wav"];
 
@@ -482,7 +482,7 @@
 		//if it does, it will create the physic boundaries
 		[_levelLoader createPhysicBoundaries:_world];
 	}
-	
+		
 	//draw the background water tiles
 	LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water1" fromSheet:@"Map" fromSHFile:@"Spritesheet" tag:BACKGROUND parent:_mainLayer];
 	for(int x = -waterTile.boundingBox.size.width/2; x < winSize.width + waterTile.boundingBox.size.width/2; ) {
@@ -517,9 +517,11 @@
 	//fill in the feature grid detailing map movement info
 	NSArray* lands = [_levelLoader spritesWithTag:LAND];
 	NSArray* borders = [_levelLoader spritesWithTag:BORDER];
+	NSArray* obstructions = [_levelLoader spritesWithTag:OBSTRUCTION];
 	
 	NSMutableArray* unpassableAreas = [NSMutableArray arrayWithArray:lands];
 	[unpassableAreas addObjectsFromArray:borders];
+	[unpassableAreas addObjectsFromArray:obstructions];
 	
 	DebugLog(@"Num safe lands: %d, Num borders: %d", [lands count], [borders count]);
 	
@@ -540,8 +542,26 @@
 			}
 		}
 			
+		//all items are set as sensors to give a more natural movement feel around edges
+		if(land.tag == BORDER || land.tag == LAND) {
+			[land setSensor:true];
+		}
 
 		//DebugLog(@"Land from %d,%d to %d,%d", minX, minY, maxX, maxY);
+	}
+	
+	//add the map boundaries as borders
+	for(int x = 0; x < _gridWidth; x++) {
+		_sharkMapfeaturesGrid[x][0] = HARD_BORDER_WEIGHT;
+		_penguinMapfeaturesGrid[x][0] = HARD_BORDER_WEIGHT;
+		_sharkMapfeaturesGrid[x][_gridHeight-1] = HARD_BORDER_WEIGHT;
+		_penguinMapfeaturesGrid[x][_gridHeight-1] = HARD_BORDER_WEIGHT;
+	}
+	for(int y = 0; y < _gridHeight; y++) {
+		_sharkMapfeaturesGrid[0][y] = HARD_BORDER_WEIGHT;
+		_penguinMapfeaturesGrid[0][y] = HARD_BORDER_WEIGHT;
+		_sharkMapfeaturesGrid[_gridWidth-1][y] = HARD_BORDER_WEIGHT;
+		_penguinMapfeaturesGrid[_gridWidth-1][y] = HARD_BORDER_WEIGHT;
 	}
 
 
@@ -629,7 +649,7 @@
 	_activeToolboxItem = toolboxItem;
 			
 	_activeToolboxItemOriginalPosition = _activeToolboxItem.position;
-	ToolboxItem_Border* toolboxItemData = ((ToolboxItem_Border*)_activeToolboxItem.userInfo);	//ToolboxItem_Border is used because all ToolboxItem classes have a "scale" property
+	ToolboxItem_Obstruction* toolboxItemData = ((ToolboxItem_Obstruction*)_activeToolboxItem.userInfo);	//ToolboxItem_Obstruction is used because all ToolboxItem classes have a "scale" property
 	[_activeToolboxItem transformScale: toolboxItemData.scale];
 	DebugLog(@"Scaling up toolboxitem %@ to full-size", _activeToolboxItem.uniqueName);
 }
@@ -1498,12 +1518,12 @@
 			[_activeToolboxItem setSensor:false];
 			soundFileName = @"place-debris.wav";
 			
-		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Border"]) {
-			_activeToolboxItem.tag = BORDER;
+		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Obstruction"]) {
+			_activeToolboxItem.tag = OBSTRUCTION;
 			[_activeToolboxItem makeStatic];
-			[_activeToolboxItem setSensor:false];
+			[_activeToolboxItem setSensor:true];
 			_shouldRegenerateFeatureMaps = true;
-			soundFileName = @"place-border.wav";
+			soundFileName = @"place-obstruction.wav";
 
 		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
 			_activeToolboxItem.tag = WINDMILL;
@@ -2047,7 +2067,7 @@
 				[_activeToolboxItem transformRotation:((int)_activeToolboxItem.rotation+90)%360];
 				
 				//scale up and down for visual effect
-				ToolboxItem_Border* toolboxItemData = ((ToolboxItem_Border*)_activeToolboxItem.userInfo);	//ToolboxItem_Border is used because all ToolboxItem classes have a "scale" property
+				ToolboxItem_Obstruction* toolboxItemData = ((ToolboxItem_Obstruction*)_activeToolboxItem.userInfo);	//ToolboxItem_Obstruction is used because all ToolboxItem classes have a "scale" property
 				
 				[_activeToolboxItem runAction:[CCSequence actions:
 					[CCScaleTo actionWithDuration:0.05f scale:toolboxItemData.scale*2],
@@ -2115,6 +2135,7 @@
 
 		NSArray* lands = [_levelLoader spritesWithTag:LAND];
 		NSArray* borders = [_levelLoader spritesWithTag:BORDER];
+		NSArray* obstructions = [_levelLoader spritesWithTag:OBSTRUCTION];
 
 		ccColor4F landColor = ccc4f(0,100,0,50);
 		for(LHSprite* land in lands) {
@@ -2131,6 +2152,14 @@
 							ccp(border.boundingBox.origin.x+border.boundingBox.size.width + 8*SCALING_FACTOR_H,
 								border.boundingBox.origin.y+border.boundingBox.size.height + 8*SCALING_FACTOR_V),
 							borderColor);
+		}
+		ccColor4F obstructionsColor = ccc4f(20,100,100,50);
+		for(LHSprite* obstruction in obstructions) {
+			ccDrawSolidRect(ccp(obstruction.boundingBox.origin.x - 8*SCALING_FACTOR_H,
+								obstruction.boundingBox.origin.y - 8*SCALING_FACTOR_V),
+							ccp(obstruction.boundingBox.origin.x+obstruction.boundingBox.size.width + 8*SCALING_FACTOR_H,
+								obstruction.boundingBox.origin.y+obstruction.boundingBox.size.height + 8*SCALING_FACTOR_V),
+							obstructionsColor);
 		}
 	}
 }
