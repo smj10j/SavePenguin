@@ -587,8 +587,8 @@
 			}else if(wW == wMin) {
 				penguinGridPos.x--;
 			}
+			[penguin transformPosition:ccp(penguinGridPos.x*_gridSize -_gridSize/2, penguinGridPos.y*_gridSize - _gridSize/2)];
 		}
-		[penguin transformPosition:ccp(penguinGridPos.x*_gridSize -_gridSize/2, penguinGridPos.y*_gridSize - _gridSize/2)];
 
 		//first create a copy of the feature map
 		int** penguinMoveGrid = new int*[_gridWidth];
@@ -631,8 +631,8 @@
 			}else if(wW == wMin) {
 				sharkGridPos.x--;
 			}
+			[shark transformPosition:ccp(sharkGridPos.x*_gridSize -_gridSize/2, sharkGridPos.y*_gridSize - _gridSize/2)];
 		}
-		[shark transformPosition:ccp(sharkGridPos.x*_gridSize -_gridSize/2, sharkGridPos.y*_gridSize - _gridSize/2)];
 		
 		//first create a copy of the feature map
 		int** sharkMoveGrid = new int*[_gridWidth];
