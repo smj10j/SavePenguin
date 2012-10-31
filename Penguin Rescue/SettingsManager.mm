@@ -18,7 +18,7 @@
 	if(sSettings == nil) {
 		NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 		NSString* settingsPlistPath = [rootPath stringByAppendingPathComponent:@"UserSettings.plist"];
-		sSettings = [NSMutableDictionary dictionaryWithContentsOfFile:settingsPlistPath];
+		sSettings = [[NSMutableDictionary alloc] initWithContentsOfFile:settingsPlistPath];
 		if(sSettings == nil) {
 			sSettings = [[NSMutableDictionary alloc] init];
 		}

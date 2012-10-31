@@ -96,7 +96,7 @@
 
 +(void)updateWorldScoresFromServer:(bool)force {
 
-	NSDictionary* worldScoresDictionary = [self getWorldScoresDictionary];
+	NSDictionary* worldScoresDictionary = [self getWorldScoresDictionary:false];
 		
 	//if we have no world scores data or the last time it was updated was over 12 hours ago, request form the server
 	if(	isServerAvailable() && (
@@ -129,20 +129,25 @@
 	NSDictionary* worldScoresForLevel = [worldScores objectForKey:[NSString stringWithFormat:@"%@:%@", levelPackPath, levelPath]];
 	if(worldScoresForLevel == nil) {
 		//we need an update - this shouldn't really happen in production
+		if(DEBUG_SCORING) DebugLog(@"Forcing a sWorldScoresDictionary update from the server because we couldn't find an entry for levelPackPath=%@, levelPath=%@", levelPackPath,levelPath);
 		[self updateWorldScoresFromServer:true];
 	}
 	return worldScoresForLevel;
 }
 
-+(NSDictionary*)getWorldScoresDictionary {
-	NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	NSString* worldScoresPropertyListPath = [rootPath stringByAppendingPathComponent:@"WorldScores.plist"];
-	NSDictionary* worldScoresDictionary = [NSDictionary dictionaryWithContentsOfFile:worldScoresPropertyListPath];
-	return worldScoresDictionary;
++(NSDictionary*)getWorldScoresDictionary:(bool)forceReloadFromDisk {
+	static NSDictionary* sWorldScoresDictionary = nil;
+	if(sWorldScoresDictionary == nil || forceReloadFromDisk) {
+		NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		NSString* worldScoresPropertyListPath = [rootPath stringByAppendingPathComponent:@"WorldScores.plist"];
+		sWorldScoresDictionary = [[NSDictionary alloc] initWithContentsOfFile:worldScoresPropertyListPath];
+		if(DEBUG_SCORING) DebugLog(@"Loaded worldScoresDictionary from local plist");
+	}
+	return sWorldScoresDictionary;
 }
 
 +(NSDictionary*)getWorldScores {
-	NSDictionary* worldScoresDictionary = [self getWorldScoresDictionary];
+	NSDictionary* worldScoresDictionary = [self getWorldScoresDictionary:false];
 	return [worldScoresDictionary objectForKey:@"levels"];
 }
 
@@ -156,6 +161,7 @@
         return;
     }
 	if(DEBUG_SCORING) DebugLog(@"Saved world scores in local plist");
+	[self getWorldScoresDictionary:true];
 }
 
 +(void)savePlayForUUID:(NSString*)UUID levelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
