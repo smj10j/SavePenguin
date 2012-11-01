@@ -1879,8 +1879,7 @@
 		shark.body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), shark.body->GetWorldCenter());
 		
 		//rotate shark
-		b2Vec2 prevVel = shark.body->GetLinearVelocity();
-		double radians = atan2(prevVel.x, prevVel.y); //this grabs the radians for us
+		double radians = atan2(normalizedX, normalizedY); //this grabs the radians for us
 		double degrees = CC_RADIANS_TO_DEGREES(radians) - 90; //90 is because the sprit is facing right
 		[shark transformRotation:degrees];
 	}

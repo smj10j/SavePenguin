@@ -1761,7 +1761,7 @@
 									<key>placeCost</key>
 									<real>400</real>
 									<key>power</key>
-									<real>150</real>
+									<real>100</real>
 									<key>reach</key>
 									<real>5000</real>
 									<key>runningCost</key>
@@ -1930,7 +1930,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{356, 411}</string>
+								<string>{312.75, 411}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
