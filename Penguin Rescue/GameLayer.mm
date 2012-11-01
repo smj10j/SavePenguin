@@ -1765,12 +1765,12 @@
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
 				sharkData.isStuck = true;
-				DebugLog(@"Shark %@ is stuck (no where to go) - we're removing him", shark.uniqueName);
+				if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (no where to go) - we're removing him", shark.uniqueName);
 				//TODO: make the shark spin around in circles and explode in frustration!
 				[shark removeSelf];
 				continue;
 			}else {
-				DebugLog(@"Shark %@ is stuck (no where to go) - we're letting him keep at it", shark.uniqueName);
+				if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (no where to go) - we're letting him keep at it", shark.uniqueName);
 				bestOptionPos = ccp(shark.position.x+((arc4random()%10)-5)/10.0,shark.position.y+((arc4random()%10)-5)/10.0);
 				//TODO: make the shark show some kind of frustration (perhaps smoke in nostrils/grimac)
 			}
@@ -1794,7 +1794,7 @@
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
 				sharkData.isStuck = true;
-				DebugLog(@"Shark %@ is stuck (trying to move, but not making progress) - we're removing him", shark.uniqueName);
+				if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (trying to move, but not making progress) - we're removing him", shark.uniqueName);
 				//TODO: make the shark spin around in circles and explode in frustration!
 				[shark removeSelf];
 			}else {
@@ -1814,7 +1814,7 @@
 				dx+= jitterX;
 				dy+= jitterY;
 				sharkSpeed*= 10;
-				DebugLog(@"Shark %@ is stuck (trying to move but can't) - giving him a bit of jitter %f,%f", shark.uniqueName, jitterX, jitterY);
+				if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (trying to move but can't) - giving him a bit of jitter %f,%f", shark.uniqueName, jitterX, jitterY);
 			}
 		}
 
@@ -1880,8 +1880,8 @@
 		
 		//rotate shark
 		double radians = atan2(normalizedX, normalizedY); //this grabs the radians for us
-		double degrees = CC_RADIANS_TO_DEGREES(radians) - 90; //90 is because the sprit is facing right
-		[shark transformRotation:degrees];
+		double newRotation = ((int)(CC_RADIANS_TO_DEGREES(radians) - 90)+360)%360; //90 is because the sprite is facing right
+		[shark transformRotation:(newRotation+shark.rotation*2)/3];
 	}
 	
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done moving %d sharks...", [sharks count]);
@@ -1987,7 +1987,7 @@
 			CGPoint bestOptionPos = [penguinMoveGridData getBestMoveToTile:penguinMoveGridData.lastTargetTile fromTile:penguinGridPos];
 					
 			if(bestOptionPos.x == -10000 && bestOptionPos.y == -10000) {
-				DebugLog(@"Penguin %@ is stuck (nowhere to go)!", penguin.uniqueName);
+				if(DEBUG_MOVEGRID) DebugLog(@"Penguin %@ is stuck (nowhere to go)!", penguin.uniqueName);
 				penguinData.isStuck = true;
 				//TODO: show a confused expression. possibly raising wings into the air in a "oh well" gesture
 				
@@ -2028,7 +2028,7 @@
 				dx+= jitterX;
 				dy+= jitterY;
 				penguinSpeed*= 10;
-				DebugLog(@"Penguin %@ is stuck (trying to move but can't) - giving him a bit of jitter %f,%f", penguin.uniqueName, jitterX, jitterY);
+				if(DEBUG_MOVEGRID) DebugLog(@"Penguin %@ is stuck (trying to move but can't) - giving him a bit of jitter %f,%f", penguin.uniqueName, jitterX, jitterY);
 			}
 			
 
