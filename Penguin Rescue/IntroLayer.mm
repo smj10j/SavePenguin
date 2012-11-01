@@ -104,6 +104,10 @@
 -(void) onEnter
 {
 	[super onEnter];
+	[self scheduleOnce:@selector(showMainLayer) delay:(DISTRIBUTION_MODE ? 1.0f : 0.0f)];
+}
+
+-(void)showMainLayer {
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[MainMenuLayer scene] ]];
 }
 
