@@ -130,6 +130,7 @@
 	
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+		_levelPackPath, @"Level_Pack",
 	nil];
 	[Analytics logEvent:@"Play_Level" withParameters:flurryParams timed:YES];
 
@@ -717,6 +718,7 @@
 			
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+				_levelPackPath, @"Level_Pack",
 				_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
 				_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
 				_state, @"Game_State",
@@ -799,6 +801,7 @@
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+		_levelPackPath, @"Level_Pack",
 	nil];
 	[Analytics logEvent:@"Click_Restart" withParameters:flurryParams];
 
@@ -821,6 +824,7 @@
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+		_levelPackPath, @"Level_Pack",
 	nil];
 	[Analytics logEvent:@"Click_Main_Menu" withParameters:flurryParams];
 	
@@ -845,6 +849,7 @@
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+		_levelPackPath, @"Level_Pack",
 	nil];
 	[Analytics logEvent:@"Click_Levels_Menu" withParameters:flurryParams];
 
@@ -868,6 +873,7 @@
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+		_levelPackPath, @"Level_Pack",
 	nil];
 	[Analytics logEvent:@"Click_Next_Level" withParameters:flurryParams];
 
@@ -883,6 +889,7 @@
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+		_levelPackPath, @"Level_Pack",
 	nil];
 	[Analytics logEvent:@"Click_Tutorial" withParameters:flurryParams];
 
@@ -907,6 +914,7 @@
 		//analytics logging
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 			[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+			_levelPackPath, @"Level_Pack",
 		nil];
 		[Analytics logEvent:@"Pause_level" withParameters:flurryParams];
 	}
@@ -962,6 +970,7 @@
 		//analytics loggin
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 			[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+			_levelPackPath, @"Level_Pack",
 		nil];
 		[Analytics logEvent:@"Resume_level" withParameters:flurryParams];
 
@@ -983,6 +992,7 @@
 		//analytics logging
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 			[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+			_levelPackPath, @"Level_Pack",
 		nil];
 		[Analytics logEvent:@"Start_level" withParameters:flurryParams];
 
@@ -1592,6 +1602,7 @@
 		//analytics logging
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 			[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+			_levelPackPath, @"Level_Pack",
 			_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
 			_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
 			_state, @"Game_State",
@@ -1623,6 +1634,7 @@
 			
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+				_levelPackPath, @"Level_Pack",
 			nil];
 			[Analytics logEvent:@"Debug_Sharks_Enabled" withParameters:flurryParams];
 			
@@ -1640,6 +1652,7 @@
 			
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+				_levelPackPath, @"Level_Pack",
 			nil];
 			[Analytics logEvent:@"Debug_Penguins_Enabled" withParameters:flurryParams];
 		}
@@ -1656,6 +1669,7 @@
 			
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+				_levelPackPath, @"Level_Pack",
 			nil];
 			[Analytics logEvent:@"Disable_Debug_Penguins_and_Sharks" withParameters:flurryParams];
 		}
