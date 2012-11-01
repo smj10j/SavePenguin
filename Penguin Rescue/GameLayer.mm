@@ -1823,6 +1823,7 @@
 
 		//TODO: this is inefficient because it casts much more often than it needs to. optimize if need be
 		//adjust the shark speed by any movement altering affects in play (such as windmills)
+		float32 minWindmillFraction = 1;
 		NSArray* windmills = [_levelLoader spritesWithTag:WINDMILL];
 		for(LHSprite* windmill in windmills) {
 			ToolboxItem_Windmill* windmillData = ((ToolboxItem_Windmill*)windmill.userInfo);
@@ -1839,7 +1840,10 @@
 			_world->RayCast(&callback, windmillPos, directionVector);
 			 
 			if (callback._fixture) {
-				if (callback._fixture->GetBody() == shark.body) {
+				if (callback._fixture->GetBody() == shark.body && callback._fraction < minWindmillFraction) {
+				
+					minWindmillFraction = callback._fraction;
+				
 					//shark is in the way!!
 					//DebugLog(@"Shark %@ is in the way of a windmill %@! Applying effects...", shark.uniqueName, windmill.uniqueName);
 					
@@ -1848,8 +1852,8 @@
 						dModSum = 1;
 					}					
 					
-					dxMod+= (xDir/dModSum)*(windmillData.power);
-					dyMod+= (yDir/dModSum)*(windmillData.power);
+					dxMod = (xDir/dModSum)*(windmillData.power);
+					dyMod = (yDir/dModSum)*(windmillData.power);
 					
 					
 					[sharkMoveGridData scheduleUpdateToMoveGridIn:0.25f];
@@ -2034,6 +2038,7 @@
 
 			//TODO: this is inefficient because it casts much more often than it needs to. optimize if need be
 			//adjust the penguin speed by any movement altering affects in play (such as windmills)
+			float32 minWindmillFraction = 1;
 			NSArray* windmills = [_levelLoader spritesWithTag:WINDMILL];
 			for(LHSprite* windmill in windmills) {
 				ToolboxItem_Windmill* windmillData = ((ToolboxItem_Windmill*)windmill.userInfo);
@@ -2050,7 +2055,10 @@
 				_world->RayCast(&callback, windmillPos, directionVector);
 				 
 				if (callback._fixture) {
-					if (callback._fixture->GetBody() == penguin.body) {
+					if (callback._fixture->GetBody() == penguin.body && callback._fraction < minWindmillFraction) {
+					
+						minWindmillFraction = callback._fraction;
+					
 						//shark is in the way!!
 						//DebugLog(@"Penguin %@ is in the way of a windmill %@! Applying effects...", penguin.uniqueName, windmill.uniqueName);
 						
@@ -2059,8 +2067,8 @@
 							dModSum = 1;
 						}					
 						
-						dxMod+= (xDir/dModSum)*(windmillData.power);
-						dyMod+= (yDir/dModSum)*(windmillData.power);
+						dxMod = (xDir/dModSum)*(windmillData.power);
+						dyMod = (yDir/dModSum)*(windmillData.power);
 						
 						[penguinMoveGridData scheduleUpdateToMoveGridIn:0.25f];
 					}
