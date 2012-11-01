@@ -748,6 +748,7 @@
 
 -(void)onTouchBeganPlayPause:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+	if(_activeToolboxItem != nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 		
 	__DEBUG_TOUCH_SECONDS = [[NSDate date] timeIntervalSince1970];
@@ -755,6 +756,7 @@
 
 -(void)onTouchEndedPlayPause:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+	if(_activeToolboxItem != nil) return;
 
 	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
@@ -781,12 +783,14 @@
 
 -(void)onTouchBeganRestart:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+	if(_activeToolboxItem != nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 	//DebugLog(@"Touch began restart on GameLayer instance %f with _state=%d", _instanceId, _state);
 }
 
 -(void)onTouchEndedRestart:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
+	if(_activeToolboxItem != nil) return;
 
 	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
@@ -973,6 +977,8 @@
 		[sprite stopAnimation];
 		[sprite stopPathMovement];
 	}
+	
+	_activeToolboxItem = nil;
 		
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -1139,6 +1145,8 @@
 		[sprite stopAnimation];
 		[sprite stopPathMovement];
 	}
+	
+	_activeToolboxItem = nil;
 
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
