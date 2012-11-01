@@ -1583,6 +1583,7 @@
 		if(elapsed >= 1 && !__DEBUG_SHARKS) {
 			DebugLog(@"Enabling debug sharks");
 			__DEBUG_SHARKS = true;
+			__DEBUG_PENGUINS = false;
 			__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
 			self.color = ccBLACK;
 			NSArray* backgrounds = [_levelLoader spritesWithTag:BACKGROUND];
@@ -1600,6 +1601,7 @@
 		if(elapsed >= 2 && !__DEBUG_PENGUINS) {
 			DebugLog(@"Enabling debug penguins");
 			__DEBUG_PENGUINS = true;
+			__DEBUG_SHARKS = false;
 			__DEBUG_ORIG_BACKGROUND_COLOR = self.color;
 			self.color = ccBLACK;
 			NSArray* backgrounds = [_levelLoader spritesWithTag:BACKGROUND];
@@ -1703,7 +1705,8 @@
 	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Moving %d sharks...", [sharks count]);
 	
-	if([sharks count] == 0) {
+	
+	if(SHARK_DIES_WHEN_STUCK && [sharks count] == 0) {
 		//winna winna chicken dinna!
 		[self levelWon];
 		return;
@@ -1715,20 +1718,22 @@
 		Shark* sharkData = ((Shark*)shark.userInfo);
 		CGPoint sharkGridPos = [self toGrid:shark.position];
 
-		if(sharkGridPos.x >= _gridWidth || sharkGridPos.x < 0 || sharkGridPos.y >= _gridHeight || sharkGridPos.y < 0) {
-			DebugLog(@"Shark %@ is offscreen at %f,%f - moving him back on", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
+		if(sharkGridPos.x > _gridWidth-2 || sharkGridPos.x < 1 || sharkGridPos.y > _gridHeight-2 || sharkGridPos.y < 1) {
+			DebugLog(@"Shark %@ is off-grid at %f,%f - moving him back on", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
 			
-			if(sharkGridPos.x > _gridWidth-1) {
-				sharkGridPos.x--;
+			//using a gridPos of 1 inside the actual border because of a programmatically-added HARD BORDER around the grid
+
+			if(sharkGridPos.x > _gridWidth-2) {
+				sharkGridPos.x-= 2;
 				[shark transformPosition:ccp(shark.position.x-8*SCALING_FACTOR_H,shark.position.y)];
-			}else if(sharkGridPos.x < 0) {
-				sharkGridPos.x++;
+			}else if(sharkGridPos.x < 1) {
+				sharkGridPos.x+= 2;
 				[shark transformPosition:ccp(shark.position.x+8*SCALING_FACTOR_H,shark.position.y)];
-			}else if(sharkGridPos.y > _gridHeight-1) {
-				sharkGridPos.y--;
+			}else if(sharkGridPos.y > _gridHeight-2) {
+				sharkGridPos.y-= 2;
 				[shark transformPosition:ccp(shark.position.x,shark.position.y-8*SCALING_FACTOR_V)];
-			}else if(sharkGridPos.y < 0) {
-				sharkGridPos.y++;
+			}else if(sharkGridPos.y < 1) {
+				sharkGridPos.y+= 2;
 				[shark transformPosition:ccp(shark.position.x,shark.position.y+8*SCALING_FACTOR_V)];
 			}
 			
@@ -1814,7 +1819,7 @@
 				dx+= jitterX;
 				dy+= jitterY;
 				sharkSpeed*= 10;
-				if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (trying to move but can't) - giving him a bit of jitter %f,%f", shark.uniqueName, jitterX, jitterY);
+				//if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (trying to move but can't) - giving him a bit of jitter %f,%f", shark.uniqueName, jitterX, jitterY);
 			}
 		}
 
@@ -1917,20 +1922,22 @@
 			continue;
 		}
 		
-		if(penguinGridPos.x > _gridWidth-1 || penguinGridPos.x < 0 || penguinGridPos.y > _gridHeight-1 || penguinGridPos.y < 0) {
-			DebugLog(@"Penguin %@ is offscreen at %f,%f - moving him back on", penguin.uniqueName, penguinGridPos.x, penguinGridPos.y);
+		if(penguinGridPos.x > _gridWidth-2 || penguinGridPos.x < 1 || penguinGridPos.y > _gridHeight-2 || penguinGridPos.y < 1) {
+			DebugLog(@"Penguin %@ is off-grid at %f,%f - moving him back on", penguin.uniqueName, penguinGridPos.x, penguinGridPos.y);
 			
-			if(penguinGridPos.x > _gridWidth-1) {
-				penguinGridPos.x--;
+			//using a gridPos of 1 inside the actual border because of a programmatically-added HARD BORDER around the grid
+			
+			if(penguinGridPos.x > _gridWidth-2) {
+				penguinGridPos.x-= 2;
 				[penguin transformPosition:ccp(penguin.position.x-8*SCALING_FACTOR_H,penguin.position.y)];
-			}else if(penguinGridPos.x < 0) {
-				penguinGridPos.x++;
+			}else if(penguinGridPos.x < 1) {
+				penguinGridPos.x+= 2;
 				[penguin transformPosition:ccp(penguin.position.x+8*SCALING_FACTOR_H,penguin.position.y)];
-			}else if(penguinGridPos.y > _gridHeight-1) {
-				penguinGridPos.y--;
+			}else if(penguinGridPos.y > _gridHeight-2) {
+				penguinGridPos.y-= 2;
 				[penguin transformPosition:ccp(penguin.position.x,penguin.position.y-8*SCALING_FACTOR_V)];
-			}else if(penguinGridPos.y < 0) {
-				penguinGridPos.y++;
+			}else if(penguinGridPos.y < 1) {
+				penguinGridPos.y+= 2;
 				[penguin transformPosition:ccp(penguin.position.x,penguin.position.y+8*SCALING_FACTOR_V)];
 			}
 			
@@ -2013,14 +2020,6 @@
 				
 				//TODO: do a flustered/feathers flying everywhere animation
 
-				//there's something fishy about them here parts!
-				if(penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] != HARD_BORDER_WEIGHT)
-					penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y]+=5;
-				if(penguinGridPos.x > 0 && penguinMoveGridData.baseGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y] != HARD_BORDER_WEIGHT) penguinMoveGridData.baseGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y]+=5;
-				if(penguinGridPos.x < _gridWidth-1 &&  penguinMoveGridData.baseGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y] != HARD_BORDER_WEIGHT) penguinMoveGridData.baseGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y]+=5;
-				if(penguinGridPos.y > 0 && penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1] != HARD_BORDER_WEIGHT) penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1]+=5;
-				if(penguinGridPos.y < _gridHeight-1 && penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1] != HARD_BORDER_WEIGHT) penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1]+=5;
-
 				
 				double jitterX = 0;//((arc4random()%200)-100.0)/100;
 				double jitterY = 0;//((arc4random()%200)-100.0)/100;
@@ -2028,7 +2027,7 @@
 				dx+= jitterX;
 				dy+= jitterY;
 				penguinSpeed*= 10;
-				if(DEBUG_MOVEGRID) DebugLog(@"Penguin %@ is stuck (trying to move but can't) - giving him a bit of jitter %f,%f", penguin.uniqueName, jitterX, jitterY);
+				//if(DEBUG_MOVEGRID) DebugLog(@"Penguin %@ is stuck (trying to move but can't) - giving him a bit of jitter %f,%f", penguin.uniqueName, jitterX, jitterY);
 			}
 			
 
@@ -2235,13 +2234,13 @@
 			for(int y = 0; y < _gridHeight; y++) {
 				if(__DEBUG_PENGUINS && penguinMoveGrid != nil) {
 					int pv = (penguinMoveGrid[x][y]);
-					ccDrawColor4B(55,55,(log(pv/max * 100)/2)*200+55,50);
+					ccDrawColor4B(55,55,(log(pv/max * 100)/2.0)*200+55,50);
 					ccDrawPoint( ccp(x*_gridSize+_gridSize/2, y*_gridSize+_gridSize/2) );
 				}
 				if(__DEBUG_SHARKS && sharkMoveGrid != nil) {
 					int sv = (sharkMoveGrid[x][y]);
 					ccDrawColor4B((log(sv/max * 100)/2)*200+55,55,55,50);
-					ccDrawPoint( ccp(x*_gridSize + _gridSize/2, y*_gridSize + _gridSize/2) );
+					ccDrawPoint( ccp(x*_gridSize + _gridSize/2.0, y*_gridSize + _gridSize/2) );
 				}
 			}
 		}	

@@ -531,7 +531,7 @@
 									<key>detectionRadius</key>
 									<true/>
 									<key>hasSpottedShark</key>
-									<true/>
+									<false/>
 									<key>isDead</key>
 									<true/>
 									<key>isSafe</key>
@@ -550,7 +550,7 @@
 									<key>detectionRadius</key>
 									<real>2048</real>
 									<key>hasSpottedShark</key>
-									<false/>
+									<true/>
 									<key>isDead</key>
 									<false/>
 									<key>isSafe</key>
@@ -722,9 +722,9 @@
 								<key>SpriteSize</key>
 								<string>{70, 31.25}</string>
 								<key>Tag</key>
-								<integer>2</integer>
+								<integer>0</integer>
 								<key>TagName</key>
-								<string>SHARK</string>
+								<string>DEFAULT</string>
 								<key>TextureOffset</key>
 								<string>{0.375, -0.125}</string>
 								<key>UniqueName</key>
