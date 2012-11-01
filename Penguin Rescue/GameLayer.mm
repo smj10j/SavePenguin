@@ -1801,11 +1801,12 @@
 				//TODO: do a confused/arms up in air animation
 				
 				//there's something fishy about them here parts!
-				sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y]+=5;
-				if(sharkGridPos.x > 0) sharkMoveGridData.baseGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y]+=5;
-				if(sharkGridPos.x < _gridWidth-1) sharkMoveGridData.baseGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y]+=5;
-				if(sharkGridPos.y > 0) sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1]+=5;
-				if(sharkGridPos.y < _gridHeight-1) sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1]+=5;
+				if(sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] != HARD_BORDER_WEIGHT)
+					sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y]+=5;
+				if(sharkGridPos.x > 0 && sharkMoveGridData.baseGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y] != HARD_BORDER_WEIGHT) sharkMoveGridData.baseGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y]+=5;
+				if(sharkGridPos.x < _gridWidth-1 && sharkMoveGridData.baseGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y] != HARD_BORDER_WEIGHT) sharkMoveGridData.baseGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y]+=5;
+				if(sharkGridPos.y > 0 && sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1] != HARD_BORDER_WEIGHT) sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1]+=5;
+				if(sharkGridPos.y < _gridHeight-1 && sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1] != HARD_BORDER_WEIGHT) sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1]+=5;
 				
 				double jitterX = 0;//((arc4random()%200)-100.0)/100;
 				double jitterY = 0;//((arc4random()%200)-100.0)/100;
@@ -2010,11 +2011,12 @@
 				//TODO: do a flustered/feathers flying everywhere animation
 
 				//there's something fishy about them here parts!
-				penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y]+=5;
-				if(penguinGridPos.x > 0) penguinMoveGridData.baseGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y]+=5;
-				if(penguinGridPos.x < _gridWidth-1) penguinMoveGridData.baseGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y]+=5;
-				if(penguinGridPos.y > 0) penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1]+=5;
-				if(penguinGridPos.y < _gridHeight-1) penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1]+=5;
+				if(penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] != HARD_BORDER_WEIGHT)
+					penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y]+=5;
+				if(penguinGridPos.x > 0 && penguinMoveGridData.baseGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y] != HARD_BORDER_WEIGHT) penguinMoveGridData.baseGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y]+=5;
+				if(penguinGridPos.x < _gridWidth-1 &&  penguinMoveGridData.baseGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y] != HARD_BORDER_WEIGHT) penguinMoveGridData.baseGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y]+=5;
+				if(penguinGridPos.y > 0 && penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1] != HARD_BORDER_WEIGHT) penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1]+=5;
+				if(penguinGridPos.y < _gridHeight-1 && penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1] != HARD_BORDER_WEIGHT) penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1]+=5;
 
 				
 				double jitterX = 0;//((arc4random()%200)-100.0)/100;
