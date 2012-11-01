@@ -11,7 +11,7 @@ public:
 			
 		if([LHSprite tagForBody:fixture->GetBody()] == WINDMILL) {
 			//allow windmills to pass through eachother
-			return _fraction;
+			return _fraction > 0 ? _fraction : 1;
 		}
 		
         _fixture = fixture;        
