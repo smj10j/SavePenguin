@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "SettingsManager.h"
 #import "SimpleAudioEngine.h"
+#import "Analytics.h"
 #import "Utilities.h"
 #import "APIManager.h"
 
@@ -75,12 +76,13 @@
 			//first run
 			
 			//set up the default user preferences
-			[SettingsManager setBool:true forKey:@"SoundEnabled"];
-			[SettingsManager setBool:true forKey:@"MusicEnabled"];
-			
+			[SettingsManager setBool:true forKey:SETTING_SOUND_ENABLED];
+			[SettingsManager setBool:true forKey:SETTING_MUSIC_ENABLED];
+			[SettingsManager setInt:1 forKey:SETTING_NUM_APP_OPENS];
 			
 		}
 		[APIManager createUser];
+		[Analytics setUserId:[SettingsManager getUUID]];
 		DebugLog(@"Launching with uuid=%@", [SettingsManager getUUID]);
 		
 		//set our current version (can be used in future version to test for update
@@ -91,6 +93,7 @@
 		
 		//set our boot time (can be used for applying settings on updates
 		[SettingsManager setDouble:[[NSDate date] timeIntervalSince1970] forKey:SETTING_LAST_RUN_TIMESTAMP];
+		[SettingsManager setInt:([SettingsManager intForKey:SETTING_NUM_APP_OPENS]+1) forKey:SETTING_NUM_APP_OPENS];
 	}
 	
 	if(DEBUG_MEMORY) DebugLog(@"Initialized IntroLayer");	

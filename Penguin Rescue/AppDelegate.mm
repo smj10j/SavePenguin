@@ -14,6 +14,7 @@
 #import "Reachability.h"
 #import "Utilities.h"
 #import "ScoreKeeper.h"
+#import "Analytics.h"
 
 @implementation AppController
 
@@ -26,6 +27,7 @@
 	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 	
 	//start analytics
+	[Analytics startAnalytics];
 	
 	// Create the main window
 	_window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -231,7 +233,7 @@
 //send uncaught exceptions to Flurry
 void uncaughtExceptionHandler(NSException *exception) {
 	DebugLog(@"Uncaught exception: %@ - %@", exception.name, exception.reason);
-	[Utilities logError:@"Uncaught" message:@"Crash!" exception:exception];
+	[Analytics logError:@"Uncaught" message:@"Crash!" exception:exception];
 }
 
 

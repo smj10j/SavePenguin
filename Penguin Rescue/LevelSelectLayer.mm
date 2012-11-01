@@ -16,6 +16,7 @@
 #import "SimpleAudioEngine.h"
 #import "CCScrollLayer.h"
 #import "Utilities.h"
+#import "Analytics.h"
 
 
 #pragma mark - LevelSelectLayer
@@ -199,6 +200,12 @@
 	// finally add the scroller to your scene
 	[self addChild:_scrollLayer];
 	
+	
+	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+		_levelPackPath, @"Level_Pack",
+	nil];
+	[Analytics logEvent:@"View_Level_Pack" withParameters:flurryParams];
+
 }
 
 

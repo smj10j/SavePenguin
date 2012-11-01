@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
-#import "Utilities.h"
+#import "Analytics.h"
 
 int main(int argc, char *argv[]) {
     
@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
     @catch (NSException *exception) {
         DebugLog(@"CRASH: %@", exception);
         DebugLog(@"Stack Trace: %@", [exception callStackSymbols]);
-		[Utilities logError:@"Uncaught" message:@"Crash!" exception:exception];
+		[Analytics logError:@"Uncaught" message:@"Crash!" exception:exception];
     }
     @finally {
         [pool release];

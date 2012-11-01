@@ -16,6 +16,7 @@
 #import "SimpleAudioEngine.h"
 #import "CCScrollLayer.h"
 #import "Utilities.h"
+#import "Analytics.h"
 
 #pragma mark - LevelPackSelectLayer
 
@@ -59,6 +60,8 @@
 		[backButton registerTouchEndedObserver:self selector:@selector(onTouchEndedBack:)];
 		
 		[self loadLevelPacks];
+		
+		[Analytics logEvent:@"View_Level_Packs"];
 	}
 	
 	if(DEBUG_MEMORY) DebugLog(@"Initialized LevelPackSelectLayer");

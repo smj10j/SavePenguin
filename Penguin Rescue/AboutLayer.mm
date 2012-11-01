@@ -14,6 +14,7 @@
 #import "SettingsManager.h"
 #import "SimpleAudioEngine.h"
 #import "Utilities.h"
+#import "Analytics.h"
 
 #pragma mark - AboutLayer
 
@@ -79,6 +80,9 @@
 											20*SCALING_FACTOR_V + backButton.boundingBox.size.height/2)];
 		[backButton registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
 		[backButton registerTouchEndedObserver:self selector:@selector(onBack:)];
+
+
+		[Analytics logEvent:@"View_About"];
 
 	}
 	

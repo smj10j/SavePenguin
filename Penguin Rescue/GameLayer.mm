@@ -25,6 +25,7 @@
 
 #import "WindmillRaycastCallback.h"
 #import "Utilities.h"
+#import "Analytics.h"
 
 #pragma mark - GameLayer
 
@@ -131,7 +132,7 @@
 		_levelPath, @"Level_Name",
 		_levelPackPath, @"Level_Pack",
 	nil];
-	[Utilities logEvent:@"Play_Level" withParameters:flurryParams timed:YES];
+	[Analytics logEvent:@"Play_Level" withParameters:flurryParams timed:YES];
 
 	if(DEBUG_MEMORY) DebugLog(@"GameLayer %f level loaded", _instanceId);
 	if(DEBUG_MEMORY) report_memory();
@@ -720,8 +721,9 @@
 				_levelPackPath, @"Level_Pack",
 				_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
 				_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
+				_state, @"Game_State",
 			nil];
-			[Utilities logEvent:@"Undo_Place_Toolbox_Item" withParameters:flurryParams];		
+			[Analytics logEvent:@"Undo_Place_Toolbox_Item" withParameters:flurryParams];
 			
 			_activeToolboxItem = nil;
 			
@@ -796,6 +798,13 @@
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
 	}
 	
+	//analytics logging
+	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+		_levelPath, @"Level_Name", 
+		_levelPackPath, @"Level_Pack",
+	nil];
+	[Analytics logEvent:@"Click_Restart" withParameters:flurryParams];
+
 	[self restart];
 }
 
@@ -811,6 +820,13 @@
 	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
 	}
+	
+	//analytics logging
+	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+		_levelPath, @"Level_Name", 
+		_levelPackPath, @"Level_Pack",
+	nil];
+	[Analytics logEvent:@"Click_Main_Menu" withParameters:flurryParams];
 	
 	[self showMainMenuLayer];
 }
@@ -829,6 +845,14 @@
 	}
 	
 	//DebugLog(@"Touch ended levels menu on GameLayer instance %f with _state=%d", _instanceId, _state);
+
+	//analytics logging
+	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+		_levelPath, @"Level_Name", 
+		_levelPackPath, @"Level_Pack",
+	nil];
+	[Analytics logEvent:@"Click_Levels_Menu" withParameters:flurryParams];
+
 	
 	[self showLevelsMenuLayer];
 }
@@ -846,6 +870,14 @@
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
 	}
 	
+	//analytics logging
+	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+		_levelPath, @"Level_Name", 
+		_levelPackPath, @"Level_Pack",
+	nil];
+	[Analytics logEvent:@"Click_Next_Level" withParameters:flurryParams];
+
+	
 	[self goToNextLevel];
 }
 
@@ -853,6 +885,14 @@
 	if(info.sprite == nil) return;
 	DebugLog(@"Touch began tutorial on GameLayer instance %f with _state=%d", _instanceId, _state);
 	[self fadeOutAllTutorials];
+	
+	//analytics logging
+	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+		_levelPath, @"Level_Name", 
+		_levelPackPath, @"Level_Pack",
+	nil];
+	[Analytics logEvent:@"Click_Tutorial" withParameters:flurryParams];
+
 }
 
 
@@ -876,7 +916,7 @@
 			_levelPath, @"Level_Name", 
 			_levelPackPath, @"Level_Pack",
 		nil];
-		[Utilities logEvent:@"Pause_level" withParameters:flurryParams];		
+		[Analytics logEvent:@"Pause_level" withParameters:flurryParams];
 	}
 	[self showInGameMenu];
 }
@@ -932,7 +972,7 @@
 			_levelPath, @"Level_Name", 
 			_levelPackPath, @"Level_Pack",
 		nil];
-		[Utilities logEvent:@"Resume_level" withParameters:flurryParams];		
+		[Analytics logEvent:@"Resume_level" withParameters:flurryParams];
 
 		[self hideInGameMenu];
 			
@@ -954,7 +994,7 @@
 			_levelPath, @"Level_Name", 
 			_levelPackPath, @"Level_Pack",
 		nil];
-		[Utilities logEvent:@"Start_level" withParameters:flurryParams];
+		[Analytics logEvent:@"Start_level" withParameters:flurryParams];
 
 	}
 	
@@ -984,7 +1024,7 @@
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"Won", @"Level_Status",
 	nil];
-	[Utilities endTimedEvent:@"Play_Level" withParameters:flurryParams];
+	[Analytics endTimedEvent:@"Play_Level" withParameters:flurryParams];
 	
 	DebugLog(@"Showing level won animations");
 	
@@ -1153,7 +1193,7 @@
 		@"Lost", @"Level_Status",
 		@"Shark Collision", @"Level_Lost_Reason",
 	nil];
-	[Utilities endTimedEvent:@"Play_Level" withParameters:flurryParams];
+	[Analytics endTimedEvent:@"Play_Level" withParameters:flurryParams];
 
 	DebugLog(@"Showing level lost animations for penguin/shark collision");
 	
@@ -1217,7 +1257,7 @@
 		@"Lost", @"Level_Status",
 		@"Restart", @"Level_Lost_Reason",
 	nil];
-	[Utilities endTimedEvent:@"Play_Level" withParameters:flurryParams];
+	[Analytics endTimedEvent:@"Play_Level" withParameters:flurryParams];
 
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:_levelPath]]];
 }
@@ -1565,9 +1605,10 @@
 			_levelPackPath, @"Level_Pack",
 			_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
 			_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
+			_state, @"Game_State",
 			NSStringFromCGPoint(_activeToolboxItem.position), @"Location",
 		nil];
-		[Utilities logEvent:@"Place_Toolbox_Item" withParameters:flurryParams];				
+		[Analytics logEvent:@"Place_Toolbox_Item" withParameters:flurryParams];
 
 		if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 			[[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"sounds/game/toolbox/%@", soundFileName ]];
@@ -1595,7 +1636,7 @@
 				_levelPath, @"Level_Name", 
 				_levelPackPath, @"Level_Pack",
 			nil];
-			[Utilities logEvent:@"Debug_Sharks_Enabled" withParameters:flurryParams];		
+			[Analytics logEvent:@"Debug_Sharks_Enabled" withParameters:flurryParams];
 			
 		}
 		if(elapsed >= 2 && !__DEBUG_PENGUINS) {
@@ -1613,7 +1654,7 @@
 				_levelPath, @"Level_Name", 
 				_levelPackPath, @"Level_Pack",
 			nil];
-			[Utilities logEvent:@"Debug_Penguins_Enabled" withParameters:flurryParams];		
+			[Analytics logEvent:@"Debug_Penguins_Enabled" withParameters:flurryParams];
 		}
 		if(elapsed >= 5 && (__DEBUG_PENGUINS || __DEBUG_SHARKS)) {
 			DebugLog(@"Disable debug penguins and sharks");
@@ -1630,7 +1671,7 @@
 				_levelPath, @"Level_Name", 
 				_levelPackPath, @"Level_Pack",
 			nil];
-			[Utilities logEvent:@"Disable_Debug_Penguins_and_Sharks" withParameters:flurryParams];		
+			[Analytics logEvent:@"Disable_Debug_Penguins_and_Sharks" withParameters:flurryParams];
 		}
 	}
 	

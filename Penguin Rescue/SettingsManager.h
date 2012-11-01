@@ -43,6 +43,7 @@
 #define SETTING_HAS_SEEN_TUTORIAL_3 @"HasSeenTutorial3"
 
 #define SETTING_LAST_RUN_TIMESTAMP @"LastRunTimestamp"
+#define SETTING_NUM_APP_OPENS @"NumAppOpens"
 
 #define SETTING_HAS_CREATED_UUID_ON_SERVER @"HasCreatedUUIDOnServer"
 

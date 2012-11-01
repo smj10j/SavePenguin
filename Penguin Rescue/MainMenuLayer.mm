@@ -14,6 +14,7 @@
 #import "GameLayer.h"
 #import "SimpleAudioEngine.h"
 #import "Utilities.h"
+#import "Analytics.h"
 
 
 #pragma mark - MainMenuLayer
@@ -107,6 +108,9 @@
 			[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sounds/menu/background.wav"];
 			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/background.wav" loop:YES];
 		}
+
+
+		[Analytics logEvent:@"View_Main_Menu"];
 	}
 	
 	if(DEBUG_MEMORY) DebugLog(@"Initialized MainMenuLayer");
@@ -158,8 +162,12 @@
 
 	if(isSoundEnabled) {
 		[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
+
+		[Analytics logEvent:@"Sound_Disabled"];
 	}else {
 		[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
+
+		[Analytics logEvent:@"Sound_Enabled"];
 	}
 	
 	[SettingsManager setBool:!isSoundEnabled forKey:SETTING_SOUND_ENABLED];
@@ -184,9 +192,14 @@
 	if(isMusicEnabled) {
 		[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
 		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+	
+		[Analytics logEvent:@"Background_Music_Disabled"];
+	
 	}else {
 		[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/background.wav" loop:YES];
+
+		[Analytics logEvent:@"Background_Music_Enabled"];
 	}
 	
 	
