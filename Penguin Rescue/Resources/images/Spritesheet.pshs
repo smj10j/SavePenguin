@@ -4553,14 +4553,50 @@
 								<key>Category</key>
 								<integer>1</integer>
 								<key>Density</key>
-								<real>0.60000002384185791</real>
+								<real>0.20000000298023224</real>
 								<key>Fixture</key>
 								<array>
 									<array>
-										<string>{-8.9380746254874346, -12.973498773229764}</string>
-										<string>{9.2936359120383472, -12.973498773229764}</string>
-										<string>{9.2936359120383472, 9.5534209829077099}</string>
-										<string>{-8.9380746254874346, 9.5534209829077099}</string>
+										<string>{-4.9935242707206626, 18.784327903051334}</string>
+										<string>{-11.74741015405219, 14.691063731335262}</string>
+										<string>{-11.74741015405219, 13.872410896992051}</string>
+										<string>{8.5142474959423851, 14.895726939921076}</string>
+										<string>{4.4209833242263201, 19.193654320222947}</string>
+									</array>
+									<array>
+										<string>{8.5142474959423851, 14.895726939921076}</string>
+										<string>{-11.74741015405219, 13.872410896992051}</string>
+										<string>{-15.22668470001085, 1.797281590429634}</string>
+									</array>
+									<array>
+										<string>{16.086786213617131, 2.4112712161870462}</string>
+										<string>{8.5142474959423851, 14.895726939921076}</string>
+										<string>{-15.22668470001085, 1.797281590429634}</string>
+									</array>
+									<array>
+										<string>{16.086786213617131, 2.4112712161870462}</string>
+										<string>{-15.22668470001085, 1.797281590429634}</string>
+										<string>{-16.250000742939868, -3.5239618328012767}</string>
+									</array>
+									<array>
+										<string>{16.086786213617131, 2.4112712161870462}</string>
+										<string>{-16.250000742939868, -3.5239618328012767}</string>
+										<string>{-9.6775936042006734, -15.41121664503811}</string>
+									</array>
+									<array>
+										<string>{16.086786213617131, 2.4112712161870462}</string>
+										<string>{-9.6775936042006734, -15.41121664503811}</string>
+										<string>{0.9417087782676532, -19.487692102493952}</string>
+									</array>
+									<array>
+										<string>{16.086786213617131, 2.4112712161870462}</string>
+										<string>{0.9417087782676532, -19.487692102493952}</string>
+										<string>{9.9324995860732201, -15.607085723092951}</string>
+									</array>
+									<array>
+										<string>{16.086786213617131, 2.4112712161870462}</string>
+										<string>{9.9324995860732201, -15.607085723092951}</string>
+										<string>{17.724091882303568, -2.5006457898722516}</string>
 									</array>
 								</array>
 								<key>Friction</key>
@@ -4568,40 +4604,48 @@
 								<key>Group</key>
 								<integer>0</integer>
 								<key>Height</key>
-								<real>161</real>
+								<real>0.0</real>
 								<key>HolesPoints</key>
 								<array/>
 								<key>IsCircle</key>
 								<false/>
 								<key>IsRectangle</key>
-								<true/>
+								<false/>
 								<key>IsSensor</key>
 								<false/>
 								<key>LHHeight</key>
-								<real>40.25</real>
+								<real>0.0</real>
 								<key>LHShapePositionOffset</key>
 								<string>{-16.75, -20.375}</string>
 								<key>LHWidth</key>
-								<real>34.25</real>
+								<real>0.0</real>
 								<key>Mask</key>
-								<integer>65521</integer>
+								<integer>65535</integer>
 								<key>Name</key>
-								<string>UntitledFixture</string>
+								<string>UntitledFixture_1</string>
 								<key>Restitution</key>
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{31.247701498050262, 43.286316068369175}</string>
-									<string>{104.17454364815339, 43.286316068369175}</string>
-									<string>{104.17454364815339, 133.39399509291906}</string>
-									<string>{31.247701498050262, 133.39399509291906}</string>
+									<string>{20.01035938379124, 22.735745074658951}</string>
+									<string>{47.025902917117349, 6.3626883877946625}</string>
+									<string>{84.68393329690528, 4.7253827191082109}</string>
+									<string>{101.05698998376954, 21.917092240315696}</string>
+									<string>{131.34714485446852, 71.854915135251815}</string>
+									<string>{137.89636752921427, 91.502583159489006}</string>
+									<string>{106.72999834429288, 143.9283428923718}</string>
+									<string>{70.766835113070613, 159.45076840997581}</string>
+									<string>{28.289625583197306, 143.14486658015244}</string>
+									<string>{1.9999970282405286, 95.595847331205107}</string>
+									<string>{6.0932611999566006, 74.310873638281464}</string>
+									<string>{20.01035938379124, 26.010356412031797}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
 								<key>Tag</key>
 								<integer>0</integer>
 								<key>Width</key>
-								<real>137</real>
+								<real>0.0</real>
 							</dict>
 						</array>
 						<key>Type</key>
@@ -9550,7 +9594,7 @@
 			<key>MaxSheetSize</key>
 			<integer>4096</integer>
 			<key>NpotSize</key>
-			<string>{344, 468}</string>
+			<string>{344, 472}</string>
 			<key>Padding</key>
 			<integer>8</integer>
 			<key>PixelFormat</key>
@@ -9672,7 +9716,7 @@
 									</array>
 									<array>
 										<string>{-16.5, -4.5}</string>
-										<string>{-15.25, -7.25}</string>
+										<string>{-15.250000000000002, -7.25}</string>
 										<string>{-6.75, -8.5}</string>
 									</array>
 									<array>
@@ -9754,7 +9798,7 @@
 									<array>
 										<string>{-10.75, -10.25}</string>
 										<string>{-6.75, -8.5}</string>
-										<string>{-15.25, -7.25}</string>
+										<string>{-15.250000000000002, -7.25}</string>
 										<string>{-12.25, -10}</string>
 									</array>
 								</array>
@@ -9786,29 +9830,29 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{-0.99999999999999267, 119}</string>
+									<string>{-0.99999999999999289, 119}</string>
 									<string>{-2.9999999999999929, 116}</string>
-									<string>{-1.9999999999999931, 114}</string>
-									<string>{-3.9999999999999933, 107}</string>
-									<string>{-2.9999999999999933, 106}</string>
-									<string>{-7.9999999999999938, 97}</string>
-									<string>{-6.9999999999999947, 91}</string>
-									<string>{-8.9999999999999947, 90}</string>
-									<string>{-8.9999999999999947, 86}</string>
-									<string>{-6.9999999999999947, 85}</string>
-									<string>{-8.9999999999999947, 83}</string>
-									<string>{-5.9999999999999956, 71}</string>
-									<string>{-6.9999999999999964, 64}</string>
+									<string>{-1.9999999999999929, 114}</string>
+									<string>{-3.9999999999999929, 107}</string>
+									<string>{-2.9999999999999929, 106}</string>
+									<string>{-7.9999999999999929, 97}</string>
+									<string>{-6.9999999999999929, 91}</string>
+									<string>{-8.9999999999999929, 90}</string>
+									<string>{-8.9999999999999929, 86}</string>
+									<string>{-6.9999999999999929, 85}</string>
+									<string>{-8.9999999999999929, 83}</string>
+									<string>{-5.9999999999999929, 71}</string>
+									<string>{-7, 64}</string>
 									<string>{-8.9999999999999964, 61}</string>
-									<string>{-7.9999999999999964, 60}</string>
+									<string>{-8, 60}</string>
 									<string>{-9, 13}</string>
-									<string>{-15, 6.0000000000000009}</string>
-									<string>{-18, 4.0000000000000009}</string>
-									<string>{-34, 2.0818995585505003e-15}</string>
-									<string>{-57, 3.0000000000000036}</string>
-									<string>{-68, 8.0000000000000036}</string>
-									<string>{-79, 20.000000000000004}</string>
-									<string>{-80, 26.000000000000004}</string>
+									<string>{-15, 6}</string>
+									<string>{-18, 4}</string>
+									<string>{-34, 0}</string>
+									<string>{-57, 3}</string>
+									<string>{-68, 8}</string>
+									<string>{-79, 20}</string>
+									<string>{-80, 26}</string>
 									<string>{-73, 42.000000000000007}</string>
 									<string>{-73, 50.000000000000007}</string>
 									<string>{-69, 57.000000000000007}</string>
@@ -9820,9 +9864,9 @@
 									<string>{-60.999999999999993, 138}</string>
 									<string>{-57.999999999999993, 141}</string>
 									<string>{-32.999999999999993, 143}</string>
-									<string>{-2.999999999999992, 128}</string>
-									<string>{7.5928101547135902e-15, 124}</string>
-									<string>{7.3478807948841199e-15, 120}</string>
+									<string>{-2.9999999999999929, 128}</string>
+									<string>{7.1054273576010019e-15, 124}</string>
+									<string>{7.1054273576010019e-15, 120}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
@@ -9993,65 +10037,101 @@
 								<key>Fixture</key>
 								<array>
 									<array>
-										<string>{6.125, -32.75}</string>
-										<string>{8.375, -30.25}</string>
-										<string>{8.625, -28.75}</string>
-										<string>{5.375, -28.75}</string>
-										<string>{1.875, -35.25}</string>
-									</array>
-									<array>
-										<string>{5.375, 29.25}</string>
-										<string>{8.625, 29.25}</string>
-										<string>{8.625, 30.25}</string>
-										<string>{5.875, 33.5}</string>
-										<string>{3.625, 35}</string>
-									</array>
-									<array>
+										<string>{-1.375, 35.75}</string>
+										<string>{-2.125, 35.75}</string>
 										<string>{-5.375, 34}</string>
 										<string>{-8.125, 31.5}</string>
 										<string>{-8.875, 30.25}</string>
 										<string>{-8.625, 29.25}</string>
-										<string>{-5.375, 29.25}</string>
-										<string>{-2.125, 35.75}</string>
+										<string>{5.875, 33.5}</string>
+										<string>{3.625, 35}</string>
 									</array>
 									<array>
-										<string>{-5.375, -28.75}</string>
 										<string>{-8.625, -28.75}</string>
 										<string>{-8.875, -29.75}</string>
 										<string>{-8.125, -31}</string>
 										<string>{-5.375, -33.5}</string>
-										<string>{-1.125, -35.5}</string>
 									</array>
 									<array>
-										<string>{-4.625, -28}</string>
-										<string>{-5.375, -28.75}</string>
-										<string>{-1.125, -35.5}</string>
-										<string>{1.875, -35.25}</string>
-										<string>{5.375, -28.75}</string>
-										<string>{5.125, -28.25}</string>
-										<string>{4.375, -28}</string>
-									</array>
-									<array>
-										<string>{-2.125, 35.75}</string>
-										<string>{-4.625, 28.5}</string>
-										<string>{-4.625, -28}</string>
-										<string>{4.375, -28}</string>
-										<string>{4.375, 28.5}</string>
-										<string>{-1.375, 35.75}</string>
-									</array>
-									<array>
-										<string>{-2.125, 35.75}</string>
-										<string>{-5.375, 29.25}</string>
-										<string>{-4.625, 28.5}</string>
-									</array>
-									<array>
-										<string>{5.375, 29.25}</string>
-										<string>{3.625, 35}</string>
 										<string>{0.875, 36}</string>
 										<string>{-1.125, 36}</string>
 										<string>{-1.375, 35.75}</string>
-										<string>{4.375, 28.5}</string>
-										<string>{5.125, 28.75}</string>
+										<string>{3.625, 35}</string>
+									</array>
+									<array>
+										<string>{-8.9931411795760994, 25.866388140312139}</string>
+										<string>{8.625, 29.25}</string>
+										<string>{8.625, 30.25}</string>
+										<string>{5.875, 33.5}</string>
+										<string>{-8.625, 29.25}</string>
+									</array>
+									<array>
+										<string>{8.9131060349890845, -7.1348775965685576}</string>
+										<string>{-8.8058663279147495, 11.49626125962007}</string>
+										<string>{-9.0258737084910194, -11.623609037896969}</string>
+									</array>
+									<array>
+										<string>{9.1127245350656096, -16.229464734520889}</string>
+										<string>{8.9131060349890845, -7.1348775965685576}</string>
+										<string>{-9.0258737084910194, -11.623609037896969}</string>
+									</array>
+									<array>
+										<string>{9.1127245350656096, -16.229464734520889}</string>
+										<string>{-9.0258737084910194, -11.623609037896969}</string>
+										<string>{-8.881322246873971, -20.453616071074336}</string>
+									</array>
+									<array>
+										<string>{8.8341259441100846, -25.088293002488015}</string>
+										<string>{9.1127245350656096, -16.229464734520889}</string>
+										<string>{-8.881322246873971, -20.453616071074336}</string>
+									</array>
+									<array>
+										<string>{8.8341259441100846, -25.088293002488015}</string>
+										<string>{-8.881322246873971, -20.453616071074336}</string>
+										<string>{-8.625, -28.75}</string>
+									</array>
+									<array>
+										<string>{8.8341259441100846, -25.088293002488015}</string>
+										<string>{-8.625, -28.75}</string>
+										<string>{-5.375, -33.5}</string>
+									</array>
+									<array>
+										<string>{8.8341259441100846, -25.088293002488015}</string>
+										<string>{-5.375, -33.5}</string>
+										<string>{-1.125, -35.5}</string>
+									</array>
+									<array>
+										<string>{8.625, -28.75}</string>
+										<string>{8.8341259441100846, -25.088293002488015}</string>
+										<string>{-1.125, -35.5}</string>
+									</array>
+									<array>
+										<string>{8.625, -28.75}</string>
+										<string>{-1.125, -35.5}</string>
+										<string>{1.875, -35.25}</string>
+									</array>
+									<array>
+										<string>{8.625, -28.75}</string>
+										<string>{1.875, -35.25}</string>
+										<string>{6.125, -32.75}</string>
+									</array>
+									<array>
+										<string>{8.625, -28.75}</string>
+										<string>{6.125, -32.75}</string>
+										<string>{8.375, -30.25}</string>
+									</array>
+									<array>
+										<string>{-8.8058663279147495, 11.49626125962007}</string>
+										<string>{8.9131060349890845, -7.1348775965685576}</string>
+										<string>{9.073573464386314, -0.34129757052826903}</string>
+										<string>{8.7649240885440562, 12.558037667158928}</string>
+										<string>{-8.9931411795760994, 25.866388140312139}</string>
+									</array>
+									<array>
+										<string>{-8.9931411795760994, 25.866388140312139}</string>
+										<string>{8.7649240885440562, 12.558037667158928}</string>
+										<string>{8.8116169381765417, 22.378218317578117}</string>
+										<string>{8.625, 29.25}</string>
 									</array>
 								</array>
 								<key>Friction</key>
@@ -10088,10 +10168,10 @@
 									<string>{3, 18}</string>
 									<string>{0, 23}</string>
 									<string>{1, 27}</string>
-									<string>{14, 27}</string>
-									<string>{17, 30}</string>
-									<string>{17, 256}</string>
-									<string>{14, 259}</string>
+									<string>{-0.4725647183043975, 40.534447438751442}</string>
+									<string>{0.27653468834100181, 98.01495496151972}</string>
+									<string>{-0.60349483396407777, 190.49443615158788}</string>
+									<string>{-0.02528898749588393, 225.81446428429734}</string>
 									<string>{1, 259}</string>
 									<string>{0, 263}</string>
 									<string>{3, 268}</string>
@@ -10101,12 +10181,12 @@
 									<string>{60, 275}</string>
 									<string>{69, 265}</string>
 									<string>{70, 259}</string>
-									<string>{57, 259}</string>
-									<string>{56, 257}</string>
-									<string>{53, 256}</string>
-									<string>{53, 30}</string>
-									<string>{56, 29}</string>
-									<string>{57, 27}</string>
+									<string>{70.836503776440338, 244.35317200995206}</string>
+									<string>{71.950898140262439, 208.91785893808355}</string>
+									<string>{71.152424139956338, 172.53951038627423}</string>
+									<string>{71.794293857545256, 145.36519028211305}</string>
+									<string>{70.559696354176225, 93.767849331364303}</string>
+									<string>{70.746467752706167, 54.487126729687517}</string>
 									<string>{70, 27}</string>
 									<string>{70, 23}</string>
 									<string>{59, 10}</string>
@@ -10272,144 +10352,9 @@
 						<key>LinearVelocity</key>
 						<string>{0, 0}</string>
 						<key>SH_ComplexShapes</key>
-						<array>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Category</key>
-								<integer>1</integer>
-								<key>Density</key>
-								<real>0.20000000298023224</real>
-								<key>Fixture</key>
-								<array>
-									<array>
-										<string>{5.875, -32.75}</string>
-										<string>{8.125, -30.25}</string>
-										<string>{8.375, -28.75}</string>
-										<string>{5.125, -28.75}</string>
-										<string>{1.625, -35.25}</string>
-									</array>
-									<array>
-										<string>{-5.625, 34}</string>
-										<string>{-8.875, 30.75}</string>
-										<string>{-8.875, 29.25}</string>
-										<string>{-5.625, 29.25}</string>
-										<string>{-2.375, 35.75}</string>
-									</array>
-									<array>
-										<string>{-5.625, -28.75}</string>
-										<string>{-8.875, -28.75}</string>
-										<string>{-8.875, -30.25}</string>
-										<string>{-5.625, -33.5}</string>
-										<string>{-1.375, -35.5}</string>
-									</array>
-									<array>
-										<string>{5.125, 29.25}</string>
-										<string>{8.375, 29.25}</string>
-										<string>{8.375, 30.25}</string>
-										<string>{5.625, 33.5}</string>
-										<string>{3.375, 35}</string>
-									</array>
-									<array>
-										<string>{-4.875, -28}</string>
-										<string>{-5.625, -28.75}</string>
-										<string>{-1.375, -35.5}</string>
-										<string>{1.625, -35.25}</string>
-										<string>{5.125, -28.75}</string>
-										<string>{4.875, -28.25}</string>
-										<string>{4.125, -28}</string>
-									</array>
-									<array>
-										<string>{-2.375, 35.75}</string>
-										<string>{-4.875, 28.5}</string>
-										<string>{-4.875, -28}</string>
-										<string>{4.125, -28}</string>
-										<string>{4.125, 28.5}</string>
-										<string>{-1.625, 35.75}</string>
-									</array>
-									<array>
-										<string>{-2.375, 35.75}</string>
-										<string>{-5.625, 29.25}</string>
-										<string>{-4.875, 28.5}</string>
-									</array>
-									<array>
-										<string>{5.125, 29.25}</string>
-										<string>{3.375, 35}</string>
-										<string>{0.625, 36}</string>
-										<string>{-1.375, 36}</string>
-										<string>{-1.625, 35.75}</string>
-										<string>{4.125, 28.5}</string>
-										<string>{4.875, 28.75}</string>
-									</array>
-								</array>
-								<key>Friction</key>
-								<real>0.20000000298023224</real>
-								<key>Group</key>
-								<integer>0</integer>
-								<key>Height</key>
-								<real>0.0</real>
-								<key>HolesPoints</key>
-								<array/>
-								<key>IsCircle</key>
-								<false/>
-								<key>IsRectangle</key>
-								<false/>
-								<key>IsSensor</key>
-								<true/>
-								<key>LHHeight</key>
-								<real>0.0</real>
-								<key>LHShapePositionOffset</key>
-								<string>{-8.875, -36}</string>
-								<key>LHWidth</key>
-								<real>0.0</real>
-								<key>Mask</key>
-								<integer>65535</integer>
-								<key>Name</key>
-								<string>UntitledFixture</string>
-								<key>Restitution</key>
-								<real>0.20000000298023224</real>
-								<key>ShapePoints</key>
-								<array>
-									<string>{29, 1}</string>
-									<string>{26, 1}</string>
-									<string>{13, 8}</string>
-									<string>{0, 21}</string>
-									<string>{0, 27}</string>
-									<string>{13, 27}</string>
-									<string>{16, 30}</string>
-									<string>{16, 256}</string>
-									<string>{13, 259}</string>
-									<string>{0, 259}</string>
-									<string>{0, 265}</string>
-									<string>{13, 278}</string>
-									<string>{30, 286}</string>
-									<string>{42, 285}</string>
-									<string>{59, 275}</string>
-									<string>{68, 265}</string>
-									<string>{69, 259}</string>
-									<string>{56, 259}</string>
-									<string>{55, 257}</string>
-									<string>{52, 256}</string>
-									<string>{52, 30}</string>
-									<string>{55, 29}</string>
-									<string>{56, 27}</string>
-									<string>{69, 27}</string>
-									<string>{69, 23}</string>
-									<string>{58, 10}</string>
-									<string>{49, 4}</string>
-									<string>{38, 0}</string>
-									<string>{30, 0}</string>
-								</array>
-								<key>ShapePositionOffset</key>
-								<string>{0, 0}</string>
-								<key>Tag</key>
-								<integer>0</integer>
-								<key>Width</key>
-								<real>0.0</real>
-							</dict>
-						</array>
+						<array/>
 						<key>Type</key>
-						<integer>1</integer>
+						<integer>3</integer>
 					</dict>
 					<key>SHSheetName</key>
 					<string>Toolbox</string>
@@ -10438,9 +10383,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{19, 45}, {17.75, 71.75}}</string>
+						<string>{{19, 46}, {17.75, 71.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{76, 180}, {71, 287}}</string>
+						<string>{{76, 184}, {71, 287}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -10466,7 +10411,7 @@
 						<key>OriginalSize</key>
 						<string>{85, 340}</string>
 						<key>Position</key>
-						<string>{76, 180}</string>
+						<string>{76, 184}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -10558,144 +10503,9 @@
 						<key>LinearVelocity</key>
 						<string>{0, 0}</string>
 						<key>SH_ComplexShapes</key>
-						<array>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Category</key>
-								<integer>1</integer>
-								<key>Density</key>
-								<real>0.20000000298023224</real>
-								<key>Fixture</key>
-								<array>
-									<array>
-										<string>{5.875, -32.75}</string>
-										<string>{8.125, -30.25}</string>
-										<string>{8.375, -28.75}</string>
-										<string>{5.125, -28.75}</string>
-										<string>{1.625, -35.25}</string>
-									</array>
-									<array>
-										<string>{-5.625, 34}</string>
-										<string>{-8.875, 30.75}</string>
-										<string>{-8.875, 29.25}</string>
-										<string>{-5.625, 29.25}</string>
-										<string>{-2.375, 35.75}</string>
-									</array>
-									<array>
-										<string>{-5.625, -28.75}</string>
-										<string>{-8.875, -28.75}</string>
-										<string>{-8.875, -30.25}</string>
-										<string>{-5.625, -33.5}</string>
-										<string>{-1.375, -35.5}</string>
-									</array>
-									<array>
-										<string>{5.125, 29.25}</string>
-										<string>{8.375, 29.25}</string>
-										<string>{8.375, 30.25}</string>
-										<string>{5.625, 33.5}</string>
-										<string>{3.375, 35}</string>
-									</array>
-									<array>
-										<string>{-4.875, -28}</string>
-										<string>{-5.625, -28.75}</string>
-										<string>{-1.375, -35.5}</string>
-										<string>{1.625, -35.25}</string>
-										<string>{5.125, -28.75}</string>
-										<string>{4.875, -28.25}</string>
-										<string>{4.125, -28}</string>
-									</array>
-									<array>
-										<string>{-2.375, 35.75}</string>
-										<string>{-4.875, 28.5}</string>
-										<string>{-4.875, -28}</string>
-										<string>{4.125, -28}</string>
-										<string>{4.125, 28.5}</string>
-										<string>{-1.625, 35.75}</string>
-									</array>
-									<array>
-										<string>{-2.375, 35.75}</string>
-										<string>{-5.625, 29.25}</string>
-										<string>{-4.875, 28.5}</string>
-									</array>
-									<array>
-										<string>{5.125, 29.25}</string>
-										<string>{3.375, 35}</string>
-										<string>{0.625, 36}</string>
-										<string>{-1.375, 36}</string>
-										<string>{-1.625, 35.75}</string>
-										<string>{4.125, 28.5}</string>
-										<string>{4.875, 28.75}</string>
-									</array>
-								</array>
-								<key>Friction</key>
-								<real>0.20000000298023224</real>
-								<key>Group</key>
-								<integer>0</integer>
-								<key>Height</key>
-								<real>0.0</real>
-								<key>HolesPoints</key>
-								<array/>
-								<key>IsCircle</key>
-								<false/>
-								<key>IsRectangle</key>
-								<false/>
-								<key>IsSensor</key>
-								<true/>
-								<key>LHHeight</key>
-								<real>0.0</real>
-								<key>LHShapePositionOffset</key>
-								<string>{-8.875, -36}</string>
-								<key>LHWidth</key>
-								<real>0.0</real>
-								<key>Mask</key>
-								<integer>65535</integer>
-								<key>Name</key>
-								<string>UntitledFixture_1</string>
-								<key>Restitution</key>
-								<real>0.20000000298023224</real>
-								<key>ShapePoints</key>
-								<array>
-									<string>{29, 1}</string>
-									<string>{26, 1}</string>
-									<string>{13, 8}</string>
-									<string>{0, 21}</string>
-									<string>{0, 27}</string>
-									<string>{13, 27}</string>
-									<string>{16, 30}</string>
-									<string>{16, 256}</string>
-									<string>{13, 259}</string>
-									<string>{0, 259}</string>
-									<string>{0, 265}</string>
-									<string>{13, 278}</string>
-									<string>{30, 286}</string>
-									<string>{42, 285}</string>
-									<string>{59, 275}</string>
-									<string>{68, 265}</string>
-									<string>{69, 259}</string>
-									<string>{56, 259}</string>
-									<string>{55, 257}</string>
-									<string>{52, 256}</string>
-									<string>{52, 30}</string>
-									<string>{55, 29}</string>
-									<string>{56, 27}</string>
-									<string>{69, 27}</string>
-									<string>{69, 23}</string>
-									<string>{58, 10}</string>
-									<string>{49, 4}</string>
-									<string>{38, 0}</string>
-									<string>{30, 0}</string>
-								</array>
-								<key>ShapePositionOffset</key>
-								<string>{0, 0}</string>
-								<key>Tag</key>
-								<integer>0</integer>
-								<key>Width</key>
-								<real>0.0</real>
-							</dict>
-						</array>
+						<array/>
 						<key>Type</key>
-						<integer>1</integer>
+						<integer>3</integer>
 					</dict>
 					<key>SHSheetName</key>
 					<string>Toolbox</string>
@@ -10856,8 +10666,8 @@
 								<array>
 									<array>
 										<string>{-14.25, -21.5}</string>
-										<string>{14.5, -21.5}</string>
-										<string>{14.5, 21.75}</string>
+										<string>{14.75, -21.5}</string>
+										<string>{14.75, 21.75}</string>
 										<string>{-14.25, 21.75}</string>
 									</array>
 								</array>
@@ -10880,7 +10690,7 @@
 								<key>LHShapePositionOffset</key>
 								<string>{-14.25, -21.75}</string>
 								<key>LHWidth</key>
-								<real>28.75</real>
+								<real>29</real>
 								<key>Mask</key>
 								<integer>65535</integer>
 								<key>Name</key>
@@ -10890,8 +10700,8 @@
 								<key>ShapePoints</key>
 								<array>
 									<string>{0, 0}</string>
-									<string>{115, 0}</string>
-									<string>{115, 173}</string>
+									<string>{116, 0}</string>
+									<string>{116, 173}</string>
 									<string>{0, 173}</string>
 								</array>
 								<key>ShapePositionOffset</key>
@@ -10899,7 +10709,7 @@
 								<key>Tag</key>
 								<integer>0</integer>
 								<key>Width</key>
-								<real>115</real>
+								<real>116</real>
 							</dict>
 						</array>
 						<key>Type</key>
@@ -11052,66 +10862,9 @@
 						<key>LinearVelocity</key>
 						<string>{0, 0}</string>
 						<key>SH_ComplexShapes</key>
-						<array>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Category</key>
-								<integer>1</integer>
-								<key>Density</key>
-								<real>0.20000000298023224</real>
-								<key>Fixture</key>
-								<array>
-									<array>
-										<string>{-14.25, -21.5}</string>
-										<string>{14.5, -21.5}</string>
-										<string>{14.5, 21.75}</string>
-										<string>{-14.25, 21.75}</string>
-									</array>
-								</array>
-								<key>Friction</key>
-								<real>0.20000000298023224</real>
-								<key>Group</key>
-								<integer>0</integer>
-								<key>Height</key>
-								<real>173</real>
-								<key>HolesPoints</key>
-								<array/>
-								<key>IsCircle</key>
-								<false/>
-								<key>IsRectangle</key>
-								<true/>
-								<key>IsSensor</key>
-								<true/>
-								<key>LHHeight</key>
-								<real>43.25</real>
-								<key>LHShapePositionOffset</key>
-								<string>{-14.25, -21.75}</string>
-								<key>LHWidth</key>
-								<real>28.75</real>
-								<key>Mask</key>
-								<integer>65535</integer>
-								<key>Name</key>
-								<string>UntitledFixture</string>
-								<key>Restitution</key>
-								<real>0.20000000298023224</real>
-								<key>ShapePoints</key>
-								<array>
-									<string>{0, 0}</string>
-									<string>{115, 0}</string>
-									<string>{115, 173}</string>
-									<string>{0, 173}</string>
-								</array>
-								<key>ShapePositionOffset</key>
-								<string>{0, 0}</string>
-								<key>Tag</key>
-								<integer>0</integer>
-								<key>Width</key>
-								<real>115</real>
-							</dict>
-						</array>
+						<array/>
 						<key>Type</key>
-						<integer>1</integer>
+						<integer>3</integer>
 					</dict>
 					<key>SHSheetName</key>
 					<string>Toolbox</string>
@@ -11260,66 +11013,9 @@
 						<key>LinearVelocity</key>
 						<string>{0, 0}</string>
 						<key>SH_ComplexShapes</key>
-						<array>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Category</key>
-								<integer>1</integer>
-								<key>Density</key>
-								<real>0.20000000298023224</real>
-								<key>Fixture</key>
-								<array>
-									<array>
-										<string>{-14.75, -21.5}</string>
-										<string>{14, -21.5}</string>
-										<string>{14, 21.75}</string>
-										<string>{-14.75, 21.75}</string>
-									</array>
-								</array>
-								<key>Friction</key>
-								<real>0.20000000298023224</real>
-								<key>Group</key>
-								<integer>0</integer>
-								<key>Height</key>
-								<real>173</real>
-								<key>HolesPoints</key>
-								<array/>
-								<key>IsCircle</key>
-								<false/>
-								<key>IsRectangle</key>
-								<true/>
-								<key>IsSensor</key>
-								<true/>
-								<key>LHHeight</key>
-								<real>43.25</real>
-								<key>LHShapePositionOffset</key>
-								<string>{-14.75, -21.75}</string>
-								<key>LHWidth</key>
-								<real>28.75</real>
-								<key>Mask</key>
-								<integer>65535</integer>
-								<key>Name</key>
-								<string>UntitledFixture</string>
-								<key>Restitution</key>
-								<real>0.20000000298023224</real>
-								<key>ShapePoints</key>
-								<array>
-									<string>{0, 0}</string>
-									<string>{115, 0}</string>
-									<string>{115, 173}</string>
-									<string>{0, 173}</string>
-								</array>
-								<key>ShapePositionOffset</key>
-								<string>{0, 0}</string>
-								<key>Tag</key>
-								<integer>0</integer>
-								<key>Width</key>
-								<real>115</real>
-							</dict>
-						</array>
+						<array/>
 						<key>Type</key>
-						<integer>1</integer>
+						<integer>3</integer>
 					</dict>
 					<key>SHSheetName</key>
 					<string>Toolbox</string>
@@ -19315,9 +19011,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{19, 45}, {17.75, 71.75}}</string>
+					<string>{{19, 46}, {17.75, 71.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{76, 180}, {71, 287}}</string>
+					<string>{{76, 184}, {71, 287}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -19459,9 +19155,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{19, 45}, {17.75, 71.75}}</string>
+					<string>{{19, 46}, {17.75, 71.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{76, 180}, {71, 287}}</string>
+					<string>{{76, 184}, {71, 287}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>

@@ -1835,8 +1835,8 @@
 						dModSum = 1;
 					}					
 					
-					dxMod = (xDir/dModSum)*(windmillData.power);
-					dyMod = (yDir/dModSum)*(windmillData.power);
+					dxMod+= (xDir/dModSum)*(windmillData.power);
+					dyMod+= (yDir/dModSum)*(windmillData.power);
 					
 					
 					[sharkMoveGridData scheduleUpdateToMoveGridIn:0.25f];
@@ -2045,8 +2045,8 @@
 							dModSum = 1;
 						}					
 						
-						dxMod = (xDir/dModSum)*(windmillData.power);
-						dyMod = (yDir/dModSum)*(windmillData.power);
+						dxMod+= (xDir/dModSum)*(windmillData.power);
+						dyMod+= (yDir/dModSum)*(windmillData.power);
 						
 						[penguinMoveGridData scheduleUpdateToMoveGridIn:0.25f];
 					}
