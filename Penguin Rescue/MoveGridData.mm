@@ -129,8 +129,8 @@
 	return (const int**)_moveGrid;
 }
 
-- (const int**)baseGrid {
-	return (const int**)_baseGrid;
+- (int**)baseGrid {
+	return _baseGrid;
 }
 
 - (const CGPoint)lastTargetTile {
@@ -185,7 +185,10 @@
 		double absWW = fabs(wW);
 		double absWS = fabs(wS);
 		double absWN = fabs(wN);
-		double absMin = fmin(fmin(fmin(absWE,absWW),absWN),absWS);
+		double absMinEW = fmin(absWE, absWW);
+		double absMinNS = fmin(absWN, absWS);
+		double absMin = fmin(absMinNS, absMinEW);
+		
 		if(absWE == absMin) {
 			vE = (wW-wE)/(wW==0?1:wW);
 		}else if(absWW == absMin) {

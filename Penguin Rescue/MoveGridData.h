@@ -39,7 +39,7 @@
 - (double)distanceTraveled;
 - (double)distanceTraveledStraightline;
 
-- (const int**)baseGrid;
+- (int**)baseGrid;
 - (const int**)moveGrid;
 - (const CGPoint)lastTargetTile;
 

@@ -1699,6 +1699,7 @@
 		
 	for(LHSprite* shark in sharks) {
 		
+		bool wasOffscreen = false;
 		Shark* sharkData = ((Shark*)shark.userInfo);
 		CGPoint sharkGridPos = [self toGrid:shark.position];
 
@@ -1707,15 +1708,19 @@
 			
 			if(sharkGridPos.x > _gridWidth-1) {
 				sharkGridPos.x--;
+				[shark transformPosition:ccp(shark.position.x-8*SCALING_FACTOR_H,shark.position.y)];
 			}else if(sharkGridPos.x < 0) {
 				sharkGridPos.x++;
+				[shark transformPosition:ccp(shark.position.x+8*SCALING_FACTOR_H,shark.position.y)];
 			}else if(sharkGridPos.y > _gridHeight-1) {
 				sharkGridPos.y--;
+				[shark transformPosition:ccp(shark.position.x,shark.position.y-8*SCALING_FACTOR_V)];
 			}else if(sharkGridPos.y < 0) {
 				sharkGridPos.y++;
+				[shark transformPosition:ccp(shark.position.x,shark.position.y+8*SCALING_FACTOR_V)];
 			}
 			
-			[shark transformPosition:ccp(sharkGridPos.x*_gridSize +_gridSize/2, sharkGridPos.y*_gridSize + _gridSize/2)];
+			wasOffscreen = true;
 		}
 		
 		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];		
@@ -1729,13 +1734,13 @@
 			double wW = sharkGridPos.x-1 < 0 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y];
 			double wMin = fmax(fmin(fmin(wN,wS),wE),wW);
 			if(wN == wMin) {
-				[shark transformPosition:ccp(shark.position.x, shark.position.y+5*SCALING_FACTOR_V)];
+				[shark transformPosition:ccp(shark.position.x,shark.position.y+8*SCALING_FACTOR_V)];
 			}else if(wS == wMin) {
-				[shark transformPosition:ccp(shark.position.x, shark.position.y-5*SCALING_FACTOR_V)];
+				[shark transformPosition:ccp(shark.position.x,shark.position.y-8*SCALING_FACTOR_V)];
 			}else if(wE == wMin) {
-				[shark transformPosition:ccp(shark.position.x+5*SCALING_FACTOR_H, shark.position.y)];
+				[shark transformPosition:ccp(shark.position.x+8*SCALING_FACTOR_H,shark.position.y)];
 			}else if(wW == wMin) {
-				[shark transformPosition:ccp(shark.position.x-5*SCALING_FACTOR_H, shark.position.y)];
+				[shark transformPosition:ccp(shark.position.x-8*SCALING_FACTOR_H,shark.position.y)];
 			}
 		}
 		
@@ -1772,7 +1777,8 @@
 		}
 				
 		[sharkMoveGridData logMove:bestOptionPos];
-		if([sharkMoveGridData distanceTraveledStraightline] < 2*SCALING_FACTOR_GENERIC) {
+		//DebugLog(@"shark dist traveled: %f", [sharkMoveGridData distanceTraveledStraightline]);
+		if(wasOffscreen || [sharkMoveGridData distanceTraveledStraightline] < 5*SCALING_FACTOR_GENERIC) {
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
 				sharkData.isStuck = true;
@@ -1782,11 +1788,20 @@
 			}else {
 				//TODO: do a confused/arms up in air animation
 				
-				dx+= ((arc4random()%200)-100)/1000;
-				dy+= ((arc4random()%200)-100)/1000;
-				sharkSpeed*= 5;
-				DebugLog(@"Shark %@ is stuck (trying to move but can't) - giving him a bit of jitter", shark.uniqueName);
-
+				//there's something fishy about them here parts!
+				sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y]+=5;
+				if(sharkGridPos.x > 0) sharkMoveGridData.baseGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y]+=5;
+				if(sharkGridPos.x < _gridWidth-1) sharkMoveGridData.baseGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y]+=5;
+				if(sharkGridPos.y > 0) sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1]+=5;
+				if(sharkGridPos.y < _gridHeight-1) sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1]+=5;
+				
+				double jitterX = ((arc4random()%200)-100.0)/100;
+				double jitterY = ((arc4random()%200)-100.0)/100;
+				
+				dx+= jitterX;
+				dy+= jitterY;
+				sharkSpeed*= 10;
+				DebugLog(@"Shark %@ is stuck (trying to move but can't) - giving him a bit of jitter %f,%f", shark.uniqueName, jitterX, jitterY);
 			}
 		}
 
@@ -1835,26 +1850,20 @@
 			//DebugLog(@"No best option for shark %@ max(dx,dy) was 0", shark.uniqueName);
 			dSum = 1;
 		}
-		double normalizedX = (sharkSpeed*dx)/dSum;
-		double normalizedY = (sharkSpeed*dy)/dSum;
+		double normalizedX = dx/dSum;
+		double normalizedY = dy/dSum;
 
-		double impulseX = ((normalizedX+dxMod)*dt)*.1*pow(shark.scale,2);
-		double impulseY = ((normalizedY+dyMod)*dt)*.1*pow(shark.scale,2);
+		double impulseX = (((sharkSpeed*normalizedX)+dxMod)*dt)*.1*pow(shark.scale,2);
+		double impulseY = (((sharkSpeed*normalizedY)+dyMod)*dt)*.1*pow(shark.scale,2);
 		
 		//DebugLog(@"Shark %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", shark.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
 				
 		//we're using an impulse for the shark so they interact with things like Debris (physics)
-		//shark.body->SetLinearVelocity(b2Vec2(weightedVelX,weightedVelY));
 		shark.body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), shark.body->GetWorldCenter());
 		
 		//rotate shark
-		double targetVelX = dt * normalizedX;
-		double targetVelY = dt * normalizedY;
 		b2Vec2 prevVel = shark.body->GetLinearVelocity();
-		double weightedVelX = (prevVel.x * 9.0 + targetVelX)/10.0;
-		double weightedVelY = (prevVel.y * 9.0 + targetVelY)/10.0;
-
-		double radians = atan2(weightedVelX, weightedVelY); //this grabs the radians for us
+		double radians = atan2(prevVel.x, prevVel.y); //this grabs the radians for us
 		double degrees = CC_RADIANS_TO_DEGREES(radians) - 90; //90 is because the sprit is facing right
 		[shark transformRotation:degrees];
 	}
@@ -1883,6 +1892,7 @@
 
 	for(LHSprite* penguin in penguins) {
 		
+		bool wasOffscreen = false;
 		CGPoint penguinGridPos = [self toGrid:penguin.position];
 		Penguin* penguinData = ((Penguin*)penguin.userInfo);
 		MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
@@ -1896,15 +1906,19 @@
 			
 			if(penguinGridPos.x > _gridWidth-1) {
 				penguinGridPos.x--;
+				[penguin transformPosition:ccp(penguin.position.x-8*SCALING_FACTOR_H,penguin.position.y)];
 			}else if(penguinGridPos.x < 0) {
 				penguinGridPos.x++;
+				[penguin transformPosition:ccp(penguin.position.x+8*SCALING_FACTOR_H,penguin.position.y)];
 			}else if(penguinGridPos.y > _gridHeight-1) {
 				penguinGridPos.y--;
+				[penguin transformPosition:ccp(penguin.position.x,penguin.position.y-8*SCALING_FACTOR_V)];
 			}else if(penguinGridPos.y < 0) {
 				penguinGridPos.y++;
+				[penguin transformPosition:ccp(penguin.position.x,penguin.position.y+8*SCALING_FACTOR_V)];
 			}
 			
-			[penguin transformPosition:ccp(penguinGridPos.x*_gridSize + _gridSize/2, penguinGridPos.y*_gridSize + _gridSize/2)];
+			wasOffscreen = true;
 		}
 		
 		if(penguinData.hasSpottedShark) {
@@ -1940,13 +1954,13 @@
 				double wW = penguinGridPos.x-1 < 0 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y];
 				double wMin = fmin(fmin(fmin(wN,wS),wE),wW);
 				if(wN == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x, penguin.position.y+5*SCALING_FACTOR_V)];
+					[penguin transformPosition:ccp(penguin.position.x,penguin.position.y+8*SCALING_FACTOR_V)];
 				}else if(wS == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x, penguin.position.y-5*SCALING_FACTOR_V)];
+					[penguin transformPosition:ccp(penguin.position.x,penguin.position.y-8*SCALING_FACTOR_V)];
 				}else if(wE == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x+5*SCALING_FACTOR_H, penguin.position.y)];
+					[penguin transformPosition:ccp(penguin.position.x+8*SCALING_FACTOR_H,penguin.position.y)];
 				}else if(wW == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x-5*SCALING_FACTOR_H, penguin.position.y)];
+					[penguin transformPosition:ccp(penguin.position.x-8*SCALING_FACTOR_H,penguin.position.y)];
 				}
 			}
 		
@@ -1975,16 +1989,27 @@
 			double penguinSpeed = penguinData.speed;
 
 			[penguinMoveGridData logMove:bestOptionPos];
-			if([penguinMoveGridData distanceTraveledStraightline] < 2*SCALING_FACTOR_GENERIC) {
+			if(wasOffscreen || [penguinMoveGridData distanceTraveledStraightline] < 5*SCALING_FACTOR_GENERIC) {
 				//we're stuck... but we'll let sharks report us as being stuck.
 				//we'll just try and get ourselves out of this sticky situation
 				
 				//TODO: do a flustered/feathers flying everywhere animation
+
+				//there's something fishy about them here parts!
+				penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y]+=5;
+				if(penguinGridPos.x > 0) penguinMoveGridData.baseGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y]+=5;
+				if(penguinGridPos.x < _gridWidth-1) penguinMoveGridData.baseGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y]+=5;
+				if(penguinGridPos.y > 0) penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1]+=5;
+				if(penguinGridPos.y < _gridHeight-1) penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1]+=5;
+
 				
-				dx+= ((arc4random()%200)-100)/1000;
-				dy+= ((arc4random()%200)-100)/1000;
-				penguinSpeed*= 5;
-				DebugLog(@"Penguin %@ is stuck (trying to move but can't) - giving him a bit of jitter", penguin.uniqueName);
+				double jitterX = ((arc4random()%200)-100.0)/100;
+				double jitterY = ((arc4random()%200)-100.0)/100;
+				
+				dx+= jitterX;
+				dy+= jitterY;
+				penguinSpeed*= 10;
+				DebugLog(@"Penguin %@ is stuck (trying to move but can't) - giving him a bit of jitter %f,%f", penguin.uniqueName, jitterX, jitterY);
 			}
 			
 
@@ -2033,11 +2058,11 @@
 				//DebugLog(@"No best option for shark %@ max(dx,dy) was 0", shark.uniqueName);
 				dSum = 1;
 			}
-			double normalizedX = (penguinSpeed*dx)/dSum;
-			double normalizedY = (penguinSpeed*dy)/dSum;
+			double normalizedX = dx/dSum;
+			double normalizedY = dy/dSum;
 			
-			double impulseX = ((normalizedX+dxMod)*dt)*.1*pow(penguin.scale,2);
-			double impulseY = ((normalizedY+dyMod)*dt)*.1*pow(penguin.scale,2);
+			double impulseX = (((penguinSpeed*normalizedX)+dxMod)*dt)*.1*pow(penguin.scale,2);
+			double impulseY = (((penguinSpeed*normalizedY)+dyMod)*dt)*.1*pow(penguin.scale,2);
 			
 			//DebugLog(@"Penguin %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", penguin.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
 		
