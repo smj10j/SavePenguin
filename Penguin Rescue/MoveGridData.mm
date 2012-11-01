@@ -13,7 +13,7 @@
 @implementation MoveGridData
 
 
-- (id)initWithGrid:(int**)grid height:(int)height width:(int)width moveHistorySize:(int)moveHistorySize tag:(NSString*)tag {
+- (id)initWithGrid:(short**)grid height:(int)height width:(int)width moveHistorySize:(int)moveHistorySize tag:(NSString*)tag {
 	if(self = [super init]) {
 		_baseGrid = grid;
 		_gridWidth = width;
@@ -21,11 +21,11 @@
 		_tag = tag;
 	
 		if(_gridWidth > 0 && _gridHeight > 0 && _baseGrid != nil) {
-			_moveGrid = new int*[_gridWidth];
-			_moveGridBuffer = new int*[_gridWidth];
+			_moveGrid = new short*[_gridWidth];
+			_moveGridBuffer = new short*[_gridWidth];
 			for(int x = 0; x < _gridWidth; x++) {
-				_moveGrid[x] = new int[_gridHeight];
-				_moveGridBuffer[x] = new int[_gridHeight];
+				_moveGrid[x] = new short[_gridHeight];
+				_moveGridBuffer[x] = new short[_gridHeight];
 				for(int y = 0; y < _gridHeight; y++) {
 					_moveGrid[x][y] = _baseGrid[x][y];
 					_moveGridBuffer[x][y] = _baseGrid[x][y];
@@ -47,7 +47,7 @@
 
 - (void)copyBaseGridToMoveGridBuffer {
 	if(_gridWidth > 0 && _gridHeight > 0 && _baseGrid != nil && _moveGridBuffer != nil) {
-		int rowSize = sizeof(int) * _gridHeight;
+		int rowSize = sizeof(short) * _gridHeight;
 		for(int i = 0; i < _gridWidth; i++) {
 			//DebugLog(@"memcpy: %d bytes from _baseGrid[%d] to _moveGridBuffer[%d]", rowSize, i, i);
 			memcpy(_moveGridBuffer[i], (void*)_baseGrid[i], rowSize);
@@ -57,7 +57,7 @@
 
 - (void)copyMoveGridBufferToMoveGrid {
 	if(_gridWidth > 0 && _gridHeight > 0 && _moveGrid != nil && _moveGridBuffer != nil) {
-		int rowSize = sizeof(int) * _gridHeight;
+		int rowSize = sizeof(short) * _gridHeight;
 		for(int i = 0; i < _gridWidth; i++) {
 			//DebugLog(@"memcpy: %d bytes from _moveGridBufferp[%d] to _moveGrid[%d]", rowSize, i, i);
 			memcpy(_moveGrid[i], (void*)_moveGridBuffer[i], rowSize);
@@ -79,7 +79,7 @@
 		_scheduledUpdateMoveGridTimer = nil;
 	}
 	_forceUpdateToMoveGrid = true;
-	_minSearchPathFactor = 0.5;
+	_minSearchPathFactor = MOVEGRID_INITIAL_MIN_SEARCH_FACTOR;
 }
 
 - (void)scheduleUpdateToMoveGridIn:(NSTimeInterval)timeInterval {
@@ -96,7 +96,7 @@
 		repeats:NO];	
 }
 
-- (void)updateBaseGrid:(int**)baseGrid {
+- (void)updateBaseGrid:(short**)baseGrid {
 	if(_baseGrid != nil) {
 		for(int i = 0; i < _gridWidth; i++) {
 			free(_baseGrid[i]);
@@ -125,11 +125,11 @@
 	return sum;
 }
 
-- (const int**)moveGrid {
-	return (const int**)_moveGrid;
+- (const short**)moveGrid {
+	return (const short**)_moveGrid;
 }
 
-- (int**)baseGrid {
+- (short**)baseGrid {
 	return _baseGrid;
 }
 
@@ -140,19 +140,19 @@
 - (CGPoint)getBestMoveToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile {
 	CGPoint bestMove = ccp(-10000,-10000);
 	
-	double wN = fromTile.y < _gridHeight-1 ? _moveGrid[(int)fromTile.x][(int)fromTile.y+1] : 10000;
-	double wS = fromTile.y > 0 ? _moveGrid[(int)fromTile.x][(int)fromTile.y-1] : 10000;
-	double wE = fromTile.x < _gridWidth-1 ? _moveGrid[(int)fromTile.x+1][(int)fromTile.y] : 10000;
-	double wW = fromTile.x > 0 ? _moveGrid[(int)fromTile.x-1][(int)fromTile.y] : 10000;
+	short wN = fromTile.y < _gridHeight-1 ? _moveGrid[(int)fromTile.x][(int)fromTile.y+1] : 10000;
+	short wS = fromTile.y > 0 ? _moveGrid[(int)fromTile.x][(int)fromTile.y-1] : 10000;
+	short wE = fromTile.x < _gridWidth-1 ? _moveGrid[(int)fromTile.x+1][(int)fromTile.y] : 10000;
+	short wW = fromTile.x > 0 ? _moveGrid[(int)fromTile.x-1][(int)fromTile.y] : 10000;
 	
 	//makes backtracking less attractive
 	_moveGrid[(int)fromTile.x][(int)fromTile.y]++;
 	
-	//DebugLog(@"tag %@ weights: %f, %f, %f, %f", _tag, wN, wS, wE, wW);
+	//if(DEBUG_MOVEGRID) DebugLog(@"%@ weights: %d, %d, %d, %d", _tag, wN, wS, wE, wW);
 	
 	if(wW == wE && wE == wN && wN == wS) {
 				
-		double w = _moveGrid[(int)fromTile.x][(int)fromTile.y];
+		short w = _moveGrid[(int)fromTile.x][(int)fromTile.y];
 		if(wW == w && w == INITIAL_GRID_WEIGHT) {
 			//this occurs when the shark has no route to the penguin - he literally has no idea which way to go
 			return bestMove;
@@ -181,55 +181,50 @@
 			}
 		}*/
 		
-		double absWE = fabs(wE);
-		double absWW = fabs(wW);
-		double absWS = fabs(wS);
-		double absWN = fabs(wN);
-		double absMinEW = fmin(absWE, absWW);
-		double absMinNS = fmin(absWN, absWS);
-		double absMin = fmin(absMinNS, absMinEW);
+		short absWE = abs(wE);
+		short absWW = abs(wW);
+		short absWS = abs(wS);
+		short absWN = abs(wN);
+		short absMinEW = min(absWE, absWW);
+		short absMinNS = min(absWN, absWS);
+		short absMin = min(absMinNS, absMinEW);
 		
 		if(absWE == absMin) {
-			vE = (wW-wE)/(wW==0?1:wW);
+			vE = (wW-wE)/(wW==0?1.0:(float)wW);
 		}else if(absWW == absMin) {
-			vE = (wW-wE)/(wE==0?1:wE);
+			vE = (wW-wE)/(wE==0?1.0:(float)wE);
 		}
 				
 		if(absWN == absMin) {
-			vN = (wS-wN)/(wS==0?1:wS);
+			vN = (wS-wN)/(wS==0?1.0:(float)wS);
 		}else if(absWS == absMin) {
-			vN = (wS-wN)/(wN==0?1:wN);
+			vN = (wS-wN)/(wN==0?1.0:(float)wN);
 		}
 		
-		bestMove = ccp(vE,vN);
-				
-		/*bestOptionPos = ccp(shark.position.x + (fabs(wE) > fabs(wW) ? wE : wW),
-							shark.position.y + (fabs(wN) > fabs(wS) ? wN : wS)
-						);*/
-		//DebugLog(@"best: %f,%f", bestOptionPos.x,bestOptionPos.y);
+		bestMove = ccp(vE,vN);				
 	}
 	
-	//DebugLog(@"Returning best move: %f,%f fromTile: %f,%f", bestMove.x,bestMove.y,fromTile.x,fromTile.y);
+	//if(DEBUG_MOVEGRID) DebugLog(@"Returning %@ best move: %f,%f fromTile: %f,%f", _tag, bestMove.x,bestMove.y,fromTile.x,fromTile.y);
 	
 	return bestMove;
 }
 
 - (void)updateMoveGridToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile {
-	[self updateMoveGridToTile:toTile fromTile:fromTile attemptsRemaining:4];
+	[self updateMoveGridToTile:toTile fromTile:fromTile attemptsRemaining:MOVEGRID_INITIAL_SEARCH_ATTEMPTS];
 }
 
 - (void)updateMoveGridToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile attemptsRemaining:(int)attemptsRemaining {
 
-	if(!_foundRoute || _forceUpdateToMoveGrid || (_lastToTile.x != toTile.x || _lastToTile.y != toTile.y)) {
+	if(!_foundRoute || _forceUpdateToMoveGrid || (attemptsRemaining != MOVEGRID_INITIAL_SEARCH_ATTEMPTS) || (_lastToTile.x != toTile.x || _lastToTile.y != toTile.y)) {
 
-		//DebugLog(@"Updating a %@ move grid", _tag);
+		if(DEBUG_MOVEGRID) DebugLog(@"Updating a %@ move grid", _tag);
 
 		_lastToTile = toTile;
 		_forceUpdateToMoveGrid = false;
 		
-		//double startTime = [[NSDate date] timeIntervalSince1970];
+		double startTime = [[NSDate date] timeIntervalSince1970];
 
-		int bestFoundRouteWeight = -1;
+		short bestFoundRouteWeight = -1;
 		[self copyBaseGridToMoveGridBuffer];
 		_moveGridBuffer[(int)toTile.x][(int)toTile.y] = 0;
 		[self propagateGridCostToX:toTile.x y:toTile.y fromTile:fromTile bestFoundRouteWeight:&bestFoundRouteWeight];
@@ -260,13 +255,13 @@
 			}
 		}
 		
-		//DebugLog(@"bestFoundRouteWeight=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for a %@ move grid in %f seconds", bestFoundRouteWeight, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - startTime);
+		if(DEBUG_MOVEGRID) DebugLog(@"bestFoundRouteWeight=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for a %@ move grid in %f seconds", bestFoundRouteWeight, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - startTime);
 
 	}
 }
 
 
--(void) propagateGridCostToX:(int)x y:(int)y fromTile:(CGPoint)fromTile bestFoundRouteWeight:(int*)bestFoundRouteWeight {
+-(void) propagateGridCostToX:(int)x y:(int)y fromTile:(CGPoint)fromTile bestFoundRouteWeight:(short*)bestFoundRouteWeight {
 
 	if(x < 0 || x >= _gridWidth) {
 		return;
@@ -275,7 +270,7 @@
 		return;
 	}
 
-	double w = _moveGridBuffer[x][y];
+	short w = _moveGridBuffer[x][y];
 
 	if(fromTile.x >= 0 && fromTile.y >= 0 && fromTile.x == x && fromTile.y == y) {
 		//find the fastest route - not necessarily the best
@@ -284,17 +279,16 @@
 	
 	if((*bestFoundRouteWeight >= 0 && w > *bestFoundRouteWeight) || w > (_gridWidth*_minSearchPathFactor)) {
 		//this is an approximation to increase speed - it can cause failures to find any path at all (very complex ones)
+		//if(DEBUG_MOVEGRID) DebugLog(@"Aboring propagation for %@ because we're over the search limit. w=%d, bestFoundRouteWeight=%d, _gridWidth*_minSearchPathFactor=%f", _tag, w, *bestFoundRouteWeight, _gridWidth*_minSearchPathFactor);
 		return;
 	}
 	
-	double wN = y+1 > _gridHeight-1 ? -10000 : _moveGridBuffer[x][y+1];
-	double wS = y-1 < 0 ? -10000 : _moveGridBuffer[x][y-1];
-	double wE = x+1 > _gridWidth-1 ? -10000 : _moveGridBuffer[x+1][y];
-	double wW = x-1 < 0 ? -10000 : _moveGridBuffer[x-1][y];
+	short wN = y+1 > _gridHeight-1 ? -10000 : _moveGridBuffer[x][y+1];
+	short wS = y-1 < 0 ? -10000 : _moveGridBuffer[x][y-1];
+	short wE = x+1 > _gridWidth-1 ? -10000 : _moveGridBuffer[x+1][y];
+	short wW = x-1 < 0 ? -10000 : _moveGridBuffer[x-1][y];
 
-	/*if(w < 50) {
-		DebugLog(@"tag %@ %d,%d = %f", _tag, x, y, w);
-	}*/
+	//if(DEBUG_MOVEGRID) DebugLog(@"Propagating %@ %d,%d = %d", _tag, x, y, w);
 	
 	bool changedN = false;
 	bool changedS = false;
@@ -319,6 +313,8 @@
 		changedW = true;
 	}
 	
+	//if(DEBUG_MOVEGRID) DebugLog(@"changedE=%d, changedW=%d, changedN=%d, changedS=%d", changedE, changedW, changedN, changedS);
+	
 	if(changedN) {
 		[self propagateGridCostToX:x y:y+1 fromTile:fromTile bestFoundRouteWeight:bestFoundRouteWeight];
 	}
@@ -331,7 +327,7 @@
 	if(changedW) {
 		[self propagateGridCostToX:x-1 y:y fromTile:fromTile bestFoundRouteWeight:bestFoundRouteWeight];
 	}
-	
+
 }
 
 -(void)dealloc {

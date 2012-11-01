@@ -61,8 +61,8 @@ enum PROPAGATION_RESULT {
 	
 	GAME_STATE _state;
 	
-	int** _sharkMapfeaturesGrid;
-	int** _penguinMapfeaturesGrid;
+	short** _sharkMapfeaturesGrid;
+	short** _penguinMapfeaturesGrid;
 	NSMutableDictionary* _sharkMoveGridDatas;
 	NSMutableDictionary* _penguinMoveGridDatas;
 	bool _isUpdatingSharkMoveGrids;

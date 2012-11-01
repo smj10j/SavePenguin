@@ -232,11 +232,11 @@
 
 	DebugLog(@"Setting up grid with size=%d, width=%d, height=%d", _gridSize, _gridWidth, _gridHeight);
 
-	_sharkMapfeaturesGrid = new int*[_gridWidth];
-	_penguinMapfeaturesGrid = new int*[_gridWidth];
+	_sharkMapfeaturesGrid = new short*[_gridWidth];
+	_penguinMapfeaturesGrid = new short*[_gridWidth];
 	for(int i = 0; i < _gridWidth; i++) {
-		_sharkMapfeaturesGrid[i] = new int[_gridHeight];
-		_penguinMapfeaturesGrid[i] = new int[_gridHeight];
+		_sharkMapfeaturesGrid[i] = new short[_gridHeight];
+		_penguinMapfeaturesGrid[i] = new short[_gridHeight];
 		for(int j = 0; j < _gridHeight; j++) {
 			_sharkMapfeaturesGrid[i][j] = INITIAL_GRID_WEIGHT;
 			_penguinMapfeaturesGrid[i][j] = INITIAL_GRID_WEIGHT;
@@ -573,11 +573,11 @@
 		CGPoint penguinGridPos = [self toGrid:penguin.position];
 		while(_penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT) {
 			//move back onto land
-			double wN = penguinGridPos.y+1 > _gridHeight-1 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1];
-			double wS = penguinGridPos.y-1 < 0 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1];
-			double wE = penguinGridPos.x+1 > _gridWidth-1 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y];
-			double wW = penguinGridPos.x-1 < 0 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y];
-			double wMin = fmin(fmin(fmin(wN,wS),wE),wW);
+			short wN = penguinGridPos.y+1 > _gridHeight-1 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1];
+			short wS = penguinGridPos.y-1 < 0 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1];
+			short wE = penguinGridPos.x+1 > _gridWidth-1 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y];
+			short wW = penguinGridPos.x-1 < 0 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y];
+			short wMin = min(min(min(wN,wS),wE),wW);
 			if(wN == wMin) {
 				penguinGridPos.y++;
 			}else if(wS == wMin) {
@@ -591,10 +591,10 @@
 		}
 
 		//first create a copy of the feature map
-		int** penguinMoveGrid = new int*[_gridWidth];
-		int rowSize = _gridHeight * sizeof(int);
+		short** penguinMoveGrid = new short*[_gridWidth];
+		int rowSize = _gridHeight * sizeof(short);
 		for(int x = 0; x < _gridWidth; x++) {
-			penguinMoveGrid[x] = new int[_gridHeight];
+			penguinMoveGrid[x] = new short[_gridHeight];
 			memcpy(penguinMoveGrid[x], (void*)_penguinMapfeaturesGrid[x], rowSize);
 		}
 		
@@ -617,11 +617,11 @@
 		CGPoint sharkGridPos = [self toGrid:shark.position];
 		while(_sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT) {
 			//move back onto land
-			double wN = sharkGridPos.y+1 > _gridHeight-1 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1];
-			double wS = sharkGridPos.y-1 < 0 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1];
-			double wE = sharkGridPos.x+1 > _gridWidth-1 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y];
-			double wW = sharkGridPos.x-1 < 0 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y];
-			double wMin = fmin(fmin(fmin(wN,wS),wE),wW);
+			short wN = sharkGridPos.y+1 > _gridHeight-1 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1];
+			short wS = sharkGridPos.y-1 < 0 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1];
+			short wE = sharkGridPos.x+1 > _gridWidth-1 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y];
+			short wW = sharkGridPos.x-1 < 0 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y];
+			short wMin = min(min(min(wN,wS),wE),wW);
 			if(wN == wMin) {
 				sharkGridPos.y++;
 			}else if(wS == wMin) {
@@ -635,10 +635,10 @@
 		}
 		
 		//first create a copy of the feature map
-		int** sharkMoveGrid = new int*[_gridWidth];
-		int rowSize = _gridHeight * sizeof(int);
+		short** sharkMoveGrid = new short*[_gridWidth];
+		int rowSize = _gridHeight * sizeof(short);
 		for(int x = 0; x < _gridWidth; x++) {
-			sharkMoveGrid[x] = new int[_gridHeight];
+			sharkMoveGrid[x] = new short[_gridHeight];
 			memcpy(sharkMoveGrid[x], (void*)_sharkMapfeaturesGrid[x], rowSize);
 		}
 		
@@ -1728,18 +1728,18 @@
 		//readjust if we are somehow on top of land - this can happen when fans blow an actor on land, for example
 		if(sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT) {
 			//move back onto land
-			double wN = sharkGridPos.y+1 > _gridHeight-1 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1];
-			double wS = sharkGridPos.y-1 < 0 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1];
-			double wE = sharkGridPos.x+1 > _gridWidth-1 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y];
-			double wW = sharkGridPos.x-1 < 0 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y];
-			double wMin = fmax(fmin(fmin(wN,wS),wE),wW);
-			if(wN == wMin) {
+			short wN = sharkGridPos.y+1 > _gridHeight-1 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1];
+			short wS = sharkGridPos.y-1 < 0 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1];
+			short wE = sharkGridPos.x+1 > _gridWidth-1 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y];
+			short wW = sharkGridPos.x-1 < 0 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y];
+			short wMax = max(max(max(wN,wS),wE),wW);
+			if(wN == wMax) {
 				[shark transformPosition:ccp(shark.position.x,shark.position.y+8*SCALING_FACTOR_V)];
-			}else if(wS == wMin) {
+			}else if(wS == wMax) {
 				[shark transformPosition:ccp(shark.position.x,shark.position.y-8*SCALING_FACTOR_V)];
-			}else if(wE == wMin) {
+			}else if(wE == wMax) {
 				[shark transformPosition:ccp(shark.position.x+8*SCALING_FACTOR_H,shark.position.y)];
-			}else if(wW == wMin) {
+			}else if(wW == wMax) {
 				[shark transformPosition:ccp(shark.position.x-8*SCALING_FACTOR_H,shark.position.y)];
 			}
 		}
@@ -1948,11 +1948,11 @@
 			//readjust if we are somehow on top of land - this can happen when fans blow an actor on land, for example
 			if(penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT) {
 				//move back onto land
-				double wN = penguinGridPos.y+1 > _gridHeight-1 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1];
-				double wS = penguinGridPos.y-1 < 0 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1];
-				double wE = penguinGridPos.x+1 > _gridWidth-1 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y];
-				double wW = penguinGridPos.x-1 < 0 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y];
-				double wMin = fmin(fmin(fmin(wN,wS),wE),wW);
+				short wN = penguinGridPos.y+1 > _gridHeight-1 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1];
+				short wS = penguinGridPos.y-1 < 0 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1];
+				short wE = penguinGridPos.x+1 > _gridWidth-1 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y];
+				short wW = penguinGridPos.x-1 < 0 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y];
+				short wMin = min(min(min(wN,wS),wE),wW);
 				if(wN == wMin) {
 					[penguin transformPosition:ccp(penguin.position.x,penguin.position.y+8*SCALING_FACTOR_V)];
 				}else if(wS == wMin) {
@@ -2198,9 +2198,9 @@
 	if(__DEBUG_SHARKS || __DEBUG_PENGUINS) {
 
 		MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:@"Penguin"];
-		const int** penguinMoveGrid = nil;
+		const short** penguinMoveGrid = nil;
 		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:@"Shark"];
-		const int** sharkMoveGrid = nil;
+		const short** sharkMoveGrid = nil;
 		if(penguinMoveGridData != nil) {
 			penguinMoveGrid = [penguinMoveGridData moveGrid];
 		}

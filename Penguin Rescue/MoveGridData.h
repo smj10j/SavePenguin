@@ -10,9 +10,9 @@
 
 @interface MoveGridData : NSObject {
 
-	int** _baseGrid;
-	int** _moveGrid;
-	int** _moveGridBuffer;
+	short** _baseGrid;
+	short** _moveGrid;
+	short** _moveGridBuffer;
 	int _gridWidth;
 	int _gridHeight;
 
@@ -31,16 +31,16 @@
 	NSString* _tag;
 }
 
-- (id)initWithGrid:(int**)grid height:(int)height width:(int)width moveHistorySize:(int)moveHistorySize tag:(NSString*)tag;
+- (id)initWithGrid:(short**)grid height:(int)height width:(int)width moveHistorySize:(int)moveHistorySize tag:(NSString*)tag;
 
-- (void)updateBaseGrid:(int**)baseGrid;
+- (void)updateBaseGrid:(short**)baseGrid;
 
 - (void)logMove:(CGPoint)pos;
 - (double)distanceTraveled;
 - (double)distanceTraveledStraightline;
 
-- (int**)baseGrid;
-- (const int**)moveGrid;
+- (short**)baseGrid;
+- (const short**)moveGrid;
 - (const CGPoint)lastTargetTile;
 
 - (void)updateMoveGridToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile;
@@ -51,6 +51,8 @@
 
 @end
 
+#define MOVEGRID_INITIAL_SEARCH_ATTEMPTS 4
+#define MOVEGRID_INITIAL_MIN_SEARCH_FACTOR 0.5
 
 #define INITIAL_GRID_WEIGHT 500
 #define HARD_BORDER_WEIGHT 10000
