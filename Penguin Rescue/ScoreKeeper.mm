@@ -434,10 +434,14 @@
 +(double)zScoreFromScore:(double)score withLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
 	//get the world numbers from the server
 	NSDictionary* worldScores = [ScoreKeeper worldScoresForLevelPackPath:levelPackPath levelPath:levelPath];
-	int worldScoreMean = [(NSNumber*)[worldScores objectForKey:@"scoreMean"] intValue];
-	int worldScoreStdDev = [(NSNumber*)[worldScores objectForKey:@"scoreStdDev"] intValue];
-	double zScore = ((score - worldScoreMean) / (1.0f*worldScoreStdDev));
-	return zScore;
+	if(worldScores != nil) {
+		int worldScoreMean = [(NSNumber*)[worldScores objectForKey:@"scoreMean"] intValue];
+		int worldScoreStdDev = [(NSNumber*)[worldScores objectForKey:@"scoreStdDev"] intValue];
+		double zScore = ((score - worldScoreMean) / (1.0f*worldScoreStdDev));
+		return zScore;
+	}else {
+		return 0.35;	//feel good score until data comes in
+	}
 }
 
 
