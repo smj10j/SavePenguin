@@ -76,7 +76,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{141, 250}</string>
+								<string>{144, 239}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -842,7 +842,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 0}, {17.75, 71.75}}</string>
+								<string>{{38, 45}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -858,13 +858,13 @@
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{21.25, 75}</string>
+								<string>{21.25, 85}</string>
 								<key>Tag</key>
 								<integer>8</integer>
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.25, 0.125}</string>
+								<string>{0, 0.125}</string>
 								<key>UniqueName</key>
 								<string>Metal-Gate_2</string>
 								<key>ZOrder</key>
@@ -950,7 +950,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 0}, {17.75, 71.75}}</string>
+								<string>{{38, 45}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -966,13 +966,13 @@
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{21.25, 75}</string>
+								<string>{21.25, 85}</string>
 								<key>Tag</key>
 								<integer>8</integer>
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.25, 0.125}</string>
+								<string>{0, 0.125}</string>
 								<key>UniqueName</key>
 								<string>Metal-Gate_5</string>
 								<key>ZOrder</key>
@@ -1041,13 +1041,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{57, 44}, {35.5, 19.75}}</string>
+								<string>{{61, 0}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -1132,13 +1132,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{57, 44}, {35.5, 19.75}}</string>
+								<string>{{61, 0}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -1223,13 +1223,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{57, 44}, {35.5, 19.75}}</string>
+								<string>{{61, 0}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -1314,13 +1314,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{57, 44}, {35.5, 19.75}}</string>
+								<string>{{61, 0}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -1405,13 +1405,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{57, 44}, {35.5, 19.75}}</string>
+								<string>{{61, 0}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -1496,13 +1496,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{57, 44}, {35.5, 19.75}}</string>
+								<string>{{61, 0}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -1612,7 +1612,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 73}, {29, 43.75}}</string>
+								<string>{{31, 0}, {29, 43.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1728,7 +1728,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 73}, {29, 43.75}}</string>
+								<string>{{31, 0}, {29, 43.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1844,7 +1844,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 73}, {29, 43.75}}</string>
+								<string>{{31, 0}, {29, 43.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>

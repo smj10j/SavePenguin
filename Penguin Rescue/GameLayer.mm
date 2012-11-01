@@ -1452,6 +1452,10 @@
 				
 				if(targetPenguin != nil) {
 					CGPoint targetPenguinGridPos = [self toGrid:targetPenguin.position];
+					if(targetPenguinGridPos.x >= _gridWidth || targetPenguinGridPos.x < 0 || targetPenguinGridPos.y >= _gridHeight || targetPenguinGridPos.y < 0) {
+						//offscreen - let him come back before we deal with him
+						continue;
+					}
 
 					MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
 					[sharkMoveGridData updateMoveGridToTile:targetPenguinGridPos fromTile:sharkGridPos];
