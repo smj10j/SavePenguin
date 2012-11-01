@@ -1699,7 +1699,7 @@
 		
 	for(LHSprite* shark in sharks) {
 		
-		bool wasOffscreen = false;
+		bool needsToJitter = false;
 		Shark* sharkData = ((Shark*)shark.userInfo);
 		CGPoint sharkGridPos = [self toGrid:shark.position];
 
@@ -1720,7 +1720,7 @@
 				[shark transformPosition:ccp(shark.position.x,shark.position.y+8*SCALING_FACTOR_V)];
 			}
 			
-			wasOffscreen = true;
+			needsToJitter = true;
 		}
 		
 		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];		
@@ -1778,7 +1778,7 @@
 				
 		[sharkMoveGridData logMove:bestOptionPos];
 		//DebugLog(@"shark dist traveled: %f", [sharkMoveGridData distanceTraveledStraightline]);
-		if(wasOffscreen || [sharkMoveGridData distanceTraveledStraightline] < 5*SCALING_FACTOR_GENERIC) {
+		if(needsToJitter || [sharkMoveGridData distanceTraveledStraightline] < 5*SCALING_FACTOR_GENERIC) {
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
 				sharkData.isStuck = true;
@@ -1795,8 +1795,8 @@
 				if(sharkGridPos.y > 0) sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1]+=5;
 				if(sharkGridPos.y < _gridHeight-1) sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1]+=5;
 				
-				double jitterX = ((arc4random()%200)-100.0)/100;
-				double jitterY = ((arc4random()%200)-100.0)/100;
+				double jitterX = 0;//((arc4random()%200)-100.0)/100;
+				double jitterY = 0;//((arc4random()%200)-100.0)/100;
 				
 				dx+= jitterX;
 				dy+= jitterY;
@@ -1892,7 +1892,7 @@
 
 	for(LHSprite* penguin in penguins) {
 		
-		bool wasOffscreen = false;
+		bool needsToJitter = false;
 		CGPoint penguinGridPos = [self toGrid:penguin.position];
 		Penguin* penguinData = ((Penguin*)penguin.userInfo);
 		MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
@@ -1918,7 +1918,7 @@
 				[penguin transformPosition:ccp(penguin.position.x,penguin.position.y+8*SCALING_FACTOR_V)];
 			}
 			
-			wasOffscreen = true;
+			needsToJitter = true;
 		}
 		
 		if(penguinData.hasSpottedShark) {
@@ -1962,6 +1962,8 @@
 				}else if(wW == wMin) {
 					[penguin transformPosition:ccp(penguin.position.x-8*SCALING_FACTOR_H,penguin.position.y)];
 				}
+				
+				//needsToJitter = true;
 			}
 		
 
@@ -1989,7 +1991,7 @@
 			double penguinSpeed = penguinData.speed;
 
 			[penguinMoveGridData logMove:bestOptionPos];
-			if(wasOffscreen || [penguinMoveGridData distanceTraveledStraightline] < 5*SCALING_FACTOR_GENERIC) {
+			if(needsToJitter || [penguinMoveGridData distanceTraveledStraightline] < 5*SCALING_FACTOR_GENERIC) {
 				//we're stuck... but we'll let sharks report us as being stuck.
 				//we'll just try and get ourselves out of this sticky situation
 				
@@ -2003,8 +2005,8 @@
 				if(penguinGridPos.y < _gridHeight-1) penguinMoveGridData.baseGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1]+=5;
 
 				
-				double jitterX = ((arc4random()%200)-100.0)/100;
-				double jitterY = ((arc4random()%200)-100.0)/100;
+				double jitterX = 0;//((arc4random()%200)-100.0)/100;
+				double jitterY = 0;//((arc4random()%200)-100.0)/100;
 				
 				dx+= jitterX;
 				dy+= jitterY;
