@@ -8,12 +8,136 @@
 	<false/>
 	<key>AutoIncludeXCode</key>
 	<false/>
+	<key>BookmarkProjectFolder</key>
+	<data>
+	Ym9va2wDAAAAAAQQMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAdAIA
+	AAUAAAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZlAAAABAAAAAEBAABDb2RlBwAAAAEB
+	AABDb25xdWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUAABQAAAABBgAABAAAABQAAAAk
+	AAAAMAAAAEAAAAAIAAAABAMAAHIAAAAAAAAACAAAAAQDAABbtw4AAAAAAAgAAAAEAwAA
+	69EOAAAAAAAIAAAABAMAAO3RDgAAAAAACAAAAAQDAACjxk0DAAAAABQAAAABBgAAdAAA
+	AIQAAACUAAAApAAAALQAAAAYAAAAAQIAAAIAAAAAAAAADwAAAAAAAAAAAAAAAAAAAAgA
+	AAAEAwAAAwAAAAAAAAAEAAAAAwMAAPUBAAAMAAAAAQEAAE1hY2ludG9zaCBIRAgAAAAE
+	AwAAAICBPXQAAAAIAAAAAAQAAEG0DBo+AAAAJAAAAAEBAAA3MDFCN0UwNS05RTA1LTM3
+	RjMtOTZFRi05RUQyODRFRjU4OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAAAAAAAAAA
+	AAEAAAABAQAALwAAAAAAAAABBQAABAAAAAMDAAAAAQAAsAAAAAECAABkYjY0ZmM2ZWFj
+	NzRlZDk4ZjAzZTRmY2M3MTIzZTU3NzU4MDg4NzVkOzAwMDAwMDAwOzAwMDAwMDAwMDAw
+	MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
+	MDAwMDI7MDAwMDAwMDAwMzRkYzZhMzsvdXNlcnMvc3RldmUvY29kZS9jb25xdWVyL3Bl
+	bmd1aW4gcmVzY3VlAMAAAAD+////AQAAAAAAAAAPAAAABBAAAFgAAAAAAAAABRAAAMQA
+	AAAAAAAAEBAAAOAAAAAAAAAAAiAAAJwBAAAAAAAAECAAABwBAAAAAAAAESAAAFABAAAA
+	AAAAEiAAADABAAAAAAAAEyAAAEABAAAAAAAAICAAAHwBAAAAAAAAMCAAAKgBAAAAAAAA
+	AcAAAAABAAAAAAAAEcAAABQAAAAAAAAAEsAAABABAAAAAAAAENAAALABAAAAAAAAgPAA
+	ALwBAAAAAAAA
+	</data>
 	<key>BundleIdentifier</key>
 	<string></string>
+	<key>CodePathRelative</key>
+	<string>..</string>
 	<key>CustomClasses</key>
-	<array/>
+	<array>
+		<dict>
+			<key>ClassName</key>
+			<string>Penguin</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>alertRadius</key>
+				<real>300</real>
+				<key>detectionRadius</key>
+				<real>2048</real>
+				<key>hasSpottedShark</key>
+				<false/>
+				<key>isDead</key>
+				<false/>
+				<key>isSafe</key>
+				<false/>
+				<key>isStuck</key>
+				<false/>
+				<key>speed</key>
+				<real>40</real>
+			</dict>
+		</dict>
+		<dict>
+			<key>ClassName</key>
+			<string>Shark</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>activeDetectionRadius</key>
+				<real>2048</real>
+				<key>activeSpeed</key>
+				<real>75</real>
+				<key>endpointX</key>
+				<real>1024</real>
+				<key>endpointY</key>
+				<real>400</real>
+				<key>isStuck</key>
+				<false/>
+				<key>restingDetectionRadius</key>
+				<real>2048</real>
+				<key>restingSpeed</key>
+				<real>25</real>
+				<key>targetAcquired</key>
+				<false/>
+			</dict>
+		</dict>
+		<dict>
+			<key>ClassName</key>
+			<string>ToolboxItem_Obstruction</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>placeCost</key>
+				<real>750</real>
+				<key>runningCost</key>
+				<real>1000</real>
+				<key>scale</key>
+				<real>1</real>
+			</dict>
+		</dict>
+		<dict>
+			<key>ClassName</key>
+			<string>ToolboxItem_Debris</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>placeCost</key>
+				<real>250</real>
+				<key>runningCost</key>
+				<real>350</real>
+				<key>scale</key>
+				<real>1</real>
+			</dict>
+		</dict>
+		<dict>
+			<key>ClassName</key>
+			<string>ToolboxItem_Windmill</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>placeCost</key>
+				<real>400</real>
+				<key>power</key>
+				<real>50</real>
+				<key>reach</key>
+				<real>5000</real>
+				<key>runningCost</key>
+				<real>600</real>
+				<key>scale</key>
+				<real>1</real>
+			</dict>
+		</dict>
+		<dict>
+			<key>ClassName</key>
+			<string>MovingDoodad</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>pathName</key>
+				<string>Default</string>
+				<key>restartAtOtherEnd</key>
+				<true/>
+				<key>timeToCompletePath</key>
+				<real>60</real>
+			</dict>
+		</dict>
+	</array>
 	<key>CustomScreenSize</key>
-	<string>{0, 0}</string>
+	<string>{480, 320}</string>
 	<key>Device</key>
 	<integer>2</integer>
 	<key>Engine</key>
@@ -21,12 +145,53 @@
 	<key>HDSuffix</key>
 	<string>-hd</string>
 	<key>LastLevelLoaded</key>
-	<string></string>
+	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Arctic1/Showdown.plhs</string>
 	<key>Orientation</key>
 	<integer>1</integer>
 	<key>ProjectName</key>
 	<string></string>
+	<key>ProjectPathRelative</key>
+	<string>./</string>
+	<key>SandboxProjectFolder</key>
+	<data>
+	Ym9va2wDAAAAAAQQMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAdAIA
+	AAUAAAABAQAAVXNlcnMAAAAFAAAAAQEAAFN0ZXZlAAAABAAAAAEBAABDb2RlBwAAAAEB
+	AABDb25xdWVyAA4AAAABAQAAUGVuZ3VpbiBSZXNjdWUAABQAAAABBgAABAAAABQAAAAk
+	AAAAMAAAAEAAAAAIAAAABAMAAHIAAAAAAAAACAAAAAQDAABbtw4AAAAAAAgAAAAEAwAA
+	69EOAAAAAAAIAAAABAMAAO3RDgAAAAAACAAAAAQDAACjxk0DAAAAABQAAAABBgAAdAAA
+	AIQAAACUAAAApAAAALQAAAAYAAAAAQIAAAIAAAAAAAAADwAAAAAAAAAAAAAAAAAAAAgA
+	AAAEAwAAAwAAAAAAAAAEAAAAAwMAAPUBAAAMAAAAAQEAAE1hY2ludG9zaCBIRAgAAAAE
+	AwAAAICBPXQAAAAIAAAAAAQAAEG0DBo+AAAAJAAAAAEBAAA3MDFCN0UwNS05RTA1LTM3
+	RjMtOTZFRi05RUQyODRFRjU4OEYYAAAAAQIAAIEAAAABAAgA7z8AAAEACAAAAAAAAAAA
+	AAEAAAABAQAALwAAAAAAAAABBQAABAAAAAMDAAAAAQAAsAAAAAECAABkYjY0ZmM2ZWFj
+	NzRlZDk4ZjAzZTRmY2M3MTIzZTU3NzU4MDg4NzVkOzAwMDAwMDAwOzAwMDAwMDAwMDAw
+	MDAwMjA7Y29tLmFwcGxlLmFwcC1zYW5kYm94LnJlYWQtd3JpdGU7MDAwMDAwMDE7MGUw
+	MDAwMDI7MDAwMDAwMDAwMzRkYzZhMzsvdXNlcnMvc3RldmUvY29kZS9jb25xdWVyL3Bl
+	bmd1aW4gcmVzY3VlAMAAAAD+////AQAAAAAAAAAPAAAABBAAAFgAAAAAAAAABRAAAMQA
+	AAAAAAAAEBAAAOAAAAAAAAAAAiAAAJwBAAAAAAAAECAAABwBAAAAAAAAESAAAFABAAAA
+	AAAAEiAAADABAAAAAAAAEyAAAEABAAAAAAAAICAAAHwBAAAAAAAAMCAAAKgBAAAAAAAA
+	AcAAAAABAAAAAAAAEcAAABQAAAAAAAAAEsAAABABAAAAAAAAENAAALABAAAAAAAAgPAA
+	ALwBAAAAAAAA
+	</data>
 	<key>Tags</key>
-	<array/>
+	<array>
+		<string>DEFAULT</string>
+		<string>PENGUIN</string>
+		<string>SHARK</string>
+		<string>LAND</string>
+		<string>WATER</string>
+		<string>SHARK_REPELLENT</string>
+		<string>SHARK_ATTRACTANT</string>
+		<string>BORDER</string>
+		<string>TOOLBOX_ITEM</string>
+		<string>DEBRIS</string>
+		<string>TOOLBOX_ITEM_CONTAINER</string>
+		<string>BACKGROUND</string>
+		<string>TUTORIAL</string>
+		<string>WINDMILL</string>
+		<string>DOODAD</string>
+		<string>DOODAD_PATH</string>
+		<string>OBSTRUCTION</string>
+	</array>
 </dict>
 </plist>
