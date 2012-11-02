@@ -49,6 +49,7 @@
 
 		//create a LevelHelperLoader object - we use an empty level
 		_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", @"Menu", @"About"]];
+		[_levelLoader addObjectsToWorld:nil cocos2dLayer:self];
 		
 		
 		

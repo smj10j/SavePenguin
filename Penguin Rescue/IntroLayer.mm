@@ -80,8 +80,8 @@
 			[SettingsManager setBool:true forKey:SETTING_MUSIC_ENABLED];
 			[SettingsManager setInt:1 forKey:SETTING_NUM_APP_OPENS];
 
-			[SettingsManager setInt:25 forKey:SETTING_TOTAL_EARNED_COINS];
-			[SettingsManager setInt:25 forKey:SETTING_TOTAL_AVAILABLE_COINS];
+			[SettingsManager setInt:INITIAL_FREE_COINS forKey:SETTING_TOTAL_EARNED_COINS];
+			[SettingsManager setInt:INITIAL_FREE_COINS forKey:SETTING_TOTAL_AVAILABLE_COINS];
 			
 		}
 		[APIManager createUser];

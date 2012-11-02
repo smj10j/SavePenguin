@@ -28,7 +28,7 @@
 #define DEBUG_LEVELS			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
 #define DEBUG_MEMORY			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
 #define DEBUG_MOVEGRID			((false	|| DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
-#define DEBUG_PENGUIN			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)	//can be overridden in game
+#define DEBUG_PENGUIN			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)		//can be overridden in game
 #define DEBUG_SHARK				((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)		//can be overridden in game
 
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -43,6 +43,7 @@
 #define PENGUIN_MOVE_HISTORY_SIZE 20
 #define SHARK_MOVE_HISTORY_SIZE 50
 
+#define INITIAL_FREE_COINS 25
 
 #define HAND_OF_GOD_INITIAL_POWER .75
 #define HAND_OF_GOD_POWER_REGENERATION_RATE .175
@@ -77,6 +78,10 @@
 
 
 #define COMPANY_IDENTIFIER @"com.conquerllc"
+
+
+
+#define APP_STORE_REVIEW_URL @""
 
 
 

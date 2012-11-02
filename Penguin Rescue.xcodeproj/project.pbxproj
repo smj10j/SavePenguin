@@ -25,6 +25,9 @@
 		7c4477967b3e8d5773baaf1c /* LHSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1dd46984bf9e2bae0b50594e /* LHSprite.mm */; };
 		827a0d456acaa570140ae1e7 /* Shark.mm in Sources */ = {isa = PBXBuildFile; fileRef = b1c60b49a2c684674f8e688f /* Shark.mm */; };
 		868944766f6c8d60c08dabfa /* LHContactNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49a864eb542f01b4e9d96737 /* LHContactNode.mm */; };
+		AA27286016444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA27285D16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-hd.png */; };
+		AA27286116444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA27285E16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-ipadhd.png */; };
+		AA27286216444A2E00297CE4 /* Spritesheet_MenuBackgrounds1.png in Resources */ = {isa = PBXBuildFile; fileRef = AA27285F16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1.png */; };
 		AA4C8D8B1637C48F00C55554 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4C8D8A1637C48F00C55554 /* libFlurry.a */; };
 		AA4C8D8D1637C53100C55554 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4C8D8C1637C53100C55554 /* SystemConfiguration.framework */; };
 		AA4C8D901637D2D200C55554 /* MainMenuLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA4C8D8F1637D2D200C55554 /* MainMenuLayer.mm */; };
@@ -304,6 +307,9 @@
 		9a81c1fbee6e13013cc27d9b /* LHSettings.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LHSettings.mm; sourceTree = "<group>"; };
 		9abcf5a26f704879bbed9082 /* LHCuttingEngineMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHCuttingEngineMgr.h; sourceTree = "<group>"; };
 		9bee0232d634e7753e1334bc /* MovingDoodad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovingDoodad.h; sourceTree = "<group>"; };
+		AA27285D16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spritesheet_MenuBackgrounds1-hd.png"; sourceTree = "<group>"; };
+		AA27285E16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spritesheet_MenuBackgrounds1-ipadhd.png"; sourceTree = "<group>"; };
+		AA27285F16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spritesheet_MenuBackgrounds1.png; sourceTree = "<group>"; };
 		AA4C8D891637C48F00C55554 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		AA4C8D8A1637C48F00C55554 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		AA4C8D8C1637C53100C55554 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1476,6 +1482,9 @@
 				AA4C8D941637DB5700C55554 /* Spritesheet_Menu-hd.png */,
 				AA4C8D951637DB5700C55554 /* Spritesheet_Menu-ipadhd.png */,
 				AA4C8D961637DB5700C55554 /* Spritesheet_Menu.png */,
+				AA27285D16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-hd.png */,
+				AA27285E16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-ipadhd.png */,
+				AA27285F16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1.png */,
 				AAE6105D1632B7FD004166CC /* Spritesheet_Actors-hd.png */,
 				AAE6105E1632B7FD004166CC /* Spritesheet_Actors-ipadhd.png */,
 				AAE6105F1632B7FD004166CC /* Spritesheet_Actors.png */,
@@ -1765,6 +1774,9 @@
 				AA9213A71642EB13008BAA08 /* Icon.png in Resources */,
 				AA9213A81642EB13008BAA08 /* Icon@2x.png in Resources */,
 				AA8DD36F1643ED2200E49D07 /* README in Resources */,
+				AA27286016444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-hd.png in Resources */,
+				AA27286116444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-ipadhd.png in Resources */,
+				AA27286216444A2E00297CE4 /* Spritesheet_MenuBackgrounds1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

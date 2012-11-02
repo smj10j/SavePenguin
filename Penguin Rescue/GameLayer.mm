@@ -1136,6 +1136,9 @@
 	
 	int coinsEarned = 0;
 	int prevScore = [[LevelPackManager scoreForLevel:_levelPath inPack:_levelPackPath] intValue];
+	if(INITIAL_FREE_COINS == [SettingsManager intForKey:SETTING_TOTAL_EARNED_COINS]) {
+		prevScore = 0;
+	}
 	if(prevScore < finalScore) {
 		int prevCoinsEarned = [ScoreKeeper coinsForZScore:[ScoreKeeper zScoreFromScore:prevScore withLevelPackPath:_levelPackPath levelPath:_levelPath]];
 		coinsEarned = [ScoreKeeper coinsForZScore:zScore] - prevCoinsEarned;
@@ -1255,19 +1258,6 @@
 			nil]
 		];
 		
-		
-		CCLabelTTF* coinsEarnedLabel = [CCLabelTTF labelWithString:(coinsEarned > 0 ? [NSString stringWithFormat:@"%d", coinsEarned] : @"0") fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
-		coinsEarnedLabel.color = SCORING_FONT_COLOR2;
-		coinsEarnedLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
-									105*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
-		coinsEarnedLabel.opacity = 0;
-		[self addChild:coinsEarnedLabel];		
-		[coinsEarnedLabel runAction:[CCSequence actions:
-			[CCDelayTime actionWithDuration:1.50f],
-			[CCFadeIn actionWithDuration:0.25f],
-			nil]
-		];
-		
 		CCLabelTTF* highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", (coinsEarned > 0 ? @"Nice! A new  personal high score earns you some more coins!" : @"Beat your high score to earn more coins!")] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE3 dimensions:CGSizeMake(200*SCALING_FACTOR_H,150*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
 		highScoreLabel.color = SCORING_FONT_COLOR1;
 		highScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset - 200*SCALING_FACTOR_H,
@@ -1281,6 +1271,19 @@
 		];
 				
 	}else {
+	
+		CCLabelTTF* coinsEarnedLabel = [CCLabelTTF labelWithString:(coinsEarned > 0 ? [NSString stringWithFormat:@"%d", coinsEarned] : @"0") fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
+		coinsEarnedLabel.color = SCORING_FONT_COLOR2;
+		coinsEarnedLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
+									105*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
+		coinsEarnedLabel.opacity = 0;
+		[self addChild:coinsEarnedLabel];		
+		[coinsEarnedLabel runAction:[CCSequence actions:
+			[CCDelayTime actionWithDuration:1.50f],
+			[CCFadeIn actionWithDuration:0.25f],
+			nil]
+		];	
+	
 		//show info about needed to connect
 		CCLabelTTF* goOnlineForScoresLabel = [CCLabelTTF labelWithString:@"Connect to the Internet to earn coins and see how your score compares with other players!" fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE3 dimensions:CGSizeMake(200*SCALING_FACTOR_H,200*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
 		goOnlineForScoresLabel.color = SCORING_FONT_COLOR2;

@@ -49,6 +49,7 @@
 
 		//create a LevelHelperLoader object - we use an empty level
 		_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", @"Menu", @"LevelPackSelect"]];
+		[_levelLoader addObjectsToWorld:nil cocos2dLayer:self];
 
 		_spriteNameToLevelPackPath = [[NSMutableDictionary alloc] init];
 		
