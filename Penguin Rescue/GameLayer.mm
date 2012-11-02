@@ -153,6 +153,7 @@
 
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelLost/hoot.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelWon/reward.mp3"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelWon/thud.wav"];
 
 }
 
@@ -1074,6 +1075,12 @@
 	double zScore = [ScoreKeeper zScoreFromScore:finalScore withLevelPackPath:_levelPackPath levelPath:_levelPath];
 	NSString* grade = [ScoreKeeper gradeFromZScore:zScore];
 	
+	int coinsEarned = 0;
+	double prevScore = [[LevelPackManager scoreForLevel:_levelPackPath inPack:_levelPath] doubleValue];
+	if(prevScore < finalScore) {
+		coinsEarned = [ScoreKeeper coinsForZScore:zScore];
+	}
+	
 	//store the level as being completed
 	[LevelPackManager completeLevel:_levelPath inPack:_levelPackPath withScore:finalScore];
 			
@@ -1171,10 +1178,46 @@
 		gradeLabel.color = SCORING_FONT_COLOR3;
 		gradeLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
 									170*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -7 : 0));
+		gradeLabel.opacity = 0;
 		[self addChild:gradeLabel];
 		
+		//grade fades in with a thump
+		[gradeLabel runAction:[CCSequence actions:
+			[CCDelayTime actionWithDuration:1.5f],
+			[CCCallFunc actionWithTarget:self selector:@selector(playGameWonGradeStamp)],
+			[CCFadeIn actionWithDuration:0.25f],
+			nil]
+		];
 		
 		
+		CCLabelTTF* coinsEarnedLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", coinsEarned] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
+		coinsEarnedLabel.color = SCORING_FONT_COLOR2;
+		coinsEarnedLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
+									110*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -7 : 0));
+		coinsEarnedLabel.opacity = 0;
+		[self addChild:coinsEarnedLabel];		
+		[coinsEarnedLabel runAction:[CCSequence actions:
+			[CCDelayTime actionWithDuration:1.75f],
+			[CCFadeIn actionWithDuration:0.25f],
+			nil]
+		];
+		
+		if(coinsEarned > 0) {
+			//:add a label saying "New Personal Best!" under the coins earned label
+		
+			CCLabelTTF* highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", @"New Personal High Score!"] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
+			highScoreLabel.color = SCORING_FONT_COLOR2;
+			highScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
+										80*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -7 : 0));
+			highScoreLabel.opacity = 0;
+			[self addChild:highScoreLabel];
+			[highScoreLabel runAction:[CCSequence actions:
+				[CCDelayTime actionWithDuration:1.75f],
+				[CCFadeIn actionWithDuration:0.25f],
+				nil]
+			];
+		}
+				
 	}else {
 		//show info about needed to connect
 		CCLabelTTF* goOnlineForScoresLabel = [CCLabelTTF labelWithString:@"Connect to the Internet to earn coins and see how your score compares with other players!" fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE3 dimensions:CGSizeMake(200*SCALING_FACTOR_H,200*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
@@ -1184,6 +1227,12 @@
 		[self addChild:goOnlineForScoresLabel];	
 	}
 
+}
+
+-(void) playGameWonGradeStamp {
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelWon/thud.wav"];
+	}
 }
 
 -(void) levelLostWithShark:(LHSprite*)shark andPenguin:(LHSprite*)penguin {

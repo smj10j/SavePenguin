@@ -9,7 +9,7 @@
 #import "ScoreKeeper.h"
 #import "Utilities.h"
 #import "APIManager.h"
-
+#import "LevelPackManager.h"
 
 @implementation ScoreKeeper
 
@@ -370,6 +370,33 @@
 }
 
 
++(int)coinsForZScore:(double)zScore {
+
+	int percentile = [self percentileFromZScore:zScore];
+
+	if(percentile < 36) {
+		return 1;
+		
+		
+	}else if(percentile < 55) {
+		return 2;
+
+		
+	}else if(percentile < 74) {
+		return 3;
+		
+		
+	}else if(percentile < 89) {
+		return 4;
+	
+
+	}else {
+		return 5;
+	}	
+}
+
+
+
 +(int)percentileFromZScore:(double)zScore {
 	
 	NSMutableDictionary* zTable = [[NSMutableDictionary alloc] init];
@@ -437,7 +464,7 @@
 	if(worldScores != nil) {
 		int worldScoreMean = [(NSNumber*)[worldScores objectForKey:@"scoreMean"] intValue];
 		int worldScoreStdDev = [(NSNumber*)[worldScores objectForKey:@"scoreStdDev"] intValue];
-		double zScore = ((score - worldScoreMean) / (1.0f*worldScoreStdDev));
+		double zScore = ((score - worldScoreMean) / (1.0f*(worldScoreStdDev > 0 ? worldScoreStdDev : 1)));
 		return zScore;
 	}else {
 		return 0.35;	//feel good score until data comes in

@@ -37,6 +37,7 @@
 
 
 +(NSString*)gradeFromZScore:(double)zScore;
++(int)coinsForZScore:(double)zScore;
 +(double)zScoreFromScore:(double)score withLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath;
 
 @end

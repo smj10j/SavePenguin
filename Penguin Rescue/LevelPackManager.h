@@ -22,7 +22,7 @@
 +(NSDictionary*)level:(NSString*)levelPath inPack:(NSString*)packPath;
 
 +(void)completeLevel:(NSString*)levelPath inPack:(NSString*)packPath withScore:(double)score;
-
++(NSNumber*)scoreForLevel:(NSString*)levelPath inPack:(NSString*)packPath;
 
 +(NSString*)levelAfter:(NSString*)levelPath inPack:(NSString*)packPath;
 
