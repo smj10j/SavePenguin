@@ -17,6 +17,7 @@
 
 #import "LevelSelectLayer.h"
 #import "LevelPackSelectLayer.h"
+#import "InAppPurchaseLayer.h"
 #import "MainMenuLayer.h"
 #import "MoveGridData.h"
 #import "SettingsManager.h"
@@ -300,6 +301,16 @@
 	[mainMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganMainMenu:)];
 	[mainMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedMainMenu:)];
 	[_inGameMenuItems addObject:mainMenuButton];
+
+	LHSprite* IAPMenuButton = [_levelLoader createSpriteWithName:@"IAP_In_Game_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+	[IAPMenuButton prepareAnimationNamed:@"Menu_IAP_In_Game_Button" fromSHScene:@"Spritesheet"];
+	[IAPMenuButton transformPosition: ccp(-IAPMenuButton.contentSize.width/2, -IAPMenuButton.contentSize.height/2) ];
+	IAPMenuButton.opacity = 0;
+	[IAPMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganIAPMenu:)];
+	[IAPMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedIAPMenu:)];
+	[_inGameMenuItems addObject:IAPMenuButton];
+		
+		
 		
 	//show the level name at the top
 	LHSprite* timeAndLevelPopup = [_levelLoader createSpriteWithName:@"Time_and_Level_Popup" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
@@ -846,6 +857,28 @@
 	[self showMainMenuLayer];
 }
 
+-(void)onTouchBeganIAPMenu:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;	
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
+}
+
+-(void)onTouchEndedIAPMenu:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
+
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
+	}
+	
+	//analytics logging
+	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+		[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+		_levelPackPath, @"Level_Pack",
+	nil];
+	[Analytics logEvent:@"Click_IAP_Menu" withParameters:flurryParams];
+	
+	[self showInAppPurchaseLayer];
+}
+
 -(void)onTouchBeganLevelsMenu:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
@@ -941,15 +974,15 @@
 
 	[_playPauseButton runAction:[CCFadeTo actionWithDuration:0.5f opacity:150.0f]];
 		
-	double angle = 165;
+	double angle = 160;
 		
 	for(LHSprite* menuItem in _inGameMenuItems) {
 	
-		[menuItem setAnchorPoint:ccp(3.0,3.0)];
+		[menuItem setAnchorPoint:ccp(3.25,3.25)];
 		[menuItem runAction:[CCFadeIn actionWithDuration:0.15f]];
 		[menuItem runAction:[CCRotateBy actionWithDuration:0.25f angle:angle]];
 		
-		angle+= 30;
+		angle+= 22.5;
 	}
 	
 }
@@ -1078,12 +1111,19 @@
 	int coinsEarned = 0;
 	int prevScore = [[LevelPackManager scoreForLevel:_levelPath inPack:_levelPackPath] intValue];
 	if(prevScore < finalScore) {
-		coinsEarned = [ScoreKeeper coinsForZScore:zScore];
+		int prevCoinsEarned = [ScoreKeeper coinsForZScore:[ScoreKeeper zScoreFromScore:prevScore withLevelPackPath:_levelPackPath levelPath:_levelPath]];
+		coinsEarned = [ScoreKeeper coinsForZScore:zScore] - prevCoinsEarned;
+		if(coinsEarned <= 0) {
+			coinsEarned = 1;
+		}
 	}
+	
+	//store our earned coins
+	[SettingsManager incrementInt:coinsEarned forKey:SETTING_TOTAL_EARNED_COINS];
+	[SettingsManager incrementInt:coinsEarned forKey:SETTING_TOTAL_AVAILABLE_COINS];
 	
 	//store the level as being completed
 	[LevelPackManager completeLevel:_levelPath inPack:_levelPackPath withScore:finalScore];
-			
 			
 			
 			
@@ -1351,6 +1391,11 @@
 -(void) showMainMenuLayer {
 	DebugLog(@"Showing MainMenuLayer in GameLayer instance %f", _instanceId);
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[MainMenuLayer scene] ]];
+}
+
+-(void) showInAppPurchaseLayer {
+	DebugLog(@"Showing InAppPurchaseLayer in GameLayer instance %f", _instanceId);
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[InAppPurchaseLayer scene] ]];
 }
 
 -(void) showLevelsMenuLayer {

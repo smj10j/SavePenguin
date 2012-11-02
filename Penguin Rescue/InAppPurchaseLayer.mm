@@ -10,6 +10,7 @@
 // Import the interfaces
 #import "InAppPurchaseLayer.h"
 #import "MainMenuLayer.h"
+#import "GameLayer.h"
 #import "AppDelegate.h"
 #import "SettingsManager.h"
 #import "SimpleAudioEngine.h"
@@ -104,9 +105,16 @@
 	
 	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
-	}	
+	}
+
+	NSString* lastLevelPackPath = [SettingsManager stringForKey:SETTING_LAST_LEVEL_PACK_PATH];
+	NSString* lastLevelPath = [SettingsManager stringForKey:SETTING_LAST_LEVEL_PATH];
 	
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[MainMenuLayer scene] ]];
+	if(lastLevelPackPath != nil) {
+		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:lastLevelPackPath levelPath:lastLevelPath] ]];
+	}else {
+		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[MainMenuLayer scene] ]];
+	}
 }
 
 

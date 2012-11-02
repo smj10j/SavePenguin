@@ -24,6 +24,9 @@
 +(void)setInt:(int)value forKey:(NSString*)key;
 +(void)setDouble:(double)value forKey:(NSString*)key;
 
++(int)incrementInt:(int)amount forKey:(NSString*)key;
++(int)decrementInt:(int)amount forKey:(NSString*)key;
+
 
 +(void)remove:(NSString*)key;
 
@@ -51,6 +54,8 @@
 #define SETTING_LEFT_REVIEW_VERSION @"LeftReviewVersion"
 #define SETTING_CURRENT_VERSION @"CurrentVersion"
 
+#define SETTING_TOTAL_EARNED_COINS @"TotalEarnedCoins"
+#define SETTING_TOTAL_AVAILABLE_COINS @"TotalAvailableCoins"
 
 #define SETTING_LAST_LEVEL_PACK_PATH @"LastLevelPackPath"
 #define SETTING_LAST_LEVEL_PATH @"LastLevelPath"

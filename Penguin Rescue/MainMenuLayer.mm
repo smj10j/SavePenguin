@@ -120,6 +120,8 @@
 			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/background.wav" loop:YES];
 		}
 
+		[SettingsManager remove:SETTING_LAST_LEVEL_PACK_PATH];
+		[SettingsManager remove:SETTING_LAST_LEVEL_PATH];
 
 		[Analytics logEvent:@"View_Main_Menu"];
 	}

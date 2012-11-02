@@ -32,19 +32,19 @@
 		Name = "A Light Breeze";
 	};
 	8 = {
-		Path = WayWayUpThere;
-		Name = "Way Way Up There";
-	};
-	9 = {
 		Path = AllTogetherNow;
 		Name = "All Together Now";
 	};
-	10 = {
+	9 = {
 		Path = MerryGoRound;
 		Name = "Merry Go Round";
 	};
-	11 = {
+	10 = {
 		Path = FigureEight;
 		Name = "Figure Eight";
+	};
+	11 = {
+		Path = WayWayUpThere;
+		Name = "Way Way Up There";
 	};
 }
