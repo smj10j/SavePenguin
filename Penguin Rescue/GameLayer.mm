@@ -98,8 +98,6 @@
 
 -(void) startLevelWithLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
 
-	CGSize winSize = [[CCDirector sharedDirector] winSize];
-
 	_levelPath = [levelPath retain];
 	_levelPackPath = [levelPackPath retain];
 	_levelData =  [LevelPackManager level:_levelPath inPack:_levelPackPath];
@@ -130,19 +128,6 @@
 	_levelStartPlaceTime  = [[NSDate date] timeIntervalSince1970];
 	_levelPlaceTimeDuration = 0;
 	_levelRunningTimeDuration = 0;
-
-
-	if(HAND_OF_GOD_INITIAL_POWER > 0) {
-		_handOfGodPowerNode = [[PowerBarNode alloc] initWithSize:CGSizeMake(400*SCALING_FACTOR_H, 35*SCALING_FACTOR_V)
-													position:ccp(winSize.width - (200+5)*SCALING_FACTOR_H,
-																winSize.height - (20+5)*SCALING_FACTOR_V)
-													color:ccc4f(0.8,0.8,0.3,1.0)
-													label:[NSString stringWithFormat:@"Nudge Power (costs %d per second)", SCORING_HAND_OF_GOD_COST_PER_SECOND]
-													textColor:ccBLACK 
-													fontSize:18*SCALING_FACTOR_FONTS];
-		_handOfGodPowerNode.opacity = 0;
-		[self addChild:_handOfGodPowerNode];
-	}
 
 	[self scheduleUpdate];
 	
@@ -526,6 +511,26 @@
 		x+= waterTile.boundingBox.size.width;
 	}
 	[waterTile removeSelf];
+	
+	//add the HAND OF GOD (penguin nodge)
+	if(HAND_OF_GOD_INITIAL_POWER > 0) {
+		_handOfGodPowerNode = [[PowerBarNode alloc] initWithSize:CGSizeMake(400*SCALING_FACTOR_H, 35*SCALING_FACTOR_V)
+													position:ccp(winSize.width - (200+5)*SCALING_FACTOR_H,
+																winSize.height - (20+5)*SCALING_FACTOR_V)
+													color:ccc4f(0.8,0.8,0.3,1.0)
+													label:[NSString stringWithFormat:@"Nudge Power (costs %d per second)", SCORING_HAND_OF_GOD_COST_PER_SECOND]
+													textColor:ccBLACK 
+													fontSize:18*SCALING_FACTOR_FONTS];
+		_handOfGodPowerNode.opacity = 0;
+		[self addChild:_handOfGodPowerNode];
+	}
+		
+	
+	//apply the Shark animation to all sharks
+	for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
+		[shark prepareAnimationNamed:@"Shark" fromSHScene:@"Spritesheet"];
+	}
+			
 		
 	[self showTutorial];
 }
@@ -1884,8 +1889,6 @@
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with update tick");
 }
 
-//TODO: add a shark *thrashing* animation when it slows down to indicate a struggle. make it look mad!
-
 
 -(void) moveSharks:(ccTime)dt {
 		
@@ -1954,19 +1957,32 @@
 		//DebugLog(@"Best Option Pos: %f,%f", bestOptionPos.x,bestOptionPos.y);
 		if(bestOptionPos.x == -10000 && bestOptionPos.y == -10000) {
 			//this occurs when the shark has no route to the penguin - he literally has no idea which way to go
-			if(SHARK_DIES_WHEN_STUCK) {
-				//we're stuck
-				sharkData.isStuck = true;
-				if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (no where to go) - we're removing him", shark.uniqueName);
-				//TODO: make the shark spin around in circles and explode in frustration!
-				[shark removeSelf];
-				continue;
-			}else {
-				if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (no where to go) - we're letting him keep at it", shark.uniqueName);
-				bestOptionPos = ccp(shark.position.x+((arc4random()%10)-5)/10.0,shark.position.y+((arc4random()%10)-5)/10.0);
-				//TODO: make the shark show some kind of frustration (perhaps smoke in nostrils/grimac)
+			if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (no where to go) - we're making him stop", shark.uniqueName);
+
+			//halt!
+			shark.body->SetLinearVelocity(b2Vec2(0,0));
+
+			//rotate shark to watch that dastardly penguin
+			LHSprite* nearestPenguin = nil;
+			float minDist = 100000;
+			for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
+				float dist = ccpDistance(shark.position, penguin.position);
+				if(dist < minDist) {
+					nearestPenguin = penguin;
+					minDist = dist;
+				}
 			}
+			double radians = atan2(nearestPenguin.position.x - shark.position.x,
+									nearestPenguin.position.y - shark.position.y); //this grabs the radians for us
+			double newRotation = ((int)(CC_RADIANS_TO_DEGREES(radians) - 90)+360)%360; //90 is because the sprite is facing right
+			[shark transformRotation:newRotation];
+
+			
+			//frustrated
+			[shark setFrame:1];
 		
+			continue;
+			
 		}else {
 			//convert returned velocities to position..
 			bestOptionPos = ccp(shark.position.x+bestOptionPos.x, shark.position.y+bestOptionPos.y);
@@ -2005,9 +2021,16 @@
 				
 				dx+= jitterX;
 				dy+= jitterY;
-				sharkSpeed*= 10;
+				//sharkSpeed*= 10;
 				//if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (trying to move but can't) - giving him a bit of jitter %f,%f", shark.uniqueName, jitterX, jitterY);
 			}
+
+			//frustrated
+			[shark setFrame:1];
+
+		}else {
+			//normal
+			[shark setFrame:0];
 		}
 
 		double dxMod = 0;

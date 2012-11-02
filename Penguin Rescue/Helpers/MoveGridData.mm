@@ -78,6 +78,7 @@
 		[_scheduledUpdateMoveGridTimer invalidate];
 		_scheduledUpdateMoveGridTimer = nil;
 	}
+	_foundRoute = false;
 	_forceUpdateToMoveGrid = true;
 	_minSearchPathFactor = MOVEGRID_INITIAL_MIN_SEARCH_FACTOR;
 }
@@ -146,13 +147,15 @@
 	short wW = fromTile.x > 0 ? _moveGrid[(int)fromTile.x-1][(int)fromTile.y] : 10000;
 	
 	//makes backtracking less attractive
-	_moveGrid[(int)fromTile.x][(int)fromTile.y]++;
+	short w = _moveGrid[(int)fromTile.x][(int)fromTile.y];
+	if(w != INITIAL_GRID_WEIGHT) {
+		_moveGrid[(int)fromTile.x][(int)fromTile.y]++;
+	}
 	
 	//if(DEBUG_MOVEGRID) DebugLog(@"%@ weights: %d, %d, %d, %d", _tag, wN, wS, wE, wW);
 	
 	if(wW == wE && wE == wN && wN == wS) {
 				
-		short w = _moveGrid[(int)fromTile.x][(int)fromTile.y];
 		if(wW == w && w == INITIAL_GRID_WEIGHT) {
 			//this occurs when the shark has no route to the penguin - he literally has no idea which way to go
 			return bestMove;
@@ -161,6 +164,15 @@
 			bestMove = ccp(fromTile.x+((arc4random()%10)-5)/5.0,fromTile.y+((arc4random()%10)-5)/5.0);
 		}
 		
+	}else if(
+		(wW == INITIAL_GRID_WEIGHT || wW == HARD_BORDER_WEIGHT) &&
+		(wE == INITIAL_GRID_WEIGHT || wE == HARD_BORDER_WEIGHT) &&
+		(wN == INITIAL_GRID_WEIGHT || wN == HARD_BORDER_WEIGHT) &&
+		(wS == INITIAL_GRID_WEIGHT || wS == HARD_BORDER_WEIGHT)
+	) {
+		//nowhere to go but near borders
+		return bestMove;
+	
 	}else {
 		double vE = 0;
 		double vN = 0;
