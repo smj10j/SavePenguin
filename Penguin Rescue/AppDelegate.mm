@@ -50,7 +50,9 @@
 	_director.wantsFullScreenLayout = YES;
 	
 	// Display FSP and SPF
-	[_director setDisplayStats:YES];
+	if(!DISTRIBUTION_MODE) {
+		[_director setDisplayStats:YES];
+	}
 	
 	// set FPS at 60
 	[_director setAnimationInterval:1.0/TARGET_FPS];
