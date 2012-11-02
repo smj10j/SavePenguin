@@ -394,6 +394,8 @@
 	_toolGroups = [[NSMutableDictionary alloc] init];
 	for(LHSprite* toolboxItem in toolboxItems) {
 	
+		[toolboxItem stopAllActions];
+	
 		//generate the grouping key for toolbox items
 		NSString* toolgroupKey = toolboxItem.userInfoClassName;
 		if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
@@ -736,6 +738,18 @@
 	ToolboxItem_Obstruction* toolboxItemData = ((ToolboxItem_Obstruction*)_activeToolboxItem.userInfo);	//ToolboxItem_Obstruction is used because all ToolboxItem classes have a "scale" property
 	[_activeToolboxItem transformScale: toolboxItemData.scale];
 	DebugLog(@"Scaling up toolboxitem %@ to full-size", _activeToolboxItem.uniqueName);
+	
+	
+	//slide down the toolbox items
+	for(LHSprite* aToolboxItemContainer in [_levelLoader spritesWithTag:TOOLBOX_ITEM_CONTAINER]) {
+		[aToolboxItemContainer runAction:[CCMoveTo actionWithDuration:0.20f position:ccp(aToolboxItemContainer.position.x, -aToolboxItemContainer.boundingBox.size.height)]];
+	}
+	for(LHSprite* aToolboxItem in [_levelLoader spritesWithTag:TOOLBOX_ITEM]) {
+		if(aToolboxItem == _activeToolboxItem) {
+			continue;
+		}
+		[aToolboxItem runAction:[CCMoveTo actionWithDuration:0.20f position:ccp(aToolboxItem.position.x, -aToolboxItem.boundingBox.size.height)]];
+	}
 }
 
 -(void)onTouchEndedToolboxItem:(LHTouchInfo*)info {
@@ -751,7 +765,7 @@
 			
 			
 		if((_state != RUNNING && _state != PLACE)
-				|| (info.glPoint.y < _toolboxItemSize.height)
+				|| (info.glPoint.y <= 0)
 				|| (info.glPoint.y >= _levelSize.height)
 				|| (info.glPoint.x <= 0)
 				|| (info.glPoint.x >= _levelSize.width)
