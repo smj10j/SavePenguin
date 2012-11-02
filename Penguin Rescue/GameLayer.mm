@@ -72,6 +72,9 @@
 		_penguinsToPutOnLand =[[NSMutableDictionary alloc] init];
 		_placedToolboxItems = [[NSMutableArray alloc] init];
 		_scoreKeeper = [[ScoreKeeper alloc] init];
+		_handOfGodPowerSecondsRemaining = HAND_OF_GOD_INITIAL_POWER;
+		_handOfGodPowerSecondsUsed = 0;
+		_isNudgingPenguin = false;
 		__DEBUG_SHARKS = DEBUG_SHARK;
 		__DEBUG_PENGUINS = DEBUG_PENGUIN;
 		__DEBUG_TOUCH_SECONDS = 0;
@@ -94,6 +97,8 @@
 }
 
 -(void) startLevelWithLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
+
+	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
 	_levelPath = [levelPath retain];
 	_levelPackPath = [levelPackPath retain];
@@ -125,6 +130,18 @@
 	_levelStartPlaceTime  = [[NSDate date] timeIntervalSince1970];
 	_levelPlaceTimeDuration = 0;
 	_levelRunningTimeDuration = 0;
+
+
+	if(HAND_OF_GOD_INITIAL_POWER > 0) {
+		_handOfGodPowerNode = [[PowerBarNode alloc] initWithSize:CGSizeMake(400*SCALING_FACTOR_H, 30*SCALING_FACTOR_V)
+													position:ccp(winSize.width - (200+5)*SCALING_FACTOR_H,
+																winSize.height - (15+5)*SCALING_FACTOR_V)
+													color:ccc4f(220,220,75,10)
+													label:[NSString stringWithFormat:@"Hand of God Power (%d per second)", SCORING_HAND_OF_GOD_COST_PER_SECOND]
+													textColor:ccBLACK 
+													fontSize:18*SCALING_FACTOR_FONTS];
+		[self addChild:_handOfGodPowerNode];
+	}
 
 	[self scheduleUpdate];
 	
@@ -1089,7 +1106,10 @@
 	
 	int scoreDeductions = 0;
 	
-	const int toolsScoreDeduction = _scoreKeeper.totalScore;
+	
+	int toolsScoreDeduction = _scoreKeeper.totalScore;
+	//hand of god power
+	toolsScoreDeduction+= _handOfGodPowerSecondsUsed*SCORING_HAND_OF_GOD_COST_PER_SECOND;
 	scoreDeductions+= toolsScoreDeduction;
 	
 	const double placeTimeScore = _levelPlaceTimeDuration * SCORING_PLACE_SECOND_COST;
@@ -1803,7 +1823,15 @@
 	}
 	[_penguinsToPutOnLand removeAllObjects];
 	
-	
+	if(HAND_OF_GOD_INITIAL_POWER > 0) {
+		if(_isNudgingPenguin) {
+			_handOfGodPowerSecondsRemaining-= dt;
+			_handOfGodPowerSecondsUsed+= dt;
+		}else if(_handOfGodPowerSecondsRemaining < HAND_OF_GOD_INITIAL_POWER) {
+			_handOfGodPowerSecondsRemaining+= dt*HAND_OF_GOD_POWER_REGENERATION_RATE;
+		}
+		[_handOfGodPowerNode setPercentFill:(_handOfGodPowerSecondsRemaining/HAND_OF_GOD_INITIAL_POWER)];
+	}
 	
 	[self moveSharks:dt];
 	[self movePenguins:dt];
@@ -2306,15 +2334,38 @@
 				//TODO: add some kind of crosshair or arrow so you know where the item is if it's tiny and under your finger
 				[_activeToolboxItem transformPosition:location];
 
-			}/*else if(_startTouch.x != 0 && _startTouch.y != 0) {
-				//slide the main layer
-				_mapBatchNode.position = ccp(_mapBatchNode.position.x+location.x-_lastTouch.x, _mapBatchNode.position.y+location.y-_lastTouch.y);
-				_actorsBatchNode.position = ccp(_mapBatchNode.position.x+location.x-_lastTouch.x, _mapBatchNode.position.y+location.y-_lastTouch.y);
-				for(LHSprite* toolboxItem in _placedToolboxItems) {
-					[toolboxItem transformPosition:ccp(toolboxItem.position.x+location.x-_lastTouch.x, toolboxItem.position.y+location.y-_lastTouch.y)];
-				}				
+			}else if(_state == RUNNING && _startTouch.x != 0 && _startTouch.y != 0) {
+				
+				if(_handOfGodPowerSecondsRemaining > 0) {
+					//nudge the nearest penguin!
+					
+					_isNudgingPenguin = true;
+					
+					LHSprite* nearestPenguin = nil;
+					int minDistance = 100000;
+					for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
+						int dist = ccpDistance(penguin.position, location);
+						if(dist < minDistance) {
+							minDistance = dist;
+							nearestPenguin = penguin;
+						}
+					}
+					if(nearestPenguin != nil) {
+						//[nearestPenguin transformPosition:ccp(nearestPenguin.position.x+location.x-_lastTouch.x, nearestPenguin.position.y+location.y-_lastTouch.y)];
+						if(nearestPenguin.body) {
+							nearestPenguin.body->ApplyLinearImpulse(
+								b2Vec2((location.x-_lastTouch.x)*.01,
+										(location.y-_lastTouch.y)*.01),
+								nearestPenguin.body->GetWorldCenter()
+							);
+						}
+					}
+				}else {
+					_isNudgingPenguin = false;
+				}
+
 				_lastTouch = location;
-			}*/
+			}
 		}
 	}
 }
@@ -2327,24 +2378,31 @@
 		location = [[CCDirector sharedDirector] convertToGL: location];
 
 		if(_state == RUNNING || _state == PLACE) {
-			if(_activeToolboxItem && ccpDistance(location, _activeToolboxItem.position) > 50*SCALING_FACTOR_GENERIC) {
-				//tapping a second finger on the screen when moving a toolbox item rotates the item
-				[_activeToolboxItem transformRotation:((int)_activeToolboxItem.rotation+90)%360];
-				
-				//scale up and down for visual effect
-				ToolboxItem_Obstruction* toolboxItemData = ((ToolboxItem_Obstruction*)_activeToolboxItem.userInfo);	//ToolboxItem_Obstruction is used because all ToolboxItem classes have a "scale" property
-				
-				[_activeToolboxItem runAction:[CCSequence actions:
-					[CCScaleTo actionWithDuration:0.05f scale:toolboxItemData.scale*2.5],
-					[CCDelayTime actionWithDuration:0.20f],
-					[CCScaleTo actionWithDuration:0.10f scale:toolboxItemData.scale],
-					nil]
-				];
+			if(_activeToolboxItem) {
+			
+				if(ccpDistance(location, _activeToolboxItem.position) > 50*SCALING_FACTOR_GENERIC) {
+					//tapping a second finger on the screen when moving a toolbox item rotates the item
+					[_activeToolboxItem transformRotation:((int)_activeToolboxItem.rotation+90)%360];
+					
+					//scale up and down for visual effect
+					ToolboxItem_Obstruction* toolboxItemData = ((ToolboxItem_Obstruction*)_activeToolboxItem.userInfo);	//ToolboxItem_Obstruction is used because all ToolboxItem classes have a "scale" property
+					
+					[_activeToolboxItem runAction:[CCSequence actions:
+						[CCScaleTo actionWithDuration:0.05f scale:toolboxItemData.scale*2.5],
+						[CCDelayTime actionWithDuration:0.20f],
+						[CCScaleTo actionWithDuration:0.10f scale:toolboxItemData.scale],
+						nil]
+					];
 
-				
-				if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
-					[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/rotate.wav"];
+					
+					if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+						[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/rotate.wav"];
+					}
 				}
+				
+			}else {
+				_isNudgingPenguin = false;
+				
 			}
 		}
 	}
@@ -2503,6 +2561,10 @@
 	[_toolGroups release];
 	[_placedToolboxItems release];
 	[_scoreKeeper release];
+	
+	if(_handOfGodPowerNode != nil) {
+		[_handOfGodPowerNode release];
+	}
 	
 	[_penguinsToPutOnLand release];
 	for(id key in _sharkMoveGridDatas) {

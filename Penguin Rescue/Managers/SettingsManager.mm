@@ -125,7 +125,7 @@
 			CFUUIDRef cfUUID = CFUUIDCreate(NULL);
 			CFStringRef strUUUID = CFUUIDCreateString(NULL, cfUUID);
 			CFRelease(cfUUID);
-			UUID = (__bridge NSString*)strUUUID;
+			UUID = (NSString*)strUUUID;
 			DebugLog(@"Created a new uuid");
 							
 			//store the userId to the keychain
@@ -154,7 +154,6 @@
 	
 	return UUID;
 }
-
 
 @end
 

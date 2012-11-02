@@ -18,6 +18,7 @@
 #import "SettingsManager.h"
 #import "ScoreKeeper.h"
 #import "ToolboxItemRotationCrosshair.h"
+#import "PowerBarNode.h"
 #import "Constants.h"
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
@@ -106,6 +107,10 @@ enum PROPAGATION_RESULT {
 	CGPoint _startTouch;
 	CGPoint _lastTouch;
 	
+	PowerBarNode* _handOfGodPowerNode;
+	double _handOfGodPowerSecondsUsed;
+	double _handOfGodPowerSecondsRemaining;
+	bool _isNudgingPenguin;
 	
 	
 	
