@@ -10,6 +10,7 @@
 // Import the interfaces
 #import "MainMenuLayer.h"
 #import "AboutLayer.h"
+#import "InAppPurchaseLayer.h"
 #import "LevelPackSelectLayer.h"
 #import "GameLayer.h"
 #import "SimpleAudioEngine.h"
@@ -58,6 +59,16 @@
 		[playButton transformPosition: ccp(winSize.width/2, winSize.height/2)];
 		[playButton registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
 		[playButton registerTouchEndedObserver:self selector:@selector(onPlay:)];
+
+
+		LHSprite* IAPButton = [_levelLoader createSpriteWithName:@"IAP_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+		[IAPButton prepareAnimationNamed:@"Menu_IAP_Button" fromSHScene:@"Spritesheet"];
+		[IAPButton transformPosition: ccp(
+								20*SCALING_FACTOR_H + IAPButton.boundingBox.size.width/2,
+								20*SCALING_FACTOR_V + IAPButton.boundingBox.size.height/2)];
+		[IAPButton registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
+		[IAPButton registerTouchEndedObserver:self selector:@selector(onIAP:)];
+		
 		
 		
 		LHSprite* infoButton = [_levelLoader createSpriteWithName:@"Info_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
@@ -141,6 +152,18 @@
 	}else {
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelPackSelectLayer scene] ]];
 	}
+}
+
+
+-(void)onIAP:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame-1];	//inactive state
+	
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
+	}
+
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[InAppPurchaseLayer scene] ]];
 }
 
 -(void)onInfo:(LHTouchInfo*)info {

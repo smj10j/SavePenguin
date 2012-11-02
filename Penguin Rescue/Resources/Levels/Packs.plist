@@ -2,17 +2,17 @@
 	0 = {
 		RequiresPack = "";
 		"RequiresNumPackLevelsCompleted" = 0;
-		Path = Arctic1;
-		Name = "Arctic I";
+		Path = APenguinInNeed;
+		Name = "A Penguin In Need";
 	};
 	1 = {
-		RequiresPack = Arctic1;
+		RequiresPack = APenguinInNeed;
 		"RequiresNumPackLevelsCompleted" = 5;
-		Path = Arctic2;
-		Name = "Arctic II";
+		Path = TectonicPlates;
+		Name = "Tectonic Plates";
 	};
 	2 = {
-		RequiresPack = Arctic2;
+		RequiresPack = TectonicPlates;
 		"RequiresNumPackLevelsCompleted" = 5;
 		Path = Beach;
 		Name = Beach;
