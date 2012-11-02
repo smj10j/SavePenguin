@@ -157,7 +157,7 @@
 	
 	//write to file!
 	if(![worldScoresDictionary writeToFile:worldScoresPropertyListPath atomically: YES]) {
-        DebugLog(@"---- Failed to save world scores in local plist!! - %@ -----", worldScoresPropertyListPath);
+        DebugLog(@"---- Failed to save world scores in local plist!! - %@: %@ -----", worldScoresPropertyListPath, worldScoresDictionary);
         return;
     }
 	if(DEBUG_SCORING) DebugLog(@"Saved world scores in local plist");

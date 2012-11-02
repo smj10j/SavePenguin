@@ -1223,7 +1223,7 @@
 		
 		//grade fades in with a thump
 		[gradeLabel runAction:[CCSequence actions:
-			[CCDelayTime actionWithDuration:1.5f],
+			[CCDelayTime actionWithDuration:1.25f],
 			[CCCallFunc actionWithTarget:self selector:@selector(playGameWonGradeStamp)],
 			[CCFadeIn actionWithDuration:0.25f],
 			nil]
@@ -1237,7 +1237,7 @@
 		coinsEarnedLabel.opacity = 0;
 		[self addChild:coinsEarnedLabel];		
 		[coinsEarnedLabel runAction:[CCSequence actions:
-			[CCDelayTime actionWithDuration:1.75f],
+			[CCDelayTime actionWithDuration:1.50f],
 			[CCFadeIn actionWithDuration:0.25f],
 			nil]
 		];
@@ -1249,7 +1249,7 @@
 		highScoreLabel.opacity = 0;
 		[self addChild:highScoreLabel];
 		[highScoreLabel runAction:[CCSequence actions:
-			[CCDelayTime actionWithDuration:1.75f],
+			[CCDelayTime actionWithDuration:1.50f],
 			[CCFadeIn actionWithDuration:0.25f],
 			nil]
 		];
@@ -1690,7 +1690,7 @@
 		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Obstruction"]) {
 			_activeToolboxItem.tag = OBSTRUCTION;
 			[_activeToolboxItem makeStatic];
-			[_activeToolboxItem setSensor:false];
+			[_activeToolboxItem setSensor:true];
 			_shouldRegenerateFeatureMaps = true;
 			soundFileName = @"place-obstruction.wav";
 
