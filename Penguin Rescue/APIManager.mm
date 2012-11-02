@@ -37,9 +37,18 @@
 
 	// Ah, success, parse the returned JSON data into a NSDictionary
 	[request setCompletionBlock:^{
+	
+		NSData* data = [request responseData];
+		NSDictionary* response = [data objectFromJSONData];
+		if(response == nil) {
+			if(onError) {
+				NSError* error = [NSError errorWithDomain:@"com.conquerllc.games - Empty response from server" code:500 userInfo:nil];
+				onError(error);
+			}
+			return;
+		}
+	
 		if(onSuccess) {
-			NSData* data = [request responseData];
-			NSDictionary* response = [data objectFromJSONData];
 			onSuccess(response);
 		}
 	}];
@@ -78,9 +87,18 @@
 
 	// Ah, success, parse the returned JSON data into a NSDictionary
 	[request setCompletionBlock:^{
+
+		NSData* data = [request responseData];
+		NSDictionary* response = [data objectFromJSONData];
+		if(response == nil) {
+			if(onError) {
+				NSError* error = [NSError errorWithDomain:@"com.conquerllc.games - Empty response from server" code:500 userInfo:nil];
+				onError(error);
+			}
+			return;
+		}	
+	
 		if(onSuccess) {
-			NSData* data = [request responseData];
-			NSDictionary* response = [data objectFromJSONData];
 			onSuccess(response);
 		}
 	}];
@@ -119,9 +137,18 @@
 
 	// Ah, success, parse the returned JSON data into a NSDictionary
 	[request setCompletionBlock:^{
+	
+		NSData* data = [request responseData];
+		NSDictionary* response = [data objectFromJSONData];
+		if(response == nil) {
+			if(onError) {
+				NSError* error = [NSError errorWithDomain:@"com.conquerllc.games - Empty response from server" code:500 userInfo:nil];
+				onError(error);
+			}
+			return;
+		}
+		
 		if(onSuccess) {
-			NSData* data = [request responseData];
-			NSDictionary* response = [data objectFromJSONData];
 			onSuccess(response);
 		}
 	}];
@@ -157,9 +184,18 @@
 
 	// Ah, success, parse the returned JSON data into a NSDictionary
 	[request setCompletionBlock:^{
+	
+		NSData* data = [request responseData];
+		NSMutableDictionary* response = [data mutableObjectFromJSONData];
+		if(response == nil) {
+			if(onError) {
+				NSError* error = [NSError errorWithDomain:@"com.conquerllc.games - Empty response from server" code:500 userInfo:nil];
+				onError(error);
+			}
+			return;
+		}	
+	
 		if(onSuccess) {
-			NSData* data = [request responseData];
-			NSMutableDictionary* response = [data mutableObjectFromJSONData];
 			onSuccess(response);
 		}
 	}];
