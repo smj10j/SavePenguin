@@ -230,7 +230,7 @@
 	[SettingsManager setString:_levelPackPath forKey:SETTING_LAST_LEVEL_PACK_PATH];
 	[SettingsManager setString:levelPath forKey:SETTING_LAST_LEVEL_PATH];
 	
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:[NSString stringWithFormat:@"%@", _levelPackPath] levelPath:levelPath] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[GameLayer sceneWithLevelPackPath:[NSString stringWithFormat:@"%@", _levelPackPath] levelPath:levelPath] ]];
 }
 
 
@@ -242,7 +242,7 @@
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
 	}
 	
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelPackSelectLayer scene] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[LevelPackSelectLayer scene] ]];
 }
 
 

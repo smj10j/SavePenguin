@@ -1395,7 +1395,7 @@
 	nil];
 	[Analytics endTimedEvent:@"Play_Level" withParameters:flurryParams];
 
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:_levelPath]]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:_levelPath]]];
 }
 
 
@@ -1419,17 +1419,17 @@
 
 -(void) showMainMenuLayer {
 	DebugLog(@"Showing MainMenuLayer in GameLayer instance %f", _instanceId);
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[MainMenuLayer scene] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[MainMenuLayer scene] ]];
 }
 
 -(void) showInAppPurchaseLayer {
 	DebugLog(@"Showing InAppPurchaseLayer in GameLayer instance %f", _instanceId);
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[InAppPurchaseLayer scene] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[InAppPurchaseLayer scene] ]];
 }
 
 -(void) showLevelsMenuLayer {
 	DebugLog(@"Showing LevelSelectLayer in GameLayer instance %f", _instanceId);
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[LevelSelectLayer sceneWithLevelPackPath:[NSString stringWithFormat:@"%@", _levelPackPath]] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelSelectLayer sceneWithLevelPackPath:[NSString stringWithFormat:@"%@", _levelPackPath]] ]];
 }
 
 -(void) showTutorial {
