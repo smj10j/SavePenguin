@@ -133,13 +133,14 @@
 
 
 	if(HAND_OF_GOD_INITIAL_POWER > 0) {
-		_handOfGodPowerNode = [[PowerBarNode alloc] initWithSize:CGSizeMake(400*SCALING_FACTOR_H, 30*SCALING_FACTOR_V)
+		_handOfGodPowerNode = [[PowerBarNode alloc] initWithSize:CGSizeMake(400*SCALING_FACTOR_H, 35*SCALING_FACTOR_V)
 													position:ccp(winSize.width - (200+5)*SCALING_FACTOR_H,
-																winSize.height - (15+5)*SCALING_FACTOR_V)
-													color:ccc4f(220,220,75,10)
-													label:[NSString stringWithFormat:@"Hand of God Power (%d per second)", SCORING_HAND_OF_GOD_COST_PER_SECOND]
+																winSize.height - (20+5)*SCALING_FACTOR_V)
+													color:ccc4f(0.8,0.8,0.3,1.0)
+													label:[NSString stringWithFormat:@"Nudge Power (costs %d per second)", SCORING_HAND_OF_GOD_COST_PER_SECOND]
 													textColor:ccBLACK 
 													fontSize:18*SCALING_FACTOR_FONTS];
+		_handOfGodPowerNode.opacity = 0;
 		[self addChild:_handOfGodPowerNode];
 	}
 
@@ -1827,6 +1828,11 @@
 		if(_isNudgingPenguin) {
 			_handOfGodPowerSecondsRemaining-= dt;
 			_handOfGodPowerSecondsUsed+= dt;
+			
+			if(_handOfGodPowerSecondsRemaining < 0) {
+				_handOfGodPowerSecondsRemaining = 0;
+			}
+			
 		}else if(_handOfGodPowerSecondsRemaining < HAND_OF_GOD_INITIAL_POWER) {
 			_handOfGodPowerSecondsRemaining+= dt*HAND_OF_GOD_POWER_REGENERATION_RATE;
 		}
@@ -2339,12 +2345,15 @@
 				if(_handOfGodPowerSecondsRemaining > 0) {
 					//nudge the nearest penguin!
 					
+					if(!_isNudgingPenguin) {
+						[_handOfGodPowerNode runAction:[CCFadeIn actionWithDuration:0.25f]];
+					}
 					_isNudgingPenguin = true;
 					
 					LHSprite* nearestPenguin = nil;
 					int minDistance = 100000;
 					for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
-						int dist = ccpDistance(penguin.position, location);
+						int dist = ccpDistance(penguin.position, _startTouch);
 						if(dist < minDistance) {
 							minDistance = dist;
 							nearestPenguin = penguin;
@@ -2360,8 +2369,6 @@
 							);
 						}
 					}
-				}else {
-					_isNudgingPenguin = false;
 				}
 
 				_lastTouch = location;
@@ -2401,8 +2408,13 @@
 				}
 				
 			}else {
-				_isNudgingPenguin = false;
-				
+				if(_isNudgingPenguin) {
+					_isNudgingPenguin = false;
+					for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
+						[[_penguinMoveGridDatas objectForKey:penguin.uniqueName] scheduleUpdateToMoveGridIn:.25f];
+					}
+					[_handOfGodPowerNode runAction:[CCFadeOut actionWithDuration:1.5f]];
+				}
 			}
 		}
 	}
@@ -2460,7 +2472,7 @@
 		NSArray* borders = [_levelLoader spritesWithTag:BORDER];
 		NSArray* obstructions = [_levelLoader spritesWithTag:OBSTRUCTION];
 
-		ccColor4F landColor = ccc4f(0,100,0,50);
+		ccColor4F landColor = ccc4f(0,.3,0,.25);
 		for(LHSprite* land in lands) {
 			ccDrawSolidRect(ccp(land.boundingBox.origin.x - 8*SCALING_FACTOR_H,
 								land.boundingBox.origin.y - 8*SCALING_FACTOR_V),
@@ -2468,7 +2480,7 @@
 				land.boundingBox.origin.y+land.boundingBox.size.height + 8*SCALING_FACTOR_V),
 			landColor);
 		}
-		ccColor4F borderColor = ccc4f(0,200,200,50);
+		ccColor4F borderColor = ccc4f(0,.8,.8,.25);
 		for(LHSprite* border in borders) {
 			ccDrawSolidRect(ccp(border.boundingBox.origin.x - 8*SCALING_FACTOR_H,
 								border.boundingBox.origin.y - 8*SCALING_FACTOR_V),
@@ -2476,7 +2488,7 @@
 								border.boundingBox.origin.y+border.boundingBox.size.height + 8*SCALING_FACTOR_V),
 							borderColor);
 		}
-		ccColor4F obstructionsColor = ccc4f(20,100,100,50);
+		ccColor4F obstructionsColor = ccc4f(.1,.4,.4,.25);
 		for(LHSprite* obstruction in obstructions) {
 			ccDrawSolidRect(ccp(obstruction.boundingBox.origin.x - 8*SCALING_FACTOR_H,
 								obstruction.boundingBox.origin.y - 8*SCALING_FACTOR_V),

@@ -911,11 +911,11 @@
 		AA54C6A6162BB27A00DF56D0 /* Penguin Rescue */ = {
 			isa = PBXGroup;
 			children = (
+				AA62525B1638191C00A36D65 /* Constants.h */,
+				AA6252531638032100A36D65 /* Penguin Rescue.entitlements */,
 				AA8DD34C1643ED2100E49D07 /* Helpers */,
 				AA8DD3521643ED2200E49D07 /* Managers */,
 				AA8DD35F1643ED2200E49D07 /* Nodes */,
-				AA6252531638032100A36D65 /* Penguin Rescue.entitlements */,
-				AA62525B1638191C00A36D65 /* Constants.h */,
 				AA54C8C0162BB27E00DF56D0 /* AppDelegate.h */,
 				AA54C8C1162BB27E00DF56D0 /* AppDelegate.mm */,
 				AA54C8C6162BB27E00DF56D0 /* IntroLayer.h */,

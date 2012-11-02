@@ -9,16 +9,16 @@
 #import "CCNode.h"
 #import "cocos2d.h"
 
-@interface PowerBarNode : CCNode {
+@interface PowerBarNode : CCSprite {
 	ccColor4F _barColor;
-	double _percentFill;
+	float _percentFill;
 	CCLabelTTF* _label;
 	CGPoint _position;
 }
 
 -(id)initWithSize:(CGSize)contentSize position:(CGPoint)position color:(ccColor4F)barColor label:(NSString *)label textColor:(ccColor3B)textColor fontSize:(int)fontSize;
 
--(void)setPercentFill:(double)percentFill;
+-(void)setPercentFill:(float)percentFill;
 -(void)setLabel:(NSString*)label;
 
 @end
