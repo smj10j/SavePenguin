@@ -702,6 +702,8 @@
 
 -(void)onTouchBeganToolboxItem:(LHTouchInfo*)info {
 
+NSLog(@"TOUCH!!!!");
+
 	if(_state != RUNNING && _state != PLACE) {
 		return;
 	}
@@ -712,12 +714,14 @@
 	}
 
 	LHSprite* toolboxItemContainer = info.sprite;
-	LHSprite* toolboxItem = [_levelLoader spriteWithUniqueName:((NSString*)toolboxItemContainer.userData)];
+	LHSprite* toolboxItem = toolboxItemContainer.tag == TOOLBOX_ITEM_CONTAINER ? [_levelLoader spriteWithUniqueName:((NSString*)toolboxItemContainer.userData)] : toolboxItemContainer;
 	
+	/*
 	if(toolboxItem.tag != TOOLBOX_ITEM) {
 		//already placed
 		return;
 	}
+	*/
 	
 	//hide any tutorials
 	[self fadeOutAllTutorials];
@@ -1756,29 +1760,51 @@
 		
 		}
 
-		[self scoreToolboxItemPlacement:_activeToolboxItem];
 		
 		//move it into the main layer so it's under the HUD
 		if(_activeToolboxItem.parent == _toolboxBatchNode) {
+			//make sure we only do all of these things once
 			[_toolboxBatchNode removeChild:_activeToolboxItem cleanup:NO];
-		}
-		[_mainLayer addChild:_activeToolboxItem];
-		[_placedToolboxItems addObject:_activeToolboxItem];
+			[_mainLayer addChild:_activeToolboxItem];
+			[_placedToolboxItems addObject:_activeToolboxItem];
+			[self scoreToolboxItemPlacement:_activeToolboxItem];
+			
+			
 
-		//analytics logging
-		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-			[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-			_levelPackPath, @"Level_Pack",
-			_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
-			_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
-			[NSNumber numberWithInt:_state], @"Game_State",
-			NSStringFromCGPoint(_activeToolboxItem.position), @"Location",
-		nil];
-		[Analytics logEvent:@"Place_Toolbox_Item" withParameters:flurryParams];
+			//analytics logging
+			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+				_levelPackPath, @"Level_Pack",
+				_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
+				_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
+				[NSNumber numberWithInt:_state], @"Game_State",
+				NSStringFromCGPoint(_activeToolboxItem.position), @"Location",
+			nil];
+			[Analytics logEvent:@"Place_Toolbox_Item" withParameters:flurryParams];
+			
+		}else {
+		
+
+			//analytics logging
+			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+				_levelPackPath, @"Level_Pack",
+				_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
+				_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
+				[NSNumber numberWithInt:_state], @"Game_State",
+				NSStringFromCGPoint(_activeToolboxItem.position), @"Location",
+			nil];
+			[Analytics logEvent:@"Move_Placed_Toolbox_Item" withParameters:flurryParams];		
+		
+		}
+
 
 		if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 			[[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"sounds/game/toolbox/%@", soundFileName ]];
 		}
+		
+		[_activeToolboxItem registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
+		[_activeToolboxItem registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
 	
 		_activeToolboxItem = nil;
 		_moveActiveToolboxItemIntoWorld = false;
@@ -2391,6 +2417,27 @@
 				//TODO: add some kind of crosshair or arrow so you know where the item is if it's tiny and under your finger
 				[_activeToolboxItem transformPosition:location];
 
+			}else if(_state == PLACE && _startTouch.x != 0 && _startTouch.y != 0) {
+				
+				/* HANDLE WITH TOUCH OBSERVERS 
+				//see if we can move an existing toolbox item
+				LHSprite* touchedToolboxItem = nil;
+				int minDistance = 50;
+				for(LHSprite* sprite in [_levelLoader allSprites]) {
+					if([sprite.userInfoClassName hasPrefix:@"ToolboxItem_" ]) {
+						int dist = ccpDistance(sprite.position, _startTouch);
+						if(dist < minDistance) {
+							minDistance = dist;
+							touchedToolboxItem = sprite;
+						}
+					}
+				}
+				if(touchedToolboxItem != nil) {
+					_activeToolboxItem = touchedToolboxItem;
+				
+				}
+				*/
+			
 			}else if(_state == RUNNING && _startTouch.x != 0 && _startTouch.y != 0) {
 				
 				if(_handOfGodPowerSecondsRemaining > 0) {
