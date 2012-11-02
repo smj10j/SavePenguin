@@ -1,5 +1,5 @@
 //
-//  AboutLayer.mm
+//  InAppPurchaseLayer.mm
 //  Penguin Rescue
 //
 //  Created by Stephen Johnson on 10/15/12.
@@ -8,7 +8,7 @@
 
 
 // Import the interfaces
-#import "AboutLayer.h"
+#import "InAppPurchaseLayer.h"
 #import "MainMenuLayer.h"
 #import "AppDelegate.h"
 #import "SettingsManager.h"
@@ -16,9 +16,9 @@
 #import "Utilities.h"
 #import "Analytics.h"
 
-#pragma mark - AboutLayer
+#pragma mark - InAppPurchaseLayer
 
-@implementation AboutLayer
+@implementation InAppPurchaseLayer
 
 +(CCScene *) scene
 {
@@ -26,7 +26,7 @@
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	AboutLayer *layer = [AboutLayer node];
+	InAppPurchaseLayer *layer = [InAppPurchaseLayer node];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -61,7 +61,7 @@
 			About Conquer
 			Version
 			*/
-		CCLabelTTF* TODOLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"TODO: Add an about page"] fontName:@"Helvetica" fontSize:48*SCALING_FACTOR_FONTS];
+		CCLabelTTF* TODOLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"TODO: Add an IAP page"] fontName:@"Helvetica" fontSize:48*SCALING_FACTOR_FONTS];
 		TODOLabel.color = ccWHITE;
 		TODOLabel.position = ccp(winSize.width/2, winSize.height/2);
 		[self addChild:TODOLabel];
@@ -81,11 +81,11 @@
 		[backButton registerTouchEndedObserver:self selector:@selector(onBack:)];
 
 
-		[Analytics logEvent:@"View_About"];
+		[Analytics logEvent:@"View_IAP"];
 
 	}
 	
-	if(DEBUG_MEMORY) DebugLog(@"Initialized AboutLayer");
+	if(DEBUG_MEMORY) DebugLog(@"Initialized InAppPurchaseLayer");
 	if(DEBUG_MEMORY) report_memory();
 	
 	return self;
@@ -121,7 +121,7 @@
 
 
 -(void) onExit {
-	if(DEBUG_MEMORY) DebugLog(@"AboutLayer onExit");
+	if(DEBUG_MEMORY) DebugLog(@"InAppPurchaseLayer onExit");
 
 	for(LHSprite* sprite in _levelLoader.allSprites) {
 		[sprite stopAnimation];
@@ -132,7 +132,7 @@
 
 -(void) dealloc
 {
-	if(DEBUG_MEMORY) DebugLog(@"AboutLayer dealloc");
+	if(DEBUG_MEMORY) DebugLog(@"InAppPurchaseLayer dealloc");
 
 	[_levelLoader release];
 	_levelLoader = nil;	

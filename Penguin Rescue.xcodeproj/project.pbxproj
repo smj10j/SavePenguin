@@ -209,6 +209,8 @@
 		AA54C933162BD64300DF56D0 /* Spritesheet.pshs in Resources */ = {isa = PBXBuildFile; fileRef = AA54C92F162BD64300DF56D0 /* Spritesheet.pshs */; };
 		AA6252561638097000A36D65 /* LevelPackSelectLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA6252551638097000A36D65 /* LevelPackSelectLayer.mm */; };
 		AA6DFB1316302BFF00F93350 /* MoveGridData.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA6DFB1216302BFF00F93350 /* MoveGridData.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		AA8DD3471643A7E800E49D07 /* InAppPurchaseLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA8DD3461643A7E800E49D07 /* InAppPurchaseLayer.mm */; };
+		AA8DD34B1643A92800E49D07 /* ToolboxItemRotationCrosshair.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA8DD34A1643A92800E49D07 /* ToolboxItemRotationCrosshair.mm */; };
 		AA9213481642A222008BAA08 /* Analytics.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA9213471642A222008BAA08 /* Analytics.mm */; };
 		AA92139E1642EB13008BAA08 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9213931642EB13008BAA08 /* Default-568h@2x.png */; };
 		AA92139F1642EB13008BAA08 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9213941642EB13008BAA08 /* Default-Landscape@2x~ipad.png */; };
@@ -687,6 +689,10 @@
 		AA62525B1638191C00A36D65 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		AA6DFB1116302BFF00F93350 /* MoveGridData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveGridData.h; sourceTree = "<group>"; };
 		AA6DFB1216302BFF00F93350 /* MoveGridData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoveGridData.mm; sourceTree = "<group>"; };
+		AA8DD3451643A7E800E49D07 /* InAppPurchaseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseLayer.h; sourceTree = "<group>"; };
+		AA8DD3461643A7E800E49D07 /* InAppPurchaseLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InAppPurchaseLayer.mm; sourceTree = "<group>"; };
+		AA8DD3491643A92800E49D07 /* ToolboxItemRotationCrosshair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolboxItemRotationCrosshair.h; sourceTree = "<group>"; };
+		AA8DD34A1643A92800E49D07 /* ToolboxItemRotationCrosshair.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ToolboxItemRotationCrosshair.mm; sourceTree = "<group>"; };
 		AA9213461642A221008BAA08 /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
 		AA9213471642A222008BAA08 /* Analytics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Analytics.mm; sourceTree = "<group>"; };
 		AA9213931642EB13008BAA08 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -922,6 +928,10 @@
 				AA54C8C7162BB27E00DF56D0 /* IntroLayer.mm */,
 				AA4C8D8E1637D2D200C55554 /* MainMenuLayer.h */,
 				AA4C8D8F1637D2D200C55554 /* MainMenuLayer.mm */,
+				AA8DD3451643A7E800E49D07 /* InAppPurchaseLayer.h */,
+				AA8DD3491643A92800E49D07 /* ToolboxItemRotationCrosshair.h */,
+				AA8DD34A1643A92800E49D07 /* ToolboxItemRotationCrosshair.mm */,
+				AA8DD3461643A7E800E49D07 /* InAppPurchaseLayer.mm */,
 				AAD7B65B163C296500B02521 /* AboutLayer.h */,
 				AAD7B65C163C296500B02521 /* AboutLayer.mm */,
 				AA6252541638097000A36D65 /* LevelPackSelectLayer.h */,
@@ -1972,6 +1982,8 @@
 				cbcf8a3be72e6868338383a0 /* LHTouchMgr.mm in Sources */,
 				250e1473997f280a794687eb /* SHDocumentLoader.mm in Sources */,
 				AA9213481642A222008BAA08 /* Analytics.mm in Sources */,
+				AA8DD3471643A7E800E49D07 /* InAppPurchaseLayer.mm in Sources */,
+				AA8DD34B1643A92800E49D07 /* ToolboxItemRotationCrosshair.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

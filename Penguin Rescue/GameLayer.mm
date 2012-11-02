@@ -690,6 +690,12 @@
 	}
 
 	_activeToolboxItem = toolboxItem;
+	if(_activeToolboxItemRotationCrosshair != nil) {
+		[self removeChild:_activeToolboxItemRotationCrosshair cleanup:YES];
+		[_activeToolboxItemRotationCrosshair release];
+	}
+	_activeToolboxItemRotationCrosshair = [[ToolboxItemRotationCrosshair alloc] initWithToolboxItem:_activeToolboxItem];
+	[self addChild:_activeToolboxItemRotationCrosshair];
 			
 	_activeToolboxItemOriginalPosition = _activeToolboxItem.position;
 	ToolboxItem_Obstruction* toolboxItemData = ((ToolboxItem_Obstruction*)_activeToolboxItem.userInfo);	//ToolboxItem_Obstruction is used because all ToolboxItem classes have a "scale" property
@@ -700,6 +706,14 @@
 -(void)onTouchEndedToolboxItem:(LHTouchInfo*)info {
 	
 	if(_activeToolboxItem != nil) {
+			
+		//remove the toolbox item crosshair
+		if(_activeToolboxItemRotationCrosshair != nil) {
+			[self removeChild:_activeToolboxItemRotationCrosshair cleanup:YES];
+			[_activeToolboxItemRotationCrosshair release];
+			_activeToolboxItemRotationCrosshair = nil;
+		}
+			
 			
 		if((_state != RUNNING && _state != PLACE)
 				|| (info.glPoint.y < _toolboxItemSize.height)
@@ -721,7 +735,7 @@
 				_levelPackPath, @"Level_Pack",
 				_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
 				_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
-				_state, @"Game_State",
+				[NSNumber numberWithInt:_state], @"Game_State",
 			nil];
 			[Analytics logEvent:@"Undo_Place_Toolbox_Item" withParameters:flurryParams];
 			
@@ -1018,6 +1032,12 @@
 		[sprite stopPathMovement];
 	}
 	
+	//remove the toolbox item crosshair
+	if(_activeToolboxItemRotationCrosshair != nil) {
+		[self removeChild:_activeToolboxItemRotationCrosshair cleanup:YES];
+		[_activeToolboxItemRotationCrosshair release];
+		_activeToolboxItemRotationCrosshair = nil;
+	}
 	_activeToolboxItem = nil;
 		
 	//analytics logging
@@ -1186,6 +1206,12 @@
 		[sprite stopPathMovement];
 	}
 	
+	//remove the toolbox item crosshair
+	if(_activeToolboxItemRotationCrosshair != nil) {
+		[self removeChild:_activeToolboxItemRotationCrosshair cleanup:YES];
+		[_activeToolboxItemRotationCrosshair release];
+		_activeToolboxItemRotationCrosshair = nil;
+	}
 	_activeToolboxItem = nil;
 
 	//analytics logging
@@ -1605,7 +1631,7 @@
 			_levelPackPath, @"Level_Pack",
 			_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
 			_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
-			_state, @"Game_State",
+			[NSNumber numberWithInt:_state], @"Game_State",
 			NSStringFromCGPoint(_activeToolboxItem.position), @"Location",
 		nil];
 		[Analytics logEvent:@"Place_Toolbox_Item" withParameters:flurryParams];
@@ -2223,7 +2249,7 @@
 				ToolboxItem_Obstruction* toolboxItemData = ((ToolboxItem_Obstruction*)_activeToolboxItem.userInfo);	//ToolboxItem_Obstruction is used because all ToolboxItem classes have a "scale" property
 				
 				[_activeToolboxItem runAction:[CCSequence actions:
-					[CCScaleTo actionWithDuration:0.05f scale:toolboxItemData.scale*2],
+					[CCScaleTo actionWithDuration:0.05f scale:toolboxItemData.scale*2.5],
 					[CCDelayTime actionWithDuration:0.20f],
 					[CCScaleTo actionWithDuration:0.10f scale:toolboxItemData.scale],
 					nil]
@@ -2343,6 +2369,7 @@
 	}else {
 		[super draw];	
 	}
+	
 }
 
 
@@ -2378,6 +2405,10 @@
 	[_levelPackPath release];
 
 	[_inGameMenuItems release];
+	
+	if(_activeToolboxItemRotationCrosshair != nil) {
+		[_activeToolboxItemRotationCrosshair release];
+	}
 	
 	for(id key in _toolGroups) {
 		NSMutableDictionary* toolGroup = [_toolGroups objectForKey:key];
