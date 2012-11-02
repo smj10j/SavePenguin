@@ -185,14 +185,14 @@ static NSMutableDictionary* sCompletedLevelsInPackDictionary = nil;
 
 
 //completes a level and, if necessary, the pack
-+(void)completeLevel:(NSString*)levelPath inPack:(NSString*)packPath withScore:(double)score {
++(void)completeLevel:(NSString*)levelPath inPack:(NSString*)packPath withScore:(int)score {
 	
 	//create the completed levels array
 	NSMutableDictionary* completedLevelsDictionary = [NSMutableDictionary dictionaryWithDictionary:[LevelPackManager completedLevelsInPack:packPath]];
 	if([completedLevelsDictionary valueForKey:levelPath] != nil) {
-		double prevScore = [(NSNumber*)[completedLevelsDictionary valueForKey:levelPath] doubleValue];
+		int prevScore = [(NSNumber*)[completedLevelsDictionary valueForKey:levelPath] intValue];
 		if(prevScore > score) {
-			if(DEBUG_LEVELS) DebugLog(@"Level %@ in pack %@ already completed with higher score %f > %f", levelPath, packPath, prevScore, score);
+			if(DEBUG_LEVELS) DebugLog(@"Level %@ in pack %@ already completed with higher score %d > %d", levelPath, packPath, prevScore, score);
 			return;
 		}
 	}

@@ -1076,7 +1076,7 @@
 	NSString* grade = [ScoreKeeper gradeFromZScore:zScore];
 	
 	int coinsEarned = 0;
-	double prevScore = [[LevelPackManager scoreForLevel:_levelPackPath inPack:_levelPath] doubleValue];
+	int prevScore = [[LevelPackManager scoreForLevel:_levelPath inPack:_levelPackPath] intValue];
 	if(prevScore < finalScore) {
 		coinsEarned = [ScoreKeeper coinsForZScore:zScore];
 	}
@@ -1190,10 +1190,10 @@
 		];
 		
 		
-		CCLabelTTF* coinsEarnedLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", coinsEarned] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
+		CCLabelTTF* coinsEarnedLabel = [CCLabelTTF labelWithString:(coinsEarned > 0 ? [NSString stringWithFormat:@"%d", coinsEarned] : @"0") fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
 		coinsEarnedLabel.color = SCORING_FONT_COLOR2;
 		coinsEarnedLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
-									110*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -7 : 0));
+									105*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
 		coinsEarnedLabel.opacity = 0;
 		[self addChild:coinsEarnedLabel];		
 		[coinsEarnedLabel runAction:[CCSequence actions:
@@ -1202,21 +1202,17 @@
 			nil]
 		];
 		
-		if(coinsEarned > 0) {
-			//:add a label saying "New Personal Best!" under the coins earned label
-		
-			CCLabelTTF* highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", @"New Personal High Score!"] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
-			highScoreLabel.color = SCORING_FONT_COLOR2;
-			highScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
-										80*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -7 : 0));
-			highScoreLabel.opacity = 0;
-			[self addChild:highScoreLabel];
-			[highScoreLabel runAction:[CCSequence actions:
-				[CCDelayTime actionWithDuration:1.75f],
-				[CCFadeIn actionWithDuration:0.25f],
-				nil]
-			];
-		}
+		CCLabelTTF* highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", (coinsEarned > 0 ? @"Nice! A new  personal high score earns you some more coins!" : @"Beat your high score to earn more coins!")] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE3 dimensions:CGSizeMake(200*SCALING_FACTOR_H,150*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
+		highScoreLabel.color = SCORING_FONT_COLOR1;
+		highScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset - 200*SCALING_FACTOR_H,
+									110*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
+		highScoreLabel.opacity = 0;
+		[self addChild:highScoreLabel];
+		[highScoreLabel runAction:[CCSequence actions:
+			[CCDelayTime actionWithDuration:1.75f],
+			[CCFadeIn actionWithDuration:0.25f],
+			nil]
+		];
 				
 	}else {
 		//show info about needed to connect

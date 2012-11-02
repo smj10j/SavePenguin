@@ -51,3 +51,7 @@
 #define SETTING_LEFT_REVIEW_VERSION @"LeftReviewVersion"
 #define SETTING_CURRENT_VERSION @"CurrentVersion"
 
+
+#define SETTING_LAST_LEVEL_PACK_PATH @"LastLevelPackPath"
+#define SETTING_LAST_LEVEL_PATH @"LastLevelPath"
+
