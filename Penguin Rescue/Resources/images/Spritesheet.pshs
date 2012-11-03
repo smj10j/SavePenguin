@@ -5774,34 +5774,34 @@
 										<string>{-15.22668470001085, 1.797281590429634}</string>
 									</array>
 									<array>
-										<string>{16.086786213617131, 2.4112712161870462}</string>
+										<string>{15.799778039496317, 5.414064257963588}</string>
 										<string>{8.5142474959423851, 14.895726939921076}</string>
 										<string>{-15.22668470001085, 1.797281590429634}</string>
 									</array>
 									<array>
-										<string>{16.086786213617131, 2.4112712161870462}</string>
+										<string>{16.518497657862937, -3.6998442889842877}</string>
+										<string>{15.799778039496317, 5.414064257963588}</string>
 										<string>{-15.22668470001085, 1.797281590429634}</string>
-										<string>{-16.250000742939868, -3.5239618328012767}</string>
 									</array>
 									<array>
-										<string>{16.086786213617131, 2.4112712161870462}</string>
-										<string>{-16.250000742939868, -3.5239618328012767}</string>
+										<string>{9.9324995860732201, -15.607085723092951}</string>
+										<string>{16.518497657862937, -3.6998442889842877}</string>
+										<string>{-15.22668470001085, 1.797281590429634}</string>
+									</array>
+									<array>
+										<string>{9.9324995860732201, -15.607085723092951}</string>
+										<string>{-15.22668470001085, 1.797281590429634}</string>
+										<string>{-15.24027560668754, -3.6206971783963127}</string>
+									</array>
+									<array>
+										<string>{9.9324995860732201, -15.607085723092951}</string>
+										<string>{-15.24027560668754, -3.6206971783963127}</string>
 										<string>{-9.6775936042006734, -15.41121664503811}</string>
 									</array>
 									<array>
-										<string>{16.086786213617131, 2.4112712161870462}</string>
+										<string>{0.9417087782676532, -19.487692102493952}</string>
+										<string>{9.9324995860732201, -15.607085723092951}</string>
 										<string>{-9.6775936042006734, -15.41121664503811}</string>
-										<string>{0.9417087782676532, -19.487692102493952}</string>
-									</array>
-									<array>
-										<string>{16.086786213617131, 2.4112712161870462}</string>
-										<string>{0.9417087782676532, -19.487692102493952}</string>
-										<string>{9.9324995860732201, -15.607085723092951}</string>
-									</array>
-									<array>
-										<string>{16.086786213617131, 2.4112712161870462}</string>
-										<string>{9.9324995860732201, -15.607085723092951}</string>
-										<string>{17.724091882303568, -2.5006457898722516}</string>
 									</array>
 								</array>
 								<key>Friction</key>
@@ -5836,12 +5836,12 @@
 									<string>{47.025902917117349, 6.3626883877946625}</string>
 									<string>{84.68393329690528, 4.7253827191082109}</string>
 									<string>{101.05698998376954, 21.917092240315696}</string>
-									<string>{131.34714485446852, 71.854915135251815}</string>
-									<string>{137.89636752921427, 91.502583159489006}</string>
+									<string>{130.19911215798527, 59.843742968145648}</string>
+									<string>{133.07399063145175, 96.299377155937151}</string>
 									<string>{106.72999834429288, 143.9283428923718}</string>
 									<string>{70.766835113070613, 159.45076840997581}</string>
 									<string>{28.289625583197306, 143.14486658015244}</string>
-									<string>{1.9999970282405286, 95.595847331205107}</string>
+									<string>{6.0388975732498409, 95.982788713585251}</string>
 									<string>{6.0932611999566006, 74.310873638281464}</string>
 									<string>{20.01035938379124, 26.010356412031797}</string>
 								</array>
@@ -6751,252 +6751,9 @@
 						<key>LinearVelocity</key>
 						<string>{0, 0}</string>
 						<key>SH_ComplexShapes</key>
-						<array>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Category</key>
-								<integer>1</integer>
-								<key>Density</key>
-								<real>0.20000000298023224</real>
-								<key>Fixture</key>
-								<array>
-									<array>
-										<string>{17.25, 15.75}</string>
-										<string>{5.5, 15.75}</string>
-										<string>{5.5, 15.5}</string>
-									</array>
-									<array>
-										<string>{19.25, 14.75}</string>
-										<string>{17.25, 15.75}</string>
-										<string>{5.5, 15.5}</string>
-										<string>{5.25, 9.5}</string>
-										<string>{20.5, 13.25}</string>
-									</array>
-									<array>
-										<string>{-28.5, -8.75}</string>
-										<string>{-28.5, -10.5}</string>
-										<string>{-28, -11.75}</string>
-										<string>{-26.5, -11.5}</string>
-										<string>{-22.25, -6.25}</string>
-										<string>{-28, -4.75}</string>
-									</array>
-									<array>
-										<string>{-20.75, 1.75}</string>
-										<string>{-28, 0}</string>
-										<string>{-28, -4.75}</string>
-										<string>{-22.25, -6.25}</string>
-										<string>{-20.5, -4.5}</string>
-										<string>{-19.75, 1.25}</string>
-									</array>
-									<array>
-										<string>{-25.75, 6.5}</string>
-										<string>{-27, 7.25}</string>
-										<string>{-28.5, 7.25}</string>
-										<string>{-29, 6.25}</string>
-										<string>{-28, 0}</string>
-										<string>{-20.75, 1.75}</string>
-									</array>
-									<array>
-										<string>{-19.75, 1.25}</string>
-										<string>{-20.5, -4.5}</string>
-										<string>{-18.75, -3.75}</string>
-										<string>{-18.25, 1.25}</string>
-									</array>
-									<array>
-										<string>{-18.25, 1.25}</string>
-										<string>{-18.75, -3.75}</string>
-										<string>{-4.25, -9.75}</string>
-										<string>{-5, 7}</string>
-									</array>
-									<array>
-										<string>{-1.25, 12.25}</string>
-										<string>{-4.5, 13}</string>
-										<string>{-6.25, 13}</string>
-										<string>{-7, 12.5}</string>
-										<string>{-7, 12}</string>
-										<string>{-4.75, 9.25}</string>
-										<string>{5.25, 9.5}</string>
-									</array>
-									<array>
-										<string>{5.25, 9.5}</string>
-										<string>{-4.75, 9.25}</string>
-										<string>{-4.5, 7.5}</string>
-									</array>
-									<array>
-										<string>{23, 7.25}</string>
-										<string>{24.5, 8.25}</string>
-										<string>{24.5, 10.5}</string>
-										<string>{23.25, 11.5}</string>
-										<string>{19.75, 6.75}</string>
-									</array>
-									<array>
-										<string>{5.25, 9.5}</string>
-										<string>{-4.5, 7.5}</string>
-										<string>{-5, 7}</string>
-										<string>{-4.25, -9.75}</string>
-										<string>{-3.75, -10.25}</string>
-									</array>
-									<array>
-										<string>{19.75, 6.75}</string>
-										<string>{23.25, 11.5}</string>
-										<string>{23.25, 12.25}</string>
-										<string>{22.5, 13}</string>
-										<string>{20.5, 13.25}</string>
-										<string>{5.25, 9.5}</string>
-										<string>{-3.75, -10.25}</string>
-										<string>{19.25, 6.25}</string>
-									</array>
-									<array>
-										<string>{19.25, 6.25}</string>
-										<string>{-3.75, -10.25}</string>
-										<string>{6.5, -11.5}</string>
-									</array>
-									<array>
-										<string>{19.25, 6.25}</string>
-										<string>{6.5, -11.5}</string>
-										<string>{12, -11}</string>
-									</array>
-									<array>
-										<string>{19.25, 6.25}</string>
-										<string>{12, -11}</string>
-										<string>{21.5, -8.25}</string>
-									</array>
-									<array>
-										<string>{26.5, 2.25}</string>
-										<string>{19.25, 6.25}</string>
-										<string>{21.5, -8.25}</string>
-									</array>
-									<array>
-										<string>{26.5, 2.25}</string>
-										<string>{21.5, -8.25}</string>
-										<string>{26.75, -5.5}</string>
-									</array>
-									<array>
-										<string>{28.5, 0.25}</string>
-										<string>{26.5, 2.25}</string>
-										<string>{26.75, -5.5}</string>
-									</array>
-									<array>
-										<string>{28.5, 0.25}</string>
-										<string>{26.75, -5.5}</string>
-										<string>{29, -3}</string>
-									</array>
-									<array>
-										<string>{28.5, 0.25}</string>
-										<string>{29, -3}</string>
-										<string>{29, -0.75}</string>
-									</array>
-									<array>
-										<string>{-1.5, -15.25}</string>
-										<string>{2, -14}</string>
-										<string>{6.5, -11.5}</string>
-										<string>{-3.75, -10.25}</string>
-										<string>{-4, -12}</string>
-										<string>{-3.5, -15.75}</string>
-									</array>
-									<array>
-										<string>{-5.75, -15.75}</string>
-										<string>{-3.5, -15.75}</string>
-										<string>{-4, -12}</string>
-										<string>{-6.25, -14.75}</string>
-										<string>{-6.25, -15.25}</string>
-									</array>
-								</array>
-								<key>Friction</key>
-								<real>0.20000000298023224</real>
-								<key>Group</key>
-								<integer>0</integer>
-								<key>Height</key>
-								<real>0.0</real>
-								<key>HolesPoints</key>
-								<array/>
-								<key>IsCircle</key>
-								<false/>
-								<key>IsRectangle</key>
-								<false/>
-								<key>IsSensor</key>
-								<false/>
-								<key>LHHeight</key>
-								<real>0.0</real>
-								<key>LHShapePositionOffset</key>
-								<string>{-29, -15.75}</string>
-								<key>LHWidth</key>
-								<real>0.0</real>
-								<key>Mask</key>
-								<integer>65535</integer>
-								<key>Name</key>
-								<string>UntitledFixture</string>
-								<key>Restitution</key>
-								<real>0.20000000298023224</real>
-								<key>ShapePoints</key>
-								<array>
-									<string>{138, 1}</string>
-									<string>{137, 25}</string>
-									<string>{111, 14}</string>
-									<string>{98, 11}</string>
-									<string>{91, 11}</string>
-									<string>{88, 13}</string>
-									<string>{88, 15}</string>
-									<string>{97, 26}</string>
-									<string>{98, 33}</string>
-									<string>{96, 35}</string>
-									<string>{43, 58}</string>
-									<string>{37, 58}</string>
-									<string>{33, 56}</string>
-									<string>{13, 37}</string>
-									<string>{8, 34}</string>
-									<string>{2, 34}</string>
-									<string>{0, 38}</string>
-									<string>{4, 63}</string>
-									<string>{4, 82}</string>
-									<string>{2, 98}</string>
-									<string>{2, 105}</string>
-									<string>{4, 110}</string>
-									<string>{10, 109}</string>
-									<string>{27, 88}</string>
-									<string>{34, 81}</string>
-									<string>{41, 78}</string>
-									<string>{99, 102}</string>
-									<string>{101, 104}</string>
-									<string>{100, 111}</string>
-									<string>{91, 122}</string>
-									<string>{91, 124}</string>
-									<string>{93, 126}</string>
-									<string>{102, 126}</string>
-									<string>{110, 124}</string>
-									<string>{124, 119}</string>
-									<string>{142, 109}</string>
-									<string>{164, 107}</string>
-									<string>{202, 96}</string>
-									<string>{223, 85}</string>
-									<string>{232, 75}</string>
-									<string>{232, 66}</string>
-									<string>{230, 62}</string>
-									<string>{222, 54}</string>
-									<string>{193, 38}</string>
-									<string>{195, 36}</string>
-									<string>{208, 34}</string>
-									<string>{214, 30}</string>
-									<string>{214, 21}</string>
-									<string>{209, 17}</string>
-									<string>{209, 14}</string>
-									<string>{206, 11}</string>
-									<string>{198, 10}</string>
-									<string>{193, 4}</string>
-									<string>{185, 0}</string>
-									<string>{138, 0}</string>
-								</array>
-								<key>ShapePositionOffset</key>
-								<string>{0, 0}</string>
-								<key>Tag</key>
-								<integer>0</integer>
-								<key>Width</key>
-								<real>0.0</real>
-							</dict>
-						</array>
+						<array/>
 						<key>Type</key>
-						<integer>2</integer>
+						<integer>3</integer>
 					</dict>
 					<key>SHSheetName</key>
 					<string>Actors</string>
@@ -12259,7 +12016,7 @@
 			<key>MaxSheetSize</key>
 			<integer>4096</integer>
 			<key>NpotSize</key>
-			<string>{2272, 4092}</string>
+			<string>{2272, 4080}</string>
 			<key>Padding</key>
 			<integer>8</integer>
 			<key>PixelFormat</key>

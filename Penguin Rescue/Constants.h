@@ -10,7 +10,7 @@
 #define Penguin_Rescue_Constants_h
 
 //true to disable all output and send analytics data
-#define DISTRIBUTION_MODE true
+#define DISTRIBUTION_MODE false
 
 
 
@@ -37,6 +37,7 @@
 #define SCALING_FACTOR_GENERIC SCALING_FACTOR_V
 #define SCALING_FACTOR_FONTS (IS_IPHONE ? 0.6 : 1.0)
 #define TARGET_FPS 60
+#define TARGET_PHYSICS_STEP (1.0/TARGET_FPS)
 #define MIN_GRID_SIZE 8
 
 #define SHARK_DIES_WHEN_STUCK false
@@ -48,6 +49,7 @@
 #define HAND_OF_GOD_INITIAL_POWER .75
 #define HAND_OF_GOD_POWER_REGENERATION_RATE .175
 
+#define ACTOR_MASS .25
 
 #define HUD_BUTTON_MARGIN_V 14*SCALING_FACTOR_V
 #define HUD_BUTTON_MARGIN_H 16*SCALING_FACTOR_H

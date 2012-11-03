@@ -57,6 +57,7 @@
 		self.isTouchEnabled = YES;
 		
 		_instanceId = [[NSDate date] timeIntervalSince1970];
+		_box2dStepAccumulator = 0;
 		DebugLog(@"Initializing GameLayer %f", _instanceId);
 		_inGameMenuItems = [[NSMutableArray alloc] init];
 		_moveGridSharkUpdateQueue = dispatch_queue_create("com.conquerllc.games.Penguin-Rescue.moveGridSharkUpdateQueue", 0);	//serial
@@ -532,6 +533,24 @@
 	for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
 		[shark prepareAnimationNamed:@"Shark" fromSHScene:@"Spritesheet"];
 	}
+	
+		
+				
+	//standardize masses of sharks and penguins
+	for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
+		b2MassData massData;
+		shark.body->GetMassData(&massData);
+		massData.mass = ACTOR_MASS;
+		shark.body->SetMassData(&massData);
+	}
+	
+	for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
+		b2MassData massData;
+		penguin.body->GetMassData(&massData);
+		massData.mass = ACTOR_MASS;
+		penguin.body->SetMassData(&massData);
+	}
+		
 			
 		
 	[self showTutorial];
@@ -701,8 +720,6 @@
 
 
 -(void)onTouchBeganToolboxItem:(LHTouchInfo*)info {
-
-NSLog(@"TOUCH!!!!");
 
 	if(_state != RUNNING && _state != PLACE) {
 		return;
@@ -1927,39 +1944,35 @@ NSLog(@"TOUCH!!!!");
 	
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with game state update");
 
-
-
-
-	//It is recommended that a fixed time step is used with Box2D for stability
-	//of the simulation, however, we are using a variable time step here.
-	//You need to make an informed choice, the following URL is useful
-	//http://gafferongames.com/game-physics/fix-your-timestep/
-	
 	int32 velocityIterations = 8;
 	int32 positionIterations = 1;
 	
-	// Instruct the world to perform a single step of simulation. It is
-	// generally best to keep the time step and iterations fixed.
-	_world->Step(dt, velocityIterations, positionIterations);
+	_box2dStepAccumulator+= dt;
+	while(_box2dStepAccumulator > TARGET_PHYSICS_STEP) {
 	
-	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with world step");
+		_box2dStepAccumulator-= TARGET_PHYSICS_STEP;
 	
-	//Iterate over the bodies in the physics world
-	for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
-	{
-		if (b->GetUserData() != NULL)
-        {
-			//Synchronize the AtlasSprites position and rotation with the corresponding body
-			CCSprite *myActor = (CCSprite*)b->GetUserData();
-            
-            if(myActor != 0)
-            {
-                //THIS IS VERY IMPORTANT - GETTING THE POSITION FROM BOX2D TO COCOS2D
-                myActor.position = [LevelHelperLoader metersToPoints:b->GetPosition()];
-                myActor.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
-            }
-            
-        }
+		_world->Step(TARGET_PHYSICS_STEP, velocityIterations, positionIterations);
+	
+		//Iterate over the bodies in the physics world
+		for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
+		{
+			if (b->GetUserData() != NULL)
+			{
+				//Synchronize the AtlasSprites position and rotation with the corresponding body
+				CCSprite *myActor = (CCSprite*)b->GetUserData();
+				
+				if(myActor != 0)
+				{
+					//THIS IS VERY IMPORTANT - GETTING THE POSITION FROM BOX2D TO COCOS2D
+					myActor.position = [LevelHelperLoader metersToPoints:b->GetPosition()];
+					myActor.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
+				}
+				
+			}
+		}
+		
+		if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with world step");
 	}
 
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with update tick");
@@ -2168,7 +2181,7 @@ NSLog(@"TOUCH!!!!");
 				
 		//we're using an impulse for the shark so they interact with things like Debris (physics)
 		shark.body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), shark.body->GetWorldCenter());
-		
+				
 		//rotate shark
 		double radians = atan2(normalizedX, normalizedY); //this grabs the radians for us
 		double newRotation = ((int)(CC_RADIANS_TO_DEGREES(radians) - 90)+360)%360; //90 is because the sprite is facing right
@@ -2375,7 +2388,8 @@ NSLog(@"TOUCH!!!!");
 			//DebugLog(@"Penguin %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", penguin.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
 		
 			//TODO:! look into why on iPad Retina simulator the Penguin and Shark can't move at all????
-		
+			
+				
 			//we're using an impulse for the penguin so they interact with things like Debris (physics)
 			penguin.body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), penguin.body->GetWorldCenter());			
 		}

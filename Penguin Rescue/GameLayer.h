@@ -46,6 +46,7 @@ enum PROPAGATION_RESULT {
 @interface GameLayer : CCLayerColor
 {
 	b2World* _world;
+	float _box2dStepAccumulator;
 	GLESDebugDraw *_debugDraw;
 	LevelHelperLoader* _levelLoader;
 	
