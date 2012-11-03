@@ -1178,11 +1178,14 @@
 	if(INITIAL_FREE_COINS == [SettingsManager intForKey:SETTING_TOTAL_EARNED_COINS]) {
 		prevScore = 0;
 	}
+	if(DEBUG_SCORING) DebugLog(@"Previous score on level: %d", prevScore);
 	NSString* coinsEarnedForLevelKey = [NSString stringWithFormat:@"%@%@:%@", SETTING_TOTAL_EARNED_COINS_FOR_LEVEL, _levelPackPath, _levelPath];
 	int totalCoinsEarnedForLevel = [SettingsManager intForKey:coinsEarnedForLevelKey];
+	if(DEBUG_SCORING) DebugLog(@"Previous total coins earned on level: %d", totalCoinsEarnedForLevel);
 	
 	if(prevScore < finalScore && totalCoinsEarnedForLevel < SCORING_MAX_COINS_PER_LEVEL) {
 		int prevCoinsEarned = [ScoreKeeper coinsForZScore:[ScoreKeeper zScoreFromScore:prevScore withLevelPackPath:_levelPackPath levelPath:_levelPath]];
+		if(DEBUG_SCORING) DebugLog(@"Coins earned for previous score on level: %d", prevCoinsEarned);
 		coinsEarned = [ScoreKeeper coinsForZScore:zScore] - prevCoinsEarned;
 		if(coinsEarned <= 0) {
 			coinsEarned = 1;
@@ -1193,6 +1196,7 @@
 		coinsEarned = totalCoinsEarnedForLevel - SCORING_MAX_COINS_PER_LEVEL;
 		totalCoinsEarnedForLevel = SCORING_MAX_COINS_PER_LEVEL;
 	}
+	if(DEBUG_SCORING) DebugLog(@"Coins earned for level: %d, new total coins earned for level: %d", coinsEarned, totalCoinsEarnedForLevel);
 	
 	
 	//store our earned coins
@@ -1322,11 +1326,11 @@
 		
 		NSString* highScoresLabelText = nil;
 		if(coinsEarned > 0 && totalCoinsEarnedForLevel == SCORING_MAX_COINS_PER_LEVEL) {
-			highScoresLabelText = @"Nice! A new  personal high score earns you maximum coins for this level!";
+			highScoresLabelText = @"Awesome! A new personal high score earns you the MAX coins for this level!";
 		}else if(coinsEarned > 0 && totalCoinsEarnedForLevel < SCORING_MAX_COINS_PER_LEVEL) {
-			highScoresLabelText = @"Nice! A new  personal high score earns you some more coins!";
+			highScoresLabelText = @"Nice! A new personal high score earns you some more coins!";
 		}else if(coinsEarned == 0 && totalCoinsEarnedForLevel == SCORING_MAX_COINS_PER_LEVEL) {
-			highScoresLabelText = @"Awesome! You've earned the max coins possible for this level!";
+			highScoresLabelText = @"You've already earned all the coins possible for this level!";
 		}else {
 			highScoresLabelText = @"Beat your high score to earn more coins!";
 		}

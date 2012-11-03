@@ -339,13 +339,13 @@
 		
 	}else if(percentile < 42) {
 		return @"C-";
-	}else if(percentile < 50) {
+	}else if(percentile < 47) {
 		return @"C";
-	}else if(percentile < 55) {
+	}else if(percentile < 52) {
 		return @"C+";
 		
 		
-	}else if(percentile < 60) {
+	}else if(percentile < 58) {
 		return @"B-";
 	}else if(percentile < 65) {
 		return @"B";
@@ -399,53 +399,61 @@
 
 +(int)percentileFromZScore:(double)zScore {
 	
+	if(zScore < -2.2) {
+		if(DEBUG_SCORING) DebugLog(@"With zScore=%f we found percentile=%d", zScore, 0);
+		return 0;
+	}else if(zScore > 2.2) {
+		if(DEBUG_SCORING) DebugLog(@"With zScore=%f we found percentile=%d", zScore, 100);
+		return 100;
+	}	
+	
 	NSMutableDictionary* zTable = [[NSMutableDictionary alloc] init];
-	[zTable setObject:[NSNumber numberWithDouble:1.5] forKey:[NSNumber numberWithDouble:-2.2]];
-	[zTable setObject:[NSNumber numberWithDouble:6] forKey:[NSNumber numberWithDouble:-1.6]];
-	[zTable setObject:[NSNumber numberWithDouble:12] forKey:[NSNumber numberWithDouble:-1.2]];
-	[zTable setObject:[NSNumber numberWithDouble:16] forKey:[NSNumber numberWithDouble:-1.0]];
-	[zTable setObject:[NSNumber numberWithDouble:18] forKey:[NSNumber numberWithDouble:-0.9]];
-	[zTable setObject:[NSNumber numberWithDouble:21] forKey:[NSNumber numberWithDouble:-0.8]];
-	[zTable setObject:[NSNumber numberWithDouble:24] forKey:[NSNumber numberWithDouble:-0.7]];
-	[zTable setObject:[NSNumber numberWithDouble:27] forKey:[NSNumber numberWithDouble:-0.6]];
-	[zTable setObject:[NSNumber numberWithDouble:31] forKey:[NSNumber numberWithDouble:-0.5]];
-	[zTable setObject:[NSNumber numberWithDouble:35] forKey:[NSNumber numberWithDouble:-0.4]];
-	[zTable setObject:[NSNumber numberWithDouble:38] forKey:[NSNumber numberWithDouble:-0.3]];
-	[zTable setObject:[NSNumber numberWithDouble:42] forKey:[NSNumber numberWithDouble:-0.2]];
-	[zTable setObject:[NSNumber numberWithDouble:46] forKey:[NSNumber numberWithDouble:-0.1]];
-	[zTable setObject:[NSNumber numberWithDouble:50] forKey:[NSNumber numberWithDouble:0.0]];
+	[zTable setObject:[NSNumber numberWithFloat:1.5] forKey:[NSNumber numberWithFloat:-2.2]];
+	[zTable setObject:[NSNumber numberWithFloat:6] forKey:[NSNumber numberWithFloat:-1.6]];
+	[zTable setObject:[NSNumber numberWithFloat:12] forKey:[NSNumber numberWithFloat:-1.2]];
+	[zTable setObject:[NSNumber numberWithFloat:16] forKey:[NSNumber numberWithFloat:-1.0]];
+	[zTable setObject:[NSNumber numberWithFloat:18] forKey:[NSNumber numberWithFloat:-0.9]];
+	[zTable setObject:[NSNumber numberWithFloat:21] forKey:[NSNumber numberWithFloat:-0.8]];
+	[zTable setObject:[NSNumber numberWithFloat:24] forKey:[NSNumber numberWithFloat:-0.7]];
+	[zTable setObject:[NSNumber numberWithFloat:27] forKey:[NSNumber numberWithFloat:-0.6]];
+	[zTable setObject:[NSNumber numberWithFloat:31] forKey:[NSNumber numberWithFloat:-0.5]];
+	[zTable setObject:[NSNumber numberWithFloat:35] forKey:[NSNumber numberWithFloat:-0.4]];
+	[zTable setObject:[NSNumber numberWithFloat:38] forKey:[NSNumber numberWithFloat:-0.3]];
+	[zTable setObject:[NSNumber numberWithFloat:42] forKey:[NSNumber numberWithFloat:-0.2]];
+	[zTable setObject:[NSNumber numberWithFloat:46] forKey:[NSNumber numberWithFloat:-0.1]];
+	[zTable setObject:[NSNumber numberWithFloat:50] forKey:[NSNumber numberWithFloat:0.0]];
 				
-	[zTable setObject:[NSNumber numberWithDouble:54] forKey:[NSNumber numberWithDouble:0.1]];
-	[zTable setObject:[NSNumber numberWithDouble:58] forKey:[NSNumber numberWithDouble:0.2]];
-	[zTable setObject:[NSNumber numberWithDouble:62] forKey:[NSNumber numberWithDouble:0.3]];
-	[zTable setObject:[NSNumber numberWithDouble:65] forKey:[NSNumber numberWithDouble:0.4]];
-	[zTable setObject:[NSNumber numberWithDouble:69] forKey:[NSNumber numberWithDouble:0.5]];
-	[zTable setObject:[NSNumber numberWithDouble:72] forKey:[NSNumber numberWithDouble:0.6]];
-	[zTable setObject:[NSNumber numberWithDouble:76] forKey:[NSNumber numberWithDouble:0.7]];
-	[zTable setObject:[NSNumber numberWithDouble:79] forKey:[NSNumber numberWithDouble:0.8]];
-	[zTable setObject:[NSNumber numberWithDouble:82] forKey:[NSNumber numberWithDouble:0.9]];
-	[zTable setObject:[NSNumber numberWithDouble:84] forKey:[NSNumber numberWithDouble:1.0]];
-	[zTable setObject:[NSNumber numberWithDouble:86] forKey:[NSNumber numberWithDouble:1.1]];
-	[zTable setObject:[NSNumber numberWithDouble:88] forKey:[NSNumber numberWithDouble:1.2]];
-	[zTable setObject:[NSNumber numberWithDouble:90] forKey:[NSNumber numberWithDouble:1.3]];
-	[zTable setObject:[NSNumber numberWithDouble:92] forKey:[NSNumber numberWithDouble:1.4]];
-	[zTable setObject:[NSNumber numberWithDouble:93] forKey:[NSNumber numberWithDouble:1.5]];
-	[zTable setObject:[NSNumber numberWithDouble:94] forKey:[NSNumber numberWithDouble:1.6]];
-	[zTable setObject:[NSNumber numberWithDouble:95] forKey:[NSNumber numberWithDouble:1.7]];
-	[zTable setObject:[NSNumber numberWithDouble:96] forKey:[NSNumber numberWithDouble:1.8]];
-	[zTable setObject:[NSNumber numberWithDouble:97] forKey:[NSNumber numberWithDouble:1.9]];
-	[zTable setObject:[NSNumber numberWithDouble:97.5] forKey:[NSNumber numberWithDouble:2.0]];
-	[zTable setObject:[NSNumber numberWithDouble:98] forKey:[NSNumber numberWithDouble:2.1]];
-	[zTable setObject:[NSNumber numberWithDouble:99] forKey:[NSNumber numberWithDouble:2.2]];
+	[zTable setObject:[NSNumber numberWithFloat:54] forKey:[NSNumber numberWithFloat:0.1]];
+	[zTable setObject:[NSNumber numberWithFloat:58] forKey:[NSNumber numberWithFloat:0.2]];
+	[zTable setObject:[NSNumber numberWithFloat:62] forKey:[NSNumber numberWithFloat:0.3]];
+	[zTable setObject:[NSNumber numberWithFloat:65] forKey:[NSNumber numberWithFloat:0.4]];
+	[zTable setObject:[NSNumber numberWithFloat:69] forKey:[NSNumber numberWithFloat:0.5]];
+	[zTable setObject:[NSNumber numberWithFloat:72] forKey:[NSNumber numberWithFloat:0.6]];
+	[zTable setObject:[NSNumber numberWithFloat:76] forKey:[NSNumber numberWithFloat:0.7]];
+	[zTable setObject:[NSNumber numberWithFloat:79] forKey:[NSNumber numberWithFloat:0.8]];
+	[zTable setObject:[NSNumber numberWithFloat:82] forKey:[NSNumber numberWithFloat:0.9]];
+	[zTable setObject:[NSNumber numberWithFloat:84] forKey:[NSNumber numberWithFloat:1.0]];
+	[zTable setObject:[NSNumber numberWithFloat:86] forKey:[NSNumber numberWithFloat:1.1]];
+	[zTable setObject:[NSNumber numberWithFloat:88] forKey:[NSNumber numberWithFloat:1.2]];
+	[zTable setObject:[NSNumber numberWithFloat:90] forKey:[NSNumber numberWithFloat:1.3]];
+	[zTable setObject:[NSNumber numberWithFloat:92] forKey:[NSNumber numberWithFloat:1.4]];
+	[zTable setObject:[NSNumber numberWithFloat:93] forKey:[NSNumber numberWithFloat:1.5]];
+	[zTable setObject:[NSNumber numberWithFloat:94] forKey:[NSNumber numberWithFloat:1.6]];
+	[zTable setObject:[NSNumber numberWithFloat:95] forKey:[NSNumber numberWithFloat:1.7]];
+	[zTable setObject:[NSNumber numberWithFloat:96] forKey:[NSNumber numberWithFloat:1.8]];
+	[zTable setObject:[NSNumber numberWithFloat:97] forKey:[NSNumber numberWithFloat:1.9]];
+	[zTable setObject:[NSNumber numberWithFloat:97.5] forKey:[NSNumber numberWithFloat:2.0]];
+	[zTable setObject:[NSNumber numberWithFloat:98] forKey:[NSNumber numberWithFloat:2.1]];
+	[zTable setObject:[NSNumber numberWithFloat:99] forKey:[NSNumber numberWithFloat:2.2]];
 	
 	
-	double cumulScore = 0;
-	double totalScalars = 0;
+	float cumulScore = 0;
+	float totalScalars = 0;
 	for(NSNumber* zScoreKey in zTable) {
-		double aZScore = [zScoreKey doubleValue];
-		double percentile = [(NSNumber*)[zTable objectForKey:zScoreKey] doubleValue];
+		float aZScore = [zScoreKey floatValue];
+		float percentile = [(NSNumber*)[zTable objectForKey:zScoreKey] floatValue];
 		
-		double scalar = zScore == aZScore ? 1000 : fmin(1.0/fabs(zScore-aZScore), 1000);
+		float scalar = zScore == aZScore ? 1000 : fmin(1.0/fabs(zScore-aZScore), 1000);
 		cumulScore+= (scalar * percentile);
 		totalScalars+= scalar;
 	}

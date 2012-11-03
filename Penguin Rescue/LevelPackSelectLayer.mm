@@ -144,7 +144,7 @@
 		
 		//display the pack name
 		CCLabelTTF* packNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", levelPackName] fontName:@"Helvetica" fontSize:36*SCALING_FACTOR_FONTS];
-		packNameLabel.color = ccWHITE;
+		packNameLabel.color = ccBLACK;
 		packNameLabel.position = ccp(levelPackButtonSize.width/2,levelPackButtonSize.height + 40*SCALING_FACTOR_V);
 		[levelPackButton addChild:packNameLabel];
 		
