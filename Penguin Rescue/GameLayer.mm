@@ -1161,15 +1161,25 @@ NSLog(@"TOUCH!!!!");
 	if(INITIAL_FREE_COINS == [SettingsManager intForKey:SETTING_TOTAL_EARNED_COINS]) {
 		prevScore = 0;
 	}
-	if(prevScore < finalScore) {
+	NSString* coinsEarnedForLevelKey = [NSString stringWithFormat:@"%@%@:%@", SETTING_TOTAL_EARNED_COINS_FOR_LEVEL, _levelPackPath, _levelPath];
+	int totalCoinsEarnedForLevel = [SettingsManager intForKey:coinsEarnedForLevelKey];
+	
+	if(prevScore < finalScore && totalCoinsEarnedForLevel < SCORING_MAX_COINS_PER_LEVEL) {
 		int prevCoinsEarned = [ScoreKeeper coinsForZScore:[ScoreKeeper zScoreFromScore:prevScore withLevelPackPath:_levelPackPath levelPath:_levelPath]];
 		coinsEarned = [ScoreKeeper coinsForZScore:zScore] - prevCoinsEarned;
 		if(coinsEarned <= 0) {
 			coinsEarned = 1;
 		}
 	}
+	totalCoinsEarnedForLevel+= coinsEarned;
+	if(totalCoinsEarnedForLevel > SCORING_MAX_COINS_PER_LEVEL) {
+		coinsEarned = totalCoinsEarnedForLevel - SCORING_MAX_COINS_PER_LEVEL;
+		totalCoinsEarnedForLevel = SCORING_MAX_COINS_PER_LEVEL;
+	}
+	
 	
 	//store our earned coins
+	[SettingsManager incrementInt:coinsEarned forKey:coinsEarnedForLevelKey];
 	[SettingsManager incrementInt:coinsEarned forKey:SETTING_TOTAL_EARNED_COINS];
 	[SettingsManager incrementInt:coinsEarned forKey:SETTING_TOTAL_AVAILABLE_COINS];
 	
@@ -1291,9 +1301,21 @@ NSLog(@"TOUCH!!!!");
 			[CCDelayTime actionWithDuration:1.50f],
 			[CCFadeIn actionWithDuration:0.25f],
 			nil]
-		];			
+		];
 		
-		CCLabelTTF* highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", (coinsEarned > 0 ? @"Nice! A new  personal high score earns you some more coins!" : @"Beat your high score to earn more coins!")] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE3 dimensions:CGSizeMake(200*SCALING_FACTOR_H,150*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
+		NSString* highScoresLabelText = nil;
+		if(coinsEarned > 0 && totalCoinsEarnedForLevel == SCORING_MAX_COINS_PER_LEVEL) {
+			highScoresLabelText = @"Nice! A new  personal high score earns you maximum coins for this level!";
+		}else if(coinsEarned > 0 && totalCoinsEarnedForLevel < SCORING_MAX_COINS_PER_LEVEL) {
+			highScoresLabelText = @"Nice! A new  personal high score earns you some more coins!";
+		}else if(coinsEarned == 0 && totalCoinsEarnedForLevel == SCORING_MAX_COINS_PER_LEVEL) {
+			highScoresLabelText = @"Awesome! You've earned the max coins possible for this level!";
+		}else {
+			highScoresLabelText = @"Beat your high score to earn more coins!";
+		}
+		
+		
+		CCLabelTTF* highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", highScoresLabelText] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE3 dimensions:CGSizeMake(200*SCALING_FACTOR_H,150*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
 		highScoreLabel.color = SCORING_FONT_COLOR1;
 		highScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset - 200*SCALING_FACTOR_H,
 									110*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));

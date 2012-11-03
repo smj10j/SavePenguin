@@ -391,7 +391,7 @@
 	
 
 	}else {
-		return 5;
+		return SCORING_MAX_COINS_PER_LEVEL;
 	}	
 }
 
