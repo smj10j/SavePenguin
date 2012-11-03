@@ -10,7 +10,7 @@
 #define Penguin_Rescue_Constants_h
 
 //true to disable all output and send analytics data
-#define DISTRIBUTION_MODE false
+#define DISTRIBUTION_MODE true
 
 
 
@@ -26,7 +26,7 @@
 #define DEBUG_SETTINGS			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
 #define DEBUG_REVIEWS			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
 #define DEBUG_LEVELS			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
-#define DEBUG_MEMORY			((true	|| DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
+#define DEBUG_MEMORY			((false	|| DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
 #define DEBUG_MOVEGRID			((false	|| DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)
 #define DEBUG_PENGUIN			((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)		//can be overridden in game
 #define DEBUG_SHARK				((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)		//can be overridden in game
