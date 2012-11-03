@@ -44,7 +44,7 @@
 	if( (self=[super init])) {
 		
 		// ask director for the window size
-		CGSize size = [[CCDirector sharedDirector] winSize];
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		
 		CCSprite *background;
 		
@@ -54,10 +54,15 @@
 		} else {
 			background = [CCSprite spriteWithFile:@"Default-Landscape~ipad.png"];
 		}
-		background.position = ccp(size.width/2, size.height/2);
-		
-		// add the label as a child to this Layer
+		background.position = ccp(winSize.width/2, winSize.height/2);
 		[self addChild: background];
+		
+		
+		CCLabelTTF* loadingLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Loading..."] fontName:@"Helvetica" fontSize:36*SCALING_FACTOR_FONTS];
+		loadingLabel.color = ccWHITE;
+		loadingLabel.position = ccp(winSize.width/2, winSize.height/2);
+		[self addChild:loadingLabel];
+			
 		
 		
 		/*********** Sound Settings ************/

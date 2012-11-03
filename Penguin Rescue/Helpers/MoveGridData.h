@@ -16,6 +16,9 @@
 	int _gridWidth;
 	int _gridHeight;
 
+
+	bool _isBusy;
+	bool _isMoveGridValid;
 	bool _foundRoute;
 	double _minSearchPathFactor;
 
@@ -46,6 +49,8 @@
 - (void)updateMoveGridToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile;
 - (CGPoint)getBestMoveToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile;
 - (void)forceUpdateToMoveGrid;
+- (void)invalidateMoveGrid;
+- (bool)busy;
 - (void)scheduleUpdateToMoveGridIn:(NSTimeInterval)timeInterval;
 
 
@@ -53,6 +58,7 @@
 
 #define MOVEGRID_INITIAL_SEARCH_ATTEMPTS 4
 #define MOVEGRID_INITIAL_MIN_SEARCH_FACTOR 0.5
+#define MOVEGRID_MAX_SEARCH_FACTOR 6
 
 #define INITIAL_GRID_WEIGHT 500
 #define HARD_BORDER_WEIGHT 10000

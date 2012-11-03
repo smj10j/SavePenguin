@@ -32,7 +32,9 @@
 				}
 			}
 		}
-		_foundRoute = false;
+
+		_isBusy = false;
+		[self invalidateMoveGrid];
 		_scheduledUpdateMoveGridTimer = nil;
 		[self forceUpdateToMoveGrid];
 						
@@ -74,6 +76,7 @@
 }
 
 - (void)forceUpdateToMoveGrid {
+	if(DEBUG_MOVEGRID) DebugLog(@"Forcing an update to %@ move grid", _tag);
 	if(_scheduledUpdateMoveGridTimer != nil) {
 		[_scheduledUpdateMoveGridTimer invalidate];
 		_scheduledUpdateMoveGridTimer = nil;
@@ -81,6 +84,10 @@
 	_foundRoute = false;
 	_forceUpdateToMoveGrid = true;
 	_minSearchPathFactor = MOVEGRID_INITIAL_MIN_SEARCH_FACTOR;
+}
+
+-(void)invalidateMoveGrid {
+	_isMoveGridValid = false;
 }
 
 - (void)scheduleUpdateToMoveGridIn:(NSTimeInterval)timeInterval {
@@ -98,7 +105,7 @@
 }
 
 - (void)updateBaseGrid:(short**)baseGrid {
-	if(_baseGrid != nil) {
+	if(_baseGrid != nil && _baseGrid != baseGrid) {
 		for(int i = 0; i < _gridWidth; i++) {
 			free(_baseGrid[i]);
 		}
@@ -134,12 +141,20 @@
 	return _baseGrid;
 }
 
+- (bool) busy {
+	return _isBusy;
+}
+
 - (const CGPoint)lastTargetTile {
 	return (const CGPoint)_lastToTile;
 }
 
 - (CGPoint)getBestMoveToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile {
 	CGPoint bestMove = ccp(-10000,-10000);
+	
+	if(!_isMoveGridValid) {
+		return bestMove;
+	}
 	
 	short wN = fromTile.y < _gridHeight-1 ? _moveGrid[(int)fromTile.x][(int)fromTile.y+1] : 10000;
 	short wS = fromTile.y > 0 ? _moveGrid[(int)fromTile.x][(int)fromTile.y-1] : 10000;
@@ -227,9 +242,14 @@
 
 - (void)updateMoveGridToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile attemptsRemaining:(int)attemptsRemaining {
 
-	if(!_foundRoute || _forceUpdateToMoveGrid || (attemptsRemaining != MOVEGRID_INITIAL_SEARCH_ATTEMPTS) || (_lastToTile.x != toTile.x || _lastToTile.y != toTile.y)) {
+	if(!_isBusy && (!_foundRoute || _forceUpdateToMoveGrid || (attemptsRemaining != MOVEGRID_INITIAL_SEARCH_ATTEMPTS) || (_lastToTile.x != toTile.x || _lastToTile.y != toTile.y))) {
 
-		if(DEBUG_MOVEGRID) DebugLog(@"Updating a %@ move grid", _tag);
+		_isBusy = true;
+		
+		//makes sure we can pass ourself by reference as this function may be called within a block
+		__block id bSelf = self;
+	
+		if(DEBUG_MOVEGRID) DebugLog(@"Updating %@ move grid - attemptsRemaining=%d", _tag, attemptsRemaining);
 
 		_lastToTile = toTile;
 		_forceUpdateToMoveGrid = false;
@@ -237,38 +257,59 @@
 		double startTime = [[NSDate date] timeIntervalSince1970];
 
 		short bestFoundRouteWeight = -1;
-		[self copyBaseGridToMoveGridBuffer];
+		[bSelf copyBaseGridToMoveGridBuffer];
 		_moveGridBuffer[(int)toTile.x][(int)toTile.y] = 0;
-		[self propagateGridCostToX:toTile.x y:toTile.y fromTile:fromTile bestFoundRouteWeight:&bestFoundRouteWeight];
+		[bSelf propagateGridCostToX:toTile.x y:toTile.y fromTile:fromTile bestFoundRouteWeight:&bestFoundRouteWeight];
 		
 		if(bestFoundRouteWeight >= 0) {
-			[self copyMoveGridBufferToMoveGrid];
+			[bSelf copyMoveGridBufferToMoveGrid];
 			_foundRoute = true;
+			_isMoveGridValid = true;
 			_minSearchPathFactor-= .25;
 			if(_minSearchPathFactor < .5) {
 				_minSearchPathFactor = .5;
 			}
 		}else {
-			if(_foundRoute) {
-				//don't copy - use the old route
-			}else {
-				//we have no idea what's going on - go ahead and use what we found while we're searching
-				[self copyMoveGridBufferToMoveGrid];
+			
+			if(_minSearchPathFactor == MOVEGRID_MAX_SEARCH_FACTOR) {
+				//don't waste our time with stuck guys
+				attemptsRemaining = 0;
 			}
+			
 			_minSearchPathFactor*= 2;
-			if(_minSearchPathFactor > 6) {
-				_minSearchPathFactor = 6;
+			if(_minSearchPathFactor > MOVEGRID_MAX_SEARCH_FACTOR) {
+				_minSearchPathFactor = MOVEGRID_MAX_SEARCH_FACTOR;
 			}
 			
 			//go try again!
 			if(attemptsRemaining > 0) {
-				[self updateMoveGridToTile:toTile fromTile:fromTile attemptsRemaining:attemptsRemaining-1];
-				return;
+			
+				if(!_foundRoute && attemptsRemaining == MOVEGRID_INITIAL_SEARCH_ATTEMPTS) {
+					//this prevents running through newly-placed walls
+					[bSelf copyMoveGridBufferToMoveGrid];
+					_isMoveGridValid = true;
+				}
+			
+				_isBusy = false;
+				[bSelf updateMoveGridToTile:toTile fromTile:fromTile attemptsRemaining:attemptsRemaining-1];
+				
+			}else {
+				if(_foundRoute) {
+					//don't copy - use the old route
+					
+				}else {
+					//we have no idea what's going on - go ahead and use what we found while we're searching
+					[bSelf copyMoveGridBufferToMoveGrid];
+					
+				}
+				
+				_isMoveGridValid = true;
 			}
 		}
 		
-		if(DEBUG_MOVEGRID) DebugLog(@"bestFoundRouteWeight=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for a %@ move grid in %f seconds", bestFoundRouteWeight, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - startTime);
+		if(DEBUG_MOVEGRID) DebugLog(@"bestFoundRouteWeight=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for %@ move grid in %f seconds", bestFoundRouteWeight, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - startTime);
 
+		_isBusy = false;
 	}
 }
 

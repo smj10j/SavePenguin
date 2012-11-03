@@ -562,6 +562,8 @@
 	//TODO: consider if we should "unStuck" all penguins/sharks whenever we regenerate the feature map
 
 	DebugLog(@"Generating feature maps...");
+	
+	//double startTime = [[NSDate date] timeIntervalSince1970];
 
 	//fresh start
 	for(int x = 0; x < _gridWidth; x++) {
@@ -570,7 +572,7 @@
 			_penguinMapfeaturesGrid[x][y] = INITIAL_GRID_WEIGHT;
 		}
 	}
-
+		
 	//fill in the feature grid detailing map movement info
 	NSArray* lands = [_levelLoader spritesWithTag:LAND];
 	NSArray* borders = [_levelLoader spritesWithTag:BORDER];
@@ -590,6 +592,8 @@
 		int maxY = min(land.boundingBox.origin.y+land.boundingBox.size.height, _levelSize.height-1);
 		
 		//create the areas that both sharks and penguins can't go
+		
+		//full fill
 		for(int x = minX; x < maxX; x++) {
 			for(int y = minY; y < maxY; y++) {
 				_sharkMapfeaturesGrid[(int)(x/_gridSize)][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
@@ -598,13 +602,33 @@
 				}
 			}
 		}
+
+		/*
+		//border trace
+		for(int x = minX; x < maxX; x++) {
+			_sharkMapfeaturesGrid[(int)(x/_gridSize)][0] = HARD_BORDER_WEIGHT;
+			_sharkMapfeaturesGrid[(int)(x/_gridSize)][_gridHeight-1] = HARD_BORDER_WEIGHT;
+			if(land.tag == BORDER || land.tag == OBSTRUCTION) {
+				_penguinMapfeaturesGrid[(int)(x/_gridSize)][0] = HARD_BORDER_WEIGHT;
+				_penguinMapfeaturesGrid[(int)(x/_gridSize)][_gridHeight-1] = HARD_BORDER_WEIGHT;
+			}
+		}
+		for(int y = minY; y < maxY; y++) {
+			_sharkMapfeaturesGrid[0][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
+			_sharkMapfeaturesGrid[_gridWidth-1][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
+			if(land.tag == BORDER || land.tag == OBSTRUCTION) {
+				_penguinMapfeaturesGrid[0][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
+				_penguinMapfeaturesGrid[_gridWidth-1][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
+			}
+		}
+		*/
 			
 		//all items are set as sensors to give a more natural movement feel around edges
 		if(land.tag == BORDER || land.tag == LAND) {
 			[land setSensor:true];
 		}
 
-		//DebugLog(@"Land from %d,%d to %d,%d", minX, minY, maxX, maxY);
+		//DebugLog(@"Land from %d,%d to %d,%d computed in %f", minX, minY, maxX, maxY,  ([[NSDate date] timeIntervalSince1970] - startTime));
 	}
 	
 	//add the map boundaries as borders
@@ -621,93 +645,111 @@
 		_penguinMapfeaturesGrid[_gridWidth-1][y] = HARD_BORDER_WEIGHT;
 	}
 
-
 	//create a set of maps for each penguin
 	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
 	for(LHSprite* penguin in penguins) {
 	
-		//if on some land, move him off it!
-		CGPoint penguinGridPos = [self toGrid:penguin.position];
-		while(_penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT) {
-			//move back onto land
-			short wN = penguinGridPos.y+1 > _gridHeight-1 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1];
-			short wS = penguinGridPos.y-1 < 0 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1];
-			short wE = penguinGridPos.x+1 > _gridWidth-1 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y];
-			short wW = penguinGridPos.x-1 < 0 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y];
-			short wMin = min(min(min(wN,wS),wE),wW);
-			if(wN == wMin) {
-				penguinGridPos.y++;
-			}else if(wS == wMin) {
-				penguinGridPos.y--;
-			}else if(wE == wMin) {
-				penguinGridPos.x++;
-			}else if(wW == wMin) {
-				penguinGridPos.x--;
+		if(_state == PLACE) {
+			//if on some land, move him off it!
+			//we only do this during PLACE because it makes "weird" behavior when placing obstructions near actors
+			CGPoint penguinGridPos = [self toGrid:penguin.position];
+			while(_penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT) {
+				//move back onto land
+				short wN = penguinGridPos.y+1 > _gridHeight-1 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1];
+				short wS = penguinGridPos.y-1 < 0 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1];
+				short wE = penguinGridPos.x+1 > _gridWidth-1 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y];
+				short wW = penguinGridPos.x-1 < 0 ? 10000 : _penguinMapfeaturesGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y];
+				short wMin = min(min(min(wN,wS),wE),wW);
+				if(wN == wMin) {
+					penguinGridPos.y++;
+				}else if(wS == wMin) {
+					penguinGridPos.y--;
+				}else if(wE == wMin) {
+					penguinGridPos.x++;
+				}else if(wW == wMin) {
+					penguinGridPos.x--;
+				}
+				[penguin transformPosition:ccp(penguinGridPos.x*_gridSize + _gridSize/2, penguinGridPos.y*_gridSize + _gridSize/2)];
 			}
-			[penguin transformPosition:ccp(penguinGridPos.x*_gridSize + _gridSize/2, penguinGridPos.y*_gridSize + _gridSize/2)];
-		}
-
-		//first create a copy of the feature map
-		short** penguinMoveGrid = new short*[_gridWidth];
-		int rowSize = _gridHeight * sizeof(short);
-		for(int x = 0; x < _gridWidth; x++) {
-			penguinMoveGrid[x] = new short[_gridHeight];
-			memcpy(penguinMoveGrid[x], (void*)_penguinMapfeaturesGrid[x], rowSize);
 		}
 		
-		//and add it to the map
+
+		short** penguinBaseGrid;
+		int rowSize = _gridHeight * sizeof(short);
+		
 		MoveGridData* moveGridData = [_penguinMoveGridDatas objectForKey:penguin.uniqueName];
 		if(moveGridData == nil) {
-			moveGridData = [[MoveGridData alloc] initWithGrid: penguinMoveGrid height:_gridHeight width:_gridWidth moveHistorySize:PENGUIN_MOVE_HISTORY_SIZE tag:@"PENGUIN"];
-			[_penguinMoveGridDatas setObject:moveGridData forKey:penguin.uniqueName];
+			penguinBaseGrid = new short*[_gridWidth];
+			for(int x = 0; x < _gridWidth; x++) {
+				penguinBaseGrid[x] = new short[_gridHeight];
+				memcpy(penguinBaseGrid[x], (void*)_penguinMapfeaturesGrid[x], rowSize);
+			}
+			
+			moveGridData = [[MoveGridData alloc] initWithGrid: penguinBaseGrid height:_gridHeight width:_gridWidth moveHistorySize:PENGUIN_MOVE_HISTORY_SIZE tag:penguin.uniqueName];
+			[_penguinMoveGridDatas setObject:moveGridData forKey:penguin.uniqueName];				
+						
 		}else {
-			[moveGridData updateBaseGrid:penguinMoveGrid];
-		}
-		
+			penguinBaseGrid = moveGridData.baseGrid;
+			for(int x = 0; x < _gridWidth; x++) {
+				memcpy(penguinBaseGrid[x], (void*)_penguinMapfeaturesGrid[x], rowSize);
+			}
+			[moveGridData forceUpdateToMoveGrid];
+		}		
 	}
 	
 	//create a set of maps for each shark
 	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
 	for(LHSprite* shark in sharks) {
 
-		//if on some land, move him off it!
-		CGPoint sharkGridPos = [self toGrid:shark.position];
-		while(_sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT) {
-			//move back onto land
-			short wN = sharkGridPos.y+1 > _gridHeight-1 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1];
-			short wS = sharkGridPos.y-1 < 0 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1];
-			short wE = sharkGridPos.x+1 > _gridWidth-1 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y];
-			short wW = sharkGridPos.x-1 < 0 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y];
-			short wMin = min(min(min(wN,wS),wE),wW);
-			if(wN == wMin) {
-				sharkGridPos.y++;
-			}else if(wS == wMin) {
-				sharkGridPos.y--;
-			}else if(wE == wMin) {
-				sharkGridPos.x++;
-			}else if(wW == wMin) {
-				sharkGridPos.x--;
+
+		if(_state == PLACE) {
+			//if on some land, move him off it!
+			//we only do this during PLACE because it makes "weird" behavior when placing obstructions near actors
+			CGPoint sharkGridPos = [self toGrid:shark.position];
+			while(_sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT) {
+				//move back onto land
+				short wN = sharkGridPos.y+1 > _gridHeight-1 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1];
+				short wS = sharkGridPos.y-1 < 0 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1];
+				short wE = sharkGridPos.x+1 > _gridWidth-1 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y];
+				short wW = sharkGridPos.x-1 < 0 ? 10000 : _sharkMapfeaturesGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y];
+				short wMin = min(min(min(wN,wS),wE),wW);
+				if(wN == wMin) {
+					sharkGridPos.y++;
+				}else if(wS == wMin) {
+					sharkGridPos.y--;
+				}else if(wE == wMin) {
+					sharkGridPos.x++;
+				}else if(wW == wMin) {
+					sharkGridPos.x--;
+				}
+				[shark transformPosition:ccp(sharkGridPos.x*_gridSize + _gridSize/2, sharkGridPos.y*_gridSize + _gridSize/2)];
 			}
-			[shark transformPosition:ccp(sharkGridPos.x*_gridSize + _gridSize/2, sharkGridPos.y*_gridSize + _gridSize/2)];
 		}
 		
-		//first create a copy of the feature map
-		short** sharkMoveGrid = new short*[_gridWidth];
+
+		short** sharkBaseGrid;
 		int rowSize = _gridHeight * sizeof(short);
-		for(int x = 0; x < _gridWidth; x++) {
-			sharkMoveGrid[x] = new short[_gridHeight];
-			memcpy(sharkMoveGrid[x], (void*)_sharkMapfeaturesGrid[x], rowSize);
-		}
 		
-		//and add it to the map
 		MoveGridData* moveGridData = [_sharkMoveGridDatas objectForKey:shark.uniqueName];
 		if(moveGridData == nil) {
-			moveGridData = [[MoveGridData alloc] initWithGrid: sharkMoveGrid height:_gridHeight width:_gridWidth moveHistorySize:SHARK_MOVE_HISTORY_SIZE tag:@"SHARK"];
+			sharkBaseGrid = new short*[_gridWidth];
+			for(int x = 0; x < _gridWidth; x++) {
+				sharkBaseGrid[x] = new short[_gridHeight];
+				memcpy(sharkBaseGrid[x], (void*)_sharkMapfeaturesGrid[x], rowSize);
+			}
+			
+			moveGridData = [[MoveGridData alloc] initWithGrid: sharkBaseGrid height:_gridHeight width:_gridWidth moveHistorySize:SHARK_MOVE_HISTORY_SIZE tag:shark.uniqueName];
 			[_sharkMoveGridDatas setObject:moveGridData forKey:shark.uniqueName];
+						
 		}else {
-			[moveGridData updateBaseGrid:sharkMoveGrid];
-		}
+			sharkBaseGrid = moveGridData.baseGrid;
+			for(int x = 0; x < _gridWidth; x++) {
+				memcpy(sharkBaseGrid[x], (void*)_sharkMapfeaturesGrid[x], rowSize);
+			}
+			[moveGridData forceUpdateToMoveGrid];
+		}	
 	}
+	
 	
 	DebugLog(@"Done generating feature maps");
 	
@@ -1590,133 +1632,156 @@
 	
 	if(!_isUpdatingPenguinMoveGrids) {
 		_isUpdatingPenguinMoveGrids = true;
-		dispatch_async(_moveGridPenguinUpdateQueue, ^(void) {
 	
-			NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
-			for(LHSprite* penguin in penguins) {
-				
-				CGPoint penguinGridPos = [self toGrid:penguin.position];
-				Penguin* penguinData = ((Penguin*)penguin.userInfo);
-				
-				if(penguinData.isSafe || penguinData.isStuck) {
-					continue;
-				}
-								
-				if(penguinGridPos.x > _gridWidth-1 || penguinGridPos.x < 0 || penguinGridPos.y > _gridHeight-1 || penguinGridPos.y < 0) {
-					//ignore and let movePenguins handle it
-					continue;
-				}
-				
-				if(!penguinData.hasSpottedShark) {
-					NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
-					for(LHSprite* shark in sharks) {
-						double dist = ccpDistance(shark.position, penguin.position);
-						if(dist < penguinData.detectionRadius*SCALING_FACTOR_GENERIC) {
-						
-							penguinData.hasSpottedShark = true;
-							
-							//TODOO: play some kind of penguin animation with an alert dialog and a squawk sound
-							
-							[penguin prepareAnimationNamed:@"Penguin_Waddle" fromSHScene:@"Spritesheet"];
-							if(_state == RUNNING) {
-								[penguin playAnimation];
-							}
-							break;
-						}
-					}
-				}
-				
-				if(penguinData.hasSpottedShark) {
-				
-					//AHHH!!!
-					
-					LHSprite* targetLand = nil;
-					double minDistance = 10000;
-					NSArray* lands = [_levelLoader spritesWithTag:LAND];
-					for(LHSprite* land in lands) {
-						double dist = ccpDistance(land.position, penguin.position);
-						if(dist < minDistance) {
-							minDistance = dist;
-							targetLand = land;
-						}
-					}
-					CGPoint targetLandGridPos = [self toGrid:targetLand.position];
+		NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
+		for(LHSprite* penguin in penguins) {
 
-					MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
-					[penguinMoveGridData updateMoveGridToTile:targetLandGridPos fromTile:penguinGridPos];
+			MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
+			if(penguinMoveGridData.busy) {
+				continue;
+			}
+			
+			CGPoint penguinGridPos = [self toGrid:penguin.position];
+			Penguin* penguinData = ((Penguin*)penguin.userInfo);
+			
+			if(penguinData.isSafe) {
+				continue;
+			}
+			
+			if(penguinData.isStuck) {
+				//only update occasionally
+				if(arc4random()%100 > 10) {
+					continue;
 				}
 			}
-			_isUpdatingPenguinMoveGrids = false;
-		});
+							
+			if(penguinGridPos.x > _gridWidth-1 || penguinGridPos.x < 0 || penguinGridPos.y > _gridHeight-1 || penguinGridPos.y < 0) {
+				//ignore and let movePenguins handle it
+				continue;
+			}
+			
+			if(!penguinData.hasSpottedShark) {
+				NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
+				for(LHSprite* shark in sharks) {
+					double dist = ccpDistance(shark.position, penguin.position);
+					if(dist < penguinData.detectionRadius*SCALING_FACTOR_GENERIC) {
+					
+						penguinData.hasSpottedShark = true;
+						
+						//TODOO: play some kind of penguin animation with an alert dialog and a squawk sound
+						
+						[penguin prepareAnimationNamed:@"Penguin_Waddle" fromSHScene:@"Spritesheet"];
+						if(_state == RUNNING) {
+							[penguin playAnimation];
+						}
+						break;
+					}
+				}
+			}
+			
+			if(penguinData.hasSpottedShark) {
+			
+				//AHHH!!!
+				
+				LHSprite* targetLand = nil;
+				double minDistance = 10000;
+				NSArray* lands = [_levelLoader spritesWithTag:LAND];
+				for(LHSprite* land in lands) {
+					double dist = ccpDistance(land.position, penguin.position);
+					if(dist < minDistance) {
+						minDistance = dist;
+						targetLand = land;
+					}
+				}
+				CGPoint targetLandGridPos = [self toGrid:targetLand.position];
+
+				void(^updateBlock)(void) = [[^(void) {
+					[penguinMoveGridData updateMoveGridToTile:targetLandGridPos fromTile:penguinGridPos];
+				} copy] autorelease];
+				dispatch_async(_moveGridPenguinUpdateQueue, updateBlock);
+			}
+		}
+		_isUpdatingPenguinMoveGrids = false;
 	}
 			
 	if(!_isUpdatingSharkMoveGrids) {
 		_isUpdatingSharkMoveGrids = true;
-		dispatch_async(_moveGridSharkUpdateQueue, ^(void) {
 
-			NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
-			NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
-			LHSprite* targetPenguin = nil;
-				
-			for(LHSprite* shark in sharks) {
-				
-				Shark* sharkData = ((Shark*)shark.userInfo);
-				CGPoint sharkGridPos = [self toGrid:shark.position];
+		NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
+		NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
+		LHSprite* targetPenguin = nil;
+			
+		for(LHSprite* shark in sharks) {
 
-				if(sharkGridPos.x >= _gridWidth || sharkGridPos.x < 0 || sharkGridPos.y >= _gridHeight || sharkGridPos.y < 0) {
-					//offscreen - ignore and let moveSharks handle it
+			MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
+			if(sharkMoveGridData.busy) {
+				continue;
+			}
+			
+			Shark* sharkData = ((Shark*)shark.userInfo);
+			CGPoint sharkGridPos = [self toGrid:shark.position];
+			
+			if(sharkData.isStuck) {
+				//only update occasionally
+				if(arc4random()%100 > 10) {
 					continue;
 				}
+			}
 
-				//set our search distance
-				double minDistance = 100000000;
-				if(!sharkData.targetAcquired) {
-					for(LHSprite* penguin in penguins) {
-						Penguin* penguinData = ((Penguin*)penguin.userInfo);
-						if(penguinData.isSafe || penguinData.isStuck) {
-							continue;
-						}
+			if(sharkGridPos.x >= _gridWidth || sharkGridPos.x < 0 || sharkGridPos.y >= _gridHeight || sharkGridPos.y < 0) {
+				//offscreen - ignore and let moveSharks handle it
+				continue;
+			}
 
-						if(penguin.body->IsAwake()) {
-							//we smell blood...
-							minDistance = fmin(minDistance, sharkData.activeDetectionRadius * SCALING_FACTOR_GENERIC);
-							break;
-						}else {
-							minDistance = fmin(minDistance, sharkData.restingDetectionRadius * SCALING_FACTOR_GENERIC);
-						}
-					}
-				}
-
-				//find the nearest penguin
+			//set our search distance
+			double minDistance = 100000000;
+			if(!sharkData.targetAcquired) {
 				for(LHSprite* penguin in penguins) {
 					Penguin* penguinData = ((Penguin*)penguin.userInfo);
-					if(penguinData.isSafe || penguinData.isStuck) {
-						continue;
-					}	
-					
-					double dist = ccpDistance(shark.position, penguin.position);
-					if(dist < minDistance) {
-						//DebugLog(@"Shark %@'s closest penguin is %@ at %f", shark.uniqueName, penguin.uniqueName, dist);
-						minDistance = dist;
-						targetPenguin = penguin;
-						sharkData.targetAcquired = true;
-					}
-				}
-				
-				if(targetPenguin != nil) {
-					CGPoint targetPenguinGridPos = [self toGrid:targetPenguin.position];
-					if(targetPenguinGridPos.x >= _gridWidth || targetPenguinGridPos.x < 0 || targetPenguinGridPos.y >= _gridHeight || targetPenguinGridPos.y < 0) {
-						//offscreen - let him come back before we deal with him
+					if(penguinData.isSafe) {
 						continue;
 					}
 
-					MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
-					[sharkMoveGridData updateMoveGridToTile:targetPenguinGridPos fromTile:sharkGridPos];
+					if(penguin.body->IsAwake()) {
+						//we smell blood...
+						minDistance = fmin(minDistance, sharkData.activeDetectionRadius * SCALING_FACTOR_GENERIC);
+						break;
+					}else {
+						minDistance = fmin(minDistance, sharkData.restingDetectionRadius * SCALING_FACTOR_GENERIC);
+					}
+				}
+			}
+
+			//find the nearest penguin
+			for(LHSprite* penguin in penguins) {
+				Penguin* penguinData = ((Penguin*)penguin.userInfo);
+				if(penguinData.isSafe) {
+					continue;
+				}	
+				
+				double dist = ccpDistance(shark.position, penguin.position);
+				if(dist < minDistance) {
+					//DebugLog(@"Shark %@'s closest penguin is %@ at %f", shark.uniqueName, penguin.uniqueName, dist);
+					minDistance = dist;
+					targetPenguin = penguin;
+					sharkData.targetAcquired = true;
 				}
 			}
 			
-			_isUpdatingSharkMoveGrids = false;
-		});
+			if(targetPenguin != nil) {
+				CGPoint targetPenguinGridPos = [self toGrid:targetPenguin.position];
+				if(targetPenguinGridPos.x >= _gridWidth || targetPenguinGridPos.x < 0 || targetPenguinGridPos.y >= _gridHeight || targetPenguinGridPos.y < 0) {
+					//offscreen - let him come back before we deal with him
+					continue;
+				}
+
+				void(^updateBlock)(void) = [[^(void) {
+					[sharkMoveGridData updateMoveGridToTile:targetPenguinGridPos fromTile:sharkGridPos];
+				} copy] autorelease];
+				dispatch_async(_moveGridSharkUpdateQueue, updateBlock);
+			}
+		}
+		_isUpdatingSharkMoveGrids = false;
 	}
 }
 
@@ -1767,7 +1832,7 @@
 	if(_shouldRegenerateFeatureMaps) {
   		_shouldRegenerateFeatureMaps = false;
 		[self generateFeatureMaps];
-	}	
+	}
 	
 	if(_shouldUpdateToolbox) {
 		_shouldUpdateToolbox = false;
@@ -1792,6 +1857,7 @@
 			_activeToolboxItem.tag = OBSTRUCTION;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
+			[self invalidateMoveGrids];
 			_shouldRegenerateFeatureMaps = true;
 			soundFileName = @"place-obstruction.wav";
 
@@ -1951,37 +2017,52 @@
 	int32 velocityIterations = 8;
 	int32 positionIterations = 1;
 	
+	/*
+	this SERIOUSLY slows things down
+	
 	_box2dStepAccumulator+= dt;
 	while(_box2dStepAccumulator > TARGET_PHYSICS_STEP) {
 	
 		_box2dStepAccumulator-= TARGET_PHYSICS_STEP;
 	
 		_world->Step(TARGET_PHYSICS_STEP, velocityIterations, positionIterations);
+			
 	
-		//Iterate over the bodies in the physics world
-		for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
-		{
-			if (b->GetUserData() != NULL)
-			{
-				//Synchronize the AtlasSprites position and rotation with the corresponding body
-				CCSprite *myActor = (CCSprite*)b->GetUserData();
-				
-				if(myActor != 0)
-				{
-					//THIS IS VERY IMPORTANT - GETTING THE POSITION FROM BOX2D TO COCOS2D
-					myActor.position = [LevelHelperLoader metersToPoints:b->GetPosition()];
-					myActor.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
-				}
-				
-			}
-		}
 		
 		if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with world step");
-	}
+	}*/
+	_world->Step(dt, velocityIterations, positionIterations);
 
+	
+	//Iterate over the bodies in the physics world
+	for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
+	{
+		if (b->GetUserData() != NULL)
+		{
+			//Synchronize the AtlasSprites position and rotation with the corresponding body
+			CCSprite *myActor = (CCSprite*)b->GetUserData();
+			
+			if(myActor != 0)
+			{
+				//THIS IS VERY IMPORTANT - GETTING THE POSITION FROM BOX2D TO COCOS2D
+				myActor.position = [LevelHelperLoader metersToPoints:b->GetPosition()];
+				myActor.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
+			}
+			
+		}
+	}
+	
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with update tick");
 }
 
+-(void) invalidateMoveGrids {
+	for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
+		[(MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName] invalidateMoveGrid];
+	}
+	for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
+		[(MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName] invalidateMoveGrid];
+	}
+}
 
 -(void) moveSharks:(ccTime)dt {
 		
@@ -1993,7 +2074,7 @@
 		//winna winna chicken dinna!
 		[self levelWon];
 		return;
-	}	
+	}
 		
 	for(LHSprite* shark in sharks) {
 		
@@ -2050,8 +2131,11 @@
 		//DebugLog(@"Best Option Pos: %f,%f", bestOptionPos.x,bestOptionPos.y);
 		if(bestOptionPos.x == -10000 && bestOptionPos.y == -10000) {
 			//this occurs when the shark has no route to the penguin - he literally has no idea which way to go
-			if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (no where to go) - we're making him stop", shark.uniqueName);
-
+			
+			if(!sharkData.isStuck) {
+				if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (no where to go) - we're making him stop", shark.uniqueName);
+			}
+			
 			//halt!
 			shark.body->SetLinearVelocity(b2Vec2(0,0));
 
@@ -2073,12 +2157,14 @@
 			
 			//frustrated
 			[shark setFrame:1];
+			sharkData.isStuck= true;
 		
 			continue;
 			
 		}else {
 			//convert returned velocities to position..
 			bestOptionPos = ccp(shark.position.x+bestOptionPos.x, shark.position.y+bestOptionPos.y);
+			sharkData.isStuck = false;
 		}
 		
 		double dx = bestOptionPos.x - shark.position.x;
@@ -2094,10 +2180,10 @@
 		if(needsToJitter || [sharkMoveGridData distanceTraveledStraightline] < 5*SCALING_FACTOR_GENERIC) {
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
-				sharkData.isStuck = true;
 				if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (trying to move, but not making progress) - we're removing him", shark.uniqueName);
 				//TODO: make the shark spin around in circles and explode in frustration!
 				[shark removeSelf];
+
 			}else {
 				//TODO: do a confused/arms up in air animation
 				
@@ -2120,10 +2206,12 @@
 
 			//frustrated
 			[shark setFrame:1];
+			sharkData.isStuck = true;
 
 		}else {
 			//normal
 			[shark setFrame:0];
+			sharkData.isStuck = false;
 		}
 
 		double dxMod = 0;
@@ -2178,8 +2266,8 @@
 		double normalizedX = dx/dSum;
 		double normalizedY = dy/dSum;
 
-		double impulseX = (((sharkSpeed*normalizedX)+dxMod)*dt)*.1*pow(shark.scale,2);
-		double impulseY = (((sharkSpeed*normalizedY)+dyMod)*dt)*.1*pow(shark.scale,2);
+		double impulseX = (((sharkSpeed*normalizedX)+dxMod)*dt)*.1/**pow(shark.scale,2)*/;
+		double impulseY = (((sharkSpeed*normalizedY)+dyMod)*dt)*.1/**pow(shark.scale,2)*/;
 		
 		//DebugLog(@"Shark %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", shark.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
 				
@@ -2221,7 +2309,7 @@
 		Penguin* penguinData = ((Penguin*)penguin.userInfo);
 		MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
 		
-		if(penguinData.isSafe || penguinData.isStuck) {
+		if(penguinData.isSafe) {
 			continue;
 		}
 		
@@ -2297,18 +2385,22 @@
 			CGPoint bestOptionPos = [penguinMoveGridData getBestMoveToTile:penguinMoveGridData.lastTargetTile fromTile:penguinGridPos];
 					
 			if(bestOptionPos.x == -10000 && bestOptionPos.y == -10000) {
-				if(DEBUG_MOVEGRID) DebugLog(@"Penguin %@ is stuck (nowhere to go)!", penguin.uniqueName);
-				penguinData.isStuck = true;
+				if(!penguinData.isStuck) {
+					if(DEBUG_MOVEGRID) DebugLog(@"Penguin %@ is stuck (nowhere to go)!", penguin.uniqueName);
+				}
 				//TODO: show a confused expression. possibly raising wings into the air in a "oh well" gesture
 				
 				//halt!
 				penguin.body->SetLinearVelocity(b2Vec2(0,0));
 				penguin.body->SetAngularVelocity(0);
+
+				penguinData.isStuck = true;
 				
 				continue;
 
 			}else {
 				//convert returned velocities to position..
+				penguinData.isStuck = false;
 				bestOptionPos = ccp(penguin.position.x+bestOptionPos.x, penguin.position.y+bestOptionPos.y);
 			}
 					
@@ -2331,6 +2423,8 @@
 				dy+= jitterY;
 				penguinSpeed*= 10;
 				//if(DEBUG_MOVEGRID) DebugLog(@"Penguin %@ is stuck (trying to move but can't) - giving him a bit of jitter %f,%f", penguin.uniqueName, jitterX, jitterY);
+			}else {
+				penguinData.isStuck = false;			
 			}
 			
 
@@ -2386,8 +2480,8 @@
 			double normalizedX = dx/dSum;
 			double normalizedY = dy/dSum;
 			
-			double impulseX = (((penguinSpeed*normalizedX)+dxMod)*dt)*.1*pow(penguin.scale,2);
-			double impulseY = (((penguinSpeed*normalizedY)+dyMod)*dt)*.1*pow(penguin.scale,2);
+			double impulseX = (((penguinSpeed*normalizedX)+dxMod)*dt)*.1/**pow(penguin.scale,2)*/;
+			double impulseY = (((penguinSpeed*normalizedY)+dyMod)*dt)*.1/**pow(penguin.scale,2)*/;
 			
 			//DebugLog(@"Penguin %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", penguin.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
 		
@@ -2501,8 +2595,8 @@
 						//[nearestPenguin transformPosition:ccp(nearestPenguin.position.x+location.x-_lastTouch.x, nearestPenguin.position.y+location.y-_lastTouch.y)];
 						if(nearestPenguin.body) {
 							nearestPenguin.body->ApplyLinearImpulse(
-								b2Vec2((location.x-_lastTouch.x)*.01*pow(nearestPenguin.scale,2),
-										(location.y-_lastTouch.y)*.01*pow(nearestPenguin.scale,2)),
+								b2Vec2((location.x-_lastTouch.x)*.01/**pow(nearestPenguin.scale,2)*/,
+										(location.y-_lastTouch.y)*.01/**pow(nearestPenguin.scale,2)*/),
 								nearestPenguin.body->GetWorldCenter()
 							);
 						}
