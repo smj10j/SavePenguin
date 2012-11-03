@@ -68,8 +68,8 @@ enum PROPAGATION_RESULT {
 	short** _penguinMapfeaturesGrid;
 	NSMutableDictionary* _sharkMoveGridDatas;
 	NSMutableDictionary* _penguinMoveGridDatas;
-	bool _isUpdatingSharkMoveGrids;
-	bool _isUpdatingPenguinMoveGrids;
+	int _numSharksUpdatingMoveGrids;
+	int _numPenguinsUpdatingMoveGrids;
 	dispatch_queue_t _moveGridSharkUpdateQueue;
 	dispatch_queue_t _moveGridPenguinUpdateQueue;
 

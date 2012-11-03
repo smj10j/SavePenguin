@@ -60,12 +60,12 @@
 		_box2dStepAccumulator = 0;
 		DebugLog(@"Initializing GameLayer %f", _instanceId);
 		_inGameMenuItems = [[NSMutableArray alloc] init];
-		_moveGridSharkUpdateQueue = dispatch_queue_create("com.conquerllc.games.Penguin-Rescue.moveGridSharkUpdateQueue", 0);	//serial
-		_moveGridPenguinUpdateQueue = dispatch_queue_create("com.conquerllc.games.Penguin-Rescue.moveGridPenguinUpdateQueue", 0);	//serial
-		//_moveGridSharkUpdateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);	//concurrent
-		//_moveGridPenguinUpdateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);	//concurrent
-		_isUpdatingSharkMoveGrids = false;
-		_isUpdatingPenguinMoveGrids = false;
+		//_moveGridSharkUpdateQueue = dispatch_queue_create("com.conquerllc.games.Penguin-Rescue.moveGridSharkUpdateQueue", 0);	//serial
+		//_moveGridPenguinUpdateQueue = dispatch_queue_create("com.conquerllc.games.Penguin-Rescue.moveGridPenguinUpdateQueue", 0);	//serial
+		_moveGridSharkUpdateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);	//concurrent
+		_moveGridPenguinUpdateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);	//concurrent
+		_numSharksUpdatingMoveGrids = 0;
+		_numPenguinsUpdatingMoveGrids = 0;
 		_shouldRegenerateFeatureMaps = false;
 		_activeToolboxItem = nil;
 		_moveActiveToolboxItemIntoWorld = false;
@@ -752,9 +752,6 @@
 	
 	
 	DebugLog(@"Done generating feature maps");
-	
-	//force a move grid update early
-	[self updateMoveGrids:true];
 }
 
 
@@ -1626,14 +1623,15 @@
 	
 -(void) updateMoveGrids:(bool)force {
 
-	if((!force && _state != RUNNING)) {
+	if(!force && (_state != RUNNING && _state != PLACE)) {
 		return;
 	}
 	
-	if(!_isUpdatingPenguinMoveGrids) {
-		_isUpdatingPenguinMoveGrids = true;
+	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
+	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
+		
+	if(_numPenguinsUpdatingMoveGrids == 0) {
 	
-		NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
 		for(LHSprite* penguin in penguins) {
 
 			MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
@@ -1695,20 +1693,18 @@
 				}
 				CGPoint targetLandGridPos = [self toGrid:targetLand.position];
 
+				_numPenguinsUpdatingMoveGrids++;
 				void(^updateBlock)(void) = [[^(void) {
 					[penguinMoveGridData updateMoveGridToTile:targetLandGridPos fromTile:penguinGridPos];
+					_numPenguinsUpdatingMoveGrids--;
 				} copy] autorelease];
 				dispatch_async(_moveGridPenguinUpdateQueue, updateBlock);
 			}
 		}
-		_isUpdatingPenguinMoveGrids = false;
 	}
 			
-	if(!_isUpdatingSharkMoveGrids) {
-		_isUpdatingSharkMoveGrids = true;
+	if(_numSharksUpdatingMoveGrids == 0) {
 
-		NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
-		NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
 		LHSprite* targetPenguin = nil;
 			
 		for(LHSprite* shark in sharks) {
@@ -1775,13 +1771,14 @@
 					continue;
 				}
 
+				_numSharksUpdatingMoveGrids++;
 				void(^updateBlock)(void) = [[^(void) {
 					[sharkMoveGridData updateMoveGridToTile:targetPenguinGridPos fromTile:sharkGridPos];
+					_numSharksUpdatingMoveGrids--;
 				} copy] autorelease];
 				dispatch_async(_moveGridSharkUpdateQueue, updateBlock);
 			}
 		}
-		_isUpdatingSharkMoveGrids = false;
 	}
 }
 
@@ -1857,7 +1854,7 @@
 			_activeToolboxItem.tag = OBSTRUCTION;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
-			[self invalidateMoveGrids];
+			[self invalidateMoveGridsNear:_activeToolboxItem];
 			_shouldRegenerateFeatureMaps = true;
 			soundFileName = @"place-obstruction.wav";
 
@@ -1912,6 +1909,7 @@
 			[[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"sounds/game/toolbox/%@", soundFileName ]];
 		}
 		
+		[_activeToolboxItem removeTouchObserver];
 		[_activeToolboxItem registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
 		[_activeToolboxItem registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
 	
@@ -1976,6 +1974,8 @@
 		}
 	}
 	
+	[self updateMoveGrids];
+	
 	/*************************************/
 
 	if(_state != RUNNING) {
@@ -2009,7 +2009,6 @@
 	
 	[self moveSharks:dt];
 	[self movePenguins:dt];
-	[self updateMoveGrids];
 	
 	
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with game state update");
@@ -2055,12 +2054,24 @@
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with update tick");
 }
 
--(void) invalidateMoveGrids {
+-(void) invalidateMoveGridsNear:(LHSprite*)sprite {
+	[self invalidatePenguinMoveGridsNear:sprite];
+	[self invalidateSharkMoveGridsNear:sprite];
+}
+
+-(void) invalidateSharkMoveGridsNear:(LHSprite*)sprite {
 	for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
-		[(MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName] invalidateMoveGrid];
+		if(sprite == nil || ccpDistance(sprite.position, shark.position) < 150*SCALING_FACTOR_GENERIC) {
+			[(MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName] invalidateMoveGrid];
+		}
 	}
+}
+
+-(void) invalidatePenguinMoveGridsNear:(LHSprite*)sprite {
 	for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
-		[(MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName] invalidateMoveGrid];
+		if(sprite == nil || ccpDistance(sprite.position, penguin.position) < 150*SCALING_FACTOR_GENERIC) {
+			[(MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName] invalidateMoveGrid];
+		}
 	}
 }
 

@@ -97,11 +97,11 @@
 		return;
 	}
 	
-	_scheduledUpdateMoveGridTimer = [NSTimer scheduledTimerWithTimeInterval:2.0
+	_scheduledUpdateMoveGridTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval
 		target:self
 		selector:@selector(forceUpdateToMoveGrid)
 		userInfo:nil
-		repeats:NO];	
+		repeats:NO];
 }
 
 - (void)updateBaseGrid:(short**)baseGrid {
@@ -237,19 +237,15 @@
 }
 
 - (void)updateMoveGridToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile {
-	[self updateMoveGridToTile:toTile fromTile:fromTile attemptsRemaining:MOVEGRID_INITIAL_SEARCH_ATTEMPTS];
-}
 
-- (void)updateMoveGridToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile attemptsRemaining:(int)attemptsRemaining {
-
-	if(!_isBusy && (!_foundRoute || _forceUpdateToMoveGrid || (attemptsRemaining != MOVEGRID_INITIAL_SEARCH_ATTEMPTS) || (_lastToTile.x != toTile.x || _lastToTile.y != toTile.y))) {
+	if(!_isBusy && (!_foundRoute || _forceUpdateToMoveGrid || (_lastToTile.x != toTile.x || _lastToTile.y != toTile.y))) {
 
 		_isBusy = true;
 		
 		//makes sure we can pass ourself by reference as this function may be called within a block
 		__block id bSelf = self;
 	
-		if(DEBUG_MOVEGRID) DebugLog(@"Updating %@ move grid - attemptsRemaining=%d", _tag, attemptsRemaining);
+		if(DEBUG_MOVEGRID) DebugLog(@"Updating %@ move grid", _tag);
 
 		_lastToTile = toTile;
 		_forceUpdateToMoveGrid = false;
@@ -261,6 +257,14 @@
 		_moveGridBuffer[(int)toTile.x][(int)toTile.y] = 0;
 		[bSelf propagateGridCostToX:toTile.x y:toTile.y fromTile:fromTile bestFoundRouteWeight:&bestFoundRouteWeight];
 		
+		if(_forceUpdateToMoveGrid) {
+			//previous results are invalidated
+			if(DEBUG_MOVEGRID) DebugLog(@"_forceUpdateToMoveGrid was set to true for %@ while we were calculating results - invalidating", _tag);
+			return;
+		}
+		
+		if(DEBUG_MOVEGRID) DebugLog(@"bestFoundRouteWeight=%d,_minSearchPathFactor=%f for %@ move grid in %f seconds", bestFoundRouteWeight, _minSearchPathFactor, _tag, [[NSDate date] timeIntervalSince1970] - startTime);		
+		
 		if(bestFoundRouteWeight >= 0) {
 			[bSelf copyMoveGridBufferToMoveGrid];
 			_foundRoute = true;
@@ -271,43 +275,22 @@
 			}
 		}else {
 			
-			if(_minSearchPathFactor == MOVEGRID_MAX_SEARCH_FACTOR) {
-				//don't waste our time with stuck guys
-				attemptsRemaining = 0;
-			}
-			
 			_minSearchPathFactor*= 2;
 			if(_minSearchPathFactor > MOVEGRID_MAX_SEARCH_FACTOR) {
 				_minSearchPathFactor = MOVEGRID_MAX_SEARCH_FACTOR;
 			}
-			
-			//go try again!
-			if(attemptsRemaining > 0) {
-			
-				if(!_foundRoute && attemptsRemaining == MOVEGRID_INITIAL_SEARCH_ATTEMPTS) {
-					//this prevents running through newly-placed walls
-					[bSelf copyMoveGridBufferToMoveGrid];
-					_isMoveGridValid = true;
-				}
-			
-				_isBusy = false;
-				[bSelf updateMoveGridToTile:toTile fromTile:fromTile attemptsRemaining:attemptsRemaining-1];
+		
+			if(_foundRoute) {
+				//don't copy - use the old route
 				
 			}else {
-				if(_foundRoute) {
-					//don't copy - use the old route
-					
-				}else {
-					//we have no idea what's going on - go ahead and use what we found while we're searching
-					[bSelf copyMoveGridBufferToMoveGrid];
-					
-				}
+				//we have no idea what's going on - go ahead and use what we found while we're searching
+				[bSelf copyMoveGridBufferToMoveGrid];
 				
-				_isMoveGridValid = true;
 			}
+			
+			_isMoveGridValid = true;
 		}
-		
-		if(DEBUG_MOVEGRID) DebugLog(@"bestFoundRouteWeight=%d,_minSearchPathFactor=%f,attemptsRemaining=%d for %@ move grid in %f seconds", bestFoundRouteWeight, _minSearchPathFactor, attemptsRemaining, _tag, [[NSDate date] timeIntervalSince1970] - startTime);
 
 		_isBusy = false;
 	}
@@ -386,6 +369,11 @@
 -(void)dealloc {
 
 	//DebugLog(@"Deallocating MoveGrid");
+
+	if(_scheduledUpdateMoveGridTimer != nil) {
+		[_scheduledUpdateMoveGridTimer invalidate];
+		_scheduledUpdateMoveGridTimer = nil;
+	}
 
 	if(_baseGrid != nil) {
 		for(int i = 0; i < _gridWidth; i++) {
