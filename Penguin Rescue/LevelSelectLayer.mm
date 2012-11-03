@@ -52,7 +52,6 @@
 
 		//create a LevelHelperLoader object - we use an empty level
 		_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", @"Menu", @"LevelSelect"]];
-		[_levelLoader addObjectsToWorld:nil cocos2dLayer:self];
 
 		_spriteNameToLevelPath = [[NSMutableDictionary alloc] init];
 		
@@ -113,6 +112,9 @@
 								initWithColor:ccc4(arc4random()*255,arc4random()*255,arc4random()*255,255)
 								width:winSize.width
 								height:winSize.height];
+			LHSprite* background = [_levelLoader createSpriteWithName:@"Level_Select" fromSheet:@"MenuBackgrounds1" fromSHFile:@"Spritesheet" parent:scrollableLayer];
+			[background transformPosition:ccp(winSize.width/2, winSize.height/2)];
+								
 			[scrollableLayers addObject:scrollableLayer];
 			
 			levelButtonX = levelButtonXInitial;

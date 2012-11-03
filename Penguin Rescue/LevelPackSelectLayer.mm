@@ -49,7 +49,6 @@
 
 		//create a LevelHelperLoader object - we use an empty level
 		_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", @"Menu", @"LevelPackSelect"]];
-		[_levelLoader addObjectsToWorld:nil cocos2dLayer:self];
 
 		_spriteNameToLevelPackPath = [[NSMutableDictionary alloc] init];
 		
@@ -98,6 +97,9 @@
 								initWithColor:ccc4(0,0,0,255)
 								width:winSize.width
 								height:winSize.height];
+		LHSprite* background = [_levelLoader createSpriteWithName:@"Level_Select" fromSheet:@"MenuBackgrounds1" fromSHFile:@"Spritesheet" parent:scrollableLayer];
+		[background transformPosition:ccp(winSize.width/2, winSize.height/2)];
+
 		[scrollableLayers addObject:scrollableLayer];
 		[scrollableLayer release];
 
@@ -115,7 +117,6 @@
 		CCSprite* packBackground = [CCSprite spriteWithFile:[NSString stringWithFormat:@"Levels/%@/%@", levelPackPath, @"IconBackground.png"]];
 		packBackground.scale = levelPackButton.contentSize.width/packBackground.contentSize.width;
 		packBackground.position = ccp(levelPackButtonSize.width/2,levelPackButtonSize.height/2);
-		packBackground.opacity = 200;
 		[levelPackButton addChild:packBackground];
 		
 		bool isLocked = false;
