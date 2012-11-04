@@ -16,7 +16,7 @@
 
 #define TEST_MODE true
 #define TEST_LEVEL_PACK @"APenguinInNeed"
-#define TEST_LEVEL @"LandLocked"
+#define TEST_LEVEL @"SplitUp"
 
  
 
