@@ -97,6 +97,8 @@
 			<string>ToolboxItem_Debris</string>
 			<key>ClassRepresentation</key>
 			<dict>
+				<key>mass</key>
+				<real>1</real>
 				<key>placeCost</key>
 				<real>250</real>
 				<key>runningCost</key>
@@ -145,7 +147,7 @@
 	<key>HDSuffix</key>
 	<string>-hd</string>
 	<key>LastLevelLoaded</key>
-	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/APenguinInNeed/WayWayUpThere.plhs</string>
+	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/APenguinInNeed/LandLocked.plhs</string>
 	<key>Orientation</key>
 	<integer>1</integer>
 	<key>ProjectName</key>

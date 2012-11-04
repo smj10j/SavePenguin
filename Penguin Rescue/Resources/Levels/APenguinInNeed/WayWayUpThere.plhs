@@ -2632,6 +2632,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -2643,6 +2645,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -2723,6 +2727,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -2734,6 +2740,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -2814,6 +2822,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -2825,6 +2835,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -2905,6 +2917,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -2916,6 +2930,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -2996,6 +3012,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -3007,6 +3025,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -3087,6 +3107,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -3098,6 +3120,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -3626,6 +3650,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -3637,6 +3663,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -3717,6 +3745,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -3728,6 +3758,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -4154,6 +4186,8 @@
 				<string>ToolboxItem_Debris</string>
 				<key>ClassRepresentation</key>
 				<dict>
+					<key>mass</key>
+					<real>1</real>
 					<key>placeCost</key>
 					<real>250</real>
 					<key>runningCost</key>

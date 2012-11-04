@@ -404,7 +404,8 @@
 			ToolboxItem_Windmill* toolboxItemData = ((ToolboxItem_Windmill*)toolboxItem.userInfo);
 			toolgroupKey = [toolgroupKey stringByAppendingString:[NSString stringWithFormat:@"-%@:%f", @"Power", toolboxItemData.power]];
 		}else if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
-			toolgroupKey = [toolgroupKey stringByAppendingString:[NSString stringWithFormat:@"-%@:%f", @"Density", toolboxItem.body->GetFixtureList()->GetDensity()]];
+			ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)toolboxItem.userInfo);
+			toolgroupKey = [toolgroupKey stringByAppendingString:[NSString stringWithFormat:@"-%@:%f", @"Mass", toolboxItemData.mass]];
 		}
 	
 		NSMutableSet* toolGroup = [_toolGroups objectForKey:toolgroupKey];
@@ -456,8 +457,9 @@
 			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 30*SCALING_FACTOR_H, 15*SCALING_FACTOR_V);
 			[toolboxContainer addChild:powerLabel];
 		}else if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
-			//display item density
-			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%dlbs", (int)(topToolboxItem.body->GetFixtureList()->GetDensity()*100)] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_STATS_FONT_SIZE];
+			//display item mass
+			ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)topToolboxItem.userInfo);
+			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%dlbs", (int)(toolboxItemData.mass*100)] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_STATS_FONT_SIZE];
 			powerLabel.color = ccWHITE;
 			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 30*SCALING_FACTOR_H, 15*SCALING_FACTOR_V);
 			[toolboxContainer addChild:powerLabel];
@@ -551,7 +553,31 @@
 		massData.mass = ACTOR_MASS;
 		penguin.body->SetMassData(&massData);
 	}
+	
+	//update any toolbox items so we don't have to do everything manually in LevelHelper
+	for(LHSprite* sprite in [_levelLoader allSprites]) {
+		if([sprite.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
+			b2MassData massData;
+			ToolboxItem_Debris* toolboxItemData = (ToolboxItem_Debris*)sprite.userInfo;
+			sprite.body->GetMassData(&massData);
+			massData.mass*= toolboxItemData.mass;
+			sprite.body->SetMassData(&massData);
+		}
 		
+		if(sprite.tag == DEBRIS) {
+			//already placed - set it's physics data
+			[sprite makeDynamic];
+			[sprite setSensor:false];
+		}else if(sprite.tag == OBSTRUCTION) {
+			//already placed - set it's physics data
+			[sprite makeStatic];
+			[sprite setSensor:true];
+		}else if(sprite.tag == WINDMILL) {
+			//already placed - set it's physics data
+			[sprite makeStatic];
+			[sprite setSensor:true];
+		}
+	}
 			
 		
 	[self showTutorial];
@@ -2462,7 +2488,7 @@
 				b2Vec2 directionVector = b2Vec2(windmillPos.x + windmillData.reach*xDir,
 												windmillPos.y + windmillData.reach*yDir);
 										
-				//returns if the shark is in front of the windmill
+				//returns if the penguin is in front of the windmill
 				WindmillRaycastCallback callback;
 				_world->RayCast(&callback, windmillPos, directionVector);
 				 

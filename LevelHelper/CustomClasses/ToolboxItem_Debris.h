@@ -7,9 +7,10 @@
 {
 
 
+	float placeCost;
+	float mass;
 	float runningCost;
 	float scale;
-	float placeCost;
 
 
 #if __has_feature(objc_arc) && __clang_major__ >= 3
@@ -20,9 +21,10 @@
 #endif // __has_feature(objc_arc)
 
 }
+@property float placeCost;
+@property float mass;
 @property float runningCost;
 @property float scale;
-@property float placeCost;
 
 +(ToolboxItem_Debris*) customClassInstance;
 

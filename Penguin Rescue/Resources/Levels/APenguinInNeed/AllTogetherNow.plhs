@@ -64,7 +64,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{126, 0}, {62.5, 56}}</string>
+								<string>{{287, 189}, {62.5, 56}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -139,7 +139,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 151}, {34.5, 35.75}}</string>
+								<string>{{0, 466}, {34.5, 35.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -214,7 +214,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{36, 151}, {36.5, 33.5}}</string>
+								<string>{{36, 466}, {36.5, 33.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -289,7 +289,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{36, 151}, {36.5, 33.5}}</string>
+								<string>{{36, 466}, {36.5, 33.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -364,7 +364,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{73, 151}, {36.75, 32}}</string>
+								<string>{{287, 246}, {36.75, 32}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -439,13 +439,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 118}, {187.5, 32.75}}</string>
+								<string>{{321, 0}, {187.5, 32.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -576,7 +576,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{74, 116}, {34.75, 39.5}}</string>
+								<string>{{37, 33}, {34.75, 39.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -683,7 +683,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{74, 116}, {34.75, 39.5}}</string>
+								<string>{{37, 33}, {34.75, 39.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -794,7 +794,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 86}, {58.75, 29}}</string>
+								<string>{{60, 0}, {58.75, 29}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -905,7 +905,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 86}, {58.75, 29}}</string>
+								<string>{{60, 0}, {58.75, 29}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1191,6 +1191,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -1202,6 +1204,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -1282,6 +1286,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -1293,6 +1299,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -1373,6 +1381,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -1384,6 +1394,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -1464,6 +1476,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -1475,6 +1489,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -1555,6 +1571,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -1566,6 +1584,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -1646,6 +1666,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -1657,6 +1679,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -1969,6 +1993,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -1980,6 +2006,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -2047,7 +2075,7 @@
 											</array>
 											<array>
 												<string>{-16.5, -4.5}</string>
-												<string>{-15.25, -7.25}</string>
+												<string>{-15.250000000000002, -7.25}</string>
 												<string>{-6.75, -8.5}</string>
 											</array>
 											<array>
@@ -2129,7 +2157,7 @@
 											<array>
 												<string>{-10.75, -10.25}</string>
 												<string>{-6.75, -8.5}</string>
-												<string>{-15.25, -7.25}</string>
+												<string>{-15.250000000000002, -7.25}</string>
 												<string>{-12.25, -10}</string>
 											</array>
 										</array>
@@ -2219,6 +2247,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -2230,6 +2260,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -2297,7 +2329,7 @@
 											</array>
 											<array>
 												<string>{-16.5, -4.5}</string>
-												<string>{-15.25, -7.25}</string>
+												<string>{-15.250000000000002, -7.25}</string>
 												<string>{-6.75, -8.5}</string>
 											</array>
 											<array>
@@ -2379,7 +2411,7 @@
 											<array>
 												<string>{-10.75, -10.25}</string>
 												<string>{-6.75, -8.5}</string>
-												<string>{-15.25, -7.25}</string>
+												<string>{-15.250000000000002, -7.25}</string>
 												<string>{-12.25, -10}</string>
 											</array>
 										</array>
@@ -2585,6 +2617,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -2596,6 +2630,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -2663,7 +2699,7 @@
 											</array>
 											<array>
 												<string>{-16.5, -4.5}</string>
-												<string>{-15.25, -7.25}</string>
+												<string>{-15.250000000000002, -7.25}</string>
 												<string>{-6.75, -8.5}</string>
 											</array>
 											<array>
@@ -2745,7 +2781,7 @@
 											<array>
 												<string>{-10.75, -10.25}</string>
 												<string>{-6.75, -8.5}</string>
-												<string>{-15.25, -7.25}</string>
+												<string>{-15.250000000000002, -7.25}</string>
 												<string>{-12.25, -10}</string>
 											</array>
 										</array>
@@ -2949,6 +2985,8 @@
 				<string>ToolboxItem_Debris</string>
 				<key>ClassRepresentation</key>
 				<dict>
+					<key>mass</key>
+					<real>1</real>
 					<key>placeCost</key>
 					<real>250</real>
 					<key>runningCost</key>

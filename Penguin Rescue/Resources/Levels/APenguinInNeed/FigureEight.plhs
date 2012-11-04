@@ -948,6 +948,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -959,6 +961,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -1039,6 +1043,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -1050,6 +1056,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -1130,6 +1138,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -1141,6 +1151,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -1221,6 +1233,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -1232,6 +1246,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -1312,6 +1328,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -1323,6 +1341,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -1403,6 +1423,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -1414,6 +1436,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -1958,6 +1982,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -1969,6 +1995,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -2049,6 +2077,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<true/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -2060,6 +2090,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>1</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -2140,6 +2172,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<false/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -2151,6 +2185,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>2</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -2169,167 +2205,8 @@
 							<dict/>
 							<key>PhysicProperties</key>
 							<dict>
-								<key>AngularDamping</key>
-								<real>2</real>
-								<key>AngularVelocity</key>
-								<real>0.0</real>
-								<key>CanSleep</key>
-								<true/>
-								<key>FixedRot</key>
-								<false/>
-								<key>GravityScale</key>
-								<real>1</real>
 								<key>HandledBySH</key>
-								<false/>
-								<key>IsBullet</key>
-								<false/>
-								<key>LinearDamping</key>
-								<real>2</real>
-								<key>LinearVelocity</key>
-								<string>{0, 0}</string>
-								<key>SH_ComplexShapes</key>
-								<array>
-									<dict>
-										<key>Category</key>
-										<integer>1</integer>
-										<key>Density</key>
-										<real>2</real>
-										<key>Fixture</key>
-										<array>
-											<array>
-												<string>{4.25, 7.5}</string>
-												<string>{4, 8}</string>
-												<string>{3.5, 7.5}</string>
-												<string>{0, -6.75}</string>
-											</array>
-											<array>
-												<string>{9.5, 8.75}</string>
-												<string>{9.25, 9}</string>
-												<string>{7, 7.75}</string>
-												<string>{8.75, -6.25}</string>
-											</array>
-											<array>
-												<string>{7.25, -7}</string>
-												<string>{8.75, -6.25}</string>
-												<string>{7, 7.75}</string>
-												<string>{5.5, 8}</string>
-												<string>{5.25, 7.5}</string>
-												<string>{0, -6.75}</string>
-											</array>
-											<array>
-												<string>{-16.5, -4.5}</string>
-												<string>{-15.250000000000002, -7.25}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-17.25, 1.25}</string>
-												<string>{-16.5, -4.5}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-16.25, 5.25}</string>
-												<string>{-17.25, 1.25}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-15.75, 6}</string>
-												<string>{-16.25, 5.25}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-14, 7.5}</string>
-												<string>{-15.75, 6}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-2.25, 7.75}</string>
-												<string>{-14, 7.5}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-2, 7.5}</string>
-												<string>{-2.25, 7.75}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-3, -7.5}</string>
-												<string>{-2, 7.5}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-3, -7.5}</string>
-												<string>{-6.75, -8.5}</string>
-												<string>{-4.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{14.75, 9}</string>
-												<string>{13.75, 9.75}</string>
-												<string>{12.75, 9.75}</string>
-												<string>{12.5, 9.5}</string>
-												<string>{18.5, 1.5}</string>
-											</array>
-											<array>
-												<string>{17.25, -5.5}</string>
-												<string>{18, -4.75}</string>
-												<string>{18.5, 1.5}</string>
-												<string>{12.5, 9.5}</string>
-												<string>{11.75, 9}</string>
-												<string>{12.5, -5.75}</string>
-											</array>
-											<array>
-												<string>{8.75, -6.25}</string>
-												<string>{11, -6.5}</string>
-												<string>{12.5, -5.75}</string>
-												<string>{11.75, 9}</string>
-												<string>{11.25, 9.25}</string>
-												<string>{9.5, 8.75}</string>
-											</array>
-											<array>
-												<string>{0, -6.75}</string>
-												<string>{5.25, 7.5}</string>
-												<string>{4.25, 7.5}</string>
-											</array>
-											<array>
-												<string>{0, -6.75}</string>
-												<string>{3.5, 7.5}</string>
-												<string>{0.5, 8.25}</string>
-												<string>{-1.25, 8}</string>
-												<string>{-2, 7.5}</string>
-												<string>{-3, -7.5}</string>
-											</array>
-											<array>
-												<string>{-10.75, -10.25}</string>
-												<string>{-6.75, -8.5}</string>
-												<string>{-15.250000000000002, -7.25}</string>
-												<string>{-12.25, -10}</string>
-											</array>
-										</array>
-										<key>Friction</key>
-										<real>0.20000000298023224</real>
-										<key>Group</key>
-										<integer>0</integer>
-										<key>IsCircle</key>
-										<false/>
-										<key>IsSensor</key>
-										<true/>
-										<key>LHHeight</key>
-										<real>37.5</real>
-										<key>LHShapePositionOffset</key>
-										<string>{-17.25, -9.75}</string>
-										<key>LHWidth</key>
-										<real>37.5</real>
-										<key>Mask</key>
-										<integer>65535</integer>
-										<key>Name</key>
-										<string>UntitledFixture</string>
-										<key>Restitution</key>
-										<real>0.20000000298023224</real>
-										<key>Tag</key>
-										<integer>0</integer>
-									</dict>
-								</array>
-								<key>Type</key>
-								<integer>1</integer>
+								<true/>
 							</dict>
 							<key>SHSceneName</key>
 							<string>Spritesheet.pshs</string>
@@ -2390,6 +2267,8 @@
 							<dict>
 								<key>ClassDefaults</key>
 								<dict>
+									<key>mass</key>
+									<false/>
 									<key>placeCost</key>
 									<true/>
 									<key>runningCost</key>
@@ -2401,6 +2280,8 @@
 								<string>ToolboxItem_Debris</string>
 								<key>ClassRepresentation</key>
 								<dict>
+									<key>mass</key>
+									<real>2</real>
 									<key>placeCost</key>
 									<real>250</real>
 									<key>runningCost</key>
@@ -2419,167 +2300,8 @@
 							<dict/>
 							<key>PhysicProperties</key>
 							<dict>
-								<key>AngularDamping</key>
-								<real>2</real>
-								<key>AngularVelocity</key>
-								<real>0.0</real>
-								<key>CanSleep</key>
-								<true/>
-								<key>FixedRot</key>
-								<false/>
-								<key>GravityScale</key>
-								<real>1</real>
 								<key>HandledBySH</key>
-								<false/>
-								<key>IsBullet</key>
-								<false/>
-								<key>LinearDamping</key>
-								<real>2</real>
-								<key>LinearVelocity</key>
-								<string>{0, 0}</string>
-								<key>SH_ComplexShapes</key>
-								<array>
-									<dict>
-										<key>Category</key>
-										<integer>1</integer>
-										<key>Density</key>
-										<real>2</real>
-										<key>Fixture</key>
-										<array>
-											<array>
-												<string>{4.25, 7.5}</string>
-												<string>{4, 8}</string>
-												<string>{3.5, 7.5}</string>
-												<string>{0, -6.75}</string>
-											</array>
-											<array>
-												<string>{9.5, 8.75}</string>
-												<string>{9.25, 9}</string>
-												<string>{7, 7.75}</string>
-												<string>{8.75, -6.25}</string>
-											</array>
-											<array>
-												<string>{7.25, -7}</string>
-												<string>{8.75, -6.25}</string>
-												<string>{7, 7.75}</string>
-												<string>{5.5, 8}</string>
-												<string>{5.25, 7.5}</string>
-												<string>{0, -6.75}</string>
-											</array>
-											<array>
-												<string>{-16.5, -4.5}</string>
-												<string>{-15.250000000000002, -7.25}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-17.25, 1.25}</string>
-												<string>{-16.5, -4.5}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-16.25, 5.25}</string>
-												<string>{-17.25, 1.25}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-15.75, 6}</string>
-												<string>{-16.25, 5.25}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-14, 7.5}</string>
-												<string>{-15.75, 6}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-2.25, 7.75}</string>
-												<string>{-14, 7.5}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-2, 7.5}</string>
-												<string>{-2.25, 7.75}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-3, -7.5}</string>
-												<string>{-2, 7.5}</string>
-												<string>{-6.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{-3, -7.5}</string>
-												<string>{-6.75, -8.5}</string>
-												<string>{-4.75, -8.5}</string>
-											</array>
-											<array>
-												<string>{14.75, 9}</string>
-												<string>{13.75, 9.75}</string>
-												<string>{12.75, 9.75}</string>
-												<string>{12.5, 9.5}</string>
-												<string>{18.5, 1.5}</string>
-											</array>
-											<array>
-												<string>{17.25, -5.5}</string>
-												<string>{18, -4.75}</string>
-												<string>{18.5, 1.5}</string>
-												<string>{12.5, 9.5}</string>
-												<string>{11.75, 9}</string>
-												<string>{12.5, -5.75}</string>
-											</array>
-											<array>
-												<string>{8.75, -6.25}</string>
-												<string>{11, -6.5}</string>
-												<string>{12.5, -5.75}</string>
-												<string>{11.75, 9}</string>
-												<string>{11.25, 9.25}</string>
-												<string>{9.5, 8.75}</string>
-											</array>
-											<array>
-												<string>{0, -6.75}</string>
-												<string>{5.25, 7.5}</string>
-												<string>{4.25, 7.5}</string>
-											</array>
-											<array>
-												<string>{0, -6.75}</string>
-												<string>{3.5, 7.5}</string>
-												<string>{0.5, 8.25}</string>
-												<string>{-1.25, 8}</string>
-												<string>{-2, 7.5}</string>
-												<string>{-3, -7.5}</string>
-											</array>
-											<array>
-												<string>{-10.75, -10.25}</string>
-												<string>{-6.75, -8.5}</string>
-												<string>{-15.250000000000002, -7.25}</string>
-												<string>{-12.25, -10}</string>
-											</array>
-										</array>
-										<key>Friction</key>
-										<real>0.20000000298023224</real>
-										<key>Group</key>
-										<integer>0</integer>
-										<key>IsCircle</key>
-										<false/>
-										<key>IsSensor</key>
-										<true/>
-										<key>LHHeight</key>
-										<real>37.5</real>
-										<key>LHShapePositionOffset</key>
-										<string>{-17.25, -9.75}</string>
-										<key>LHWidth</key>
-										<real>37.5</real>
-										<key>Mask</key>
-										<integer>65535</integer>
-										<key>Name</key>
-										<string>UntitledFixture</string>
-										<key>Restitution</key>
-										<real>0.20000000298023224</real>
-										<key>Tag</key>
-										<integer>0</integer>
-									</dict>
-								</array>
-								<key>Type</key>
-								<integer>1</integer>
+								<true/>
 							</dict>
 							<key>SHSceneName</key>
 							<string>Spritesheet.pshs</string>
@@ -2970,6 +2692,8 @@
 				<string>ToolboxItem_Debris</string>
 				<key>ClassRepresentation</key>
 				<dict>
+					<key>mass</key>
+					<real>1</real>
 					<key>placeCost</key>
 					<real>250</real>
 					<key>runningCost</key>

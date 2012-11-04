@@ -47,4 +47,32 @@
 		Path = WayWayUpThere;
 		Name = "Way Way Up There";
 	};
+	12 = {
+		Path = BatterUp;
+		Name = "Batter Up!";
+	};
+	13 = {
+		Path = ZigZag;
+		Name = ZigZag;
+	};
+	14 = {
+		Path = Hurricane;
+		Name = Hurricane;
+	};
+	15 = {
+		Path = Surrounded;
+		Name = Surrounded;
+	};
+	16 = {
+		Path = Jam;
+		Name = Jam;
+	};
+	17 = {
+		Path = Breakout;
+		Name = Breakout;
+	};
+	18 = {
+		Path = LandLocked;
+		Name = "Land Locked";
+	};
 }

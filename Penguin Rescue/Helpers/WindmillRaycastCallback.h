@@ -9,10 +9,13 @@ public:
  
     float32 ReportFixture(b2Fixture* fixture, const b2Vec2& point, const b2Vec2& normal, float32 fraction) {
 			
+		//NSLog(@"WINDMILL HITTING %@", [LHSprite spriteForBody:fixture->GetBody()].uniqueName);
+
 		if([LHSprite tagForBody:fixture->GetBody()] == WINDMILL) {
 			//allow windmills to pass through eachother
 			return _fraction > 0 ? _fraction : 1;
 		}
+		
 		
         _fixture = fixture;        
         _point = point;
