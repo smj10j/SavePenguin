@@ -10,7 +10,7 @@
 #define Penguin_Rescue_Constants_h
 
 //true to disable all output and send analytics data
-#define DISTRIBUTION_MODE false
+#define DISTRIBUTION_MODE true
 
 
 
@@ -74,7 +74,7 @@
 #define SCORING_MAX_SCORE_POSSIBLE 10000
 #define SCORING_PLACE_SECOND_COST 40
 #define SCORING_RUNNING_SECOND_COST 25
-#define SCORING_HAND_OF_GOD_COST_PER_SECOND 3000
+#define SCORING_HAND_OF_GOD_COST_PER_SECOND 2500
 
 #define SCORING_MAX_COINS_PER_LEVEL 5
 

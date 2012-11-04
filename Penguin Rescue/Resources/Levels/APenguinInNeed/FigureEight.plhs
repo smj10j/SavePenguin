@@ -64,7 +64,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{126, 0}, {62.5, 56}}</string>
+								<string>{{287, 189}, {62.5, 56}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -139,7 +139,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{36, 151}, {36.5, 33.5}}</string>
+								<string>{{36, 466}, {36.5, 33.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -214,7 +214,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 151}, {34.5, 35.75}}</string>
+								<string>{{0, 466}, {34.5, 35.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -306,7 +306,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 226}, {22.5, 17.75}}</string>
+								<string>{{324, 298}, {22.5, 17.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -414,7 +414,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 244}, {16, 8.75}}</string>
+								<string>{{0, 503}, {16, 8.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -551,7 +551,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{74, 116}, {34.75, 39.5}}</string>
+								<string>{{37, 33}, {34.75, 39.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -662,7 +662,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 86}, {58.75, 29}}</string>
+								<string>{{60, 0}, {58.75, 29}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1814,7 +1814,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{274.75, 411}</string>
+								<string>{267.75, 411}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1877,7 +1877,7 @@
 									<key>placeCost</key>
 									<real>400</real>
 									<key>power</key>
-									<real>100</real>
+									<real>150</real>
 									<key>reach</key>
 									<real>5000</real>
 									<key>runningCost</key>
@@ -1930,7 +1930,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{312.75, 411}</string>
+								<string>{344.75, 411}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>

@@ -56,6 +56,7 @@
 		// enable events
 		self.isTouchEnabled = YES;
 		
+		_state = SETUP;
 		_instanceId = [[NSDate date] timeIntervalSince1970];
 		_box2dStepAccumulator = 0;
 		DebugLog(@"Initializing GameLayer %f", _instanceId);
@@ -649,7 +650,7 @@
 	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
 	for(LHSprite* penguin in penguins) {
 	
-		if(_state == PLACE) {
+		if(_state == SETUP) {
 			//if on some land, move him off it!
 			//we only do this during PLACE because it makes "weird" behavior when placing obstructions near actors
 			CGPoint penguinGridPos = [self toGrid:penguin.position];
@@ -694,7 +695,7 @@
 				memcpy(penguinBaseGrid[x], (void*)_penguinMapfeaturesGrid[x], rowSize);
 			}
 			[moveGridData forceUpdateToMoveGrid];
-		}		
+		}
 	}
 	
 	//create a set of maps for each shark
@@ -702,7 +703,7 @@
 	for(LHSprite* shark in sharks) {
 
 
-		if(_state == PLACE) {
+		if(_state == SETUP) {
 			//if on some land, move him off it!
 			//we only do this during PLACE because it makes "weird" behavior when placing obstructions near actors
 			CGPoint sharkGridPos = [self toGrid:shark.position];
@@ -1623,7 +1624,7 @@
 	
 -(void) updateMoveGrids:(bool)force {
 
-	if(!force && (_state != RUNNING && _state != PLACE)) {
+	if(!force && (_state != RUNNING && _state != PLACE && _state != SETUP)) {
 		return;
 	}
 	
@@ -1825,15 +1826,16 @@
 	double elapsedTime = _levelRunningTimeDuration+_levelPlaceTimeDuration;
 	_timeElapsedLabel.string = [NSString stringWithFormat:@"%d", (int)elapsedTime];
 	
-	//regenerate base feature maps if need be
-	if(_shouldRegenerateFeatureMaps) {
-  		_shouldRegenerateFeatureMaps = false;
-		[self generateFeatureMaps];
-	}
 	
 	if(_shouldUpdateToolbox) {
 		_shouldUpdateToolbox = false;
 		[self updateToolbox];
+	}	
+	
+	//regenerate base feature maps if need be
+	if(_shouldRegenerateFeatureMaps) {
+  		_shouldRegenerateFeatureMaps = false;
+		[self generateFeatureMaps];
 	}
 	
 	//drop any toolbox items if need be
@@ -1918,7 +1920,7 @@
 		_shouldUpdateToolbox = true;
 	}
 	
-	if(__DEBUG_TOUCH_SECONDS != 0) {
+	if(!DISTRIBUTION_MODE && __DEBUG_TOUCH_SECONDS != 0) {
 		double elapsed = ([[NSDate date] timeIntervalSince1970] - __DEBUG_TOUCH_SECONDS);
 		if(elapsed >= 1 && !__DEBUG_SHARKS) {
 			DebugLog(@"Enabling debug sharks");
@@ -2146,32 +2148,14 @@
 			if(!sharkData.isStuck) {
 				if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (no where to go) - we're making him stop", shark.uniqueName);
 			}
-			
-			//halt!
-			shark.body->SetLinearVelocity(b2Vec2(0,0));
 
-			//rotate shark to watch that dastardly penguin
-			LHSprite* nearestPenguin = nil;
-			float minDist = 100000;
-			for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
-				float dist = ccpDistance(shark.position, penguin.position);
-				if(dist < minDist) {
-					nearestPenguin = penguin;
-					minDist = dist;
-				}
-			}
-			double radians = atan2(nearestPenguin.position.x - shark.position.x,
-									nearestPenguin.position.y - shark.position.y); //this grabs the radians for us
-			double newRotation = ((int)(CC_RADIANS_TO_DEGREES(radians) - 90)+360)%360; //90 is because the sprite is facing right
-			[shark transformRotation:newRotation];
-
-			
+			//reject any moves
+			bestOptionPos = shark.position;
+				
 			//frustrated
 			[shark setFrame:1];
 			sharkData.isStuck= true;
-		
-			continue;
-			
+					
 		}else {
 			//convert returned velocities to position..
 			bestOptionPos = ccp(shark.position.x+bestOptionPos.x, shark.position.y+bestOptionPos.y);
@@ -2284,11 +2268,28 @@
 				
 		//we're using an impulse for the shark so they interact with things like Debris (physics)
 		shark.body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), shark.body->GetWorldCenter());
-				
-		//rotate shark
-		double radians = atan2(normalizedX, normalizedY); //this grabs the radians for us
-		double newRotation = ((int)(CC_RADIANS_TO_DEGREES(radians) - 90)+360)%360; //90 is because the sprite is facing right
-		[shark transformRotation:(newRotation+shark.rotation*2)/3];
+		
+		
+		double rotationRadians = 0;
+		if(normalizedX != 0 && normalizedY != 0) {
+			//rotate shark in the direction he's moving
+			rotationRadians = atan2(normalizedX, normalizedY); //this grabs the radians for us
+		}else {
+			//rotate shark to watch that dastardly penguin
+			LHSprite* nearestPenguin = nil;
+			float minDist = 100000;
+			for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
+				float dist = ccpDistance(shark.position, penguin.position);
+				if(dist < minDist) {
+					nearestPenguin = penguin;
+					minDist = dist;
+				}
+			}
+			rotationRadians = atan2(nearestPenguin.position.x - shark.position.x,
+									nearestPenguin.position.y - shark.position.y); //this grabs the radians for us
+		}
+		double newRotation = ((int)(CC_RADIANS_TO_DEGREES(rotationRadians) - 90)+360)%360; //90 is because the sprite is facing right
+		[shark transformRotation:newRotation];	
 	}
 	
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done moving %d sharks...", [sharks count]);
@@ -2401,14 +2402,11 @@
 				}
 				//TODO: show a confused expression. possibly raising wings into the air in a "oh well" gesture
 				
-				//halt!
-				penguin.body->SetLinearVelocity(b2Vec2(0,0));
-				penguin.body->SetAngularVelocity(0);
+				//reject any moves
+				bestOptionPos = penguin.position;
 
 				penguinData.isStuck = true;
 				
-				continue;
-
 			}else {
 				//convert returned velocities to position..
 				penguinData.isStuck = false;
@@ -2480,7 +2478,6 @@
 					}
 				}
 			}
-
 				
 			double dSum = fabs(dx) + fabs(dy);
 			if(dSum == 0) {
@@ -2654,7 +2651,7 @@
 				if(_isNudgingPenguin) {
 					_isNudgingPenguin = false;
 					for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
-						[[_penguinMoveGridDatas objectForKey:penguin.uniqueName] scheduleUpdateToMoveGridIn:.25f];
+						[[_penguinMoveGridDatas objectForKey:penguin.uniqueName] scheduleUpdateToMoveGridIn:.50f];
 					}
 					[_handOfGodPowerNode runAction:[CCFadeOut actionWithDuration:1.5f]];
 				}

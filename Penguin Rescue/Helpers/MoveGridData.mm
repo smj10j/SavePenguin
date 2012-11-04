@@ -299,6 +299,11 @@
 
 -(void) propagateGridCostToX:(int)x y:(int)y fromTile:(CGPoint)fromTile bestFoundRouteWeight:(short*)bestFoundRouteWeight {
 
+	if(_forceUpdateToMoveGrid) {
+		//previous results are invalidated
+		return;
+	}
+
 	if(x < 0 || x >= _gridWidth) {
 		return;
 	}

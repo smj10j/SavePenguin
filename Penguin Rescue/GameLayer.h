@@ -29,6 +29,7 @@
 
 
 enum GAME_STATE {
+	SETUP,
 	PLACE,
 	PAUSE,
 	RUNNING,
