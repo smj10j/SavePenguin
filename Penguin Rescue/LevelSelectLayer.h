@@ -19,7 +19,7 @@
 	LevelHelperLoader* _levelLoader;
 
 	NSString* _levelPackPath;
-	CCScrollLayer *_scrollLayer;
+	CCScrollLayer* _scrollLayer;
 		
 	NSMutableDictionary* _spriteNameToLevelPath;
 }

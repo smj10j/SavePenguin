@@ -61,4 +61,6 @@
 
 #define SETTING_LAST_LEVEL_PACK_PATH @"LastLevelPackPath"
 #define SETTING_LAST_LEVEL_PATH @"LastLevelPath"
+#define SETTING_LAST_LEVEL_PACK_SELECT_SCREEN_NUM @"LastLevelPackSelectScreenNum"
+#define SETTING_LAST_LEVEL_SELECT_SCREEN_NUM @"LastLevelSelectScreenNum"
 

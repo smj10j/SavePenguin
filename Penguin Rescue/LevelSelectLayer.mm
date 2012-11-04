@@ -52,10 +52,11 @@
 
 		//create a LevelHelperLoader object - we use an empty level
 		_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", @"Menu", @"LevelSelect"]];
+		[_levelLoader addObjectsToWorld:nil cocos2dLayer:self];
 
 		_spriteNameToLevelPath = [[NSMutableDictionary alloc] init];
 		
-		LHSprite* backButton = [_levelLoader createSpriteWithName:@"Back_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+		LHSprite* backButton = [_levelLoader createSpriteWithName:@"Back_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:[_levelLoader layerWithUniqueName:@"MAIN_LAYER"]];
 		[backButton prepareAnimationNamed:@"Menu_Back_Button" fromSHScene:@"Spritesheet"];
 		[backButton transformPosition: ccp(20*SCALING_FACTOR_H + backButton.boundingBox.size.width/2,
 											20*SCALING_FACTOR_V + backButton.boundingBox.size.height/2)];
@@ -108,13 +109,7 @@
 				[scrollableLayer release];
 				scrollableLayer = nil;
 			}
-			scrollableLayer = [[CCLayerColor alloc]
-								initWithColor:ccc4(arc4random()*255,arc4random()*255,arc4random()*255,255)
-								width:winSize.width
-								height:winSize.height];
-			LHSprite* background = [_levelLoader createSpriteWithName:@"Level_Select" fromSheet:@"MenuBackgrounds1" fromSHFile:@"Spritesheet" parent:scrollableLayer];
-			[background transformPosition:ccp(winSize.width/2, winSize.height/2)];
-								
+			scrollableLayer = [[CCLayer alloc] init];								
 			[scrollableLayers addObject:scrollableLayer];
 			
 			levelButtonX = levelButtonXInitial;
@@ -198,11 +193,13 @@
 	
 	// now create the scroller and pass-in the pages (set widthOffset to 0 for fullscreen pages)
 	_scrollLayer = [[CCScrollLayer alloc] initWithLayers:scrollableLayers widthOffset: 0];
+	[[_levelLoader layerWithUniqueName:@"MAIN_LAYER"] addChild:_scrollLayer];
 	[scrollableLayers release];
-
-	// finally add the scroller to your scene
-	[self addChild:_scrollLayer];
 	
+	//move to the last viewed page if appropriate
+	if([_levelPackPath isEqualToString:[SettingsManager stringForKey:SETTING_LAST_LEVEL_PACK_PATH]]) {
+		[_scrollLayer selectPage:[SettingsManager intForKey:SETTING_LAST_LEVEL_SELECT_SCREEN_NUM]];
+	}
 	
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		_levelPackPath, @"Level_Pack",
@@ -231,7 +228,8 @@
 	
 	[SettingsManager setString:_levelPackPath forKey:SETTING_LAST_LEVEL_PACK_PATH];
 	[SettingsManager setString:levelPath forKey:SETTING_LAST_LEVEL_PATH];
-	
+	[SettingsManager setInt:_scrollLayer.currentScreen forKey:SETTING_LAST_LEVEL_SELECT_SCREEN_NUM];
+
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[GameLayer sceneWithLevelPackPath:[NSString stringWithFormat:@"%@", _levelPackPath] levelPath:levelPath] ]];
 }
 

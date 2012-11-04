@@ -49,10 +49,11 @@
 
 		//create a LevelHelperLoader object - we use an empty level
 		_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", @"Menu", @"LevelPackSelect"]];
+		[_levelLoader addObjectsToWorld:nil cocos2dLayer:self];
 
 		_spriteNameToLevelPackPath = [[NSMutableDictionary alloc] init];
-		
-		LHSprite* backButton = [_levelLoader createSpriteWithName:@"Back_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+				
+		LHSprite* backButton = [_levelLoader createSpriteWithName:@"Back_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:[_levelLoader layerWithUniqueName:@"MAIN_LAYER"]];
 		[backButton prepareAnimationNamed:@"Menu_Back_Button" fromSHScene:@"Spritesheet"];
 		[backButton transformPosition: ccp(20*SCALING_FACTOR_H + backButton.boundingBox.size.width/2,
 											20*SCALING_FACTOR_V + backButton.boundingBox.size.height/2)];
@@ -93,13 +94,7 @@
 			
 	for(int i = 0; i < levelPacksDictionary.count; i++) {
 	
-		CCLayer* scrollableLayer = [[CCLayerColor alloc]
-								initWithColor:ccc4(0,0,0,255)
-								width:winSize.width
-								height:winSize.height];
-		LHSprite* background = [_levelLoader createSpriteWithName:@"Level_Select" fromSheet:@"MenuBackgrounds1" fromSHFile:@"Spritesheet" parent:scrollableLayer];
-		[background transformPosition:ccp(winSize.width/2, winSize.height/2)];
-
+		CCLayer* scrollableLayer = [[CCLayer alloc] init];
 		[scrollableLayers addObject:scrollableLayer];
 		[scrollableLayer release];
 
@@ -124,9 +119,9 @@
 		if([completedLevelPacks containsObject:levelPackPath]) {
 			//DebugLog(@"Pack %@ is completed!", levelPackPath);
 
-			//add a checkmark on top
+			//add a checkmark icon
 			LHSprite* completedMark = [_levelLoader createSpriteWithName:@"Level_Pack_Completed" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
-			[completedMark transformPosition:ccp(levelPackButtonSize.width/2,levelPackButtonSize.height/2)];
+			[completedMark transformPosition:ccp(levelPackButtonSize.width/2, completedMark.boundingBox.size.height/2 + 20*SCALING_FACTOR_V)];
 					
 		}else if([availableLevelPacks containsObject:levelPackPath]) {
 			//DebugLog(@"Pack %@ is available!", levelPackPath);
@@ -136,7 +131,7 @@
 
 			//add a lock on top
 			LHSprite* lockIcon = [_levelLoader createSpriteWithName:@"Level_Pack_Locked" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
-			[lockIcon transformPosition:ccp(levelPackButtonSize.width/2,levelPackButtonSize.height/2)];
+			[lockIcon transformPosition:ccp(levelPackButtonSize.width/2, lockIcon.boundingBox.size.height/2 + 20*SCALING_FACTOR_V)];
 			
 			isLocked = true;
 		}
@@ -174,10 +169,11 @@
 	// now create the scroller and pass-in the pages (set widthOffset to 0 for fullscreen pages)
 	_scrollLayer = [[CCScrollLayer alloc] initWithLayers:scrollableLayers widthOffset: 0];
 	[scrollableLayers release];
-
-	// finally add the scroller to your scene
-	[self addChild:_scrollLayer];
+	[[_levelLoader layerWithUniqueName:@"MAIN_LAYER"] addChild:_scrollLayer];
 	
+
+	//move to the last viewed page if appropriate
+	[_scrollLayer selectPage:[SettingsManager intForKey:SETTING_LAST_LEVEL_PACK_SELECT_SCREEN_NUM]];
 }
 
 
@@ -196,7 +192,9 @@
 	
 	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
-	}	
+	}
+	
+	[SettingsManager setInt:_scrollLayer.currentScreen forKey:SETTING_LAST_LEVEL_PACK_SELECT_SCREEN_NUM];
 	
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[LevelSelectLayer sceneWithLevelPackPath:[_spriteNameToLevelPackPath objectForKey:info.sprite.uniqueName]] ]];
 }
