@@ -260,6 +260,7 @@
 		if(_forceUpdateToMoveGrid) {
 			//previous results are invalidated
 			if(DEBUG_MOVEGRID) DebugLog(@"_forceUpdateToMoveGrid was set to true for %@ while we were calculating results - invalidating", _tag);
+			_isBusy = false;
 			return;
 		}
 		

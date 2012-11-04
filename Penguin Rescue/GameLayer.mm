@@ -1635,8 +1635,10 @@
 	
 		for(LHSprite* penguin in penguins) {
 
+			_numPenguinsUpdatingMoveGrids++;
 			MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
 			if(penguinMoveGridData.busy) {
+				_numPenguinsUpdatingMoveGrids--;
 				continue;
 			}
 			
@@ -1644,18 +1646,21 @@
 			Penguin* penguinData = ((Penguin*)penguin.userInfo);
 			
 			if(penguinData.isSafe) {
+				_numPenguinsUpdatingMoveGrids--;
 				continue;
 			}
 			
 			if(penguinData.isStuck) {
 				//only update occasionally
 				if(arc4random()%100 > 10) {
+					_numPenguinsUpdatingMoveGrids--;
 					continue;
 				}
 			}
 							
 			if(penguinGridPos.x > _gridWidth-1 || penguinGridPos.x < 0 || penguinGridPos.y > _gridHeight-1 || penguinGridPos.y < 0) {
 				//ignore and let movePenguins handle it
+				_numPenguinsUpdatingMoveGrids--;
 				continue;
 			}
 			
@@ -1694,7 +1699,6 @@
 				}
 				CGPoint targetLandGridPos = [self toGrid:targetLand.position];
 
-				_numPenguinsUpdatingMoveGrids++;
 				void(^updateBlock)(void) = [[^(void) {
 					[penguinMoveGridData updateMoveGridToTile:targetLandGridPos fromTile:penguinGridPos];
 					_numPenguinsUpdatingMoveGrids--;
@@ -1710,8 +1714,10 @@
 			
 		for(LHSprite* shark in sharks) {
 
+			_numSharksUpdatingMoveGrids++;
 			MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
 			if(sharkMoveGridData.busy) {
+				_numSharksUpdatingMoveGrids--;
 				continue;
 			}
 			
@@ -1721,12 +1727,14 @@
 			if(sharkData.isStuck) {
 				//only update occasionally
 				if(arc4random()%100 > 10) {
+					_numSharksUpdatingMoveGrids--;
 					continue;
 				}
 			}
 
 			if(sharkGridPos.x >= _gridWidth || sharkGridPos.x < 0 || sharkGridPos.y >= _gridHeight || sharkGridPos.y < 0) {
 				//offscreen - ignore and let moveSharks handle it
+				_numSharksUpdatingMoveGrids--;
 				continue;
 			}
 
@@ -1769,10 +1777,10 @@
 				CGPoint targetPenguinGridPos = [self toGrid:targetPenguin.position];
 				if(targetPenguinGridPos.x >= _gridWidth || targetPenguinGridPos.x < 0 || targetPenguinGridPos.y >= _gridHeight || targetPenguinGridPos.y < 0) {
 					//offscreen - let him come back before we deal with him
+					_numSharksUpdatingMoveGrids--;
 					continue;
 				}
 
-				_numSharksUpdatingMoveGrids++;
 				void(^updateBlock)(void) = [[^(void) {
 					[sharkMoveGridData updateMoveGridToTile:targetPenguinGridPos fromTile:sharkGridPos];
 					_numSharksUpdatingMoveGrids--;
@@ -2271,7 +2279,7 @@
 		
 		
 		double rotationRadians = 0;
-		if(normalizedX != 0 && normalizedY != 0) {
+		if(normalizedX != 0 || normalizedY != 0) {
 			//rotate shark in the direction he's moving
 			rotationRadians = atan2(normalizedX, normalizedY); //this grabs the radians for us
 		}else {
