@@ -79,4 +79,8 @@
 		Path = SplitUp;
 		Name = "Split Up!";
 	};
+	20 = {
+		Path = OneSided;
+		Name = "One-Sided";
+	};
 }
