@@ -94,7 +94,7 @@
 		
 		//set our boot time (can be used for applying settings on updates
 		[SettingsManager setDouble:[[NSDate date] timeIntervalSince1970] forKey:SETTING_LAST_RUN_TIMESTAMP];
-		[SettingsManager setInt:([SettingsManager intForKey:SETTING_NUM_APP_OPENS]+1) forKey:SETTING_NUM_APP_OPENS];
+		[SettingsManager incrementIntBy:1 forKey:SETTING_NUM_APP_OPENS];
 	}
 	
 	if(DEBUG_MEMORY) DebugLog(@"Initialized IntroLayer");	

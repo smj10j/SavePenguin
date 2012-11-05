@@ -94,12 +94,12 @@
 }
 
 
-+(int)incrementInt:(int)amount forKey:(NSString*)key {
++(int)incrementIntBy:(int)amount forKey:(NSString*)key {
 	if(amount != 0) [self setInt:[self intForKey:key]+amount forKey:key];
 	return [self intForKey:key];
 }
 
-+(int)decrementInt:(int)amount forKey:(NSString*)key {
++(int)decrementIntBy:(int)amount forKey:(NSString*)key {
 	if(amount != 0) [self setInt:[self intForKey:key]-amount forKey:key];
 	return [self intForKey:key];
 }

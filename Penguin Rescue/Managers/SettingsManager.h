@@ -24,8 +24,8 @@
 +(void)setInt:(int)value forKey:(NSString*)key;
 +(void)setDouble:(double)value forKey:(NSString*)key;
 
-+(int)incrementInt:(int)amount forKey:(NSString*)key;
-+(int)decrementInt:(int)amount forKey:(NSString*)key;
++(int)incrementIntBy:(int)amount forKey:(NSString*)key;
++(int)decrementIntBy:(int)amount forKey:(NSString*)key;
 
 
 +(void)remove:(NSString*)key;

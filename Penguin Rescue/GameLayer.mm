@@ -1266,9 +1266,9 @@
 	
 	
 	//store our earned coins
-	[SettingsManager incrementInt:coinsEarned forKey:coinsEarnedForLevelKey];
-	[SettingsManager incrementInt:coinsEarned forKey:SETTING_TOTAL_EARNED_COINS];
-	[SettingsManager incrementInt:coinsEarned forKey:SETTING_TOTAL_AVAILABLE_COINS];
+	[SettingsManager incrementIntBy:coinsEarned forKey:coinsEarnedForLevelKey];
+	[SettingsManager incrementIntBy:coinsEarned forKey:SETTING_TOTAL_EARNED_COINS];
+	[SettingsManager incrementIntBy:coinsEarned forKey:SETTING_TOTAL_AVAILABLE_COINS];
 	
 	//store the level as being completed
 	[LevelPackManager completeLevel:_levelPath inPack:_levelPackPath withScore:finalScore];

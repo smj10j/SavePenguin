@@ -64,13 +64,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 0}, {512, 384}}</string>
+								<string>{{0, 0}, {512, 331}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -86,7 +86,7 @@
 								<key>TagName</key>
 								<string>DEFAULT</string>
 								<key>TextureOffset</key>
-								<string>{0, -0}</string>
+								<string>{0, 26.5}</string>
 								<key>UniqueName</key>
 								<string>Main_Menu</string>
 								<key>ZOrder</key>
@@ -156,7 +156,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{513, 225}, {100.75, 111.75}}</string>
+								<string>{{407, 513}, {100.75, 111.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -168,7 +168,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{130.5, 222.25}</string>
+								<string>{126.5, 214.25}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -244,11 +244,11 @@
 								<key>Color</key>
 								<string>{{1, 1}, {1, 1}}</string>
 								<key>FlipX</key>
-								<true/>
+								<false/>
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{513, 225}, {100.75, 111.75}}</string>
+								<string>{{407, 513}, {100.75, 111.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -260,7 +260,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{392.5, 176.25}</string>
+								<string>{390.5, 170.25}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -402,6 +402,8 @@
 				<string>ToolboxItem_Debris</string>
 				<key>ClassRepresentation</key>
 				<dict>
+					<key>mass</key>
+					<real>1</real>
 					<key>placeCost</key>
 					<real>250</real>
 					<key>runningCost</key>

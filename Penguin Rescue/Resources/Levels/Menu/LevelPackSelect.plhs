@@ -50,7 +50,7 @@
 							<key>SHSheetName</key>
 							<string>MenuBackgrounds1</string>
 							<key>SHSpriteName</key>
-							<string>Level_Select</string>
+							<string>Generic</string>
 							<key>SheetImage</key>
 							<string>Spritesheet_MenuBackgrounds1.png</string>
 							<key>TextureProperties</key>
@@ -64,13 +64,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 385}, {512, 384}}</string>
+								<string>{{344, 0}, {512, 134.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -86,7 +86,7 @@
 								<key>TagName</key>
 								<string>DEFAULT</string>
 								<key>TextureOffset</key>
-								<string>{0, -0}</string>
+								<string>{0, 124.625}</string>
 								<key>UniqueName</key>
 								<string>Level_Select</string>
 								<key>ZOrder</key>
@@ -218,6 +218,8 @@
 				<string>ToolboxItem_Debris</string>
 				<key>ClassRepresentation</key>
 				<dict>
+					<key>mass</key>
+					<real>1</real>
 					<key>placeCost</key>
 					<real>250</real>
 					<key>runningCost</key>
