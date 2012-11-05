@@ -230,7 +230,7 @@
 
 -(void)onTouchAnyButton:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
-	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
+	[info.sprite playAnimation];	//active state
 }
 
 -(void)onTouchEndedLevelSelect:(LHTouchInfo*)info {
