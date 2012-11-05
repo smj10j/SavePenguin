@@ -244,7 +244,7 @@
 								<key>Color</key>
 								<string>{{1, 1}, {1, 1}}</string>
 								<key>FlipX</key>
-								<false/>
+								<true/>
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>

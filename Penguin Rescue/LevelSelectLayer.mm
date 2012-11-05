@@ -188,7 +188,7 @@
 		[levelButton addChild:levelNameLabel];
 		
 		
-		if(!isLocked) {
+		if(!DISTRIBUTION_MODE || !isLocked) {
 			//used when clicking the sprite
 			[_spriteNameToLevelPath setObject:levelPath forKey:levelButton.uniqueName];
 			[levelButton registerTouchBeganObserver:self selector:@selector(onTouchAnyButton:)];

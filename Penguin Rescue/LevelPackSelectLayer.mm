@@ -160,7 +160,7 @@
 		
 		
 		
-		if(!isLocked) {
+		if(!DISTRIBUTION_MODE || !isLocked) {
 		
 			//used when clicking the sprite
 			[_spriteNameToLevelPackPath setObject:levelPackPath forKey:levelPackButton.uniqueName];
