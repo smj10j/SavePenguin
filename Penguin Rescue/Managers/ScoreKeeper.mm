@@ -353,11 +353,11 @@
 		return @"B+";
 		
 		
-	}else if(percentile < 86) {
+	}else if(percentile < 84) {
 		return @"A-";
 	}else if(percentile < 89) {
 		return @"A";
-	}else if(percentile < 93) {
+	}else if(percentile < 94) {
 		return @"A+";
 	}else if(percentile < 97) {
 		return @"A++";

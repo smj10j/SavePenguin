@@ -1336,9 +1336,10 @@
 									scoringYOffset);
 	[self addChild:toolsScoreLabel];
 
-	CCLabelTTF* totalScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", finalScore] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
+
+	CCLabelTTF* totalScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", finalScore] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 	totalScoreLabel.color = SCORING_FONT_COLOR2;
-	totalScoreLabel.position = ccp(winSize.width/2 + (170*SCALING_FACTOR_H) + (IS_IPHONE ? 15*SCALING_FACTOR_H : 0),
+	totalScoreLabel.position = ccp(winSize.width/2 + (170*SCALING_FACTOR_H) + (IS_IPHONE ? 14*SCALING_FACTOR_H : 0),
 									scoringYOffset);
 	[self addChild:totalScoreLabel];
 

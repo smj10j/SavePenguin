@@ -160,9 +160,10 @@
 			//display the grade
 			double score = [(NSNumber*)[completedLevels valueForKey:levelPath] doubleValue];
 			double zScore = [ScoreKeeper zScoreFromScore:score withLevelPackPath:_levelPackPath levelPath:levelPath];
-			CCLabelTTF* gradeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", [ScoreKeeper gradeFromZScore:zScore]] fontName:@"Helvetica" fontSize:20*SCALING_FACTOR_FONTS];
+			CCLabelTTF* gradeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", [ScoreKeeper gradeFromZScore:zScore]] fontName:@"Helvetica" fontSize:20*SCALING_FACTOR_FONTS dimensions:CGSizeMake(60*SCALING_FACTOR_H, 30*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentRight];
 			gradeLabel.color = ccWHITE;
-			gradeLabel.position = ccp(levelButtonSize.width - 30*SCALING_FACTOR_H, 25*SCALING_FACTOR_V);
+			gradeLabel.position = ccp(levelButtonSize.width - 45*SCALING_FACTOR_H,
+									  (20 + (IS_IPHONE ? 10 : 0))*SCALING_FACTOR_V);
 			[levelButton addChild:gradeLabel];
 			
 		}else if([availableLevels containsObject:levelPath]) {

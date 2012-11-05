@@ -87,7 +87,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "echo &quot;----------- Running pngquant --------------&quot;&#10;&#10;&quot;${PROJECT_DIR}/tools/pngquant&quot; -f -ext .png 256 &quot;${PROJECT_DIR}&quot;/Default*.png&#10;&quot;${PROJECT_DIR}/tools/pngquant&quot; -f -ext .png 256 &quot;${PROJECT_DIR}&quot;/Penguin\ Rescue/Resources/images/*.png&#10;&quot;${PROJECT_DIR}/tools/pngquant&quot; -f -ext .png 256 &quot;${PROJECT_DIR}&quot;/Penguin\ Rescue/Resources/Levels/**/*.png">
+               scriptText = "">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
