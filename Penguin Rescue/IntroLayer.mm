@@ -57,14 +57,7 @@
 		background.position = ccp(winSize.width/2, winSize.height/2);
 		[self addChild: background];
 		
-		
-		CCLabelTTF* loadingLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Loading..."] fontName:@"Helvetica" fontSize:36*SCALING_FACTOR_FONTS];
-		loadingLabel.color = ccWHITE;
-		loadingLabel.position = ccp(winSize.width/2, winSize.height/2);
-		[self addChild:loadingLabel];
-			
-		
-		
+	
 		/*********** Sound Settings ************/
 		[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.20f];
 		[[SimpleAudioEngine sharedEngine] setEffectsVolume:0.80f];

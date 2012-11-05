@@ -64,13 +64,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{513, 385}, {512, 384}}</string>
+								<string>{{0, 345}, {512, 138.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<true/>
+								<false/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -86,7 +86,7 @@
 								<key>TagName</key>
 								<string>DEFAULT</string>
 								<key>TextureOffset</key>
-								<string>{0, -0}</string>
+								<string>{0, 122.75}</string>
 								<key>UniqueName</key>
 								<string>In_App_Purchase</string>
 								<key>ZOrder</key>
@@ -218,6 +218,8 @@
 				<string>ToolboxItem_Debris</string>
 				<key>ClassRepresentation</key>
 				<dict>
+					<key>mass</key>
+					<real>1</real>
 					<key>placeCost</key>
 					<real>250</real>
 					<key>runningCost</key>

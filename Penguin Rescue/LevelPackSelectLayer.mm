@@ -43,6 +43,8 @@
 {
 	if( (self=[super init])) {
 		
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
+
 		self.isTouchEnabled = YES;
 
 		[LevelHelperLoader dontStretchArt];
@@ -50,6 +52,19 @@
 		//create a LevelHelperLoader object - we use an empty level
 		_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", @"Menu", @"LevelPackSelect"]];
 		[_levelLoader addObjectsToWorld:nil cocos2dLayer:self];
+				
+		//draw the background water tiles
+		LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water1" fromSheet:@"Map" fromSHFile:@"Spritesheet" tag:BACKGROUND];
+		for(int x = -waterTile.boundingBox.size.width/2; x < winSize.width + waterTile.boundingBox.size.width/2; ) {
+			for(int y = -waterTile.boundingBox.size.height/2; y < winSize.height + waterTile.boundingBox.size.width/2; ) {
+				LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water1" fromSheet:@"Map" fromSHFile:@"Spritesheet" tag:BACKGROUND parent:[_levelLoader layerWithUniqueName:@"MAIN_LAYER"]];
+				waterTile.zOrder = -1;
+				[waterTile transformPosition:ccp(x,y)];
+				y+= waterTile.boundingBox.size.height;
+			}
+			x+= waterTile.boundingBox.size.width;
+		}
+		[waterTile removeSelf];
 
 		_spriteNameToLevelPackPath = [[NSMutableDictionary alloc] init];
 				

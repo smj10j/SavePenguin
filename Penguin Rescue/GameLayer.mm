@@ -1601,6 +1601,15 @@
 			//[SettingsManager setBool:true forKey:SETTING_HAS_SEEN_TUTORIAL_3];
 		}
 	}
+	if(tutorial == nil && ![SettingsManager boolForKey:SETTING_HAS_SEEN_TUTORIAL_3]) {
+		//is this tutorial available on this level?
+		tutorial = [_levelLoader spriteWithUniqueName:@"Tutorial4"];
+		if(tutorial != nil) {
+			DebugLog(@"Showing tutorial 4");
+			//[SettingsManager setBool:true forKey:SETTING_HAS_SEEN_TUTORIAL_4];
+		}
+	}
+
 	
 	
 	//generic for all tutorials
@@ -2572,6 +2581,11 @@
 		
 		//TODO: replace penguin a happy animation
     }
+	
+	//tell all sharks they should update
+	for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
+		[[_sharkMoveGridDatas objectForKey:shark.uniqueName] forceUpdateToMoveGrid];
+	}
 }
 
 

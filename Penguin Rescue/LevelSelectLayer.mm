@@ -46,6 +46,8 @@
 {
 	if( (self=[super init])) {
 		
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
+
 		self.isTouchEnabled = YES;
 
 		[LevelHelperLoader dontStretchArt];
@@ -53,6 +55,20 @@
 		//create a LevelHelperLoader object - we use an empty level
 		_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", @"Menu", @"LevelSelect"]];
 		[_levelLoader addObjectsToWorld:nil cocos2dLayer:self];
+		
+				
+		//draw the background water tiles
+		LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water1" fromSheet:@"Map" fromSHFile:@"Spritesheet" tag:BACKGROUND];
+		for(int x = -waterTile.boundingBox.size.width/2; x < winSize.width + waterTile.boundingBox.size.width/2; ) {
+			for(int y = -waterTile.boundingBox.size.height/2; y < winSize.height + waterTile.boundingBox.size.width/2; ) {
+				LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water1" fromSheet:@"Map" fromSHFile:@"Spritesheet" tag:BACKGROUND parent:[_levelLoader layerWithUniqueName:@"MAIN_LAYER"]];
+				waterTile.zOrder = -1;
+				[waterTile transformPosition:ccp(x,y)];
+				y+= waterTile.boundingBox.size.height;
+			}
+			x+= waterTile.boundingBox.size.width;
+		}
+		[waterTile removeSelf];
 
 		_spriteNameToLevelPath = [[NSMutableDictionary alloc] init];
 		
@@ -95,7 +111,7 @@
 	const int columns = (winSize.width - levelButtonMarginX*2) / (levelButtonMarginX+levelButtonSize.width);
 	const int rows = (winSize.height - levelButtonMarginY*2) / (levelButtonMarginY+levelButtonSize.height);
 	const int levelButtonXInitial = winSize.width/2 - (columns/2 * (levelButtonSize.width+levelButtonMarginX)) + (levelButtonSize.width+levelButtonMarginX)/2;
-	const int levelButtonYInitial = winSize.height + levelButtonSize.height/2;
+	const int levelButtonYInitial = winSize.height + levelButtonSize.height/2 - levelButtonMarginY;
 	[levelButton removeSelf];
 
 	int levelButtonX = levelButtonXInitial;
@@ -145,7 +161,7 @@
 			double score = [(NSNumber*)[completedLevels valueForKey:levelPath] doubleValue];
 			double zScore = [ScoreKeeper zScoreFromScore:score withLevelPackPath:_levelPackPath levelPath:levelPath];
 			CCLabelTTF* gradeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", [ScoreKeeper gradeFromZScore:zScore]] fontName:@"Helvetica" fontSize:20*SCALING_FACTOR_FONTS];
-			gradeLabel.color = ccBLACK;
+			gradeLabel.color = ccWHITE;
 			gradeLabel.position = ccp(levelButtonSize.width - 30*SCALING_FACTOR_H, 25*SCALING_FACTOR_V);
 			[levelButton addChild:gradeLabel];
 			
@@ -167,7 +183,7 @@
 		
 		//display the level name
 		CCLabelTTF* levelNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", levelName] fontName:@"Helvetica" fontSize:20*SCALING_FACTOR_FONTS dimensions:CGSizeMake(levelButtonSize.width-20*SCALING_FACTOR_H, levelButtonSize.height - 20*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
-		levelNameLabel.color = ccBLACK;
+		levelNameLabel.color = ccWHITE;
 		levelNameLabel.position = ccp(levelButtonSize.width/2,levelButtonSize.height/2);
 		[levelButton addChild:levelNameLabel];
 		
