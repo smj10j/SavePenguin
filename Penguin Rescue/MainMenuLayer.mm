@@ -76,6 +76,8 @@
 		[playButton registerTouchEndedObserver:self selector:@selector(onPlay:)];
 
 
+		//TODO: enable IAP menu button
+		/*
 		LHSprite* IAPButton = [_levelLoader createSpriteWithName:@"IAP_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 		[IAPButton prepareAnimationNamed:@"Menu_IAP_Button" fromSHScene:@"Spritesheet"];
 		[IAPButton transformPosition: ccp(
@@ -83,7 +85,7 @@
 								20*SCALING_FACTOR_V + IAPButton.boundingBox.size.height/2)];
 		[IAPButton registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
 		[IAPButton registerTouchEndedObserver:self selector:@selector(onIAP:)];
-		
+		*/
 		
 		
 		LHSprite* infoButton = [_levelLoader createSpriteWithName:@"Info_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];

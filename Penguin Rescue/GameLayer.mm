@@ -311,8 +311,10 @@
 	[IAPMenuButton prepareAnimationNamed:@"Menu_IAP_In_Game_Button" fromSHScene:@"Spritesheet"];
 	[IAPMenuButton transformPosition: ccp(-IAPMenuButton.contentSize.width/2, -IAPMenuButton.contentSize.height/2) ];
 	IAPMenuButton.opacity = 0;
-	[IAPMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganIAPMenu:)];
-	[IAPMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedIAPMenu:)];
+	//TODO: enable IAP menu button
+	IAPMenuButton.visible = false;
+	//[IAPMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganIAPMenu:)];
+	//[IAPMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedIAPMenu:)];
 	[_inGameMenuItems addObject:IAPMenuButton];
 		
 		
@@ -426,6 +428,7 @@
 
 		//draw a box to hold it
 		LHSprite* toolboxContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
+		toolboxContainer.zOrder = _actorsBatchNode.zOrder+1;
 		toolboxContainer.tag = TOOLBOX_ITEM_CONTAINER;
 		[toolboxContainer transformPosition: ccp(toolGroupX, toolGroupY)];
 
