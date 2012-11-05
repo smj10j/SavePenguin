@@ -90,6 +90,10 @@
 	_isMoveGridValid = false;
 }
 
+-(int)bestFoundRouteWeight {
+	return _bestFoundRouteWeight;
+}
+
 - (void)scheduleUpdateToMoveGridIn:(NSTimeInterval)timeInterval {
 	
 	if(_scheduledUpdateMoveGridTimer != nil) {
@@ -192,21 +196,20 @@
 		double vE = 0;
 		double vN = 0;
 		
-		//COMMENTED OUT BECAUSE THIS SEEMS LIKE FAULTY LOGIC
-		//situation: West and East are equal and North and South are not equal - we'll get stuck forever
-		/*if(wE == wW && wN != wS) {
+		//situation: West and East are equal and North and South are worse options - we'll get stuck forever
+		if(wE == wW && wE < wN && wE < wS) {
 			if(arc4random()%100 < 50) {
 				wE++;
 			}else {
 				wW++;
 			}
-		}else if(wN == wS && wE != wW) {
+		}else if(wN == wS && wN < wE && wN < wW) {
 			if(arc4random()%100 < 50) {
 				wN++;
 			}else {
 				wS++;
 			}
-		}*/
+		}
 		
 		short absWE = abs(wE);
 		short absWW = abs(wW);
@@ -269,6 +272,7 @@
 		if(bestFoundRouteWeight >= 0) {
 			[bSelf copyMoveGridBufferToMoveGrid];
 			_foundRoute = true;
+			_bestFoundRouteWeight = bestFoundRouteWeight;
 			_isMoveGridValid = true;
 			_minSearchPathFactor-= .25;
 			if(_minSearchPathFactor < .5) {

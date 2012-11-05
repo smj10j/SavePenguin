@@ -20,6 +20,7 @@
 	bool _isBusy;
 	bool _isMoveGridValid;
 	bool _foundRoute;
+	int _bestFoundRouteWeight;
 	double _minSearchPathFactor;
 
 	CGPoint _lastToTile;
@@ -51,6 +52,7 @@
 - (void)forceUpdateToMoveGrid;
 - (void)invalidateMoveGrid;
 - (bool)busy;
+- (int)bestFoundRouteWeight;
 - (void)scheduleUpdateToMoveGridIn:(NSTimeInterval)timeInterval;
 
 

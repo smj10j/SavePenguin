@@ -2716,6 +2716,26 @@
 
 		_startTouch = location;
 		_lastTouch = location;
+		
+		
+		if(__DEBUG_SHARKS || __DEBUG_PENGUINS) {
+
+			CGPoint gridPos = [self toGrid:location];
+
+			MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:@"Penguin"];
+			const short** penguinMoveGrid = nil;
+			MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:@"Shark"];
+			const short** sharkMoveGrid = nil;
+			if(penguinMoveGridData != nil) {
+				penguinMoveGrid = [penguinMoveGridData moveGrid];
+				DebugLog(@"Penguin moveGrid at location %@ = %d", NSStringFromCGPoint(gridPos), penguinMoveGrid[(int)gridPos.x][(int)gridPos.y]);
+			}
+			if(sharkMoveGridData != nil) {
+				sharkMoveGrid = [sharkMoveGridData moveGrid];
+				DebugLog(@"Shark moveGrid at location %@ = %d", NSStringFromCGPoint(gridPos), sharkMoveGrid[(int)gridPos.x][(int)gridPos.y]);
+			}
+			
+		}
 	}
 }
 
@@ -2739,18 +2759,17 @@
 			sharkMoveGrid = [sharkMoveGridData moveGrid];
 		}
 		
-		double max = _gridWidth*4;
 		ccPointSize(_gridSize-1);
 		for(int x = 0; x < _gridWidth; x++) {
 			for(int y = 0; y < _gridHeight; y++) {
 				if(__DEBUG_PENGUINS && penguinMoveGrid != nil) {
 					int pv = (penguinMoveGrid[x][y]);
-					ccDrawColor4B(55,55,(log(pv/max * 100)/2.0)*200+55,50);
+					ccDrawColor4B(55,55,(pv/penguinMoveGridData.bestFoundRouteWeight)*200+55,50);
 					ccDrawPoint( ccp(x*_gridSize+_gridSize/2, y*_gridSize+_gridSize/2) );
 				}
 				if(__DEBUG_SHARKS && sharkMoveGrid != nil) {
 					int sv = (sharkMoveGrid[x][y]);
-					ccDrawColor4B((log(sv/max * 100)/2)*200+55,55,55,50);
+					ccDrawColor4B((sv/sharkMoveGridData.bestFoundRouteWeight)*200+55,55,55,50);
 					ccDrawPoint( ccp(x*_gridSize + _gridSize/2.0, y*_gridSize + _gridSize/2) );
 				}
 			}
