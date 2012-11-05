@@ -1180,7 +1180,6 @@
 }
 
 
-//TODO: should all penguins need to make it to safety OR just have all sharks gone or all penguins safe
 -(void) levelWon {
 
 	if(_state == GAME_OVER) {
@@ -1212,10 +1211,6 @@
 	[Analytics endTimedEvent:@"Play_Level" withParameters:flurryParams];
 	
 	DebugLog(@"Showing level won animations");
-	
-	
-	//TODO: show some happy penguins and sad sharks
-	
 	
 	
 	int scoreDeductions = 0;
@@ -1474,10 +1469,6 @@
 
 	DebugLog(@"Showing level lost animations for penguin/shark collision");
 	
-
-	//TODO: show some happy sharks and sad penguins (if any are left!)
-	//eg. [shark startAnimationNamed:@"attackPenguin"];
-	
 	[self showLevelLostPopup];
 }
 
@@ -1710,12 +1701,11 @@
 					
 						penguinData.hasSpottedShark = true;
 						
-						//TODOO: play some kind of penguin animation with an alert dialog and a squawk sound
-						
 						[penguin prepareAnimationNamed:@"Penguin_Waddle" fromSHScene:@"Spritesheet"];
 						if(_state == RUNNING) {
 							[penguin playAnimation];
 						}
+						
 						break;
 					}
 				}
@@ -2222,11 +2212,9 @@
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
 				if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (trying to move, but not making progress) - we're removing him", shark.uniqueName);
-				//TODO: make the shark spin around in circles and explode in frustration!
 				[shark removeSelf];
 
 			}else {
-				//TODO: do a confused/arms up in air animation
 				
 				//there's something fishy about them here parts!
 				if(sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] != HARD_BORDER_WEIGHT)
@@ -2405,8 +2393,6 @@
 						Penguin* penguin2UserData = ((Penguin*)penguin2.userInfo);
 						if(!penguin2UserData.hasSpottedShark) {
 							penguin2UserData.hasSpottedShark = true;
-
-							//TODO: show some kind of AH!!! speech bubble alert animation for the penguins communicating
 							
 							[penguin2 prepareAnimationNamed:@"Penguin_Waddle" fromSHScene:@"Spritesheet"];
 							if(_state == RUNNING) {
@@ -2446,7 +2432,6 @@
 				if(!penguinData.isStuck) {
 					if(DEBUG_MOVEGRID) DebugLog(@"Penguin %@ is stuck (nowhere to go)!", penguin.uniqueName);
 				}
-				//TODO: show a confused expression. possibly raising wings into the air in a "oh well" gesture
 				
 				//reject any moves
 				bestOptionPos = penguin.position;
@@ -2467,9 +2452,6 @@
 			if(needsToJitter || [penguinMoveGridData distanceTraveledStraightline] < 5*SCALING_FACTOR_GENERIC) {
 				//we're stuck... but we'll let sharks report us as being stuck.
 				//we'll just try and get ourselves out of this sticky situation
-				
-				//TODO: do a flustered/feathers flying everywhere animation
-
 				
 				double jitterX = 0;//((arc4random()%200)-100.0)/100;
 				double jitterY = 0;//((arc4random()%200)-100.0)/100;
@@ -2583,6 +2565,8 @@
 		}
 		
 		//TODO: replace penguin a happy animation
+		[penguin prepareAnimationNamed:@"Penguin_Happy" fromSHScene:@"Spritesheet"];
+		[penguin playAnimation];
     }
 	
 	//tell all sharks they should update

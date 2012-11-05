@@ -11,7 +11,7 @@
 
 @implementation PowerBarNode
 
-//TODO: wrap with a pretty health-style image
+//TODO: wrap with a pretty health-bar-style image
 
 
 -(id)initWithSize:(CGSize)contentSize position:(CGPoint)position color:(ccColor4F)barColor label:(NSString *)label textColor:(ccColor3B)textColor fontSize:(int)fontSize {

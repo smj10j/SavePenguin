@@ -136,7 +136,8 @@
 
 			//add a checkmark icon
 			LHSprite* completedMark = [_levelLoader createSpriteWithName:@"Level_Pack_Completed" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
-			[completedMark transformPosition:ccp(levelPackButtonSize.width/2, completedMark.boundingBox.size.height/2 + 20*SCALING_FACTOR_V)];
+			[completedMark transformPosition:ccp(levelPackButtonSize.width/2,
+												levelPackButtonSize.height/2 - 40*SCALING_FACTOR_V)];
 					
 		}else if([availableLevelPacks containsObject:levelPackPath]) {
 			//DebugLog(@"Pack %@ is available!", levelPackPath);
@@ -146,7 +147,8 @@
 
 			//add a lock on top
 			LHSprite* lockIcon = [_levelLoader createSpriteWithName:@"Level_Pack_Locked" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
-			[lockIcon transformPosition:ccp(levelPackButtonSize.width/2, lockIcon.boundingBox.size.height/2 + 20*SCALING_FACTOR_V)];
+			[lockIcon transformPosition:ccp(levelPackButtonSize.width/2,
+											levelPackButtonSize.height/2 - 40*SCALING_FACTOR_V)];
 			
 			isLocked = true;
 		}
@@ -154,8 +156,9 @@
 		
 		//display the pack name
 		CCLabelTTF* packNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", levelPackName] fontName:@"Helvetica" fontSize:36*SCALING_FACTOR_FONTS];
-		packNameLabel.color = ccBLACK;
-		packNameLabel.position = ccp(levelPackButtonSize.width/2,levelPackButtonSize.height + 40*SCALING_FACTOR_V);
+		packNameLabel.color = ccWHITE;
+		packNameLabel.position = ccp(levelPackButtonSize.width/2,
+									levelPackButtonSize.height + 40*SCALING_FACTOR_V);
 		[levelPackButton addChild:packNameLabel];
 		
 		
