@@ -209,6 +209,7 @@
 	
 	// now create the scroller and pass-in the pages (set widthOffset to 0 for fullscreen pages)
 	_scrollLayer = [[CCScrollLayer alloc] initWithLayers:scrollableLayers widthOffset: 0];
+	_scrollLayer.pagesIndicatorPosition = ccp(_scrollLayer.pagesIndicatorPosition.x, _scrollLayer.pagesIndicatorPosition.y-30*SCALING_FACTOR_V);
 	[[_levelLoader layerWithUniqueName:@"MAIN_LAYER"] addChild:_scrollLayer];
 	[scrollableLayers release];
 	
