@@ -83,4 +83,16 @@
 		Path = OneSided;
 		Name = "One-Sided";
 	};
+	21 = {
+		Path = Ragdoll;
+		Name = Ragdoll;
+	};
+	22 = {
+		Path = WrongWay;
+		Name = "Wrong Way";
+	};
+	23 = {
+		Path = 007;
+		Name = 007;
+	};
 }
