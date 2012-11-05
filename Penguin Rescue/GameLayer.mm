@@ -2564,7 +2564,6 @@
 			DebugLog(@"Penguin %@ has collided with some land!", penguin.uniqueName);
 		}
 		
-		//TODO: replace penguin a happy animation
 		[penguin prepareAnimationNamed:@"Penguin_Happy" fromSHScene:@"Spritesheet"];
 		[penguin playAnimation];
     }
@@ -2591,7 +2590,6 @@
 		if([touches count] == 1) {
 			if(_activeToolboxItem != nil) {
 				//toolbox item drag
-				//TODO: add some kind of crosshair or arrow so you know where the item is if it's tiny and under your finger
 				[_activeToolboxItem transformPosition:location];
 
 			}else if(_state == PLACE && _startTouch.x != 0 && _startTouch.y != 0) {
