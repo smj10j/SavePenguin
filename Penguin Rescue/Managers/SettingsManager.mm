@@ -183,11 +183,15 @@
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 			[NSString stringWithFormat:@"%@:%@", levelPackPath, levelPath], @"Level_Pack_and_Name",
 			levelPackPath, @"Level_Pack",
+			[SettingsManager stringForKey:SETTING_CURRENT_VERSION], @"App_Version",
 			[NSNumber numberWithInt:[SettingsManager intForKey:SETTING_NUM_REVIEW_PROMPTS]], @"Num_Review_Prompts",
 		nil];
 		[Analytics logEvent:[NSString stringWithFormat:@"ReviewRequest_%@", (accept ? @"Accepted" : @"Rejected")] withParameters:flurryParams];
 	
 		if(accept) {
+			
+			[SettingsManager setString:[SettingsManager stringForKey:SETTING_CURRENT_VERSION] forKey:SETTING_LEFT_REVIEW_VERSION];
+		
 			NSString* escapedValue = [APP_STORE_REVIEW_URL stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 			NSString *escStr = [escapedValue stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
 			NSURL *url = [NSURL URLWithString:escStr];

@@ -2240,51 +2240,42 @@
 		
 		bool needsToJitter = false;
 		Shark* sharkData = ((Shark*)shark.userInfo);
+		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];		
 		CGPoint sharkGridPos = [self toGrid:shark.position];
 
+		//using a gridPos of 1 inside the actual border because of a programmatically-added HARD BORDER around the grid
 		if(sharkGridPos.x > _gridWidth-2 || sharkGridPos.x < 1 || sharkGridPos.y > _gridHeight-2 || sharkGridPos.y < 1) {
-			DebugLog(@"Shark %@ is off-grid at %f,%f - moving him back on", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
+			if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is off-grid at %f,%f - moving him back on", shark.uniqueName, sharkGridPos.x, sharkGridPos.y);
 			
-			//using a gridPos of 1 inside the actual border because of a programmatically-added HARD BORDER around the grid
-
 			if(sharkGridPos.x > _gridWidth-2) {
-				sharkGridPos.x-= 2;
-				[shark transformPosition:ccp(shark.position.x-8*SCALING_FACTOR_H,shark.position.y)];
-			}else if(sharkGridPos.x < 1) {
-				sharkGridPos.x+= 2;
-				[shark transformPosition:ccp(shark.position.x+8*SCALING_FACTOR_H,shark.position.y)];
-			}else if(sharkGridPos.y > _gridHeight-2) {
-				sharkGridPos.y-= 2;
-				[shark transformPosition:ccp(shark.position.x,shark.position.y-8*SCALING_FACTOR_V)];
-			}else if(sharkGridPos.y < 1) {
-				sharkGridPos.y+= 2;
-				[shark transformPosition:ccp(shark.position.x,shark.position.y+8*SCALING_FACTOR_V)];
+				sharkGridPos.x = _gridWidth-2;
 			}
-			
+			if(sharkGridPos.x < 1) {
+				sharkGridPos.x = 1;
+			}
+			if(sharkGridPos.y > _gridHeight-2) {
+				sharkGridPos.y = _gridHeight-2;
+			}
+			if(sharkGridPos.y < 1) {
+				sharkGridPos.y = 1;
+			}
+
+			[shark transformPosition:[self fromGrid:sharkGridPos]];		
 			needsToJitter = true;
 		}
 		
-		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];		
 		
 		//readjust if we are somehow on top of land - this can happen when fans blow an actor on land or a moving border touches an actor, for example
 		int bumpIterations = 0;
-		while(sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT && bumpIterations < MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND) {
+		while(sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT
+				&& bumpIterations < MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND) {
 			//move back off of land
-			short wN = sharkGridPos.y+1 > _gridHeight-1 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1];
-			short wS = sharkGridPos.y-1 < 0 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1];
-			short wE = sharkGridPos.x+1 > _gridWidth-1 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y];
-			short wW = sharkGridPos.x-1 < 0 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y];
-			short wMax = max(max(max(wN,wS),wE),wW);
-			if(wN == wMax) {
-				[shark transformPosition:ccp(shark.position.x,shark.position.y+(bumpIterations*4)*SCALING_FACTOR_V)];
-			}else if(wS == wMax) {
-				[shark transformPosition:ccp(shark.position.x,shark.position.y-(bumpIterations*4)*SCALING_FACTOR_V)];
-			}else if(wE == wMax) {
-				[shark transformPosition:ccp(shark.position.x+(bumpIterations*4)*SCALING_FACTOR_H,shark.position.y)];
-			}else if(wW == wMax) {
-				[shark transformPosition:ccp(shark.position.x-(bumpIterations*4)*SCALING_FACTOR_H,shark.position.y)];
-			}
 			bumpIterations++;
+			
+			b2Vec2 v = shark.body->GetLinearVelocity();
+			[shark transformPosition:ccp(shark.position.x-v.x*dt, shark.position.y-v.y*dt)];
+			
+			sharkGridPos = [self toGrid:shark.position];			
 		}
 		
 		//use the best route algorithm
@@ -2475,24 +2466,24 @@
 		}
 		
 		if(penguinGridPos.x > _gridWidth-2 || penguinGridPos.x < 1 || penguinGridPos.y > _gridHeight-2 || penguinGridPos.y < 1) {
-			DebugLog(@"Penguin %@ is off-grid at %f,%f - moving him back on", penguin.uniqueName, penguinGridPos.x, penguinGridPos.y);
+			if(DEBUG_MOVEGRID) DebugLog(@"Penguin %@ is off-grid at %f,%f - moving him back on", penguin.uniqueName, penguinGridPos.x, penguinGridPos.y);
 			
 			//using a gridPos of 1 inside the actual border because of a programmatically-added HARD BORDER around the grid
 			
 			if(penguinGridPos.x > _gridWidth-2) {
-				penguinGridPos.x-= 2;
-				[penguin transformPosition:ccp(penguin.position.x-8*SCALING_FACTOR_H,penguin.position.y)];
-			}else if(penguinGridPos.x < 1) {
-				penguinGridPos.x+= 2;
-				[penguin transformPosition:ccp(penguin.position.x+8*SCALING_FACTOR_H,penguin.position.y)];
-			}else if(penguinGridPos.y > _gridHeight-2) {
-				penguinGridPos.y-= 2;
-				[penguin transformPosition:ccp(penguin.position.x,penguin.position.y-8*SCALING_FACTOR_V)];
-			}else if(penguinGridPos.y < 1) {
-				penguinGridPos.y+= 2;
-				[penguin transformPosition:ccp(penguin.position.x,penguin.position.y+8*SCALING_FACTOR_V)];
+				penguinGridPos.x = _gridWidth-2;
 			}
-			
+			if(penguinGridPos.x < 1) {
+				penguinGridPos.x = 1;
+			}
+			if(penguinGridPos.y > _gridHeight-2) {
+				penguinGridPos.y = _gridHeight-2;
+			}
+			if(penguinGridPos.y < 1) {
+				penguinGridPos.y = 1;
+			}
+
+			[penguin transformPosition:[self fromGrid:penguinGridPos]];
 			needsToJitter = true;
 		}
 		
@@ -2520,24 +2511,15 @@
 			
 			//readjust if we are somehow on top of land - this can happen when fans blow an actor on land, for example
 			int bumpIterations = 0;
-			while(penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT and bumpIterations < MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND) {
+			while(penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT
+					&& bumpIterations < MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND) {
 				//move back onto land
-				short wN = penguinGridPos.y+1 > _gridHeight-1 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1];
-				short wS = penguinGridPos.y-1 < 0 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1];
-				short wE = penguinGridPos.x+1 > _gridWidth-1 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x+1][(int)penguinGridPos.y];
-				short wW = penguinGridPos.x-1 < 0 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y];
-				short wMin = min(min(min(wN,wS),wE),wW);
-				if(wN == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x,penguin.position.y+(bumpIterations*4)*SCALING_FACTOR_V)];
-				}else if(wS == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x,penguin.position.y-(bumpIterations*4)*SCALING_FACTOR_V)];
-				}else if(wE == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x+(bumpIterations*4)*SCALING_FACTOR_H,penguin.position.y)];
-				}else if(wW == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x-(bumpIterations*4)*SCALING_FACTOR_H,penguin.position.y)];
-				}
 				bumpIterations++;
 				
+				b2Vec2 v = penguin.body->GetLinearVelocity();
+				[penguin transformPosition:ccp(penguin.position.x-v.x*dt, penguin.position.y-v.y*dt)];
+				
+				penguinGridPos = [self toGrid:penguin.position];
 				//needsToJitter = true;
 			}
 		
