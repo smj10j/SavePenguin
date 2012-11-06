@@ -1882,11 +1882,17 @@
 	}
 }
 
--(void)scoreToolboxItemPlacement:(LHSprite*)toolboxItem {
+-(void)scoreToolboxItemPlacement:(LHSprite*)toolboxItem replaced:(bool)replaced {
 
 	//accounting
 	ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)_activeToolboxItem.userInfo);
-	int score = _state == PLACE ? toolboxItemData.placeCost : toolboxItemData.runningCost;
+	int score = _state == PLACE ? (toolboxItemData.placeCost * (replaced ? 0 : 1)) :
+								  (toolboxItemData.runningCost * (replaced ? 0.25 : 1));
+				
+	if(score == 0) {
+		return;
+	}
+				
 	[_scoreKeeper addScore:score description:(_state == PLACE ? @"PLACE" : @"RUNNING") sprite:_activeToolboxItem group:true];
 	
 	//show a notification about the cost of the item
@@ -2000,7 +2006,7 @@
 			[_toolboxBatchNode removeChild:_activeToolboxItem cleanup:NO];
 			[_mainLayer addChild:_activeToolboxItem];
 			[_placedToolboxItems addObject:_activeToolboxItem];
-			[self scoreToolboxItemPlacement:_activeToolboxItem];
+			[self scoreToolboxItemPlacement:_activeToolboxItem replaced:false];
 			
 			
 
@@ -2016,7 +2022,8 @@
 			[Analytics logEvent:@"Place_Toolbox_Item" withParameters:flurryParams];
 			
 		}else {
-		
+
+			[self scoreToolboxItemPlacement:_activeToolboxItem replaced:true];
 
 			//analytics logging
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
