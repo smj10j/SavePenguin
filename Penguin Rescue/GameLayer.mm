@@ -68,6 +68,7 @@
 		_numSharksUpdatingMoveGrids = 0;
 		_numPenguinsUpdatingMoveGrids = 0;
 		_activeToolboxItem = nil;
+		_activeToolboxItemSelectionTimestamp = 0;
 		_moveActiveToolboxItemIntoWorld = false;
 		_shouldUpdateToolbox = false;
 		_penguinsToPutOnLand =[[NSMutableDictionary alloc] init];
@@ -834,20 +835,17 @@
 }
 
 
+-(void)setActiveToolboxItem:(LHSprite*)toolboxItem {
 
--(void)onTouchBeganToolboxItem:(LHTouchInfo*)info {
-
-	if(_state != RUNNING && _state != PLACE) {
+	double timestamp = [[NSDate date] timeIntervalSince1970];
+	if(_activeToolboxItem != nil && (timestamp - _activeToolboxItemSelectionTimestamp > 0.100)) {
+		//only handle one touch at a time with touches right next to eachother preferring the later one
 		return;
 	}
-
-	if(_activeToolboxItem != nil) {
-		//only handle one touch at a time
-		return;
-	}
-
-	LHSprite* toolboxItemContainer = info.sprite;
-	LHSprite* toolboxItem = toolboxItemContainer.tag == TOOLBOX_ITEM_CONTAINER ? [_levelLoader spriteWithUniqueName:((NSString*)toolboxItemContainer.userData)] : toolboxItemContainer;
+	_activeToolboxItemSelectionTimestamp = timestamp;
+	
+	if(DEBUG_TOOLBOX) DebugLog(@"Set activeToolboxItem to %@", toolboxItem.uniqueName);
+	
 	
 	/*
 	if(toolboxItem.tag != TOOLBOX_ITEM) {
@@ -856,14 +854,25 @@
 	}
 	*/
 	
-	//hide any tutorials
-	[self fadeOutAllTutorials];
+	if(_activeToolboxItem == nil) {
+		//fresh touch
 	
-	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
-		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/pickup.wav"];
+		//hide any tutorials
+		[self fadeOutAllTutorials];
+		
+		if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+			[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/pickup.wav"];
+		}
 	}
 
 	_activeToolboxItem = toolboxItem;
+	
+	[self scheduleOnce:@selector(initializeSelectedActiveToolboxItem) delay:0.100];
+}
+
+-(void)initializeSelectedActiveToolboxItem {
+	
+	//establish crosshairs
 	if(_activeToolboxItemRotationCrosshair != nil) {
 		[self removeChild:_activeToolboxItemRotationCrosshair cleanup:YES];
 		[_activeToolboxItemRotationCrosshair release];
@@ -874,7 +883,7 @@
 	_activeToolboxItemOriginalPosition = _activeToolboxItem.position;
 	ToolboxItem_Obstruction* toolboxItemData = ((ToolboxItem_Obstruction*)_activeToolboxItem.userInfo);	//ToolboxItem_Obstruction is used because all ToolboxItem classes have a "scale" property
 	[_activeToolboxItem transformScale: toolboxItemData.scale];
-	DebugLog(@"Scaling up toolboxitem %@ to full-size", _activeToolboxItem.uniqueName);
+	if(DEBUG_TOOLBOX) DebugLog(@"Scaling up toolboxitem %@ to full-size", _activeToolboxItem.uniqueName);
 	
 	
 	//slide down the toolbox items
@@ -887,6 +896,23 @@
 		}
 		[aToolboxItem runAction:[CCMoveTo actionWithDuration:0.20f position:ccp(aToolboxItem.position.x, -aToolboxItem.boundingBox.size.height)]];
 	}
+}
+
+
+-(void)onTouchBeganToolboxItem:(LHTouchInfo*)info {
+
+	//[[LHTouchMgr sharedInstance] setPriority:1 forTouchesOfTag:OBSTRUCTION];
+
+	if(DEBUG_TOOLBOX) DebugLog(@"Touch began on toolboxItem %@", info.sprite.uniqueName);
+
+	if(_state != RUNNING && _state != PLACE) {
+		return;
+	}
+
+	LHSprite* toolboxItemContainer = info.sprite;
+	LHSprite* toolboxItem = toolboxItemContainer.tag == TOOLBOX_ITEM_CONTAINER ? [_levelLoader spriteWithUniqueName:((NSString*)toolboxItemContainer.userData)] : toolboxItemContainer;
+
+	[self setActiveToolboxItem:toolboxItem];
 }
 
 -(void)onTouchEndedToolboxItem:(LHTouchInfo*)info {
@@ -914,7 +940,7 @@
 			double scale = fmin((_toolboxItemSize.width-TOOLBOX_ITEM_CONTAINER_PADDING_H)/_activeToolboxItem.contentSize.width, (_toolboxItemSize.height-TOOLBOX_ITEM_CONTAINER_PADDING_V)/_activeToolboxItem.contentSize.height);
 			[_activeToolboxItem transformScale: scale];
 			//DebugLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", _activeToolboxItem.uniqueName, (int)(100*scale));
-			DebugLog(@"Placing toolbox item back into the HUD");
+			if(DEBUG_TOOLBOX) DebugLog(@"Placing toolbox item back into the HUD");
 			
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",

@@ -91,6 +91,7 @@ enum PROPAGATION_RESULT {
 	
 	bool _moveActiveToolboxItemIntoWorld;
 	LHSprite* _activeToolboxItem;
+	double _activeToolboxItemSelectionTimestamp;
 	ToolboxItemRotationCrosshair* _activeToolboxItemRotationCrosshair;
 	CGPoint _activeToolboxItemOriginalPosition;
 	NSMutableDictionary* _toolGroups;
