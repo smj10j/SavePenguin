@@ -650,6 +650,16 @@
 		}else if(sprite.tag == BORDER || sprite.tag == LAND) {
 			//all land items are set as sensors to give a more natural movement feel around edges
 			[sprite setSensor:true];
+			
+			/*This can create collision detection issues where sharks don't know they're touching a border because their middle point (gridPos) is not touching the land border
+			//..except for moving ones!
+			if([sprite.userInfoClassName isEqualToString:@"MovingBorder"]) {
+				[sprite setSensor:false];
+				[sprite makeDynamic];
+				sprite.body->GetFixtureList()->SetRestitution(1.0);
+				sprite.body->GetFixtureList()->SetFriction(0);
+			}
+			*/
 		}
 	}
 			
@@ -664,8 +674,6 @@
 		return;
 	}
 	_isGeneratingFeatureGrid = true;
-
-	//TODO: consider if we should "unStuck" all penguins/sharks whenever we regenerate the feature map
 
 	if(DEBUG_MOVEGRID) DebugLog(@"Generating feature maps...");
 	
@@ -814,7 +822,10 @@
 			memcpy(sharkBaseGrid[x], (void*)_sharkMapfeaturesGrid[x], rowSize);
 		}
 		[moveGridData forceUpdateToMoveGrid];
-	}	
+	}
+	
+	Shark* sharkData = (Shark*)shark.userInfo;
+	sharkData.isStuck = false;
 }
 
 -(void)updateFeatureMapForPenguin:(LHSprite*)penguin {
@@ -839,6 +850,9 @@
 		}
 		[moveGridData forceUpdateToMoveGrid];
 	}
+	
+	Penguin* penguinData = (Penguin*)penguin.userInfo;
+	penguinData.isStuck = false;
 }
 
 
@@ -2327,9 +2341,49 @@
 			//move back off of land
 			bumpIterations++;
 			
-			b2Vec2 v = shark.body->GetLinearVelocity();
-			[shark transformPosition:ccp(shark.position.x-v.x*dt, shark.position.y-v.y*dt)];
+			//we are now stuck - trace the land and find the closet point to hop off at
 			
+			double minDist = 10000;
+			LHSprite* touchedBoder = nil;
+			NSMutableArray* borders = [NSMutableArray arrayWithArray:[_levelLoader spritesWithTag:BORDER]];
+			[borders addObjectsFromArray:[_levelLoader spritesWithTag:OBSTRUCTION]];
+			[borders addObjectsFromArray:[_levelLoader spritesWithTag:LAND]];
+			[borders addObjectsFromArray:[_levelLoader spritesWithTag:SANDBAR]];
+
+			for(LHSprite* border in borders) {
+				double dist = ccpDistance(border.position, shark.position);
+				if(dist < minDist) {
+					minDist = dist;
+					touchedBoder = border;
+				}
+			}
+			
+			if(touchedBoder != nil) {
+				CGPoint borderN = ccp(touchedBoder.position.x, touchedBoder.position.y+touchedBoder.boundingBox.size.height/2 + _gridSize/2);
+				double distN = ccpDistance(shark.position, borderN);
+				CGPoint borderS = ccp(touchedBoder.position.x, touchedBoder.position.y-touchedBoder.boundingBox.size.height/2 - _gridSize/2);
+				double distS = ccpDistance(shark.position, borderS);
+				CGPoint borderE =  ccp(touchedBoder.position.x+touchedBoder.boundingBox.size.width/2 + _gridSize/2, touchedBoder.position.y);
+				double distE = ccpDistance(shark.position, borderE);
+				CGPoint borderW = ccp(touchedBoder.position.x-touchedBoder.boundingBox.size.width/2 - _gridSize/2, touchedBoder.position.y);
+				double distW = ccpDistance(shark.position, borderW);
+				double absMin = fmin(fmin(fmin(distE, distW), distN), distS);
+				
+				if(distN == absMin) {
+					[shark transformPosition:ccp(shark.position.x, (shark.position.y+borderN.y)/2)];
+					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the north of a border he is in contact with", shark.uniqueName);
+				}else if(distS == absMin) {
+					[shark transformPosition:ccp(shark.position.x, (shark.position.y+borderS.y)/2)];
+					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the south of a border he is in contact with", shark.uniqueName);
+				}else if(distE == absMin) {
+					[shark transformPosition:ccp((shark.position.x+borderE.x)/2, shark.position.y)];
+					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the east of a border he is in contact with", shark.uniqueName);
+				}else if(distW == absMin) {
+					[shark transformPosition:ccp((shark.position.x+borderW.x)/2, shark.position.y)];
+					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the west of a border he is in contact with", shark.uniqueName);
+				}
+			}
+						
 			sharkGridPos = [self toGrid:shark.position];			
 		}
 		
@@ -2573,9 +2627,47 @@
 					&& bumpIterations < MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND) {
 				//move back onto land
 				bumpIterations++;
+
+				//we are now stuck - trace the land and find the closet point to hop off at
 				
-				b2Vec2 v = penguin.body->GetLinearVelocity();
-				[penguin transformPosition:ccp(penguin.position.x-v.x*dt, penguin.position.y-v.y*dt)];
+				double minDist = 10000;
+				LHSprite* touchedBoder = nil;
+				NSMutableArray* borders = [NSMutableArray arrayWithArray:[_levelLoader spritesWithTag:BORDER]];
+				[borders addObjectsFromArray:[_levelLoader spritesWithTag:OBSTRUCTION]];
+
+				for(LHSprite* border in borders) {
+					double dist = ccpDistance(border.position, penguin.position);
+					if(dist < minDist) {
+						minDist = dist;
+						touchedBoder = border;
+					}
+				}
+				
+				if(touchedBoder != nil) {
+					CGPoint borderN = ccp(touchedBoder.position.x, touchedBoder.position.y+touchedBoder.boundingBox.size.height/2 + _gridSize/2);
+					double distN = ccpDistance(penguin.position, borderN);
+					CGPoint borderS = ccp(touchedBoder.position.x, touchedBoder.position.y-touchedBoder.boundingBox.size.height/2 - _gridSize/2);
+					double distS = ccpDistance(penguin.position, borderS);
+					CGPoint borderE =  ccp(touchedBoder.position.x+touchedBoder.boundingBox.size.width/2 + _gridSize/2, touchedBoder.position.y);
+					double distE = ccpDistance(penguin.position, borderE);
+					CGPoint borderW = ccp(touchedBoder.position.x-touchedBoder.boundingBox.size.width/2 - _gridSize/2, touchedBoder.position.y);
+					double distW = ccpDistance(penguin.position, borderW);
+					double absMin = fmin(fmin(fmin(distE, distW), distN), distS);
+					
+					if(distN == absMin) {
+						[penguin transformPosition:ccp(penguin.position.x, (penguin.position.y+borderN.y)/2)];
+						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the north of a border he is in contact with", penguin.uniqueName);
+					}else if(distS == absMin) {
+						[penguin transformPosition:ccp(penguin.position.x, (penguin.position.y+borderS.y)/2)];
+						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the south of a border he is in contact with", penguin.uniqueName);
+					}else if(distE == absMin) {
+						[penguin transformPosition:ccp((penguin.position.x+borderE.x)/2, penguin.position.y)];
+						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the east of a border he is in contact with", penguin.uniqueName);
+					}else if(distW == absMin) {
+						[penguin transformPosition:ccp((penguin.position.x+borderW.x)/2, penguin.position.y)];
+						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the west of a border he is in contact with", penguin.uniqueName);
+					}
+				}
 				
 				penguinGridPos = [self toGrid:penguin.position];
 				//needsToJitter = true;
@@ -2732,16 +2824,16 @@
 			penguinData.isSafe = true;
 			[_penguinsToPutOnLand setObject:land forKey:penguin.uniqueName];
 			DebugLog(@"Penguin %@ has collided with some land!", penguin.uniqueName);
-		}
 		
-		[penguin prepareAnimationNamed:@"Penguin_Happy" fromSHScene:@"Spritesheet"];
-		[penguin playAnimation];
+			[penguin prepareAnimationNamed:@"Penguin_Happy" fromSHScene:@"Spritesheet"];
+			[penguin playAnimation];			
+			
+			//tell all sharks they should update
+			for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
+				[[_sharkMoveGridDatas objectForKey:shark.uniqueName] forceUpdateToMoveGrid];
+			}
+		}
     }
-	
-	//tell all sharks they should update
-	for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
-		[[_sharkMoveGridDatas objectForKey:shark.uniqueName] forceUpdateToMoveGrid];
-	}
 }
 
 
@@ -2930,6 +3022,7 @@
 			}
 		}	
 
+/*
 		NSArray* lands = [_levelLoader spritesWithTag:LAND];
 		NSArray* borders = [_levelLoader spritesWithTag:BORDER];
 		NSArray* obstructions = [_levelLoader spritesWithTag:OBSTRUCTION];
@@ -2967,6 +3060,7 @@
 								sandbar.boundingBox.origin.y+sandbar.boundingBox.size.height + 8*SCALING_FACTOR_V),
 							sandbarColor);
 		}
+*/
 	}
 }
 

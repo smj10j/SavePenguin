@@ -40,6 +40,7 @@
 - (void)updateBaseGrid:(short**)baseGrid;
 
 - (void)logMove:(CGPoint)pos;
+- (CGPoint)moveHistoryAt:(int)indexOffset;
 - (void)clearMoveLog;
 - (double)distanceTraveled;
 - (double)distanceTraveledStraightline;

@@ -125,6 +125,14 @@
 	}
 }
 
+- (CGPoint)moveHistoryAt:(int)indexOffset {
+	if(!_moveHistoryIsFull) {
+		return _moveHistory[0];
+	}
+	int index = _moveHistoryIndex-indexOffset;
+	return _moveHistory[(index+_moveHistorySize)%_moveHistorySize];
+}
+
 - (double)distanceTraveledStraightline {
 	if(!_moveHistoryIsFull) {
 		return INFINITY;
@@ -170,15 +178,15 @@
 		return bestMove;
 	}
 	
-	short wN = fromTile.y < _gridHeight-1 ? _moveGrid[(int)fromTile.x][(int)fromTile.y+1] : 10000;
-	short wS = fromTile.y > 0 ? _moveGrid[(int)fromTile.x][(int)fromTile.y-1] : 10000;
-	short wE = fromTile.x < _gridWidth-1 ? _moveGrid[(int)fromTile.x+1][(int)fromTile.y] : 10000;
-	short wW = fromTile.x > 0 ? _moveGrid[(int)fromTile.x-1][(int)fromTile.y] : 10000;
+	short wN = fromTile.y < _gridHeight-1 ? _moveGrid[(int)fromTile.x][(int)fromTile.y+1] : HARD_BORDER_WEIGHT;
+	short wS = fromTile.y > 0 ? _moveGrid[(int)fromTile.x][(int)fromTile.y-1] : HARD_BORDER_WEIGHT;
+	short wE = fromTile.x < _gridWidth-1 ? _moveGrid[(int)fromTile.x+1][(int)fromTile.y] : HARD_BORDER_WEIGHT;
+	short wW = fromTile.x > 0 ? _moveGrid[(int)fromTile.x-1][(int)fromTile.y] : HARD_BORDER_WEIGHT;
 	
-	wN = wN == INITIAL_GRID_WEIGHT ? 10000 : wN;
-	wS = wS == INITIAL_GRID_WEIGHT ? 10000 : wS;
-	wE = wE == INITIAL_GRID_WEIGHT ? 10000 : wE;
-	wW = wW == INITIAL_GRID_WEIGHT ? 10000 : wW;
+	wN = wN == INITIAL_GRID_WEIGHT ? HARD_BORDER_WEIGHT : wN;
+	wS = wS == INITIAL_GRID_WEIGHT ? HARD_BORDER_WEIGHT : wS;
+	wE = wE == INITIAL_GRID_WEIGHT ? HARD_BORDER_WEIGHT : wE;
+	wW = wW == INITIAL_GRID_WEIGHT ? HARD_BORDER_WEIGHT : wW;
 	
 	short w = _moveGrid[(int)fromTile.x][(int)fromTile.y];
 	
@@ -186,7 +194,7 @@
 	
 	if(wW == wE && wE == wN && wN == wS) {
 				
-		if(wW == w && w == INITIAL_GRID_WEIGHT) {
+		if(wW == w && w == HARD_BORDER_WEIGHT) {
 			//this occurs when the shark has no route to the penguin - he literally has no idea which way to go
 			return bestMove;
 		}else {
@@ -194,15 +202,6 @@
 			bestMove = ccp(fromTile.x+((arc4random()%10)-5)/5.0,fromTile.y+((arc4random()%10)-5)/5.0);
 		}
 		
-	}else if(
-		(wW == INITIAL_GRID_WEIGHT || wW == HARD_BORDER_WEIGHT) &&
-		(wE == INITIAL_GRID_WEIGHT || wE == HARD_BORDER_WEIGHT) &&
-		(wN == INITIAL_GRID_WEIGHT || wN == HARD_BORDER_WEIGHT) &&
-		(wS == INITIAL_GRID_WEIGHT || wS == HARD_BORDER_WEIGHT)
-	) {
-		//nowhere to go but near borders
-		return bestMove;
-	
 	}else {
 		double vE = 0;
 		double vN = 0;
