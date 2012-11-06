@@ -299,9 +299,9 @@
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
-								<real>0.15000000596046448</real>
+								<real>1</real>
 								<key>Position</key>
-								<string>{96.75, 224.75}</string>
+								<string>{122.75, 246.75}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -374,9 +374,9 @@
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
-								<real>0.15000000596046448</real>
+								<real>1</real>
 								<key>Position</key>
-								<string>{283.27091958983129, 135.65700932518115}</string>
+								<string>{247.27091958983129, 135.65700932518115}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -449,7 +449,7 @@
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
-								<real>0.15000000596046448</real>
+								<real>1</real>
 								<key>Position</key>
 								<string>{186.03211432709207, 54.793641047620497}</string>
 								<key>Scale</key>
@@ -524,7 +524,7 @@
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
-								<real>0.15000000596046448</real>
+								<real>1</real>
 								<key>Position</key>
 								<string>{304.75, 232.75}</string>
 								<key>Scale</key>

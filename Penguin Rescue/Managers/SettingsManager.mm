@@ -9,9 +9,11 @@
 #import "Constants.h"
 #import "SettingsManager.h"
 #import "SSKeychain.h"
+#import "Analytics.h"
 
 
 @implementation SettingsManager
+
 
 +(NSMutableDictionary*)loadSettings {
 	static NSMutableDictionary* sSettings = nil;
@@ -154,6 +156,46 @@
 	
 	return UUID;
 }
+
+
+
+
+
+
++(void)promptForAppReview {
+	[SettingsManager incrementIntBy:1 forKey:SETTING_NUM_REVIEW_PROMPTS];
+	if(DEBUG_REVIEWS) DebugLog(@"This is the %d time we've asked for a review", [SettingsManager intForKey:SETTING_NUM_REVIEW_PROMPTS]);
+	UIAlertView* reviewPromptAlert = [[UIAlertView alloc] initWithTitle:@"Rate Me?"
+		message:@"Let us know what you think about so we can improve and keep building more levels?" 
+		delegate:self cancelButtonTitle:@"Not Now" otherButtonTitles:@"Sure!",nil];
+	reviewPromptAlert.tag = REVIEW_PROMPT_TAG;
+	[reviewPromptAlert show];	
+}
+
++(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(alertView.tag == REVIEW_PROMPT_TAG) {
+	
+		bool accept = buttonIndex == 1;
+	
+		//analytics logging
+		NSString* levelPackPath = [SettingsManager stringForKey:SETTING_LAST_LEVEL_PACK_PATH];
+		NSString* levelPath = [SettingsManager stringForKey:SETTING_LAST_LEVEL_PATH];
+		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+			[NSString stringWithFormat:@"%@:%@", levelPackPath, levelPath], @"Level_Pack_and_Name",
+			levelPackPath, @"Level_Pack",
+			[SettingsManager intForKey:SETTING_NUM_REVIEW_PROMPTS], @"Num_Review_Prompts",
+		nil];
+		[Analytics logEvent:[NSString stringWithFormat:@"ReviewRequest_%@", (accept ? @"Accepted" : @"Rejected")] withParameters:flurryParams];
+	
+		if(accept) {
+			NSString* escapedValue = [APP_STORE_REVIEW_URL stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+			NSString *escStr = [escapedValue stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+			NSURL *url = [NSURL URLWithString:escStr];   
+			[[UIApplication sharedApplication] openURL:url];
+		}
+	}
+}
+
 
 @end
 

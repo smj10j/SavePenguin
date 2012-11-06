@@ -246,17 +246,17 @@ static NSMutableDictionary* sCompletedLevelsInPackDictionary = nil;
 	sCompletedLevelPacksDictionary = nil;
 	
 	
-	if([SettingsManager stringForKey:SETTING_LEFT_REVIEW_VERSION] == nil) {
-		//TODO: hasn't left a review and just completed a pack - prompt!
+	if([SettingsManager intForKey:SETTING_NUM_REVIEW_PROMPTS] == 0) {
+		//hasn't left a review and just completed a pack - prompt!
 		if(DEBUG_REVIEWS) DebugLog(@"PROMPTING FOR A FIRST-TIME REVIEW!!!");
-	}
-	
-	//TODO: figure out when to prompt for a review after an update
-	if(![[SettingsManager stringForKey:SETTING_LEFT_REVIEW_VERSION] isEqualToString:[SettingsManager stringForKey:SETTING_CURRENT_VERSION]]) {
+		[SettingsManager promptForAppReview];
+	}else if(![[SettingsManager stringForKey:SETTING_LEFT_REVIEW_VERSION] isEqualToString:[SettingsManager stringForKey:SETTING_CURRENT_VERSION]]) {
+		//hasn't reviewed this version
 		if(DEBUG_REVIEWS) DebugLog(@"PROMPTING FOR AN UPDATE REVIEW!!!");
-		
+		[SettingsManager promptForAppReview];
 	}
 }
+
 
 +(NSNumber*)scoreForLevel:(NSString*)levelPath inPack:(NSString*)packPath {
 	NSMutableDictionary* completedLevelsDictionary = [NSMutableDictionary dictionaryWithDictionary:[LevelPackManager completedLevelsInPack:packPath]];

@@ -188,6 +188,7 @@
 	_scrollLayer = [[CCScrollLayer alloc] initWithLayers:scrollableLayers widthOffset: 0];
 	[scrollableLayers release];
 	[[_levelLoader layerWithUniqueName:@"MAIN_LAYER"] addChild:_scrollLayer];
+	_scrollLayer.zOrder = [_levelLoader layerWithUniqueName:@"Map"].zOrder+1;
 	
 
 	//move to the last viewed page if appropriate

@@ -10,7 +10,7 @@
 #define Penguin_Rescue_Constants_h
 
 //true to disable all output and send analytics data
-#define DISTRIBUTION_MODE true
+#define DISTRIBUTION_MODE false
 
 
 
@@ -83,7 +83,8 @@
 
 
 
-#define APP_STORE_REVIEW_URL @""
+#define REVIEW_PROMPT_TAG 0
+#define APP_STORE_REVIEW_URL @"http://www.google.com"
 
 
 

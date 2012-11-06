@@ -30,6 +30,12 @@
 
 +(void)remove:(NSString*)key;
 
+
+
+
+
++(void)promptForAppReview;
+
 @end
 
 
@@ -51,6 +57,7 @@
 #define SETTING_HAS_CREATED_UUID_ON_SERVER @"HasCreatedUUIDOnServer"
 
 
+#define SETTING_NUM_REVIEW_PROMPTS @"NumReviewPrompts"
 #define SETTING_LEFT_REVIEW_VERSION @"LeftReviewVersion"
 #define SETTING_CURRENT_VERSION @"CurrentVersion"
 

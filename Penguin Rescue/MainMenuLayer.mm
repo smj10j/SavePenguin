@@ -145,7 +145,7 @@
 	
 	if(DEBUG_MEMORY) DebugLog(@"Initialized MainMenuLayer");
 	if(DEBUG_MEMORY) report_memory();
-	
+		
 	return self;
 }
 

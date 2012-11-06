@@ -212,6 +212,7 @@
 	_scrollLayer = [[CCScrollLayer alloc] initWithLayers:scrollableLayers widthOffset: 0];
 	_scrollLayer.pagesIndicatorPosition = ccp(_scrollLayer.pagesIndicatorPosition.x, _scrollLayer.pagesIndicatorPosition.y-30*SCALING_FACTOR_V);
 	[[_levelLoader layerWithUniqueName:@"MAIN_LAYER"] addChild:_scrollLayer];
+	_scrollLayer.zOrder = [_levelLoader layerWithUniqueName:@"Map"].zOrder+1;
 	[scrollableLayers release];
 	
 	//move to the last viewed page if appropriate
@@ -247,7 +248,8 @@
 	[SettingsManager setString:_levelPackPath forKey:SETTING_LAST_LEVEL_PACK_PATH];
 	[SettingsManager setString:levelPath forKey:SETTING_LAST_LEVEL_PATH];
 	[SettingsManager setInt:_scrollLayer.currentScreen forKey:SETTING_LAST_LEVEL_SELECT_SCREEN_NUM];
-
+	
+	
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[GameLayer sceneWithLevelPackPath:[NSString stringWithFormat:@"%@", _levelPackPath] levelPath:levelPath] ]];
 }
 
