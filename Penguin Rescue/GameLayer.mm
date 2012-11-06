@@ -2268,7 +2268,7 @@
 		
 		//readjust if we are somehow on top of land - this can happen when fans blow an actor on land or a moving border touches an actor, for example
 		int bumpIterations = 0;
-		while(sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT && bumpIterations < 4) {
+		while(sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT && bumpIterations < MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND) {
 			//move back off of land
 			short wN = sharkGridPos.y+1 > _gridHeight-1 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1];
 			short wS = sharkGridPos.y-1 < 0 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1];
@@ -2520,7 +2520,7 @@
 			
 			//readjust if we are somehow on top of land - this can happen when fans blow an actor on land, for example
 			int bumpIterations = 0;
-			while(penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT and bumpIterations < 4) {
+			while(penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT and bumpIterations < MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND) {
 				//move back onto land
 				short wN = penguinGridPos.y+1 > _gridHeight-1 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1];
 				short wS = penguinGridPos.y-1 < 0 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1];
