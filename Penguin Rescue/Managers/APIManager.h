@@ -25,3 +25,14 @@
 
 +(void)createUser;
 @end
+
+
+
+
+
+
+#define SERVER_HOST @"www.conquerllc.com"
+#define SERVER_PATH @"/webservice/games/PenguinRescue.php"
+#define SERVER_URL [NSString stringWithFormat:@"http://%@%@", SERVER_HOST, SERVER_PATH]
+
+

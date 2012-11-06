@@ -190,7 +190,7 @@
 		if(accept) {
 			NSString* escapedValue = [APP_STORE_REVIEW_URL stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 			NSString *escStr = [escapedValue stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-			NSURL *url = [NSURL URLWithString:escStr];   
+			NSURL *url = [NSURL URLWithString:escStr];
 			[[UIApplication sharedApplication] openURL:url];
 		}
 	}

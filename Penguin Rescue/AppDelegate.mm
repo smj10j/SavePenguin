@@ -15,6 +15,7 @@
 #import "Utilities.h"
 #import "ScoreKeeper.h"
 #import "Analytics.h"
+#import "APIManager.h"
 
 @implementation AppController
 

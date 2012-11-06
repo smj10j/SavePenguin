@@ -71,3 +71,18 @@
 #define SETTING_LAST_LEVEL_PACK_SELECT_SCREEN_NUM @"LastLevelPackSelectScreenNum"
 #define SETTING_LAST_LEVEL_SELECT_SCREEN_NUM @"LastLevelSelectScreenNum"
 
+
+
+
+
+
+#define COMPANY_IDENTIFIER @"com.conquerllc"
+
+
+
+
+#define REVIEW_PROMPT_TAG 0
+#define APP_STORE_ID 570590917
+#define APP_STORE_REVIEW_URL [NSString stringWithFormat:@"https://userpub.itunes.apple.com/WebObjects/MZUserPublishing.woa/wa/addUserReview?id=%d&type=Purple+Software", APP_STORE_ID]
+
+

@@ -79,20 +79,6 @@
 #define SCORING_MAX_COINS_PER_LEVEL 5
 
 
-#define COMPANY_IDENTIFIER @"com.conquerllc"
-
-
-
-#define REVIEW_PROMPT_TAG 0
-#define APP_STORE_REVIEW_URL @"http://www.google.com"
-
-
-
-#define SERVER_HOST @"www.conquerllc.com"
-#define SERVER_PATH @"/webservice/games/PenguinRescue.php"
-#define SERVER_URL [NSString stringWithFormat:@"http://%@%@", SERVER_HOST, SERVER_PATH]
-
-
 
 
 #if !DISTRIBUTION_MODE
