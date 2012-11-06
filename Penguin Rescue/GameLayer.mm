@@ -2436,8 +2436,8 @@
 									nearestPenguin.position.y - shark.position.y); //this grabs the radians for us
 		}
 		int targetRotation = (CC_RADIANS_TO_DEGREES(rotationRadians) - 90); //90 is because the sprite is facing right
-		double smoothedRotation = (double)(targetRotation+(int)shark.rotation*4)/5;
-		//NSLog(@"ROTATING SHARK TO %f with targetRotation of %d", smoothedRotation, targetRotation);
+		double smoothedRotation = targetRotation*shark.rotation < 0 ? targetRotation : (double)(targetRotation+(int)shark.rotation*4)/5;
+		NSLog(@"ROTATING SHARK TO %f with targetRotation of %d", smoothedRotation, targetRotation);
 		[shark transformRotation:smoothedRotation];
 	}
 	

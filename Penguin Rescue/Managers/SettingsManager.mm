@@ -183,7 +183,7 @@
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 			[NSString stringWithFormat:@"%@:%@", levelPackPath, levelPath], @"Level_Pack_and_Name",
 			levelPackPath, @"Level_Pack",
-			[SettingsManager intForKey:SETTING_NUM_REVIEW_PROMPTS], @"Num_Review_Prompts",
+			[NSNumber numberWithInt:[SettingsManager intForKey:SETTING_NUM_REVIEW_PROMPTS]], @"Num_Review_Prompts",
 		nil];
 		[Analytics logEvent:[NSString stringWithFormat:@"ReviewRequest_%@", (accept ? @"Accepted" : @"Rejected")] withParameters:flurryParams];
 	
