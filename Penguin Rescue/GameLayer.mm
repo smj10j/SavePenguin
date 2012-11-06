@@ -407,7 +407,7 @@
 	}
 	
 	if(_levelHasMovingBorders) {
-		[self schedule:@selector(invalidateFeatureGridsNearMovingBorders) interval:1.0f];
+		[self schedule:@selector(invalidateFeatureGridsNearMovingBorders) interval:0.5f];
 	}
 }
 
@@ -2437,7 +2437,7 @@
 		}
 		int targetRotation = (CC_RADIANS_TO_DEGREES(rotationRadians) - 90); //90 is because the sprite is facing right
 		double smoothedRotation = targetRotation*shark.rotation < 0 ? targetRotation : (double)(targetRotation+(int)shark.rotation*4)/5;
-		NSLog(@"ROTATING SHARK TO %f with targetRotation of %d", smoothedRotation, targetRotation);
+		//NSLog(@"ROTATING SHARK TO %f with targetRotation of %d", smoothedRotation, targetRotation);
 		[shark transformRotation:smoothedRotation];
 	}
 	
