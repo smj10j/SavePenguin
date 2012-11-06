@@ -175,6 +175,11 @@
 	short wE = fromTile.x < _gridWidth-1 ? _moveGrid[(int)fromTile.x+1][(int)fromTile.y] : 10000;
 	short wW = fromTile.x > 0 ? _moveGrid[(int)fromTile.x-1][(int)fromTile.y] : 10000;
 	
+	wN = wN == INITIAL_GRID_WEIGHT ? 10000 : wN;
+	wS = wS == INITIAL_GRID_WEIGHT ? 10000 : wS;
+	wE = wE == INITIAL_GRID_WEIGHT ? 10000 : wE;
+	wW = wW == INITIAL_GRID_WEIGHT ? 10000 : wW;
+	
 	short w = _moveGrid[(int)fromTile.x][(int)fromTile.y];
 	
 	//if(DEBUG_MOVEGRID) DebugLog(@"%@ weights: %d, %d, %d, %d", _tag, wN, wS, wE, wW);

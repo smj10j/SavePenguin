@@ -15,8 +15,8 @@
 
 
 #define TEST_MODE true
-#define TEST_LEVEL_PACK @"APenguinInNeed"
-#define TEST_LEVEL @"FigureEight"
+#define TEST_LEVEL_PACK @"TectonicPlates"
+#define TEST_LEVEL @"TracktorIsland"
 
  
 
@@ -51,6 +51,18 @@
 #define HAND_OF_GOD_POWER_REGENERATION_RATE .175
 
 #define ACTOR_MASS .25
+/*
+
+	Nov/6/2012
+
+	dt = .0167 on iPhone 4S
+	dt = .16 on iPad Retina Simulator
+	dt = .0167 on iPad 1
+
+*/
+#define IMPULSE_SCALAR .10
+
+
 
 #define HUD_BUTTON_MARGIN_V 14*SCALING_FACTOR_V
 #define HUD_BUTTON_MARGIN_H 16*SCALING_FACTOR_H

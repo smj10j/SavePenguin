@@ -108,8 +108,8 @@
 	const CGSize levelButtonSize = levelButton.boundingBox.size;
 	const int levelButtonMarginX = 50*SCALING_FACTOR_H;
 	const int levelButtonMarginY = 30*SCALING_FACTOR_V;
-	const int columns = (winSize.width - levelButtonMarginX*2) / (levelButtonMarginX+levelButtonSize.width);
-	const int rows = (winSize.height - levelButtonMarginY*2) / (levelButtonMarginY+levelButtonSize.height);
+	const int columns = 4;//(winSize.width - levelButtonMarginX*2) / (levelButtonMarginX+levelButtonSize.width);
+	const int rows = 3;//(winSize.height - levelButtonMarginY*2) / (levelButtonMarginY+levelButtonSize.height);
 	const int levelButtonXInitial = winSize.width/2 - (columns/2 * (levelButtonSize.width+levelButtonMarginX)) + (levelButtonSize.width+levelButtonMarginX)/2;
 	const int levelButtonYInitial = winSize.height + levelButtonSize.height/2 - levelButtonMarginY;
 	[levelButton removeSelf];

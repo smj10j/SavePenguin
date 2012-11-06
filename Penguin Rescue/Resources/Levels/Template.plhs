@@ -883,7 +883,7 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{118, 145}, {116.5, 37.5}}</string>
+						<string>{{118, 145}, {116.5, 37.75}}</string>
 						<key>IsDrawable</key>
 						<true/>
 						<key>IsExpanded</key>
@@ -905,7 +905,7 @@
 						<key>TagName</key>
 						<string>SANDBAR</string>
 						<key>TextureOffset</key>
-						<string>{0, 0.5}</string>
+						<string>{0, 0.375}</string>
 						<key>UniqueName</key>
 						<string>Sandbar_1_1</string>
 						<key>ZOrder</key>
@@ -1250,7 +1250,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{118, 145}, {116.5, 37.5}}</string>
+								<string>{{118, 145}, {116.5, 37.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1272,7 +1272,7 @@
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0, 0.5}</string>
+								<string>{0, 0.375}</string>
 								<key>UniqueName</key>
 								<string>Sandbar_1</string>
 								<key>ZOrder</key>

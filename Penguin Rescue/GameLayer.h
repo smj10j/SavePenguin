@@ -65,6 +65,9 @@ enum PROPAGATION_RESULT {
 	
 	GAME_STATE _state;
 	
+	bool _isGeneratingFeatureGrid;
+	bool _isInvalidatingSharkFeatureGrids;
+	bool _isInvalidatingPenguinFeatureGrids;
 	short** _sharkMapfeaturesGrid;
 	short** _penguinMapfeaturesGrid;
 	NSMutableDictionary* _sharkMoveGridDatas;

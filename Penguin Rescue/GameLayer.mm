@@ -65,6 +65,9 @@
 		//_moveGridPenguinUpdateQueue = dispatch_queue_create("com.conquerllc.games.Penguin-Rescue.moveGridPenguinUpdateQueue", 0);	//serial
 		_moveGridSharkUpdateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);	//concurrent
 		_moveGridPenguinUpdateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);	//concurrent
+		_isGeneratingFeatureGrid = false;
+		_isInvalidatingSharkFeatureGrids = false;
+		_isInvalidatingPenguinFeatureGrids = false;
 		_numSharksUpdatingMoveGrids = 0;
 		_numPenguinsUpdatingMoveGrids = 0;
 		_activeToolboxItem = nil;
@@ -260,7 +263,7 @@
 		}
 	}
 	
-	//filled in generateFeatureMaps
+	//filled in generateFeatureGrids
 	_sharkMoveGridDatas = [[NSMutableDictionary alloc] init];
 	_penguinMoveGridDatas = [[NSMutableDictionary alloc] init];
 	
@@ -408,7 +411,7 @@
 	}
 	
 	if(_levelHasMovingBorders) {
-		[self schedule:@selector(invalidateFeatureGridsNearMovingBorders) interval:0.5f];
+		[self schedule:@selector(invalidateFeatureGridsNearMovingBorders) interval:0.4f];
 	}
 }
 
@@ -655,7 +658,12 @@
 }
 
 
--(void) generateFeatureMaps {
+-(void) generateFeatureGrids {
+
+	if(_isGeneratingFeatureGrid) {
+		return;
+	}
+	_isGeneratingFeatureGrid = true;
 
 	//TODO: consider if we should "unStuck" all penguins/sharks whenever we regenerate the feature map
 
@@ -781,6 +789,7 @@
 		
 	
 	if(DEBUG_MOVEGRID) DebugLog(@"Done generating feature maps");
+	_isGeneratingFeatureGrid = false;
 }
 
 -(void)updateFeatureMapForShark:(LHSprite*)shark {
@@ -2203,6 +2212,11 @@
 }
 
 -(void) invalidateSharkFeatureGridsNear:(LHSprite*)sprite {
+	if(_isInvalidatingSharkFeatureGrids) {
+		return;
+	}
+	_isInvalidatingSharkFeatureGrids = true;
+	
 	NSMutableArray* sharksToUpdate = [[NSMutableArray alloc] init];
 	for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
 		if(sprite == nil || ccpDistance(sprite.position, shark.position) < 150*SCALING_FACTOR_GENERIC) {
@@ -2210,15 +2224,21 @@
 		}
 	}
 	if(sharksToUpdate.count > 0) {
-		[self generateFeatureMaps];
+		[self generateFeatureGrids];
 		for(LHSprite* shark in sharksToUpdate) {
 			[self updateFeatureMapForShark:shark];
 		}
 	}
 	[sharksToUpdate release];
+	_isInvalidatingSharkFeatureGrids = false;
 }
 
 -(void) invalidatePenguinFeatureGridsNear:(LHSprite*)sprite {
+	if(_isInvalidatingPenguinFeatureGrids) {
+		return;
+	}
+	_isInvalidatingPenguinFeatureGrids = true;
+	
 	NSMutableArray* penguinsToUpdate = [[NSMutableArray alloc] init];
 	for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
 		if(sprite == nil || ccpDistance(sprite.position, penguin.position) < 150*SCALING_FACTOR_GENERIC) {
@@ -2226,12 +2246,13 @@
 		}
 	}
 	if(penguinsToUpdate.count > 0) {
-		[self generateFeatureMaps];
+		[self generateFeatureGrids];
 		for(LHSprite* penguin in penguinsToUpdate) {
 			[self updateFeatureMapForPenguin:penguin];
 		}
 	}
 	[penguinsToUpdate release];
+	_isInvalidatingPenguinFeatureGrids = false;
 }
 
 -(void) invalidateMoveGridsNear:(LHSprite*)sprite {
@@ -2433,11 +2454,11 @@
 		double normalizedX = dx/dSum;
 		double normalizedY = dy/dSum;
 
-		double impulseX = (((sharkSpeed*normalizedX)+dxMod)*dt)*.1/**pow(shark.scale,2)*/;
-		double impulseY = (((sharkSpeed*normalizedY)+dyMod)*dt)*.1/**pow(shark.scale,2)*/;
+		double impulseX = (((sharkSpeed*normalizedX)+dxMod)*dt)*IMPULSE_SCALAR/**pow(shark.scale,2)*/;
+		double impulseY = (((sharkSpeed*normalizedY)+dyMod)*dt)*IMPULSE_SCALAR/**pow(shark.scale,2)*/;
 		
-		//DebugLog(@"Shark %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", shark.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
-				
+		//DebugLog(@"Shark %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f, dt=%f, impulseScalar=%f", shark.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY, dt, IMPULSE_SCALAR);
+			
 		//we're using an impulse for the shark so they interact with things like Debris (physics)
 		shark.body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), shark.body->GetWorldCenter());
 		
@@ -2668,13 +2689,10 @@
 			double normalizedX = dx/dSum;
 			double normalizedY = dy/dSum;
 			
-			double impulseX = (((penguinSpeed*normalizedX)+dxMod)*dt)*.1/**pow(penguin.scale,2)*/;
-			double impulseY = (((penguinSpeed*normalizedY)+dyMod)*dt)*.1/**pow(penguin.scale,2)*/;
+			double impulseX = (((penguinSpeed*normalizedX)+dxMod)*dt)*IMPULSE_SCALAR/**pow(penguin.scale,2)*/;
+			double impulseY = (((penguinSpeed*normalizedY)+dyMod)*dt)*IMPULSE_SCALAR/**pow(penguin.scale,2)*/;
 			
 			//DebugLog(@"Penguin %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", penguin.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
-		
-			//TODO:! look into why on iPad Retina simulator the Penguin and Shark can't move at all????
-			
 				
 			//we're using an impulse for the penguin so they interact with things like Debris (physics)
 			penguin.body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), penguin.body->GetWorldCenter());			
@@ -2788,8 +2806,8 @@
 						//[nearestPenguin transformPosition:ccp(nearestPenguin.position.x+location.x-_lastTouch.x, nearestPenguin.position.y+location.y-_lastTouch.y)];
 						if(nearestPenguin.body) {
 							nearestPenguin.body->ApplyLinearImpulse(
-								b2Vec2((location.x-_lastTouch.x)*.01/**pow(nearestPenguin.scale,2)*/,
-										(location.y-_lastTouch.y)*.01/**pow(nearestPenguin.scale,2)*/),
+								b2Vec2((location.x-_lastTouch.x)*(IMPULSE_SCALAR/10)/**pow(nearestPenguin.scale,2)*/,
+										(location.y-_lastTouch.y)*(IMPULSE_SCALAR/10)/**pow(nearestPenguin.scale,2)*/),
 								nearestPenguin.body->GetWorldCenter()
 							);
 						}
