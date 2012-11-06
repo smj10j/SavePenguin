@@ -40,11 +40,12 @@
 - (void)updateBaseGrid:(short**)baseGrid;
 
 - (void)logMove:(CGPoint)pos;
+- (void)clearMoveLog;
 - (double)distanceTraveled;
 - (double)distanceTraveledStraightline;
 
 - (short**)baseGrid;
-- (const short**)moveGrid;
+- (short**)moveGrid;
 - (const CGPoint)lastTargetTile;
 
 - (void)updateMoveGridToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile;
@@ -62,7 +63,12 @@
 #define MOVEGRID_INITIAL_MIN_SEARCH_FACTOR 0.5
 #define MOVEGRID_MAX_SEARCH_FACTOR 6
 
-#define INITIAL_GRID_WEIGHT 500
+
+#define PENGUIN_MOVE_HISTORY_SIZE 15
+#define SHARK_MOVE_HISTORY_SIZE 15
+
+
+#define INITIAL_GRID_WEIGHT 0
 #define HARD_BORDER_WEIGHT 10000
 
 

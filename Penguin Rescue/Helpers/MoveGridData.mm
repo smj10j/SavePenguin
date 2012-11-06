@@ -36,6 +36,7 @@
 		_isBusy = false;
 		[self invalidateMoveGrid];
 		_scheduledUpdateMoveGridTimer = nil;
+		_minSearchPathFactor = MOVEGRID_INITIAL_MIN_SEARCH_FACTOR;
 		[self forceUpdateToMoveGrid];
 						
 		_moveHistorySize = moveHistorySize;
@@ -67,13 +68,6 @@
 	}
 }
 
-- (void)logMove:(CGPoint)pos {
-	_moveHistory[_moveHistoryIndex] = pos;
-	_moveHistoryIndex = (++_moveHistoryIndex%_moveHistorySize);
-	if(_moveHistoryIndex == 0) {
-		_moveHistoryIsFull = true;
-	}
-}
 
 - (void)forceUpdateToMoveGrid {
 	if(DEBUG_MOVEGRID) DebugLog(@"Forcing an update to %@ move grid", _tag);
@@ -83,7 +77,6 @@
 	}
 	_foundRoute = false;
 	_forceUpdateToMoveGrid = true;
-	_minSearchPathFactor = MOVEGRID_INITIAL_MIN_SEARCH_FACTOR;
 }
 
 -(void)invalidateMoveGrid {
@@ -119,9 +112,26 @@
 	[self forceUpdateToMoveGrid];
 }
 
+- (void)clearMoveLog {
+	_moveHistoryIsFull = false;
+	_moveHistoryIndex = 0;
+}
+
+- (void)logMove:(CGPoint)pos {
+	_moveHistory[_moveHistoryIndex] = pos;
+	_moveHistoryIndex = (_moveHistoryIndex+1)%_moveHistorySize;
+	if(_moveHistoryIndex == 0) {
+		_moveHistoryIsFull = true;
+	}
+}
+
 - (double)distanceTraveledStraightline {
-	CGPoint start = _moveHistory[_moveHistoryIndex];
-	CGPoint end = _moveHistory[(_moveHistoryIndex+_moveHistorySize-1)%_moveHistorySize];
+	if(!_moveHistoryIsFull) {
+		return INFINITY;
+	}
+	CGPoint start = _moveHistory[_moveHistoryIsFull ? _moveHistoryIndex : 0];
+	CGPoint end = _moveHistory[_moveHistoryIsFull ? (_moveHistoryIndex+_moveHistorySize-1)%_moveHistorySize : _moveHistoryIndex-1];
+	//NSLog(@"%@ - START: %@, END: %@, _moveHistoryIndex=%d, _moveHistoryIndexblahblah=%d", _tag, NSStringFromCGPoint(start), NSStringFromCGPoint(end), _moveHistoryIsFull ? _moveHistoryIndex : 0, _moveHistoryIsFull ? (_moveHistoryIndex+_moveHistorySize-1)%_moveHistorySize : _moveHistoryIndex-1);
 	return ccpDistance(start, end);
 }
 
@@ -137,8 +147,8 @@
 	return sum;
 }
 
-- (const short**)moveGrid {
-	return (const short**)_moveGrid;
+- (short**)moveGrid {
+	return (short**)_moveGrid;
 }
 
 - (short**)baseGrid {
@@ -165,11 +175,7 @@
 	short wE = fromTile.x < _gridWidth-1 ? _moveGrid[(int)fromTile.x+1][(int)fromTile.y] : 10000;
 	short wW = fromTile.x > 0 ? _moveGrid[(int)fromTile.x-1][(int)fromTile.y] : 10000;
 	
-	//makes backtracking less attractive
 	short w = _moveGrid[(int)fromTile.x][(int)fromTile.y];
-	if(w != INITIAL_GRID_WEIGHT) {
-		_moveGrid[(int)fromTile.x][(int)fromTile.y]++;
-	}
 	
 	//if(DEBUG_MOVEGRID) DebugLog(@"%@ weights: %d, %d, %d, %d", _tag, wN, wS, wE, wW);
 	
@@ -231,7 +237,7 @@
 			vN = (wS-wN)/(wN==0?1.0:(float)wN);
 		}
 		
-		bestMove = ccp(vE,vN);				
+		bestMove = ccp(vE,vN);
 	}
 	
 	//if(DEBUG_MOVEGRID) DebugLog(@"Returning %@ best move: %f,%f fromTile: %f,%f", _tag, bestMove.x,bestMove.y,fromTile.x,fromTile.y);
@@ -257,15 +263,16 @@
 
 		short bestFoundRouteWeight = -1;
 		[bSelf copyBaseGridToMoveGridBuffer];
-		_moveGridBuffer[(int)toTile.x][(int)toTile.y] = 0;
+		_moveGridBuffer[(int)toTile.x][(int)toTile.y] = INITIAL_GRID_WEIGHT;
 		[bSelf propagateGridCostToX:toTile.x y:toTile.y fromTile:fromTile bestFoundRouteWeight:&bestFoundRouteWeight];
 		
+		/*
 		if(_forceUpdateToMoveGrid) {
 			//previous results are invalidated
 			if(DEBUG_MOVEGRID) DebugLog(@"_forceUpdateToMoveGrid was set to true for %@ while we were calculating results - invalidating", _tag);
 			_isBusy = false;
 			return;
-		}
+		}*/
 		
 		if(DEBUG_MOVEGRID) DebugLog(@"bestFoundRouteWeight=%d,_minSearchPathFactor=%f for %@ move grid in %f seconds", bestFoundRouteWeight, _minSearchPathFactor, _tag, [[NSDate date] timeIntervalSince1970] - startTime);		
 		
@@ -304,10 +311,10 @@
 
 -(void) propagateGridCostToX:(int)x y:(int)y fromTile:(CGPoint)fromTile bestFoundRouteWeight:(short*)bestFoundRouteWeight {
 
-	if(_forceUpdateToMoveGrid) {
+	/*if(_forceUpdateToMoveGrid) {
 		//previous results are invalidated
 		return;
-	}
+	}*/
 
 	if(x < 0 || x >= _gridWidth) {
 		return;
@@ -319,13 +326,15 @@
 	short w = _moveGridBuffer[x][y];
 
 	if(fromTile.x >= 0 && fromTile.y >= 0 && fromTile.x == x && fromTile.y == y) {
-		//find the fastest route - not necessarily the best
-		*bestFoundRouteWeight = w;
+		if(w != INITIAL_GRID_WEIGHT && (*bestFoundRouteWeight < 0 || w < *bestFoundRouteWeight)) {
+			*bestFoundRouteWeight = w;
+		}
+		//if(DEBUG_MOVEGRID) DebugLog(@"Found bestRoute = %d for %@", *bestFoundRouteWeight, _tag);
 	}
 	
 	if((*bestFoundRouteWeight >= 0 && w > *bestFoundRouteWeight) || w > (_gridWidth*_minSearchPathFactor)) {
 		//this is an approximation to increase speed - it can cause failures to find any path at all (very complex ones)
-		//if(DEBUG_MOVEGRID) DebugLog(@"Aboring propagation for %@ because we're over the search limit. w=%d, bestFoundRouteWeight=%d, _gridWidth*_minSearchPathFactor=%f", _tag, w, *bestFoundRouteWeight, _gridWidth*_minSearchPathFactor);
+		//if(DEBUG_MOVEGRID) DebugLog(@"Aboring propagation at %d,%d for %@ because we're over the search limit. w=%d, bestFoundRouteWeight=%d, _gridWidth*_minSearchPathFactor=%f", x, y, _tag, w, *bestFoundRouteWeight, _gridWidth*_minSearchPathFactor);
 		return;
 	}
 	
@@ -343,19 +352,19 @@
 	
 
 	if(y < _gridHeight-1 && _baseGrid[x][y+1] < HARD_BORDER_WEIGHT && (wN == _baseGrid[x][y+1] || wN > w+1)) {
-		_moveGridBuffer[x][y+1] = w+1 + (_baseGrid[x][y+1] == INITIAL_GRID_WEIGHT ? 0 : _baseGrid[x][y+1]);
+		_moveGridBuffer[x][y+1] = w+1 + _baseGrid[x][y+1];
 		changedN = true;
 	}
 	if(y > 0 && _baseGrid[x][y-1] < HARD_BORDER_WEIGHT && (wS == _baseGrid[x][y-1] || wS > w+1)) {
-		_moveGridBuffer[x][y-1] = w+1  + (_baseGrid[x][y-1] == INITIAL_GRID_WEIGHT ? 0 : _baseGrid[x][y-1]);
+		_moveGridBuffer[x][y-1] = w+1 + _baseGrid[x][y-1];
 		changedS = true;
 	}
 	if(x < _gridWidth-1 && _baseGrid[x+1][y] < HARD_BORDER_WEIGHT && (wE == _baseGrid[x+1][y] || wE > w+1)) {
-		_moveGridBuffer[x+1][y] = w+1 + (_baseGrid[x+1][y] == INITIAL_GRID_WEIGHT ? 0 : _baseGrid[x+1][y]);
+		_moveGridBuffer[x+1][y] = w+1 + _baseGrid[x+1][y];
 		changedE = true;
 	}
 	if(x > 0 && _baseGrid[x-1][y] < HARD_BORDER_WEIGHT && (wW == _baseGrid[x-1][y] || wW > w+1)) {
-		_moveGridBuffer[x-1][y] = w+1  + (_baseGrid[x-1][y] == INITIAL_GRID_WEIGHT ? 0 : _baseGrid[x-1][y]);
+		_moveGridBuffer[x-1][y] = w+1 +  _baseGrid[x-1][y];
 		changedW = true;
 	}
 	

@@ -15,8 +15,8 @@
 
 
 #define TEST_MODE true
-#define TEST_LEVEL_PACK @"TectonicPlates"
-#define TEST_LEVEL @"ZanziSandbar"
+#define TEST_LEVEL_PACK @"APenguinInNeed"
+#define TEST_LEVEL @"FigureEight"
 
  
 
@@ -42,8 +42,6 @@
 #define MIN_GRID_SIZE 8
 
 #define SHARK_DIES_WHEN_STUCK false
-#define PENGUIN_MOVE_HISTORY_SIZE 20
-#define SHARK_MOVE_HISTORY_SIZE 50
 
 #define MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND 6
 

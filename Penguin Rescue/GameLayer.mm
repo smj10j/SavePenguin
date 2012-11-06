@@ -413,7 +413,7 @@
 }
 
 -(void) updateToolbox {
-	DebugLog(@"Updating Toolbox");
+	if(DEBUG_TOOLBOX) DebugLog(@"Updating Toolbox");
 	
 	if(_toolboxItemSize.width == 0) {
 		//get the toolbox item size for scaling purposes
@@ -592,7 +592,6 @@
 		shark.body->GetMassData(&massData);
 		massData.mass = ACTOR_MASS;
 		shark.body->SetMassData(&massData);
-		[shark transformRotation:0];	//smoothes out future calculations when we know that it's 0 and not 360
 	}
 	
 	for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
@@ -600,7 +599,6 @@
 		penguin.body->GetMassData(&massData);
 		massData.mass = ACTOR_MASS;
 		penguin.body->SetMassData(&massData);
-		[penguin transformRotation:0];	//smoothes out future calculations when we know that it's 0 and not 360
 	}
 	
 	//update any toolbox items so we don't have to do everything manually in LevelHelper
@@ -1825,7 +1823,7 @@
 				}
 			}
 
-			if(sharkGridPos.x >= _gridWidth || sharkGridPos.x < 0 || sharkGridPos.y >= _gridHeight || sharkGridPos.y < 0) {
+			if(sharkGridPos.x > _gridWidth-1 || sharkGridPos.x < 0 || sharkGridPos.y > _gridHeight-1 || sharkGridPos.y < 0) {
 				//offscreen - ignore and let moveSharks handle it
 				_numSharksUpdatingMoveGrids--;
 				continue;
@@ -1936,7 +1934,7 @@
 	//drop any toolbox items if need be
 	if(_activeToolboxItem != nil && _moveActiveToolboxItemIntoWorld) {
 	
-		DebugLog(@"Adding toolbox item %@ to world", _activeToolboxItem.userInfoClassName);
+		if(DEBUG_TOOLBOX) DebugLog(@"Adding toolbox item %@ to world", _activeToolboxItem.userInfoClassName);
 		
 		NSString* soundFileName = @"place.wav";
 	
@@ -2275,18 +2273,21 @@
 			
 			if(sharkGridPos.x > _gridWidth-2) {
 				sharkGridPos.x = _gridWidth-2;
+				[shark transformPosition:ccp(sharkGridPos.x*_gridSize,shark.position.y)];
 			}
 			if(sharkGridPos.x < 1) {
 				sharkGridPos.x = 1;
+				[shark transformPosition:ccp(sharkGridPos.x*_gridSize,shark.position.y)];
 			}
 			if(sharkGridPos.y > _gridHeight-2) {
 				sharkGridPos.y = _gridHeight-2;
+				[shark transformPosition:ccp(shark.position.x,sharkGridPos.y*_gridSize)];
 			}
 			if(sharkGridPos.y < 1) {
 				sharkGridPos.y = 1;
+				[shark transformPosition:ccp(shark.position.x,sharkGridPos.y*_gridSize)];
 			}
 
-			[shark transformPosition:[self fromGrid:sharkGridPos]];		
 			needsToJitter = true;
 		}
 		
@@ -2306,7 +2307,7 @@
 		
 		//use the best route algorithm
 		CGPoint bestOptionPos = [sharkMoveGridData getBestMoveToTile:sharkMoveGridData.lastTargetTile fromTile:sharkGridPos];
-		
+	
 		//DebugLog(@"Best Option Pos: %f,%f", bestOptionPos.x,bestOptionPos.y);
 		if(bestOptionPos.x == -10000 && bestOptionPos.y == -10000) {
 			//this occurs when the shark has no route to the penguin - he literally has no idea which way to go
@@ -2321,11 +2322,13 @@
 			//frustrated
 			[shark setFrame:1];
 			sharkData.isStuck= true;
-					
+								
 		}else {
+					
 			//convert returned velocities to position..
 			bestOptionPos = ccp(shark.position.x+bestOptionPos.x, shark.position.y+bestOptionPos.y);
 			sharkData.isStuck = false;
+			
 		}
 		
 		double dx = bestOptionPos.x - shark.position.x;
@@ -2337,30 +2340,12 @@
 		}
 				
 		[sharkMoveGridData logMove:bestOptionPos];
-		//DebugLog(@"shark dist traveled: %f", [sharkMoveGridData distanceTraveledStraightline]);
+		//DebugLog(@"shark dist traveled: %f, bestOptionPos: %@", [sharkMoveGridData distanceTraveledStraightline], NSStringFromCGPoint(bestOptionPos));
 		if(needsToJitter || [sharkMoveGridData distanceTraveledStraightline] < 5*SCALING_FACTOR_GENERIC) {
 			if(SHARK_DIES_WHEN_STUCK) {
 				//we're stuck
 				if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (trying to move, but not making progress) - we're removing him", shark.uniqueName);
 				[shark removeSelf];
-
-			}else {
-				
-				//there's something fishy about them here parts!
-				if(sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] != HARD_BORDER_WEIGHT)
-					sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y]+=5;
-				if(sharkGridPos.x > 0 && sharkMoveGridData.baseGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y] != HARD_BORDER_WEIGHT) sharkMoveGridData.baseGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y]+=5;
-				if(sharkGridPos.x < _gridWidth-1 && sharkMoveGridData.baseGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y] != HARD_BORDER_WEIGHT) sharkMoveGridData.baseGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y]+=5;
-				if(sharkGridPos.y > 0 && sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1] != HARD_BORDER_WEIGHT) sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1]+=5;
-				if(sharkGridPos.y < _gridHeight-1 && sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1] != HARD_BORDER_WEIGHT) sharkMoveGridData.baseGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1]+=5;
-				
-				double jitterX = 0;//((arc4random()%200)-100.0)/100;
-				double jitterY = 0;//((arc4random()%200)-100.0)/100;
-				
-				dx+= jitterX;
-				dy+= jitterY;
-				//sharkSpeed*= 10;
-				//if(DEBUG_MOVEGRID) DebugLog(@"Shark %@ is stuck (trying to move but can't) - giving him a bit of jitter %f,%f", shark.uniqueName, jitterX, jitterY);
 			}
 
 			//frustrated
@@ -2410,8 +2395,24 @@
 					dxMod = (xDir/dModSum)*(windmillData.power);
 					dyMod = (yDir/dModSum)*(windmillData.power);
 					
-					
 					[sharkMoveGridData scheduleUpdateToMoveGridIn:0.25f];
+				}
+			}
+		}
+		
+				
+		if(dxMod != 0 || dyMod != 0) {
+			//prevents futile attempts to fight against a windmill by making opposing wind forces less and less attractive
+			CGPoint targetGridPos = ccp(sharkGridPos.x + (dxMod*dx < 0 ? (dxMod < 0 ? 1 : -1) : 0),
+										sharkGridPos.y + (dyMod*dy < 0 ? (dyMod < 0 ? 1 : -1) : 0));
+			//DebugLog(@"sharkGridPos: %@ - Target Grid Pos: %@ ---- dxMod: %f, dyMod=%f, dx=%f, dy=%f", NSStringFromCGPoint(sharkGridPos), NSStringFromCGPoint(targetGridPos), dxMod, dyMod, dx, dy);
+			if(targetGridPos.x >= 0 && targetGridPos.x < _gridWidth && targetGridPos.y >= 0 && targetGridPos.y < _gridHeight
+					&& (targetGridPos.x != sharkGridPos.x || targetGridPos.y != sharkGridPos.y)) {
+				short w = sharkMoveGridData.moveGrid[(int)targetGridPos.x][(int)targetGridPos.y];
+				//DebugLog(@"sharkGridPos: %@ - INCREMENTING %@ at weight %d", NSStringFromCGPoint(sharkGridPos), NSStringFromCGPoint(targetGridPos), w);
+				if(w != HARD_BORDER_WEIGHT) {
+					sharkMoveGridData.moveGrid[(int)targetGridPos.x][(int)targetGridPos.y]++;
+					sharkMoveGridData.baseGrid[(int)targetGridPos.x][(int)targetGridPos.y]++;
 				}
 			}
 		}
@@ -2453,8 +2454,8 @@
 									nearestPenguin.position.y - shark.position.y); //this grabs the radians for us
 		}
 		int targetRotation = (CC_RADIANS_TO_DEGREES(rotationRadians) - 90); //90 is because the sprite is facing right
-		double smoothedRotation = targetRotation*shark.rotation < 0 ? targetRotation : (double)(targetRotation+(int)shark.rotation*4)/5;
-		//NSLog(@"ROTATING SHARK TO %f with targetRotation of %d", smoothedRotation, targetRotation);
+		double smoothedRotation = targetRotation*shark.rotation < 0 || abs(shark.rotation-targetRotation) > 180 ? targetRotation : (double)(targetRotation+(int)shark.rotation*4)/5;
+		//DebugLog(@"ROTATING SHARK TO %f with targetRotation of %d", smoothedRotation, targetRotation);
 		[shark transformRotation:smoothedRotation];
 	}
 	
@@ -2498,18 +2499,21 @@
 			
 			if(penguinGridPos.x > _gridWidth-2) {
 				penguinGridPos.x = _gridWidth-2;
+				[penguin transformPosition:ccp(penguinGridPos.x*_gridSize,penguin.position.y)];
 			}
 			if(penguinGridPos.x < 1) {
 				penguinGridPos.x = 1;
+				[penguin transformPosition:ccp(penguinGridPos.x*_gridSize,penguin.position.y)];
 			}
 			if(penguinGridPos.y > _gridHeight-2) {
 				penguinGridPos.y = _gridHeight-2;
+				[penguin transformPosition:ccp(penguin.position.x,penguinGridPos.y*_gridSize)];
 			}
 			if(penguinGridPos.y < 1) {
 				penguinGridPos.y = 1;
+				[penguin transformPosition:ccp(penguin.position.x,penguinGridPos.y*_gridSize)];
 			}
 
-			[penguin transformPosition:[self fromGrid:penguinGridPos]];
 			needsToJitter = true;
 		}
 		
@@ -2628,6 +2632,22 @@
 						dyMod = (yDir/dModSum)*(windmillData.power);
 						
 						[penguinMoveGridData scheduleUpdateToMoveGridIn:0.25f];
+					}
+				}
+			}
+					
+			if(dxMod != 0 || dyMod != 0) {
+				//prevents futile attempts to fight against a windmill by making opposing wind forces less and less attractive
+				CGPoint targetGridPos = ccp(penguinGridPos.x + (dxMod*dx < 0 ? (dxMod < 0 ? 1 : -1) : 0),
+											penguinGridPos.y + (dyMod*dy < 0 ? (dyMod < 0 ? 1 : -1) : 0));
+				//DebugLog(@"penguinGridPos: %@ - Target Grid Pos: %@ ---- dxMod: %f, dyMod=%f, dx=%f, dy=%f", NSStringFromCGPoint(penguinGridPos), NSStringFromCGPoint(targetGridPos), dxMod, dyMod, dx, dy);
+				if(targetGridPos.x >= 0 && targetGridPos.x < _gridWidth && targetGridPos.y >= 0 && targetGridPos.y < _gridHeight
+						&& (targetGridPos.x != penguinGridPos.x || targetGridPos.y != penguinGridPos.y)) {
+					short w = penguinMoveGridData.moveGrid[(int)targetGridPos.x][(int)targetGridPos.y];
+					//DebugLog(@"penguinGridPos: %@ - INCREMENTING %@ at weight %d", NSStringFromCGPoint(penguinGridPos), NSStringFromCGPoint(targetGridPos), w);
+					if(w != HARD_BORDER_WEIGHT) {
+						penguinMoveGridData.moveGrid[(int)targetGridPos.x][(int)targetGridPos.y]++;
+						penguinMoveGridData.baseGrid[(int)targetGridPos.x][(int)targetGridPos.y]++;
 					}
 				}
 			}
@@ -2837,11 +2857,11 @@
 			MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:@"Shark"];
 			const short** sharkMoveGrid = nil;
 			if(penguinMoveGridData != nil) {
-				penguinMoveGrid = [penguinMoveGridData moveGrid];
+				penguinMoveGrid = (const short** )[penguinMoveGridData moveGrid];
 				DebugLog(@"Penguin moveGrid at location %@ = %d", NSStringFromCGPoint(gridPos), penguinMoveGrid[(int)gridPos.x][(int)gridPos.y]);
 			}
 			if(sharkMoveGridData != nil) {
-				sharkMoveGrid = [sharkMoveGridData moveGrid];
+				sharkMoveGrid = (const short** )[sharkMoveGridData moveGrid];
 				DebugLog(@"Shark moveGrid at location %@ = %d", NSStringFromCGPoint(gridPos), sharkMoveGrid[(int)gridPos.x][(int)gridPos.y]);
 			}
 			
@@ -2863,10 +2883,10 @@
 		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:@"Shark"];
 		const short** sharkMoveGrid = nil;
 		if(penguinMoveGridData != nil) {
-			penguinMoveGrid = [penguinMoveGridData moveGrid];
+			penguinMoveGrid = (const short** )[penguinMoveGridData moveGrid];
 		}
 		if(sharkMoveGridData != nil) {
-			sharkMoveGrid = [sharkMoveGridData moveGrid];
+			sharkMoveGrid = (const short** )[sharkMoveGridData moveGrid];
 		}
 		
 		ccPointSize(_gridSize-1);
