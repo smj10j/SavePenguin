@@ -73,6 +73,8 @@ enum PROPAGATION_RESULT {
 	int _numPenguinsUpdatingMoveGrids;
 	dispatch_queue_t _moveGridSharkUpdateQueue;
 	dispatch_queue_t _moveGridPenguinUpdateQueue;
+	
+	bool _levelHasMovingBorders;
 
 	
 	int _gridSize;
@@ -96,10 +98,7 @@ enum PROPAGATION_RESULT {
 	CGSize _toolboxItemSize;
 	NSMutableArray* _placedToolboxItems;
 	ScoreKeeper* _scoreKeeper;
-	
-
-	bool _shouldRegenerateFeatureMaps;
-	
+		
 	
 	double _levelStartPlaceTime;
 	double _levelStartRunningTime;

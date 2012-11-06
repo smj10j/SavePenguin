@@ -67,7 +67,6 @@
 		_moveGridPenguinUpdateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);	//concurrent
 		_numSharksUpdatingMoveGrids = 0;
 		_numPenguinsUpdatingMoveGrids = 0;
-		_shouldRegenerateFeatureMaps = false;
 		_activeToolboxItem = nil;
 		_moveActiveToolboxItemIntoWorld = false;
 		_shouldUpdateToolbox = false;
@@ -77,6 +76,7 @@
 		_handOfGodPowerSecondsRemaining = HAND_OF_GOD_INITIAL_POWER;
 		_handOfGodPowerSecondsUsed = 0;
 		_isNudgingPenguin = false;
+		_levelHasMovingBorders = false;
 		__DEBUG_SHARKS = DEBUG_SHARK;
 		__DEBUG_PENGUINS = DEBUG_PENGUIN;
 		__DEBUG_TOUCH_SECONDS = 0;
@@ -120,6 +120,9 @@
 	//place any moving doodads
 	[self setupDoodads];
 	
+	//start any moving borders
+	[self setupMovingBorders];
+	
 	//record the play
 	//post the score to the server or queue for online processing
 	[ScoreKeeper savePlayForUUID:[SettingsManager getUUID] levelPackPath:_levelPackPath levelPath:_levelPath];
@@ -156,6 +159,11 @@
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-obstruction.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-debris.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-windmill.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-whirlpool.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-sandboar.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-bag-of-fish.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-invisibility-hat.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-loud-noise.wav"];
 
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelLost/hoot.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelWon/reward.mp3"];
@@ -255,7 +263,8 @@
 	_sharkMoveGridDatas = [[NSMutableDictionary alloc] init];
 	_penguinMoveGridDatas = [[NSMutableDictionary alloc] init];
 	
-	[self generateFeatureMaps];
+	//forces an update to all grids
+	[self invalidateFeatureGridsNear:nil];
 }
 
 -(CGPoint) toGrid:(CGPoint)pos {
@@ -357,14 +366,48 @@
 		
 			[doodad prepareMovementOnPathWithUniqueName:doodadData.pathName];
 			
-			[doodad setPathMovementOrientation:LH_X_AXIT_ORIENTATION];
-			[doodad setPathMovementOrientation:LH_Y_AXIS_ORIENTATION];
+			
+			if(doodadData.followXAxis) {
+				[doodad setPathMovementOrientation:LH_X_AXIT_ORIENTATION];
+			}else {
+				[doodad setPathMovementOrientation:LH_Y_AXIS_ORIENTATION];
+			}
 			[doodad setPathMovementRestartsAtOtherEnd:doodadData.restartAtOtherEnd];
-			[doodad setPathMovementIsCyclic:doodadData.restartAtOtherEnd];
+			[doodad setPathMovementIsCyclic:doodadData.isCyclic];
 			[doodad setPathMovementSpeed:doodadData.timeToCompletePath]; //moving from start to end in X seconds
 			
 			[doodad startPathMovement];
 		}
+	}
+}
+
+-(void) setupMovingBorders {
+
+	NSArray* borders = [_levelLoader spritesWithTag:BORDER];
+	for(LHSprite* border in borders) {
+		if([border.userInfoClassName isEqualToString:@"MovingBorder"]) {
+		
+			MovingBorder* borderData = ((MovingBorder*)border.userInfo);
+		
+			[border prepareMovementOnPathWithUniqueName:borderData.pathName];
+			
+			if(borderData.followXAxis) {
+				[border setPathMovementOrientation:LH_X_AXIT_ORIENTATION];
+			}else {
+				[border setPathMovementOrientation:LH_Y_AXIS_ORIENTATION];
+			}
+			[border setPathMovementRestartsAtOtherEnd:borderData.restartAtOtherEnd];
+			[border setPathMovementIsCyclic:borderData.isCyclic];
+			[border setPathMovementSpeed:borderData.timeToCompletePath]; //moving from start to end in X seconds
+			
+			[border startPathMovement];
+			
+			_levelHasMovingBorders = true;
+		}
+	}
+	
+	if(_levelHasMovingBorders) {
+		[self schedule:@selector(invalidateFeatureGridsNearMovingBorders) interval:1.0f];
 	}
 }
 
@@ -548,6 +591,7 @@
 		shark.body->GetMassData(&massData);
 		massData.mass = ACTOR_MASS;
 		shark.body->SetMassData(&massData);
+		[shark transformRotation:0];	//smoothes out future calculations when we know that it's 0 and not 360
 	}
 	
 	for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
@@ -555,10 +599,12 @@
 		penguin.body->GetMassData(&massData);
 		massData.mass = ACTOR_MASS;
 		penguin.body->SetMassData(&massData);
+		[penguin transformRotation:0];	//smoothes out future calculations when we know that it's 0 and not 360
 	}
 	
 	//update any toolbox items so we don't have to do everything manually in LevelHelper
 	for(LHSprite* sprite in [_levelLoader allSprites]) {
+		
 		if([sprite.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
 			b2MassData massData;
 			ToolboxItem_Debris* toolboxItemData = (ToolboxItem_Debris*)sprite.userInfo;
@@ -579,6 +625,29 @@
 			//already placed - set it's physics data
 			[sprite makeStatic];
 			[sprite setSensor:true];
+		}else if(sprite.tag == WHIRLPOOL) {
+			//already placed - set it's physics data
+			[sprite makeStatic];
+			[sprite setSensor:true];
+		}else if(sprite.tag == SANDBAR) {
+			//already placed - set it's physics data
+			[sprite makeStatic];
+			[sprite setSensor:true];
+		}else if(sprite.tag == BAG_OF_FISH) {
+			//already placed - set it's physics data
+			[sprite makeStatic];
+			[sprite setSensor:true];
+		}else if(sprite.tag == INVISIBILITY_HAT) {
+			//already placed - set it's physics data
+			[sprite makeStatic];
+			[sprite setSensor:true];
+		}else if(sprite.tag == LOUD_NOISE) {
+			//already placed - set it's physics data
+			[sprite makeStatic];
+			[sprite setSensor:true];
+		}else if(sprite.tag == BORDER || sprite.tag == LAND) {
+			//all land items are set as sensors to give a more natural movement feel around edges
+			[sprite setSensor:true];
 		}
 	}
 			
@@ -591,7 +660,7 @@
 
 	//TODO: consider if we should "unStuck" all penguins/sharks whenever we regenerate the feature map
 
-	DebugLog(@"Generating feature maps...");
+	if(DEBUG_MOVEGRID) DebugLog(@"Generating feature maps...");
 	
 	//double startTime = [[NSDate date] timeIntervalSince1970];
 
@@ -607,12 +676,14 @@
 	NSArray* lands = [_levelLoader spritesWithTag:LAND];
 	NSArray* borders = [_levelLoader spritesWithTag:BORDER];
 	NSArray* obstructions = [_levelLoader spritesWithTag:OBSTRUCTION];
+	NSArray* sandbars = [_levelLoader spritesWithTag:SANDBAR];
 	
 	NSMutableArray* unpassableAreas = [NSMutableArray arrayWithArray:lands];
 	[unpassableAreas addObjectsFromArray:borders];
 	[unpassableAreas addObjectsFromArray:obstructions];
+	[unpassableAreas addObjectsFromArray:sandbars];
 	
-	DebugLog(@"Num safe lands: %d, Num borders: %d", [lands count], [borders count]);
+	//if(DEBUG_MOVEGRID) DebugLog(@"Num safe lands: %d, Num borders: %d", [lands count], [borders count]);
 	
 	for(LHSprite* land in unpassableAreas) {
 					
@@ -628,34 +699,10 @@
 			for(int y = minY; y < maxY; y++) {
 				_sharkMapfeaturesGrid[(int)(x/_gridSize)][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
 				if(land.tag == BORDER || land.tag == OBSTRUCTION) {
+					//penguins can pass through SANDBAR and want to target LAND
 					_penguinMapfeaturesGrid[(int)(x/_gridSize)][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
 				}
 			}
-		}
-
-		/*
-		//border trace
-		for(int x = minX; x < maxX; x++) {
-			_sharkMapfeaturesGrid[(int)(x/_gridSize)][0] = HARD_BORDER_WEIGHT;
-			_sharkMapfeaturesGrid[(int)(x/_gridSize)][_gridHeight-1] = HARD_BORDER_WEIGHT;
-			if(land.tag == BORDER || land.tag == OBSTRUCTION) {
-				_penguinMapfeaturesGrid[(int)(x/_gridSize)][0] = HARD_BORDER_WEIGHT;
-				_penguinMapfeaturesGrid[(int)(x/_gridSize)][_gridHeight-1] = HARD_BORDER_WEIGHT;
-			}
-		}
-		for(int y = minY; y < maxY; y++) {
-			_sharkMapfeaturesGrid[0][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
-			_sharkMapfeaturesGrid[_gridWidth-1][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
-			if(land.tag == BORDER || land.tag == OBSTRUCTION) {
-				_penguinMapfeaturesGrid[0][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
-				_penguinMapfeaturesGrid[_gridWidth-1][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
-			}
-		}
-		*/
-			
-		//all items are set as sensors to give a more natural movement feel around edges
-		if(land.tag == BORDER || land.tag == LAND) {
-			[land setSensor:true];
 		}
 
 		//DebugLog(@"Land from %d,%d to %d,%d computed in %f", minX, minY, maxX, maxY,  ([[NSDate date] timeIntervalSince1970] - startTime));
@@ -674,7 +721,7 @@
 		_sharkMapfeaturesGrid[_gridWidth-1][y] = HARD_BORDER_WEIGHT;
 		_penguinMapfeaturesGrid[_gridWidth-1][y] = HARD_BORDER_WEIGHT;
 	}
-
+	
 	//create a set of maps for each penguin
 	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
 	for(LHSprite* penguin in penguins) {
@@ -701,36 +748,12 @@
 				}
 				[penguin transformPosition:ccp(penguinGridPos.x*_gridSize + _gridSize/2, penguinGridPos.y*_gridSize + _gridSize/2)];
 			}
-		}
-		
-
-		short** penguinBaseGrid;
-		int rowSize = _gridHeight * sizeof(short);
-		
-		MoveGridData* moveGridData = [_penguinMoveGridDatas objectForKey:penguin.uniqueName];
-		if(moveGridData == nil) {
-			penguinBaseGrid = new short*[_gridWidth];
-			for(int x = 0; x < _gridWidth; x++) {
-				penguinBaseGrid[x] = new short[_gridHeight];
-				memcpy(penguinBaseGrid[x], (void*)_penguinMapfeaturesGrid[x], rowSize);
-			}
-			
-			moveGridData = [[MoveGridData alloc] initWithGrid: penguinBaseGrid height:_gridHeight width:_gridWidth moveHistorySize:PENGUIN_MOVE_HISTORY_SIZE tag:penguin.uniqueName];
-			[_penguinMoveGridDatas setObject:moveGridData forKey:penguin.uniqueName];				
-						
-		}else {
-			penguinBaseGrid = moveGridData.baseGrid;
-			for(int x = 0; x < _gridWidth; x++) {
-				memcpy(penguinBaseGrid[x], (void*)_penguinMapfeaturesGrid[x], rowSize);
-			}
-			[moveGridData forceUpdateToMoveGrid];
-		}
+		}		
 	}
 	
 	//create a set of maps for each shark
 	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
 	for(LHSprite* shark in sharks) {
-
 
 		if(_state == SETUP) {
 			//if on some land, move him off it!
@@ -755,36 +778,60 @@
 				[shark transformPosition:ccp(sharkGridPos.x*_gridSize + _gridSize/2, sharkGridPos.y*_gridSize + _gridSize/2)];
 			}
 		}
-		
-
-		short** sharkBaseGrid;
-		int rowSize = _gridHeight * sizeof(short);
-		
-		MoveGridData* moveGridData = [_sharkMoveGridDatas objectForKey:shark.uniqueName];
-		if(moveGridData == nil) {
-			sharkBaseGrid = new short*[_gridWidth];
-			for(int x = 0; x < _gridWidth; x++) {
-				sharkBaseGrid[x] = new short[_gridHeight];
-				memcpy(sharkBaseGrid[x], (void*)_sharkMapfeaturesGrid[x], rowSize);
-			}
-			
-			moveGridData = [[MoveGridData alloc] initWithGrid: sharkBaseGrid height:_gridHeight width:_gridWidth moveHistorySize:SHARK_MOVE_HISTORY_SIZE tag:shark.uniqueName];
-			[_sharkMoveGridDatas setObject:moveGridData forKey:shark.uniqueName];
-						
-		}else {
-			sharkBaseGrid = moveGridData.baseGrid;
-			for(int x = 0; x < _gridWidth; x++) {
-				memcpy(sharkBaseGrid[x], (void*)_sharkMapfeaturesGrid[x], rowSize);
-			}
-			[moveGridData forceUpdateToMoveGrid];
-		}	
 	}
+		
 	
-	
-	DebugLog(@"Done generating feature maps");
+	if(DEBUG_MOVEGRID) DebugLog(@"Done generating feature maps");
 }
 
+-(void)updateFeatureMapForShark:(LHSprite*)shark {
 
+	short** sharkBaseGrid;
+	int rowSize = _gridHeight * sizeof(short);
+	
+	MoveGridData* moveGridData = [_sharkMoveGridDatas objectForKey:shark.uniqueName];
+	if(moveGridData == nil) {
+		sharkBaseGrid = new short*[_gridWidth];
+		for(int x = 0; x < _gridWidth; x++) {
+			sharkBaseGrid[x] = new short[_gridHeight];
+			memcpy(sharkBaseGrid[x], (void*)_sharkMapfeaturesGrid[x], rowSize);
+		}
+		
+		moveGridData = [[MoveGridData alloc] initWithGrid: sharkBaseGrid height:_gridHeight width:_gridWidth moveHistorySize:SHARK_MOVE_HISTORY_SIZE tag:shark.uniqueName];
+		[_sharkMoveGridDatas setObject:moveGridData forKey:shark.uniqueName];
+					
+	}else {
+		sharkBaseGrid = moveGridData.baseGrid;
+		for(int x = 0; x < _gridWidth; x++) {
+			memcpy(sharkBaseGrid[x], (void*)_sharkMapfeaturesGrid[x], rowSize);
+		}
+		[moveGridData forceUpdateToMoveGrid];
+	}	
+}
+
+-(void)updateFeatureMapForPenguin:(LHSprite*)penguin {
+	short** penguinBaseGrid;
+	int rowSize = _gridHeight * sizeof(short);
+	
+	MoveGridData* moveGridData = [_penguinMoveGridDatas objectForKey:penguin.uniqueName];
+	if(moveGridData == nil) {
+		penguinBaseGrid = new short*[_gridWidth];
+		for(int x = 0; x < _gridWidth; x++) {
+			penguinBaseGrid[x] = new short[_gridHeight];
+			memcpy(penguinBaseGrid[x], (void*)_penguinMapfeaturesGrid[x], rowSize);
+		}
+		
+		moveGridData = [[MoveGridData alloc] initWithGrid: penguinBaseGrid height:_gridHeight width:_gridWidth moveHistorySize:PENGUIN_MOVE_HISTORY_SIZE tag:penguin.uniqueName];
+		[_penguinMoveGridDatas setObject:moveGridData forKey:penguin.uniqueName];				
+					
+	}else {
+		penguinBaseGrid = moveGridData.baseGrid;
+		for(int x = 0; x < _gridWidth; x++) {
+			memcpy(penguinBaseGrid[x], (void*)_penguinMapfeaturesGrid[x], rowSize);
+		}
+		[moveGridData forceUpdateToMoveGrid];
+	}
+}
 
 
 
@@ -1179,17 +1226,12 @@
 	
 }
 
+-(void) setStateGameOver {
 
--(void) levelWon {
-
-	if(_state == GAME_OVER) {
-		return;
-	}
 	_state = GAME_OVER;
-	
-	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
-		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelWon/reward.mp3"];
-	}
+
+	[self unscheduleAllSelectors];
+	[self unscheduleUpdate];
 	
 	for(LHSprite* sprite in _levelLoader.allSprites) {
 		[sprite stopAnimation];
@@ -1203,6 +1245,19 @@
 		_activeToolboxItemRotationCrosshair = nil;
 	}
 	_activeToolboxItem = nil;
+}
+
+
+-(void) levelWon {
+
+	if(_state == GAME_OVER) {
+		return;
+	}
+	[self setStateGameOver];
+	
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelWon/reward.mp3"];
+	}
 		
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -1442,24 +1497,11 @@
 	if(_state == GAME_OVER) {
 		return;
 	}
-	_state = GAME_OVER;
+	[self setStateGameOver];
 
 	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelLost/hoot.wav"];
 	}
-
-	for(LHSprite* sprite in _levelLoader.allSprites) {
-		[sprite stopAnimation];
-		[sprite stopPathMovement];
-	}
-	
-	//remove the toolbox item crosshair
-	if(_activeToolboxItemRotationCrosshair != nil) {
-		[self removeChild:_activeToolboxItemRotationCrosshair cleanup:YES];
-		[_activeToolboxItemRotationCrosshair release];
-		_activeToolboxItemRotationCrosshair = nil;
-	}
-	_activeToolboxItem = nil;
 
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -1514,12 +1556,8 @@
 -(void) restart {
 
 	DebugLog(@"Restarting");
-	_state = GAME_OVER;
 
-	for(LHSprite* sprite in _levelLoader.allSprites) {
-		[sprite stopAnimation];
-		[sprite stopPathMovement];
-	}
+	[self setStateGameOver];
 
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -1869,12 +1907,6 @@
 		[self updateToolbox];
 	}	
 	
-	//regenerate base feature maps if need be
-	if(_shouldRegenerateFeatureMaps) {
-  		_shouldRegenerateFeatureMaps = false;
-		[self generateFeatureMaps];
-	}
-	
 	//drop any toolbox items if need be
 	if(_activeToolboxItem != nil && _moveActiveToolboxItemIntoWorld) {
 	
@@ -1893,8 +1925,8 @@
 			_activeToolboxItem.tag = OBSTRUCTION;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
+			[self invalidateFeatureGridsNear:nil];
 			[self invalidateMoveGridsNear:_activeToolboxItem];
-			_shouldRegenerateFeatureMaps = true;
 			soundFileName = @"place-obstruction.wav";
 
 		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
@@ -1902,6 +1934,38 @@
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
 			soundFileName = @"place-windmill.wav";
+		
+		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+			_activeToolboxItem.tag = WHIRLPOOL;
+			[_activeToolboxItem makeStatic];
+			[_activeToolboxItem setSensor:true];
+			soundFileName = @"place-whirlpool.wav";
+		
+		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Sandbar"]) {
+			_activeToolboxItem.tag = SANDBAR;
+			[_activeToolboxItem makeStatic];
+			[_activeToolboxItem setSensor:true];
+			[self invalidateSharkFeatureGridsNear:nil];
+			[self invalidateSharkMoveGridsNear:_activeToolboxItem];
+			soundFileName = @"place-sandbar.wav";
+		
+		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Bag_of_Fish"]) {
+			_activeToolboxItem.tag = BAG_OF_FISH;
+			[_activeToolboxItem makeStatic];
+			[_activeToolboxItem setSensor:true];
+			soundFileName = @"place-bag-of-fish.wav";
+		
+		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Invisibility_Hat"]) {
+			_activeToolboxItem.tag = INVISIBILITY_HAT;
+			[_activeToolboxItem makeStatic];
+			[_activeToolboxItem setSensor:true];
+			soundFileName = @"place-invisibility-hat.wav";
+		
+		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Loud_Noise"]) {
+			_activeToolboxItem.tag = LOUD_NOISE;
+			[_activeToolboxItem makeStatic];
+			[_activeToolboxItem setSensor:true];
+			soundFileName = @"place-loud-noise.wav";
 		
 		}
 
@@ -2093,6 +2157,52 @@
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with update tick");
 }
 
+-(void)invalidateFeatureGridsNearMovingBorders {
+	NSArray* borders = [_levelLoader spritesWithTag:BORDER];
+	for(LHSprite* border in borders) {
+		if([border.userInfoClassName isEqualToString:@"MovingBorder"]) {
+			[self invalidateFeatureGridsNear:border];
+		}
+	}
+}
+
+-(void) invalidateFeatureGridsNear:(LHSprite*)sprite {
+	[self invalidatePenguinFeatureGridsNear:sprite];
+	[self invalidateSharkFeatureGridsNear:sprite];
+}
+
+-(void) invalidateSharkFeatureGridsNear:(LHSprite*)sprite {
+	NSMutableArray* sharksToUpdate = [[NSMutableArray alloc] init];
+	for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
+		if(sprite == nil || ccpDistance(sprite.position, shark.position) < 150*SCALING_FACTOR_GENERIC) {
+			[sharksToUpdate addObject:shark];
+		}
+	}
+	if(sharksToUpdate.count > 0) {
+		[self generateFeatureMaps];
+		for(LHSprite* shark in sharksToUpdate) {
+			[self updateFeatureMapForShark:shark];
+		}
+	}
+	[sharksToUpdate release];
+}
+
+-(void) invalidatePenguinFeatureGridsNear:(LHSprite*)sprite {
+	NSMutableArray* penguinsToUpdate = [[NSMutableArray alloc] init];
+	for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
+		if(sprite == nil || ccpDistance(sprite.position, penguin.position) < 150*SCALING_FACTOR_GENERIC) {
+			[penguinsToUpdate addObject:penguin];
+		}
+	}
+	if(penguinsToUpdate.count > 0) {
+		[self generateFeatureMaps];
+		for(LHSprite* penguin in penguinsToUpdate) {
+			[self updateFeatureMapForPenguin:penguin];
+		}
+	}
+	[penguinsToUpdate release];
+}
+
 -(void) invalidateMoveGridsNear:(LHSprite*)sprite {
 	[self invalidatePenguinMoveGridsNear:sprite];
 	[self invalidateSharkMoveGridsNear:sprite];
@@ -2156,23 +2266,25 @@
 		
 		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];		
 		
-		//readjust if we are somehow on top of land - this can happen when fans blow an actor on land, for example
-		if(sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT) {
-			//move back onto land
+		//readjust if we are somehow on top of land - this can happen when fans blow an actor on land or a moving border touches an actor, for example
+		int bumpIterations = 0;
+		while(sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT && bumpIterations < 4) {
+			//move back off of land
 			short wN = sharkGridPos.y+1 > _gridHeight-1 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+1];
 			short wS = sharkGridPos.y-1 < 0 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-1];
 			short wE = sharkGridPos.x+1 > _gridWidth-1 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x+1][(int)sharkGridPos.y];
 			short wW = sharkGridPos.x-1 < 0 ? -10000 : sharkMoveGridData.moveGrid[(int)sharkGridPos.x-1][(int)sharkGridPos.y];
 			short wMax = max(max(max(wN,wS),wE),wW);
 			if(wN == wMax) {
-				[shark transformPosition:ccp(shark.position.x,shark.position.y+8*SCALING_FACTOR_V)];
+				[shark transformPosition:ccp(shark.position.x,shark.position.y+(bumpIterations*4)*SCALING_FACTOR_V)];
 			}else if(wS == wMax) {
-				[shark transformPosition:ccp(shark.position.x,shark.position.y-8*SCALING_FACTOR_V)];
+				[shark transformPosition:ccp(shark.position.x,shark.position.y-(bumpIterations*4)*SCALING_FACTOR_V)];
 			}else if(wE == wMax) {
-				[shark transformPosition:ccp(shark.position.x+8*SCALING_FACTOR_H,shark.position.y)];
+				[shark transformPosition:ccp(shark.position.x+(bumpIterations*4)*SCALING_FACTOR_H,shark.position.y)];
 			}else if(wW == wMax) {
-				[shark transformPosition:ccp(shark.position.x-8*SCALING_FACTOR_H,shark.position.y)];
+				[shark transformPosition:ccp(shark.position.x-(bumpIterations*4)*SCALING_FACTOR_H,shark.position.y)];
 			}
+			bumpIterations++;
 		}
 		
 		//use the best route algorithm
@@ -2323,8 +2435,10 @@
 			rotationRadians = atan2(nearestPenguin.position.x - shark.position.x,
 									nearestPenguin.position.y - shark.position.y); //this grabs the radians for us
 		}
-		double newRotation = ((int)(CC_RADIANS_TO_DEGREES(rotationRadians) - 90)+360)%360; //90 is because the sprite is facing right
-		[shark transformRotation:newRotation];	
+		int targetRotation = (CC_RADIANS_TO_DEGREES(rotationRadians) - 90); //90 is because the sprite is facing right
+		double smoothedRotation = (double)(targetRotation+(int)shark.rotation*4)/5;
+		//NSLog(@"ROTATING SHARK TO %f with targetRotation of %d", smoothedRotation, targetRotation);
+		[shark transformRotation:smoothedRotation];
 	}
 	
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done moving %d sharks...", [sharks count]);
@@ -2405,7 +2519,8 @@
 			}
 			
 			//readjust if we are somehow on top of land - this can happen when fans blow an actor on land, for example
-			if(penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT) {
+			int bumpIterations = 0;
+			while(penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT and bumpIterations < 4) {
 				//move back onto land
 				short wN = penguinGridPos.y+1 > _gridHeight-1 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+1];
 				short wS = penguinGridPos.y-1 < 0 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-1];
@@ -2413,14 +2528,15 @@
 				short wW = penguinGridPos.x-1 < 0 ? 10000 : penguinMoveGridData.moveGrid[(int)penguinGridPos.x-1][(int)penguinGridPos.y];
 				short wMin = min(min(min(wN,wS),wE),wW);
 				if(wN == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x,penguin.position.y+8*SCALING_FACTOR_V)];
+					[penguin transformPosition:ccp(penguin.position.x,penguin.position.y+(bumpIterations*4)*SCALING_FACTOR_V)];
 				}else if(wS == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x,penguin.position.y-8*SCALING_FACTOR_V)];
+					[penguin transformPosition:ccp(penguin.position.x,penguin.position.y-(bumpIterations*4)*SCALING_FACTOR_V)];
 				}else if(wE == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x+8*SCALING_FACTOR_H,penguin.position.y)];
+					[penguin transformPosition:ccp(penguin.position.x+(bumpIterations*4)*SCALING_FACTOR_H,penguin.position.y)];
 				}else if(wW == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x-8*SCALING_FACTOR_H,penguin.position.y)];
+					[penguin transformPosition:ccp(penguin.position.x-(bumpIterations*4)*SCALING_FACTOR_H,penguin.position.y)];
 				}
+				bumpIterations++;
 				
 				//needsToJitter = true;
 			}
@@ -2764,6 +2880,7 @@
 		NSArray* lands = [_levelLoader spritesWithTag:LAND];
 		NSArray* borders = [_levelLoader spritesWithTag:BORDER];
 		NSArray* obstructions = [_levelLoader spritesWithTag:OBSTRUCTION];
+		NSArray* sandbars = [_levelLoader spritesWithTag:SANDBAR];
 
 		ccColor4F landColor = ccc4f(0,.3,0,.25);
 		for(LHSprite* land in lands) {
@@ -2781,13 +2898,21 @@
 								border.boundingBox.origin.y+border.boundingBox.size.height + 8*SCALING_FACTOR_V),
 							borderColor);
 		}
-		ccColor4F obstructionsColor = ccc4f(.1,.4,.4,.25);
+		ccColor4F obstructionsColor = ccc4f(.2,.3,.3,.25);
 		for(LHSprite* obstruction in obstructions) {
 			ccDrawSolidRect(ccp(obstruction.boundingBox.origin.x - 8*SCALING_FACTOR_H,
 								obstruction.boundingBox.origin.y - 8*SCALING_FACTOR_V),
 							ccp(obstruction.boundingBox.origin.x+obstruction.boundingBox.size.width + 8*SCALING_FACTOR_H,
 								obstruction.boundingBox.origin.y+obstruction.boundingBox.size.height + 8*SCALING_FACTOR_V),
 							obstructionsColor);
+		}
+		ccColor4F sandbarColor = ccc4f(.2,.3,.3,.25);
+		for(LHSprite* sandbar in sandbars) {
+			ccDrawSolidRect(ccp(sandbar.boundingBox.origin.x - 8*SCALING_FACTOR_H,
+								sandbar.boundingBox.origin.y - 8*SCALING_FACTOR_V),
+							ccp(sandbar.boundingBox.origin.x+sandbar.boundingBox.size.width + 8*SCALING_FACTOR_H,
+								sandbar.boundingBox.origin.y+sandbar.boundingBox.size.height + 8*SCALING_FACTOR_V),
+							sandbarColor);
 		}
 	}
 }
@@ -2827,15 +2952,7 @@
 	if(DEBUG_MEMORY) DebugLog(@"Begin GameLayer %f onExit", _instanceId);
 	if(DEBUG_MEMORY) report_memory();
 
-	_state = GAME_OVER;
-
-    [self unscheduleAllSelectors];
-    [self unscheduleUpdate];
-
-	for(LHSprite* sprite in _levelLoader.allSprites) {
-		[sprite stopAnimation];
-		[sprite stopPathMovement];
-	}
+	[self setStateGameOver];
 		
     [super onExit];
 	

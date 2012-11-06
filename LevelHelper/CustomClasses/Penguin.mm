@@ -12,6 +12,7 @@
 @synthesize speed;
 @synthesize isSafe;
 @synthesize alertRadius;
+@synthesize isInvisible;
 @synthesize detectionRadius;
 @synthesize hasSpottedShark;
 @synthesize isStuck;
@@ -53,6 +54,9 @@ return NSStringFromClass([self class]);
 
 	if([dictionary objectForKey:@"alertRadius"])
 		[self setAlertRadius:[[dictionary objectForKey:@"alertRadius"] floatValue]];
+
+	if([dictionary objectForKey:@"isInvisible"])
+		[self setIsInvisible:[[dictionary objectForKey:@"isInvisible"] boolValue]];
 
 	if([dictionary objectForKey:@"detectionRadius"])
 		[self setDetectionRadius:[[dictionary objectForKey:@"detectionRadius"] floatValue]];

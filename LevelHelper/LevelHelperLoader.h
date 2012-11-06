@@ -78,7 +78,13 @@ enum LevelHelper_TAG
 	DOODAD 			= 14,
 	DOODAD_PATH 			= 15,
 	OBSTRUCTION 			= 16,
-	NUMBER_OF_TAGS 	= 17
+	WHIRLPOOL 			= 17,
+	SANDBAR 			= 18,
+	BAG_OF_FISH 			= 19,
+	INVISIBILITY_HAT 			= 20,
+	LOUD_NOISE 			= 21,
+	BORDER_PATH 			= 22,
+	NUMBER_OF_TAGS 	= 23
 };
 
 CGSize  LHSizeFromString(NSString* val);

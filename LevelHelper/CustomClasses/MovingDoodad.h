@@ -7,8 +7,10 @@
 {
 
 
-	BOOL restartAtOtherEnd;
 	float timeToCompletePath;
+	BOOL isCyclic;
+	BOOL followXAxis;
+	BOOL restartAtOtherEnd;
 
 
 #if __has_feature(objc_arc) && __clang_major__ >= 3
@@ -20,9 +22,11 @@
 #endif // __has_feature(objc_arc)
 
 }
-@property BOOL restartAtOtherEnd;
 @property float timeToCompletePath;
+@property BOOL isCyclic;
+@property BOOL followXAxis;
 @property (nonatomic, retain) NSString* pathName;
+@property BOOL restartAtOtherEnd;
 
 +(MovingDoodad*) customClassInstance;
 

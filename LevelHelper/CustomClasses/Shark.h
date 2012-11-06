@@ -7,6 +7,7 @@
 {
 
 
+	BOOL isInvisible;
 	float endpointX;
 	float activeSpeed;
 	float restingDetectionRadius;
@@ -25,6 +26,7 @@
 #endif // __has_feature(objc_arc)
 
 }
+@property BOOL isInvisible;
 @property float endpointX;
 @property float activeSpeed;
 @property float restingDetectionRadius;

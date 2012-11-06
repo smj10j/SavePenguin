@@ -9,4 +9,10 @@
 #import "ToolboxItem_Debris.h"
 #import "ToolboxItem_Windmill.h"
 #import "MovingDoodad.h"
+#import "ToolboxItem_Whirlpool.h"
+#import "ToolboxItem_Sandbar.h"
+#import "ToolboxItem_Bag_of_Fish.h"
+#import "ToolboxItem_Loud_Noise.h"
+#import "ToolboxItem_Invisibility_Hat.h"
+#import "MovingBorder.h"
 

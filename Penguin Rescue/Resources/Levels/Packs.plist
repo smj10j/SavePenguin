@@ -7,7 +7,7 @@
 	};
 	1 = {
 		RequiresPack = APenguinInNeed;
-		"RequiresNumPackLevelsCompleted" = 5;
+		"RequiresNumPackLevelsCompleted" = 6;
 		Path = TectonicPlates;
 		Name = "Tectonic Plates";
 	};

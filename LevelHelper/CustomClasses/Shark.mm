@@ -8,6 +8,7 @@
 @implementation Shark
 
 
+@synthesize isInvisible;
 @synthesize endpointX;
 @synthesize activeSpeed;
 @synthesize restingDetectionRadius;
@@ -42,6 +43,9 @@ return NSStringFromClass([self class]);
 }
 -(void) setPropertiesFromDictionary:(NSDictionary*)dictionary
 {
+
+	if([dictionary objectForKey:@"isInvisible"])
+		[self setIsInvisible:[[dictionary objectForKey:@"isInvisible"] boolValue]];
 
 	if([dictionary objectForKey:@"endpointX"])
 		[self setEndpointX:[[dictionary objectForKey:@"endpointX"] floatValue]];
