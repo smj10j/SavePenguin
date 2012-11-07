@@ -11,8 +11,9 @@ public:
 			
 		//NSLog(@"WINDMILL HITTING %@", [LHSprite spriteForBody:fixture->GetBody()].uniqueName);
 
-		if([LHSprite tagForBody:fixture->GetBody()] == WINDMILL) {
-			//allow windmills to pass through eachother
+		int TAG = [LHSprite tagForBody:fixture->GetBody()];
+		if(TAG == WINDMILL || TAG == WHIRLPOOL) {
+			//allow windmills and whirlpools to pass through eachother
 			return _fraction > 0 ? _fraction : 1;
 		}
 		

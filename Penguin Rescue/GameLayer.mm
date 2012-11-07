@@ -911,6 +911,9 @@
 
 -(void)initializeSelectedActiveToolboxItem {
 	
+	//stop any interaction with the world
+	_activeToolboxItem.tag = TOOLBOX_ITEM;
+	
 	//establish crosshairs
 	if(_activeToolboxItemRotationCrosshair != nil) {
 		[self removeChild:_activeToolboxItemRotationCrosshair cleanup:YES];
@@ -1431,12 +1434,7 @@
 
 	ccBlendFunc blendFunc = {GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA}; // we are going to blend via alpha
 	[popupLayerTexture.sprite setBlendFunc:blendFunc];
-
 	[_mainLayer addChild:popupLayerTexture];
-	
-	
-	
-	
 	
 	LHSprite* levelWonPopup = [_levelLoader createSpriteWithName:@"Level_Won_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:popupLayerTexture];
 	levelWonPopup.opacity = 0;
@@ -1448,6 +1446,8 @@
 	const int buttonYOffset = 120*SCALING_FACTOR_V + (IS_IPHONE ? -25 : 0);
 
 	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+	levelsMenuButton.opacity = 0;
+	levelsMenuButton.zOrder = _mainLayer.zOrder+1;
 	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_Button" fromSHScene:@"Spritesheet"];
 	[levelsMenuButton transformPosition: ccp(winSize.width/2 - levelsMenuButton.boundingBox.size.width*2,
 											levelsMenuButton.boundingBox.size.height/2 + buttonYOffset) ];
@@ -1455,6 +1455,8 @@
 	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
 
 	LHSprite* restartMenuButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+	restartMenuButton.opacity = 0;
+	restartMenuButton.zOrder = _mainLayer.zOrder+1;
 	[restartMenuButton prepareAnimationNamed:@"Menu_Restart_Button" fromSHScene:@"Spritesheet"];
 	[restartMenuButton transformPosition: ccp(winSize.width/2,
 											restartMenuButton.boundingBox.size.height/2 + buttonYOffset) ];
@@ -1462,6 +1464,8 @@
 	[restartMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 
 	LHSprite* nextLevelMenuButton = [_levelLoader createSpriteWithName:@"Next_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+	nextLevelMenuButton.opacity = 0;
+	nextLevelMenuButton.zOrder = _mainLayer.zOrder+1;
 	[nextLevelMenuButton prepareAnimationNamed:@"Menu_Next_Level_Button" fromSHScene:@"Spritesheet"];
 	[nextLevelMenuButton transformPosition: ccp(winSize.width/2 + restartMenuButton.boundingBox.size.width*2,
 											nextLevelMenuButton.boundingBox.size.height/2 + buttonYOffset) ];
@@ -1521,9 +1525,9 @@
 
 		CCLabelTTF* gradeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", grade] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
 		gradeLabel.color = SCORING_FONT_COLOR3;
+		gradeLabel.opacity = 0;
 		gradeLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
 									170*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -7 : 0));
-		gradeLabel.opacity = 0;
 		[self addChild:gradeLabel];
 		
 		//grade fades in with a thump
@@ -1537,10 +1541,11 @@
 	
 		CCLabelTTF* coinsEarnedLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", coinsEarned] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
 		coinsEarnedLabel.color = SCORING_FONT_COLOR2;
+		coinsEarnedLabel.opacity = 0;
 		coinsEarnedLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
 									105*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
-		coinsEarnedLabel.opacity = 0;
-		[self addChild:coinsEarnedLabel];		
+		[self addChild:coinsEarnedLabel];
+			
 		[coinsEarnedLabel runAction:[CCSequence actions:
 			[CCDelayTime actionWithDuration:1.50f],
 			[CCFadeIn actionWithDuration:0.25f],
@@ -1561,10 +1566,11 @@
 		
 		CCLabelTTF* highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", highScoresLabelText] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE3 dimensions:CGSizeMake(200*SCALING_FACTOR_H,150*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
 		highScoreLabel.color = SCORING_FONT_COLOR1;
+		highScoreLabel.opacity = 0;
 		highScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset - 200*SCALING_FACTOR_H,
 									110*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
-		highScoreLabel.opacity = 0;
 		[self addChild:highScoreLabel];
+		
 		[highScoreLabel runAction:[CCSequence actions:
 			[CCDelayTime actionWithDuration:1.50f],
 			[CCFadeIn actionWithDuration:0.25f],
@@ -1588,9 +1594,9 @@
 	}
 
 	[levelWonPopup runAction:[CCFadeIn actionWithDuration:0.25f]];
-	[restartMenuButton runAction:[CCFadeIn actionWithDuration:0.25f]];
-	[levelsMenuButton runAction:[CCFadeIn actionWithDuration:0.25f]];
-	[nextLevelMenuButton runAction:[CCFadeIn actionWithDuration:0.25f]];
+	[restartMenuButton runAction:[CCFadeIn actionWithDuration:0.35f]];
+	[levelsMenuButton runAction:[CCFadeIn actionWithDuration:0.35f]];
+	[nextLevelMenuButton runAction:[CCFadeIn actionWithDuration:0.35f]];
 }
 
 -(void) playGameWonGradeStamp {
@@ -1641,33 +1647,29 @@
 
 	ccBlendFunc blendFunc = {GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA}; // we are going to blend via alpha
 	[popupLayerTexture.sprite setBlendFunc:blendFunc];
-
 	[_mainLayer addChild:popupLayerTexture];
 	
 	LHSprite* levelLostPopup = [_levelLoader createSpriteWithName:@"Level_Lost_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:popupLayerTexture];
 	[levelLostPopup transformPosition: ccp(0,0)];
-	levelLostPopup.opacity = 0;
-	CGSize levelLostPopupSize = levelLostPopup.boundingBox.size;
 
 	/***** action butons ******/
 
-	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelLostPopup];
+	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+	levelsMenuButton.zOrder = _mainLayer.zOrder+1;
 	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_Button" fromSHScene:@"Spritesheet"];
-	[levelsMenuButton transformPosition: ccp(levelLostPopupSize.width/2 - levelsMenuButton.boundingBox.size.width,
-											 levelLostPopupSize.height/2 - 64*SCALING_FACTOR_V + (IS_IPHONE ? -5 : 0))];
+	[levelsMenuButton transformPosition: ccp(winSize.width/2 - levelsMenuButton.boundingBox.size.width,
+											 winSize.height/2 - 64*SCALING_FACTOR_V + (IS_IPHONE ? -5 : 0))];
 	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
 	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
 	
-	LHSprite* restartMenuButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelLostPopup];
+	LHSprite* restartMenuButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+	restartMenuButton.zOrder = _mainLayer.zOrder+1;
 	[restartMenuButton prepareAnimationNamed:@"Menu_Restart_Button" fromSHScene:@"Spritesheet"];
-	[restartMenuButton transformPosition: ccp(levelLostPopupSize.width/2 + restartMenuButton.boundingBox.size.width,
-											 levelLostPopupSize.height/2 - 64*SCALING_FACTOR_V + (IS_IPHONE ? -5 : 0))];
+	[restartMenuButton transformPosition: ccp(winSize.width/2 + restartMenuButton.boundingBox.size.width,
+											 winSize.height/2 - 64*SCALING_FACTOR_V + (IS_IPHONE ? -5 : 0))];
 	[restartMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[restartMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
-
-
-	//show!!
-	[levelLostPopup runAction:[CCFadeIn actionWithDuration:0.25f]];
+	
 }
 
 -(void) restart {
