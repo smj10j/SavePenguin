@@ -631,8 +631,10 @@
 			//already placed - set it's physics data
 			[sprite makeDynamic];
 			[sprite setSensor:false];
+			
 			ToolboxItem_Debris* toolboxItemData = (ToolboxItem_Debris*)sprite.userInfo;
 			[sprite setScale:toolboxItemData.scale];
+			
 		}else if(sprite.tag == OBSTRUCTION) {
 			//already placed - set it's physics data
 			[sprite makeStatic];
@@ -641,11 +643,15 @@
 			//already placed - set it's physics data
 			[sprite makeStatic];
 			[sprite setSensor:true];
+			
 			ToolboxItem_Windmill* toolboxItemData = (ToolboxItem_Windmill*)sprite.userInfo;
 			[sprite setScale:toolboxItemData.scale];
+			
 		}else if(sprite.tag == WHIRLPOOL) {
+		
 			//already placed - set it's physics data
 			sprite.body->ApplyTorque((int)(sprite.rotation/90)%2 == 0 ? -15 : 15);
+			
 			ToolboxItem_Whirlpool* toolboxItemData = (ToolboxItem_Whirlpool*)sprite.userInfo;
 			[sprite setScale:toolboxItemData.scale];
 
@@ -2226,6 +2232,16 @@
 	if(_state != RUNNING) {
 		return;
 	}
+	
+	//spin the whirlpools at a constant rate
+	for(LHSprite* whirlpool in [_levelLoader spritesWithTag:WHIRLPOOL]) {
+		ToolboxItem_Whirlpool* whirlpoolData = (ToolboxItem_Whirlpool*)whirlpool.userInfo;
+		double angVel = whirlpool.body->GetAngularVelocity();
+		double targetAngVel = whirlpoolData.power/100;
+		if(fabs(angVel) != targetAngVel) {
+			whirlpool.body->ApplyAngularImpulse(.1*(angVel < 0 ? (-targetAngVel-angVel) : (targetAngVel-angVel)));
+		}
+	}
 
 
 	//place penguins on land for visual appeal
@@ -2449,11 +2465,11 @@
 				dxMod = vortexVelocity.x*power + dN.x*(whirlpoolData.power - dist)*.125;
 				dyMod = vortexVelocity.y*power + dN.y*(whirlpoolData.power - dist)*.125;
 				
-				/*DebugLog(@"Applying Whirlpool effect to %@ with dxMod=%f, dyMod=%f, dist=%f, vortexVelocity=%@, dN=%@",
-						sprite.uniqueName, dxMod, dyMod, dist,
+				DebugLog(@"Applying Whirlpool effect to %@ with dxMod=%f, dyMod=%f, dist=%f, angularVelocity=%f, vortexVelocity=%@, dN=%@",
+						sprite.uniqueName, dxMod, dyMod, dist, whirlpool.body->GetAngularVelocity(),
 						NSStringFromCGPoint(ccp(vortexVelocity.x,vortexVelocity.y)),
 						NSStringFromCGPoint(ccp(dN.x,dN.y)));
-				*/
+				
 			}
 	}
 	dMod = ccp(dMod.x+dxMod, dMod.y+dyMod);	

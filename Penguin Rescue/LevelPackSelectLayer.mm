@@ -148,7 +148,7 @@
 			//add a lock on top
 			LHSprite* lockIcon = [_levelLoader createSpriteWithName:@"Level_Pack_Locked" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelPackButton];
 			[lockIcon transformPosition:ccp(levelPackButtonSize.width/2,
-											levelPackButtonSize.height/2 - 40*SCALING_FACTOR_V)];
+											levelPackButtonSize.height/2 - 60*SCALING_FACTOR_V)];
 			
 			isLocked = true;
 		}
