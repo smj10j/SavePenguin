@@ -2465,11 +2465,11 @@
 				dxMod = vortexVelocity.x*power + dN.x*(whirlpoolData.power - dist)*.125;
 				dyMod = vortexVelocity.y*power + dN.y*(whirlpoolData.power - dist)*.125;
 				
-				DebugLog(@"Applying Whirlpool effect to %@ with dxMod=%f, dyMod=%f, dist=%f, angularVelocity=%f, vortexVelocity=%@, dN=%@",
+				/*DebugLog(@"Applying Whirlpool effect to %@ with dxMod=%f, dyMod=%f, dist=%f, angularVelocity=%f, vortexVelocity=%@, dN=%@",
 						sprite.uniqueName, dxMod, dyMod, dist, whirlpool.body->GetAngularVelocity(),
 						NSStringFromCGPoint(ccp(vortexVelocity.x,vortexVelocity.y)),
 						NSStringFromCGPoint(ccp(dN.x,dN.y)));
-				
+				*/
 			}
 	}
 	dMod = ccp(dMod.x+dxMod, dMod.y+dyMod);	

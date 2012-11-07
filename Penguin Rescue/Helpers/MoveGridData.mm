@@ -178,6 +178,7 @@
 		return bestMove;
 	}
 	
+	short w = _moveGrid[(int)fromTile.x][(int)fromTile.y];
 	short wN = fromTile.y < _gridHeight-1 ? _moveGrid[(int)fromTile.x][(int)fromTile.y+1] : HARD_BORDER_WEIGHT;
 	short wS = fromTile.y > 0 ? _moveGrid[(int)fromTile.x][(int)fromTile.y-1] : HARD_BORDER_WEIGHT;
 	short wE = fromTile.x < _gridWidth-1 ? _moveGrid[(int)fromTile.x+1][(int)fromTile.y] : HARD_BORDER_WEIGHT;
@@ -187,10 +188,9 @@
 	wS = wS == INITIAL_GRID_WEIGHT ? HARD_BORDER_WEIGHT : wS;
 	wE = wE == INITIAL_GRID_WEIGHT ? HARD_BORDER_WEIGHT : wE;
 	wW = wW == INITIAL_GRID_WEIGHT ? HARD_BORDER_WEIGHT : wW;
+	w = w == INITIAL_GRID_WEIGHT ? HARD_BORDER_WEIGHT : w;
 	
-	short w = _moveGrid[(int)fromTile.x][(int)fromTile.y];
-	
-	//if(DEBUG_MOVEGRID) DebugLog(@"%@ weights: %d, %d, %d, %d", _tag, wN, wS, wE, wW);
+	//if(DEBUG_MOVEGRID) DebugLog(@"%@ weights: %d -- %d, %d, %d, %d", _tag, w, wN, wS, wE, wW);
 	
 	if(wW == wE && wE == wN && wN == wS) {
 				
