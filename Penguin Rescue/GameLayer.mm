@@ -346,7 +346,7 @@
 		[CCDelayTime actionWithDuration:1.5f],
 		[CCMoveBy actionWithDuration:0.5f position:ccp(0,-timeAndLevelPopup.boundingBox.size.height)],
 		[CCDelayTime actionWithDuration:2.5f],
-		[CCMoveBy actionWithDuration:0.5f position:ccp(0,timeAndLevelPopup.boundingBox.size.height/2 + 2*SCALING_FACTOR_V)],
+		[CCMoveBy actionWithDuration:0.5f position:ccp(0,timeAndLevelPopup.boundingBox.size.height/2 + 4*SCALING_FACTOR_V)],
 		nil]];	
 }
 
@@ -650,7 +650,8 @@
 		}else if(sprite.tag == WHIRLPOOL) {
 		
 			//already placed - set it's physics data
-			sprite.body->ApplyTorque((int)(sprite.rotation/90)%2 == 0 ? -15 : 15);
+			sprite.body->ApplyTorque(sprite.rotation < 180 ? -15 : 15);
+			sprite.flipX = sprite.rotation > 180;
 			
 			ToolboxItem_Whirlpool* toolboxItemData = (ToolboxItem_Whirlpool*)sprite.userInfo;
 			[sprite setScale:toolboxItemData.scale];
@@ -938,6 +939,7 @@
 		double angularVelocity = _activeToolboxItem.body->GetAngularVelocity();
 		if(angularVelocity == 0) {
 			_activeToolboxItem.body->ApplyTorque(-15);
+			_activeToolboxItem.flipX = false;
 		}
 	}
 	
@@ -994,6 +996,7 @@
 			if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
 				_activeToolboxItem.body->SetAngularVelocity(0);
 				_activeToolboxItem.body->ApplyTorque(-15);
+				_activeToolboxItem.flipX = false;
 			}else {
 				[_activeToolboxItem transformRotation:0];
 			}
@@ -1426,7 +1429,7 @@
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 	
 	//render a transparent overlay
-	CCLayerColor* popupLayer = [[CCLayerColor alloc] initWithColor:ccc4(255, 255, 255, 170) width:winSize.width height:winSize.height];
+	CCLayerColor* popupLayer = [[CCLayerColor alloc] initWithColor:ccc4(255, 255, 255, 140) width:winSize.width height:winSize.height];
 	CCRenderTexture *popupLayerTexture = [CCRenderTexture renderTextureWithWidth:popupLayer.contentSize.width height:popupLayer.contentSize.height];
 	popupLayerTexture.sprite.anchorPoint= ccp(0.5f,0.5f);
 	popupLayerTexture.position = ccp(popupLayer.contentSize.width/2, popupLayer.contentSize.height/2);
@@ -1449,7 +1452,7 @@
 	/***** action butons ******/
 	
 	
-	const int buttonYOffset = 120*SCALING_FACTOR_V + (IS_IPHONE ? -25 : 0);
+	const int buttonYOffset = 120*SCALING_FACTOR_V + (IS_IPHONE ? -21 : 0);
 
 	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	levelsMenuButton.opacity = 0;
@@ -1482,32 +1485,32 @@
 	
 	/***** scoring items ******/
 
-	const int scoringYOffset = (IS_IPHONE ? 495 : 475)*SCALING_FACTOR_V;
+	const int scoringYOffset = (IS_IPHONE ? 500 : 480)*SCALING_FACTOR_V;
 	
 	CCLabelTTF* maxScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", SCORING_MAX_SCORE_POSSIBLE] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1 ];
 	maxScoreLabel.color = SCORING_FONT_COLOR2;
-	maxScoreLabel.position = ccp(winSize.width/2 - (185*SCALING_FACTOR_H) - (IS_IPHONE ? 15*SCALING_FACTOR_H : 0),
+	maxScoreLabel.position = ccp(winSize.width/2 - (190*SCALING_FACTOR_H) - (IS_IPHONE ? 15*SCALING_FACTOR_H : 0),
 								 scoringYOffset);
 	[self addChild:maxScoreLabel];
 		
 	
 	CCLabelTTF* elapsedPlaceTimeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", timeScoreDeduction] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 	elapsedPlaceTimeLabel.color = SCORING_FONT_COLOR1;
-	elapsedPlaceTimeLabel.position = ccp(winSize.width/2 - (75*SCALING_FACTOR_H) - (IS_IPHONE ? 5*SCALING_FACTOR_H : 0),
+	elapsedPlaceTimeLabel.position = ccp(winSize.width/2 - (80*SCALING_FACTOR_H) - (IS_IPHONE ? 5*SCALING_FACTOR_H : 0),
 									  	scoringYOffset);
 	[self addChild:elapsedPlaceTimeLabel];
 
 
 	CCLabelTTF* toolsScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", toolsScoreDeduction] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 	toolsScoreLabel.color = SCORING_FONT_COLOR1;
-	toolsScoreLabel.position = ccp(winSize.width/2 + (35*SCALING_FACTOR_H),
+	toolsScoreLabel.position = ccp(winSize.width/2 + (32*SCALING_FACTOR_H),
 									scoringYOffset);
 	[self addChild:toolsScoreLabel];
 
 
 	CCLabelTTF* totalScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", finalScore] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 	totalScoreLabel.color = SCORING_FONT_COLOR2;
-	totalScoreLabel.position = ccp(winSize.width/2 + (170*SCALING_FACTOR_H) + (IS_IPHONE ? 14*SCALING_FACTOR_H : 0),
+	totalScoreLabel.position = ccp(winSize.width/2 + (165*SCALING_FACTOR_H) + (IS_IPHONE ? 12*SCALING_FACTOR_H : 0),
 									scoringYOffset);
 	[self addChild:totalScoreLabel];
 
@@ -1517,8 +1520,8 @@
 
 	/***** competitive items ******/
 
-	const int competitiveTextXOffset = (172 + (IS_IPHONE ? 15 : 0))*SCALING_FACTOR_H;
-	const int competitiveTextYOffset = 130*SCALING_FACTOR_V;
+	const int competitiveTextXOffset = (165 + (IS_IPHONE ? 13 : 0))*SCALING_FACTOR_H;
+	const int competitiveTextYOffset = 135*SCALING_FACTOR_V;
 	
 	
 	if(worldScores != nil) {
@@ -1526,14 +1529,14 @@
 		CCLabelTTF* worldAverageScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", worldScoreMean] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 		worldAverageScoreLabel.color = SCORING_FONT_COLOR3;
 		worldAverageScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
-											240*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -0 : 0));
+											242*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? 1: 0));
 		[self addChild:worldAverageScoreLabel];
 
 		CCLabelTTF* gradeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", grade] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
 		gradeLabel.color = SCORING_FONT_COLOR3;
 		gradeLabel.opacity = 0;
 		gradeLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
-									170*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -7 : 0));
+									170*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -5 : 0));
 		[self addChild:gradeLabel];
 		
 		//grade fades in with a thump
@@ -1618,10 +1621,12 @@
 	}
 	[self setStateGameOver];
 
+	//[self runAction:[CCShaky3D actionWithRange:1.5 shakeZ:false grid:ccg(12,8) duration:0.15f]];
+
 	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelLost/hoot.wav"];
 	}
-
+	
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"Lost", @"Level_Status",
@@ -1639,7 +1644,7 @@
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
 	//render a transparent overlay
-	CCLayerColor* popupLayer = [[CCLayerColor alloc] initWithColor:ccc4(255, 255, 255, 170) width:winSize.width height:winSize.height];
+	CCLayerColor* popupLayer = [[CCLayerColor alloc] initWithColor:ccc4(255, 255, 255, 140) width:winSize.width height:winSize.height];
 	CCRenderTexture *popupLayerTexture = [CCRenderTexture renderTextureWithWidth:popupLayer.contentSize.width height:popupLayer.contentSize.height];
 	popupLayerTexture.sprite.anchorPoint= ccp(0.5f,0.5f);
 	popupLayerTexture.position = ccp(popupLayer.contentSize.width/2, popupLayer.contentSize.height/2);
@@ -1664,7 +1669,7 @@
 	levelsMenuButton.zOrder = _mainLayer.zOrder+1;
 	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_Button" fromSHScene:@"Spritesheet"];
 	[levelsMenuButton transformPosition: ccp(winSize.width/2 - levelsMenuButton.boundingBox.size.width,
-											 winSize.height/2 - 64*SCALING_FACTOR_V + (IS_IPHONE ? -5 : 0))];
+											 winSize.height/2 - 58*SCALING_FACTOR_V + (IS_IPHONE ? -5 : 0))];
 	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
 	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
 	
@@ -1672,7 +1677,7 @@
 	restartMenuButton.zOrder = _mainLayer.zOrder+1;
 	[restartMenuButton prepareAnimationNamed:@"Menu_Restart_Button" fromSHScene:@"Spritesheet"];
 	[restartMenuButton transformPosition: ccp(winSize.width/2 + restartMenuButton.boundingBox.size.width,
-											 winSize.height/2 - 64*SCALING_FACTOR_V + (IS_IPHONE ? -5 : 0))];
+											 winSize.height/2 - 58*SCALING_FACTOR_V + (IS_IPHONE ? -5 : 0))];
 	[restartMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[restartMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 	
@@ -3043,6 +3048,7 @@
 						double angularVelocity = _activeToolboxItem.body->GetAngularVelocity();
 						_activeToolboxItem.body->SetAngularVelocity(0);
 						_activeToolboxItem.body->ApplyTorque(angularVelocity>0 ? -15 : 15);
+						_activeToolboxItem.flipX = angularVelocity>0;
 					}else {
 						[_activeToolboxItem transformRotation:((int)_activeToolboxItem.rotation+90)%360];
 					}

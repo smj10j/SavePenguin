@@ -139,7 +139,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{123, 383}, {82, 72.75}}</string>
+								<string>{{387, 114}, {82, 72.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -214,7 +214,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{206, 383}, {83.5, 64.75}}</string>
+								<string>{{123, 403}, {83.5, 64.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -381,7 +381,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{63, 505}, {34.5, 34.75}}</string>
+								<string>{{466, 0}, {37.75, 37.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -397,13 +397,13 @@
 								<key>Scale</key>
 								<string>{1.3838938474655151, 1.3838938474655151}</string>
 								<key>SpriteSize</key>
-								<string>{35, 35}</string>
+								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
 								<integer>14</integer>
 								<key>TagName</key>
 								<string>DOODAD</string>
 								<key>TextureOffset</key>
-								<string>{0.25, -0.125}</string>
+								<string>{0.375, -0.375}</string>
 								<key>UniqueName</key>
 								<string>Doodad_Lake_1</string>
 								<key>ZOrder</key>
@@ -473,7 +473,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{63, 593}, {21.75, 17.75}}</string>
+								<string>{{63, 545}, {24, 20}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -485,7 +485,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{144.5, 10.625}</string>
+								<string>{144.5, 5.625}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -495,7 +495,7 @@
 								<key>TagName</key>
 								<string>DOODAD</string>
 								<key>TextureOffset</key>
-								<string>{0.125, -0.25}</string>
+								<string>{0.5, -0.625}</string>
 								<key>UniqueName</key>
 								<string>Doodad_Polar_Bear_1</string>
 								<key>ZOrder</key>
@@ -565,7 +565,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{63, 593}, {21.75, 17.75}}</string>
+								<string>{{63, 545}, {24, 20}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -587,7 +587,7 @@
 								<key>TagName</key>
 								<string>DOODAD</string>
 								<key>TextureOffset</key>
-								<string>{0.125, -0.25}</string>
+								<string>{0.5, -0.625}</string>
 								<key>UniqueName</key>
 								<string>Doodad_Polar_Bear_1_1</string>
 								<key>ZOrder</key>
@@ -657,7 +657,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{63, 593}, {21.75, 17.75}}</string>
+								<string>{{63, 545}, {24, 20}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -669,7 +669,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{447.5, 302.625}</string>
+								<string>{444.5, 314.625}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -679,7 +679,7 @@
 								<key>TagName</key>
 								<string>DOODAD</string>
 								<key>TextureOffset</key>
-								<string>{0.125, -0.25}</string>
+								<string>{0.5, -0.625}</string>
 								<key>UniqueName</key>
 								<string>Doodad_Polar_Bear_1_2</string>
 								<key>ZOrder</key>
@@ -803,9 +803,9 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>750</real>
-					<key>runningCost</key>
 					<real>1000</real>
+					<key>runningCost</key>
+					<real>1250</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -818,9 +818,9 @@
 					<key>mass</key>
 					<real>1</real>
 					<key>placeCost</key>
-					<real>250</real>
+					<real>150</real>
 					<key>runningCost</key>
-					<real>350</real>
+					<real>250</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -831,13 +831,13 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>400</real>
+					<real>750</real>
 					<key>power</key>
 					<real>50</real>
 					<key>reach</key>
 					<real>5000</real>
 					<key>runningCost</key>
-					<real>600</real>
+					<real>1000</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -867,7 +867,7 @@
 					<key>placeCost</key>
 					<real>1250</real>
 					<key>power</key>
-					<real>50</real>
+					<real>200</real>
 					<key>runningCost</key>
 					<real>1500</real>
 					<key>scale</key>
@@ -893,9 +893,9 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1500</real>
+					<real>1250</real>
 					<key>runningCost</key>
-					<real>1750</real>
+					<real>1500</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -906,9 +906,9 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1500</real>
+					<real>1250</real>
 					<key>runningCost</key>
-					<real>1750</real>
+					<real>1500</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
