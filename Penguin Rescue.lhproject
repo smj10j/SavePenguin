@@ -89,9 +89,9 @@
 			<key>ClassRepresentation</key>
 			<dict>
 				<key>placeCost</key>
-				<real>750</real>
-				<key>runningCost</key>
 				<real>1000</real>
+				<key>runningCost</key>
+				<real>1250</real>
 				<key>scale</key>
 				<real>1</real>
 			</dict>
@@ -104,9 +104,9 @@
 				<key>mass</key>
 				<real>1</real>
 				<key>placeCost</key>
-				<real>250</real>
+				<real>150</real>
 				<key>runningCost</key>
-				<real>350</real>
+				<real>250</real>
 				<key>scale</key>
 				<real>1</real>
 			</dict>
@@ -117,13 +117,13 @@
 			<key>ClassRepresentation</key>
 			<dict>
 				<key>placeCost</key>
-				<real>400</real>
+				<real>750</real>
 				<key>power</key>
 				<real>50</real>
 				<key>reach</key>
 				<real>5000</real>
 				<key>runningCost</key>
-				<real>600</real>
+				<real>1000</real>
 				<key>scale</key>
 				<real>1</real>
 			</dict>
@@ -179,9 +179,9 @@
 			<key>ClassRepresentation</key>
 			<dict>
 				<key>placeCost</key>
-				<real>1500</real>
+				<real>1250</real>
 				<key>runningCost</key>
-				<real>1750</real>
+				<real>1500</real>
 				<key>scale</key>
 				<real>1</real>
 			</dict>
@@ -192,9 +192,9 @@
 			<key>ClassRepresentation</key>
 			<dict>
 				<key>placeCost</key>
-				<real>1500</real>
+				<real>1250</real>
 				<key>runningCost</key>
-				<real>1750</real>
+				<real>1500</real>
 				<key>scale</key>
 				<real>1</real>
 			</dict>
@@ -239,7 +239,7 @@
 	<key>HDSuffix</key>
 	<string>-hd</string>
 	<key>LastLevelLoaded</key>
-	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/APenguinInNeed/Ragdoll.plhs</string>
+	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Pack1/WrongWay.plhs</string>
 	<key>Orientation</key>
 	<integer>1</integer>
 	<key>ProjectName</key>

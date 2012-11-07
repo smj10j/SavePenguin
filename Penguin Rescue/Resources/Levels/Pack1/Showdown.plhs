@@ -19,223 +19,82 @@
 			<array>
 				<dict>
 					<key>Children</key>
-					<array/>
-					<key>CustomClassInfo</key>
-					<dict>
-						<key>ClassName</key>
-						<string>No Class</string>
-					</dict>
-					<key>NodeType</key>
-					<string>LHBezier</string>
-					<key>ParentClass</key>
-					<string>LHLayer</string>
-					<key>ParentName</key>
-					<string>MAIN_LAYER</string>
-					<key>PhysicsProperties</key>
-					<dict>
-						<key>AngularDamping</key>
-						<real>0.0</real>
-						<key>AngularVelocity</key>
-						<real>0.0</real>
-						<key>CanSleep</key>
-						<true/>
-						<key>Category</key>
-						<integer>1</integer>
-						<key>Density</key>
-						<real>0.20000000298023224</real>
-						<key>FixedRot</key>
-						<false/>
-						<key>Fixture</key>
-						<array/>
-						<key>Friction</key>
-						<real>0.20000000298023224</real>
-						<key>GravityScale</key>
-						<real>1</real>
-						<key>Group</key>
-						<integer>0</integer>
-						<key>HandledBySH</key>
-						<false/>
-						<key>IsBullet</key>
-						<false/>
-						<key>IsCircle</key>
-						<false/>
-						<key>IsSensor</key>
-						<false/>
-						<key>LHHeight</key>
-						<real>0.0</real>
-						<key>LHShapePositionOffset</key>
-						<string>{0, 0}</string>
-						<key>LHWidth</key>
-						<real>0.0</real>
-						<key>LinearDamping</key>
-						<real>0.0</real>
-						<key>LinearVelocity</key>
-						<string>{0, 0}</string>
-						<key>Mask</key>
-						<integer>65535</integer>
-						<key>Name</key>
-						<string>LH_Generic_Fixture</string>
-						<key>Restitution</key>
-						<real>0.20000000298023224</real>
-						<key>Tag</key>
-						<integer>0</integer>
-						<key>TileOptimization</key>
-						<real>3</real>
-						<key>TileVertices</key>
-						<array/>
-						<key>Type</key>
-						<integer>3</integer>
-					</dict>
-					<key>TextureProperties</key>
-					<dict>
-						<key>Angle</key>
-						<integer>0</integer>
-						<key>Color</key>
-						<string>{{1, 1}, {1, 1}}</string>
-						<key>Curves</key>
-						<array>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{259, 175.25}</string>
-								<key>EndPoint</key>
-								<string>{256, 247.25}</string>
-								<key>StartControlPoint</key>
-								<string>{239, 175.25}</string>
-								<key>StartPoint</key>
-								<string>{242, 103.25}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{221.5, 265.25}</string>
-								<key>EndPoint</key>
-								<string>{167, 283.25}</string>
-								<key>StartControlPoint</key>
-								<string>{201.5, 265.25}</string>
-								<key>StartPoint</key>
-								<string>{256, 247.25}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{168.5, 158.25}</string>
-								<key>EndPoint</key>
-								<string>{150, 32}</string>
-								<key>StartControlPoint</key>
-								<string>{148.5, 158.25}</string>
-								<key>StartPoint</key>
-								<string>{167, 283.25}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{239.5, 31.25}</string>
-								<key>EndPoint</key>
-								<string>{309, 29.25}</string>
-								<key>StartControlPoint</key>
-								<string>{219.5, 31.25}</string>
-								<key>StartPoint</key>
-								<string>{150, 32}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{307.5, 95.25}</string>
-								<key>EndPoint</key>
-								<string>{286, 161.25}</string>
-								<key>StartControlPoint</key>
-								<string>{287.5, 95.25}</string>
-								<key>StartPoint</key>
-								<string>{309, 29.25}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{220, 164.25}</string>
-								<key>EndPoint</key>
-								<string>{134, 167.25}</string>
-								<key>StartControlPoint</key>
-								<string>{200, 164.25}</string>
-								<key>StartPoint</key>
-								<string>{286, 161.25}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{168.5, 235.75}</string>
-								<key>EndPoint</key>
-								<string>{183, 304.25}</string>
-								<key>StartControlPoint</key>
-								<string>{148.5, 235.75}</string>
-								<key>StartPoint</key>
-								<string>{134, 167.25}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{268, 308.75}</string>
-								<key>EndPoint</key>
-								<string>{333, 313.25}</string>
-								<key>StartControlPoint</key>
-								<string>{248, 308.75}</string>
-								<key>StartPoint</key>
-								<string>{183, 304.25}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{300, 208.25}</string>
-								<key>EndPoint</key>
-								<string>{247, 103.25}</string>
-								<key>StartControlPoint</key>
-								<string>{280, 208.25}</string>
-								<key>StartPoint</key>
-								<string>{333, 313.25}</string>
-							</dict>
-						</array>
-						<key>DrawBorder</key>
-						<true/>
-						<key>FlipX</key>
-						<false/>
-						<key>FlipY</key>
-						<false/>
-						<key>Image</key>
-						<string>No Image</string>
-						<key>ImageFile</key>
-						<string>No Image</string>
-						<key>IsClosed</key>
-						<false/>
-						<key>IsDrawable</key>
-						<true/>
-						<key>IsExpanded</key>
-						<false/>
-						<key>IsPath</key>
-						<false/>
-						<key>IsSimpleLine</key>
-						<false/>
-						<key>IsTile</key>
-						<false/>
-						<key>LineColor</key>
-						<string>{{1, 1}, {1, 1}}</string>
-						<key>LineWidth</key>
-						<real>1</real>
-						<key>Locked</key>
-						<false/>
-						<key>Opacity</key>
-						<real>1</real>
-						<key>Position</key>
-						<string>{242, 103.25}</string>
-						<key>Scale</key>
-						<string>{1, 1}</string>
-						<key>SpriteSize</key>
-						<string>{0, 0}</string>
-						<key>Tag</key>
-						<integer>15</integer>
-						<key>TagName</key>
-						<string>DOODAD_PATH</string>
-						<key>UniqueName</key>
-						<string>Flying_Bird_Path_1</string>
-						<key>ZOrder</key>
-						<integer>0</integer>
-					</dict>
-					<key>UniqueName</key>
-					<string>Flying_Bird_Path_1</string>
-				</dict>
-				<dict>
-					<key>Children</key>
 					<array>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Wall_End1</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>270</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{63, 541}, {36.75, 32}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{358, 165}</string>
+								<key>Scale</key>
+								<string>{1, 0.95375478267669678}</string>
+								<key>SpriteSize</key>
+								<string>{37.5, 37.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0.375, -1.25}</string>
+								<key>UniqueName</key>
+								<string>Wall_End1</string>
+								<key>ZOrder</key>
+								<integer>1</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Wall_End1</string>
+						</dict>
 						<dict>
 							<key>AnimationsProperties</key>
 							<dict/>
@@ -292,7 +151,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{91, 274}</string>
+								<string>{431, 220}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -310,6 +169,906 @@
 							</dict>
 							<key>UniqueName</key>
 							<string>Safe_Island1</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Debris_Island2</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>63</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{466, 37}, {36.5, 33.5}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{147.43801812924301, 156.50643772357228}</string>
+								<key>Scale</key>
+								<string>{1.2889817953109741, 1.2889817953109741}</string>
+								<key>SpriteSize</key>
+								<string>{37.5, 37.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0, -0.25}</string>
+								<key>UniqueName</key>
+								<string>Debris_Island2_1</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Debris_Island2_1</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Debris_Island2</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{466, 37}, {36.5, 33.5}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{218.75, 94.75}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{37.5, 37.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0, -0.25}</string>
+								<key>UniqueName</key>
+								<string>Debris_Island2</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Debris_Island2</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Wall_Middle1</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>90</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{311, 349}, {187.5, 32.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{267, 120}</string>
+								<key>Scale</key>
+								<string>{0.55088824033737183, 1}</string>
+								<key>SpriteSize</key>
+								<string>{187.5, 37.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0, 0.125}</string>
+								<key>UniqueName</key>
+								<string>Wall_Middle1</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Wall_Middle1</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Wall_Middle2</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>90</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{123, 349}, {187.5, 32.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{359, 115}</string>
+								<key>Scale</key>
+								<string>{0.58538860082626343, 1}</string>
+								<key>SpriteSize</key>
+								<string>{187.5, 37.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0, 0.125}</string>
+								<key>UniqueName</key>
+								<string>Wall_Middle2</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Wall_Middle2</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Wall_End4</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>90</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{376, 256}, {37, 27.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{267, 188}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{37.5, 37.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{-0.25, -0.625}</string>
+								<key>UniqueName</key>
+								<string>Wall_End4</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Wall_End4</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Wall_End3</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>270</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{414, 256}, {35.5, 28.5}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{265, 60}</string>
+								<key>Scale</key>
+								<string>{0.64092761278152466, 1.0039757490158081}</string>
+								<key>SpriteSize</key>
+								<string>{37.5, 37.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{-1, -1}</string>
+								<key>UniqueName</key>
+								<string>Wall_End3</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Wall_End3</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Wall_End2</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>90</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{339, 256}, {36, 30.5}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{358, 52}</string>
+								<key>Scale</key>
+								<string>{0.62136125564575195, 0.91796028614044189}</string>
+								<key>SpriteSize</key>
+								<string>{37.5, 37.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0.75, 0.25}</string>
+								<key>UniqueName</key>
+								<string>Wall_End2</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Wall_End2</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Wall_Middle1</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{311, 349}, {187.5, 32.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{68, 247}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{187.5, 37.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0, 0.125}</string>
+								<key>UniqueName</key>
+								<string>Wall_Middle1_1</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Wall_Middle1_1</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Wall_End2</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>180</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{339, 256}, {36, 30.5}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{178, 248}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{37.5, 37.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0.75, 0.25}</string>
+								<key>UniqueName</key>
+								<string>Wall_End2_1</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Wall_End2_1</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Debris_Island2</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>30</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{466, 37}, {36.5, 33.5}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{39, 170}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{37.5, 37.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0, -0.25}</string>
+								<key>UniqueName</key>
+								<string>Debris_Island2_2</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Debris_Island2_2</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Debris_Island2</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{466, 37}, {36.5, 33.5}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{475, 25}</string>
+								<key>Scale</key>
+								<string>{1.6700540781021118, 1.6700540781021118}</string>
+								<key>SpriteSize</key>
+								<string>{37.5, 37.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0, -0.25}</string>
+								<key>UniqueName</key>
+								<string>Debris_Island2_3</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Debris_Island2_3</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Wall1</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>270</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{63, 202}, {275.5, 84.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{90.499999999999972, 21.25}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{277.5, 85}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0.25, -0.375}</string>
+								<key>UniqueName</key>
+								<string>Wall1</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Wall1</string>
 						</dict>
 						<dict>
 							<key>AnimationsProperties</key>
@@ -372,7 +1131,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{469, 268}, {22.5, 17.75}}</string>
+								<string>{{451, 256}, {22.5, 17.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -384,7 +1143,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{212.5, 250.625}</string>
+								<string>{89.5, 107.625}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -398,268 +1157,10 @@
 								<key>UniqueName</key>
 								<string>Doodad_Eskimo_Ice_Fisher_1</string>
 								<key>ZOrder</key>
-								<integer>2</integer>
+								<integer>4</integer>
 							</dict>
 							<key>UniqueName</key>
 							<string>Doodad_Eskimo_Ice_Fisher_1</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict/>
-								<key>ClassName</key>
-								<string>No Class</string>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Map</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Map</string>
-							<key>SHSpriteName</key>
-							<string>Wall2</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Map.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>90</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{63, 114}, {322.75, 87}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<false/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{226.25, 342.5}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{325, 87.5}</string>
-								<key>Tag</key>
-								<integer>7</integer>
-								<key>TagName</key>
-								<string>BORDER</string>
-								<key>TextureOffset</key>
-								<string>{0.125, -0.25}</string>
-								<key>UniqueName</key>
-								<string>Wall2</string>
-								<key>ZOrder</key>
-								<integer>2</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Wall2</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict/>
-								<key>ClassName</key>
-								<string>No Class</string>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Map</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Map</string>
-							<key>SHSpriteName</key>
-							<string>Debris_Island3</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Map.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{339, 202}, {82, 72.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<false/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{222.5, 98.25}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{85, 72.5}</string>
-								<key>Tag</key>
-								<integer>7</integer>
-								<key>TagName</key>
-								<string>BORDER</string>
-								<key>TextureOffset</key>
-								<string>{0, -0.375}</string>
-								<key>UniqueName</key>
-								<string>Debris_Island3</string>
-								<key>ZOrder</key>
-								<integer>2</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Debris_Island3</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict>
-								<key>AnimAtStart</key>
-								<true/>
-								<key>AnimLoop</key>
-								<true/>
-								<key>AnimName</key>
-								<string>Doodad_Flying_Bird</string>
-								<key>AnimRepetitions</key>
-								<integer>1</integer>
-								<key>AnimRestoreOriginalFrame</key>
-								<false/>
-								<key>AnimSpeed</key>
-								<real>0.05000000074505806</real>
-								<key>OtherAnimations</key>
-								<array/>
-								<key>SHScene</key>
-								<string>Spritesheet.pshs</string>
-							</dict>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>pathName</key>
-									<false/>
-									<key>restartAtOtherEnd</key>
-									<true/>
-									<key>timeToCompletePath</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>MovingDoodad</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>pathName</key>
-									<string>Flying_Bird_Path_1</string>
-									<key>restartAtOtherEnd</key>
-									<true/>
-									<key>timeToCompletePath</key>
-									<real>60</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Map</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Map</string>
-							<key>SHSpriteName</key>
-							<string>Doodad_Flying_Bird_1</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Map.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{339, 275}, {16, 8.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<false/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{-59.021363577490831, -92.207991935082873}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{20, 10}</string>
-								<key>Tag</key>
-								<integer>14</integer>
-								<key>TagName</key>
-								<string>DOODAD</string>
-								<key>TextureOffset</key>
-								<string>{0.25, -0.125}</string>
-								<key>UniqueName</key>
-								<string>Doodad_Flying_Bird_1</string>
-								<key>ZOrder</key>
-								<integer>3</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Doodad_Flying_Bird_1</string>
 						</dict>
 					</array>
 					<key>CustomClassInfo</key>
@@ -708,6 +1209,8 @@
 									<true/>
 									<key>isDead</key>
 									<true/>
+									<key>isInvisible</key>
+									<true/>
 									<key>isSafe</key>
 									<true/>
 									<key>isStuck</key>
@@ -726,6 +1229,8 @@
 									<key>hasSpottedShark</key>
 									<false/>
 									<key>isDead</key>
+									<false/>
+									<key>isInvisible</key>
 									<false/>
 									<key>isSafe</key>
 									<false/>
@@ -767,7 +1272,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{37, 30}, {34.75, 39.5}}</string>
+								<string>{{0, 119}, {34.75, 39.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -779,7 +1284,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{83, 30}</string>
+								<string>{313, 128}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -815,6 +1320,8 @@
 									<true/>
 									<key>endpointY</key>
 									<true/>
+									<key>isInvisible</key>
+									<true/>
 									<key>isStuck</key>
 									<true/>
 									<key>restingDetectionRadius</key>
@@ -836,6 +1343,8 @@
 									<real>1024</real>
 									<key>endpointY</key>
 									<real>400</real>
+									<key>isInvisible</key>
+									<false/>
 									<key>isStuck</key>
 									<false/>
 									<key>restingDetectionRadius</key>
@@ -870,7 +1379,7 @@
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
-								<integer>308</integer>
+								<integer>270</integer>
 								<key>Color</key>
 								<string>{{1, 1}, {1, 1}}</string>
 								<key>FlipX</key>
@@ -890,7 +1399,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{15, 135}</string>
+								<string>{314, 257}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -953,7 +1462,7 @@
 								<key>AnimRestoreOriginalFrame</key>
 								<false/>
 								<key>AnimSpeed</key>
-								<real>0.10000000149011612</real>
+								<real>0.02500000037252903</real>
 								<key>OtherAnimations</key>
 								<array/>
 								<key>SHScene</key>
@@ -977,9 +1486,9 @@
 								<key>ClassRepresentation</key>
 								<dict>
 									<key>placeCost</key>
-									<real>750</real>
-									<key>runningCost</key>
 									<real>1000</real>
+									<key>runningCost</key>
+									<real>1250</real>
 									<key>scale</key>
 									<real>1</real>
 								</dict>
@@ -1016,19 +1525,235 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 45}, {17.75, 71.75}}</string>
+								<string>{{128, 333}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{115, 419}</string>
+								<string>{123, 317}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{21.25, 85}</string>
+								<key>Tag</key>
+								<integer>8</integer>
+								<key>TagName</key>
+								<string>TOOLBOX_ITEM</string>
+								<key>TextureOffset</key>
+								<string>{0, 0.125}</string>
+								<key>UniqueName</key>
+								<string>Metal-Gate</string>
+								<key>ZOrder</key>
+								<integer>19</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Metal-Gate</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict>
+								<key>AnimAtStart</key>
+								<true/>
+								<key>AnimLoop</key>
+								<true/>
+								<key>AnimName</key>
+								<string>Toolbox_Laser_Beam</string>
+								<key>AnimRepetitions</key>
+								<integer>1</integer>
+								<key>AnimRestoreOriginalFrame</key>
+								<false/>
+								<key>AnimSpeed</key>
+								<real>0.02500000037252903</real>
+								<key>OtherAnimations</key>
+								<array/>
+								<key>SHScene</key>
+								<string>Spritesheet.pshs</string>
+							</dict>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+									<key>scale</key>
+									<true/>
+								</dict>
+								<key>ClassName</key>
+								<string>ToolboxItem_Obstruction</string>
+								<key>ClassRepresentation</key>
+								<dict>
+									<key>placeCost</key>
+									<real>1000</real>
+									<key>runningCost</key>
+									<real>1250</real>
+									<key>scale</key>
+									<real>1</real>
+								</dict>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Toolbox</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Toolbox</string>
+							<key>SHSpriteName</key>
+							<string>Laser_Beam_1</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Toolbox.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{128, 333}, {17.75, 71.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<true/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{123, 317}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{21.25, 85}</string>
+								<key>Tag</key>
+								<integer>8</integer>
+								<key>TagName</key>
+								<string>TOOLBOX_ITEM</string>
+								<key>TextureOffset</key>
+								<string>{0, 0.125}</string>
+								<key>UniqueName</key>
+								<string>Metal-Gate_1</string>
+								<key>ZOrder</key>
+								<integer>19</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Metal-Gate_1</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict>
+								<key>AnimAtStart</key>
+								<true/>
+								<key>AnimLoop</key>
+								<true/>
+								<key>AnimName</key>
+								<string>Toolbox_Laser_Beam</string>
+								<key>AnimRepetitions</key>
+								<integer>1</integer>
+								<key>AnimRestoreOriginalFrame</key>
+								<false/>
+								<key>AnimSpeed</key>
+								<real>0.02500000037252903</real>
+								<key>OtherAnimations</key>
+								<array/>
+								<key>SHScene</key>
+								<string>Spritesheet.pshs</string>
+							</dict>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+									<key>scale</key>
+									<true/>
+								</dict>
+								<key>ClassName</key>
+								<string>ToolboxItem_Obstruction</string>
+								<key>ClassRepresentation</key>
+								<dict>
+									<key>placeCost</key>
+									<real>1000</real>
+									<key>runningCost</key>
+									<real>1250</real>
+									<key>scale</key>
+									<real>1</real>
+								</dict>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Toolbox</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Toolbox</string>
+							<key>SHSpriteName</key>
+							<string>Laser_Beam_1</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Toolbox.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{128, 333}, {17.75, 71.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<true/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{123, 317}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1061,7 +1786,7 @@
 								<key>AnimRestoreOriginalFrame</key>
 								<false/>
 								<key>AnimSpeed</key>
-								<real>0.10000000149011612</real>
+								<real>0.02500000037252903</real>
 								<key>OtherAnimations</key>
 								<array/>
 								<key>SHScene</key>
@@ -1085,9 +1810,9 @@
 								<key>ClassRepresentation</key>
 								<dict>
 									<key>placeCost</key>
-									<real>750</real>
-									<key>runningCost</key>
 									<real>1000</real>
+									<key>runningCost</key>
+									<real>1250</real>
 									<key>scale</key>
 									<real>1</real>
 								</dict>
@@ -1124,19 +1849,235 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 45}, {17.75, 71.75}}</string>
+								<string>{{128, 333}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{89, 419}</string>
+								<string>{123, 317}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{21.25, 85}</string>
+								<key>Tag</key>
+								<integer>8</integer>
+								<key>TagName</key>
+								<string>TOOLBOX_ITEM</string>
+								<key>TextureOffset</key>
+								<string>{0, 0.125}</string>
+								<key>UniqueName</key>
+								<string>Metal-Gate_3</string>
+								<key>ZOrder</key>
+								<integer>19</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Metal-Gate_3</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict>
+								<key>AnimAtStart</key>
+								<true/>
+								<key>AnimLoop</key>
+								<true/>
+								<key>AnimName</key>
+								<string>Toolbox_Laser_Beam</string>
+								<key>AnimRepetitions</key>
+								<integer>1</integer>
+								<key>AnimRestoreOriginalFrame</key>
+								<false/>
+								<key>AnimSpeed</key>
+								<real>0.02500000037252903</real>
+								<key>OtherAnimations</key>
+								<array/>
+								<key>SHScene</key>
+								<string>Spritesheet.pshs</string>
+							</dict>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+									<key>scale</key>
+									<true/>
+								</dict>
+								<key>ClassName</key>
+								<string>ToolboxItem_Obstruction</string>
+								<key>ClassRepresentation</key>
+								<dict>
+									<key>placeCost</key>
+									<real>1000</real>
+									<key>runningCost</key>
+									<real>1250</real>
+									<key>scale</key>
+									<real>1</real>
+								</dict>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Toolbox</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Toolbox</string>
+							<key>SHSpriteName</key>
+							<string>Laser_Beam_1</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Toolbox.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{128, 333}, {17.75, 71.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<true/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{123, 317}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{21.25, 85}</string>
+								<key>Tag</key>
+								<integer>8</integer>
+								<key>TagName</key>
+								<string>TOOLBOX_ITEM</string>
+								<key>TextureOffset</key>
+								<string>{0, 0.125}</string>
+								<key>UniqueName</key>
+								<string>Metal-Gate_4</string>
+								<key>ZOrder</key>
+								<integer>19</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Metal-Gate_4</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict>
+								<key>AnimAtStart</key>
+								<true/>
+								<key>AnimLoop</key>
+								<true/>
+								<key>AnimName</key>
+								<string>Toolbox_Laser_Beam</string>
+								<key>AnimRepetitions</key>
+								<integer>1</integer>
+								<key>AnimRestoreOriginalFrame</key>
+								<false/>
+								<key>AnimSpeed</key>
+								<real>0.02500000037252903</real>
+								<key>OtherAnimations</key>
+								<array/>
+								<key>SHScene</key>
+								<string>Spritesheet.pshs</string>
+							</dict>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict>
+									<key>placeCost</key>
+									<true/>
+									<key>runningCost</key>
+									<true/>
+									<key>scale</key>
+									<true/>
+								</dict>
+								<key>ClassName</key>
+								<string>ToolboxItem_Obstruction</string>
+								<key>ClassRepresentation</key>
+								<dict>
+									<key>placeCost</key>
+									<real>1000</real>
+									<key>runningCost</key>
+									<real>1250</real>
+									<key>scale</key>
+									<real>1</real>
+								</dict>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Toolbox</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Toolbox</string>
+							<key>SHSpriteName</key>
+							<string>Laser_Beam_1</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Toolbox.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{128, 333}, {17.75, 71.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<true/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{123, 317}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1163,29 +2104,9 @@
 							<key>CustomClassInfo</key>
 							<dict>
 								<key>ClassDefaults</key>
-								<dict>
-									<key>mass</key>
-									<true/>
-									<key>placeCost</key>
-									<true/>
-									<key>runningCost</key>
-									<true/>
-									<key>scale</key>
-									<true/>
-								</dict>
+								<dict/>
 								<key>ClassName</key>
-								<string>ToolboxItem_Debris</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>mass</key>
-									<real>1</real>
-									<key>placeCost</key>
-									<real>250</real>
-									<key>runningCost</key>
-									<real>350</real>
-									<key>scale</key>
-									<real>1</real>
-								</dict>
+								<string>No Class</string>
 							</dict>
 							<key>NodeType</key>
 							<string>LHSprite</string>
@@ -1197,8 +2118,167 @@
 							<dict/>
 							<key>PhysicProperties</key>
 							<dict>
-								<key>HandledBySH</key>
+								<key>AngularDamping</key>
+								<real>2</real>
+								<key>AngularVelocity</key>
+								<real>0.0</real>
+								<key>CanSleep</key>
 								<true/>
+								<key>FixedRot</key>
+								<false/>
+								<key>GravityScale</key>
+								<real>1</real>
+								<key>HandledBySH</key>
+								<false/>
+								<key>IsBullet</key>
+								<false/>
+								<key>LinearDamping</key>
+								<real>2</real>
+								<key>LinearVelocity</key>
+								<string>{0, 0}</string>
+								<key>SH_ComplexShapes</key>
+								<array>
+									<dict>
+										<key>Category</key>
+										<integer>1</integer>
+										<key>Density</key>
+										<real>1</real>
+										<key>Fixture</key>
+										<array>
+											<array>
+												<string>{4.25, 7.5}</string>
+												<string>{4, 8}</string>
+												<string>{3.5, 7.5}</string>
+												<string>{0, -6.75}</string>
+											</array>
+											<array>
+												<string>{9.5, 8.75}</string>
+												<string>{9.25, 9}</string>
+												<string>{7, 7.75}</string>
+												<string>{8.75, -6.25}</string>
+											</array>
+											<array>
+												<string>{7.25, -7}</string>
+												<string>{8.75, -6.25}</string>
+												<string>{7, 7.75}</string>
+												<string>{5.5, 8}</string>
+												<string>{5.25, 7.5}</string>
+												<string>{0, -6.75}</string>
+											</array>
+											<array>
+												<string>{-16.5, -4.5}</string>
+												<string>{-15.250000000000002, -7.25}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-17.25, 1.25}</string>
+												<string>{-16.5, -4.5}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-16.25, 5.25}</string>
+												<string>{-17.25, 1.25}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-15.75, 6}</string>
+												<string>{-16.25, 5.25}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-14, 7.5}</string>
+												<string>{-15.75, 6}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-2.25, 7.75}</string>
+												<string>{-14, 7.5}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-2, 7.5}</string>
+												<string>{-2.25, 7.75}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-3, -7.5}</string>
+												<string>{-2, 7.5}</string>
+												<string>{-6.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{-3, -7.5}</string>
+												<string>{-6.75, -8.5}</string>
+												<string>{-4.75, -8.5}</string>
+											</array>
+											<array>
+												<string>{14.75, 9}</string>
+												<string>{13.75, 9.75}</string>
+												<string>{12.75, 9.75}</string>
+												<string>{12.5, 9.5}</string>
+												<string>{18.5, 1.5}</string>
+											</array>
+											<array>
+												<string>{17.25, -5.5}</string>
+												<string>{18, -4.75}</string>
+												<string>{18.5, 1.5}</string>
+												<string>{12.5, 9.5}</string>
+												<string>{11.75, 9}</string>
+												<string>{12.5, -5.75}</string>
+											</array>
+											<array>
+												<string>{8.75, -6.25}</string>
+												<string>{11, -6.5}</string>
+												<string>{12.5, -5.75}</string>
+												<string>{11.75, 9}</string>
+												<string>{11.25, 9.25}</string>
+												<string>{9.5, 8.75}</string>
+											</array>
+											<array>
+												<string>{0, -6.75}</string>
+												<string>{5.25, 7.5}</string>
+												<string>{4.25, 7.5}</string>
+											</array>
+											<array>
+												<string>{0, -6.75}</string>
+												<string>{3.5, 7.5}</string>
+												<string>{0.5, 8.25}</string>
+												<string>{-1.25, 8}</string>
+												<string>{-2, 7.5}</string>
+												<string>{-3, -7.5}</string>
+											</array>
+											<array>
+												<string>{-10.75, -10.25}</string>
+												<string>{-6.75, -8.5}</string>
+												<string>{-15.250000000000002, -7.25}</string>
+												<string>{-12.25, -10}</string>
+											</array>
+										</array>
+										<key>Friction</key>
+										<real>0.20000000298023224</real>
+										<key>Group</key>
+										<integer>0</integer>
+										<key>IsCircle</key>
+										<false/>
+										<key>IsSensor</key>
+										<false/>
+										<key>LHHeight</key>
+										<real>37.5</real>
+										<key>LHShapePositionOffset</key>
+										<string>{-17.5, -9.75}</string>
+										<key>LHWidth</key>
+										<real>37.5</real>
+										<key>Mask</key>
+										<integer>65535</integer>
+										<key>Name</key>
+										<string>UntitledFixture</string>
+										<key>Restitution</key>
+										<real>0.20000000298023224</real>
+										<key>Tag</key>
+										<integer>0</integer>
+									</dict>
+								</array>
+								<key>Type</key>
+								<integer>2</integer>
 							</dict>
 							<key>SHSceneName</key>
 							<string>Spritesheet.pshs</string>
@@ -1211,7 +2291,7 @@
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
-								<integer>0</integer>
+								<integer>330</integer>
 								<key>Color</key>
 								<string>{{1, 1}, {1, 1}}</string>
 								<key>FlipX</key>
@@ -1219,27 +2299,27 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{61, 0}, {35.5, 19.75}}</string>
+								<string>{{216, 45}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<true/>
+								<false/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{-25, 405}</string>
+								<string>{446, 110}</string>
 								<key>Scale</key>
-								<string>{1, 1}</string>
+								<string>{1, 0.79829055070877075}</string>
 								<key>SpriteSize</key>
 								<string>{37.5, 37.5}</string>
 								<key>Tag</key>
-								<integer>8</integer>
+								<integer>9</integer>
 								<key>TagName</key>
-								<string>TOOLBOX_ITEM</string>
+								<string>DEBRIS</string>
 								<key>TextureOffset</key>
 								<string>{0.5, -0.125}</string>
 								<key>UniqueName</key>
@@ -1249,1325 +2329,6 @@
 							</dict>
 							<key>UniqueName</key>
 							<string>Floating-Log</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>mass</key>
-									<true/>
-									<key>placeCost</key>
-									<true/>
-									<key>runningCost</key>
-									<true/>
-									<key>scale</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>ToolboxItem_Debris</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>mass</key>
-									<real>1</real>
-									<key>placeCost</key>
-									<real>250</real>
-									<key>runningCost</key>
-									<real>350</real>
-									<key>scale</key>
-									<real>1</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Toolbox</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Toolbox</string>
-							<key>SHSpriteName</key>
-							<string>Floating-Log</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{61, 0}, {35.5, 19.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<true/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{13, 405}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{37.5, 37.5}</string>
-								<key>Tag</key>
-								<integer>8</integer>
-								<key>TagName</key>
-								<string>TOOLBOX_ITEM</string>
-								<key>TextureOffset</key>
-								<string>{0.5, -0.125}</string>
-								<key>UniqueName</key>
-								<string>Floating-Log_1</string>
-								<key>ZOrder</key>
-								<integer>19</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Floating-Log_1</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>mass</key>
-									<true/>
-									<key>placeCost</key>
-									<true/>
-									<key>runningCost</key>
-									<true/>
-									<key>scale</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>ToolboxItem_Debris</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>mass</key>
-									<real>1</real>
-									<key>placeCost</key>
-									<real>250</real>
-									<key>runningCost</key>
-									<real>350</real>
-									<key>scale</key>
-									<real>1</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Toolbox</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Toolbox</string>
-							<key>SHSpriteName</key>
-							<string>Floating-Log</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{61, 0}, {35.5, 19.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<true/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{50, 405}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{37.5, 37.5}</string>
-								<key>Tag</key>
-								<integer>8</integer>
-								<key>TagName</key>
-								<string>TOOLBOX_ITEM</string>
-								<key>TextureOffset</key>
-								<string>{0.5, -0.125}</string>
-								<key>UniqueName</key>
-								<string>Floating-Log_2</string>
-								<key>ZOrder</key>
-								<integer>19</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Floating-Log_2</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>mass</key>
-									<true/>
-									<key>placeCost</key>
-									<true/>
-									<key>runningCost</key>
-									<true/>
-									<key>scale</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>ToolboxItem_Debris</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>mass</key>
-									<real>1</real>
-									<key>placeCost</key>
-									<real>250</real>
-									<key>runningCost</key>
-									<real>350</real>
-									<key>scale</key>
-									<real>1</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Toolbox</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Toolbox</string>
-							<key>SHSpriteName</key>
-							<string>Floating-Log</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{61, 0}, {35.5, 19.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<true/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{50, 442}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{37.5, 37.5}</string>
-								<key>Tag</key>
-								<integer>8</integer>
-								<key>TagName</key>
-								<string>TOOLBOX_ITEM</string>
-								<key>TextureOffset</key>
-								<string>{0.5, -0.125}</string>
-								<key>UniqueName</key>
-								<string>Floating-Log_3</string>
-								<key>ZOrder</key>
-								<integer>19</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Floating-Log_3</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>mass</key>
-									<true/>
-									<key>placeCost</key>
-									<true/>
-									<key>runningCost</key>
-									<true/>
-									<key>scale</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>ToolboxItem_Debris</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>mass</key>
-									<real>1</real>
-									<key>placeCost</key>
-									<real>250</real>
-									<key>runningCost</key>
-									<real>350</real>
-									<key>scale</key>
-									<real>1</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Toolbox</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Toolbox</string>
-							<key>SHSpriteName</key>
-							<string>Floating-Log</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{61, 0}, {35.5, 19.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<true/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{13, 442}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{37.5, 37.5}</string>
-								<key>Tag</key>
-								<integer>8</integer>
-								<key>TagName</key>
-								<string>TOOLBOX_ITEM</string>
-								<key>TextureOffset</key>
-								<string>{0.5, -0.125}</string>
-								<key>UniqueName</key>
-								<string>Floating-Log_4</string>
-								<key>ZOrder</key>
-								<integer>19</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Floating-Log_4</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>mass</key>
-									<true/>
-									<key>placeCost</key>
-									<true/>
-									<key>runningCost</key>
-									<true/>
-									<key>scale</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>ToolboxItem_Debris</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>mass</key>
-									<real>1</real>
-									<key>placeCost</key>
-									<real>250</real>
-									<key>runningCost</key>
-									<real>350</real>
-									<key>scale</key>
-									<real>1</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Toolbox</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Toolbox</string>
-							<key>SHSpriteName</key>
-							<string>Floating-Log</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{61, 0}, {35.5, 19.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<true/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{-25, 442}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{37.5, 37.5}</string>
-								<key>Tag</key>
-								<integer>8</integer>
-								<key>TagName</key>
-								<string>TOOLBOX_ITEM</string>
-								<key>TextureOffset</key>
-								<string>{0.5, -0.125}</string>
-								<key>UniqueName</key>
-								<string>Floating-Log_5</string>
-								<key>ZOrder</key>
-								<integer>19</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Floating-Log_5</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict>
-								<key>AnimAtStart</key>
-								<true/>
-								<key>AnimLoop</key>
-								<true/>
-								<key>AnimName</key>
-								<string>Toolbox_Windmill</string>
-								<key>AnimRepetitions</key>
-								<integer>1</integer>
-								<key>AnimRestoreOriginalFrame</key>
-								<false/>
-								<key>AnimSpeed</key>
-								<real>0.029999999329447746</real>
-								<key>OtherAnimations</key>
-								<array/>
-								<key>SHScene</key>
-								<string>Spritesheet.pshs</string>
-							</dict>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>placeCost</key>
-									<true/>
-									<key>power</key>
-									<true/>
-									<key>reach</key>
-									<true/>
-									<key>runningCost</key>
-									<true/>
-									<key>scale</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>ToolboxItem_Windmill</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>placeCost</key>
-									<real>400</real>
-									<key>power</key>
-									<real>50</real>
-									<key>reach</key>
-									<real>5000</real>
-									<key>runningCost</key>
-									<real>600</real>
-									<key>scale</key>
-									<real>1</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Toolbox</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Toolbox</string>
-							<key>SHSpriteName</key>
-							<string>Windmill_1</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{31, 0}, {29, 43.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<false/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{153, 411}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{37.5, 50}</string>
-								<key>Tag</key>
-								<integer>8</integer>
-								<key>TagName</key>
-								<string>TOOLBOX_ITEM</string>
-								<key>TextureOffset</key>
-								<string>{0.25, -0.125}</string>
-								<key>UniqueName</key>
-								<string>Windmill_1</string>
-								<key>ZOrder</key>
-								<integer>19</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Windmill_1</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict>
-								<key>AnimAtStart</key>
-								<true/>
-								<key>AnimLoop</key>
-								<true/>
-								<key>AnimName</key>
-								<string>Toolbox_Windmill</string>
-								<key>AnimRepetitions</key>
-								<integer>1</integer>
-								<key>AnimRestoreOriginalFrame</key>
-								<false/>
-								<key>AnimSpeed</key>
-								<real>0.029999999329447746</real>
-								<key>OtherAnimations</key>
-								<array/>
-								<key>SHScene</key>
-								<string>Spritesheet.pshs</string>
-							</dict>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>placeCost</key>
-									<true/>
-									<key>power</key>
-									<true/>
-									<key>reach</key>
-									<true/>
-									<key>runningCost</key>
-									<true/>
-									<key>scale</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>ToolboxItem_Windmill</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>placeCost</key>
-									<real>400</real>
-									<key>power</key>
-									<real>50</real>
-									<key>reach</key>
-									<real>5000</real>
-									<key>runningCost</key>
-									<real>600</real>
-									<key>scale</key>
-									<real>1</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Toolbox</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Toolbox</string>
-							<key>SHSpriteName</key>
-							<string>Windmill_1</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{31, 0}, {29, 43.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<false/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{190, 411}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{37.5, 50}</string>
-								<key>Tag</key>
-								<integer>8</integer>
-								<key>TagName</key>
-								<string>TOOLBOX_ITEM</string>
-								<key>TextureOffset</key>
-								<string>{0.25, -0.125}</string>
-								<key>UniqueName</key>
-								<string>Windmill_1_1</string>
-								<key>ZOrder</key>
-								<integer>19</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Windmill_1_1</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict>
-								<key>AnimAtStart</key>
-								<true/>
-								<key>AnimLoop</key>
-								<true/>
-								<key>AnimName</key>
-								<string>Toolbox_Windmill</string>
-								<key>AnimRepetitions</key>
-								<integer>1</integer>
-								<key>AnimRestoreOriginalFrame</key>
-								<false/>
-								<key>AnimSpeed</key>
-								<real>0.029999999329447746</real>
-								<key>OtherAnimations</key>
-								<array/>
-								<key>SHScene</key>
-								<string>Spritesheet.pshs</string>
-							</dict>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>placeCost</key>
-									<true/>
-									<key>power</key>
-									<false/>
-									<key>reach</key>
-									<true/>
-									<key>runningCost</key>
-									<true/>
-									<key>scale</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>ToolboxItem_Windmill</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>placeCost</key>
-									<real>400</real>
-									<key>power</key>
-									<real>100</real>
-									<key>reach</key>
-									<real>5000</real>
-									<key>runningCost</key>
-									<real>600</real>
-									<key>scale</key>
-									<real>1</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Toolbox</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Toolbox</string>
-							<key>SHSpriteName</key>
-							<string>Windmill_1</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{31, 0}, {29, 43.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<false/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{267.75, 411}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{37.5, 50}</string>
-								<key>Tag</key>
-								<integer>8</integer>
-								<key>TagName</key>
-								<string>TOOLBOX_ITEM</string>
-								<key>TextureOffset</key>
-								<string>{0.25, -0.125}</string>
-								<key>UniqueName</key>
-								<string>Windmill_1_2</string>
-								<key>ZOrder</key>
-								<integer>19</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Windmill_1_2</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict>
-								<key>AnimAtStart</key>
-								<true/>
-								<key>AnimLoop</key>
-								<true/>
-								<key>AnimName</key>
-								<string>Toolbox_Windmill</string>
-								<key>AnimRepetitions</key>
-								<integer>1</integer>
-								<key>AnimRestoreOriginalFrame</key>
-								<false/>
-								<key>AnimSpeed</key>
-								<real>0.029999999329447746</real>
-								<key>OtherAnimations</key>
-								<array/>
-								<key>SHScene</key>
-								<string>Spritesheet.pshs</string>
-							</dict>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>placeCost</key>
-									<true/>
-									<key>power</key>
-									<false/>
-									<key>reach</key>
-									<false/>
-									<key>runningCost</key>
-									<true/>
-									<key>scale</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>ToolboxItem_Windmill</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>placeCost</key>
-									<real>400</real>
-									<key>power</key>
-									<real>150</real>
-									<key>reach</key>
-									<real>5000</real>
-									<key>runningCost</key>
-									<real>600</real>
-									<key>scale</key>
-									<real>1</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Toolbox</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Toolbox</string>
-							<key>SHSpriteName</key>
-							<string>Windmill_1</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{31, 0}, {29, 43.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<false/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{344.75, 411}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{37.5, 50}</string>
-								<key>Tag</key>
-								<integer>8</integer>
-								<key>TagName</key>
-								<string>TOOLBOX_ITEM</string>
-								<key>TextureOffset</key>
-								<string>{0.25, -0.125}</string>
-								<key>UniqueName</key>
-								<string>Windmill_1_3</string>
-								<key>ZOrder</key>
-								<integer>19</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Windmill_1_3</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>mass</key>
-									<true/>
-									<key>placeCost</key>
-									<true/>
-									<key>runningCost</key>
-									<true/>
-									<key>scale</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>ToolboxItem_Debris</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>mass</key>
-									<real>1</real>
-									<key>placeCost</key>
-									<real>250</real>
-									<key>runningCost</key>
-									<real>350</real>
-									<key>scale</key>
-									<real>1</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Toolbox</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Toolbox</string>
-							<key>SHSpriteName</key>
-							<string>Floating-Log</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{61, 0}, {35.5, 19.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<true/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{-63, 405}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{37.5, 37.5}</string>
-								<key>Tag</key>
-								<integer>8</integer>
-								<key>TagName</key>
-								<string>TOOLBOX_ITEM</string>
-								<key>TextureOffset</key>
-								<string>{0.5, -0.125}</string>
-								<key>UniqueName</key>
-								<string>Floating-Log_6</string>
-								<key>ZOrder</key>
-								<integer>19</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Floating-Log_6</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>mass</key>
-									<true/>
-									<key>placeCost</key>
-									<true/>
-									<key>runningCost</key>
-									<true/>
-									<key>scale</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>ToolboxItem_Debris</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>mass</key>
-									<real>1</real>
-									<key>placeCost</key>
-									<real>250</real>
-									<key>runningCost</key>
-									<real>350</real>
-									<key>scale</key>
-									<real>1</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Toolbox</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Toolbox</string>
-							<key>SHSpriteName</key>
-							<string>Floating-Log</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{61, 0}, {35.5, 19.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<true/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{-63, 442}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{37.5, 37.5}</string>
-								<key>Tag</key>
-								<integer>8</integer>
-								<key>TagName</key>
-								<string>TOOLBOX_ITEM</string>
-								<key>TextureOffset</key>
-								<string>{0.5, -0.125}</string>
-								<key>UniqueName</key>
-								<string>Floating-Log_7</string>
-								<key>ZOrder</key>
-								<integer>19</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Floating-Log_7</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>mass</key>
-									<false/>
-									<key>placeCost</key>
-									<true/>
-									<key>runningCost</key>
-									<true/>
-									<key>scale</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>ToolboxItem_Debris</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>mass</key>
-									<real>2</real>
-									<key>placeCost</key>
-									<real>250</real>
-									<key>runningCost</key>
-									<real>350</real>
-									<key>scale</key>
-									<real>1</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Toolbox</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Toolbox</string>
-							<key>SHSpriteName</key>
-							<string>Floating-Log</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{61, 0}, {35.5, 19.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<true/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{-99, 357}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{37.5, 37.5}</string>
-								<key>Tag</key>
-								<integer>8</integer>
-								<key>TagName</key>
-								<string>TOOLBOX_ITEM</string>
-								<key>TextureOffset</key>
-								<string>{0.5, -0.125}</string>
-								<key>UniqueName</key>
-								<string>Floating-Log_8</string>
-								<key>ZOrder</key>
-								<integer>19</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Floating-Log_8</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict>
-									<key>mass</key>
-									<false/>
-									<key>placeCost</key>
-									<true/>
-									<key>runningCost</key>
-									<true/>
-									<key>scale</key>
-									<true/>
-								</dict>
-								<key>ClassName</key>
-								<string>ToolboxItem_Debris</string>
-								<key>ClassRepresentation</key>
-								<dict>
-									<key>mass</key>
-									<real>2</real>
-									<key>placeCost</key>
-									<real>250</real>
-									<key>runningCost</key>
-									<real>350</real>
-									<key>scale</key>
-									<real>1</real>
-								</dict>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Toolbox</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Toolbox</string>
-							<key>SHSpriteName</key>
-							<string>Floating-Log</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Toolbox.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
-								<integer>0</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{61, 0}, {35.5, 19.75}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<true/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{-99, 319}</string>
-								<key>Scale</key>
-								<string>{1, 1}</string>
-								<key>SpriteSize</key>
-								<string>{37.5, 37.5}</string>
-								<key>Tag</key>
-								<integer>8</integer>
-								<key>TagName</key>
-								<string>TOOLBOX_ITEM</string>
-								<key>TextureOffset</key>
-								<string>{0.5, -0.125}</string>
-								<key>UniqueName</key>
-								<string>Floating-Log_9</string>
-								<key>ZOrder</key>
-								<integer>19</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Floating-Log_9</string>
 						</dict>
 					</array>
 					<key>CustomClassInfo</key>
@@ -2643,6 +2404,8 @@
 					<false/>
 					<key>isDead</key>
 					<false/>
+					<key>isInvisible</key>
+					<false/>
 					<key>isSafe</key>
 					<false/>
 					<key>isStuck</key>
@@ -2664,6 +2427,8 @@
 					<real>1024</real>
 					<key>endpointY</key>
 					<real>400</real>
+					<key>isInvisible</key>
+					<false/>
 					<key>isStuck</key>
 					<false/>
 					<key>restingDetectionRadius</key>
@@ -2680,9 +2445,9 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>750</real>
-					<key>runningCost</key>
 					<real>1000</real>
+					<key>runningCost</key>
+					<real>1250</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -2695,9 +2460,9 @@
 					<key>mass</key>
 					<real>1</real>
 					<key>placeCost</key>
-					<real>250</real>
+					<real>150</real>
 					<key>runningCost</key>
-					<real>350</real>
+					<real>250</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -2708,13 +2473,13 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>400</real>
+					<real>750</real>
 					<key>power</key>
 					<real>50</real>
 					<key>reach</key>
 					<real>5000</real>
 					<key>runningCost</key>
-					<real>600</real>
+					<real>1000</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -2724,12 +2489,100 @@
 				<string>MovingDoodad</string>
 				<key>ClassRepresentation</key>
 				<dict>
+					<key>followXAxis</key>
+					<false/>
+					<key>isCyclic</key>
+					<true/>
 					<key>pathName</key>
 					<string>Default</string>
 					<key>restartAtOtherEnd</key>
 					<true/>
 					<key>timeToCompletePath</key>
 					<real>60</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>ToolboxItem_Whirlpool</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>placeCost</key>
+					<real>1250</real>
+					<key>power</key>
+					<real>50</real>
+					<key>runningCost</key>
+					<real>1500</real>
+					<key>scale</key>
+					<real>1</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>ToolboxItem_Sandbar</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>placeCost</key>
+					<real>1000</real>
+					<key>runningCost</key>
+					<real>1250</real>
+					<key>scale</key>
+					<real>1</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>ToolboxItem_Bag_of_Fish</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>placeCost</key>
+					<real>1250</real>
+					<key>runningCost</key>
+					<real>1500</real>
+					<key>scale</key>
+					<real>1</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>ToolboxItem_Loud_Noise</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>placeCost</key>
+					<real>1250</real>
+					<key>runningCost</key>
+					<real>1500</real>
+					<key>scale</key>
+					<real>1</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>ToolboxItem_Invisibility_Hat</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>placeCost</key>
+					<real>1500</real>
+					<key>runningCost</key>
+					<real>2000</real>
+					<key>scale</key>
+					<real>1</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>MovingBorder</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>followXAxis</key>
+					<false/>
+					<key>isCyclic</key>
+					<true/>
+					<key>pathName</key>
+					<string></string>
+					<key>restartAtOtherEnd</key>
+					<false/>
+					<key>timeToCompletePath</key>
+					<real>15</real>
 				</dict>
 			</dict>
 		</array>
@@ -2768,6 +2621,12 @@
 			<string>DOODAD</string>
 			<string>DOODAD_PATH</string>
 			<string>OBSTRUCTION</string>
+			<string>WHIRLPOOL</string>
+			<string>SANDBAR</string>
+			<string>BAG_OF_FISH</string>
+			<string>INVISIBILITY_HAT</string>
+			<string>LOUD_NOISE</string>
+			<string>BORDER_PATH</string>
 		</array>
 		<key>ZoomValue</key>
 		<real>0.0</real>

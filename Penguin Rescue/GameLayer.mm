@@ -324,10 +324,8 @@
 	[IAPMenuButton prepareAnimationNamed:@"Menu_IAP_In_Game_Button" fromSHScene:@"Spritesheet"];
 	[IAPMenuButton transformPosition: ccp(-IAPMenuButton.contentSize.width/2, -IAPMenuButton.contentSize.height/2) ];
 	IAPMenuButton.opacity = 0;
-	//TODO: enable IAP menu button
-	IAPMenuButton.visible = false;
-	//[IAPMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganIAPMenu:)];
-	//[IAPMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedIAPMenu:)];
+	[IAPMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganIAPMenu:)];
+	[IAPMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedIAPMenu:)];
 	[_inGameMenuItems addObject:IAPMenuButton];
 		
 		
@@ -998,6 +996,7 @@
 -(void)onTouchBeganPlayPause:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	if(_activeToolboxItem != nil) return;
+	if(_state != PLACE && _state != RUNNING && _state != PAUSE) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 		
 	__DEBUG_TOUCH_SECONDS = [[NSDate date] timeIntervalSince1970];
@@ -1006,6 +1005,7 @@
 -(void)onTouchEndedPlayPause:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	if(_activeToolboxItem != nil) return;
+	if(_state != PLACE && _state != RUNNING && _state != PAUSE) return;
 
 	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/button.wav"];
@@ -1381,37 +1381,61 @@
 	
 	//show a level won screen
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
-	LHSprite* levelWonPopup = [_levelLoader createSpriteWithName:@"Level_Won_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:_mainLayer];
-	levelWonPopup.zOrder = 10000;
-	[levelWonPopup transformPosition: ccp(winSize.width/2,winSize.height/2)];
 	
+	//render a transparent overlay
+	CCLayerColor* popupLayer = [[CCLayerColor alloc] initWithColor:ccc4(255, 255, 255, 170) width:winSize.width height:winSize.height];
+	CCRenderTexture *popupLayerTexture = [CCRenderTexture renderTextureWithWidth:popupLayer.contentSize.width height:popupLayer.contentSize.height];
+	popupLayerTexture.sprite.anchorPoint= ccp(0.5f,0.5f);
+	popupLayerTexture.position = ccp(popupLayer.contentSize.width/2, popupLayer.contentSize.height/2);
+	popupLayerTexture.anchorPoint = ccp(0.5f,0.5f);
+	popupLayerTexture.zOrder = 10000;
+	
+	[popupLayerTexture begin];
+	[popupLayer visit];
+	[popupLayerTexture end];	
+	[popupLayer release];
+
+	ccBlendFunc blendFunc = {GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA}; // we are going to blend via alpha
+	[popupLayerTexture.sprite setBlendFunc:blendFunc];
+
+	[_mainLayer addChild:popupLayerTexture];
+	
+	
+	
+	
+	
+	LHSprite* levelWonPopup = [_levelLoader createSpriteWithName:@"Level_Won_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:popupLayerTexture];
+	levelWonPopup.opacity = 0;
+	[levelWonPopup transformPosition: ccp(0,0)];
 	const CGSize levelWonPopupSize = levelWonPopup.boundingBox.size;
 
 
 	/***** action butons ******/
 	
-	const int buttonYOffset = (120 - (levelWonPopupSize.height - winSize.height)*.9)*SCALING_FACTOR_V;
 	
+	const int buttonYOffset = 120*SCALING_FACTOR_V + (IS_IPHONE ? -25 : 0);
+
 	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_Button" fromSHScene:@"Spritesheet"];
 	[levelsMenuButton transformPosition: ccp(winSize.width/2 - levelsMenuButton.boundingBox.size.width*2,
 											levelsMenuButton.boundingBox.size.height/2 + buttonYOffset) ];
 	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
 	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
-	
+
 	LHSprite* restartMenuButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	[restartMenuButton prepareAnimationNamed:@"Menu_Restart_Button" fromSHScene:@"Spritesheet"];
 	[restartMenuButton transformPosition: ccp(winSize.width/2,
 											restartMenuButton.boundingBox.size.height/2 + buttonYOffset) ];
 	[restartMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[restartMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
-	
+
 	LHSprite* nextLevelMenuButton = [_levelLoader createSpriteWithName:@"Next_Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 	[nextLevelMenuButton prepareAnimationNamed:@"Menu_Next_Level_Button" fromSHScene:@"Spritesheet"];
 	[nextLevelMenuButton transformPosition: ccp(winSize.width/2 + restartMenuButton.boundingBox.size.width*2,
 											nextLevelMenuButton.boundingBox.size.height/2 + buttonYOffset) ];
 	[nextLevelMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganNextLevel:)];
 	[nextLevelMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedNextLevel:)];
+
 	
 	
 	/***** scoring items ******/
@@ -1531,6 +1555,10 @@
 		[self addChild:goOnlineForScoresLabel];	
 	}
 
+	[levelWonPopup runAction:[CCFadeIn actionWithDuration:0.25f]];
+	[restartMenuButton runAction:[CCFadeIn actionWithDuration:0.25f]];
+	[levelsMenuButton runAction:[CCFadeIn actionWithDuration:0.25f]];
+	[nextLevelMenuButton runAction:[CCFadeIn actionWithDuration:0.25f]];
 }
 
 -(void) playGameWonGradeStamp {
@@ -1565,39 +1593,49 @@
 -(void)showLevelLostPopup {
 	//show a level won screen
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
-	LHSprite* levelLostPopup = [_levelLoader createSpriteWithName:@"Level_Lost_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+
+	//render a transparent overlay
+	CCLayerColor* popupLayer = [[CCLayerColor alloc] initWithColor:ccc4(255, 255, 255, 170) width:winSize.width height:winSize.height];
+	CCRenderTexture *popupLayerTexture = [CCRenderTexture renderTextureWithWidth:popupLayer.contentSize.width height:popupLayer.contentSize.height];
+	popupLayerTexture.sprite.anchorPoint= ccp(0.5f,0.5f);
+	popupLayerTexture.position = ccp(popupLayer.contentSize.width/2, popupLayer.contentSize.height/2);
+	popupLayerTexture.anchorPoint = ccp(0.5f,0.5f);
+	popupLayerTexture.zOrder = 10000;
+	
+	[popupLayerTexture begin];
+	[popupLayer visit];
+	[popupLayerTexture end];	
+	[popupLayer release];
+
+	ccBlendFunc blendFunc = {GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA}; // we are going to blend via alpha
+	[popupLayerTexture.sprite setBlendFunc:blendFunc];
+
+	[_mainLayer addChild:popupLayerTexture];
+	
+	LHSprite* levelLostPopup = [_levelLoader createSpriteWithName:@"Level_Lost_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:popupLayerTexture];
+	[levelLostPopup transformPosition: ccp(0,0)];
 	levelLostPopup.opacity = 0;
-	levelLostPopup.zOrder = 10000;
-	[levelLostPopup transformPosition: ccp(winSize.width/2,winSize.height/2)];
-
-
+	CGSize levelLostPopupSize = levelLostPopup.boundingBox.size;
 
 	/***** action butons ******/
-	
-	const int buttonYOffset = (-25 - (levelLostPopup.contentSize.height - winSize.height)*.9)*SCALING_FACTOR_V;
 
-	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
-	levelsMenuButton.opacity = 0;
-	levelsMenuButton.zOrder = levelLostPopup.zOrder+1;
+	LHSprite* levelsMenuButton = [_levelLoader createSpriteWithName:@"Levels_Menu_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelLostPopup];
 	[levelsMenuButton prepareAnimationNamed:@"Menu_Levels_Menu_Button" fromSHScene:@"Spritesheet"];
-	[levelsMenuButton transformPosition: ccp(winSize.width/2 - levelsMenuButton.boundingBox.size.width,
-										buttonYOffset + levelLostPopup.boundingBox.size.height/2 - levelsMenuButton.boundingBox.size.height/2 + (IS_IPHONE ? -25 : 0)*SCALING_FACTOR_V) ];
+	[levelsMenuButton transformPosition: ccp(levelLostPopupSize.width/2 - levelsMenuButton.boundingBox.size.width,
+											 levelLostPopupSize.height/2 - 64*SCALING_FACTOR_V + (IS_IPHONE ? -5 : 0))];
 	[levelsMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganLevelsMenu:)];
 	[levelsMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelsMenu:)];
 	
-	LHSprite* restartMenuButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
-	restartMenuButton.opacity = 0;
-	restartMenuButton.zOrder = levelLostPopup.zOrder+1;
+	LHSprite* restartMenuButton = [_levelLoader createSpriteWithName:@"Restart_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:levelLostPopup];
 	[restartMenuButton prepareAnimationNamed:@"Menu_Restart_Button" fromSHScene:@"Spritesheet"];
-	[restartMenuButton transformPosition: ccp(winSize.width/2 + restartMenuButton.boundingBox.size.width, buttonYOffset + levelLostPopup.boundingBox.size.height/2 - restartMenuButton.boundingBox.size.height/2 + (IS_IPHONE ? -25 : 0)*SCALING_FACTOR_V) ];
+	[restartMenuButton transformPosition: ccp(levelLostPopupSize.width/2 + restartMenuButton.boundingBox.size.width,
+											 levelLostPopupSize.height/2 - 64*SCALING_FACTOR_V + (IS_IPHONE ? -5 : 0))];
 	[restartMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[restartMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 
 
 	//show!!
-	[levelLostPopup runAction:[CCFadeIn actionWithDuration:0.5f]];
-	[levelsMenuButton runAction:[CCFadeIn actionWithDuration:0.5f]];
-	[restartMenuButton runAction:[CCFadeIn actionWithDuration:0.5f]];
+	[levelLostPopup runAction:[CCFadeIn actionWithDuration:0.25f]];
 }
 
 -(void) restart {
@@ -1908,20 +1946,33 @@
 -(void)scoreToolboxItemPlacement:(LHSprite*)toolboxItem replaced:(bool)replaced {
 
 	//accounting
-	ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)_activeToolboxItem.userInfo);
+	ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)toolboxItem.userInfo);
 	int score = _state == PLACE ? (toolboxItemData.placeCost * (replaced ? 0 : 1)) :
 								  (toolboxItemData.runningCost * (replaced ? 0.25 : 1));
 				
 	if(score == 0) {
 		return;
 	}
+	
+	//adjust score by the mass/power/etc.
+	if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
+		ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)toolboxItem.userInfo);
+		score+= log(score)*(toolboxItemData.mass/1);
+	}else if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
+		ToolboxItem_Windmill* toolboxItemData = ((ToolboxItem_Windmill*)toolboxItem.userInfo);
+		score+= log(score)*(toolboxItemData.power/50);
+	}else if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+		ToolboxItem_Whirlpool* toolboxItemData = ((ToolboxItem_Whirlpool*)toolboxItem.userInfo);
+		score+= log(score)*(toolboxItemData.power/50);
+	}
+	
 				
-	[_scoreKeeper addScore:score description:(_state == PLACE ? @"PLACE" : @"RUNNING") sprite:_activeToolboxItem group:true];
+	[_scoreKeeper addScore:score description:(_state == PLACE ? @"PLACE" : @"RUNNING") sprite:toolboxItem group:true];
 	
 	//show a notification about the cost of the item
 	CCLabelTTF* toolboxItemCostNotification = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"-%d", score] fontName:@"Helvetica" fontSize:24*SCALING_FACTOR_FONTS];
 	toolboxItemCostNotification.color = ccRED;
-	toolboxItemCostNotification.position = _activeToolboxItem.position;
+	toolboxItemCostNotification.position = toolboxItem.position;
 	[self addChild:toolboxItemCostNotification];
 	
 	[toolboxItemCostNotification runAction:[CCSequence actions:

@@ -33,6 +33,7 @@
 #define DEBUG_SHARK				((false || DEBUG_ALL_THE_THINGS) && !DISTRIBUTION_MODE)		//can be overridden in game
 
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_STUPID_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 #define SCALING_FACTOR_H (IS_IPHONE ? 480.0/1024.0 : 1.0)
 #define SCALING_FACTOR_V (IS_IPHONE ? 320.0/768.0 : 1.0)
 #define SCALING_FACTOR_GENERIC SCALING_FACTOR_V

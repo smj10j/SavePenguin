@@ -64,7 +64,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{126, 0}, {62.5, 56}}</string>
+								<string>{{431, 287}, {62.5, 56}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -76,7 +76,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{381, 40}</string>
+								<string>{399, 116}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -139,7 +139,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{36, 151}, {36.5, 33.5}}</string>
+								<string>{{466, 37}, {36.5, 33.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -151,7 +151,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{390, 179}</string>
+								<string>{120, 155}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -214,7 +214,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{36, 151}, {36.5, 33.5}}</string>
+								<string>{{466, 37}, {36.5, 33.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -226,7 +226,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{287, 183}</string>
+								<string>{141, 73}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -244,6 +244,122 @@
 							</dict>
 							<key>UniqueName</key>
 							<string>Debris_Island2</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict>
+								<key>AnimAtStart</key>
+								<true/>
+								<key>AnimLoop</key>
+								<true/>
+								<key>AnimName</key>
+								<string>Doodad_Flying_Bird</string>
+								<key>AnimRepetitions</key>
+								<integer>1</integer>
+								<key>AnimRestoreOriginalFrame</key>
+								<false/>
+								<key>AnimSpeed</key>
+								<real>0.05000000074505806</real>
+								<key>OtherAnimations</key>
+								<array/>
+								<key>SHScene</key>
+								<string>Spritesheet.pshs</string>
+							</dict>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict>
+									<key>followXAxis</key>
+									<true/>
+									<key>isCyclic</key>
+									<true/>
+									<key>pathName</key>
+									<false/>
+									<key>restartAtOtherEnd</key>
+									<true/>
+									<key>timeToCompletePath</key>
+									<false/>
+								</dict>
+								<key>ClassName</key>
+								<string>MovingDoodad</string>
+								<key>ClassRepresentation</key>
+								<dict>
+									<key>followXAxis</key>
+									<false/>
+									<key>isCyclic</key>
+									<true/>
+									<key>pathName</key>
+									<string>Flying_Bird_Path_1</string>
+									<key>restartAtOtherEnd</key>
+									<true/>
+									<key>timeToCompletePath</key>
+									<real>40</real>
+								</dict>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Doodad_Flying_Bird_1</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{486, 240}, {16, 8.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{38, -45}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{20, 10}</string>
+								<key>Tag</key>
+								<integer>14</integer>
+								<key>TagName</key>
+								<string>DOODAD</string>
+								<key>TextureOffset</key>
+								<string>{0.25, -0.125}</string>
+								<key>UniqueName</key>
+								<string>Doodad_Flying_Bird_1</string>
+								<key>ZOrder</key>
+								<integer>3</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Doodad_Flying_Bird_1</string>
 						</dict>
 					</array>
 					<key>CustomClassInfo</key>
@@ -292,6 +408,8 @@
 									<true/>
 									<key>isDead</key>
 									<true/>
+									<key>isInvisible</key>
+									<true/>
 									<key>isSafe</key>
 									<true/>
 									<key>isStuck</key>
@@ -310,6 +428,8 @@
 									<key>hasSpottedShark</key>
 									<false/>
 									<key>isDead</key>
+									<false/>
+									<key>isInvisible</key>
 									<false/>
 									<key>isSafe</key>
 									<false/>
@@ -351,7 +471,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{74, 116}, {34.75, 39.5}}</string>
+								<string>{{0, 119}, {34.75, 39.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -363,7 +483,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{333, 142}</string>
+								<string>{199, 116}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -399,6 +519,8 @@
 									<true/>
 									<key>endpointY</key>
 									<true/>
+									<key>isInvisible</key>
+									<true/>
 									<key>isStuck</key>
 									<true/>
 									<key>restingDetectionRadius</key>
@@ -420,6 +542,8 @@
 									<real>1024</real>
 									<key>endpointY</key>
 									<real>400</real>
+									<key>isInvisible</key>
+									<false/>
 									<key>isStuck</key>
 									<false/>
 									<key>restingDetectionRadius</key>
@@ -454,7 +578,7 @@
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
-								<integer>270</integer>
+								<integer>0</integer>
 								<key>Color</key>
 								<string>{{1, 1}, {1, 1}}</string>
 								<key>FlipX</key>
@@ -462,7 +586,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 86}, {58.75, 29}}</string>
+								<string>{{0, 0}, {58.75, 29}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -474,7 +598,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{326, 261}</string>
+								<string>{51, 118}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -559,7 +683,7 @@
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
-								<integer>180</integer>
+								<integer>225</integer>
 								<key>Color</key>
 								<string>{{1, 1}, {1, 1}}</string>
 								<key>FlipX</key>
@@ -567,7 +691,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{260, 34}, {44.5, 67.75}}</string>
+								<string>{{303, 34}, {41.5, 66}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -579,9 +703,9 @@
 								<key>Opacity</key>
 								<real>0.0</real>
 								<key>Position</key>
-								<string>{219, 236}</string>
+								<string>{185, 69}</string>
 								<key>Scale</key>
-								<string>{1, 0.001}</string>
+								<string>{0.80000001192092896, 1}</string>
 								<key>SpriteSize</key>
 								<string>{50, 75}</string>
 								<key>Tag</key>
@@ -589,7 +713,7 @@
 								<key>TagName</key>
 								<string>TUTORIAL</string>
 								<key>TextureOffset</key>
-								<string>{0.25, -0.125}</string>
+								<string>{0.25, -1}</string>
 								<key>UniqueName</key>
 								<string>Arrow_2</string>
 								<key>ZOrder</key>
@@ -628,13 +752,13 @@
 							<key>SHSheetName</key>
 							<string>HUD</string>
 							<key>SHSpriteName</key>
-							<string>Tutorial2</string>
+							<string>Num2</string>
 							<key>SheetImage</key>
 							<string>Spritesheet_HUD.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
-								<integer>0</integer>
+								<integer>40</integer>
 								<key>Color</key>
 								<string>{{1, 1}, {1, 1}}</string>
 								<key>FlipX</key>
@@ -642,36 +766,36 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{260, 221}, {258.75, 219.75}}</string>
+								<string>{{261, 185}, {11.75, 16.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<true/>
+								<false/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
-								<real>0.0</real>
+								<real>1</real>
 								<key>Position</key>
-								<string>{141, 118}</string>
+								<string>{189, 65}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{258.75, 219.25}</string>
+								<string>{25, 25}</string>
 								<key>Tag</key>
 								<integer>12</integer>
 								<key>TagName</key>
 								<string>TUTORIAL</string>
 								<key>TextureOffset</key>
-								<string>{0, -0.25}</string>
+								<string>{0.375, 0.75}</string>
 								<key>UniqueName</key>
-								<string>Tutorial2</string>
+								<string>Num3</string>
 								<key>ZOrder</key>
-								<integer>10</integer>
+								<integer>3</integer>
 							</dict>
 							<key>UniqueName</key>
-							<string>Tutorial2</string>
+							<string>Num3</string>
 						</dict>
 						<dict>
 							<key>AnimationsProperties</key>
@@ -703,13 +827,13 @@
 							<key>SHSheetName</key>
 							<string>HUD</string>
 							<key>SHSpriteName</key>
-							<string>Finger_Touch</string>
+							<string>Tutorial1</string>
 							<key>SheetImage</key>
 							<string>Spritesheet_HUD.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
-								<integer>320</integer>
+								<integer>0</integer>
 								<key>Color</key>
 								<string>{{1, 1}, {1, 1}}</string>
 								<key>FlipX</key>
@@ -717,7 +841,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{260, 103}, {40.75, 67.5}}</string>
+								<string>{{0, 0}, {260, 219.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -729,24 +853,99 @@
 								<key>Opacity</key>
 								<real>0.0</real>
 								<key>Position</key>
-								<string>{103, 281}</string>
+								<string>{336, 113}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{75, 75}</string>
+								<string>{261.25, 221.25}</string>
 								<key>Tag</key>
 								<integer>12</integer>
 								<key>TagName</key>
 								<string>TUTORIAL</string>
 								<key>TextureOffset</key>
-								<string>{0.625, -1}</string>
+								<string>{0.625, 0.375}</string>
 								<key>UniqueName</key>
-								<string>Finger_Touch</string>
+								<string>Tutorial1</string>
+								<key>ZOrder</key>
+								<integer>10</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Tutorial1</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>HUD</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>HUD</string>
+							<key>SHSpriteName</key>
+							<string>Arrow</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_HUD.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>193</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{303, 34}, {41.5, 66}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>0.0</real>
+								<key>Position</key>
+								<string>{33, 248}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{50, 75}</string>
+								<key>Tag</key>
+								<integer>12</integer>
+								<key>TagName</key>
+								<string>TUTORIAL</string>
+								<key>TextureOffset</key>
+								<string>{0.25, -1}</string>
+								<key>UniqueName</key>
+								<string>Arrow_1</string>
 								<key>ZOrder</key>
 								<integer>11</integer>
 							</dict>
 							<key>UniqueName</key>
-							<string>Finger_Touch</string>
+							<string>Arrow_1</string>
 						</dict>
 						<dict>
 							<key>AnimationsProperties</key>
@@ -792,7 +991,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{260, 34}, {44.5, 67.75}}</string>
+								<string>{{303, 34}, {41.5, 66}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -804,7 +1003,7 @@
 								<key>Opacity</key>
 								<real>0.0</real>
 								<key>Position</key>
-								<string>{225, 247}</string>
+								<string>{222, 252}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -814,7 +1013,7 @@
 								<key>TagName</key>
 								<string>TUTORIAL</string>
 								<key>TextureOffset</key>
-								<string>{0.25, -0.125}</string>
+								<string>{0.25, -1}</string>
 								<key>UniqueName</key>
 								<string>Arrow</string>
 								<key>ZOrder</key>
@@ -853,13 +1052,13 @@
 							<key>SHSheetName</key>
 							<string>HUD</string>
 							<key>SHSpriteName</key>
-							<string>Num2</string>
+							<string>Num3</string>
 							<key>SheetImage</key>
 							<string>Spritesheet_HUD.png</string>
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
-								<integer>320</integer>
+								<integer>13</integer>
 								<key>Color</key>
 								<string>{{1, 1}, {1, 1}}</string>
 								<key>FlipX</key>
@@ -867,7 +1066,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{319, 158}, {11.75, 16.5}}</string>
+								<string>{{261, 202}, {11, 16.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -877,9 +1076,9 @@
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
-								<real>0.0</real>
+								<real>1</real>
 								<key>Position</key>
-								<string>{112, 290}</string>
+								<string>{33, 243}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -889,7 +1088,7 @@
 								<key>TagName</key>
 								<string>TUTORIAL</string>
 								<key>TextureOffset</key>
-								<string>{0.375, 0.75}</string>
+								<string>{0, 0.625}</string>
 								<key>UniqueName</key>
 								<string>Num2</string>
 								<key>ZOrder</key>
@@ -942,7 +1141,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{472, 34}, {6.75, 16.75}}</string>
+								<string>{{286, 185}, {6.75, 16.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -952,9 +1151,9 @@
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
-								<real>0.0</real>
+								<real>1</real>
 								<key>Position</key>
-								<string>{223, 231}</string>
+								<string>{220, 243}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -966,12 +1165,12 @@
 								<key>TextureOffset</key>
 								<string>{-0.875, 0.375}</string>
 								<key>UniqueName</key>
-								<string>Num3</string>
+								<string>Num1</string>
 								<key>ZOrder</key>
 								<integer>12</integer>
 							</dict>
 							<key>UniqueName</key>
-							<string>Num3</string>
+							<string>Num1</string>
 						</dict>
 					</array>
 					<key>CustomClassInfo</key>
@@ -1041,9 +1240,9 @@
 								<key>ClassRepresentation</key>
 								<dict>
 									<key>placeCost</key>
-									<real>750</real>
-									<key>runningCost</key>
 									<real>1000</real>
+									<key>runningCost</key>
+									<real>1250</real>
 									<key>scale</key>
 									<real>1</real>
 								</dict>
@@ -1080,13 +1279,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 0}, {17.75, 71.75}}</string>
+								<string>{{128, 333}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -1096,13 +1295,13 @@
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{21.25, 75}</string>
+								<string>{21.25, 85}</string>
 								<key>Tag</key>
 								<integer>8</integer>
 								<key>TagName</key>
 								<string>TOOLBOX_ITEM</string>
 								<key>TextureOffset</key>
-								<string>{0.25, 0.125}</string>
+								<string>{0, 0.125}</string>
 								<key>UniqueName</key>
 								<string>Metal-Gate</string>
 								<key>ZOrder</key>
@@ -1164,7 +1363,7 @@
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
-								<integer>90</integer>
+								<integer>0</integer>
 								<key>Color</key>
 								<string>{{1, 1}, {1, 1}}</string>
 								<key>FlipX</key>
@@ -1172,29 +1371,29 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 0}, {17.75, 71.75}}</string>
+								<string>{{128, 333}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
 								<real>0.0</real>
 								<key>Position</key>
-								<string>{341, 181}</string>
+								<string>{141, 123}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
-								<string>{21.25, 75}</string>
+								<string>{21.25, 85}</string>
 								<key>Tag</key>
 								<integer>12</integer>
 								<key>TagName</key>
 								<string>TUTORIAL</string>
 								<key>TextureOffset</key>
-								<string>{0.25, 0.125}</string>
+								<string>{0, 0.125}</string>
 								<key>UniqueName</key>
 								<string>Metal-Gate_1</string>
 								<key>ZOrder</key>
@@ -1229,6 +1428,202 @@
 					<string>Toolbox</string>
 					<key>ZOrder</key>
 					<integer>30</integer>
+				</dict>
+				<dict>
+					<key>Children</key>
+					<array/>
+					<key>CustomClassInfo</key>
+					<dict>
+						<key>ClassName</key>
+						<string>No Class</string>
+					</dict>
+					<key>NodeType</key>
+					<string>LHBezier</string>
+					<key>ParentClass</key>
+					<string>LHLayer</string>
+					<key>ParentName</key>
+					<string>MAIN_LAYER</string>
+					<key>PhysicsProperties</key>
+					<dict>
+						<key>AngularDamping</key>
+						<real>0.0</real>
+						<key>AngularVelocity</key>
+						<real>0.0</real>
+						<key>CanSleep</key>
+						<true/>
+						<key>Category</key>
+						<integer>1</integer>
+						<key>Density</key>
+						<real>0.20000000298023224</real>
+						<key>FixedRot</key>
+						<false/>
+						<key>Fixture</key>
+						<array/>
+						<key>Friction</key>
+						<real>0.20000000298023224</real>
+						<key>GravityScale</key>
+						<real>1</real>
+						<key>Group</key>
+						<integer>0</integer>
+						<key>HandledBySH</key>
+						<false/>
+						<key>IsBullet</key>
+						<false/>
+						<key>IsCircle</key>
+						<false/>
+						<key>IsSensor</key>
+						<false/>
+						<key>LHHeight</key>
+						<real>0.0</real>
+						<key>LHShapePositionOffset</key>
+						<string>{0, 0}</string>
+						<key>LHWidth</key>
+						<real>0.0</real>
+						<key>LinearDamping</key>
+						<real>0.0</real>
+						<key>LinearVelocity</key>
+						<string>{0, 0}</string>
+						<key>Mask</key>
+						<integer>65535</integer>
+						<key>Name</key>
+						<string>LH_Generic_Fixture</string>
+						<key>Restitution</key>
+						<real>0.20000000298023224</real>
+						<key>Tag</key>
+						<integer>0</integer>
+						<key>TileOptimization</key>
+						<real>3</real>
+						<key>TileVertices</key>
+						<array/>
+						<key>Type</key>
+						<integer>3</integer>
+					</dict>
+					<key>TextureProperties</key>
+					<dict>
+						<key>Angle</key>
+						<integer>0</integer>
+						<key>Color</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>Curves</key>
+						<array>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{263, 320.25}</string>
+								<key>EndPoint</key>
+								<string>{349, 274.25}</string>
+								<key>StartControlPoint</key>
+								<string>{243, 320.25}</string>
+								<key>StartPoint</key>
+								<string>{157, 366.25}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{353, 251.75}</string>
+								<key>EndPoint</key>
+								<string>{337, 229.25}</string>
+								<key>StartControlPoint</key>
+								<string>{333, 251.75}</string>
+								<key>StartPoint</key>
+								<string>{349, 274.25}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{159, 234.75}</string>
+								<key>EndPoint</key>
+								<string>{-39, 240.25}</string>
+								<key>StartControlPoint</key>
+								<string>{139, 234.75}</string>
+								<key>StartPoint</key>
+								<string>{337, 229.25}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{80, 89.75}</string>
+								<key>EndPoint</key>
+								<string>{179, -60.75}</string>
+								<key>StartControlPoint</key>
+								<string>{60, 89.75}</string>
+								<key>StartPoint</key>
+								<string>{-39, 240.25}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{367.25076195732566, 46.183694584221399}</string>
+								<key>EndPoint</key>
+								<string>{535.50152391465133, 153.1173891684428}</string>
+								<key>StartControlPoint</key>
+								<string>{347.25076195732566, 46.183694584221399}</string>
+								<key>StartPoint</key>
+								<string>{179, -60.75}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{251.98678791792815, 220.43010195702465}</string>
+								<key>EndPoint</key>
+								<string>{-51.527948078795021, 287.74281474560649}</string>
+								<key>StartControlPoint</key>
+								<string>{231.98678791792815, 220.43010195702465}</string>
+								<key>StartPoint</key>
+								<string>{535.50152391465133, 153.1173891684428}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{62.571944954709465, 322.96458306521328}</string>
+								<key>EndPoint</key>
+								<string>{156.67183798821395, 358.18635138482006}</string>
+								<key>StartControlPoint</key>
+								<string>{42.571944954709465, 322.96458306521328}</string>
+								<key>StartPoint</key>
+								<string>{-51.527948078795021, 287.74281474560649}</string>
+							</dict>
+						</array>
+						<key>DrawBorder</key>
+						<true/>
+						<key>FlipX</key>
+						<false/>
+						<key>FlipY</key>
+						<false/>
+						<key>Image</key>
+						<string>No Image</string>
+						<key>ImageFile</key>
+						<string>No Image</string>
+						<key>IsClosed</key>
+						<false/>
+						<key>IsDrawable</key>
+						<true/>
+						<key>IsExpanded</key>
+						<false/>
+						<key>IsPath</key>
+						<false/>
+						<key>IsSimpleLine</key>
+						<false/>
+						<key>IsTile</key>
+						<false/>
+						<key>LineColor</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>LineWidth</key>
+						<real>1</real>
+						<key>Locked</key>
+						<false/>
+						<key>Opacity</key>
+						<real>1</real>
+						<key>Position</key>
+						<string>{157, 366.25}</string>
+						<key>Scale</key>
+						<string>{1, 1}</string>
+						<key>SpriteSize</key>
+						<string>{0, 0}</string>
+						<key>Tag</key>
+						<integer>15</integer>
+						<key>TagName</key>
+						<string>DOODAD_PATH</string>
+						<key>UniqueName</key>
+						<string>Flying_Bird_Path_1</string>
+						<key>ZOrder</key>
+						<integer>0</integer>
+					</dict>
+					<key>UniqueName</key>
+					<string>Flying_Bird_Path_1</string>
 				</dict>
 			</array>
 			<key>CustomClassInfo</key>
@@ -1277,6 +1672,8 @@
 					<false/>
 					<key>isDead</key>
 					<false/>
+					<key>isInvisible</key>
+					<false/>
 					<key>isSafe</key>
 					<false/>
 					<key>isStuck</key>
@@ -1298,6 +1695,8 @@
 					<real>1024</real>
 					<key>endpointY</key>
 					<real>400</real>
+					<key>isInvisible</key>
+					<false/>
 					<key>isStuck</key>
 					<false/>
 					<key>restingDetectionRadius</key>
@@ -1314,9 +1713,9 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>750</real>
-					<key>runningCost</key>
 					<real>1000</real>
+					<key>runningCost</key>
+					<real>1250</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -1326,10 +1725,12 @@
 				<string>ToolboxItem_Debris</string>
 				<key>ClassRepresentation</key>
 				<dict>
+					<key>mass</key>
+					<real>1</real>
 					<key>placeCost</key>
-					<real>250</real>
+					<real>150</real>
 					<key>runningCost</key>
-					<real>350</real>
+					<real>250</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -1340,13 +1741,13 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>400</real>
+					<real>750</real>
 					<key>power</key>
 					<real>50</real>
 					<key>reach</key>
 					<real>5000</real>
 					<key>runningCost</key>
-					<real>600</real>
+					<real>1000</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -1356,12 +1757,100 @@
 				<string>MovingDoodad</string>
 				<key>ClassRepresentation</key>
 				<dict>
+					<key>followXAxis</key>
+					<false/>
+					<key>isCyclic</key>
+					<true/>
 					<key>pathName</key>
 					<string>Default</string>
 					<key>restartAtOtherEnd</key>
 					<true/>
 					<key>timeToCompletePath</key>
 					<real>60</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>ToolboxItem_Whirlpool</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>placeCost</key>
+					<real>1250</real>
+					<key>power</key>
+					<real>50</real>
+					<key>runningCost</key>
+					<real>1500</real>
+					<key>scale</key>
+					<real>1</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>ToolboxItem_Sandbar</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>placeCost</key>
+					<real>1000</real>
+					<key>runningCost</key>
+					<real>1250</real>
+					<key>scale</key>
+					<real>1</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>ToolboxItem_Bag_of_Fish</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>placeCost</key>
+					<real>1250</real>
+					<key>runningCost</key>
+					<real>1500</real>
+					<key>scale</key>
+					<real>1</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>ToolboxItem_Loud_Noise</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>placeCost</key>
+					<real>1250</real>
+					<key>runningCost</key>
+					<real>1500</real>
+					<key>scale</key>
+					<real>1</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>ToolboxItem_Invisibility_Hat</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>placeCost</key>
+					<real>1500</real>
+					<key>runningCost</key>
+					<real>2000</real>
+					<key>scale</key>
+					<real>1</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>MovingBorder</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>followXAxis</key>
+					<false/>
+					<key>isCyclic</key>
+					<true/>
+					<key>pathName</key>
+					<string></string>
+					<key>restartAtOtherEnd</key>
+					<false/>
+					<key>timeToCompletePath</key>
+					<real>15</real>
 				</dict>
 			</dict>
 		</array>
@@ -1400,6 +1889,12 @@
 			<string>DOODAD</string>
 			<string>DOODAD_PATH</string>
 			<string>OBSTRUCTION</string>
+			<string>WHIRLPOOL</string>
+			<string>SANDBAR</string>
+			<string>BAG_OF_FISH</string>
+			<string>INVISIBILITY_HAT</string>
+			<string>LOUD_NOISE</string>
+			<string>BORDER_PATH</string>
 		</array>
 		<key>ZoomValue</key>
 		<real>0.0</real>

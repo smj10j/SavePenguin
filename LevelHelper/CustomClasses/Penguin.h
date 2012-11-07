@@ -9,9 +9,9 @@
 
 	BOOL isDead;
 	float speed;
-	BOOL isSafe;
-	float alertRadius;
 	BOOL isInvisible;
+	float alertRadius;
+	BOOL isSafe;
 	float detectionRadius;
 	BOOL hasSpottedShark;
 	BOOL isStuck;
@@ -27,9 +27,9 @@
 }
 @property BOOL isDead;
 @property float speed;
-@property BOOL isSafe;
-@property float alertRadius;
 @property BOOL isInvisible;
+@property float alertRadius;
+@property BOOL isSafe;
 @property float detectionRadius;
 @property BOOL hasSpottedShark;
 @property BOOL isStuck;
