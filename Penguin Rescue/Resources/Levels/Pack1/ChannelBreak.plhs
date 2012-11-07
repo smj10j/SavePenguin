@@ -757,9 +757,9 @@
 								<key>SpriteSize</key>
 								<string>{85, 65}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0.25, -0.125}</string>
 								<key>UniqueName</key>
@@ -832,9 +832,9 @@
 								<key>SpriteSize</key>
 								<string>{475, 115}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0.75, -0.125}</string>
 								<key>UniqueName</key>
@@ -1446,7 +1446,7 @@
 								<key>Opacity</key>
 								<real>0.0</real>
 								<key>Position</key>
-								<string>{245, 240.5}</string>
+								<string>{241, 240.5}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1596,7 +1596,7 @@
 								<key>Opacity</key>
 								<real>0.0</real>
 								<key>Position</key>
-								<string>{244.5, 228.5}</string>
+								<string>{240.5, 228.5}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>

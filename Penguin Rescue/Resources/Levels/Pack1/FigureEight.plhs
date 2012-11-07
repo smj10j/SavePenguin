@@ -615,9 +615,9 @@
 								<key>SpriteSize</key>
 								<string>{277.5, 85}</string>
 								<key>Tag</key>
-								<integer>0</integer>
+								<integer>7</integer>
 								<key>TagName</key>
-								<string>DEFAULT</string>
+								<string>BORDER</string>
 								<key>TextureOffset</key>
 								<string>{0.25, -0.375}</string>
 								<key>UniqueName</key>
