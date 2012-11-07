@@ -179,9 +179,9 @@
 			<key>ClassRepresentation</key>
 			<dict>
 				<key>placeCost</key>
-				<real>1250</real>
+				<real>500</real>
 				<key>runningCost</key>
-				<real>1500</real>
+				<real>750</real>
 				<key>scale</key>
 				<real>1</real>
 			</dict>
@@ -192,9 +192,9 @@
 			<key>ClassRepresentation</key>
 			<dict>
 				<key>placeCost</key>
-				<real>1250</real>
+				<real>500</real>
 				<key>runningCost</key>
-				<real>1500</real>
+				<real>750</real>
 				<key>scale</key>
 				<real>1</real>
 			</dict>
@@ -205,9 +205,9 @@
 			<key>ClassRepresentation</key>
 			<dict>
 				<key>placeCost</key>
-				<real>1500</real>
+				<real>500</real>
 				<key>runningCost</key>
-				<real>2000</real>
+				<real>750</real>
 				<key>scale</key>
 				<real>1</real>
 			</dict>
@@ -239,7 +239,7 @@
 	<key>HDSuffix</key>
 	<string>-hd</string>
 	<key>LastLevelLoaded</key>
-	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Menu/LevelPackSelect.plhs</string>
+	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Pack1/FigureEight.plhs</string>
 	<key>Orientation</key>
 	<integer>1</integer>
 	<key>ProjectName</key>

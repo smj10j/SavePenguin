@@ -2627,12 +2627,12 @@
 
 			//frustrated
 			[shark setFrame:1];
-			sharkData.isStuck = true;
+			//sharkData.isStuck = true;
 
 		}else {
 			//normal
 			[shark setFrame:0];
-			sharkData.isStuck = false;
+			//sharkData.isStuck = false;
 		}
 
 		CGPoint dMod = [self getMovementModEffects:shark];
@@ -2867,7 +2867,7 @@
 				penguinSpeed*= 10;
 				//if(DEBUG_MOVEGRID) DebugLog(@"Penguin %@ is stuck (trying to move but can't) - giving him a bit of jitter %f,%f", penguin.uniqueName, jitterX, jitterY);
 			}else {
-				penguinData.isStuck = false;			
+				//penguinData.isStuck = false;
 			}
 			
 			CGPoint dMod = [self getMovementModEffects:penguin];
