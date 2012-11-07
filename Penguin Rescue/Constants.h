@@ -14,9 +14,9 @@
 
 
 
-#define TEST_MODE false
-#define TEST_LEVEL_PACK @"TectonicPlates"
-#define TEST_LEVEL @"TracktorIsland"
+#define TEST_MODE true
+#define TEST_LEVEL_PACK @"Pack2"
+#define TEST_LEVEL @"PoseidonsDoorstep"
 
  
 

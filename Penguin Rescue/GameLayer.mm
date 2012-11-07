@@ -453,6 +453,9 @@
 		}else if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
 			ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)toolboxItem.userInfo);
 			toolgroupKey = [toolgroupKey stringByAppendingString:[NSString stringWithFormat:@"-%@:%f", @"Mass", toolboxItemData.mass]];
+		}else if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+			ToolboxItem_Whirlpool* toolboxItemData = ((ToolboxItem_Whirlpool*)toolboxItem.userInfo);
+			toolgroupKey = [toolgroupKey stringByAppendingString:[NSString stringWithFormat:@"-%@:%f", @"Power", toolboxItemData.power]];
 		}
 	
 		NSMutableSet* toolGroup = [_toolGroups objectForKey:toolgroupKey];
@@ -490,6 +493,12 @@
 		for(LHSprite* toolboxItem in toolGroup) {
 			if(topToolboxItem == nil) topToolboxItem = toolboxItem;
 			//move the tool into the box
+			if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+				//set previously in level load
+				
+			}else {
+				[toolboxItem transformRotation:0];
+			}			
 			[toolboxItem transformPosition: ccp(toolGroupX, toolGroupY)];
 			double scale = fmin((_toolboxItemSize.width-TOOLBOX_ITEM_CONTAINER_PADDING_H)/toolboxItem.contentSize.width, (_toolboxItemSize.height-TOOLBOX_ITEM_CONTAINER_PADDING_V)/toolboxItem.contentSize.height);
 			[toolboxItem transformScale: scale];
@@ -611,12 +620,19 @@
 			sprite.body->GetMassData(&massData);
 			massData.mass*= toolboxItemData.mass;
 			sprite.body->SetMassData(&massData);
+		}else if([sprite.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+			//sets those in the toolbox too
+			[sprite makeDynamic];
+			[sprite setSensor:true];
+			sprite.body->SetAngularVelocity(0);
 		}
 		
 		if(sprite.tag == DEBRIS) {
 			//already placed - set it's physics data
 			[sprite makeDynamic];
 			[sprite setSensor:false];
+			ToolboxItem_Debris* toolboxItemData = (ToolboxItem_Debris*)sprite.userInfo;
+			[sprite setScale:toolboxItemData.scale];
 		}else if(sprite.tag == OBSTRUCTION) {
 			//already placed - set it's physics data
 			[sprite makeStatic];
@@ -625,10 +641,14 @@
 			//already placed - set it's physics data
 			[sprite makeStatic];
 			[sprite setSensor:true];
+			ToolboxItem_Windmill* toolboxItemData = (ToolboxItem_Windmill*)sprite.userInfo;
+			[sprite setScale:toolboxItemData.scale];
 		}else if(sprite.tag == WHIRLPOOL) {
 			//already placed - set it's physics data
-			[sprite makeStatic];
-			[sprite setSensor:true];
+			sprite.body->ApplyTorque((int)(sprite.rotation/90)%2 == 0 ? -15 : 15);
+			ToolboxItem_Whirlpool* toolboxItemData = (ToolboxItem_Whirlpool*)sprite.userInfo;
+			[sprite setScale:toolboxItemData.scale];
+
 		}else if(sprite.tag == SANDBAR) {
 			//already placed - set it's physics data
 			[sprite makeStatic];
@@ -904,6 +924,14 @@
 	[_activeToolboxItem transformScale: toolboxItemData.scale];
 	if(DEBUG_TOOLBOX) DebugLog(@"Scaling up toolboxitem %@ to full-size", _activeToolboxItem.uniqueName);
 	
+	if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+		//set previously in level load
+		double angularVelocity = _activeToolboxItem.body->GetAngularVelocity();
+		if(angularVelocity == 0) {
+			_activeToolboxItem.body->ApplyTorque(-15);
+		}
+	}
+	
 	
 	//slide down the toolbox items
 	for(LHSprite* aToolboxItemContainer in [_levelLoader spritesWithTag:TOOLBOX_ITEM_CONTAINER]) {
@@ -954,7 +982,13 @@
 			) {
 			//placed back into the HUD
 
-			[_activeToolboxItem transformRotation:0];
+			if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+				_activeToolboxItem.body->SetAngularVelocity(0);
+				_activeToolboxItem.body->ApplyTorque(-15);
+			}else {
+				[_activeToolboxItem transformRotation:0];
+			}
+			
 			[_activeToolboxItem transformPosition:_activeToolboxItemOriginalPosition];
 			double scale = fmin((_toolboxItemSize.width-TOOLBOX_ITEM_CONTAINER_PADDING_H)/_activeToolboxItem.contentSize.width, (_toolboxItemSize.height-TOOLBOX_ITEM_CONTAINER_PADDING_V)/_activeToolboxItem.contentSize.height);
 			[_activeToolboxItem transformScale: scale];
@@ -1407,8 +1441,6 @@
 	LHSprite* levelWonPopup = [_levelLoader createSpriteWithName:@"Level_Won_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:popupLayerTexture];
 	levelWonPopup.opacity = 0;
 	[levelWonPopup transformPosition: ccp(0,0)];
-	const CGSize levelWonPopupSize = levelWonPopup.boundingBox.size;
-
 
 	/***** action butons ******/
 	
@@ -1957,14 +1989,17 @@
 	//adjust score by the mass/power/etc.
 	if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
 		ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)toolboxItem.userInfo);
-		score+= log(score)*(toolboxItemData.mass/1);
+		score*= 1+log(toolboxItemData.mass/1);
 	}else if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
 		ToolboxItem_Windmill* toolboxItemData = ((ToolboxItem_Windmill*)toolboxItem.userInfo);
-		score+= log(score)*(toolboxItemData.power/50);
+		score*= 1+log(toolboxItemData.power/50);
 	}else if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
 		ToolboxItem_Whirlpool* toolboxItemData = ((ToolboxItem_Whirlpool*)toolboxItem.userInfo);
-		score+= log(score)*(toolboxItemData.power/50);
+		score*= 1+log(toolboxItemData.power/200);
 	}
+	
+	//round to 25s
+	score = (score/25)*25;
 	
 				
 	[_scoreKeeper addScore:score description:(_state == PLACE ? @"PLACE" : @"RUNNING") sprite:toolboxItem group:true];
@@ -2041,7 +2076,7 @@
 		
 		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
 			_activeToolboxItem.tag = WHIRLPOOL;
-			[_activeToolboxItem makeStatic];
+			[_activeToolboxItem makeDynamic];
 			[_activeToolboxItem setSensor:true];
 			soundFileName = @"place-whirlpool.wav";
 		
@@ -2341,6 +2376,92 @@
 	}
 }
 
+-(CGPoint)getMovementModEffects:(LHSprite*)sprite {
+
+	//used for each effect
+	double dxMod = 0;
+	double dyMod = 0;
+	
+	//aggregate
+	CGPoint dMod = ccp(dxMod, dyMod);
+
+	//TODO: this is inefficient because it casts much more often than it needs to. optimize if need be
+	//adjust the shark speed by any movement altering affects in play (such as windmills)
+	float32 minWindmillFraction = 1;
+	NSArray* windmills = [_levelLoader spritesWithTag:WINDMILL];
+	for(LHSprite* windmill in windmills) {
+		ToolboxItem_Windmill* windmillData = ((ToolboxItem_Windmill*)windmill.userInfo);
+		//facing east by default
+		int rotation = ((int)(windmill.rotation+90))%360;
+		double xDir = sin(CC_DEGREES_TO_RADIANS(rotation));
+		double yDir = cos(CC_DEGREES_TO_RADIANS(rotation));
+		b2Vec2 windmillPos = windmill.body->GetPosition();
+		b2Vec2 directionVector = b2Vec2(windmillPos.x + windmillData.reach*xDir,
+										windmillPos.y + windmillData.reach*yDir);
+								
+		//returns if the shark is in front of the windmill
+		WindmillRaycastCallback callback;
+		_world->RayCast(&callback, windmillPos, directionVector);
+		 
+		if (callback._fixture) {
+			if (callback._fixture->GetBody() == sprite.body && callback._fraction < minWindmillFraction) {
+			
+				minWindmillFraction = callback._fraction;
+			
+				//shark is in the way!!
+				//DebugLog(@"Sprite %@ is in the way of a windmill %@! Applying effects...", sprite.uniqueName, windmill.uniqueName);
+				
+				double dModSum = fabs(xDir) + fabs(yDir);
+				if(dModSum == 0) {
+					dModSum = 1;
+				}					
+				
+				dxMod = (xDir/dModSum)*(windmillData.power);
+				dyMod = (yDir/dModSum)*(windmillData.power);				
+			}
+		}
+	}
+	dMod = ccp(dMod.x+dxMod, dMod.y+dyMod);
+
+
+	/// whirlpools!
+	dxMod = 0;
+	dyMod = 0;
+	NSArray* whirlpools = [_levelLoader spritesWithTag:WHIRLPOOL];
+	for(LHSprite* whirlpool in whirlpools) {
+		ToolboxItem_Whirlpool* whirlpoolData = ((ToolboxItem_Whirlpool*)whirlpool.userInfo);
+		
+			double dist = ccpDistance(sprite.position, whirlpool.position);
+			if(dist < whirlpoolData.power*SCALING_FACTOR_GENERIC) {
+				
+				b2Vec2 vortexVelocity = whirlpool.body->GetLinearVelocityFromWorldPoint( sprite.body->GetPosition() );
+				b2Vec2 vortexVelocityN = vortexVelocity;
+				vortexVelocityN.Normalize();
+				
+				//this will provide a slight pull to the center
+				b2Vec2 d = whirlpool.body->GetPosition() - sprite.body->GetPosition();
+				b2Vec2 dN = d;
+				dN.Normalize();
+				
+				double power = (pow(log(whirlpoolData.power - dist),2));
+				dxMod = vortexVelocity.x*power + dN.x*(whirlpoolData.power - dist)*.125;
+				dyMod = vortexVelocity.y*power + dN.y*(whirlpoolData.power - dist)*.125;
+				
+				/*DebugLog(@"Applying Whirlpool effect to %@ with dxMod=%f, dyMod=%f, dist=%f, vortexVelocity=%@, dN=%@",
+						sprite.uniqueName, dxMod, dyMod, dist,
+						NSStringFromCGPoint(ccp(vortexVelocity.x,vortexVelocity.y)),
+						NSStringFromCGPoint(ccp(dN.x,dN.y)));
+				*/
+			}
+	}
+	dMod = ccp(dMod.x+dxMod, dMod.y+dyMod);	
+	
+	
+	
+	
+	return dMod;
+}
+
 -(void) moveSharks:(ccTime)dt {
 		
 	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
@@ -2491,53 +2612,15 @@
 			sharkData.isStuck = false;
 		}
 
-		double dxMod = 0;
-		double dyMod = 0;
+		CGPoint dMod = [self getMovementModEffects:shark];
+				
+		if(dMod.x != 0 || dMod.y != 0) {
 
-		//TODO: this is inefficient because it casts much more often than it needs to. optimize if need be
-		//adjust the shark speed by any movement altering affects in play (such as windmills)
-		float32 minWindmillFraction = 1;
-		NSArray* windmills = [_levelLoader spritesWithTag:WINDMILL];
-		for(LHSprite* windmill in windmills) {
-			ToolboxItem_Windmill* windmillData = ((ToolboxItem_Windmill*)windmill.userInfo);
-			//facing east by default
-			int rotation = ((int)(windmill.rotation+90))%360;
-			double xDir = sin(CC_DEGREES_TO_RADIANS(rotation));
-			double yDir = cos(CC_DEGREES_TO_RADIANS(rotation));
-			b2Vec2 windmillPos = windmill.body->GetPosition();
-			b2Vec2 directionVector = b2Vec2(windmillPos.x + windmillData.reach*xDir,
-											windmillPos.y + windmillData.reach*yDir);
-									
-			//returns if the shark is in front of the windmill
-			WindmillRaycastCallback callback;
-			_world->RayCast(&callback, windmillPos, directionVector);
-			 
-			if (callback._fixture) {
-				if (callback._fixture->GetBody() == shark.body && callback._fraction < minWindmillFraction) {
-				
-					minWindmillFraction = callback._fraction;
-				
-					//shark is in the way!!
-					//DebugLog(@"Shark %@ is in the way of a windmill %@! Applying effects...", shark.uniqueName, windmill.uniqueName);
-					
-					double dModSum = fabs(xDir) + fabs(yDir);
-					if(dModSum == 0) {
-						dModSum = 1;
-					}					
-					
-					dxMod = (xDir/dModSum)*(windmillData.power);
-					dyMod = (yDir/dModSum)*(windmillData.power);
-					
-					[sharkMoveGridData scheduleUpdateToMoveGridIn:0.25f];
-				}
-			}
-		}
+			[sharkMoveGridData scheduleUpdateToMoveGridIn:0.25f];
 		
-				
-		if(dxMod != 0 || dyMod != 0) {
 			//prevents futile attempts to fight against a windmill by making opposing wind forces less and less attractive
-			CGPoint targetGridPos = ccp(sharkGridPos.x + (dxMod*dx < 0 ? (dxMod < 0 ? 1 : -1) : 0),
-										sharkGridPos.y + (dyMod*dy < 0 ? (dyMod < 0 ? 1 : -1) : 0));
+			CGPoint targetGridPos = ccp(sharkGridPos.x + (dMod.x*dx < 0 ? (dMod.x < 0 ? 1 : -1) : 0),
+										sharkGridPos.y + (dMod.y*dy < 0 ? (dMod.y < 0 ? 1 : -1) : 0));
 			//DebugLog(@"sharkGridPos: %@ - Target Grid Pos: %@ ---- dxMod: %f, dyMod=%f, dx=%f, dy=%f", NSStringFromCGPoint(sharkGridPos), NSStringFromCGPoint(targetGridPos), dxMod, dyMod, dx, dy);
 			if(targetGridPos.x >= 0 && targetGridPos.x < _gridWidth && targetGridPos.y >= 0 && targetGridPos.y < _gridHeight
 					&& (targetGridPos.x != sharkGridPos.x || targetGridPos.y != sharkGridPos.y)) {
@@ -2559,10 +2642,10 @@
 		double normalizedX = dx/dSum;
 		double normalizedY = dy/dSum;
 
-		double impulseX = (((sharkSpeed*normalizedX)+dxMod)*dt)*IMPULSE_SCALAR/**pow(shark.scale,2)*/;
-		double impulseY = (((sharkSpeed*normalizedY)+dyMod)*dt)*IMPULSE_SCALAR/**pow(shark.scale,2)*/;
+		double impulseX = (((sharkSpeed*normalizedX)+dMod.x)*dt)*IMPULSE_SCALAR/**pow(shark.scale,2)*/;
+		double impulseY = (((sharkSpeed*normalizedY)+dMod.y)*dt)*IMPULSE_SCALAR/**pow(shark.scale,2)*/;
 		
-		//DebugLog(@"Shark %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f, dt=%f, impulseScalar=%f", shark.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY, dt, IMPULSE_SCALAR);
+		//DebugLog(@"Shark %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f, dt=%f, impulseScalar=%f", shark.uniqueName, normalizedX, normalizedY, dx, dy, dMod.x, dMod.y, impulseX, impulseY, dt, IMPULSE_SCALAR);
 			
 		//we're using an impulse for the shark so they interact with things like Debris (physics)
 		shark.body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), shark.body->GetWorldCenter());
@@ -2764,53 +2847,15 @@
 				penguinData.isStuck = false;			
 			}
 			
+			CGPoint dMod = [self getMovementModEffects:penguin];
+					
+			if(dMod.x != 0 || dMod.y != 0) {
 
-			double dxMod = 0;
-			double dyMod = 0;
-
-			//TODO: this is inefficient because it casts much more often than it needs to. optimize if need be
-			//adjust the penguin speed by any movement altering affects in play (such as windmills)
-			float32 minWindmillFraction = 1;
-			NSArray* windmills = [_levelLoader spritesWithTag:WINDMILL];
-			for(LHSprite* windmill in windmills) {
-				ToolboxItem_Windmill* windmillData = ((ToolboxItem_Windmill*)windmill.userInfo);
-				//facing east by default
-				int rotation = ((int)(windmill.rotation+90))%360;
-				double xDir = sin(CC_DEGREES_TO_RADIANS(rotation));
-				double yDir = cos(CC_DEGREES_TO_RADIANS(rotation));
-				b2Vec2 windmillPos = windmill.body->GetPosition();
-				b2Vec2 directionVector = b2Vec2(windmillPos.x + windmillData.reach*xDir,
-												windmillPos.y + windmillData.reach*yDir);
-										
-				//returns if the penguin is in front of the windmill
-				WindmillRaycastCallback callback;
-				_world->RayCast(&callback, windmillPos, directionVector);
-				 
-				if (callback._fixture) {
-					if (callback._fixture->GetBody() == penguin.body && callback._fraction < minWindmillFraction) {
-					
-						minWindmillFraction = callback._fraction;
-					
-						//shark is in the way!!
-						//DebugLog(@"Penguin %@ is in the way of a windmill %@! Applying effects...", penguin.uniqueName, windmill.uniqueName);
-						
-						double dModSum = fabs(xDir) + fabs(yDir);
-						if(dModSum == 0) {
-							dModSum = 1;
-						}					
-						
-						dxMod = (xDir/dModSum)*(windmillData.power);
-						dyMod = (yDir/dModSum)*(windmillData.power);
-						
-						[penguinMoveGridData scheduleUpdateToMoveGridIn:0.25f];
-					}
-				}
-			}
-					
-			if(dxMod != 0 || dyMod != 0) {
+				[penguinMoveGridData scheduleUpdateToMoveGridIn:0.25f];
+			
 				//prevents futile attempts to fight against a windmill by making opposing wind forces less and less attractive
-				CGPoint targetGridPos = ccp(penguinGridPos.x + (dxMod*dx < 0 ? (dxMod < 0 ? 1 : -1) : 0),
-											penguinGridPos.y + (dyMod*dy < 0 ? (dyMod < 0 ? 1 : -1) : 0));
+				CGPoint targetGridPos = ccp(penguinGridPos.x + (dMod.x*dx < 0 ? (dMod.x < 0 ? 1 : -1) : 0),
+											penguinGridPos.y + (dMod.y*dy < 0 ? (dMod.y < 0 ? 1 : -1) : 0));
 				//DebugLog(@"penguinGridPos: %@ - Target Grid Pos: %@ ---- dxMod: %f, dyMod=%f, dx=%f, dy=%f", NSStringFromCGPoint(penguinGridPos), NSStringFromCGPoint(targetGridPos), dxMod, dyMod, dx, dy);
 				if(targetGridPos.x >= 0 && targetGridPos.x < _gridWidth && targetGridPos.y >= 0 && targetGridPos.y < _gridHeight
 						&& (targetGridPos.x != penguinGridPos.x || targetGridPos.y != penguinGridPos.y)) {
@@ -2832,10 +2877,10 @@
 			double normalizedX = dx/dSum;
 			double normalizedY = dy/dSum;
 			
-			double impulseX = (((penguinSpeed*normalizedX)+dxMod)*dt)*IMPULSE_SCALAR/**pow(penguin.scale,2)*/;
-			double impulseY = (((penguinSpeed*normalizedY)+dyMod)*dt)*IMPULSE_SCALAR/**pow(penguin.scale,2)*/;
+			double impulseX = (((penguinSpeed*normalizedX)+dMod.x)*dt)*IMPULSE_SCALAR/**pow(penguin.scale,2)*/;
+			double impulseY = (((penguinSpeed*normalizedY)+dMod.y)*dt)*IMPULSE_SCALAR/**pow(penguin.scale,2)*/;
 			
-			//DebugLog(@"Penguin %@'s normalized x,y = %f,%f. dx=%f, dy=%f dxMod=%f, dyMod=%f. impulse = %f,%f", penguin.uniqueName, normalizedX, normalizedY, dx, dy, dxMod, dyMod, impulseX, impulseY);
+			//DebugLog(@"Penguin %@'s normalized x,y = %f,%f. dx=%f, dy=%f dMod.x=%f, dMod.y=%f. impulse = %f,%f", penguin.uniqueName, normalizedX, normalizedY, dx, dy, dMod.x, dMod.y, impulseX, impulseY);
 				
 			//we're using an impulse for the penguin so they interact with things like Debris (physics)
 			penguin.body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), penguin.body->GetWorldCenter());			
@@ -2975,7 +3020,14 @@
 			
 				if(ccpDistance(location, _activeToolboxItem.position) > 50*SCALING_FACTOR_GENERIC) {
 					//tapping a second finger on the screen when moving a toolbox item rotates the item
-					[_activeToolboxItem transformRotation:((int)_activeToolboxItem.rotation+90)%360];
+					
+					if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+						double angularVelocity = _activeToolboxItem.body->GetAngularVelocity();
+						_activeToolboxItem.body->SetAngularVelocity(0);
+						_activeToolboxItem.body->ApplyTorque(angularVelocity>0 ? -15 : 15);
+					}else {
+						[_activeToolboxItem transformRotation:((int)_activeToolboxItem.rotation+90)%360];
+					}
 					
 					//scale up and down for visual effect
 					ToolboxItem_Obstruction* toolboxItemData = ((ToolboxItem_Obstruction*)_activeToolboxItem.userInfo);	//ToolboxItem_Obstruction is used because all ToolboxItem classes have a "scale" property
