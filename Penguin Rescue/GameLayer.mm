@@ -930,7 +930,7 @@ double startTime = [[NSDate date] timeIntervalSince1970];
 		[aToolboxItem runAction:[CCMoveTo actionWithDuration:0.20f position:ccp(aToolboxItem.position.x, -aToolboxItem.boundingBox.size.height)]];
 	}
 	
-	[self scheduleOnce:@selector(initializeSelectedActiveToolboxItem) delay:0.50];
+	[self scheduleOnce:@selector(initializeSelectedActiveToolboxItem) delay:0.050];
 }
 
 -(void)initializeSelectedActiveToolboxItem {
