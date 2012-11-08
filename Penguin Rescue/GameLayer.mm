@@ -81,6 +81,7 @@
 		_handOfGodPowerSecondsUsed = 0;
 		_isNudgingPenguin = false;
 		_levelHasMovingBorders = false;
+		_levelHasMovingLands = false;
 		__DEBUG_SHARKS = DEBUG_SHARK;
 		__DEBUG_PENGUINS = DEBUG_PENGUIN;
 		__DEBUG_TOUCH_SECONDS = 0;
@@ -386,37 +387,48 @@
 -(void) setupMovingBorders {
 
 	NSArray* borders = [_levelLoader spritesWithTag:BORDER];
-	for(LHSprite* border in borders) {
-		if([border.userInfoClassName isEqualToString:@"MovingBorder"]) {
+	NSMutableArray* bordersAndLands = [NSMutableArray arrayWithArray:[_levelLoader spritesWithTag:LAND]];
+	[bordersAndLands addObjectsFromArray:borders];
+	
+	for(LHSprite* sprite in bordersAndLands) {
+		if([sprite.userInfoClassName isEqualToString:@"MovingBorder"] || [sprite.userInfoClassName isEqualToString:@"MovingLand"]) {
 		
-			MovingBorder* borderData = ((MovingBorder*)border.userInfo);
+			//MovingBorder and MovingLand classes are identical as of now
+			MovingBorder* borderData = ((MovingBorder*)sprite.userInfo);
 		
-			[border prepareMovementOnPathWithUniqueName:borderData.pathName];
+			[sprite prepareMovementOnPathWithUniqueName:borderData.pathName];
 			
 			if(borderData.followXAxis) {
-				[border setPathMovementOrientation:LH_X_AXIT_ORIENTATION];
+				[sprite setPathMovementOrientation:LH_X_AXIT_ORIENTATION];
+			}else if(borderData.followYAxis) {
+				[sprite setPathMovementOrientation:LH_Y_AXIS_ORIENTATION];
 			}else {
-				[border setPathMovementOrientation:LH_Y_AXIS_ORIENTATION];
+				[sprite setPathMovementOrientation:LH_NO_ORIENTATION];			
 			}
-			[border setPathMovementRestartsAtOtherEnd:borderData.restartAtOtherEnd];
-			[border setPathMovementIsCyclic:borderData.isCyclic];
-			[border setPathMovementSpeed:borderData.timeToCompletePath]; //moving from start to end in X seconds
+			[sprite setPathMovementRestartsAtOtherEnd:borderData.restartAtOtherEnd];
+			[sprite setPathMovementIsCyclic:borderData.isCyclic];
+			[sprite setPathMovementSpeed:borderData.timeToCompletePath]; //moving from start to end in X seconds
 			
-			[border startPathMovement];
+			[sprite startPathMovement];
 			
-			_levelHasMovingBorders = true;
+			if([sprite.userInfoClassName isEqualToString:@"MovingBorder"]) {
+				_levelHasMovingBorders = true;
+			}else {
+				_levelHasMovingLands = true;
+			}
 		}
 	}
 	
 	if(_levelHasMovingBorders) {
 		[self schedule:@selector(invalidateFeatureGridsNearMovingBorders) interval:0.4f];
 	}
+	if(_levelHasMovingLands) {
+		[self schedule:@selector(invalidateFeatureGridsNearMovingLands) interval:0.4f];
+	}
 }
 
 -(void) updateToolbox {
-double startTime = [[NSDate date] timeIntervalSince1970];
-	if(DEBUG_TOOLBOX) DebugLog(@"Updating Toolbox");
-	
+
 	if(_toolboxItemSize.width == 0) {
 		//get the toolbox item size for scaling purposes
 		LHSprite* toolboxContainer = [_levelLoader createBatchSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
@@ -2329,6 +2341,15 @@ double startTime = [[NSDate date] timeIntervalSince1970];
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with update tick");
 }
 
+-(void)invalidateFeatureGridsNearMovingLands {
+	NSArray* lands = [_levelLoader spritesWithTag:LAND];
+	for(LHSprite* land in lands) {
+		if([land.userInfoClassName isEqualToString:@"MovingLand"]) {
+			[self invalidateFeatureGridsNear:land];
+		}
+	}
+}
+
 -(void)invalidateFeatureGridsNearMovingBorders {
 	NSArray* borders = [_levelLoader spritesWithTag:BORDER];
 	for(LHSprite* border in borders) {
@@ -2476,8 +2497,8 @@ double startTime = [[NSDate date] timeIntervalSince1970];
 				dN.Normalize();
 				
 				double power = (pow(log(whirlpoolData.power - dist),2));
-				dxMod = vortexVelocity.x*power + dN.x*(whirlpoolData.power - dist)*.125;
-				dyMod = vortexVelocity.y*power + dN.y*(whirlpoolData.power - dist)*.125;
+				dxMod = vortexVelocity.x*power + dN.x*(whirlpoolData.power - dist)*.075;
+				dyMod = vortexVelocity.y*power + dN.y*(whirlpoolData.power - dist)*.075;
 				
 				/*DebugLog(@"Applying Whirlpool effect to %@ with dxMod=%f, dyMod=%f, dist=%f, angularVelocity=%f, vortexVelocity=%@, dN=%@",
 						sprite.uniqueName, dxMod, dyMod, dist, whirlpool.body->GetAngularVelocity(),

@@ -11,4 +11,44 @@
 		Path = PoseidonsDoorstep;
 		Name = "Poseidon's Doorstep";
 	};
+	3 = {
+		Path = Squeeze;
+		Name = Squeeze;
+	};
+	4 = {
+		Path = Sliders;
+		Name = Sliders;
+	};
+	5 = {
+		Path = TimingIsEverything;
+		Name = "Timing is Everything";
+	};
+	6 = {
+		Path = WhipIt;
+		Name = "Whip It";
+	};
+	7 = {
+		Path = DotTheI;
+		Name = "Dot the I";
+	};
+	8 = {
+		Path = FollowMe;
+		Name = "Follow Me";
+	};
+	9 = {
+		Path = Crunch;
+		Name = Crunch;
+	};
+	10 = {
+		Path = Swing;
+		Name = Swing;
+	};
+	11 = {
+		Path = Sinkhole;
+		Name = Sinkhole;
+	};
+	12 = {
+		Path = Paradise;
+		Name = Paradise;
+	};
 }

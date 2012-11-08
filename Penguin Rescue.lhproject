@@ -153,7 +153,7 @@
 				<key>placeCost</key>
 				<real>1250</real>
 				<key>power</key>
-				<real>200</real>
+				<real>100</real>
 				<key>runningCost</key>
 				<real>1500</real>
 				<key>scale</key>
@@ -219,6 +219,27 @@
 			<dict>
 				<key>followXAxis</key>
 				<false/>
+				<key>followYAxis</key>
+				<false/>
+				<key>isCyclic</key>
+				<true/>
+				<key>pathName</key>
+				<string></string>
+				<key>restartAtOtherEnd</key>
+				<false/>
+				<key>timeToCompletePath</key>
+				<real>15</real>
+			</dict>
+		</dict>
+		<dict>
+			<key>ClassName</key>
+			<string>MovingLand</string>
+			<key>ClassRepresentation</key>
+			<dict>
+				<key>followXAxis</key>
+				<false/>
+				<key>followYAxis</key>
+				<false/>
 				<key>isCyclic</key>
 				<true/>
 				<key>pathName</key>
@@ -239,7 +260,7 @@
 	<key>HDSuffix</key>
 	<string>-hd</string>
 	<key>LastLevelLoaded</key>
-	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Menu/InAppPurchase.plhs</string>
+	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Pack2/TimingIsEverything.plhs</string>
 	<key>Orientation</key>
 	<integer>1</integer>
 	<key>ProjectName</key>
@@ -292,6 +313,7 @@
 		<string>INVISIBILITY_HAT</string>
 		<string>LOUD_NOISE</string>
 		<string>BORDER_PATH</string>
+		<string>LAND_PATH</string>
 	</array>
 </dict>
 </plist>

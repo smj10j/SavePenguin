@@ -3,9 +3,9 @@
 //For more info please visit: www.levelhelper.org
 
 
-#import "MovingBorder.h"
+#import "MovingLand.h"
 
-@implementation MovingBorder
+@implementation MovingLand
 
 
 @synthesize followYAxis;
@@ -28,11 +28,11 @@ if(pathName) [pathName release];
 #endif // __has_feature(objc_arc)
 }
 
-+(MovingBorder*) customClassInstance{
++(MovingLand*) customClassInstance{
 #if __has_feature(objc_arc) && __clang_major__ >= 3
-return [[MovingBorder alloc] init];
+return [[MovingLand alloc] init];
 #else
-return [[[MovingBorder alloc] init] autorelease];
+return [[[MovingLand alloc] init] autorelease];
 #endif
 }
 

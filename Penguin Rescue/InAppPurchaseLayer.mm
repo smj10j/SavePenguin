@@ -55,7 +55,9 @@
 			
 				
 		LHSprite* inAppPurchaseInfoContainer = [_levelLoader createSpriteWithName:@"IAP_Info_Panel" fromSheet:@"MenuBackgrounds1" fromSHFile:@"Spritesheet" parent:self];
-		[inAppPurchaseInfoContainer transformPosition: ccp(winSize.width - inAppPurchaseInfoContainer.boundingBox.size.width/2 + 40*SCALING_FACTOR_H,
+		[inAppPurchaseInfoContainer transformPosition: ccp(winSize.width
+															- inAppPurchaseInfoContainer.boundingBox.size.width/2
+															+ 40*SCALING_FACTOR_H,
 															winSize.height/2)];
 
 		//item information
@@ -72,7 +74,8 @@
 											_iapItemImageContainer.position.y
 											- _iapItemImageContainer.boundingBox.size.height/2
 											- _iapItemNameLabel.boundingBox.size.height/2
-											- 20*SCALING_FACTOR_V
+											- 15*SCALING_FACTOR_V
+											- (IS_IPHONE ? 3 : 0)
 										);
 		[inAppPurchaseInfoContainer addChild:_iapItemNameLabel];
 								
@@ -83,7 +86,8 @@
 											_iapItemNameLabel.position.y
 											- _iapItemNameLabel.boundingBox.size.height/2
 											- _iapItemCostLabel.boundingBox.size.height/2
-											- 20*SCALING_FACTOR_V
+											- 10*SCALING_FACTOR_V
+											- (IS_IPHONE ? 5 : 0)
 										);
 		[inAppPurchaseInfoContainer addChild:_iapItemCostLabel];
 
@@ -96,9 +100,11 @@
 								
 
 
-		_iapItemDescriptionLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Select an item to learn more about it"] fontName:@"Helvetica" fontSize:24*SCALING_FACTOR_FONTS dimensions:CGSizeMake(inAppPurchaseInfoContainer.boundingBox.size.width-80*SCALING_FACTOR_H,
-																	400*SCALING_FACTOR_V)
-																	hAlignment:kCCTextAlignmentCenter];
+		_iapItemDescriptionLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Select an item to learn more about it"] fontName:@"Helvetica" fontSize:24*SCALING_FACTOR_FONTS dimensions:CGSizeMake(
+																				inAppPurchaseInfoContainer.boundingBox.size.width
+																					-80*SCALING_FACTOR_H,
+																				400*SCALING_FACTOR_V)
+																		hAlignment:kCCTextAlignmentCenter];
 		_iapItemDescriptionLabel.color = ccBLACK;
 		_iapItemDescriptionLabel.position = ccp(_iapItemCostLabel.position.x,
 											_iapItemCostLabel.position.y

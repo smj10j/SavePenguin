@@ -78,7 +78,7 @@ enum PROPAGATION_RESULT {
 	dispatch_queue_t _moveGridPenguinUpdateQueue;
 	
 	bool _levelHasMovingBorders;
-
+	bool _levelHasMovingLands;
 	
 	int _gridSize;
 	int _gridWidth;

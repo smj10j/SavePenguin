@@ -84,7 +84,8 @@ enum LevelHelper_TAG
 	INVISIBILITY_HAT 			= 20,
 	LOUD_NOISE 			= 21,
 	BORDER_PATH 			= 22,
-	NUMBER_OF_TAGS 	= 23
+	LAND_PATH 			= 23,
+	NUMBER_OF_TAGS 	= 24
 };
 
 CGSize  LHSizeFromString(NSString* val);

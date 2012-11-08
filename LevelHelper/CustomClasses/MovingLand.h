@@ -3,7 +3,7 @@
 //For more info please visit: www.levelhelper.org
 
 
-@interface MovingBorder : NSObject
+@interface MovingLand : NSObject
 {
 
 
@@ -30,7 +30,7 @@
 @property (nonatomic, retain) NSString* pathName;
 @property BOOL restartAtOtherEnd;
 
-+(MovingBorder*) customClassInstance;
++(MovingLand*) customClassInstance;
 
 -(NSString*) className;
 

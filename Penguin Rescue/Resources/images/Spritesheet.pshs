@@ -14174,29 +14174,29 @@
 								<real>0.20000000298023224</real>
 								<key>ShapePoints</key>
 								<array>
-									<string>{-0.99999999999999267, 119}</string>
+									<string>{-0.99999999999999289, 119}</string>
 									<string>{-2.9999999999999929, 116}</string>
-									<string>{-1.9999999999999931, 114}</string>
-									<string>{-3.9999999999999933, 107}</string>
-									<string>{-2.9999999999999933, 106}</string>
-									<string>{-7.9999999999999938, 97}</string>
-									<string>{-6.9999999999999947, 91}</string>
-									<string>{-8.9999999999999947, 90}</string>
-									<string>{-8.9999999999999947, 86}</string>
-									<string>{-6.9999999999999947, 85}</string>
-									<string>{-8.9999999999999947, 83}</string>
-									<string>{-5.9999999999999956, 71}</string>
-									<string>{-6.9999999999999964, 64}</string>
+									<string>{-1.9999999999999929, 114}</string>
+									<string>{-3.9999999999999929, 107}</string>
+									<string>{-2.9999999999999929, 106}</string>
+									<string>{-7.9999999999999929, 97}</string>
+									<string>{-6.9999999999999929, 91}</string>
+									<string>{-8.9999999999999929, 90}</string>
+									<string>{-8.9999999999999929, 86}</string>
+									<string>{-6.9999999999999929, 85}</string>
+									<string>{-8.9999999999999929, 83}</string>
+									<string>{-5.9999999999999929, 71}</string>
+									<string>{-7, 64}</string>
 									<string>{-8.9999999999999964, 61}</string>
 									<string>{-8, 60}</string>
 									<string>{-9, 13}</string>
-									<string>{-15, 6.0000000000000009}</string>
-									<string>{-18, 4.0000000000000009}</string>
-									<string>{-34, 2.0818995585505003e-15}</string>
-									<string>{-57, 3.0000000000000036}</string>
-									<string>{-68, 7.9999999999999973}</string>
-									<string>{-79, 20.000000000000004}</string>
-									<string>{-80, 26.000000000000004}</string>
+									<string>{-15, 6}</string>
+									<string>{-18, 4}</string>
+									<string>{-34, 0}</string>
+									<string>{-57, 3}</string>
+									<string>{-68, 8}</string>
+									<string>{-79, 20}</string>
+									<string>{-80, 26}</string>
 									<string>{-73, 42.000000000000007}</string>
 									<string>{-73, 50.000000000000007}</string>
 									<string>{-69, 57.000000000000007}</string>
@@ -14208,9 +14208,9 @@
 									<string>{-60.999999999999993, 138}</string>
 									<string>{-57.999999999999993, 141}</string>
 									<string>{-32.999999999999993, 143}</string>
-									<string>{-2.999999999999992, 128}</string>
-									<string>{7.5928101547135902e-15, 124}</string>
-									<string>{7.3478807948841199e-15, 120}</string>
+									<string>{-2.9999999999999929, 128}</string>
+									<string>{7.1054273576010019e-15, 124}</string>
+									<string>{7.1054273576010019e-15, 120}</string>
 								</array>
 								<key>ShapePositionOffset</key>
 								<string>{0, 0}</string>
@@ -14576,9 +14576,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{69, 178}, {17.75, 71.75}}</string>
+						<string>{{50, 178}, {17.75, 71.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{276, 712}, {71, 287}}</string>
+						<string>{{200, 712}, {71, 287}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -14604,7 +14604,7 @@
 						<key>OriginalSize</key>
 						<string>{85, 340}</string>
 						<key>Position</key>
-						<string>{276, 712}</string>
+						<string>{200, 712}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -14878,9 +14878,9 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{50, 178}, {17.75, 71.75}}</string>
+						<string>{{69, 178}, {17.75, 71.75}}</string>
 						<key>Frame-HD</key>
-						<string>{{200, 712}, {71, 287}}</string>
+						<string>{{276, 712}, {71, 287}}</string>
 						<key>Image</key>
 						<string>Spritesheet_Toolbox.png</string>
 						<key>Image-HD</key>
@@ -14906,7 +14906,7 @@
 						<key>OriginalSize</key>
 						<string>{85, 340}</string>
 						<key>Position</key>
-						<string>{200, 712}</string>
+						<string>{276, 712}</string>
 						<key>Scale</key>
 						<string>{1, 1}</string>
 						<key>SpriteSize</key>
@@ -28875,9 +28875,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{69, 178}, {17.75, 71.75}}</string>
+					<string>{{50, 178}, {17.75, 71.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{276, 712}, {71, 287}}</string>
+					<string>{{200, 712}, {71, 287}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
@@ -29019,9 +29019,9 @@
 					AAA=
 					</data>
 					<key>Frame</key>
-					<string>{{50, 178}, {17.75, 71.75}}</string>
+					<string>{{69, 178}, {17.75, 71.75}}</string>
 					<key>Frame-HD</key>
-					<string>{{200, 712}, {71, 287}}</string>
+					<string>{{276, 712}, {71, 287}}</string>
 					<key>IsRotated</key>
 					<false/>
 					<key>OriginalImage</key>
