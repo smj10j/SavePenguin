@@ -2497,8 +2497,8 @@
 				dN.Normalize();
 				
 				double power = (pow(log(whirlpoolData.power - dist),2));
-				dxMod = vortexVelocity.x*power + dN.x*(whirlpoolData.power - dist)*.075;
-				dyMod = vortexVelocity.y*power + dN.y*(whirlpoolData.power - dist)*.075;
+				dxMod = vortexVelocity.x*power + dN.x*(whirlpoolData.power - dist)*.125;
+				dyMod = vortexVelocity.y*power + dN.y*(whirlpoolData.power - dist)*.125;
 				
 				/*DebugLog(@"Applying Whirlpool effect to %@ with dxMod=%f, dyMod=%f, dist=%f, angularVelocity=%f, vortexVelocity=%@, dN=%@",
 						sprite.uniqueName, dxMod, dyMod, dist, whirlpool.body->GetAngularVelocity(),
