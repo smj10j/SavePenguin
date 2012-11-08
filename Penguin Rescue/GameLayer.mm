@@ -414,6 +414,7 @@
 }
 
 -(void) updateToolbox {
+double startTime = [[NSDate date] timeIntervalSince1970];
 	if(DEBUG_TOOLBOX) DebugLog(@"Updating Toolbox");
 	
 	if(_toolboxItemSize.width == 0) {
@@ -465,7 +466,7 @@
 		}
 		[toolGroup addObject:toolboxItem];
 	}
-	
+		
 	
 	int toolGroupX = winSize.width/2 - ((_toolboxItemSize.width + TOOLBOX_MARGIN_LEFT)*((_toolGroups.count-1.0)/2.0));
 	int toolGroupY = _toolboxItemSize.height/2 + TOOLBOX_MARGIN_BOTTOM;
@@ -488,37 +489,43 @@
 		numToolsLabel.color = ccWHITE;
 		numToolsLabel.position = ccp(toolboxContainerCountContainer.boundingBox.size.width/2, toolboxContainerCountContainer.boundingBox.size.height/2);
 		[toolboxContainerCountContainer addChild:numToolsLabel];
-
+		
 		LHSprite* topToolboxItem = nil;
 		for(LHSprite* toolboxItem in toolGroup) {
-			if(topToolboxItem == nil) topToolboxItem = toolboxItem;
-			//move the tool into the box
-			if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
-				//set previously in level load
-				
+			if(topToolboxItem == nil) {
+				topToolboxItem = toolboxItem;
+				//move the tool into the box
+				if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+					//set previously in level load
+					
+				}else {
+					[topToolboxItem transformRotation:0];
+				}			
+				double scale = fmin((_toolboxItemSize.width-TOOLBOX_ITEM_CONTAINER_PADDING_H)/topToolboxItem.contentSize.width,
+									(_toolboxItemSize.height-TOOLBOX_ITEM_CONTAINER_PADDING_V)/topToolboxItem.contentSize.height);
+				[topToolboxItem transformScale: scale];
+				[topToolboxItem transformPosition: ccp(toolGroupX, toolGroupY)];
+				topToolboxItem.visible = true;
+				//DebugLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", toolboxItem.uniqueName, (int)(100*scale));
 			}else {
-				[toolboxItem transformRotation:0];
-			}			
-			[toolboxItem transformPosition: ccp(toolGroupX, toolGroupY)];
-			double scale = fmin((_toolboxItemSize.width-TOOLBOX_ITEM_CONTAINER_PADDING_H)/toolboxItem.contentSize.width, (_toolboxItemSize.height-TOOLBOX_ITEM_CONTAINER_PADDING_V)/toolboxItem.contentSize.height);
-			[toolboxItem transformScale: scale];
-			//DebugLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", toolboxItem.uniqueName, (int)(100*scale));
+				toolboxItem.visible = false;
+			}
 		}
 		
 		//helpful tidbits
 		if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
 			//display item power
 			ToolboxItem_Windmill* toolboxItemData = ((ToolboxItem_Windmill*)topToolboxItem.userInfo);
-			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"+%d%%", (int)toolboxItemData.power] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_STATS_FONT_SIZE];
+			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", (int)toolboxItemData.power] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_STATS_FONT_SIZE dimensions:CGSizeMake(_toolboxItemSize.width, 20*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentRight];
 			powerLabel.color = ccWHITE;
-			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 30*SCALING_FACTOR_H, 15*SCALING_FACTOR_V);
+			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 64*SCALING_FACTOR_H, 22*SCALING_FACTOR_V);
 			[toolboxContainer addChild:powerLabel];
 		}else if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
 			//display item mass
 			ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)topToolboxItem.userInfo);
-			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%dlbs", (int)(toolboxItemData.mass*100)] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_STATS_FONT_SIZE];
+			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%dlbs", (int)(toolboxItemData.mass*10)] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_STATS_FONT_SIZE dimensions:CGSizeMake(_toolboxItemSize.width, 20*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentRight];
 			powerLabel.color = ccWHITE;
-			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 30*SCALING_FACTOR_H, 15*SCALING_FACTOR_V);
+			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 64*SCALING_FACTOR_H, 22*SCALING_FACTOR_V);
 			[toolboxContainer addChild:powerLabel];
 		}
 
@@ -531,7 +538,6 @@
 		toolGroupX+= _toolboxItemSize.width + TOOLBOX_MARGIN_LEFT;
 	}
 	
-
 }
 
 
@@ -913,7 +919,18 @@
 
 	_activeToolboxItem = toolboxItem;
 	
-	[self scheduleOnce:@selector(initializeSelectedActiveToolboxItem) delay:0.100];
+	//slide down the toolbox items
+	for(LHSprite* aToolboxItemContainer in [_levelLoader spritesWithTag:TOOLBOX_ITEM_CONTAINER]) {
+		[aToolboxItemContainer runAction:[CCMoveTo actionWithDuration:0.20f position:ccp(aToolboxItemContainer.position.x, -aToolboxItemContainer.boundingBox.size.height)]];
+	}
+	for(LHSprite* aToolboxItem in [_levelLoader spritesWithTag:TOOLBOX_ITEM]) {
+		if(aToolboxItem == _activeToolboxItem) {
+			continue;
+		}
+		[aToolboxItem runAction:[CCMoveTo actionWithDuration:0.20f position:ccp(aToolboxItem.position.x, -aToolboxItem.boundingBox.size.height)]];
+	}
+	
+	[self scheduleOnce:@selector(initializeSelectedActiveToolboxItem) delay:0.50];
 }
 
 -(void)initializeSelectedActiveToolboxItem {
@@ -941,18 +958,6 @@
 			_activeToolboxItem.body->ApplyTorque(-15);
 			_activeToolboxItem.flipX = false;
 		}
-	}
-	
-	
-	//slide down the toolbox items
-	for(LHSprite* aToolboxItemContainer in [_levelLoader spritesWithTag:TOOLBOX_ITEM_CONTAINER]) {
-		[aToolboxItemContainer runAction:[CCMoveTo actionWithDuration:0.20f position:ccp(aToolboxItemContainer.position.x, -aToolboxItemContainer.boundingBox.size.height)]];
-	}
-	for(LHSprite* aToolboxItem in [_levelLoader spritesWithTag:TOOLBOX_ITEM]) {
-		if(aToolboxItem == _activeToolboxItem) {
-			continue;
-		}
-		[aToolboxItem runAction:[CCMoveTo actionWithDuration:0.20f position:ccp(aToolboxItem.position.x, -aToolboxItem.boundingBox.size.height)]];
 	}
 }
 
@@ -1573,7 +1578,7 @@
 		}
 		
 		
-		CCLabelTTF* highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", highScoresLabelText] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE3 dimensions:CGSizeMake(200*SCALING_FACTOR_H,150*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
+		CCLabelTTF* highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", highScoresLabelText] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE3 dimensions:CGSizeMake(250*SCALING_FACTOR_H,150*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
 		highScoreLabel.color = SCORING_FONT_COLOR1;
 		highScoreLabel.opacity = 0;
 		highScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset - 200*SCALING_FACTOR_H,
