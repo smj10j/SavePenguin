@@ -1357,12 +1357,6 @@ double startTime = [[NSDate date] timeIntervalSince1970];
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelWon/reward.mp3"];
 	}
 		
-	//analytics logging
-	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-		@"Won", @"Level_Status",
-	nil];
-	[Analytics endTimedEvent:@"Play_Level" withParameters:flurryParams];
-	
 	DebugLog(@"Showing level won animations");
 	
 	
@@ -1383,7 +1377,7 @@ double startTime = [[NSDate date] timeIntervalSince1970];
 	
 	//post the score to the server or queue for online processing
 	[ScoreKeeper saveScore:finalScore UUID:[SettingsManager getUUID] levelPackPath:_levelPackPath levelPath:_levelPath];
-			
+					
 	//get the world numbers from the server
 	NSDictionary* worldScores = [ScoreKeeper worldScoresForLevelPackPath:_levelPackPath levelPath:_levelPath];
 	int worldScoreMean = [(NSNumber*)[worldScores objectForKey:@"scoreMean"] intValue];
@@ -1415,6 +1409,16 @@ double startTime = [[NSDate date] timeIntervalSince1970];
 	}
 	if(DEBUG_SCORING) DebugLog(@"Coins earned for level: %d, new total coins earned for level: %d", coinsEarned, totalCoinsEarnedForLevel);
 	
+	
+	//analytics logging
+	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+		@"Won", @"Level_Status",
+		[NSNumber numberWithInt:finalScore], @"Score",
+		[NSNumber numberWithInt:coinsEarned], @"CoinsEarned",
+		[NSNumber numberWithInt:totalCoinsEarnedForLevel], @"TotalCoinsEarnedForLevel",
+		grade, @"Grade",
+	nil];
+	[Analytics endTimedEvent:@"Play_Level" withParameters:flurryParams];	
 	
 	//store our earned coins
 	[SettingsManager incrementIntBy:coinsEarned forKey:coinsEarnedForLevelKey];

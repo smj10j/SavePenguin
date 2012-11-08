@@ -16,6 +16,16 @@
 @interface InAppPurchaseLayer : CCLayer
 {
 	LevelHelperLoader* _levelLoader;
+	
+	
+	LHSprite* _iapItemImageContainer;
+	
+	CCLabelTTF* _iapItemNameLabel;
+	CCLabelTTF* _iapItemCostLabel;
+	LHSprite* _iapItemCostCoinsIcon;
+	CCLabelTTF* _iapItemDescriptionLabel;
+
+	CCLabelTTF* _availableCoinsLabel;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

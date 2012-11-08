@@ -51,38 +51,85 @@
 		//create a LevelHelperLoader object - we use an empty level
 		_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", @"Menu", @"InAppPurchase"]];
 		[_levelLoader addObjectsToWorld:nil cocos2dLayer:self];
-		
+
+			
 				
-		//draw the background water tiles
-		LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water1" fromSheet:@"Map" fromSHFile:@"Spritesheet" tag:BACKGROUND];
-		for(int x = -waterTile.boundingBox.size.width/2; x < winSize.width + waterTile.boundingBox.size.width/2; ) {
-			for(int y = -waterTile.boundingBox.size.height/2; y < winSize.height + waterTile.boundingBox.size.width/2; ) {
-				LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water1" fromSheet:@"Map" fromSHFile:@"Spritesheet" tag:BACKGROUND parent:[_levelLoader layerWithUniqueName:@"MAIN_LAYER"]];
-				waterTile.zOrder = -1;
-				[waterTile transformPosition:ccp(x,y)];
-				y+= waterTile.boundingBox.size.height;
-			}
-			x+= waterTile.boundingBox.size.width;
-		}
-		[waterTile removeSelf];		
+		LHSprite* inAppPurchaseInfoContainer = [_levelLoader createSpriteWithName:@"IAP_Info_Panel" fromSheet:@"MenuBackgrounds1" fromSHFile:@"Spritesheet" parent:self];
+		[inAppPurchaseInfoContainer transformPosition: ccp(winSize.width - inAppPurchaseInfoContainer.boundingBox.size.width/2 + 40*SCALING_FACTOR_H,
+															winSize.height/2)];
+
+		//item information
+
+		_iapItemImageContainer = [_levelLoader createSpriteWithName:@"IAP_Item_Container" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:inAppPurchaseInfoContainer];
+		[_iapItemImageContainer transformPosition: ccp(inAppPurchaseInfoContainer.boundingBox.size.width/2,
+													inAppPurchaseInfoContainer.boundingBox.size.height - _iapItemImageContainer.boundingBox.size.height/2 - 40*SCALING_FACTOR_V)];
+					
+		_iapItemNameLabel = [CCLabelTTF labelWithString:@" " fontName:@"Helvetica" fontSize:24*SCALING_FACTOR_FONTS dimensions:CGSizeMake(inAppPurchaseInfoContainer.boundingBox.size.width-80*SCALING_FACTOR_H,
+																	40*SCALING_FACTOR_V)
+																	hAlignment:kCCTextAlignmentCenter];
+		_iapItemNameLabel.color = ccBLACK;
+		_iapItemNameLabel.position = ccp(_iapItemImageContainer.position.x,
+											_iapItemImageContainer.position.y
+											- _iapItemImageContainer.boundingBox.size.height/2
+											- _iapItemNameLabel.boundingBox.size.height/2
+											- 20*SCALING_FACTOR_V
+										);
+		[inAppPurchaseInfoContainer addChild:_iapItemNameLabel];
+								
+
+		_iapItemCostLabel = [CCLabelTTF labelWithString:@" " fontName:@"Helvetica" fontSize:24*SCALING_FACTOR_FONTS];
+		_iapItemCostLabel.color = ccBLACK;
+		_iapItemCostLabel.position = ccp(_iapItemNameLabel.position.x,
+											_iapItemNameLabel.position.y
+											- _iapItemNameLabel.boundingBox.size.height/2
+											- _iapItemCostLabel.boundingBox.size.height/2
+											- 20*SCALING_FACTOR_V
+										);
+		[inAppPurchaseInfoContainer addChild:_iapItemCostLabel];
+
+		_iapItemCostCoinsIcon = [_levelLoader createSpriteWithName:@"Coins_Icon" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:inAppPurchaseInfoContainer];
+		_iapItemCostCoinsIcon.visible = false;
+		[_iapItemCostCoinsIcon transformPosition: ccp(_iapItemCostLabel.position.x
+														+ _iapItemCostLabel.boundingBox.size.width/2
+														+ 30*SCALING_FACTOR_H,
+													_iapItemCostLabel.position.y)];
+								
+
+
+		_iapItemDescriptionLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Select an item to learn more about it"] fontName:@"Helvetica" fontSize:24*SCALING_FACTOR_FONTS dimensions:CGSizeMake(inAppPurchaseInfoContainer.boundingBox.size.width-80*SCALING_FACTOR_H,
+																	400*SCALING_FACTOR_V)
+																	hAlignment:kCCTextAlignmentCenter];
+		_iapItemDescriptionLabel.color = ccBLACK;
+		_iapItemDescriptionLabel.position = ccp(_iapItemCostLabel.position.x,
+											_iapItemCostLabel.position.y
+											- _iapItemCostLabel.boundingBox.size.height/2
+											- _iapItemDescriptionLabel.boundingBox.size.height/2
+											- 40*SCALING_FACTOR_V
+										);
+
+		[inAppPurchaseInfoContainer addChild:_iapItemDescriptionLabel];
+								
+								
+		// Buy button and coins available
 		
-		
-		//TODO: fill this bad boy out with:
-			/*
-			Rate App
-			Email us
-			About the App
-			About Conquer
-			Version
-			*/
-		CCLabelTTF* TODOLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"TODO: Add an IAP page"] fontName:@"Helvetica" fontSize:48*SCALING_FACTOR_FONTS];
-		TODOLabel.color = ccWHITE;
-		TODOLabel.position = ccp(winSize.width/2, winSize.height/2);
-		[self addChild:TODOLabel];
-			
-			
-		
-		
+		int availableCoins = [SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS];
+		_availableCoinsLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"You have %d", availableCoins] fontName:@"Helvetica" fontSize:24*SCALING_FACTOR_FONTS dimensions:CGSizeMake(220*SCALING_FACTOR_H +(IS_IPHONE ? 5: 0), 40*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter];
+		_availableCoinsLabel.color = ccBLACK;
+		_availableCoinsLabel.position = ccp(inAppPurchaseInfoContainer.boundingBox.size.width/2,
+											75*SCALING_FACTOR_V);
+		[inAppPurchaseInfoContainer addChild:_availableCoinsLabel];
+
+		LHSprite* availableCoinsIcon = [_levelLoader createSpriteWithName:@"Coins_Icon" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:inAppPurchaseInfoContainer];
+		[availableCoinsIcon transformPosition: ccp(inAppPurchaseInfoContainer.boundingBox.size.width/2 + _availableCoinsLabel.boundingBox.size.width/2 +  10*SCALING_FACTOR_H,
+										80*SCALING_FACTOR_V)];
+									
+
+		LHSprite* buyButton = [_levelLoader createSpriteWithName:@"Buy_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+		[buyButton prepareAnimationNamed:@"Menu_Buy_Button" fromSHScene:@"Spritesheet"];
+		[buyButton transformPosition: ccp(inAppPurchaseInfoContainer.boundingBox.origin.x + inAppPurchaseInfoContainer.boundingBox.size.width/2,
+											inAppPurchaseInfoContainer.boundingBox.origin.y + buyButton.boundingBox.size.height/2 + 110*SCALING_FACTOR_V)];
+		[buyButton registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
+		[buyButton registerTouchEndedObserver:self selector:@selector(onBuy:)];
 		
 		
 		
@@ -95,8 +142,12 @@
 		[backButton registerTouchEndedObserver:self selector:@selector(onBack:)];
 
 
-		[Analytics logEvent:@"View_IAP"];
 
+		[self addIAPItemsToSand];
+
+
+
+		[Analytics logEvent:@"View_IAP"];
 	}
 	
 	if(DEBUG_MEMORY) DebugLog(@"Initialized InAppPurchaseLayer");
@@ -106,11 +157,84 @@
 }
 
 
+-(void)addIAPItemsToSand {
+
+	LHSprite* santaHat = [_levelLoader createSpriteWithName:@"Santa_Hat_Big" fromSheet:@"Toolbox" fromSHFile:@"Spritesheet" parent:self];
+	[santaHat transformPosition: ccp(80*SCALING_FACTOR_H + santaHat.boundingBox.size.width/2,
+										140*SCALING_FACTOR_V + santaHat.boundingBox.size.height/2)];
+	[santaHat registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
+	[santaHat registerTouchEndedObserver:self selector:@selector(onSelectItem:)];
+
+	[santaHat runAction:[CCRepeatForever actionWithAction:
+							[CCSequence actions:
+								[CCFadeTo actionWithDuration:0.5f opacity:140],
+								[CCFadeTo actionWithDuration:0.5f opacity:225],
+							nil]
+						]
+	];
+
+
+}
+
+
+-(void)onSelectItem:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
+
+	
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
+	}
+
+	LHSprite* iapItem = info.sprite;
+
+
+	[_iapItemImageContainer removeAllChildrenWithCleanup:YES];
+	LHSprite* itemImage = [_levelLoader createSpriteWithName:iapItem.shSpriteName fromSheet:iapItem.shSheetName fromSHFile:iapItem.shSceneName parent:_iapItemImageContainer];
+	[itemImage transformPosition:ccp(_iapItemImageContainer.boundingBox.size.width/2,
+									 _iapItemImageContainer.boundingBox.size.height/2)];
+	
+	
+	//TODO: add in the item info from some kind of class object
+	_iapItemNameLabel.string = [NSString stringWithFormat:@"%@", @"Santa Hat (15)"];
+	
+	
+	_iapItemCostLabel.string = [NSString stringWithFormat:@"%d", 40];
+	[_iapItemCostCoinsIcon transformPosition: ccp(_iapItemCostLabel.position.x
+													+ _iapItemCostLabel.boundingBox.size.width/2
+													+ 30*SCALING_FACTOR_H,
+												_iapItemCostLabel.position.y)];
+	_iapItemCostCoinsIcon.visible = true;
+	
+	
+	
+	
+	_iapItemDescriptionLabel.string = [NSString stringWithFormat:@"%@", @"This magical item somehow makes the wearer invisible"];
+
+
+}
+
+
+
+
 -(void)onTouchBeganAnyButton:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 }
 
+
+
+-(void)onBuy:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame-1];	//active state
+	
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
+	}
+
+	
+	//[SettingsManager decrementIntBy:cost forKey:SETTING_TOTAL_AVAILABLE_COINS];
+	_availableCoinsLabel.string = [NSString stringWithFormat:@"You have %d", [SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS]];
+}
 
 -(void)onBack:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
@@ -129,7 +253,6 @@
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[MainMenuLayer scene] ]];
 	}
 }
-
 
 
 
