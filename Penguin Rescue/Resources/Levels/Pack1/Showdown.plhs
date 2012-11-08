@@ -901,7 +901,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{90.499999999999972, 21.25}</string>
+								<string>{50.499999999999972, 5.25}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1218,7 +1218,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{89.5, 107.625}</string>
+								<string>{58.5, 96.625}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1600,7 +1600,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 178}, {17.75, 71.75}}</string>
+								<string>{{50, 178}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1708,7 +1708,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 178}, {17.75, 71.75}}</string>
+								<string>{{50, 178}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1816,7 +1816,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 178}, {17.75, 71.75}}</string>
+								<string>{{50, 178}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1924,7 +1924,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 178}, {17.75, 71.75}}</string>
+								<string>{{50, 178}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2032,7 +2032,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 178}, {17.75, 71.75}}</string>
+								<string>{{50, 178}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2140,7 +2140,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 178}, {17.75, 71.75}}</string>
+								<string>{{50, 178}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2394,13 +2394,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{87, 222}, {35.5, 19.75}}</string>
+								<string>{{117, 178}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -2604,7 +2604,7 @@
 					<key>placeCost</key>
 					<real>1250</real>
 					<key>power</key>
-					<real>200</real>
+					<real>100</real>
 					<key>runningCost</key>
 					<real>1500</real>
 					<key>scale</key>
@@ -2670,6 +2670,27 @@
 				<dict>
 					<key>followXAxis</key>
 					<false/>
+					<key>followYAxis</key>
+					<false/>
+					<key>isCyclic</key>
+					<true/>
+					<key>pathName</key>
+					<string></string>
+					<key>restartAtOtherEnd</key>
+					<false/>
+					<key>timeToCompletePath</key>
+					<real>15</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>MovingLand</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>followXAxis</key>
+					<false/>
+					<key>followYAxis</key>
+					<false/>
 					<key>isCyclic</key>
 					<true/>
 					<key>pathName</key>
@@ -2722,6 +2743,7 @@
 			<string>INVISIBILITY_HAT</string>
 			<string>LOUD_NOISE</string>
 			<string>BORDER_PATH</string>
+			<string>LAND_PATH</string>
 		</array>
 		<key>ZoomValue</key>
 		<real>0.0</real>

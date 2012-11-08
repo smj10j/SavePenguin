@@ -1402,81 +1402,6 @@
 							<key>TextureProperties</key>
 							<dict>
 								<key>Angle</key>
-								<integer>237</integer>
-								<key>Color</key>
-								<string>{{1, 1}, {1, 1}}</string>
-								<key>FlipX</key>
-								<false/>
-								<key>FlipY</key>
-								<false/>
-								<key>Frame</key>
-								<string>{{466, 73}, {36.75, 34}}</string>
-								<key>IsDrawable</key>
-								<true/>
-								<key>IsExpanded</key>
-								<false/>
-								<key>IsRotated</key>
-								<false/>
-								<key>Locked</key>
-								<false/>
-								<key>Opacity</key>
-								<real>1</real>
-								<key>Position</key>
-								<string>{59, 277}</string>
-								<key>Scale</key>
-								<string>{1.6700540781021118, 1.6700540781021118}</string>
-								<key>SpriteSize</key>
-								<string>{37.5, 37.5}</string>
-								<key>Tag</key>
-								<integer>7</integer>
-								<key>TagName</key>
-								<string>BORDER</string>
-								<key>TextureOffset</key>
-								<string>{0.125, -0.5}</string>
-								<key>UniqueName</key>
-								<string>Debris_Island2_3_2</string>
-								<key>ZOrder</key>
-								<integer>2</integer>
-							</dict>
-							<key>UniqueName</key>
-							<string>Debris_Island2_3_2</string>
-						</dict>
-						<dict>
-							<key>AnimationsProperties</key>
-							<dict/>
-							<key>Children</key>
-							<array/>
-							<key>CustomClassInfo</key>
-							<dict>
-								<key>ClassDefaults</key>
-								<dict/>
-								<key>ClassName</key>
-								<string>No Class</string>
-							</dict>
-							<key>NodeType</key>
-							<string>LHSprite</string>
-							<key>ParentClass</key>
-							<string>LHBatch</string>
-							<key>ParentName</key>
-							<string>Map</string>
-							<key>PathProperties</key>
-							<dict/>
-							<key>PhysicProperties</key>
-							<dict>
-								<key>HandledBySH</key>
-								<true/>
-							</dict>
-							<key>SHSceneName</key>
-							<string>Spritesheet.pshs</string>
-							<key>SHSheetName</key>
-							<string>Map</string>
-							<key>SHSpriteName</key>
-							<string>Debris_Island2</string>
-							<key>SheetImage</key>
-							<string>Spritesheet_Map.png</string>
-							<key>TextureProperties</key>
-							<dict>
-								<key>Angle</key>
 								<integer>280</integer>
 								<key>Color</key>
 								<string>{{1, 1}, {1, 1}}</string>
@@ -2060,6 +1985,81 @@
 						</dict>
 						<dict>
 							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Debris_Island3</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{387, 114}, {82, 72.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{64.5, 282.25}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{85, 72.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0, -0.375}</string>
+								<key>UniqueName</key>
+								<string>Debris_Island3_2</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Debris_Island3_2</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
 							<dict>
 								<key>AnimAtStart</key>
 								<true/>
@@ -2629,7 +2629,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 178}, {17.75, 71.75}}</string>
+								<string>{{50, 178}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2737,7 +2737,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 178}, {17.75, 71.75}}</string>
+								<string>{{50, 178}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2832,13 +2832,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{87, 222}, {35.5, 19.75}}</string>
+								<string>{{117, 178}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -2927,13 +2927,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{87, 222}, {35.5, 19.75}}</string>
+								<string>{{117, 178}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -3022,13 +3022,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{87, 222}, {35.5, 19.75}}</string>
+								<string>{{117, 178}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -3117,13 +3117,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{87, 222}, {35.5, 19.75}}</string>
+								<string>{{117, 178}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -3225,7 +3225,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{38, 178}, {17.75, 71.75}}</string>
+								<string>{{50, 178}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -3320,13 +3320,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{87, 222}, {35.5, 19.75}}</string>
+								<string>{{117, 178}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -3415,13 +3415,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{87, 222}, {35.5, 19.75}}</string>
+								<string>{{117, 178}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -3510,13 +3510,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{87, 222}, {35.5, 19.75}}</string>
+								<string>{{117, 178}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -3605,13 +3605,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{87, 222}, {35.5, 19.75}}</string>
+								<string>{{117, 178}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -3700,13 +3700,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{87, 222}, {35.5, 19.75}}</string>
+								<string>{{117, 178}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -3795,13 +3795,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{87, 222}, {35.5, 19.75}}</string>
+								<string>{{117, 178}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -4005,7 +4005,7 @@
 					<key>placeCost</key>
 					<real>1250</real>
 					<key>power</key>
-					<real>200</real>
+					<real>100</real>
 					<key>runningCost</key>
 					<real>1500</real>
 					<key>scale</key>
@@ -4071,6 +4071,27 @@
 				<dict>
 					<key>followXAxis</key>
 					<false/>
+					<key>followYAxis</key>
+					<false/>
+					<key>isCyclic</key>
+					<true/>
+					<key>pathName</key>
+					<string></string>
+					<key>restartAtOtherEnd</key>
+					<false/>
+					<key>timeToCompletePath</key>
+					<real>15</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>MovingLand</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>followXAxis</key>
+					<false/>
+					<key>followYAxis</key>
+					<false/>
 					<key>isCyclic</key>
 					<true/>
 					<key>pathName</key>
@@ -4123,6 +4144,7 @@
 			<string>INVISIBILITY_HAT</string>
 			<string>LOUD_NOISE</string>
 			<string>BORDER_PATH</string>
+			<string>LAND_PATH</string>
 		</array>
 		<key>ZoomValue</key>
 		<real>0.0</real>

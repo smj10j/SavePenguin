@@ -530,14 +530,16 @@
 			ToolboxItem_Windmill* toolboxItemData = ((ToolboxItem_Windmill*)topToolboxItem.userInfo);
 			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", (int)toolboxItemData.power] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_STATS_FONT_SIZE dimensions:CGSizeMake(_toolboxItemSize.width, 20*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentRight];
 			powerLabel.color = ccWHITE;
-			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 64*SCALING_FACTOR_H, 22*SCALING_FACTOR_V);
+			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 60*SCALING_FACTOR_H - (IS_IPHONE ? 2 : 0),
+										14*SCALING_FACTOR_V + (IS_IPHONE ? 3 : 0));
 			[toolboxContainer addChild:powerLabel];
 		}else if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
 			//display item mass
 			ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)topToolboxItem.userInfo);
 			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%dlbs", (int)(toolboxItemData.mass*10)] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_STATS_FONT_SIZE dimensions:CGSizeMake(_toolboxItemSize.width, 20*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentRight];
 			powerLabel.color = ccWHITE;
-			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 64*SCALING_FACTOR_H, 22*SCALING_FACTOR_V);
+			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 60*SCALING_FACTOR_H - (IS_IPHONE ? 2 : 0),
+										14*SCALING_FACTOR_V + (IS_IPHONE ? 3 : 0));
 			[toolboxContainer addChild:powerLabel];
 		}
 
@@ -2561,6 +2563,7 @@
 		
 		//readjust if we are somehow on top of land - this can happen when fans blow an actor on land or a moving border touches an actor, for example
 		int bumpIterations = 0;
+		double lastFoundStuckBorderDist = 0;
 		while(sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT
 				&& bumpIterations < MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND) {
 			//move back off of land
@@ -2577,13 +2580,17 @@
 
 			for(LHSprite* border in borders) {
 				double dist = ccpDistance(border.position, shark.position);
-				if(dist < minDist) {
+				if(dist > lastFoundStuckBorderDist && dist < minDist) {
 					minDist = dist;
 					touchedBoder = border;
 				}
 			}
 			
 			if(touchedBoder != nil) {
+			
+				//this makes the search ever-expanding
+				lastFoundStuckBorderDist = minDist;
+			
 				CGPoint borderN = ccp(touchedBoder.position.x, touchedBoder.position.y+touchedBoder.boundingBox.size.height/2 + _gridSize/2);
 				double distN = ccpDistance(shark.position, borderN);
 				CGPoint borderS = ccp(touchedBoder.position.x, touchedBoder.position.y-touchedBoder.boundingBox.size.height/2 - _gridSize/2);
@@ -2810,6 +2817,7 @@
 			
 			//readjust if we are somehow on top of land - this can happen when fans blow an actor on land, for example
 			int bumpIterations = 0;
+			double lastFoundStuckBorderDist = 0;
 			while(penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT
 					&& bumpIterations < MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND) {
 				//move back onto land
@@ -2824,13 +2832,17 @@
 
 				for(LHSprite* border in borders) {
 					double dist = ccpDistance(border.position, penguin.position);
-					if(dist < minDist) {
+					if(dist > lastFoundStuckBorderDist && dist < minDist) {
 						minDist = dist;
 						touchedBoder = border;
 					}
 				}
 				
 				if(touchedBoder != nil) {
+				
+					//this makes the search ever-expanding
+					lastFoundStuckBorderDist = minDist;
+				
 					CGPoint borderN = ccp(touchedBoder.position.x, touchedBoder.position.y+touchedBoder.boundingBox.size.height/2 + _gridSize/2);
 					double distN = ccpDistance(penguin.position, borderN);
 					CGPoint borderS = ccp(touchedBoder.position.x, touchedBoder.position.y-touchedBoder.boundingBox.size.height/2 - _gridSize/2);
