@@ -985,7 +985,9 @@
 		if(aToolboxItem == _activeToolboxItem) {
 			continue;
 		}
+		aToolboxItem.visible = true;//allows us to get a size
 		[aToolboxItem runAction:[CCMoveTo actionWithDuration:0.20f position:ccp(aToolboxItem.position.x, -aToolboxItem.boundingBox.size.height)]];
+		aToolboxItem.visible = false;
 	}
 	
 	[self scheduleOnce:@selector(initializeSelectedActiveToolboxItem) delay:0.050];
