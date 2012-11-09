@@ -68,6 +68,8 @@
 		_isGeneratingFeatureGrid = false;
 		_isInvalidatingSharkFeatureGrids = false;
 		_isInvalidatingPenguinFeatureGrids = false;
+		_sharksThatNeedToUpdateFeatureGrids = [[NSMutableArray alloc] init];
+		_penguinsThatNeedToUpdateFeatureGrids = [[NSMutableArray alloc] init];
 		_numSharksUpdatingMoveGrids = 0;
 		_numPenguinsUpdatingMoveGrids = 0;
 		_activeToolboxItem = nil;
@@ -885,6 +887,8 @@
 
 -(void)updateFeatureMapForShark:(LHSprite*)shark {
 
+	if(DEBUG_MOVEGRID) DebugLog(@"Updating shark %@ feature grid", shark.uniqueName);
+
 	short** sharkBaseGrid;
 	int rowSize = _gridHeight * sizeof(short);
 	
@@ -912,6 +916,9 @@
 }
 
 -(void)updateFeatureMapForPenguin:(LHSprite*)penguin {
+
+	if(DEBUG_MOVEGRID) DebugLog(@"Updating penguin %@ feature grid", penguin.uniqueName);
+
 	short** penguinBaseGrid;
 	int rowSize = _gridHeight * sizeof(short);
 	
@@ -2286,6 +2293,33 @@
 		_shouldUpdateToolbox = true;
 	}
 	
+	//do any grid updates as requested
+	if(!_isInvalidatingSharkFeatureGrids && _sharksThatNeedToUpdateFeatureGrids.count > 0) {
+		_isInvalidatingSharkFeatureGrids = true;
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+			[self generateFeatureGrids];
+			for(LHSprite* shark in _sharksThatNeedToUpdateFeatureGrids) {
+				[self updateFeatureMapForShark:shark];
+			}
+			//this can remove some objects that were added during this time... but we'll take our chances for now
+			[_sharksThatNeedToUpdateFeatureGrids removeAllObjects];
+			_isInvalidatingSharkFeatureGrids = false;
+		});
+	}
+	//do any grid updates as requested
+	if(!_isInvalidatingPenguinFeatureGrids && _penguinsThatNeedToUpdateFeatureGrids.count > 0) {
+		_isInvalidatingPenguinFeatureGrids = true;
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+			[self generateFeatureGrids];
+			for(LHSprite* penguin in _penguinsThatNeedToUpdateFeatureGrids) {
+				[self updateFeatureMapForPenguin:penguin];
+			}
+			//this can remove some objects that were added during this time... but we'll take our chances for now
+			[_penguinsThatNeedToUpdateFeatureGrids removeAllObjects];
+			_isInvalidatingPenguinFeatureGrids = false;
+		});
+	}	
+	
 	//spin the whirlpools at a constant rate
 	for(LHSprite* whirlpool in [_levelLoader spritesWithTag:WHIRLPOOL]) {
 		ToolboxItem_Whirlpool* whirlpoolData = (ToolboxItem_Whirlpool*)whirlpool.userInfo;
@@ -2407,6 +2441,7 @@
 -(void)invalidateFeatureGridsNearMovingBorders {
 	NSArray* borders = [_levelLoader spritesWithTag:BORDER];
 	for(LHSprite* border in borders) {
+//		NSLog(@"BORDER %@ userInfoClassName=%@", border.uniqueName, border.userInfoClassName);
 		if([border.userInfoClassName isEqualToString:@"MovingBorder"]) {
 			[self invalidateFeatureGridsNear:border];
 		}
@@ -2418,52 +2453,40 @@
 	[self invalidateSharkFeatureGridsNear:sprite];
 }
 
--(void) invalidateSharkFeatureGridsNear:(LHSprite*)sprite {
-	if(_isInvalidatingSharkFeatureGrids) {
-		return;
-	}
-	_isInvalidatingSharkFeatureGrids = true;
-	
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-		NSMutableArray* sharksToUpdate = [[NSMutableArray alloc] init];
-		for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
-			if(sprite == nil || ccpDistance(sprite.position, shark.position) < 150*SCALING_FACTOR_GENERIC) {
+-(void) invalidateSharkFeatureGridsNear:(LHSprite*)sprite {	
+	for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
+		NSLog(@"CHECKING SHARK %@ against SPRITE %@", shark.uniqueName, sprite.uniqueName);
+		if(sprite == nil || ccpDistance(sprite.position, shark.position) < 150*SCALING_FACTOR_GENERIC) {
+			if(![_sharksThatNeedToUpdateFeatureGrids containsObject:shark]) {
+				[_sharksThatNeedToUpdateFeatureGrids addObject:shark];
+			}
+		}else {
+			/* if this is enabled, add some bounds checking and verification that the moveGrid has been created
+			MoveGridData* sharkMoveGridData = [_sharkMoveGridDatas objectForKey:shark.uniqueName];
+			CGPoint sharkGridPos = [self toGrid:shark.position];
+			if(sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT) {
 				[sharksToUpdate addObject:shark];
 			}
+			*/
 		}
-		if(sharksToUpdate.count > 0) {
-			[self generateFeatureGrids];
-			for(LHSprite* shark in sharksToUpdate) {
-				[self updateFeatureMapForShark:shark];
-			}
-		}
-		[sharksToUpdate release];
-		_isInvalidatingSharkFeatureGrids = false;	
-	});
+	}
 }
 
 -(void) invalidatePenguinFeatureGridsNear:(LHSprite*)sprite {
-	if(_isInvalidatingPenguinFeatureGrids) {
-		return;
-	}
-	_isInvalidatingPenguinFeatureGrids = true;
-	
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-		NSMutableArray* penguinsToUpdate = [[NSMutableArray alloc] init];
-		for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
-			if(sprite == nil || ccpDistance(sprite.position, penguin.position) < 150*SCALING_FACTOR_GENERIC) {
+	for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
+		if(sprite == nil || ccpDistance(sprite.position, penguin.position) < 150*SCALING_FACTOR_GENERIC) {
+			if(![_penguinsThatNeedToUpdateFeatureGrids containsObject:penguin]) {
+				[_penguinsThatNeedToUpdateFeatureGrids addObject:penguin];
+			}
+		}else {
+			/* if this is enabled, add some bounds checking and verification that the moveGrid has been created
+			MoveGridData* penguinMoveGridData = [_sharkMoveGridDatas objectForKey:penguin.uniqueName];
+			CGPoint penguinGridPos = [self toGrid:penguin.position];
+			if(penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT) {
 				[penguinsToUpdate addObject:penguin];
-			}
+			}*/			
 		}
-		if(penguinsToUpdate.count > 0) {
-			[self generateFeatureGrids];
-			for(LHSprite* penguin in penguinsToUpdate) {
-				[self updateFeatureMapForPenguin:penguin];
-			}
-		}
-		[penguinsToUpdate release];
-		_isInvalidatingPenguinFeatureGrids = false;
-	});
+	}
 }
 
 -(void) invalidateMoveGridsNear:(LHSprite*)sprite {
@@ -3384,6 +3407,9 @@
 		[moveGriData release];
 	}
 	[_penguinMoveGridDatas release];
+	
+	[_penguinsThatNeedToUpdateFeatureGrids release];
+	[_sharksThatNeedToUpdateFeatureGrids release];
 	
 	for(int i = 0; i < _gridWidth; i++) {
 		free(_penguinMapfeaturesGrid[i]);

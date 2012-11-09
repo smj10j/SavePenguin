@@ -162,9 +162,9 @@
 						<key>SpriteSize</key>
 						<string>{0, 0}</string>
 						<key>Tag</key>
-						<integer>0</integer>
+						<integer>22</integer>
 						<key>TagName</key>
-						<string>DEFAULT</string>
+						<string>BORDER_PATH</string>
 						<key>UniqueName</key>
 						<string>BezierNode</string>
 						<key>ZOrder</key>
@@ -2373,9 +2373,9 @@
 						<key>SpriteSize</key>
 						<string>{0, 0}</string>
 						<key>Tag</key>
-						<integer>0</integer>
+						<integer>22</integer>
 						<key>TagName</key>
-						<string>DEFAULT</string>
+						<string>BORDER_PATH</string>
 						<key>UniqueName</key>
 						<string>BezierNode_1</string>
 						<key>ZOrder</key>
