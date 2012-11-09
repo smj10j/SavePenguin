@@ -24,8 +24,11 @@
 	CCLabelTTF* _iapItemCostLabel;
 	LHSprite* _iapItemCostCoinsIcon;
 	CCLabelTTF* _iapItemDescriptionLabel;
-
+	
+	LHSprite* _buyButton;
 	CCLabelTTF* _availableCoinsLabel;
+	
+	LHSprite* _selectedIAPItem;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

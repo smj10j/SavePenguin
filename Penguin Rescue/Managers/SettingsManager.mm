@@ -108,6 +108,18 @@
 
 
 
++(NSArray*)keysWithPrefix:(NSString*)prefix {
+	NSMutableDictionary* settings = [self loadSettings];
+	NSMutableArray* keys = [[[NSMutableArray alloc] init] autorelease];
+	for(NSString* key in settings) {
+		if([key hasPrefix:prefix]) {
+			[keys addObject:key];
+		}
+	}
+	return keys;
+}
+
+
 
 +(NSString*)getUUID {
 

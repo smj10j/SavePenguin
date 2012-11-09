@@ -31,6 +31,8 @@
 +(void)remove:(NSString*)key;
 
 
++(NSArray*)keysWithPrefix:(NSString*)prefix;
+
 
 
 
@@ -65,6 +67,7 @@
 #define SETTING_TOTAL_AVAILABLE_COINS @"TotalAvailableCoins"
 #define SETTING_TOTAL_EARNED_COINS_FOR_LEVEL @"TotalEarnedCoinsForLevel_"
 
+#define SETTING_IAP_TOOLBOX_ITEM_COUNT @"IAPToolboxItemCount_"
 
 #define SETTING_LAST_LEVEL_PACK_PATH @"LastLevelPackPath"
 #define SETTING_LAST_LEVEL_PATH @"LastLevelPath"

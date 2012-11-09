@@ -11,10 +11,4 @@
 		Path = Pack2;
 		Name = "Natural Powers";
 	};
-	2 = {
-		RequiresPack = Pack2;
-		"RequiresNumPackLevelsCompleted" = 5;
-		Path = Pack3;
-		Name = Hats;
-	};
 }

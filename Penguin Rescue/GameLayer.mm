@@ -115,6 +115,9 @@
 	//set the grid size and create various arrays
 	[self initializeMapGrid];
 	
+	//create any items that have been purchased and prepare anything that updateToolbox will use
+	[self setupToolbox];
+	
 	//place the toolbox items
 	[self updateToolbox];
 	
@@ -437,6 +440,52 @@
 	}
 }
 
+-(void) setupToolbox {
+	
+	//placeholder for now
+
+	[self createIAPToolboxItems];
+}
+
+-(void) createIAPToolboxItems {
+	//get info about all the IAP items we need to place
+	
+	NSArray* keys = [SettingsManager keysWithPrefix:SETTING_IAP_TOOLBOX_ITEM_COUNT];
+	
+	for(NSString* key in keys) {
+		NSString* spriteName = [key stringByReplacingOccurrencesOfString:SETTING_IAP_TOOLBOX_ITEM_COUNT withString:@""];
+		int count = [SettingsManager intForKey:key];
+		if(DEBUG_IAP || DEBUG_TOOLBOX) DebugLog(@"Adding %d instances of IAP item %@ to world", count, spriteName);
+
+		//create the sprites and userdata which is NOT LOADED FROM LEVELHELPER
+		for(int i = 0; i < count; i++) {
+			LHSprite* iapSprite = [_levelLoader createSpriteWithName:spriteName fromSheet:@"Toolbox" fromSHFile:@"Spritesheet" tag:TOOLBOX_ITEM parent:_toolboxBatchNode];
+			if([spriteName isEqualToString:@"Bag_of_Fish"]) {
+				ToolboxItem_Bag_of_Fish* userData = [[ToolboxItem_Bag_of_Fish alloc] init];
+				userData.scale = 1;
+				userData.runningCost = 750;
+				userData.placeCost = 500;
+				[iapSprite setUserData:userData];
+				
+			}else if([spriteName isEqualToString:@"Anti_Shark_272_1"]) {
+				ToolboxItem_Loud_Noise* userData = [[ToolboxItem_Loud_Noise alloc] init];
+				userData.scale = 0.50;
+				userData.runningCost = 750;
+				userData.placeCost = 500;
+				[iapSprite setUserData:userData];
+				
+			}else if([spriteName isEqualToString:@"Santa_Hat"]) {
+				ToolboxItem_Invisibility_Hat* userData = [[ToolboxItem_Invisibility_Hat alloc] init];
+				userData.scale = 1;
+				userData.runningCost = 750;
+				userData.placeCost = 500;
+				[iapSprite setUserData:userData];
+				
+			}
+		}
+	}
+}
+
 -(void) updateToolbox {
 
 	if(_toolboxItemSize.width == 0) {
@@ -461,23 +510,24 @@
 		}
 		[_toolGroups release];	
 	}
-	
-	//get all the tools put on the level - they can be anywhere!
 	_toolGroups = [[NSMutableDictionary alloc] init];
+	
+
+	//get all the tools put on the level - they can be anywhere!
 	for(LHSprite* toolboxItem in toolboxItems) {
 	
 		[toolboxItem stopAllActions];
 	
 		//generate the grouping key for toolbox items
-		NSString* toolgroupKey = toolboxItem.userInfoClassName;
-		if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
-			ToolboxItem_Windmill* toolboxItemData = ((ToolboxItem_Windmill*)toolboxItem.userInfo);
+		NSString* toolgroupKey = [NSString stringWithFormat:@"%@",[(id)toolboxItem.userData class]];
+		if([toolgroupKey isEqualToString:@"ToolboxItem_Windmill"]) {
+			ToolboxItem_Windmill* toolboxItemData = ((ToolboxItem_Windmill*)toolboxItem.userData);
 			toolgroupKey = [toolgroupKey stringByAppendingString:[NSString stringWithFormat:@"-%@:%f", @"Power", toolboxItemData.power]];
-		}else if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
-			ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)toolboxItem.userInfo);
+		}else if([toolgroupKey isEqualToString:@"ToolboxItem_Debris"]) {
+			ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)toolboxItem.userData);
 			toolgroupKey = [toolgroupKey stringByAppendingString:[NSString stringWithFormat:@"-%@:%f", @"Mass", toolboxItemData.mass]];
-		}else if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
-			ToolboxItem_Whirlpool* toolboxItemData = ((ToolboxItem_Whirlpool*)toolboxItem.userInfo);
+		}else if([toolgroupKey isEqualToString:@"ToolboxItem_Whirlpool"]) {
+			ToolboxItem_Whirlpool* toolboxItemData = ((ToolboxItem_Whirlpool*)toolboxItem.userData);
 			toolgroupKey = [toolgroupKey stringByAppendingString:[NSString stringWithFormat:@"-%@:%f", @"Power", toolboxItemData.power]];
 		}
 	
@@ -517,17 +567,14 @@
 			if(topToolboxItem == nil) {
 				topToolboxItem = toolboxItem;
 				//move the tool into the box
-				if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
-					//set previously in level load
-					
+
+				int scaleMarginAdjust = 0;
+				if([(id)toolboxItem.userData class] == [ToolboxItem_Whirlpool class]) {
+					scaleMarginAdjust = 25;
 				}else {
 					[topToolboxItem transformRotation:0];
+			
 				}
-				
-				int scaleMarginAdjust = 0;
-				if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
-					scaleMarginAdjust = 25;
-				};
 				
 				
 				double scale = fmin((_toolboxItemSize.width-TOOLBOX_ITEM_CONTAINER_PADDING_H-(scaleMarginAdjust*SCALING_FACTOR_H))/topToolboxItem.contentSize.width,
@@ -542,25 +589,25 @@
 		}
 		
 		//helpful tidbits
-		if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
+		if([(id)topToolboxItem.userData class] == [ToolboxItem_Windmill class]) {
 			//display item power
-			ToolboxItem_Windmill* toolboxItemData = ((ToolboxItem_Windmill*)topToolboxItem.userInfo);
+			ToolboxItem_Windmill* toolboxItemData = ((ToolboxItem_Windmill*)topToolboxItem.userData);
 			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", (int)toolboxItemData.power] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_STATS_FONT_SIZE dimensions:CGSizeMake(_toolboxItemSize.width, 20*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentRight];
 			powerLabel.color = ccWHITE;
 			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 60*SCALING_FACTOR_H - (IS_IPHONE ? 2 : 0),
 										14*SCALING_FACTOR_V + (IS_IPHONE ? 3 : 0));
 			[toolboxContainer addChild:powerLabel];
-		}else if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
+		}else if([(id)topToolboxItem.userData class] == [ToolboxItem_Debris class]) {
 			//display item mass
-			ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)topToolboxItem.userInfo);
+			ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)topToolboxItem.userData);
 			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%dlbs", (int)(toolboxItemData.mass*10)] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_STATS_FONT_SIZE dimensions:CGSizeMake(_toolboxItemSize.width, 20*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentRight];
 			powerLabel.color = ccWHITE;
 			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 60*SCALING_FACTOR_H - (IS_IPHONE ? 2 : 0),
 										14*SCALING_FACTOR_V + (IS_IPHONE ? 3 : 0));
 			[toolboxContainer addChild:powerLabel];
-		}else if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+		}else if([(id)topToolboxItem.userData class] == [ToolboxItem_Whirlpool class]) {
 			//display item power
-			ToolboxItem_Whirlpool* toolboxItemData = ((ToolboxItem_Whirlpool*)topToolboxItem.userInfo);
+			ToolboxItem_Whirlpool* toolboxItemData = ((ToolboxItem_Whirlpool*)topToolboxItem.userData);
 			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", (int)toolboxItemData.power] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_STATS_FONT_SIZE dimensions:CGSizeMake(_toolboxItemSize.width, 20*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentRight];
 			powerLabel.color = ccWHITE;
 			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 60*SCALING_FACTOR_H - (IS_IPHONE ? 2 : 0),
@@ -576,7 +623,6 @@
 				
 		toolGroupX+= _toolboxItemSize.width + TOOLBOX_MARGIN_LEFT;
 	}
-	
 }
 
 
@@ -659,13 +705,15 @@
 	//update any toolbox items so we don't have to do everything manually in LevelHelper
 	for(LHSprite* sprite in [_levelLoader allSprites]) {
 		
-		if([sprite.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
+		sprite.userData = sprite.userInfo;
+		
+		if([(id)sprite.userData class] == [ToolboxItem_Debris class]) {
 			b2MassData massData;
 			ToolboxItem_Debris* toolboxItemData = (ToolboxItem_Debris*)sprite.userInfo;
 			sprite.body->GetMassData(&massData);
 			massData.mass*= toolboxItemData.mass;
 			sprite.body->SetMassData(&massData);
-		}else if([sprite.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+		}else if([(id)sprite.userData class] == [ToolboxItem_Whirlpool class]) {
 			//sets those in the toolbox too
 			[sprite makeDynamic];
 			[sprite setSensor:true];
@@ -677,7 +725,7 @@
 			[sprite makeDynamic];
 			[sprite setSensor:false];
 			
-			ToolboxItem_Debris* toolboxItemData = (ToolboxItem_Debris*)sprite.userInfo;
+			ToolboxItem_Debris* toolboxItemData = (ToolboxItem_Debris*)sprite.userData;
 			[sprite setScale:toolboxItemData.scale];
 			
 		}else if(sprite.tag == OBSTRUCTION) {
@@ -689,7 +737,7 @@
 			[sprite makeStatic];
 			[sprite setSensor:true];
 			
-			ToolboxItem_Windmill* toolboxItemData = (ToolboxItem_Windmill*)sprite.userInfo;
+			ToolboxItem_Windmill* toolboxItemData = (ToolboxItem_Windmill*)sprite.userData;
 			[sprite setScale:toolboxItemData.scale];
 			
 		}else if(sprite.tag == WHIRLPOOL) {
@@ -697,7 +745,7 @@
 			//already placed - set it's physics data
 			sprite.body->ApplyTorque(sprite.rotation < 180 ? -15 : 15);
 			
-			ToolboxItem_Whirlpool* toolboxItemData = (ToolboxItem_Whirlpool*)sprite.userInfo;
+			ToolboxItem_Whirlpool* toolboxItemData = (ToolboxItem_Whirlpool*)sprite.userData;
 			[sprite setScale:toolboxItemData.scale];
 
 		}else if(sprite.tag == SANDBAR) {
@@ -1007,11 +1055,11 @@
 	[self addChild:_activeToolboxItemRotationCrosshair];
 			
 	_activeToolboxItemOriginalPosition = _activeToolboxItem.position;
-	ToolboxItem_Obstruction* toolboxItemData = ((ToolboxItem_Obstruction*)_activeToolboxItem.userInfo);	//ToolboxItem_Obstruction is used because all ToolboxItem classes have a "scale" property
+	ToolboxItem_Obstruction* toolboxItemData = ((ToolboxItem_Obstruction*)_activeToolboxItem.userData);	//ToolboxItem_Obstruction is used because all ToolboxItem classes have a "scale" property
 	[_activeToolboxItem transformScale: toolboxItemData.scale];
 	if(DEBUG_TOOLBOX) DebugLog(@"Scaling up toolboxitem %@ to full-size", _activeToolboxItem.uniqueName);
 	
-	if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+	if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Whirlpool class]) {
 		//set previously in level load
 		double angularVelocity = _activeToolboxItem.body->GetAngularVelocity();
 		if(angularVelocity == 0) {
@@ -1025,14 +1073,14 @@
 
 	//[[LHTouchMgr sharedInstance] setPriority:1 forTouchesOfTag:OBSTRUCTION];
 
-	if(DEBUG_TOOLBOX) DebugLog(@"Touch began on toolboxItem %@", info.sprite.uniqueName);
-
 	if(_state != RUNNING && _state != PLACE) {
 		return;
 	}
 
 	LHSprite* toolboxItemContainer = info.sprite;
 	LHSprite* toolboxItem = toolboxItemContainer.tag == TOOLBOX_ITEM_CONTAINER ? [_levelLoader spriteWithUniqueName:((NSString*)toolboxItemContainer.userData)] : toolboxItemContainer;
+
+	if(DEBUG_TOOLBOX) DebugLog(@"Touch began on toolboxItem %@", toolboxItem.uniqueName);
 
 	[self setActiveToolboxItem:toolboxItem];
 }
@@ -1057,7 +1105,7 @@
 			) {
 			//placed back into the HUD
 
-			if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+			if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Whirlpool class]) {
 				_activeToolboxItem.body->SetAngularVelocity(0);
 				_activeToolboxItem.body->ApplyTorque(-15);
 			}else {
@@ -1073,7 +1121,7 @@
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
 				_levelPackPath, @"Level_Pack",
-				_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
+				[NSString stringWithFormat:@"%@",[(id)_activeToolboxItem.userData class]], @"Toolbox_Item_Class",
 				_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
 				[NSNumber numberWithInt:_state], @"Game_State",
 			nil];
@@ -2058,7 +2106,7 @@
 -(void)scoreToolboxItemPlacement:(LHSprite*)toolboxItem replaced:(bool)replaced {
 
 	//accounting
-	ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)toolboxItem.userInfo);
+	ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)toolboxItem.userData);
 	int score = _state == PLACE ? (toolboxItemData.placeCost * (replaced ? 0 : 1)) :
 								  (toolboxItemData.runningCost * (replaced ? 0.25 : 1));
 				
@@ -2067,14 +2115,14 @@
 	}
 	
 	//adjust score by the mass/power/etc.
-	if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
-		ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)toolboxItem.userInfo);
+	if([(id)toolboxItem.userData class] == [ToolboxItem_Debris class]) {
+		ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)toolboxItem.userData);
 		score*= 1+log(toolboxItemData.mass/1);
-	}else if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
-		ToolboxItem_Windmill* toolboxItemData = ((ToolboxItem_Windmill*)toolboxItem.userInfo);
+	}else if([(id)toolboxItem.userData class] == [ToolboxItem_Windmill class]) {
+		ToolboxItem_Windmill* toolboxItemData = ((ToolboxItem_Windmill*)toolboxItem.userData);
 		score*= 1+log(toolboxItemData.power/50);
-	}else if([toolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
-		ToolboxItem_Whirlpool* toolboxItemData = ((ToolboxItem_Whirlpool*)toolboxItem.userInfo);
+	}else if([(id)toolboxItem.userData class] == [ToolboxItem_Whirlpool class]) {
+		ToolboxItem_Whirlpool* toolboxItemData = ((ToolboxItem_Whirlpool*)toolboxItem.userData);
 		score*= 1+log(toolboxItemData.power/200);
 	}
 	
@@ -2182,18 +2230,18 @@
 	//drop any toolbox items if need be
 	if(_activeToolboxItem != nil && _moveActiveToolboxItemIntoWorld) {
 	
-		if(DEBUG_TOOLBOX) DebugLog(@"Adding toolbox item %@ to world", _activeToolboxItem.userInfoClassName);
+		if(DEBUG_TOOLBOX) DebugLog(@"Adding toolbox item %@ to world", [(id)_activeToolboxItem.userData class]);
 		
 		NSString* soundFileName = @"place.wav";
 	
 		//StaticToolboxItem are things penguins and sharks can't move through
-		if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Debris"]) {
+		if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Debris class]) {
 			_activeToolboxItem.tag = DEBRIS;
 			[_activeToolboxItem makeDynamic];
 			[_activeToolboxItem setSensor:false];
 			soundFileName = @"place-debris.wav";
 			
-		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Obstruction"]) {
+		}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Obstruction class]) {
 			_activeToolboxItem.tag = OBSTRUCTION;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
@@ -2201,19 +2249,19 @@
 			[self invalidateMoveGridsNear:_activeToolboxItem];
 			soundFileName = @"place-obstruction.wav";
 
-		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Windmill"]) {
+		}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Windmill class]) {
 			_activeToolboxItem.tag = WINDMILL;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
 			soundFileName = @"place-windmill.wav";
 		
-		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+		}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Whirlpool class]) {
 			_activeToolboxItem.tag = WHIRLPOOL;
 			[_activeToolboxItem makeDynamic];
 			[_activeToolboxItem setSensor:true];
 			soundFileName = @"place-whirlpool.wav";
 		
-		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Sandbar"]) {
+		}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Sandbar class]) {
 			_activeToolboxItem.tag = SANDBAR;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
@@ -2221,19 +2269,19 @@
 			[self invalidateSharkMoveGridsNear:_activeToolboxItem];
 			soundFileName = @"place-sandbar.wav";
 		
-		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Bag_of_Fish"]) {
+		}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Bag_of_Fish class]) {
 			_activeToolboxItem.tag = BAG_OF_FISH;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
 			soundFileName = @"place-bag-of-fish.wav";
 		
-		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Invisibility_Hat"]) {
+		}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Invisibility_Hat class]) {
 			_activeToolboxItem.tag = INVISIBILITY_HAT;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
 			soundFileName = @"place-invisibility-hat.wav";
 		
-		}else if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Loud_Noise"]) {
+		}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Loud_Noise class]) {
 			_activeToolboxItem.tag = LOUD_NOISE;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
@@ -2256,7 +2304,7 @@
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
 				_levelPackPath, @"Level_Pack",
-				_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
+				[NSString stringWithFormat:@"%@",[(id)_activeToolboxItem.userData class]], @"Toolbox_Item_Class",
 				_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
 				[NSNumber numberWithInt:_state], @"Game_State",
 				NSStringFromCGPoint(_activeToolboxItem.position), @"Location",
@@ -2271,7 +2319,7 @@
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
 				_levelPackPath, @"Level_Pack",
-				_activeToolboxItem.userInfoClassName, @"Toolbox_Item_Class",
+				[NSString stringWithFormat:@"%@",[(id)_activeToolboxItem.userData class]], @"Toolbox_Item_Class",
 				_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
 				[NSNumber numberWithInt:_state], @"Game_State",
 				NSStringFromCGPoint(_activeToolboxItem.position), @"Location",
@@ -2325,7 +2373,7 @@
 	
 	//spin the whirlpools at a constant rate
 	for(LHSprite* whirlpool in [_levelLoader spritesWithTag:WHIRLPOOL]) {
-		ToolboxItem_Whirlpool* whirlpoolData = (ToolboxItem_Whirlpool*)whirlpool.userInfo;
+		ToolboxItem_Whirlpool* whirlpoolData = (ToolboxItem_Whirlpool*)whirlpool.userData;
 		double angVel = whirlpool.body->GetAngularVelocity();
 		double targetAngVel = whirlpoolData.power/100;
 		if(fabs(angVel) != targetAngVel) {
@@ -2532,7 +2580,7 @@
 	float32 minWindmillFraction = 1;
 	NSArray* windmills = [_levelLoader spritesWithTag:WINDMILL];
 	for(LHSprite* windmill in windmills) {
-		ToolboxItem_Windmill* windmillData = ((ToolboxItem_Windmill*)windmill.userInfo);
+		ToolboxItem_Windmill* windmillData = ((ToolboxItem_Windmill*)windmill.userData);
 		//facing east by default
 		int rotation = ((int)(windmill.rotation+90))%360;
 		double xDir = sin(CC_DEGREES_TO_RADIANS(rotation));
@@ -2571,7 +2619,7 @@
 	dyMod = 0;
 	NSArray* whirlpools = [_levelLoader spritesWithTag:WHIRLPOOL];
 	for(LHSprite* whirlpool in whirlpools) {
-		ToolboxItem_Whirlpool* whirlpoolData = ((ToolboxItem_Whirlpool*)whirlpool.userInfo);
+		ToolboxItem_Whirlpool* whirlpoolData = ((ToolboxItem_Whirlpool*)whirlpool.userData);
 		
 			double dist = ccpDistance(sprite.position, whirlpool.position);
 			if(dist < whirlpoolData.power*SCALING_FACTOR_GENERIC) {
@@ -3177,7 +3225,7 @@
 				if(ccpDistance(location, _activeToolboxItem.position) > 50*SCALING_FACTOR_GENERIC) {
 					//tapping a second finger on the screen when moving a toolbox item rotates the item
 					
-					if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+					if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Whirlpool class]) {
 						double angularVelocity = _activeToolboxItem.body->GetAngularVelocity();
 						_activeToolboxItem.body->SetAngularVelocity(0);
 						_activeToolboxItem.body->ApplyTorque(angularVelocity>0 ? -15 : 15);
@@ -3187,7 +3235,7 @@
 					}
 					
 					//scale up and down for visual effect
-					ToolboxItem_Obstruction* toolboxItemData = ((ToolboxItem_Obstruction*)_activeToolboxItem.userInfo);	//ToolboxItem_Obstruction is used because all ToolboxItem classes have a "scale" property
+					ToolboxItem_Obstruction* toolboxItemData = ((ToolboxItem_Obstruction*)_activeToolboxItem.userData);	//ToolboxItem_Obstruction is used because all ToolboxItem classes have a "scale" property
 					
 					[_activeToolboxItem runAction:[CCSequence actions:
 						[CCScaleTo actionWithDuration:0.05f scale:toolboxItemData.scale*2.5],
@@ -3418,7 +3466,7 @@
 	
 	[_penguinsThatNeedToUpdateFeatureGrids release];
 	[_sharksThatNeedToUpdateFeatureGrids release];
-	
+		
 	for(int i = 0; i < _gridWidth; i++) {
 		free(_penguinMapfeaturesGrid[i]);
 		free(_sharkMapfeaturesGrid[i]);
