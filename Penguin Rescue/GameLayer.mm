@@ -512,9 +512,16 @@
 					
 				}else {
 					[topToolboxItem transformRotation:0];
-				}			
-				double scale = fmin((_toolboxItemSize.width-TOOLBOX_ITEM_CONTAINER_PADDING_H)/topToolboxItem.contentSize.width,
-									(_toolboxItemSize.height-TOOLBOX_ITEM_CONTAINER_PADDING_V)/topToolboxItem.contentSize.height);
+				}
+				
+				int scaleMarginAdjust = 0;
+				if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+					scaleMarginAdjust = 25;
+				};
+				
+				
+				double scale = fmin((_toolboxItemSize.width-TOOLBOX_ITEM_CONTAINER_PADDING_H-(scaleMarginAdjust*SCALING_FACTOR_H))/topToolboxItem.contentSize.width,
+									(_toolboxItemSize.height-TOOLBOX_ITEM_CONTAINER_PADDING_V-(scaleMarginAdjust*SCALING_FACTOR_V))/topToolboxItem.contentSize.height);
 				[topToolboxItem transformScale: scale];
 				[topToolboxItem transformPosition: ccp(toolGroupX, toolGroupY)];
 				topToolboxItem.visible = true;
@@ -537,6 +544,14 @@
 			//display item mass
 			ToolboxItem_Debris* toolboxItemData = ((ToolboxItem_Debris*)topToolboxItem.userInfo);
 			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%dlbs", (int)(toolboxItemData.mass*10)] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_STATS_FONT_SIZE dimensions:CGSizeMake(_toolboxItemSize.width, 20*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentRight];
+			powerLabel.color = ccWHITE;
+			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 60*SCALING_FACTOR_H - (IS_IPHONE ? 2 : 0),
+										14*SCALING_FACTOR_V + (IS_IPHONE ? 3 : 0));
+			[toolboxContainer addChild:powerLabel];
+		}else if([topToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
+			//display item power
+			ToolboxItem_Whirlpool* toolboxItemData = ((ToolboxItem_Whirlpool*)topToolboxItem.userInfo);
+			CCLabelTTF* powerLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d%%", (int)toolboxItemData.power] fontName:@"Helvetica" fontSize:TOOLBOX_ITEM_STATS_FONT_SIZE dimensions:CGSizeMake(_toolboxItemSize.width, 20*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentRight];
 			powerLabel.color = ccWHITE;
 			powerLabel.position = ccp(toolboxContainer.boundingBox.size.width - 60*SCALING_FACTOR_H - (IS_IPHONE ? 2 : 0),
 										14*SCALING_FACTOR_V + (IS_IPHONE ? 3 : 0));
@@ -2499,9 +2514,8 @@
 	for(LHSprite* whirlpool in whirlpools) {
 		ToolboxItem_Whirlpool* whirlpoolData = ((ToolboxItem_Whirlpool*)whirlpool.userInfo);
 		
-			double adjustedPower = whirlpoolData.power*SCALING_FACTOR_GENERIC;
 			double dist = ccpDistance(sprite.position, whirlpool.position);
-			if(dist < adjustedPower) {
+			if(dist < whirlpoolData.power*SCALING_FACTOR_GENERIC) {
 				
 				b2Vec2 vortexVelocity = whirlpool.body->GetLinearVelocityFromWorldPoint( sprite.body->GetPosition() );
 				b2Vec2 vortexVelocityN = vortexVelocity;
@@ -2512,8 +2526,10 @@
 				b2Vec2 dN = d;
 				dN.Normalize();
 				
-				double rotationalPower = 2*log(adjustedPower - dist);
-				double suckingPower = (adjustedPower - dist)*.025;
+				double power = whirlpoolData.power - dist;
+				power = power < 1 ? 1 : power;
+				double rotationalPower = 2*log(power);
+				double suckingPower = power*.025;
 				
 				dxMod = vortexVelocity.x*rotationalPower + dN.x*suckingPower;
 				dyMod = vortexVelocity.y*rotationalPower + dN.y*suckingPower;

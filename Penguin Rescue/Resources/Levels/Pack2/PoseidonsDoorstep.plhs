@@ -1330,11 +1330,11 @@
 						<key>ClassRepresentation</key>
 						<dict>
 							<key>placeCost</key>
-							<real>1250</real>
+							<real>1500</real>
 							<key>power</key>
 							<real>150</real>
 							<key>runningCost</key>
-							<real>1500</real>
+							<real>1750</real>
 							<key>scale</key>
 							<real>1.25</real>
 						</dict>
@@ -1537,11 +1537,11 @@
 						<key>ClassRepresentation</key>
 						<dict>
 							<key>placeCost</key>
-							<real>1250</real>
+							<real>1500</real>
 							<key>power</key>
 							<real>150</real>
 							<key>runningCost</key>
-							<real>1500</real>
+							<real>1750</real>
 							<key>scale</key>
 							<real>1.25</real>
 						</dict>
@@ -2495,11 +2495,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1250</real>
-					<key>power</key>
-					<real>100</real>
-					<key>runningCost</key>
 					<real>1500</real>
+					<key>power</key>
+					<real>200</real>
+					<key>runningCost</key>
+					<real>1750</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>

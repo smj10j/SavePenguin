@@ -151,11 +151,11 @@
 			<key>ClassRepresentation</key>
 			<dict>
 				<key>placeCost</key>
-				<real>1250</real>
-				<key>power</key>
-				<real>100</real>
-				<key>runningCost</key>
 				<real>1500</real>
+				<key>power</key>
+				<real>200</real>
+				<key>runningCost</key>
+				<real>1750</real>
 				<key>scale</key>
 				<real>1</real>
 			</dict>
@@ -260,7 +260,7 @@
 	<key>HDSuffix</key>
 	<string>-hd</string>
 	<key>LastLevelLoaded</key>
-	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Pack2/Squeeze.plhs</string>
+	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Pack2/FollowMe.plhs</string>
 	<key>Orientation</key>
 	<integer>1</integer>
 	<key>ProjectName</key>

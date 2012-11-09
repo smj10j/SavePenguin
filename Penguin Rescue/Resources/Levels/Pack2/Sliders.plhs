@@ -1404,7 +1404,7 @@
 									<key>placeCost</key>
 									<true/>
 									<key>power</key>
-									<false/>
+									<true/>
 									<key>runningCost</key>
 									<true/>
 									<key>scale</key>
@@ -1415,11 +1415,11 @@
 								<key>ClassRepresentation</key>
 								<dict>
 									<key>placeCost</key>
-									<real>1250</real>
-									<key>power</key>
-									<real>100</real>
-									<key>runningCost</key>
 									<real>1500</real>
+									<key>power</key>
+									<real>200</real>
+									<key>runningCost</key>
+									<real>1750</real>
 									<key>scale</key>
 									<real>1</real>
 								</dict>
@@ -1468,7 +1468,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{-118.375, 307.625}</string>
+								<string>{-117, 309}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -2634,11 +2634,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1250</real>
-					<key>power</key>
-					<real>100</real>
-					<key>runningCost</key>
 					<real>1500</real>
+					<key>power</key>
+					<real>200</real>
+					<key>runningCost</key>
+					<real>1750</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
