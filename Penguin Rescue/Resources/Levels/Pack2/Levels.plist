@@ -51,4 +51,60 @@
 		Path = Paradise;
 		Name = Paradise;
 	};
+	13 = {
+		Path = PerfectFit;
+		Name = "Perfect Fit";
+	};
+	14 = {
+		Path = ForceField;
+		Name = "Force Field";
+	};
+	15 = {
+		Path = Pitcher;
+		Name = Pitcher;
+	};
+	16 = {
+		Path = Parabola;
+		Name = Parabola;
+	};
+	17 = {
+		Path = Horseshoe;
+		Name = Horseshoe;
+	};
+	18 = {
+		Path = DangerBay;
+		Name = "Danger Bay";
+	};
+	19 = {
+		Path = TwoRoads;
+		Name = "Two Roads";
+	};
+	20 = {
+		Path = Exposed;
+		Name = Exposed;
+	};
+	21 = {
+		Path = Riptide;
+		Name = Riptide;
+	};
+	22 = {
+		Path = Turbulence;
+		Name = Turbulence;
+	};
+	23 = {
+		Path = Finesse;
+		Name = Finesse;
+	};
+	24 = {
+		Path = Cross;
+		Name = Cross;
+	};
+	25 = {
+		Path = RockAndAHardPlace;
+		Name = "Rock and a Hard Place";
+	};
+	26 = {
+		Path = Cover;
+		Name = Cover;
+	};
 }
