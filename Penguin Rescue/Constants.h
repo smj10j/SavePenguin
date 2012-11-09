@@ -16,7 +16,7 @@
 
 #define TEST_MODE true
 #define TEST_LEVEL_PACK @"Pack2"
-#define TEST_LEVEL @"Squeeze"
+#define TEST_LEVEL @"Swing"
 
  
 
@@ -41,6 +41,13 @@
 #define TARGET_FPS 60
 #define TARGET_PHYSICS_STEP .03
 #define MIN_GRID_SIZE 8
+//Pixel to metres ratio. Box2D uses metres as the unit for measurement.
+//This ratio defines how many pixels correspond to 1 Box2D "metre"
+//Box2D is optimized for objects of 1x1 metre therefore it makes sense
+//to define the ratio so that your most common object type is 1x1 metre.
+#define PTM_RATIO (IS_IPHONE ? 32 : 64)
+
+
 
 #define SHARK_DIES_WHEN_STUCK false
 

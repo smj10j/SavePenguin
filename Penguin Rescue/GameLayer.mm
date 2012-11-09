@@ -132,6 +132,14 @@
 	//post the score to the server or queue for online processing
 	[ScoreKeeper savePlayForUUID:[SettingsManager getUUID] levelPackPath:_levelPackPath levelPath:_levelPath];
 
+	//enable any debugging requested
+	if(__DEBUG_SHARKS || __DEBUG_PENGUINS) {
+		self.color = ccBLACK;
+		NSArray* backgrounds = [_levelLoader spritesWithTag:BACKGROUND];
+		for(LHSprite* background in backgrounds) {
+			[background setVisible:false];
+		}		
+	}
 
 	//start the game
 	_state = PLACE;
@@ -146,7 +154,7 @@
 		[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
 		_levelPackPath, @"Level_Pack",
 	nil];
-	[Analytics logEvent:@"Play_Level" withParameters:flurryParams timed:YES];
+	[Analytics logEvent:@"Begin_Level" withParameters:flurryParams timed:YES];
 
 	if(DEBUG_MEMORY) DebugLog(@"GameLayer %f level loaded", _instanceId);
 	if(DEBUG_MEMORY) report_memory();
@@ -760,12 +768,29 @@
 	//if(DEBUG_MOVEGRID) DebugLog(@"Num safe lands: %d, Num borders: %d", [lands count], [borders count]);
 	
 	for(LHSprite* land in unpassableAreas) {
-					
-		int minX = max(land.boundingBox.origin.x, 0);
-		int maxX = min(land.boundingBox.origin.x+land.boundingBox.size.width, _levelSize.width-1);
-		int minY = max(land.boundingBox.origin.y, 0);
-		int maxY = min(land.boundingBox.origin.y+land.boundingBox.size.height, _levelSize.height-1);
+			
+		b2AABB aabb;
+		aabb.lowerBound = b2Vec2(FLT_MAX,FLT_MAX);
+		aabb.upperBound = b2Vec2(-FLT_MAX,-FLT_MAX); 
+		b2Fixture* fixture = land.body->GetFixtureList();
+		while (fixture != NULL) {
+			aabb.Combine(aabb, fixture->GetAABB(0));
+			fixture = fixture->GetNext();
+		}
 		
+		//convert to worldspace (Figure out why the conversion is needed at all later)
+		int minX = max(aabb.lowerBound.x*PTM_RATIO, 0);
+		int maxX = min(aabb.upperBound.x*PTM_RATIO, _levelSize.width-1);
+		int minY = max(aabb.lowerBound.y*PTM_RATIO, 0);
+		int maxY = min(aabb.upperBound.y*PTM_RATIO, _levelSize.height-1);
+			
+/*
+		DebugLog(@"Land %@ AABB bounds from %f,%f to %f,%f", land.uniqueName, aabb.lowerBound.x, aabb.lowerBound.y, aabb.upperBound.x, aabb.upperBound.y);
+		DebugLog(@"Land %@ position %f,%f", land.uniqueName, land.position.x, land.position.y);
+		DebugLog(@"Land %@ AABB bounding box from %f,%f to %f,%f", land.uniqueName, land.boundingBox.origin.x, land.boundingBox.origin.y, land.boundingBox.origin.x+land.boundingBox.size.width, land.boundingBox.origin.y+land.boundingBox.size.height);
+		DebugLog(@"Land %@ bounds from %d,%d to %d,%d", land.uniqueName, minX, minY, maxX, maxY);
+*/
+
 		//create the areas that both sharks and penguins can't go
 		
 		//full fill
@@ -779,7 +804,6 @@
 			}
 		}
 
-		//DebugLog(@"Land from %d,%d to %d,%d computed in %f", minX, minY, maxX, maxY,  ([[NSDate date] timeIntervalSince1970] - startTime));
 	}
 	
 	//add the map boundaries as borders
@@ -1344,7 +1368,7 @@
 			[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
 			_levelPackPath, @"Level_Pack",
 		nil];
-		[Analytics logEvent:@"Start_level" withParameters:flurryParams];
+		[Analytics logEvent:@"Play_level" withParameters:flurryParams];
 
 	}
 	
@@ -1444,7 +1468,7 @@
 		[NSNumber numberWithInt:totalCoinsEarnedForLevel], @"TotalCoinsEarnedForLevel",
 		grade, @"Grade",
 	nil];
-	[Analytics endTimedEvent:@"Play_Level" withParameters:flurryParams];	
+	[Analytics endTimedEvent:@"Begin_Level" withParameters:flurryParams];
 	
 	//store our earned coins
 	[SettingsManager incrementIntBy:coinsEarned forKey:coinsEarnedForLevelKey];
@@ -1667,7 +1691,7 @@
 		@"Lost", @"Level_Status",
 		@"Shark Collision", @"Level_Lost_Reason",
 	nil];
-	[Analytics endTimedEvent:@"Play_Level" withParameters:flurryParams];
+	[Analytics endTimedEvent:@"Begin_Level" withParameters:flurryParams];
 
 	DebugLog(@"Showing level lost animations for penguin/shark collision");
 	
@@ -1729,7 +1753,7 @@
 		@"Lost", @"Level_Status",
 		@"Restart", @"Level_Lost_Reason",
 	nil];
-	[Analytics endTimedEvent:@"Play_Level" withParameters:flurryParams];
+	[Analytics endTimedEvent:@"Begin_Level" withParameters:flurryParams];
 
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:_levelPath]]];
 }
@@ -2400,20 +2424,22 @@
 	}
 	_isInvalidatingSharkFeatureGrids = true;
 	
-	NSMutableArray* sharksToUpdate = [[NSMutableArray alloc] init];
-	for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
-		if(sprite == nil || ccpDistance(sprite.position, shark.position) < 150*SCALING_FACTOR_GENERIC) {
-			[sharksToUpdate addObject:shark];
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+		NSMutableArray* sharksToUpdate = [[NSMutableArray alloc] init];
+		for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
+			if(sprite == nil || ccpDistance(sprite.position, shark.position) < 150*SCALING_FACTOR_GENERIC) {
+				[sharksToUpdate addObject:shark];
+			}
 		}
-	}
-	if(sharksToUpdate.count > 0) {
-		[self generateFeatureGrids];
-		for(LHSprite* shark in sharksToUpdate) {
-			[self updateFeatureMapForShark:shark];
+		if(sharksToUpdate.count > 0) {
+			[self generateFeatureGrids];
+			for(LHSprite* shark in sharksToUpdate) {
+				[self updateFeatureMapForShark:shark];
+			}
 		}
-	}
-	[sharksToUpdate release];
-	_isInvalidatingSharkFeatureGrids = false;
+		[sharksToUpdate release];
+		_isInvalidatingSharkFeatureGrids = false;	
+	});
 }
 
 -(void) invalidatePenguinFeatureGridsNear:(LHSprite*)sprite {
@@ -2422,20 +2448,22 @@
 	}
 	_isInvalidatingPenguinFeatureGrids = true;
 	
-	NSMutableArray* penguinsToUpdate = [[NSMutableArray alloc] init];
-	for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
-		if(sprite == nil || ccpDistance(sprite.position, penguin.position) < 150*SCALING_FACTOR_GENERIC) {
-			[penguinsToUpdate addObject:penguin];
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+		NSMutableArray* penguinsToUpdate = [[NSMutableArray alloc] init];
+		for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
+			if(sprite == nil || ccpDistance(sprite.position, penguin.position) < 150*SCALING_FACTOR_GENERIC) {
+				[penguinsToUpdate addObject:penguin];
+			}
 		}
-	}
-	if(penguinsToUpdate.count > 0) {
-		[self generateFeatureGrids];
-		for(LHSprite* penguin in penguinsToUpdate) {
-			[self updateFeatureMapForPenguin:penguin];
+		if(penguinsToUpdate.count > 0) {
+			[self generateFeatureGrids];
+			for(LHSprite* penguin in penguinsToUpdate) {
+				[self updateFeatureMapForPenguin:penguin];
+			}
 		}
-	}
-	[penguinsToUpdate release];
-	_isInvalidatingPenguinFeatureGrids = false;
+		[penguinsToUpdate release];
+		_isInvalidatingPenguinFeatureGrids = false;
+	});
 }
 
 -(void) invalidateMoveGridsNear:(LHSprite*)sprite {
@@ -2635,16 +2663,16 @@
 				
 				if(distN == absMin) {
 					[shark transformPosition:ccp(shark.position.x, (shark.position.y*2+borderN.y)/3)];
-					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the north of a border he is in contact with", shark.uniqueName);
+					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the north of border %@ he is in contact with", shark.uniqueName, touchedBoder.uniqueName);
 				}else if(distS == absMin) {
 					[shark transformPosition:ccp(shark.position.x, (shark.position.y*2+borderS.y)/3)];
-					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the south of a border he is in contact with", shark.uniqueName);
+					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the south of border %@ he is in contact with", shark.uniqueName, touchedBoder.uniqueName);
 				}else if(distE == absMin) {
 					[shark transformPosition:ccp((shark.position.x*2+borderE.x)/3, shark.position.y)];
-					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the east of a border he is in contact with", shark.uniqueName);
+					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the east of border %@ he is in contact with", shark.uniqueName, touchedBoder.uniqueName);
 				}else if(distW == absMin) {
 					[shark transformPosition:ccp((shark.position.x*2+borderW.x)/3, shark.position.y)];
-					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the west of a border he is in contact with", shark.uniqueName);
+					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the west of border %@ he is in contact with", shark.uniqueName, touchedBoder.uniqueName);
 				}
 			}
 						
@@ -2887,16 +2915,16 @@
 					
 					if(distN == absMin) {
 						[penguin transformPosition:ccp(penguin.position.x, (penguin.position.y*2+borderN.y)/3)];
-						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the north of a border he is in contact with", penguin.uniqueName);
+						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the north off border %@ he is in contact with", penguin.uniqueName, touchedBoder.uniqueName);
 					}else if(distS == absMin) {
 						[penguin transformPosition:ccp(penguin.position.x, (penguin.position.y*2+borderS.y)/3)];
-						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the south of a border he is in contact with", penguin.uniqueName);
+						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the south off border %@ he is in contact with", penguin.uniqueName, touchedBoder.uniqueName);
 					}else if(distE == absMin) {
 						[penguin transformPosition:ccp((penguin.position.x*2+borderE.x)/3, penguin.position.y)];
-						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the east of a border he is in contact with", penguin.uniqueName);
+						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the east off border %@ he is in contact with", penguin.uniqueName, touchedBoder.uniqueName);
 					}else if(distW == absMin) {
 						[penguin transformPosition:ccp((penguin.position.x*2+borderW.x)/3, penguin.position.y)];
-						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the west of a border he is in contact with", penguin.uniqueName);
+						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the west off border %@ he is in contact with", penguin.uniqueName, touchedBoder.uniqueName);
 					}
 				}
 				
@@ -3150,6 +3178,15 @@
 						[[_penguinMoveGridDatas objectForKey:penguin.uniqueName] scheduleUpdateToMoveGridIn:.50f];
 					}
 					[_handOfGodPowerNode runAction:[CCFadeOut actionWithDuration:1.5f]];
+					
+					//analytics logging
+					NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+						[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
+						_levelPackPath, @"Level_Pack",
+						[NSNumber numberWithDouble:_handOfGodPowerSecondsRemaining], @"Power_Remaining",
+					nil];
+					[Analytics logEvent:@"Nudged_Penguin" withParameters:flurryParams];					
+					
 				}
 			}
 		}
@@ -3212,12 +3249,12 @@
 			for(int y = 0; y < _gridHeight; y++) {
 				if(__DEBUG_PENGUINS && penguinMoveGrid != nil) {
 					int pv = (penguinMoveGrid[x][y]);
-					ccDrawColor4B(55,55,(pv/penguinMoveGridData.bestFoundRouteWeight)*200+55,50);
+					ccDrawColor4B(55,55,(pv/max(penguinMoveGridData.bestFoundRouteWeight,1))*200+55,50);
 					ccDrawPoint( ccp(x*_gridSize+_gridSize/2, y*_gridSize+_gridSize/2) );
 				}
 				if(__DEBUG_SHARKS && sharkMoveGrid != nil) {
 					int sv = (sharkMoveGrid[x][y]);
-					ccDrawColor4B((sv/sharkMoveGridData.bestFoundRouteWeight)*200+55,55,55,50);
+					ccDrawColor4B((sv/max(sharkMoveGridData.bestFoundRouteWeight,1))*200+55,55,55,50);
 					ccDrawPoint( ccp(x*_gridSize + _gridSize/2.0, y*_gridSize + _gridSize/2) );
 				}
 			}
