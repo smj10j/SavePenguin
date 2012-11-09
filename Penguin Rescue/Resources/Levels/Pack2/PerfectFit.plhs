@@ -315,7 +315,7 @@
 								<key>FlipX</key>
 								<false/>
 								<key>FlipY</key>
-								<false/>
+								<true/>
 								<key>Frame</key>
 								<string>{{63, 287}, {367.75, 60.75}}</string>
 								<key>IsDrawable</key>
@@ -329,7 +329,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{303.375, 373.75}</string>
+								<string>{295.375, 375.75}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -605,7 +605,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{298.5, 248.625}</string>
+								<string>{306.5, 252.625}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>

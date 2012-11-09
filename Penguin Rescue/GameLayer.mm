@@ -746,7 +746,6 @@
 
 	if(DEBUG_MOVEGRID) DebugLog(@"Generating feature maps...");
 	
-	//double startTime = [[NSDate date] timeIntervalSince1970];
 
 	//fresh start
 	for(int x = 0; x < _gridWidth; x++) {
@@ -769,6 +768,7 @@
 	
 	//if(DEBUG_MOVEGRID) DebugLog(@"Num safe lands: %d, Num borders: %d", [lands count], [borders count]);
 	
+	
 	for(LHSprite* land in unpassableAreas) {
 			
 		b2AABB aabb;
@@ -785,7 +785,7 @@
 		int maxX = min(aabb.upperBound.x*PTM_RATIO, _levelSize.width-1);
 		int minY = max(aabb.lowerBound.y*PTM_RATIO, 0);
 		int maxY = min(aabb.upperBound.y*PTM_RATIO, _levelSize.height-1);
-			
+
 /*
 		DebugLog(@"Land %@ AABB bounds from %f,%f to %f,%f", land.uniqueName, aabb.lowerBound.x, aabb.lowerBound.y, aabb.upperBound.x, aabb.upperBound.y);
 		DebugLog(@"Land %@ position %f,%f", land.uniqueName, land.position.x, land.position.y);
@@ -795,16 +795,20 @@
 
 		//create the areas that both sharks and penguins can't go
 		
-		//full fill
-		for(int x = minX; x < maxX; x++) {
-			for(int y = minY; y < maxY; y++) {
-				_sharkMapfeaturesGrid[(int)(x/_gridSize)][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
+		//cross-patch fill (+=2 step)
+		//double startTime = [[NSDate date] timeIntervalSince1970];
+		for(int x = minX; x < maxX; x+= 2) {
+			for(int y = minY; y < maxY; y+= 2) {
+				int gridX = (x/_gridSize);
+				int gridY = (y/_gridSize);
+				_sharkMapfeaturesGrid[gridX][gridY] = HARD_BORDER_WEIGHT;
 				if(land.tag == BORDER || land.tag == OBSTRUCTION) {
 					//penguins can pass through SANDBAR and want to target LAND
-					_penguinMapfeaturesGrid[(int)(x/_gridSize)][(int)(y/_gridSize)] = HARD_BORDER_WEIGHT;
+					_penguinMapfeaturesGrid[gridX][gridY] = HARD_BORDER_WEIGHT;
 				}
 			}
 		}
+		//NSLog(@"Fill time: %f", [[NSDate date] timeIntervalSince1970] - startTime);
 
 	}
 	
@@ -822,11 +826,11 @@
 		_penguinMapfeaturesGrid[_gridWidth-1][y] = HARD_BORDER_WEIGHT;
 	}
 	
-	//create a set of maps for each penguin
-	NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
-	for(LHSprite* penguin in penguins) {
 	
-		if(_state == SETUP) {
+	if(_state == SETUP) {
+
+		NSArray* penguins = [_levelLoader spritesWithTag:PENGUIN];
+		for(LHSprite* penguin in penguins) {
 			//if on some land, move him off it!
 			//we only do this during PLACE because it makes "weird" behavior when placing obstructions near actors
 			CGPoint penguinGridPos = [self toGrid:penguin.position];
@@ -849,13 +853,9 @@
 				[penguin transformPosition:ccp(penguinGridPos.x*_gridSize + _gridSize/2, penguinGridPos.y*_gridSize + _gridSize/2)];
 			}
 		}		
-	}
 	
-	//create a set of maps for each shark
-	NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
-	for(LHSprite* shark in sharks) {
-
-		if(_state == SETUP) {
+		NSArray* sharks = [_levelLoader spritesWithTag:SHARK];
+		for(LHSprite* shark in sharks) {
 			//if on some land, move him off it!
 			//we only do this during PLACE because it makes "weird" behavior when placing obstructions near actors
 			CGPoint sharkGridPos = [self toGrid:shark.position];
@@ -879,7 +879,6 @@
 			}
 		}
 	}
-		
 	
 	if(DEBUG_MOVEGRID) DebugLog(@"Done generating feature maps");
 	_isGeneratingFeatureGrid = false;
@@ -2302,6 +2301,7 @@
 		for(LHSprite* shark in _sharksThatNeedToUpdateFeatureGrids) {
 			[self updateFeatureMapForShark:shark];
 		}
+		
 		//this can remove some objects that were added during this time... but we'll take our chances for now
 		[_sharksThatNeedToUpdateFeatureGrids removeAllObjects];
 		_isInvalidatingSharkFeatureGrids = false;
@@ -2438,6 +2438,7 @@
 			[self invalidateFeatureGridsNear:land];
 		}
 	}*/
+	
 	[self invalidateFeatureGridsNear:nil];
 }
 
