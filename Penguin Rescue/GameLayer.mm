@@ -2294,31 +2294,32 @@
 	}
 	
 	//do any grid updates as requested
+	bool hasUpdateFeatureGrid = false;
 	if(!_isInvalidatingSharkFeatureGrids && _sharksThatNeedToUpdateFeatureGrids.count > 0) {
 		_isInvalidatingSharkFeatureGrids = true;
-		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-			[self generateFeatureGrids];
-			for(LHSprite* shark in _sharksThatNeedToUpdateFeatureGrids) {
-				[self updateFeatureMapForShark:shark];
-			}
-			//this can remove some objects that were added during this time... but we'll take our chances for now
-			[_sharksThatNeedToUpdateFeatureGrids removeAllObjects];
-			_isInvalidatingSharkFeatureGrids = false;
-		});
+		[self generateFeatureGrids];
+		hasUpdateFeatureGrid = true;
+		for(LHSprite* shark in _sharksThatNeedToUpdateFeatureGrids) {
+			[self updateFeatureMapForShark:shark];
+		}
+		//this can remove some objects that were added during this time... but we'll take our chances for now
+		[_sharksThatNeedToUpdateFeatureGrids removeAllObjects];
+		_isInvalidatingSharkFeatureGrids = false;
 	}
+	
 	//do any grid updates as requested
 	if(!_isInvalidatingPenguinFeatureGrids && _penguinsThatNeedToUpdateFeatureGrids.count > 0) {
 		_isInvalidatingPenguinFeatureGrids = true;
-		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+		if(!hasUpdateFeatureGrid) {
 			[self generateFeatureGrids];
-			for(LHSprite* penguin in _penguinsThatNeedToUpdateFeatureGrids) {
-				[self updateFeatureMapForPenguin:penguin];
-			}
-			//this can remove some objects that were added during this time... but we'll take our chances for now
-			[_penguinsThatNeedToUpdateFeatureGrids removeAllObjects];
-			_isInvalidatingPenguinFeatureGrids = false;
-		});
-	}	
+		}
+		for(LHSprite* penguin in _penguinsThatNeedToUpdateFeatureGrids) {
+			[self updateFeatureMapForPenguin:penguin];
+		}
+		//this can remove some objects that were added during this time... but we'll take our chances for now
+		[_penguinsThatNeedToUpdateFeatureGrids removeAllObjects];
+		_isInvalidatingPenguinFeatureGrids = false;
+	}
 	
 	//spin the whirlpools at a constant rate
 	for(LHSprite* whirlpool in [_levelLoader spritesWithTag:WHIRLPOOL]) {
@@ -2455,7 +2456,6 @@
 
 -(void) invalidateSharkFeatureGridsNear:(LHSprite*)sprite {	
 	for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
-		NSLog(@"CHECKING SHARK %@ against SPRITE %@", shark.uniqueName, sprite.uniqueName);
 		if(sprite == nil || ccpDistance(sprite.position, shark.position) < 150*SCALING_FACTOR_GENERIC) {
 			if(![_sharksThatNeedToUpdateFeatureGrids containsObject:shark]) {
 				[_sharksThatNeedToUpdateFeatureGrids addObject:shark];
