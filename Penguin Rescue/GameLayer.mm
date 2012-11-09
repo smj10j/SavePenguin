@@ -671,7 +671,6 @@
 		
 			//already placed - set it's physics data
 			sprite.body->ApplyTorque(sprite.rotation < 180 ? -15 : 15);
-			sprite.flipX = sprite.rotation > 180;
 			
 			ToolboxItem_Whirlpool* toolboxItemData = (ToolboxItem_Whirlpool*)sprite.userInfo;
 			[sprite setScale:toolboxItemData.scale];
@@ -970,7 +969,6 @@
 		double angularVelocity = _activeToolboxItem.body->GetAngularVelocity();
 		if(angularVelocity == 0) {
 			_activeToolboxItem.body->ApplyTorque(-15);
-			_activeToolboxItem.flipX = false;
 		}
 	}
 }
@@ -1015,7 +1013,6 @@
 			if([_activeToolboxItem.userInfoClassName isEqualToString:@"ToolboxItem_Whirlpool"]) {
 				_activeToolboxItem.body->SetAngularVelocity(0);
 				_activeToolboxItem.body->ApplyTorque(-15);
-				_activeToolboxItem.flipX = false;
 			}else {
 				[_activeToolboxItem transformRotation:0];
 			}
@@ -2058,12 +2055,65 @@
 }
 
 
+-(void)physicsStep:(ccTime)dt {
+			
+	/* Update the physics - we do this even during PAUSE because */
+	int32 velocityIterations = 8;
+	int32 positionIterations = 1;
+	
+	/*
+	this SERIOUSLY slows things down
+	
+	_box2dStepAccumulator+= dt;
+	while(_box2dStepAccumulator > TARGET_PHYSICS_STEP) {
+	
+		_box2dStepAccumulator-= TARGET_PHYSICS_STEP;
+	
+		_world->Step(TARGET_PHYSICS_STEP, velocityIterations, positionIterations);
+			
+	
+		
+		if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with world step");
+	}*/
+	_world->Step(dt, velocityIterations, positionIterations);
+
+	
+	//Iterate over the bodies in the physics world
+	for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
+	{
+		if (b->GetUserData() != NULL)
+		{
+			//Synchronize the AtlasSprites position and rotation with the corresponding body
+			CCSprite *myActor = (CCSprite*)b->GetUserData();
+			
+			if(myActor != 0)
+			{
+				//THIS IS VERY IMPORTANT - GETTING THE POSITION FROM BOX2D TO COCOS2D
+				myActor.position = [LevelHelperLoader metersToPoints:b->GetPosition()];
+				myActor.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
+			}
+			
+		}
+	}
+}
+
 -(void) update: (ccTime) dt
 {
-	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Update tick");
+
+	/* !lways keep the physics going.
+	Linear Damping will stop actors
+	Whirlpools will keep spinning
+	Logs will be stopped by Linear damping but get a nice little spin out effect when paused
+	*/
+	if(_state != GAME_OVER) {
+		[self physicsStep:dt];
+	}
+
 	if(_state != RUNNING && _state != PLACE) {
 		return;
 	}
+	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Update tick");
+		
 
 	/* Things that can occur while placing toolbox items or while running */
 	
@@ -2197,6 +2247,18 @@
 		_shouldUpdateToolbox = true;
 	}
 	
+	//spin the whirlpools at a constant rate
+	for(LHSprite* whirlpool in [_levelLoader spritesWithTag:WHIRLPOOL]) {
+		ToolboxItem_Whirlpool* whirlpoolData = (ToolboxItem_Whirlpool*)whirlpool.userInfo;
+		double angVel = whirlpool.body->GetAngularVelocity();
+		double targetAngVel = whirlpoolData.power/100;
+		if(fabs(angVel) != targetAngVel) {
+			whirlpool.body->ApplyAngularImpulse(.1*(angVel < 0 ? (-targetAngVel-angVel) : (targetAngVel-angVel)));
+		}
+		whirlpool.flipX = angVel > 0;
+	}
+
+	
 	if(!DISTRIBUTION_MODE && __DEBUG_TOUCH_SECONDS != 0) {
 		double elapsed = ([[NSDate date] timeIntervalSince1970] - __DEBUG_TOUCH_SECONDS);
 		if(elapsed >= 1 && !__DEBUG_SHARKS) {
@@ -2261,16 +2323,6 @@
 		return;
 	}
 	
-	//spin the whirlpools at a constant rate
-	for(LHSprite* whirlpool in [_levelLoader spritesWithTag:WHIRLPOOL]) {
-		ToolboxItem_Whirlpool* whirlpoolData = (ToolboxItem_Whirlpool*)whirlpool.userInfo;
-		double angVel = whirlpool.body->GetAngularVelocity();
-		double targetAngVel = whirlpoolData.power/100;
-		if(fabs(angVel) != targetAngVel) {
-			whirlpool.body->ApplyAngularImpulse(.1*(angVel < 0 ? (-targetAngVel-angVel) : (targetAngVel-angVel)));
-		}
-	}
-
 
 	//place penguins on land for visual appeal
 	for(id penguinName in _penguinsToPutOnLand) {
@@ -2299,48 +2351,9 @@
 	[self moveSharks:dt];
 	[self movePenguins:dt];
 	
-	
-	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with game state update");
 
-	int32 velocityIterations = 8;
-	int32 positionIterations = 1;
-	
-	/*
-	this SERIOUSLY slows things down
-	
-	_box2dStepAccumulator+= dt;
-	while(_box2dStepAccumulator > TARGET_PHYSICS_STEP) {
-	
-		_box2dStepAccumulator-= TARGET_PHYSICS_STEP;
-	
-		_world->Step(TARGET_PHYSICS_STEP, velocityIterations, positionIterations);
-			
-	
-		
-		if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with world step");
-	}*/
-	_world->Step(dt, velocityIterations, positionIterations);
-
-	
-	//Iterate over the bodies in the physics world
-	for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
-	{
-		if (b->GetUserData() != NULL)
-		{
-			//Synchronize the AtlasSprites position and rotation with the corresponding body
-			CCSprite *myActor = (CCSprite*)b->GetUserData();
-			
-			if(myActor != 0)
-			{
-				//THIS IS VERY IMPORTANT - GETTING THE POSITION FROM BOX2D TO COCOS2D
-				myActor.position = [LevelHelperLoader metersToPoints:b->GetPosition()];
-				myActor.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
-			}
-			
-		}
-	}
-	
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with update tick");
+
 }
 
 -(void)invalidateFeatureGridsNearMovingLands {
@@ -2486,8 +2499,9 @@
 	for(LHSprite* whirlpool in whirlpools) {
 		ToolboxItem_Whirlpool* whirlpoolData = ((ToolboxItem_Whirlpool*)whirlpool.userInfo);
 		
+			double adjustedPower = whirlpoolData.power*SCALING_FACTOR_GENERIC;
 			double dist = ccpDistance(sprite.position, whirlpool.position);
-			if(dist < whirlpoolData.power*SCALING_FACTOR_GENERIC) {
+			if(dist < adjustedPower) {
 				
 				b2Vec2 vortexVelocity = whirlpool.body->GetLinearVelocityFromWorldPoint( sprite.body->GetPosition() );
 				b2Vec2 vortexVelocityN = vortexVelocity;
@@ -2498,9 +2512,11 @@
 				b2Vec2 dN = d;
 				dN.Normalize();
 				
-				double power = (pow(log(whirlpoolData.power - dist),2));
-				dxMod = vortexVelocity.x*power + dN.x*(whirlpoolData.power - dist)*.125;
-				dyMod = vortexVelocity.y*power + dN.y*(whirlpoolData.power - dist)*.125;
+				double rotationalPower = 2*log(adjustedPower - dist);
+				double suckingPower = (adjustedPower - dist)*.025;
+				
+				dxMod = vortexVelocity.x*rotationalPower + dN.x*suckingPower;
+				dyMod = vortexVelocity.y*rotationalPower + dN.y*suckingPower;
 				
 				/*DebugLog(@"Applying Whirlpool effect to %@ with dxMod=%f, dyMod=%f, dist=%f, angularVelocity=%f, vortexVelocity=%@, dN=%@",
 						sprite.uniqueName, dxMod, dyMod, dist, whirlpool.body->GetAngularVelocity(),
@@ -2589,7 +2605,7 @@
 			if(touchedBoder != nil) {
 			
 				//this makes the search ever-expanding
-				lastFoundStuckBorderDist = minDist;
+				lastFoundStuckBorderDist = bumpIterations%(MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND/3) == 0 ? minDist : lastFoundStuckBorderDist;
 			
 				CGPoint borderN = ccp(touchedBoder.position.x, touchedBoder.position.y+touchedBoder.boundingBox.size.height/2 + _gridSize/2);
 				double distN = ccpDistance(shark.position, borderN);
@@ -2602,16 +2618,16 @@
 				double absMin = fmin(fmin(fmin(distE, distW), distN), distS);
 				
 				if(distN == absMin) {
-					[shark transformPosition:ccp(shark.position.x, (shark.position.y+borderN.y)/2)];
+					[shark transformPosition:ccp(shark.position.x, (shark.position.y*2+borderN.y)/3)];
 					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the north of a border he is in contact with", shark.uniqueName);
 				}else if(distS == absMin) {
-					[shark transformPosition:ccp(shark.position.x, (shark.position.y+borderS.y)/2)];
+					[shark transformPosition:ccp(shark.position.x, (shark.position.y*2+borderS.y)/3)];
 					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the south of a border he is in contact with", shark.uniqueName);
 				}else if(distE == absMin) {
-					[shark transformPosition:ccp((shark.position.x+borderE.x)/2, shark.position.y)];
+					[shark transformPosition:ccp((shark.position.x*2+borderE.x)/3, shark.position.y)];
 					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the east of a border he is in contact with", shark.uniqueName);
 				}else if(distW == absMin) {
-					[shark transformPosition:ccp((shark.position.x+borderW.x)/2, shark.position.y)];
+					[shark transformPosition:ccp((shark.position.x*2+borderW.x)/3, shark.position.y)];
 					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the west of a border he is in contact with", shark.uniqueName);
 				}
 			}
@@ -2841,7 +2857,7 @@
 				if(touchedBoder != nil) {
 				
 					//this makes the search ever-expanding
-					lastFoundStuckBorderDist = minDist;
+					lastFoundStuckBorderDist = bumpIterations%(MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND/3) == 0 ? minDist : lastFoundStuckBorderDist;
 				
 					CGPoint borderN = ccp(touchedBoder.position.x, touchedBoder.position.y+touchedBoder.boundingBox.size.height/2 + _gridSize/2);
 					double distN = ccpDistance(penguin.position, borderN);
@@ -2854,16 +2870,16 @@
 					double absMin = fmin(fmin(fmin(distE, distW), distN), distS);
 					
 					if(distN == absMin) {
-						[penguin transformPosition:ccp(penguin.position.x, (penguin.position.y+borderN.y)/2)];
+						[penguin transformPosition:ccp(penguin.position.x, (penguin.position.y*2+borderN.y)/3)];
 						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the north of a border he is in contact with", penguin.uniqueName);
 					}else if(distS == absMin) {
-						[penguin transformPosition:ccp(penguin.position.x, (penguin.position.y+borderS.y)/2)];
+						[penguin transformPosition:ccp(penguin.position.x, (penguin.position.y*2+borderS.y)/3)];
 						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the south of a border he is in contact with", penguin.uniqueName);
 					}else if(distE == absMin) {
-						[penguin transformPosition:ccp((penguin.position.x+borderE.x)/2, penguin.position.y)];
+						[penguin transformPosition:ccp((penguin.position.x*2+borderE.x)/3, penguin.position.y)];
 						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the east of a border he is in contact with", penguin.uniqueName);
 					}else if(distW == absMin) {
-						[penguin transformPosition:ccp((penguin.position.x+borderW.x)/2, penguin.position.y)];
+						[penguin transformPosition:ccp((penguin.position.x*2+borderW.x)/3, penguin.position.y)];
 						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the west of a border he is in contact with", penguin.uniqueName);
 					}
 				}
@@ -3090,7 +3106,7 @@
 						double angularVelocity = _activeToolboxItem.body->GetAngularVelocity();
 						_activeToolboxItem.body->SetAngularVelocity(0);
 						_activeToolboxItem.body->ApplyTorque(angularVelocity>0 ? -15 : 15);
-						_activeToolboxItem.flipX = angularVelocity>0;
+						_activeToolboxItem.flipX = angularVelocity < 0;
 					}else {
 						[_activeToolboxItem transformRotation:((int)_activeToolboxItem.rotation+90)%360];
 					}

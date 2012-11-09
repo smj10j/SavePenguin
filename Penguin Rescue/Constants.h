@@ -16,7 +16,7 @@
 
 #define TEST_MODE true
 #define TEST_LEVEL_PACK @"Pack2"
-#define TEST_LEVEL @"Crunch"
+#define TEST_LEVEL @"Squeeze"
 
  
 
@@ -44,7 +44,7 @@
 
 #define SHARK_DIES_WHEN_STUCK false
 
-#define MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND 6
+#define MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND 12
 
 #define INITIAL_FREE_COINS 25
 
