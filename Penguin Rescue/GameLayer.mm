@@ -432,7 +432,7 @@
 	if(_levelHasMovingBorders) {
 		[self schedule:@selector(invalidateFeatureGridsNearMovingBorders) interval:0.4f];
 	}
-	if(_levelHasMovingLands) {
+	if(!_levelHasMovingBorders && _levelHasMovingLands) {
 		[self schedule:@selector(invalidateFeatureGridsNearMovingLands) interval:0.4f];
 	}
 }
@@ -2431,22 +2431,27 @@
 }
 
 -(void)invalidateFeatureGridsNearMovingLands {
+	/*
 	NSArray* lands = [_levelLoader spritesWithTag:LAND];
 	for(LHSprite* land in lands) {
 		if([land.userInfoClassName isEqualToString:@"MovingLand"]) {
 			[self invalidateFeatureGridsNear:land];
 		}
-	}
+	}*/
+	[self invalidateFeatureGridsNear:nil];
 }
 
 -(void)invalidateFeatureGridsNearMovingBorders {
+	/*
+	- this doesn't work on a level like Pack2/PerfectFit
 	NSArray* borders = [_levelLoader spritesWithTag:BORDER];
 	for(LHSprite* border in borders) {
-//		NSLog(@"BORDER %@ userInfoClassName=%@", border.uniqueName, border.userInfoClassName);
 		if([border.userInfoClassName isEqualToString:@"MovingBorder"]) {
 			[self invalidateFeatureGridsNear:border];
 		}
-	}
+	}*/
+	
+	[self invalidateFeatureGridsNear:nil];
 }
 
 -(void) invalidateFeatureGridsNear:(LHSprite*)sprite {
@@ -2456,7 +2461,7 @@
 
 -(void) invalidateSharkFeatureGridsNear:(LHSprite*)sprite {	
 	for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
-		if(sprite == nil || ccpDistance(sprite.position, shark.position) < 150*SCALING_FACTOR_GENERIC) {
+		if(sprite == nil || ccpDistance(sprite.position, shark.position) < max(sprite.boundingBox.size.width/2,sprite.boundingBox.size.height/2)+50*SCALING_FACTOR_GENERIC) {
 			if(![_sharksThatNeedToUpdateFeatureGrids containsObject:shark]) {
 				[_sharksThatNeedToUpdateFeatureGrids addObject:shark];
 			}
@@ -2474,7 +2479,7 @@
 
 -(void) invalidatePenguinFeatureGridsNear:(LHSprite*)sprite {
 	for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
-		if(sprite == nil || ccpDistance(sprite.position, penguin.position) < 150*SCALING_FACTOR_GENERIC) {
+		if(sprite == nil || ccpDistance(sprite.position, penguin.position) < max(sprite.boundingBox.size.width/2,sprite.boundingBox.size.height/2)+50*SCALING_FACTOR_GENERIC) {
 			if(![_penguinsThatNeedToUpdateFeatureGrids containsObject:penguin]) {
 				[_penguinsThatNeedToUpdateFeatureGrids addObject:penguin];
 			}
