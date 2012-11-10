@@ -1413,6 +1413,13 @@
 	for(LHSprite* menuItem in _inGameMenuItems) {
 	
 		[menuItem setAnchorPoint:ccp(3.25,3.25)];
+
+		//reset
+		[menuItem stopAllActions];
+		[menuItem transformRotation:0];
+		[menuItem transformScale:1];
+
+		//go!
 		[menuItem runAction:[CCFadeIn actionWithDuration:0.15f]];
 		[menuItem runAction:[CCRotateBy actionWithDuration:0.25f angle:angle]];
 		
