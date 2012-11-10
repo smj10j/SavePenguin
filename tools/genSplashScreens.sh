@@ -19,9 +19,9 @@ cp "$dstDir/Default@2x.png" "$dstDir/Default.png"
 sips -z 320 480 "$dstDir/Default.png"
 
 
-sips -r 90 "$dstDir/Default-568h@2x.png"
-sips -r 90 "$dstDir/Default.png"
-sips -r 90 "$dstDir/Default@2x.png"
+sips -r 270 "$dstDir/Default-568h@2x.png"
+sips -r 270 "$dstDir/Default.png"
+sips -r 270 "$dstDir/Default@2x.png"
 
 
 echo "----------- Running pngquant on splash screens --------------"

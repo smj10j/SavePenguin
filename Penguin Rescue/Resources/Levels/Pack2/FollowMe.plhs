@@ -621,6 +621,81 @@
 						</dict>
 						<dict>
 							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Wall5</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{0, 114}, {524.75, 61.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<true/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{414.5, -12.75}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{525, 62.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0.125, -0.375}</string>
+								<key>UniqueName</key>
+								<string>Wall5</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Wall5</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
 							<dict>
 								<key>AnimAtStart</key>
 								<true/>
@@ -756,6 +831,8 @@
 									<true/>
 									<key>hasSpottedShark</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isDead</key>
 									<true/>
 									<key>isInvisible</key>
@@ -777,6 +854,8 @@
 									<real>2048</real>
 									<key>hasSpottedShark</key>
 									<false/>
+									<key>hatName</key>
+									<string></string>
 									<key>isDead</key>
 									<false/>
 									<key>isInvisible</key>
@@ -869,6 +948,8 @@
 									<true/>
 									<key>endpointY</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isInvisible</key>
 									<true/>
 									<key>isStuck</key>
@@ -892,6 +973,8 @@
 									<real>1024</real>
 									<key>endpointY</key>
 									<real>400</real>
+									<key>hatName</key>
+									<string></string>
 									<key>isInvisible</key>
 									<false/>
 									<key>isStuck</key>
@@ -1074,7 +1157,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 147}, {116.5, 37.75}}</string>
+								<string>{{0, 109}, {116.5, 37.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1285,7 +1368,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{73, 185}, {29, 43.75}}</string>
+								<string>{{159, 147}, {29, 43.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1401,7 +1484,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{73, 185}, {29, 43.75}}</string>
+								<string>{{159, 147}, {29, 43.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1517,7 +1600,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{73, 185}, {29, 43.75}}</string>
+								<string>{{159, 147}, {29, 43.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1620,6 +1703,8 @@
 					<real>2048</real>
 					<key>hasSpottedShark</key>
 					<false/>
+					<key>hatName</key>
+					<string></string>
 					<key>isDead</key>
 					<false/>
 					<key>isInvisible</key>
@@ -1645,6 +1730,8 @@
 					<real>1024</real>
 					<key>endpointY</key>
 					<real>400</real>
+					<key>hatName</key>
+					<string></string>
 					<key>isInvisible</key>
 					<false/>
 					<key>isStuck</key>
@@ -1753,11 +1840,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>500</real>
+					<real>0.0</real>
 					<key>runningCost</key>
-					<real>750</real>
+					<real>0.0</real>
 					<key>scale</key>
-					<real>1</real>
+					<real>0.0</real>
 				</dict>
 			</dict>
 			<dict>
@@ -1766,11 +1853,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>500</real>
+					<real>0.0</real>
 					<key>runningCost</key>
-					<real>750</real>
+					<real>0.0</real>
 					<key>scale</key>
-					<real>1</real>
+					<real>0.0</real>
 				</dict>
 			</dict>
 			<dict>
@@ -1779,11 +1866,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>500</real>
+					<real>0.0</real>
 					<key>runningCost</key>
-					<real>750</real>
+					<real>0.0</real>
 					<key>scale</key>
-					<real>1</real>
+					<real>0.0</real>
 				</dict>
 			</dict>
 			<dict>
@@ -1798,7 +1885,7 @@
 					<key>isCyclic</key>
 					<true/>
 					<key>pathName</key>
-					<string></string>
+					<string>BezierNode</string>
 					<key>restartAtOtherEnd</key>
 					<false/>
 					<key>timeToCompletePath</key>
@@ -1817,7 +1904,7 @@
 					<key>isCyclic</key>
 					<true/>
 					<key>pathName</key>
-					<string></string>
+					<string>BezierNode</string>
 					<key>restartAtOtherEnd</key>
 					<false/>
 					<key>timeToCompletePath</key>

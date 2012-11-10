@@ -19,6 +19,302 @@
 			<array>
 				<dict>
 					<key>Children</key>
+					<array/>
+					<key>CustomClassInfo</key>
+					<dict>
+						<key>ClassName</key>
+						<string>No Class</string>
+					</dict>
+					<key>NodeType</key>
+					<string>LHBezier</string>
+					<key>ParentClass</key>
+					<string>LHLayer</string>
+					<key>ParentName</key>
+					<string>MAIN_LAYER</string>
+					<key>PhysicsProperties</key>
+					<dict>
+						<key>AngularDamping</key>
+						<real>0.0</real>
+						<key>AngularVelocity</key>
+						<real>0.0</real>
+						<key>CanSleep</key>
+						<true/>
+						<key>Category</key>
+						<integer>1</integer>
+						<key>Density</key>
+						<real>0.20000000298023224</real>
+						<key>FixedRot</key>
+						<false/>
+						<key>Fixture</key>
+						<array/>
+						<key>Friction</key>
+						<real>0.20000000298023224</real>
+						<key>GravityScale</key>
+						<real>1</real>
+						<key>Group</key>
+						<integer>0</integer>
+						<key>HandledBySH</key>
+						<false/>
+						<key>IsBullet</key>
+						<false/>
+						<key>IsCircle</key>
+						<false/>
+						<key>IsSensor</key>
+						<false/>
+						<key>LHHeight</key>
+						<real>0.0</real>
+						<key>LHShapePositionOffset</key>
+						<string>{0, 0}</string>
+						<key>LHWidth</key>
+						<real>0.0</real>
+						<key>LinearDamping</key>
+						<real>0.0</real>
+						<key>LinearVelocity</key>
+						<string>{0, 0}</string>
+						<key>Mask</key>
+						<integer>65535</integer>
+						<key>Name</key>
+						<string>LH_Generic_Fixture</string>
+						<key>Restitution</key>
+						<real>0.20000000298023224</real>
+						<key>Tag</key>
+						<integer>0</integer>
+						<key>TileOptimization</key>
+						<real>3</real>
+						<key>TileVertices</key>
+						<array/>
+						<key>Type</key>
+						<integer>3</integer>
+					</dict>
+					<key>TextureProperties</key>
+					<dict>
+						<key>Angle</key>
+						<integer>0</integer>
+						<key>Color</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>Curves</key>
+						<array>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{114.6599995651689, 71.258076133385231}</string>
+								<key>EndPoint</key>
+								<string>{100.27626063017516, 108.20673287118964}</string>
+								<key>StartControlPoint</key>
+								<string>{94.659999565168903, 71.258076133385231}</string>
+								<key>StartPoint</key>
+								<string>{109.04373850016265, 34.309419395580818}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{144.09367527155547, 112.59047180618339}</string>
+								<key>EndPoint</key>
+								<string>{167.91108991293578, 116.97421074117713}</string>
+								<key>StartControlPoint</key>
+								<string>{124.09367527155547, 112.59047180618339}</string>
+								<key>StartPoint</key>
+								<string>{100.27626063017516, 108.20673287118964}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{247.42466445355086, 108.83298129047446}</string>
+								<key>EndPoint</key>
+								<string>{306.93823899416594, 100.6917518397718}</string>
+								<key>StartControlPoint</key>
+								<string>{227.42466445355086, 108.83298129047446}</string>
+								<key>StartPoint</key>
+								<string>{167.91108991293578, 116.97421074117713}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{345.74566628126769, 66.874337198391487}</string>
+								<key>EndPoint</key>
+								<string>{364.55309356836943, 33.056922557011177}</string>
+								<key>StartControlPoint</key>
+								<string>{325.74566628126769, 66.874337198391487}</string>
+								<key>StartPoint</key>
+								<string>{306.93823899416594, 100.6917518397718}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{406.49176295189528, 93.803019227638771}</string>
+								<key>EndPoint</key>
+								<string>{428.43043233542113, 154.54911589826636}</string>
+								<key>StartControlPoint</key>
+								<string>{386.49176295189528, 93.803019227638771}</string>
+								<key>StartPoint</key>
+								<string>{364.55309356836943, 33.056922557011177}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{365.15936727909713, 182.73029476608329}</string>
+								<key>EndPoint</key>
+								<string>{281.88830222277312, 210.91147363390021}</string>
+								<key>StartControlPoint</key>
+								<string>{345.15936727909713, 182.73029476608329}</string>
+								<key>StartPoint</key>
+								<string>{428.43043233542113, 154.54911589826636}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{251.8084033885446, 189.61902737821632}</string>
+								<key>EndPoint</key>
+								<string>{201.72850455431609, 168.32658112253242}</string>
+								<key>StartControlPoint</key>
+								<string>{231.8084033885446, 189.61902737821632}</string>
+								<key>StartPoint</key>
+								<string>{281.88830222277312, 210.91147363390021}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{197.32479091076522, 189.61902737821632}</string>
+								<key>EndPoint</key>
+								<string>{172.92107726721434, 210.91147363390021}</string>
+								<key>StartControlPoint</key>
+								<string>{177.32479091076522, 189.61902737821632}</string>
+								<key>StartPoint</key>
+								<string>{201.72850455431609, 168.32658112253242}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{195.44604565291075, 233.45641672815373}</string>
+								<key>EndPoint</key>
+								<string>{197.97101403860717, 256.00135982240727}</string>
+								<key>StartControlPoint</key>
+								<string>{175.44604565291075, 233.45641672815373}</string>
+								<key>StartPoint</key>
+								<string>{172.92107726721434, 210.91147363390021}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{230.51595713286071, 247.23388195241978}</string>
+								<key>EndPoint</key>
+								<string>{243.06090022711425, 238.46640408243232}</string>
+								<key>StartControlPoint</key>
+								<string>{210.51595713286071, 247.23388195241978}</string>
+								<key>StartPoint</key>
+								<string>{197.97101403860717, 256.00135982240727}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{258.07088758139281, 203.39649260248237}</string>
+								<key>EndPoint</key>
+								<string>{253.08087493567137, 168.32658112253242}</string>
+								<key>StartControlPoint</key>
+								<string>{238.07088758139281, 203.39649260248237}</string>
+								<key>StartPoint</key>
+								<string>{243.06090022711425, 238.46640408243232}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{227.3847150364366, 162.69034534896903}</string>
+								<key>EndPoint</key>
+								<string>{181.68855513720183, 157.05410957540565}</string>
+								<key>StartControlPoint</key>
+								<string>{207.3847150364366, 162.69034534896903}</string>
+								<key>StartPoint</key>
+								<string>{253.08087493567137, 168.32658112253242}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{187.30481620220809, 196.50775999034934}</string>
+								<key>EndPoint</key>
+								<string>{172.92107726721434, 235.96141040529304}</string>
+								<key>StartControlPoint</key>
+								<string>{167.30481620220809, 196.50775999034934}</string>
+								<key>StartPoint</key>
+								<string>{181.68855513720183, 157.05410957540565}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{211.72850455431609, 244.1026398559957}</string>
+								<key>EndPoint</key>
+								<string>{230.53593184141783, 252.24386930669837}</string>
+								<key>StartControlPoint</key>
+								<string>{191.72850455431609, 244.1026398559957}</string>
+								<key>StartPoint</key>
+								<string>{172.92107726721434, 235.96141040529304}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{275.60584332136779, 233.45641672815376}</string>
+								<key>EndPoint</key>
+								<string>{300.67575480131774, 214.66896414960914}</string>
+								<key>StartControlPoint</key>
+								<string>{255.60584332136779, 233.45641672815376}</string>
+								<key>StartPoint</key>
+								<string>{230.53593184141783, 252.24386930669837}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{321.94822634844451, 180.22530108894401}</string>
+								<key>EndPoint</key>
+								<string>{323.22069789557128, 145.78163802827888}</string>
+								<key>StartControlPoint</key>
+								<string>{301.94822634844451, 180.22530108894401}</string>
+								<key>StartPoint</key>
+								<string>{300.67575480131774, 214.66896414960914}</string>
+							</dict>
+							<dict>
+								<key>EndControlPoint</key>
+								<string>{226.75846661715178, 93.803019227638771}</string>
+								<key>EndPoint</key>
+								<string>{110.29623533873229, 41.824400426998665}</string>
+								<key>StartControlPoint</key>
+								<string>{206.75846661715178, 93.803019227638771}</string>
+								<key>StartPoint</key>
+								<string>{323.22069789557128, 145.78163802827888}</string>
+							</dict>
+						</array>
+						<key>DrawBorder</key>
+						<true/>
+						<key>FlipX</key>
+						<false/>
+						<key>FlipY</key>
+						<false/>
+						<key>Image</key>
+						<string>No Image</string>
+						<key>ImageFile</key>
+						<string>No Image</string>
+						<key>IsClosed</key>
+						<false/>
+						<key>IsDrawable</key>
+						<true/>
+						<key>IsExpanded</key>
+						<false/>
+						<key>IsPath</key>
+						<false/>
+						<key>IsSimpleLine</key>
+						<false/>
+						<key>IsTile</key>
+						<false/>
+						<key>LineColor</key>
+						<string>{{1, 1}, {1, 1}}</string>
+						<key>LineWidth</key>
+						<real>1</real>
+						<key>Locked</key>
+						<false/>
+						<key>Opacity</key>
+						<real>1</real>
+						<key>Position</key>
+						<string>{109.04373850016265, 34.309419395580818}</string>
+						<key>Scale</key>
+						<string>{1, 1}</string>
+						<key>SpriteSize</key>
+						<string>{0, 0}</string>
+						<key>Tag</key>
+						<integer>15</integer>
+						<key>TagName</key>
+						<string>DOODAD_PATH</string>
+						<key>UniqueName</key>
+						<string>Flying_Bird_Path_1</string>
+						<key>ZOrder</key>
+						<integer>0</integer>
+					</dict>
+					<key>UniqueName</key>
+					<string>Flying_Bird_Path_1</string>
+				</dict>
+				<dict>
+					<key>Children</key>
 					<array>
 						<dict>
 							<key>AnimationsProperties</key>
@@ -244,6 +540,231 @@
 							</dict>
 							<key>UniqueName</key>
 							<string>Wall5</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Debris_Island2</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{466, 73}, {36.75, 34}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{472.75, 214.75}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{37.5, 37.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0.125, -0.5}</string>
+								<key>UniqueName</key>
+								<string>Debris_Island2</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Debris_Island2</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Debris_Island1</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{466, 0}, {35.75, 36.5}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{6.475521592492214, 57.865871896335079}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{37.5, 37.5}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{1.125, -0.25}</string>
+								<key>UniqueName</key>
+								<string>Debris_Island1</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Debris_Island1</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Debris_Island4</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{123, 403}, {83.5, 64.75}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{486.5, 278.5}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{85, 65}</string>
+								<key>Tag</key>
+								<integer>7</integer>
+								<key>TagName</key>
+								<string>BORDER</string>
+								<key>TextureOffset</key>
+								<string>{0.25, -0.125}</string>
+								<key>UniqueName</key>
+								<string>Debris_Island4</string>
+								<key>ZOrder</key>
+								<integer>2</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Debris_Island4</string>
 						</dict>
 						<dict>
 							<key>AnimationsProperties</key>
@@ -656,7 +1177,7 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{0, 147}, {116.5, 37.75}}</string>
+						<string>{{0, 109}, {116.5, 37.75}}</string>
 						<key>IsDrawable</key>
 						<true/>
 						<key>IsExpanded</key>
@@ -705,6 +1226,8 @@
 									<true/>
 									<key>hasSpottedShark</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isDead</key>
 									<true/>
 									<key>isInvisible</key>
@@ -726,6 +1249,8 @@
 									<real>2048</real>
 									<key>hasSpottedShark</key>
 									<false/>
+									<key>hatName</key>
+									<string></string>
 									<key>isDead</key>
 									<false/>
 									<key>isInvisible</key>
@@ -816,6 +1341,8 @@
 									<true/>
 									<key>hasSpottedShark</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isDead</key>
 									<true/>
 									<key>isInvisible</key>
@@ -837,6 +1364,8 @@
 									<real>2048</real>
 									<key>hasSpottedShark</key>
 									<false/>
+									<key>hatName</key>
+									<string></string>
 									<key>isDead</key>
 									<false/>
 									<key>isInvisible</key>
@@ -929,6 +1458,8 @@
 									<true/>
 									<key>endpointY</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isInvisible</key>
 									<true/>
 									<key>isStuck</key>
@@ -952,6 +1483,8 @@
 									<real>1024</real>
 									<key>endpointY</key>
 									<real>400</real>
+									<key>hatName</key>
+									<string></string>
 									<key>isInvisible</key>
 									<false/>
 									<key>isStuck</key>
@@ -1229,7 +1762,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 204}, {17.75, 71.75}}</string>
+								<string>{{118, 70}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1324,7 +1857,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{118, 70}, {35.5, 19.75}}</string>
+								<string>{{142, 109}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1419,7 +1952,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{118, 70}, {35.5, 19.75}}</string>
+								<string>{{142, 109}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1514,7 +2047,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{118, 70}, {35.5, 19.75}}</string>
+								<string>{{142, 109}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1609,7 +2142,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{118, 70}, {35.5, 19.75}}</string>
+								<string>{{142, 109}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1725,7 +2258,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{73, 185}, {29, 43.75}}</string>
+								<string>{{159, 147}, {29, 43.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1841,7 +2374,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{73, 185}, {29, 43.75}}</string>
+								<string>{{159, 147}, {29, 43.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1957,7 +2490,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{73, 185}, {29, 43.75}}</string>
+								<string>{{159, 147}, {29, 43.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2015,302 +2548,6 @@
 					<key>ZOrder</key>
 					<integer>30</integer>
 				</dict>
-				<dict>
-					<key>Children</key>
-					<array/>
-					<key>CustomClassInfo</key>
-					<dict>
-						<key>ClassName</key>
-						<string>No Class</string>
-					</dict>
-					<key>NodeType</key>
-					<string>LHBezier</string>
-					<key>ParentClass</key>
-					<string>LHLayer</string>
-					<key>ParentName</key>
-					<string>MAIN_LAYER</string>
-					<key>PhysicsProperties</key>
-					<dict>
-						<key>AngularDamping</key>
-						<real>0.0</real>
-						<key>AngularVelocity</key>
-						<real>0.0</real>
-						<key>CanSleep</key>
-						<true/>
-						<key>Category</key>
-						<integer>1</integer>
-						<key>Density</key>
-						<real>0.20000000298023224</real>
-						<key>FixedRot</key>
-						<false/>
-						<key>Fixture</key>
-						<array/>
-						<key>Friction</key>
-						<real>0.20000000298023224</real>
-						<key>GravityScale</key>
-						<real>1</real>
-						<key>Group</key>
-						<integer>0</integer>
-						<key>HandledBySH</key>
-						<false/>
-						<key>IsBullet</key>
-						<false/>
-						<key>IsCircle</key>
-						<false/>
-						<key>IsSensor</key>
-						<false/>
-						<key>LHHeight</key>
-						<real>0.0</real>
-						<key>LHShapePositionOffset</key>
-						<string>{0, 0}</string>
-						<key>LHWidth</key>
-						<real>0.0</real>
-						<key>LinearDamping</key>
-						<real>0.0</real>
-						<key>LinearVelocity</key>
-						<string>{0, 0}</string>
-						<key>Mask</key>
-						<integer>65535</integer>
-						<key>Name</key>
-						<string>LH_Generic_Fixture</string>
-						<key>Restitution</key>
-						<real>0.20000000298023224</real>
-						<key>Tag</key>
-						<integer>0</integer>
-						<key>TileOptimization</key>
-						<real>3</real>
-						<key>TileVertices</key>
-						<array/>
-						<key>Type</key>
-						<integer>3</integer>
-					</dict>
-					<key>TextureProperties</key>
-					<dict>
-						<key>Angle</key>
-						<integer>0</integer>
-						<key>Color</key>
-						<string>{{1, 1}, {1, 1}}</string>
-						<key>Curves</key>
-						<array>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{114.6599995651689, 71.258076133385231}</string>
-								<key>EndPoint</key>
-								<string>{100.27626063017516, 108.20673287118964}</string>
-								<key>StartControlPoint</key>
-								<string>{94.659999565168903, 71.258076133385231}</string>
-								<key>StartPoint</key>
-								<string>{109.04373850016265, 34.309419395580818}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{144.09367527155547, 112.59047180618339}</string>
-								<key>EndPoint</key>
-								<string>{167.91108991293578, 116.97421074117713}</string>
-								<key>StartControlPoint</key>
-								<string>{124.09367527155547, 112.59047180618339}</string>
-								<key>StartPoint</key>
-								<string>{100.27626063017516, 108.20673287118964}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{247.42466445355086, 108.83298129047446}</string>
-								<key>EndPoint</key>
-								<string>{306.93823899416594, 100.6917518397718}</string>
-								<key>StartControlPoint</key>
-								<string>{227.42466445355086, 108.83298129047446}</string>
-								<key>StartPoint</key>
-								<string>{167.91108991293578, 116.97421074117713}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{345.74566628126769, 66.874337198391487}</string>
-								<key>EndPoint</key>
-								<string>{364.55309356836943, 33.056922557011177}</string>
-								<key>StartControlPoint</key>
-								<string>{325.74566628126769, 66.874337198391487}</string>
-								<key>StartPoint</key>
-								<string>{306.93823899416594, 100.6917518397718}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{406.49176295189528, 93.803019227638771}</string>
-								<key>EndPoint</key>
-								<string>{428.43043233542113, 154.54911589826636}</string>
-								<key>StartControlPoint</key>
-								<string>{386.49176295189528, 93.803019227638771}</string>
-								<key>StartPoint</key>
-								<string>{364.55309356836943, 33.056922557011177}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{365.15936727909713, 182.73029476608329}</string>
-								<key>EndPoint</key>
-								<string>{281.88830222277312, 210.91147363390021}</string>
-								<key>StartControlPoint</key>
-								<string>{345.15936727909713, 182.73029476608329}</string>
-								<key>StartPoint</key>
-								<string>{428.43043233542113, 154.54911589826636}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{251.8084033885446, 189.61902737821632}</string>
-								<key>EndPoint</key>
-								<string>{201.72850455431609, 168.32658112253242}</string>
-								<key>StartControlPoint</key>
-								<string>{231.8084033885446, 189.61902737821632}</string>
-								<key>StartPoint</key>
-								<string>{281.88830222277312, 210.91147363390021}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{197.32479091076522, 189.61902737821632}</string>
-								<key>EndPoint</key>
-								<string>{172.92107726721434, 210.91147363390021}</string>
-								<key>StartControlPoint</key>
-								<string>{177.32479091076522, 189.61902737821632}</string>
-								<key>StartPoint</key>
-								<string>{201.72850455431609, 168.32658112253242}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{195.44604565291075, 233.45641672815373}</string>
-								<key>EndPoint</key>
-								<string>{197.97101403860717, 256.00135982240727}</string>
-								<key>StartControlPoint</key>
-								<string>{175.44604565291075, 233.45641672815373}</string>
-								<key>StartPoint</key>
-								<string>{172.92107726721434, 210.91147363390021}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{230.51595713286071, 247.23388195241978}</string>
-								<key>EndPoint</key>
-								<string>{243.06090022711425, 238.46640408243232}</string>
-								<key>StartControlPoint</key>
-								<string>{210.51595713286071, 247.23388195241978}</string>
-								<key>StartPoint</key>
-								<string>{197.97101403860717, 256.00135982240727}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{258.07088758139281, 203.39649260248237}</string>
-								<key>EndPoint</key>
-								<string>{253.08087493567137, 168.32658112253242}</string>
-								<key>StartControlPoint</key>
-								<string>{238.07088758139281, 203.39649260248237}</string>
-								<key>StartPoint</key>
-								<string>{243.06090022711425, 238.46640408243232}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{227.3847150364366, 162.69034534896903}</string>
-								<key>EndPoint</key>
-								<string>{181.68855513720183, 157.05410957540565}</string>
-								<key>StartControlPoint</key>
-								<string>{207.3847150364366, 162.69034534896903}</string>
-								<key>StartPoint</key>
-								<string>{253.08087493567137, 168.32658112253242}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{187.30481620220809, 196.50775999034934}</string>
-								<key>EndPoint</key>
-								<string>{172.92107726721434, 235.96141040529304}</string>
-								<key>StartControlPoint</key>
-								<string>{167.30481620220809, 196.50775999034934}</string>
-								<key>StartPoint</key>
-								<string>{181.68855513720183, 157.05410957540565}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{211.72850455431609, 244.1026398559957}</string>
-								<key>EndPoint</key>
-								<string>{230.53593184141783, 252.24386930669837}</string>
-								<key>StartControlPoint</key>
-								<string>{191.72850455431609, 244.1026398559957}</string>
-								<key>StartPoint</key>
-								<string>{172.92107726721434, 235.96141040529304}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{275.60584332136779, 233.45641672815376}</string>
-								<key>EndPoint</key>
-								<string>{300.67575480131774, 214.66896414960914}</string>
-								<key>StartControlPoint</key>
-								<string>{255.60584332136779, 233.45641672815376}</string>
-								<key>StartPoint</key>
-								<string>{230.53593184141783, 252.24386930669837}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{321.94822634844451, 180.22530108894401}</string>
-								<key>EndPoint</key>
-								<string>{323.22069789557128, 145.78163802827888}</string>
-								<key>StartControlPoint</key>
-								<string>{301.94822634844451, 180.22530108894401}</string>
-								<key>StartPoint</key>
-								<string>{300.67575480131774, 214.66896414960914}</string>
-							</dict>
-							<dict>
-								<key>EndControlPoint</key>
-								<string>{226.75846661715178, 93.803019227638771}</string>
-								<key>EndPoint</key>
-								<string>{110.29623533873229, 41.824400426998665}</string>
-								<key>StartControlPoint</key>
-								<string>{206.75846661715178, 93.803019227638771}</string>
-								<key>StartPoint</key>
-								<string>{323.22069789557128, 145.78163802827888}</string>
-							</dict>
-						</array>
-						<key>DrawBorder</key>
-						<true/>
-						<key>FlipX</key>
-						<false/>
-						<key>FlipY</key>
-						<false/>
-						<key>Image</key>
-						<string>No Image</string>
-						<key>ImageFile</key>
-						<string>No Image</string>
-						<key>IsClosed</key>
-						<false/>
-						<key>IsDrawable</key>
-						<true/>
-						<key>IsExpanded</key>
-						<false/>
-						<key>IsPath</key>
-						<false/>
-						<key>IsSimpleLine</key>
-						<false/>
-						<key>IsTile</key>
-						<false/>
-						<key>LineColor</key>
-						<string>{{1, 1}, {1, 1}}</string>
-						<key>LineWidth</key>
-						<real>1</real>
-						<key>Locked</key>
-						<false/>
-						<key>Opacity</key>
-						<real>1</real>
-						<key>Position</key>
-						<string>{109.04373850016265, 34.309419395580818}</string>
-						<key>Scale</key>
-						<string>{1, 1}</string>
-						<key>SpriteSize</key>
-						<string>{0, 0}</string>
-						<key>Tag</key>
-						<integer>15</integer>
-						<key>TagName</key>
-						<string>DOODAD_PATH</string>
-						<key>UniqueName</key>
-						<string>Flying_Bird_Path_1</string>
-						<key>ZOrder</key>
-						<integer>0</integer>
-					</dict>
-					<key>UniqueName</key>
-					<string>Flying_Bird_Path_1</string>
-				</dict>
 			</array>
 			<key>CustomClassInfo</key>
 			<dict>
@@ -2356,6 +2593,8 @@
 					<real>2048</real>
 					<key>hasSpottedShark</key>
 					<false/>
+					<key>hatName</key>
+					<string></string>
 					<key>isDead</key>
 					<false/>
 					<key>isInvisible</key>
@@ -2381,6 +2620,8 @@
 					<real>1024</real>
 					<key>endpointY</key>
 					<real>400</real>
+					<key>hatName</key>
+					<string></string>
 					<key>isInvisible</key>
 					<false/>
 					<key>isStuck</key>
@@ -2489,11 +2730,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>500</real>
+					<real>0.0</real>
 					<key>runningCost</key>
-					<real>750</real>
+					<real>0.0</real>
 					<key>scale</key>
-					<real>1</real>
+					<real>0.0</real>
 				</dict>
 			</dict>
 			<dict>
@@ -2502,11 +2743,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>500</real>
+					<real>0.0</real>
 					<key>runningCost</key>
-					<real>750</real>
+					<real>0.0</real>
 					<key>scale</key>
-					<real>1</real>
+					<real>0.0</real>
 				</dict>
 			</dict>
 			<dict>
@@ -2515,11 +2756,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>500</real>
+					<real>0.0</real>
 					<key>runningCost</key>
-					<real>750</real>
+					<real>0.0</real>
 					<key>scale</key>
-					<real>1</real>
+					<real>0.0</real>
 				</dict>
 			</dict>
 			<dict>

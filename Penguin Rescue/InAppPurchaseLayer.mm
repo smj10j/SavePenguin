@@ -169,17 +169,18 @@
 	//filled and attached to each IAP item
 	NSMutableDictionary* itemData = nil;
 
+	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
 	LHSprite* santaHat = [_levelLoader createSpriteWithName:@"Santa_Hat_Big" fromSheet:@"Toolbox" fromSHFile:@"Spritesheet" parent:self];
-	[santaHat transformPosition: ccp(80*SCALING_FACTOR_H + santaHat.boundingBox.size.width/2,
-										140*SCALING_FACTOR_V + santaHat.boundingBox.size.height/2)];
+	[santaHat transformPosition: ccp(winSize.width/2 - 370*SCALING_FACTOR_H + santaHat.boundingBox.size.width/2,
+										winSize.height/2 - 150*SCALING_FACTOR_V - (IS_IPHONE ? 10 : 0) + santaHat.boundingBox.size.height/2)];
 	[santaHat registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
 	[santaHat registerTouchEndedObserver:self selector:@selector(onSelectItem:)];
 
 	[santaHat runAction:[CCRepeatForever actionWithAction:
 							[CCSequence actions:
-								[CCFadeTo actionWithDuration:0.5f opacity:170],
-								[CCFadeTo actionWithDuration:0.5f opacity:225],
+								[CCTintTo actionWithDuration:0.5f red:220 green:220 blue:255],
+								[CCTintTo actionWithDuration:0.5f red:255 green:255 blue:255],
 							nil]
 						]
 	];
@@ -192,15 +193,15 @@
 	
 	
 	LHSprite* bagOfFish = [_levelLoader createSpriteWithName:@"Bag_of_Fish_Big" fromSheet:@"Toolbox" fromSHFile:@"Spritesheet" parent:self];
-	[bagOfFish transformPosition: ccp(260*SCALING_FACTOR_H + bagOfFish.boundingBox.size.width/2,
-										240*SCALING_FACTOR_V + bagOfFish.boundingBox.size.height/2)];
+	[bagOfFish transformPosition: ccp(winSize.width/2 - 270*SCALING_FACTOR_H + bagOfFish.boundingBox.size.width/2,
+										winSize.height/2 - 240*SCALING_FACTOR_V - (IS_IPHONE ? 10 : 0) + bagOfFish.boundingBox.size.height/2)];
 	[bagOfFish registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
 	[bagOfFish registerTouchEndedObserver:self selector:@selector(onSelectItem:)];
 
 	[bagOfFish runAction:[CCRepeatForever actionWithAction:
 							[CCSequence actions:
-								[CCFadeTo actionWithDuration:0.5f opacity:170],
-								[CCFadeTo actionWithDuration:0.5f opacity:225],
+								[CCTintTo actionWithDuration:0.5f red:220 green:220 blue:255],
+								[CCTintTo actionWithDuration:0.5f red:255 green:255 blue:255],
 							nil]
 						]
 	];
@@ -215,16 +216,16 @@
 	
 	LHSprite* antiShark272 = [_levelLoader createSpriteWithName:@"Anti_Shark_272_1" fromSheet:@"Toolbox" fromSHFile:@"Spritesheet" parent:self];
 	[antiShark272 prepareAnimationNamed:@"Toolbox_Anti_Shark_272" fromSHScene:@"Spritesheet"];
-	[antiShark272 transformPosition: ccp(400*SCALING_FACTOR_H + antiShark272.boundingBox.size.width/2,
-										160*SCALING_FACTOR_V + antiShark272.boundingBox.size.height/2)];
+	[antiShark272 transformPosition: ccp(winSize.width/2 - 160*SCALING_FACTOR_H + antiShark272.boundingBox.size.width/2,
+										winSize.height/2 - 145*SCALING_FACTOR_V - (IS_IPHONE ? 10 : 0) + antiShark272.boundingBox.size.height/2)];
 	[antiShark272 registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
 	[antiShark272 registerTouchEndedObserver:self selector:@selector(onSelectItem:)];
 
 	[antiShark272 playAnimation];
 	[antiShark272 runAction:[CCRepeatForever actionWithAction:
 							[CCSequence actions:
-								[CCFadeTo actionWithDuration:0.5f opacity:170],
-								[CCFadeTo actionWithDuration:0.5f opacity:225],
+								[CCTintTo actionWithDuration:0.5f red:220 green:220 blue:255],
+								[CCTintTo actionWithDuration:0.5f red:255 green:255 blue:255],
 							nil]
 						]
 	];
