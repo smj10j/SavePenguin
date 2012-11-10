@@ -208,7 +208,7 @@
 	[itemData setObject:@"Bag of Fish" forKey:@"Name"];
 	[itemData setObject:[NSNumber numberWithInt:30]	forKey:@"Cost"];
 	[itemData setObject:[NSNumber numberWithInt:10]	forKey:@"Amount"];
-	[itemData setObject:@"If there's one thing that sharks and penguins can agree on it's that a ready-made bag full of fish is hard to turn down." forKey:@"Description"];	
+	[itemData setObject:@"If there's one thing that sharks and penguins can agree on it's that a ready-made bag of tasty fish is hard to turn down." forKey:@"Description"];	
 	bagOfFish.userData = itemData;
 
 
@@ -232,7 +232,7 @@
 	[itemData setObject:@"Anti Shark 272™" forKey:@"Name"];
 	[itemData setObject:[NSNumber numberWithInt:25]	forKey:@"Cost"];
 	[itemData setObject:[NSNumber numberWithInt:15]	forKey:@"Amount"];
-	[itemData setObject:@"These older-model anti-shark devices were recovered near destroyed shark cages. Surely it has no bearing on their effectiveness." forKey:@"Description"];	
+	[itemData setObject:@"These older-model anti-shark devices were recovered near the remains of ruined shark cages." forKey:@"Description"];	
 	antiShark272.userData = itemData;
 
 }

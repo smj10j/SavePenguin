@@ -1955,6 +1955,11 @@
 	if(tutorial != nil) {		
 		//fade in all tutorial items
 		for(LHSprite* tutorial in [_levelLoader spritesWithTag:TUTORIAL]) {
+
+			[tutorial.parent removeChild:tutorial cleanup:NO];
+			tutorial.zOrder = 100;
+			[_mainLayer addChild:tutorial];
+			
 			[tutorial runAction: [CCSequence actions:
 				[CCRepeatForever actionWithAction:
 					[CCSequence actions:
@@ -1965,6 +1970,8 @@
 				nil]
 			];
 		}
+		
+		tutorial.zOrder = 99;
 		[tutorial stopAllActions];
 		[tutorial runAction:[CCSequence actions: 
 				[CCDelayTime actionWithDuration:1.0f],
@@ -3554,6 +3561,8 @@
 	}
 	free(_penguinMapfeaturesGrid);
 	free(_sharkMapfeaturesGrid);
+	
+	[self removeAllTutorials];
 	
 	[_levelLoader release];
 	_levelLoader = nil;
