@@ -91,7 +91,7 @@
 			[NSString stringWithFormat:
 @"Made by Conquer LLC, a group of guys who like making awesome strategy games.\n%@\
 Save Penguin is our first game - we hope you enjoy it and please let us know what you think!", (IS_IPHONE ? @"" : @"\n")]
-			fontName:@"Helvetica" fontSize:(IS_IPHONE ? 14 : 26)
+			fontName:@"Helvetica" fontSize:(IS_IPHONE ? 13 : 26)
 			dimensions:CGSizeMake(winSize.width-150*SCALING_FACTOR_H, 150*SCALING_FACTOR_V + (IS_IPHONE ? 10 : 0))
 			hAlignment:kCCTextAlignmentLeft
 			vAlignment:kCCVerticalTextAlignmentCenter
@@ -141,7 +141,7 @@ Save Penguin is our first game - we hope you enjoy it and please let us know wha
 @"We're working on new level packs at this very moment.\n\
 Drop us an email or leave a review in the App Store and tell us your ideas!"]
 			fontName:@"Helvetica" fontSize:20*SCALING_FACTOR_FONTS
-			dimensions:CGSizeMake(winSize.width-300*SCALING_FACTOR_H, 200*SCALING_FACTOR_V)
+			dimensions:CGSizeMake(winSize.width-150*SCALING_FACTOR_H, 200*SCALING_FACTOR_V)
 			hAlignment:kCCTextAlignmentCenter
 			vAlignment:kCCVerticalTextAlignmentCenter
 		];
