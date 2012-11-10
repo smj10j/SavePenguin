@@ -139,7 +139,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{466, 37}, {36.5, 33.5}}</string>
+								<string>{{466, 73}, {36.75, 34}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -161,7 +161,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0.25}</string>
+								<string>{0.125, -0.5}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island2</string>
 								<key>ZOrder</key>
@@ -214,7 +214,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{466, 0}, {34.5, 35.75}}</string>
+								<string>{{466, 0}, {35.75, 36.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -236,7 +236,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0.5, 0.125}</string>
+								<string>{1.125, -0.25}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island1</string>
 								<key>ZOrder</key>
@@ -289,7 +289,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{466, 37}, {36.5, 33.5}}</string>
+								<string>{{466, 73}, {36.75, 34}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -311,7 +311,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0.25}</string>
+								<string>{0.125, -0.5}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island2_1</string>
 								<key>ZOrder</key>
@@ -364,7 +364,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{466, 37}, {36.5, 33.5}}</string>
+								<string>{{466, 73}, {36.75, 34}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -386,7 +386,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0.25}</string>
+								<string>{0.125, -0.5}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island2_2</string>
 								<key>ZOrder</key>
@@ -439,7 +439,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{466, 0}, {34.5, 35.75}}</string>
+								<string>{{466, 0}, {35.75, 36.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -461,7 +461,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0.5, 0.125}</string>
+								<string>{1.125, -0.25}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island1_1</string>
 								<key>ZOrder</key>
@@ -514,7 +514,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{466, 37}, {36.5, 33.5}}</string>
+								<string>{{466, 73}, {36.75, 34}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -536,7 +536,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0.25}</string>
+								<string>{0.125, -0.5}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island2_3</string>
 								<key>ZOrder</key>
@@ -589,7 +589,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{466, 0}, {34.5, 35.75}}</string>
+								<string>{{466, 0}, {35.75, 36.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -611,7 +611,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0.5, 0.125}</string>
+								<string>{1.125, -0.25}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island1_2</string>
 								<key>ZOrder</key>
@@ -664,7 +664,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{466, 0}, {34.5, 35.75}}</string>
+								<string>{{466, 0}, {35.75, 36.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -686,7 +686,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0.5, 0.125}</string>
+								<string>{1.125, -0.25}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island1_3</string>
 								<key>ZOrder</key>
@@ -739,7 +739,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{466, 37}, {36.5, 33.5}}</string>
+								<string>{{466, 73}, {36.75, 34}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -761,7 +761,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0.25}</string>
+								<string>{0.125, -0.5}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island2_4</string>
 								<key>ZOrder</key>
@@ -814,7 +814,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{466, 37}, {36.5, 33.5}}</string>
+								<string>{{466, 73}, {36.75, 34}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -826,7 +826,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{225.84312840743124, 61.166276922448972}</string>
+								<string>{224.84312840743124, 61.166276922448972}</string>
 								<key>Scale</key>
 								<string>{1.3690589666366577, 0.87430381774902344}</string>
 								<key>SpriteSize</key>
@@ -836,7 +836,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0.25}</string>
+								<string>{0.125, -0.5}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island2_6</string>
 								<key>ZOrder</key>
@@ -889,7 +889,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{466, 37}, {36.5, 33.5}}</string>
+								<string>{{466, 73}, {36.75, 34}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -911,7 +911,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, -0.25}</string>
+								<string>{0.125, -0.5}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island2_7</string>
 								<key>ZOrder</key>
@@ -964,7 +964,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{466, 0}, {34.5, 35.75}}</string>
+								<string>{{466, 0}, {35.75, 36.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -986,7 +986,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0.5, 0.125}</string>
+								<string>{1.125, -0.25}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island1_4</string>
 								<key>ZOrder</key>
@@ -1039,7 +1039,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{311, 349}, {187.5, 32.75}}</string>
+								<string>{{210, 386}, {187.5, 35.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1061,7 +1061,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0, 0.125}</string>
+								<string>{0, -0.625}</string>
 								<key>UniqueName</key>
 								<string>Wall_Middle1</string>
 								<key>ZOrder</key>
@@ -1114,7 +1114,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{376, 256}, {37, 27.75}}</string>
+								<string>{{162, 469}, {37.5, 31.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1136,7 +1136,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{-0.25, -0.625}</string>
+								<string>{0, -1.875}</string>
 								<key>UniqueName</key>
 								<string>Wall_End4</string>
 								<key>ZOrder</key>
@@ -1189,7 +1189,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{466, 0}, {34.5, 35.75}}</string>
+								<string>{{466, 0}, {35.75, 36.5}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1201,7 +1201,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{172.75, 66.75}</string>
+								<string>{173.75, 66.75}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -1211,7 +1211,7 @@
 								<key>TagName</key>
 								<string>BORDER</string>
 								<key>TextureOffset</key>
-								<string>{0.5, 0.125}</string>
+								<string>{1.125, -0.25}</string>
 								<key>UniqueName</key>
 								<string>Debris_Island1_5</string>
 								<key>ZOrder</key>
@@ -1281,7 +1281,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{451, 256}, {22.5, 17.75}}</string>
+								<string>{{63, 566}, {22.5, 17.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1448,7 +1448,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{63, 505}, {34.5, 34.75}}</string>
+								<string>{{466, 238}, {34.75, 34.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1470,7 +1470,7 @@
 								<key>TagName</key>
 								<string>DOODAD</string>
 								<key>TextureOffset</key>
-								<string>{0.25, -0.125}</string>
+								<string>{0.125, -0.125}</string>
 								<key>UniqueName</key>
 								<string>Doodad_Lake_1</string>
 								<key>ZOrder</key>
@@ -1524,6 +1524,8 @@
 									<true/>
 									<key>hasSpottedShark</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isDead</key>
 									<true/>
 									<key>isInvisible</key>
@@ -1545,6 +1547,8 @@
 									<real>2048</real>
 									<key>hasSpottedShark</key>
 									<false/>
+									<key>hatName</key>
+									<string></string>
 									<key>isDead</key>
 									<false/>
 									<key>isInvisible</key>
@@ -1635,6 +1639,8 @@
 									<true/>
 									<key>hasSpottedShark</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isDead</key>
 									<true/>
 									<key>isInvisible</key>
@@ -1656,6 +1662,8 @@
 									<real>2048</real>
 									<key>hasSpottedShark</key>
 									<false/>
+									<key>hatName</key>
+									<string></string>
 									<key>isDead</key>
 									<false/>
 									<key>isInvisible</key>
@@ -1746,6 +1754,8 @@
 									<true/>
 									<key>hasSpottedShark</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isDead</key>
 									<true/>
 									<key>isInvisible</key>
@@ -1767,6 +1777,8 @@
 									<real>2048</real>
 									<key>hasSpottedShark</key>
 									<false/>
+									<key>hatName</key>
+									<string></string>
 									<key>isDead</key>
 									<false/>
 									<key>isInvisible</key>
@@ -1857,6 +1869,8 @@
 									<true/>
 									<key>hasSpottedShark</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isDead</key>
 									<true/>
 									<key>isInvisible</key>
@@ -1878,6 +1892,8 @@
 									<real>2048</real>
 									<key>hasSpottedShark</key>
 									<false/>
+									<key>hatName</key>
+									<string></string>
 									<key>isDead</key>
 									<false/>
 									<key>isInvisible</key>
@@ -1968,6 +1984,8 @@
 									<true/>
 									<key>hasSpottedShark</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isDead</key>
 									<true/>
 									<key>isInvisible</key>
@@ -1989,6 +2007,8 @@
 									<real>2048</real>
 									<key>hasSpottedShark</key>
 									<false/>
+									<key>hatName</key>
+									<string></string>
 									<key>isDead</key>
 									<false/>
 									<key>isInvisible</key>
@@ -2081,6 +2101,8 @@
 									<true/>
 									<key>endpointY</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isInvisible</key>
 									<true/>
 									<key>isStuck</key>
@@ -2104,6 +2126,8 @@
 									<real>1024</real>
 									<key>endpointY</key>
 									<real>400</real>
+									<key>hatName</key>
+									<string></string>
 									<key>isInvisible</key>
 									<false/>
 									<key>isStuck</key>
@@ -2148,7 +2172,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 0}, {58.75, 29}}</string>
+								<string>{{60, 0}, {58.75, 29}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2196,6 +2220,8 @@
 									<true/>
 									<key>endpointY</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isInvisible</key>
 									<true/>
 									<key>isStuck</key>
@@ -2219,6 +2245,8 @@
 									<real>1024</real>
 									<key>endpointY</key>
 									<real>400</real>
+									<key>hatName</key>
+									<string></string>
 									<key>isInvisible</key>
 									<false/>
 									<key>isStuck</key>
@@ -2263,7 +2291,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 0}, {58.75, 29}}</string>
+								<string>{{60, 0}, {58.75, 29}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2311,6 +2339,8 @@
 									<true/>
 									<key>endpointY</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isInvisible</key>
 									<true/>
 									<key>isStuck</key>
@@ -2334,6 +2364,8 @@
 									<real>1024</real>
 									<key>endpointY</key>
 									<real>400</real>
+									<key>hatName</key>
+									<string></string>
 									<key>isInvisible</key>
 									<false/>
 									<key>isStuck</key>
@@ -2378,7 +2410,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 0}, {58.75, 29}}</string>
+								<string>{{60, 0}, {58.75, 29}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2516,7 +2548,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{128, 333}, {17.75, 71.75}}</string>
+								<string>{{118, 70}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2624,7 +2656,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{128, 333}, {17.75, 71.75}}</string>
+								<string>{{118, 70}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2719,7 +2751,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{216, 45}, {35.5, 19.75}}</string>
+								<string>{{142, 109}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2814,7 +2846,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{216, 45}, {35.5, 19.75}}</string>
+								<string>{{142, 109}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2909,7 +2941,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{216, 45}, {35.5, 19.75}}</string>
+								<string>{{142, 109}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -3004,7 +3036,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{216, 45}, {35.5, 19.75}}</string>
+								<string>{{142, 109}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -3099,7 +3131,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{216, 45}, {35.5, 19.75}}</string>
+								<string>{{142, 109}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -3194,7 +3226,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{216, 45}, {35.5, 19.75}}</string>
+								<string>{{142, 109}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -3310,7 +3342,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{210, 183}, {29, 43.75}}</string>
+								<string>{{159, 147}, {29, 43.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -3426,7 +3458,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{210, 183}, {29, 43.75}}</string>
+								<string>{{159, 147}, {29, 43.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -3534,7 +3566,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{128, 333}, {17.75, 71.75}}</string>
+								<string>{{118, 70}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -3642,7 +3674,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{128, 333}, {17.75, 71.75}}</string>
+								<string>{{118, 70}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -3737,7 +3769,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{216, 45}, {35.5, 19.75}}</string>
+								<string>{{142, 109}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -3832,7 +3864,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{216, 45}, {35.5, 19.75}}</string>
+								<string>{{142, 109}, {35.5, 19.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -3948,7 +3980,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{210, 183}, {29, 43.75}}</string>
+								<string>{{159, 147}, {29, 43.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -4064,7 +4096,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{210, 183}, {29, 43.75}}</string>
+								<string>{{159, 147}, {29, 43.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -4167,6 +4199,8 @@
 					<real>2048</real>
 					<key>hasSpottedShark</key>
 					<false/>
+					<key>hatName</key>
+					<string></string>
 					<key>isDead</key>
 					<false/>
 					<key>isInvisible</key>
@@ -4192,6 +4226,8 @@
 					<real>1024</real>
 					<key>endpointY</key>
 					<real>400</real>
+					<key>hatName</key>
+					<string></string>
 					<key>isInvisible</key>
 					<false/>
 					<key>isStuck</key>
@@ -4272,11 +4308,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1250</real>
-					<key>power</key>
-					<real>50</real>
-					<key>runningCost</key>
 					<real>1500</real>
+					<key>power</key>
+					<real>200</real>
+					<key>runningCost</key>
+					<real>1750</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -4300,11 +4336,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1250</real>
+					<real>0.0</real>
 					<key>runningCost</key>
-					<real>1500</real>
+					<real>0.0</real>
 					<key>scale</key>
-					<real>1</real>
+					<real>0.0</real>
 				</dict>
 			</dict>
 			<dict>
@@ -4313,11 +4349,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1250</real>
+					<real>0.0</real>
 					<key>runningCost</key>
-					<real>1500</real>
+					<real>0.0</real>
 					<key>scale</key>
-					<real>1</real>
+					<real>0.0</real>
 				</dict>
 			</dict>
 			<dict>
@@ -4326,11 +4362,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1500</real>
+					<real>0.0</real>
 					<key>runningCost</key>
-					<real>2000</real>
+					<real>0.0</real>
 					<key>scale</key>
-					<real>1</real>
+					<real>0.0</real>
 				</dict>
 			</dict>
 			<dict>
@@ -4340,10 +4376,31 @@
 				<dict>
 					<key>followXAxis</key>
 					<false/>
+					<key>followYAxis</key>
+					<false/>
 					<key>isCyclic</key>
 					<true/>
 					<key>pathName</key>
-					<string></string>
+					<string>BezierNode</string>
+					<key>restartAtOtherEnd</key>
+					<false/>
+					<key>timeToCompletePath</key>
+					<real>15</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>MovingLand</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>followXAxis</key>
+					<false/>
+					<key>followYAxis</key>
+					<false/>
+					<key>isCyclic</key>
+					<true/>
+					<key>pathName</key>
+					<string>BezierNode</string>
 					<key>restartAtOtherEnd</key>
 					<false/>
 					<key>timeToCompletePath</key>
@@ -4392,6 +4449,7 @@
 			<string>INVISIBILITY_HAT</string>
 			<string>LOUD_NOISE</string>
 			<string>BORDER_PATH</string>
+			<string>LAND_PATH</string>
 		</array>
 		<key>ZoomValue</key>
 		<real>0.0</real>
