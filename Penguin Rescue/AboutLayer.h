@@ -11,9 +11,10 @@
 #import "cocos2d.h"
 #import "Constants.h"
 #import "LevelHelperLoader.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
 // IntroLayer
-@interface AboutLayer : CCLayer
+@interface AboutLayer : CCLayer <MFMailComposeViewControllerDelegate> 
 {
 	LevelHelperLoader* _levelLoader;
 }

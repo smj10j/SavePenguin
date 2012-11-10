@@ -233,6 +233,7 @@
 		AA9213A61642EB13008BAA08 /* Icon_144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = AA92139B1642EB13008BAA08 /* Icon_144x144.png */; };
 		AA9213A71642EB13008BAA08 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA92139C1642EB13008BAA08 /* Icon.png */; };
 		AA9213A81642EB13008BAA08 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA92139D1642EB13008BAA08 /* Icon@2x.png */; };
+		AA9F2893164E9D810038CD16 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9F2892164E9D810038CD16 /* MessageUI.framework */; };
 		AAC6724A164DF6F500DA6F9F /* LoudNoiseNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = AAC67248164DF6F500DA6F9F /* LoudNoiseNode.mm */; };
 		AAC6E5721640071300FD549F /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = AAC6E56E1640071300FD549F /* CHANGELOG.md */; };
 		AAC6E5731640071300FD549F /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6E5701640071300FD549F /* JSONKit.m */; };
@@ -738,6 +739,7 @@
 		AA92139B1642EB13008BAA08 /* Icon_144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon_144x144.png; path = ../Icon_144x144.png; sourceTree = "<group>"; };
 		AA92139C1642EB13008BAA08 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		AA92139D1642EB13008BAA08 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
+		AA9F2892164E9D810038CD16 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		AAC67248164DF6F500DA6F9F /* LoudNoiseNode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LoudNoiseNode.mm; sourceTree = "<group>"; };
 		AAC67249164DF6F500DA6F9F /* LoudNoiseNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoudNoiseNode.h; sourceTree = "<group>"; };
 		AAC6E56E1640071300FD549F /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -818,6 +820,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA9F2893164E9D810038CD16 /* MessageUI.framework in Frameworks */,
 				AAC6E5D016403BD300FD549F /* MobileCoreServices.framework in Frameworks */,
 				AAC6E5CE16403B6900FD549F /* CFNetwork.framework in Frameworks */,
 				AAC6E5851640226300FD549F /* Security.framework in Frameworks */,
@@ -921,6 +924,7 @@
 		AA54C693162BB27A00DF56D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA9F2892164E9D810038CD16 /* MessageUI.framework */,
 				AAC6E5CF16403BD300FD549F /* MobileCoreServices.framework */,
 				AAC6E5CD16403B6900FD549F /* CFNetwork.framework */,
 				AAC6E5841640226300FD549F /* Security.framework */,

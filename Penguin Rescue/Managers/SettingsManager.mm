@@ -184,6 +184,15 @@
 	[reviewPromptAlert show];	
 }
 
++(void)sendToAppReviewPage {
+	[SettingsManager setString:[SettingsManager stringForKey:SETTING_CURRENT_VERSION] forKey:SETTING_LEFT_REVIEW_VERSION];
+
+	NSString* escapedValue = [APP_STORE_REVIEW_URL stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	NSString *escStr = [escapedValue stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+	NSURL *url = [NSURL URLWithString:escStr];
+	[[UIApplication sharedApplication] openURL:url];
+}
+
 +(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if(alertView.tag == REVIEW_PROMPT_TAG) {
 	
@@ -201,13 +210,7 @@
 		[Analytics logEvent:[NSString stringWithFormat:@"ReviewRequest_%@", (accept ? @"Accepted" : @"Rejected")] withParameters:flurryParams];
 	
 		if(accept) {
-			
-			[SettingsManager setString:[SettingsManager stringForKey:SETTING_CURRENT_VERSION] forKey:SETTING_LEFT_REVIEW_VERSION];
-		
-			NSString* escapedValue = [APP_STORE_REVIEW_URL stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-			NSString *escStr = [escapedValue stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-			NSURL *url = [NSURL URLWithString:escStr];
-			[[UIApplication sharedApplication] openURL:url];
+			[self sendToAppReviewPage];
 		}
 	}
 }

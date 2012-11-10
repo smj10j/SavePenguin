@@ -285,6 +285,16 @@
 	}else {
 		_buyButton.opacity = 255;
 	}
+	
+	
+	
+	
+	//analytics logging
+	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+		name, @"Name",
+		[NSNumber numberWithInt:availableCoins], @"AvailableCoins",
+	nil];
+	[Analytics logEvent:@"View_IAP_Item" withParameters:flurryParams];
 }
 
 
@@ -348,6 +358,15 @@
 			[CCFadeIn actionWithDuration:0.50f],
 		nil]
 	];
+	
+	//analytics logging
+	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+		name, @"Name",
+		[NSNumber numberWithInt:availableCoins], @"NewAvailableCoins",
+		[NSNumber numberWithInt:ownedAmount], @"OwnedAmount",
+	nil];
+	[Analytics logEvent:@"Buy_IAP_Item" withParameters:flurryParams];
+
 
 	if(DEBUG_IAP) DebugLog(@"We now have %d units of %@ and %d coins", ownedAmount, name, availableCoins);
 }

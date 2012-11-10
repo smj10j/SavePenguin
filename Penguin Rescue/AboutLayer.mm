@@ -16,6 +16,9 @@
 #import "Utilities.h"
 #import "Analytics.h"
 
+#import "AppDelegate.h"
+
+
 #pragma mark - AboutLayer
 
 @implementation AboutLayer
@@ -39,6 +42,10 @@
 -(id) init
 {
 	if( (self=[super init])) {
+
+		NSMutableDictionary* credits = [[NSMutableDictionary alloc] init];
+		[credits setObject:@"Programming and Design" forKey:@"Stephen Johnson"];
+
 		
 		self.isTouchEnabled = YES;
 
@@ -65,26 +72,105 @@
 			x+= waterTile.boundingBox.size.width;
 		}
 		[waterTile removeSelf];		
-		
-		
-		//TODO: fill this bad boy out with:
-			/*
-			Rate App
-			Email us
-			About the App
-			About Conquer
-			Version
-			*/
-		CCLabelTTF* TODOLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"TODO: Add an about page"] fontName:@"Helvetica" fontSize:48*SCALING_FACTOR_FONTS];
-		TODOLabel.color = ccWHITE;
-		TODOLabel.position = ccp(winSize.width/2, winSize.height/2);
-		[self addChild:TODOLabel];
+
+
+		//add a nice dark tint to the background
+		LHSprite* shadowBox = [_levelLoader createSpriteWithName:@"Shadow_Box" fromSheet:@"Menu" fromSHFile:@"Spritesheet"];
+		shadowBox.scaleY = winSize.height/shadowBox.contentSize.height;
+		shadowBox.scaleX = winSize.width/shadowBox.contentSize.width;
+		[shadowBox transformPosition:ccp(winSize.width/2, winSize.height/2)];
+
+		//add app title
+		LHSprite* titleSprite = [_levelLoader createSpriteWithName:@"Menu_Title" fromSheet:@"MenuBackgrounds1" fromSHFile:@"Spritesheet"];
+		[titleSprite transformPosition:ccp(winSize.width/2, winSize.height - titleSprite.boundingBox.size.height/2 - 15*SCALING_FACTOR_V)];
+
+
+
 			
+		CCLabelTTF* aboutConquerLabel = [CCLabelTTF labelWithString:
+			[NSString stringWithFormat:
+@"Made by Conquer LLC, a group of guys who like making awesome strategy games.\n%@\
+Save Penguin is our first game - we hope you enjoy it and please let us know what you think!", (IS_IPHONE ? @"" : @"\n")]
+			fontName:@"Helvetica" fontSize:(IS_IPHONE ? 14 : 26)
+			dimensions:CGSizeMake(winSize.width-150*SCALING_FACTOR_H, 150*SCALING_FACTOR_V + (IS_IPHONE ? 10 : 0))
+			hAlignment:kCCTextAlignmentLeft
+			vAlignment:kCCVerticalTextAlignmentCenter
+		];
+		aboutConquerLabel.color = ccWHITE;
+		aboutConquerLabel.position = ccp(winSize.width/2, titleSprite.position.y - titleSprite.boundingBox.size.height/2 - aboutConquerLabel.boundingBox.size.height/2 - 15*SCALING_FACTOR_V);
+		[self addChild:aboutConquerLabel];
+						
+
+		
+		const int creditsLineHeight = 40*SCALING_FACTOR_V;
+		int creditsYOffset = aboutConquerLabel.position.y - aboutConquerLabel.boundingBox.size.height/2 - creditsLineHeight/2 - (IS_IPHONE ? 0 : 30*SCALING_FACTOR_V);
+		
+		
+		for(NSString* name in credits) {
+			NSString* job = [credits objectForKey:name]; 
+		
+			CCLabelTTF* creditsNameLabel = [CCLabelTTF labelWithString:name
+				fontName:@"Helvetica" fontSize:22*SCALING_FACTOR_FONTS
+				dimensions:CGSizeMake(600*SCALING_FACTOR_H, creditsLineHeight)
+				hAlignment:kCCTextAlignmentCenter
+				vAlignment:kCCVerticalTextAlignmentCenter
+			];
+			creditsNameLabel.color = ccWHITE;
+			creditsNameLabel.position = ccp(winSize.width/2, creditsYOffset);
+			[self addChild:creditsNameLabel];
+
+			creditsYOffset-= creditsLineHeight;
+
+			CCLabelTTF* creditsJobLabel = [CCLabelTTF labelWithString:job
+				fontName:@"Helvetica" fontSize:20*SCALING_FACTOR_FONTS
+				dimensions:CGSizeMake(600*SCALING_FACTOR_H, creditsLineHeight)
+				hAlignment:kCCTextAlignmentCenter
+				vAlignment:kCCVerticalTextAlignmentCenter
+			];
+			creditsJobLabel.color = ccWHITE;
+			creditsJobLabel.position = ccp(winSize.width/2, creditsYOffset);
+			[self addChild:creditsJobLabel];
 			
+			creditsYOffset-= creditsLineHeight;
+		}
+		[credits release];
+			
+
+		CCLabelTTF* giveUsFeedbackLabel = [CCLabelTTF labelWithString:
+			[NSString stringWithFormat:
+@"We're working on new level packs at this very moment.\n\
+Drop us an email or leave a review in the App Store and tell us your ideas!"]
+			fontName:@"Helvetica" fontSize:20*SCALING_FACTOR_FONTS
+			dimensions:CGSizeMake(winSize.width-300*SCALING_FACTOR_H, 200*SCALING_FACTOR_V)
+			hAlignment:kCCTextAlignmentCenter
+			vAlignment:kCCVerticalTextAlignmentCenter
+		];
+		giveUsFeedbackLabel.color = ccWHITE;
+		giveUsFeedbackLabel.position = ccp(winSize.width/2, 150*SCALING_FACTOR_V + (IS_IPHONE ? 10 : 0));
+		[self addChild:giveUsFeedbackLabel];		
 		
 		
 		
 		
+		
+		LHSprite* rateTheAppButton = [_levelLoader createSpriteWithName:@"Rate_the_App_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+		[rateTheAppButton prepareAnimationNamed:@"Menu_Rate_the_App_Button" fromSHScene:@"Spritesheet"];
+		[rateTheAppButton transformPosition: ccp(winSize.width/2 - rateTheAppButton.boundingBox.size.width/2 - 20*SCALING_FACTOR_H,
+											30*SCALING_FACTOR_V + rateTheAppButton.boundingBox.size.height/2)];
+		[rateTheAppButton registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
+		[rateTheAppButton registerTouchEndedObserver:self selector:@selector(onRateTheApp:)];
+		
+
+		if ([MFMailComposeViewController canSendMail]) {
+			LHSprite* emailUsButton = [_levelLoader createSpriteWithName:@"Email_Us_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+			[emailUsButton prepareAnimationNamed:@"Menu_Email_Us_Button" fromSHScene:@"Spritesheet"];
+			[emailUsButton transformPosition: ccp(winSize.width/2 + emailUsButton.boundingBox.size.width/2 + 20*SCALING_FACTOR_H,
+												30*SCALING_FACTOR_V + emailUsButton.boundingBox.size.height/2)];
+			[emailUsButton registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
+			[emailUsButton registerTouchEndedObserver:self selector:@selector(onEmailUs:)];
+		}
+
+
 		
 				
 		LHSprite* backButton = [_levelLoader createSpriteWithName:@"Back_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
@@ -109,6 +195,57 @@
 -(void)onTouchBeganAnyButton:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
+}
+
+
+
+-(void)onEmailUs:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame-1];	//active state
+	
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
+	}
+
+
+	//analytics logging
+	[Analytics logEvent:@"About_Email_Us_Click"];
+
+
+	MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+	UIViewController *rootViewController = (UIViewController*)[(AppController*)[[UIApplication sharedApplication] delegate] navController];
+  	controller.mailComposeDelegate = self;
+	// Recipient.
+    NSString *recipient = @"feedback@conquerllc.com";
+    NSArray *recipientsArray = [NSArray arrayWithObject:recipient];
+    [controller setToRecipients:recipientsArray];
+	
+	[controller setSubject:@"Save Penguin Feedback"];
+	
+	[controller setMessageBody:@"" isHTML:NO];
+	
+	[rootViewController presentModalViewController:controller animated:YES];
+	[controller release];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+	UIViewController* rootViewController = (UIViewController*)[(AppController*)[[UIApplication sharedApplication] delegate] navController];
+	[rootViewController becomeFirstResponder];
+	[rootViewController dismissModalViewControllerAnimated:YES];
+}
+
+-(void)onRateTheApp:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame-1];	//active state
+	
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
+	}
+	
+	//analytics logging
+	[Analytics logEvent:@"About_Rate_the_App_Click"];
+
+	[SettingsManager sendToAppReviewPage];
 }
 
 
