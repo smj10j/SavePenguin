@@ -130,11 +130,15 @@
 	//place the HUD items (pause, restart, etc.)
 	[self drawHUD];		
 
-	//place any moving doodads
-	[self setupDoodads];
-	
-	//start any moving borders
-	[self setupMovingBorders];
+	//we do these after a delay to make sure the previous LevelLoader instance has been dealloated
+	//had a problem with sprites being attached to Bezier nodes of the same name from the previous level
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+		//place any moving doodads
+		[self setupDoodads];
+		
+		//start any moving borders
+		[self setupMovingBorders];
+	});
 	
 	//record the play
 	//post the score to the server or queue for online processing
@@ -386,7 +390,6 @@
 			MovingDoodad* doodadData = ((MovingDoodad*)doodad.userInfo);
 		
 			[doodad prepareMovementOnPathWithUniqueName:doodadData.pathName];
-			
 			
 			if(doodadData.followXAxis) {
 				[doodad setPathMovementOrientation:LH_X_AXIT_ORIENTATION];
@@ -2550,7 +2553,7 @@
 
 	//alternating power for Loud Noise
 	for(LHSprite* loudNoise in [_levelLoader spritesWithTag:LOUD_NOISE]) {
-		if(arc4random()%1024 < 24) {
+		if(arc4random()%1024 < _gridSize*2) {	//basing off gridSize makes this occur less frequently on faster devices
 			[loudNoise runAction:[CCSequence actions:
 					[CCShaky3D actionWithRange:5 shakeZ:NO grid:ccg(12,8) duration:0.50],
 					[CCStopGrid action],
