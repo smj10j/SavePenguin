@@ -7,11 +7,11 @@
 {
 
 
-	BOOL followYAxis;
-	float timeToCompletePath;
-	BOOL isCyclic;
-	BOOL followXAxis;
 	BOOL restartAtOtherEnd;
+	float timeToCompletePath;
+	BOOL followXAxis;
+	BOOL isCyclic;
+	BOOL followYAxis;
 
 
 #if __has_feature(objc_arc) && __clang_major__ >= 3
@@ -23,12 +23,12 @@
 #endif // __has_feature(objc_arc)
 
 }
-@property BOOL followYAxis;
-@property float timeToCompletePath;
-@property BOOL isCyclic;
-@property BOOL followXAxis;
-@property (nonatomic, retain) NSString* pathName;
 @property BOOL restartAtOtherEnd;
+@property float timeToCompletePath;
+@property BOOL followXAxis;
+@property BOOL isCyclic;
+@property BOOL followYAxis;
+@property (nonatomic, retain) NSString* pathName;
 
 +(MovingBorder*) customClassInstance;
 

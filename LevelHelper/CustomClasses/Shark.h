@@ -22,6 +22,7 @@
 
 #else
 
+	NSString* hatName;
 
 #endif // __has_feature(objc_arc)
 
@@ -29,6 +30,7 @@
 @property BOOL isInvisible;
 @property float endpointX;
 @property float activeSpeed;
+@property (nonatomic, retain) NSString* hatName;
 @property float restingDetectionRadius;
 @property float activeDetectionRadius;
 @property float endpointY;

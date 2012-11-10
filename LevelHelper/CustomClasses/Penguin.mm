@@ -15,6 +15,7 @@
 @synthesize isSafe;
 @synthesize detectionRadius;
 @synthesize hasSpottedShark;
+@synthesize hatName;
 @synthesize isStuck;
 
 
@@ -23,6 +24,7 @@
 
 #else
 
+if(hatName) [hatName release];
 
 [super dealloc];
 
@@ -63,6 +65,9 @@ return NSStringFromClass([self class]);
 
 	if([dictionary objectForKey:@"hasSpottedShark"])
 		[self setHasSpottedShark:[[dictionary objectForKey:@"hasSpottedShark"] boolValue]];
+
+	if([dictionary objectForKey:@"hatName"])
+		[self setHatName:[dictionary objectForKey:@"hatName"]];
 
 	if([dictionary objectForKey:@"isStuck"])
 		[self setIsStuck:[[dictionary objectForKey:@"isStuck"] boolValue]];

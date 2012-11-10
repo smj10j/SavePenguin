@@ -21,6 +21,7 @@
 
 #else
 
+	NSString* hatName;
 
 #endif // __has_feature(objc_arc)
 
@@ -32,6 +33,7 @@
 @property BOOL isSafe;
 @property float detectionRadius;
 @property BOOL hasSpottedShark;
+@property (nonatomic, retain) NSString* hatName;
 @property BOOL isStuck;
 
 +(Penguin*) customClassInstance;

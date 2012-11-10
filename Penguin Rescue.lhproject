@@ -46,6 +46,8 @@
 				<real>2048</real>
 				<key>hasSpottedShark</key>
 				<false/>
+				<key>hatName</key>
+				<string></string>
 				<key>isDead</key>
 				<false/>
 				<key>isInvisible</key>
@@ -71,6 +73,8 @@
 				<real>1024</real>
 				<key>endpointY</key>
 				<real>400</real>
+				<key>hatName</key>
+				<string></string>
 				<key>isInvisible</key>
 				<false/>
 				<key>isStuck</key>
@@ -260,7 +264,7 @@
 	<key>HDSuffix</key>
 	<string>-hd</string>
 	<key>LastLevelLoaded</key>
-	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Pack1/Northbound.plhs</string>
+	<string>/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue/Resources/Levels/Template.plhs</string>
 	<key>Orientation</key>
 	<integer>1</integer>
 	<key>ProjectName</key>

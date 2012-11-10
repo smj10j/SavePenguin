@@ -2130,7 +2130,7 @@
 			if(!sharkData.targetAcquired) {
 				for(LHSprite* penguin in penguins) {
 					Penguin* penguinData = ((Penguin*)penguin.userInfo);
-					if(penguinData.isSafe) {
+					if(penguinData.isSafe || penguinData.isInvisible) {
 						continue;
 					}
 
@@ -2147,7 +2147,7 @@
 			//find the nearest penguin
 			for(LHSprite* penguin in penguins) {
 				Penguin* penguinData = ((Penguin*)penguin.userInfo);
-				if(penguinData.isSafe) {
+				if(penguinData.isSafe || penguinData.isInvisible) {
 					continue;
 				}	
 				
@@ -2366,6 +2366,30 @@
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
 			soundFileName = @"place-invisibility-hat.wav";
+			
+			double minDist = 100000;
+			LHSprite* hattedActor = nil;
+			NSMutableArray* actors = [NSMutableArray arrayWithArray:[_levelLoader spritesWithTag:SHARK]];
+			[actors addObjectsFromArray:[_levelLoader spritesWithTag:PENGUIN]];
+			for(LHSprite* actor in actors) {
+				double dist = ccpDistance(actor.position, _activeToolboxItem.position);
+				if(dist < minDist) {
+					minDist = dist;
+					hattedActor = actor;
+				}
+			}
+			if(hattedActor != nil) {
+				Shark* actorData = (Shark*)hattedActor.userInfo;
+				actorData.hatName = _activeToolboxItem.uniqueName;
+				actorData.isInvisible = true;
+					
+				[_activeToolboxItem transformPosition:ccpAdd(hattedActor.position, ccp(0, [actorData class] == [Shark class] ? 20*SCALING_FACTOR_V : hattedActor.boundingBox.size.height/2))];
+				[_activeToolboxItem transformRotation:(hattedActor.rotation + ([actorData class] == [Shark class] ? 90 : 0))];
+				
+				if([actorData class] == [Penguin class]) {
+					[self invalidateSharkMoveGridsNear:nil];
+				}
+			}
 		
 		}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Loud_Noise class]) {
 			_activeToolboxItem.tag = LOUD_NOISE;
@@ -2558,7 +2582,7 @@
 	
 	[self moveSharks:dt];
 	[self movePenguins:dt];
-	
+		
 
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done with update tick");
 
@@ -2758,6 +2782,13 @@
 		Shark* sharkData = ((Shark*)shark.userInfo);
 		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];		
 		CGPoint sharkGridPos = [self toGrid:shark.position];
+		
+		//update his lil' hat
+		if(sharkData.hatName != nil && ![sharkData.hatName isEqualToString:@""]) {
+			LHSprite* hat = [_levelLoader spriteWithUniqueName:sharkData.hatName];
+			[hat transformPosition:ccpAdd(shark.position, ccp(0,20*SCALING_FACTOR_V))];
+			[hat transformRotation:shark.rotation+90];
+		}
 
 		//using a gridPos of 1 inside the actual border because of a programmatically-added HARD BORDER around the grid
 		if(sharkGridPos.x > _gridWidth-2 || sharkGridPos.x < 1 || sharkGridPos.y > _gridHeight-2 || sharkGridPos.y < 1) {
@@ -2943,6 +2974,10 @@
 			LHSprite* nearestPenguin = nil;
 			float minDist = 100000;
 			for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
+				Penguin* penguinData = (Penguin*)penguin.userInfo;
+				if(penguinData.isSafe || penguinData.isInvisible) {
+					continue;
+				}
 				float dist = ccpDistance(shark.position, penguin.position);
 				if(dist < minDist) {
 					nearestPenguin = penguin;
@@ -2986,6 +3021,11 @@
 		CGPoint penguinGridPos = [self toGrid:penguin.position];
 		Penguin* penguinData = ((Penguin*)penguin.userInfo);
 		MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
+		
+		//update his lil' hat
+		if(penguinData.hatName != nil && ![penguinData.hatName isEqualToString:@""]) {
+			[[_levelLoader spriteWithUniqueName:penguinData.hatName] transformPosition:ccpAdd(penguin.position, ccp(0,penguin.boundingBox.size.height/2))];
+		}
 		
 		if(penguinData.isSafe) {
 			continue;
@@ -3178,6 +3218,7 @@
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Done moving %d penguins...", [penguins count]);
 
 }
+
 
 //if this ever gets trigger then the penguins lost
 -(void) sharkPenguinCollision:(LHContactInfo*)contact

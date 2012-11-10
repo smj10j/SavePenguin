@@ -11,6 +11,7 @@
 @synthesize isInvisible;
 @synthesize endpointX;
 @synthesize activeSpeed;
+@synthesize hatName;
 @synthesize restingDetectionRadius;
 @synthesize activeDetectionRadius;
 @synthesize endpointY;
@@ -24,6 +25,7 @@
 
 #else
 
+if(hatName) [hatName release];
 
 [super dealloc];
 
@@ -52,6 +54,9 @@ return NSStringFromClass([self class]);
 
 	if([dictionary objectForKey:@"activeSpeed"])
 		[self setActiveSpeed:[[dictionary objectForKey:@"activeSpeed"] floatValue]];
+
+	if([dictionary objectForKey:@"hatName"])
+		[self setHatName:[dictionary objectForKey:@"hatName"]];
 
 	if([dictionary objectForKey:@"restingDetectionRadius"])
 		[self setRestingDetectionRadius:[[dictionary objectForKey:@"restingDetectionRadius"] floatValue]];

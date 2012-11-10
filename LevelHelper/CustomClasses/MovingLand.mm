@@ -8,12 +8,12 @@
 @implementation MovingLand
 
 
-@synthesize followYAxis;
-@synthesize timeToCompletePath;
-@synthesize isCyclic;
-@synthesize followXAxis;
-@synthesize pathName;
 @synthesize restartAtOtherEnd;
+@synthesize timeToCompletePath;
+@synthesize followXAxis;
+@synthesize isCyclic;
+@synthesize followYAxis;
+@synthesize pathName;
 
 
 -(void) dealloc{
@@ -42,23 +42,23 @@ return NSStringFromClass([self class]);
 -(void) setPropertiesFromDictionary:(NSDictionary*)dictionary
 {
 
-	if([dictionary objectForKey:@"followYAxis"])
-		[self setFollowYAxis:[[dictionary objectForKey:@"followYAxis"] boolValue]];
+	if([dictionary objectForKey:@"restartAtOtherEnd"])
+		[self setRestartAtOtherEnd:[[dictionary objectForKey:@"restartAtOtherEnd"] boolValue]];
 
 	if([dictionary objectForKey:@"timeToCompletePath"])
 		[self setTimeToCompletePath:[[dictionary objectForKey:@"timeToCompletePath"] floatValue]];
 
-	if([dictionary objectForKey:@"isCyclic"])
-		[self setIsCyclic:[[dictionary objectForKey:@"isCyclic"] boolValue]];
-
 	if([dictionary objectForKey:@"followXAxis"])
 		[self setFollowXAxis:[[dictionary objectForKey:@"followXAxis"] boolValue]];
 
+	if([dictionary objectForKey:@"isCyclic"])
+		[self setIsCyclic:[[dictionary objectForKey:@"isCyclic"] boolValue]];
+
+	if([dictionary objectForKey:@"followYAxis"])
+		[self setFollowYAxis:[[dictionary objectForKey:@"followYAxis"] boolValue]];
+
 	if([dictionary objectForKey:@"pathName"])
 		[self setPathName:[dictionary objectForKey:@"pathName"]];
-
-	if([dictionary objectForKey:@"restartAtOtherEnd"])
-		[self setRestartAtOtherEnd:[[dictionary objectForKey:@"restartAtOtherEnd"] boolValue]];
 
 }
 
