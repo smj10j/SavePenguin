@@ -184,7 +184,7 @@
 						]
 	];
 	itemData = [[NSMutableDictionary alloc] init];
-	[itemData setObject:@"Santa Hat" forKey:@"Name"];
+	[itemData setObject:@"Strange Hat" forKey:@"Name"];
 	[itemData setObject:[NSNumber numberWithInt:40]	forKey:@"Cost"];
 	[itemData setObject:[NSNumber numberWithInt:10]	forKey:@"Amount"];
 	[itemData setObject:@"\"Found\" by a group of penguin adventures in the North, these magical hats appear to make the wearer invisible..." forKey:@"Description"];
@@ -229,7 +229,7 @@
 						]
 	];
 	itemData = [[NSMutableDictionary alloc] init];
-	[itemData setObject:@"Anti Shark 272" forKey:@"Name"];
+	[itemData setObject:@"Anti Shark 272™" forKey:@"Name"];
 	[itemData setObject:[NSNumber numberWithInt:25]	forKey:@"Cost"];
 	[itemData setObject:[NSNumber numberWithInt:15]	forKey:@"Amount"];
 	[itemData setObject:@"These older-model anti-shark devices were recovered near destroyed shark cages. Surely it has no bearing on their effectiveness." forKey:@"Description"];	
@@ -296,6 +296,14 @@
 
 
 -(void)onTouchBeganBuy:(LHTouchInfo*)info {
+
+	if(!DISTRIBUTION_MODE && _selectedIAPItem == nil) {
+		[SettingsManager incrementIntBy:100 forKey:SETTING_TOTAL_AVAILABLE_COINS];
+		[SettingsManager incrementIntBy:100 forKey:SETTING_TOTAL_EARNED_COINS];
+		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[InAppPurchaseLayer scene] ]];
+		return;
+	}
+
 	if(info.sprite == nil || _selectedIAPItem == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 }
@@ -328,9 +336,7 @@
 	int ownedAmount = [SettingsManager incrementIntBy:amount forKey:itemSettingKey];
 
 	//charge!
-	if(DISTRIBUTION_MODE) {
-		availableCoins = [SettingsManager decrementIntBy:cost forKey:SETTING_TOTAL_AVAILABLE_COINS];
-	}
+	availableCoins = [SettingsManager decrementIntBy:cost forKey:SETTING_TOTAL_AVAILABLE_COINS];
 	
 	//update UI
 	[_availableCoinsLabel runAction:[CCSequence actions:

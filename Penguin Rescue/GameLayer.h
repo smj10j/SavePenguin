@@ -94,11 +94,12 @@ enum PROPAGATION_RESULT {
 	ToolboxItemRotationCrosshair* _activeToolboxItemRotationCrosshair;
 	CGPoint _activeToolboxItemOriginalPosition;
 	NSMutableDictionary* _toolGroups;
+	NSMutableDictionary* _iapToolGroups;
 	bool _shouldUpdateToolbox;
 	CGSize _toolboxItemSize;
 	NSMutableArray* _placedToolboxItems;
 	ScoreKeeper* _scoreKeeper;
-		
+			
 	
 	double _levelStartPlaceTime;
 	double _levelStartRunningTime;

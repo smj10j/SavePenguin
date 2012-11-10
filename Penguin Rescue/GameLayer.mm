@@ -510,13 +510,22 @@
 		}
 		[_toolGroups release];	
 	}
+	if(_iapToolGroups != nil) {
+		for(id key in _iapToolGroups) {
+			NSMutableDictionary* _iapToolGroup = [_iapToolGroups objectForKey:key];
+			[_iapToolGroup release];
+		}
+		[_iapToolGroups release];	
+	}
 	_toolGroups = [[NSMutableDictionary alloc] init];
-	
+	_iapToolGroups = [[NSMutableDictionary alloc] init];
 
 	//get all the tools put on the level - they can be anywhere!
 	for(LHSprite* toolboxItem in toolboxItems) {
 	
 		[toolboxItem stopAllActions];
+	
+		bool iapToolGroup = false;
 	
 		//generate the grouping key for toolbox items
 		NSString* toolgroupKey = [NSString stringWithFormat:@"%@",[(id)toolboxItem.userData class]];
@@ -530,28 +539,49 @@
 			ToolboxItem_Whirlpool* toolboxItemData = ((ToolboxItem_Whirlpool*)toolboxItem.userData);
 			toolgroupKey = [toolgroupKey stringByAppendingString:[NSString stringWithFormat:@"-%@:%f", @"Power", toolboxItemData.power]];
 		}
-	
+		
+		if([(id)toolboxItem.userData class] == [ToolboxItem_Bag_of_Fish class]) {
+			iapToolGroup = true;
+		}else if([(id)toolboxItem.userData class] == [ToolboxItem_Invisibility_Hat class]) {
+			iapToolGroup = true;
+		}else if([(id)toolboxItem.userData class] == [ToolboxItem_Loud_Noise class]) {
+			iapToolGroup = true;
+		}
+		
 		NSMutableSet* toolGroup = [_toolGroups objectForKey:toolgroupKey];
 		if(toolGroup == nil) {
 			toolGroup = [[NSMutableSet alloc] init];
 			[_toolGroups setObject:toolGroup forKey:toolgroupKey];
 		}
 		[toolGroup addObject:toolboxItem];
+
+		if(iapToolGroup) {
+			NSMutableSet* iapToolGroup = [_iapToolGroups objectForKey:toolgroupKey];
+			if(iapToolGroup == nil) {
+				iapToolGroup = [[NSMutableSet alloc] init];
+				[_iapToolGroups setObject:iapToolGroup forKey:toolgroupKey];
+			}
+			[iapToolGroup addObject:toolboxItem];		
+		}
 	}
 		
 	
-	int toolGroupX = winSize.width/2 - ((_toolboxItemSize.width + TOOLBOX_MARGIN_LEFT)*((_toolGroups.count-1.0)/2.0));
-	int toolGroupY = _toolboxItemSize.height/2 + TOOLBOX_MARGIN_BOTTOM;
+	int mainToolGroupX = winSize.width/2 - ((_toolboxItemSize.width + TOOLBOX_MARGIN_LEFT)*((_toolGroups.count-1.0)/2.0));
+	int mainToolGroupY = _toolboxItemSize.height/2 + TOOLBOX_MARGIN_BOTTOM;
+
+	int iapToolGroupX = _toolboxItemSize.width/2 + TOOLBOX_MARGIN_BOTTOM;
+	int iapToolGroupY = winSize.height/2 - ((_toolboxItemSize.height + TOOLBOX_MARGIN_LEFT)*((_iapToolGroups.count-1.0)/2.0));
 		
 	for(id key in _toolGroups) {
 
 		NSMutableSet* toolGroup = [_toolGroups objectForKey:key];
+		bool isIAPToolGroup = [_iapToolGroups objectForKey:key] != nil;
 
 		//draw a box to hold it
 		LHSprite* toolboxContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 		toolboxContainer.zOrder = _actorsBatchNode.zOrder+1;
 		toolboxContainer.tag = TOOLBOX_ITEM_CONTAINER;
-		[toolboxContainer transformPosition: ccp(toolGroupX, toolGroupY)];
+		[toolboxContainer transformPosition: ccp(isIAPToolGroup ? iapToolGroupX : mainToolGroupX, isIAPToolGroup ? iapToolGroupY : mainToolGroupY)];
 
 		LHSprite* toolboxContainerCountContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container-Count" fromSheet:@"HUD" fromSHFile:@"Spritesheet" parent:toolboxContainer];
 		[toolboxContainerCountContainer transformPosition: ccp(toolboxContainer.boundingBox.size.width, toolboxContainer.boundingBox.size.height)];
@@ -580,7 +610,7 @@
 				double scale = fmin((_toolboxItemSize.width-TOOLBOX_ITEM_CONTAINER_PADDING_H-(scaleMarginAdjust*SCALING_FACTOR_H))/topToolboxItem.contentSize.width,
 									(_toolboxItemSize.height-TOOLBOX_ITEM_CONTAINER_PADDING_V-(scaleMarginAdjust*SCALING_FACTOR_V))/topToolboxItem.contentSize.height);
 				[topToolboxItem transformScale: scale];
-				[topToolboxItem transformPosition: ccp(toolGroupX, toolGroupY)];
+				[topToolboxItem transformPosition: ccp(isIAPToolGroup ? iapToolGroupX : mainToolGroupX, isIAPToolGroup ? iapToolGroupY : mainToolGroupY)];
 				topToolboxItem.visible = true;
 				//DebugLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", toolboxItem.uniqueName, (int)(100*scale));
 			}else {
@@ -620,8 +650,12 @@
 		[toolboxContainer registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
 		[toolboxContainer registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
 
-				
-		toolGroupX+= _toolboxItemSize.width + TOOLBOX_MARGIN_LEFT;
+	
+		if(isIAPToolGroup) {
+			iapToolGroupY+= _toolboxItemSize.height + TOOLBOX_MARGIN_LEFT;
+		}else {
+			mainToolGroupX+= _toolboxItemSize.width + TOOLBOX_MARGIN_LEFT;
+		}
 	}
 }
 
@@ -1027,14 +1061,36 @@
 	
 	//slide down the toolbox items
 	for(LHSprite* aToolboxItemContainer in [_levelLoader spritesWithTag:TOOLBOX_ITEM_CONTAINER]) {
-		[aToolboxItemContainer runAction:[CCMoveTo actionWithDuration:0.20f position:ccp(aToolboxItemContainer.position.x, -aToolboxItemContainer.boundingBox.size.height)]];
+
+		//a hack... but UntitledSprite name only occurs when we create the sprite programmatically
+		bool isIAPToolboxItem = [(NSString*)aToolboxItemContainer.userData hasPrefix:@"UntitledSprite"];
+
+		[aToolboxItemContainer runAction:[CCMoveTo actionWithDuration:0.20f position: ccp(
+							isIAPToolboxItem ? -aToolboxItemContainer.boundingBox.size.width : aToolboxItemContainer.position.x,
+							isIAPToolboxItem ? aToolboxItemContainer.position.y : -aToolboxItemContainer.boundingBox.size.height)
+										]
+		];
 	}
 	for(LHSprite* aToolboxItem in [_levelLoader spritesWithTag:TOOLBOX_ITEM]) {
 		if(aToolboxItem == _activeToolboxItem) {
 			continue;
 		}
+
+		bool isIAPToolboxItem = false;
+		if([(id)aToolboxItem.userData class] == [ToolboxItem_Bag_of_Fish class]) {
+			isIAPToolboxItem = true;
+		}else if([(id)aToolboxItem.userData class] == [ToolboxItem_Invisibility_Hat class]) {
+			isIAPToolboxItem = true;
+		}else if([(id)aToolboxItem.userData class] == [ToolboxItem_Loud_Noise class]) {
+			isIAPToolboxItem = true;
+		}
+	
 		aToolboxItem.visible = true;//allows us to get a size
-		[aToolboxItem runAction:[CCMoveTo actionWithDuration:0.20f position:ccp(aToolboxItem.position.x, -aToolboxItem.boundingBox.size.height)]];
+		[aToolboxItem runAction:[CCMoveTo actionWithDuration:0.20f position: ccp(
+												isIAPToolboxItem ? -aToolboxItem.boundingBox.size.width : aToolboxItem.position.x,
+												isIAPToolboxItem ? aToolboxItem.position.y : -aToolboxItem.boundingBox.size.height)
+								]
+		];
 		aToolboxItem.visible = false;
 	}
 	
@@ -1417,6 +1473,11 @@
 					[sprite playAnimation];
 				}
 			}
+		}
+		
+		//charge for placed IAP items
+		for(LHSprite* placedItem in _placedToolboxItems) {
+			[self debitForToolboxItemUsage:placedItem];
 		}
 		
 		//analytics logging
@@ -2103,6 +2164,17 @@
 	}
 }
 
+-(void)debitForToolboxItemUsage:(LHSprite*)toolboxItem {
+	NSString* key = [NSString stringWithFormat:@"%@%@", SETTING_IAP_TOOLBOX_ITEM_COUNT, toolboxItem.shSpriteName];
+	int count = [SettingsManager intForKey:key];
+	if(count > 0) {
+		count = [SettingsManager decrementIntBy:1 forKey:key];
+		if(DEBUG_IAP) DebugLog(@"Deducting 1 for the use of IAP item %@ - new balance is %d", toolboxItem.shSpriteName, count);
+	}else {
+		if(DEBUG_IAP) DebugLog(@"Item %@ is not an IAP item", toolboxItem.shSpriteName);
+	}
+}
+
 -(void)scoreToolboxItemPlacement:(LHSprite*)toolboxItem replaced:(bool)replaced {
 
 	//accounting
@@ -2297,8 +2369,6 @@
 			[_mainLayer addChild:_activeToolboxItem];
 			[_placedToolboxItems addObject:_activeToolboxItem];
 			[self scoreToolboxItemPlacement:_activeToolboxItem replaced:false];
-			
-			
 
 			//analytics logging
 			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -3440,11 +3510,22 @@
 		[_activeToolboxItemRotationCrosshair release];
 	}
 	
-	for(id key in _toolGroups) {
-		NSMutableDictionary* toolGroup = [_toolGroups objectForKey:key];
-		[toolGroup release];
+	if(_toolGroups != nil) {
+		for(id key in _toolGroups) {
+			NSMutableDictionary* toolGroup = [_toolGroups objectForKey:key];
+			[toolGroup release];
+		}
+		[_toolGroups release];
 	}
-	[_toolGroups release];
+	
+	if(_iapToolGroups != nil) {
+		for(id key in _iapToolGroups) {
+			NSMutableDictionary* _iapToolGroup = [_iapToolGroups objectForKey:key];
+			[_iapToolGroup release];
+		}
+		[_iapToolGroups release];	
+	}
+	
 	[_placedToolboxItems release];
 	[_scoreKeeper release];
 	
