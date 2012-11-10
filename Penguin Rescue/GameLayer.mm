@@ -568,7 +568,7 @@
 	}
 		
 	
-	int mainToolGroupX = winSize.width/2 - ((_toolboxItemSize.width + TOOLBOX_MARGIN_LEFT)*((_toolGroups.count-1.0)/2.0));
+	int mainToolGroupX = winSize.width/2 - ((_toolboxItemSize.width + TOOLBOX_MARGIN_LEFT)*((_toolGroups.count-_iapToolGroups.count-1.0)/2.0));
 	int mainToolGroupY = _toolboxItemSize.height/2 + TOOLBOX_MARGIN_BOTTOM;
 
 	int iapToolGroupX = _toolboxItemSize.width/2 + TOOLBOX_MARGIN_BOTTOM;
@@ -895,6 +895,38 @@
 		//NSLog(@"Fill time: %f", [[NSDate date] timeIntervalSince1970] - startTime);
 
 	}
+	
+	
+	//add in any unfriendly features like LOUD_NOISE
+	double maxRange = 100;
+	double maxRangeCorner = maxRange * sqrt(2.0);
+	double power = arc4random()%5 + 5;	//fluctuating power
+	//TODO: make this visual
+	double step = maxRangeCorner/power;
+	for(LHSprite* loudNoise in [_levelLoader spritesWithTag:LOUD_NOISE]) {
+			
+		//convert to worldspace (Figure out why the conversion is needed at all later)
+		int minX = max(loudNoise.position.x - maxRange*SCALING_FACTOR_H, 0);
+		int maxX = min(loudNoise.position.x + maxRange*SCALING_FACTOR_H, _levelSize.width-1);
+		int minY = max(loudNoise.position.y - maxRange*SCALING_FACTOR_V, 0);
+		int maxY = min(loudNoise.position.y + maxRange*SCALING_FACTOR_V, _levelSize.height-1);
+
+		//cross-patch fill (+=2 step)
+		//double startTime = [[NSDate date] timeIntervalSince1970];
+		for(int x = minX; x < maxX; x+= 2) {
+			for(int y = minY; y < maxY; y+= 2) {
+				int gridX = (x/_gridSize);
+				int gridY = (y/_gridSize);
+				if(_sharkMapfeaturesGrid[gridX][gridY] != HARD_BORDER_WEIGHT) {
+					int val =  (maxRangeCorner - ccpDistance(ccp(x,y), loudNoise.position))/step;
+					//NSLog(@"Setting %d,%d to %d  -- midpoint = %f,%f", x, y, val, loudNoise.position.x, loudNoise.position.y);
+					_sharkMapfeaturesGrid[gridX][gridY]+= val;
+				}
+			}
+		}
+		//NSLog(@"Fill time: %f", [[NSDate date] timeIntervalSince1970] - startTime);
+	}	
+	
 	
 	//add the map boundaries as borders
 	for(int x = 0; x < _gridWidth; x++) {
@@ -2382,8 +2414,8 @@
 			
 			double minDist = 100000;
 			LHSprite* hattedActor = nil;
-			NSMutableArray* actors = [NSMutableArray arrayWithArray:[_levelLoader spritesWithTag:SHARK]];
-			[actors addObjectsFromArray:[_levelLoader spritesWithTag:PENGUIN]];
+			NSMutableArray* actors = [NSMutableArray arrayWithArray:[_levelLoader spritesWithTag:PENGUIN]];
+			//[actors addObjectsFromArray:[_levelLoader spritesWithTag:SHARK]];
 			for(LHSprite* actor in actors) {
 				double dist = ccpDistance(actor.position, _activeToolboxItem.position);
 				if(dist < minDist) {
@@ -2410,6 +2442,7 @@
 			[_activeToolboxItem setSensor:true];
 			soundFileName = @"place-loud-noise.wav";
 		
+			[self invalidateSharkFeatureGridsNear:nil];
 		}
 
 		
