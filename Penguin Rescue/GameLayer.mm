@@ -2409,6 +2409,17 @@
 			_activeToolboxItem.tag = BAG_OF_FISH;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
+
+			[_activeToolboxItem transformRotation:330+arc4random()%60];
+			[_activeToolboxItem runAction:[CCSequence actions:
+					[CCWaves actionWithWaves:5 amplitude:2 horizontal:YES vertical:YES grid:ccg(12,8) duration:0.50],
+					[CCStopGrid action],
+					[CCCallBlock actionWithBlock:^{
+						
+					}],
+				nil]
+			];
+
 			soundFileName = @"place-bag-of-fish.wav";
 		
 		}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Invisibility_Hat class]) {
@@ -2427,11 +2438,19 @@
 					minDist = dist;
 					hattedActor = actor;
 				}
+				Shark* actorData = (Shark*)hattedActor.userInfo;
+				if(actorData.hatName != nil && [actorData.hatName isEqualToString:_activeToolboxItem.uniqueName]) {
+					actorData.hatName = @"";
+					actorData.isInvisible = false;
+					actor.opacity = 255;
+				}
 			}
 			if(hattedActor != nil) {
 				Shark* actorData = (Shark*)hattedActor.userInfo;
 				actorData.hatName = _activeToolboxItem.uniqueName;
 				actorData.isInvisible = true;
+					
+				hattedActor.opacity = 150;
 					
 				[_activeToolboxItem transformPosition:ccpAdd(hattedActor.position, ccp(0, [actorData class] == [Shark class] ? 20*SCALING_FACTOR_V : hattedActor.boundingBox.size.height/2))];
 				[_activeToolboxItem transformRotation:(hattedActor.rotation + ([actorData class] == [Shark class] ? 90 : 0))];
