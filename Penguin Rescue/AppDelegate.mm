@@ -36,8 +36,8 @@
 	
 	// Create an CCGLView with a RGB565 color buffer, and a depth buffer of 0-bits
 	CCGLView *glView = [CCGLView viewWithFrame:[_window bounds]
-								   pixelFormat:kEAGLColorFormatRGB565	//kEAGLColorFormatRGBA8
-								   depthFormat:0	//GL_DEPTH_COMPONENT24_OES
+								   pixelFormat:kEAGLColorFormatRGBA8	// was kEAGLColorFormatRGB565
+								   depthFormat:GL_DEPTH_COMPONENT24_OES	// was 0
 							preserveBackbuffer:NO
 									sharegroup:nil
 								 multiSampling:NO

@@ -25,6 +25,7 @@
 #import "APIManager.h"
 
 #import "WindmillRaycastCallback.h"
+#import "LoudNoiseNode.h"
 #import "Utilities.h"
 #import "Analytics.h"
 
@@ -78,6 +79,8 @@
 		_shouldUpdateToolbox = false;
 		_penguinsToPutOnLand =[[NSMutableDictionary alloc] init];
 		_placedToolboxItems = [[NSMutableArray alloc] init];
+		_newlyPlacedToolboxItems = [[NSMutableArray alloc] init];
+		_loudNoiseNodes = [[NSMutableDictionary alloc] init];
 		_scoreKeeper = [[ScoreKeeper alloc] init];
 		_handOfGodPowerSecondsRemaining = HAND_OF_GOD_INITIAL_POWER;
 		_handOfGodPowerSecondsUsed = 0;
@@ -470,6 +473,10 @@
 				[iapSprite setUserData:userData];
 				
 			}else if([spriteName isEqualToString:@"Anti_Shark_272_1"]) {
+				
+				[iapSprite prepareAnimationNamed:@"Toolbox_Anti_Shark_272" fromSHScene:@"Spritesheet"];
+				[iapSprite playAnimation];
+
 				ToolboxItem_Loud_Noise* userData = [[ToolboxItem_Loud_Noise alloc] init];
 				userData.scale = 0.50;
 				userData.runningCost = 750;
@@ -898,18 +905,15 @@
 	
 	
 	//add in any unfriendly features like LOUD_NOISE
-	double maxRange = 100;
-	double maxRangeCorner = maxRange * sqrt(2.0);
-	double power = arc4random()%5 + 5;	//fluctuating power
-	//TODO: make this visual
-	double step = maxRangeCorner/power;
 	for(LHSprite* loudNoise in [_levelLoader spritesWithTag:LOUD_NOISE]) {
 			
+		LoudNoiseNode* loudNoiseNode = [_loudNoiseNodes objectForKey:loudNoise.uniqueName];
+			
 		//convert to worldspace (Figure out why the conversion is needed at all later)
-		int minX = max(loudNoise.position.x - maxRange*SCALING_FACTOR_H, 0);
-		int maxX = min(loudNoise.position.x + maxRange*SCALING_FACTOR_H, _levelSize.width-1);
-		int minY = max(loudNoise.position.y - maxRange*SCALING_FACTOR_V, 0);
-		int maxY = min(loudNoise.position.y + maxRange*SCALING_FACTOR_V, _levelSize.height-1);
+		int minX = max(loudNoise.position.x - loudNoiseNode.maxRange*SCALING_FACTOR_H, 0);
+		int maxX = min(loudNoise.position.x + loudNoiseNode.maxRange*SCALING_FACTOR_H, _levelSize.width-1);
+		int minY = max(loudNoise.position.y - loudNoiseNode.maxRange*SCALING_FACTOR_V, 0);
+		int maxY = min(loudNoise.position.y + loudNoiseNode.maxRange*SCALING_FACTOR_V, _levelSize.height-1);
 
 		//cross-patch fill (+=2 step)
 		//double startTime = [[NSDate date] timeIntervalSince1970];
@@ -918,7 +922,7 @@
 				int gridX = (x/_gridSize);
 				int gridY = (y/_gridSize);
 				if(_sharkMapfeaturesGrid[gridX][gridY] != HARD_BORDER_WEIGHT) {
-					int val =  (maxRangeCorner - ccpDistance(ccp(x,y), loudNoise.position))/step;
+					int val =  (loudNoiseNode.maxRangeCorner - ccpDistance(ccp(x,y), loudNoise.position))/loudNoiseNode.step;
 					//NSLog(@"Setting %d,%d to %d  -- midpoint = %f,%f", x, y, val, loudNoise.position.x, loudNoise.position.y);
 					_sharkMapfeaturesGrid[gridX][gridY]+= val;
 				}
@@ -1516,25 +1520,22 @@
 			}
 		}
 		
-		//charge for placed IAP items
-		for(LHSprite* placedItem in _placedToolboxItems) {
-			[self debitForToolboxItemUsage:placedItem];
-		}
-		
 		//analytics logging
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 			[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
 			_levelPackPath, @"Level_Pack",
 		nil];
 		[Analytics logEvent:@"Play_level" withParameters:flurryParams];
-
 	}
-	
 }
 
 -(void) setStateGameOver {
 
 	_state = GAME_OVER;
+	
+	for(id key in _loudNoiseNodes) {
+		((LoudNoiseNode*)[_loudNoiseNodes objectForKey:key]).visible = false;
+	}
 
 	[self unscheduleAllSelectors];
 	[self unscheduleUpdate];
@@ -2364,6 +2365,7 @@
 		if(DEBUG_TOOLBOX) DebugLog(@"Adding toolbox item %@ to world", [(id)_activeToolboxItem.userData class]);
 		
 		NSString* soundFileName = @"place.wav";
+		bool canMoveItemAfterPlacing = true;
 	
 		//StaticToolboxItem are things penguins and sharks can't move through
 		if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Debris class]) {
@@ -2441,7 +2443,14 @@
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
 			soundFileName = @"place-loud-noise.wav";
-		
+			
+			if([_loudNoiseNodes objectForKey:_activeToolboxItem.uniqueName] == nil) {
+				LoudNoiseNode* loudNoiseNode = [[LoudNoiseNode alloc] initWithSprite:_activeToolboxItem maxRange:100];
+				[_loudNoiseNodes setObject:loudNoiseNode forKey:_activeToolboxItem.uniqueName];
+				[self addChild:loudNoiseNode];
+				[loudNoiseNode release];
+			}
+			
 			[self invalidateSharkFeatureGridsNear:nil];
 		}
 
@@ -2452,6 +2461,7 @@
 			[_toolboxBatchNode removeChild:_activeToolboxItem cleanup:NO];
 			[_mainLayer addChild:_activeToolboxItem];
 			[_placedToolboxItems addObject:_activeToolboxItem];
+			[_newlyPlacedToolboxItems addObject:_activeToolboxItem];
 			[self scoreToolboxItemPlacement:_activeToolboxItem replaced:false];
 
 			//analytics logging
@@ -2488,9 +2498,11 @@
 		}
 		
 		[_activeToolboxItem removeTouchObserver];
-		[_activeToolboxItem registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
-		[_activeToolboxItem registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
-	
+		if(canMoveItemAfterPlacing) {
+			[_activeToolboxItem registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
+			[_activeToolboxItem registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
+		}
+		
 		_activeToolboxItem = nil;
 		_moveActiveToolboxItemIntoWorld = false;
 		_shouldUpdateToolbox = true;
@@ -2536,6 +2548,26 @@
 		whirlpool.flipX = angVel > 0;
 	}
 
+	//alternating power for Loud Noise
+	for(LHSprite* loudNoise in [_levelLoader spritesWithTag:LOUD_NOISE]) {
+		if(arc4random()%1024 < 24) {
+			[loudNoise runAction:[CCSequence actions:
+					[CCShaky3D actionWithRange:5 shakeZ:NO grid:ccg(12,8) duration:0.50],
+					[CCStopGrid action],
+					[CCCallBlock actionWithBlock:^{
+						
+						LoudNoiseNode* loudNoiseNode = [_loudNoiseNodes objectForKey:loudNoise.uniqueName];
+						float power = arc4random()%75 + 25;	//fluctuating power
+						[loudNoiseNode setPowerPercentage:power];
+					
+						[self invalidateSharkFeatureGridsNear:nil];
+					}],
+				nil]
+			];
+
+		}
+	}
+	
 	
 	if(!DISTRIBUTION_MODE && __DEBUG_TOUCH_SECONDS != 0) {
 		double elapsed = ([[NSDate date] timeIntervalSince1970] - __DEBUG_TOUCH_SECONDS);
@@ -2601,7 +2633,22 @@
 		return;
 	}
 	
-
+	if(_newlyPlacedToolboxItems.count > 0) {
+		for(LHSprite* placedItem in _newlyPlacedToolboxItems) {
+			//charge for placed IAP items
+			[self debitForToolboxItemUsage:placedItem];
+			
+			//prevent certain items from being moved after pressing play
+			if([(id)(placedItem.userData) class] == [ToolboxItem_Bag_of_Fish class] ||
+				[(id)(placedItem.userData) class] == [ToolboxItem_Invisibility_Hat class] ||
+				[(id)(placedItem.userData) class] == [ToolboxItem_Loud_Noise class])
+			{
+				[placedItem removeTouchObserver];
+			}
+		}
+		[_newlyPlacedToolboxItems removeAllObjects];
+	}
+	
 	//place penguins on land for visual appeal
 	for(id penguinName in _penguinsToPutOnLand) {
 		LHSprite* penguin = [_levelLoader spriteWithUniqueName:penguinName];
@@ -3638,6 +3685,7 @@
 	}
 	
 	[_placedToolboxItems release];
+	[_newlyPlacedToolboxItems release];
 	[_scoreKeeper release];
 	
 	if(_handOfGodPowerNode != nil) {
@@ -3655,6 +3703,8 @@
 		[moveGriData release];
 	}
 	[_penguinMoveGridDatas release];
+	
+	[_loudNoiseNodes release];
 	
 	[_penguinsThatNeedToUpdateFeatureGrids release];
 	[_sharksThatNeedToUpdateFeatureGrids release];

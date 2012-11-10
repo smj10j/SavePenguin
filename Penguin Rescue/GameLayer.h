@@ -98,8 +98,10 @@ enum PROPAGATION_RESULT {
 	bool _shouldUpdateToolbox;
 	CGSize _toolboxItemSize;
 	NSMutableArray* _placedToolboxItems;
+	NSMutableArray* _newlyPlacedToolboxItems;
 	ScoreKeeper* _scoreKeeper;
 			
+	NSMutableDictionary* _loudNoiseNodes;
 	
 	double _levelStartPlaceTime;
 	double _levelStartRunningTime;
