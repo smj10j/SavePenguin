@@ -115,6 +115,28 @@ if($method == 'GET') {
 		initDatabase();
 		
 		//TODO: build summary tables to store this data
+/*
+
+CREATE TABLE IF NOT EXISTS `scores_summary` (
+  `score_summary_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `level_pack_id` int(10) unsigned NOT NULL,
+  `level_id` int(10) unsigned NOT NULL,
+  `total_users` int(11) unsigned NOT NULL,
+  `unique_plays` int(11) unsigned NOT NULL,
+  `total_plays` int(11) unsigned NOT NULL,
+  `unique_wins` int(11) unsigned NOT NULL,
+  `total_wins` int(11) unsigned NOT NULL,
+  `score_mean` int(11) unsigned NOT NULL,
+  `score_median` int(11) unsigned NOT NULL,
+  `score_std_dev` int(11) unsigned NOT NULL,
+  `updating` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`score_summary_id`),
+  KEY `level_pack-level-created` (`level_pack_id`,`level_id`,`created`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+*/
+
 		
 		$levels = array();
 		
