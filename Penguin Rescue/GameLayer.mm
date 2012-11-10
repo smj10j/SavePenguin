@@ -298,6 +298,8 @@
     [_levelLoader useLevelHelperCollisionHandling];
 	[_levelLoader registerBeginOrEndCollisionCallbackBetweenTagA:LAND andTagB:PENGUIN idListener:self selListener:@selector(landPenguinCollision:)];
     [_levelLoader registerBeginOrEndCollisionCallbackBetweenTagA:SHARK andTagB:PENGUIN idListener:self selListener:@selector(sharkPenguinCollision:)];
+    [_levelLoader registerBeginOrEndCollisionCallbackBetweenTagA:SHARK andTagB:BAG_OF_FISH idListener:self selListener:@selector(sharkBagOfFishCollision:)];
+
 }
 
 -(void) drawHUD {
@@ -2097,7 +2099,7 @@
 			
 	if(_numSharksUpdatingMoveGrids == 0) {
 
-		LHSprite* targetPenguin = nil;
+		LHSprite* target = nil;
 			
 		for(LHSprite* shark in sharks) {
 
@@ -2155,21 +2157,32 @@
 				if(dist < minDistance) {
 					//DebugLog(@"Shark %@'s closest penguin is %@ at %f", shark.uniqueName, penguin.uniqueName, dist);
 					minDistance = dist;
-					targetPenguin = penguin;
+					target = penguin;
 					sharkData.targetAcquired = true;
 				}
 			}
 			
-			if(targetPenguin != nil) {
-				CGPoint targetPenguinGridPos = [self toGrid:targetPenguin.position];
-				if(targetPenguinGridPos.x >= _gridWidth || targetPenguinGridPos.x < 0 || targetPenguinGridPos.y >= _gridHeight || targetPenguinGridPos.y < 0) {
+			//see if there are any 'bags of fish' that might be more interesting
+			for(LHSprite* bagOfFish in [_levelLoader spritesWithTag:BAG_OF_FISH]) {
+				double dist = ccpDistance(shark.position, bagOfFish.position);
+				if(dist < minDistance) {
+					minDistance = dist;
+					target = bagOfFish;
+					sharkData.targetAcquired = true;
+				}
+			}
+			
+			
+			if(target != nil) {
+				CGPoint targetGridPos = [self toGrid:target.position];
+				if(targetGridPos.x >= _gridWidth || targetGridPos.x < 0 || targetGridPos.y >= _gridHeight || targetGridPos.y < 0) {
 					//offscreen - let him come back before we deal with him
 					_numSharksUpdatingMoveGrids--;
 					continue;
 				}
 
 				void(^updateBlock)(void) = [[^(void) {
-					[sharkMoveGridData updateMoveGridToTile:targetPenguinGridPos fromTile:sharkGridPos];
+					[sharkMoveGridData updateMoveGridToTile:targetGridPos fromTile:sharkGridPos];
 					_numSharksUpdatingMoveGrids--;
 				} copy] autorelease];
 				dispatch_async(_moveGridSharkUpdateQueue, updateBlock);
@@ -2363,7 +2376,7 @@
 		
 		}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Invisibility_Hat class]) {
 			_activeToolboxItem.tag = INVISIBILITY_HAT;
-			[_activeToolboxItem makeStatic];
+			[_activeToolboxItem makeNoPhysics];
 			[_activeToolboxItem setSensor:true];
 			soundFileName = @"place-invisibility-hat.wav";
 			
@@ -3219,6 +3232,16 @@
 
 }
 
+
+-(void) sharkBagOfFishCollision:(LHContactInfo*)contact {
+	LHSprite* shark = [contact spriteA];
+    LHSprite* bagOfFish = [contact spriteB];
+
+    if(nil != bagOfFish && nil != shark) {
+		[bagOfFish removeSelf];
+		//TODO: play an eating sound
+    }
+}
 
 //if this ever gets trigger then the penguins lost
 -(void) sharkPenguinCollision:(LHContactInfo*)contact
