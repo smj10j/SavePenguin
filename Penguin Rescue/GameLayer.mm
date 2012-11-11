@@ -1598,10 +1598,9 @@
 	const int timeScoreDeduction = placeTimeScore + runningTimeScore;
 	scoreDeductions+= timeScoreDeduction;
 	
-	//TODO: add extra credit to score
 	int extraCreditScore = _extraCreditScoreKeeper.totalScore;
 	
-	const int finalScore = scoreDeductions > SCORING_MAX_SCORE_POSSIBLE ? 0 : SCORING_MAX_SCORE_POSSIBLE - scoreDeductions;
+	const int finalScore = scoreDeductions > SCORING_MAX_SCORE_POSSIBLE ? 0 : SCORING_MAX_SCORE_POSSIBLE - scoreDeductions + extraCreditScore;
 	
 	//post the score to the server or queue for online processing
 	[ScoreKeeper saveScore:finalScore UUID:[SettingsManager getUUID] levelPackPath:_levelPackPath levelPath:_levelPath];
@@ -1637,11 +1636,14 @@
 	}
 	if(DEBUG_SCORING) DebugLog(@"Coins earned for level: %d, new total coins earned for level: %d", coinsEarned, totalCoinsEarnedForLevel);
 	
-	
+
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"Won", @"Level_Status",
 		[NSNumber numberWithInt:finalScore], @"Score",
+		[NSNumber numberWithInt:toolsScoreDeduction], @"ToolsScoreDeduction",
+		[NSNumber numberWithInt:extraCreditScore], @"ExtraCreditScore",
+		[NSNumber numberWithInt:timeScoreDeduction], @"TimeScoreDeduction",
 		[NSNumber numberWithInt:coinsEarned], @"CoinsEarned",
 		[NSNumber numberWithInt:totalCoinsEarnedForLevel], @"TotalCoinsEarnedForLevel",
 		grade, @"Grade",
@@ -1744,6 +1746,13 @@
 									scoringYOffset);
 	[self addChild:toolsScoreLabel];
 
+		//TODO: add extra credit to score
+
+	CCLabelTTF* extraCreditLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", extraCreditScore] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
+	extraCreditLabel.color = SCORING_FONT_COLOR4;
+	extraCreditLabel.position = ccp(winSize.width/2 + (32*SCALING_FACTOR_H),
+									scoringYOffset);
+	[self addChild:extraCreditLabel];
 
 	CCLabelTTF* totalScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", finalScore] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 	totalScoreLabel.color = SCORING_FONT_COLOR2;
@@ -2277,6 +2286,30 @@
 	}
 }
 
+-(void)floatScore:(int)score multiplier:(int)multiplier atPosition:(CGPoint)position {
+	
+	//show a notification about the cost of the item
+	CCLabelTTF* toolboxItemCostNotification = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@%d%@",
+											(score < 0 ? @"-" : @"+"),
+											abs(score),
+											(multiplier > 1 ? [NSString stringWithFormat:@" x%d", multiplier] : @"")]
+										fontName:@"Helvetica"
+										fontSize:24*SCALING_FACTOR_FONTS];
+	toolboxItemCostNotification.color = (score < 0 ? ccRED : ccGREEN);
+	toolboxItemCostNotification.position = position;
+	[self addChild:toolboxItemCostNotification];
+	
+	[toolboxItemCostNotification runAction:[CCSequence actions:
+		[CCMoveBy actionWithDuration:1.5f position:ccp(0, 200*SCALING_FACTOR_V)],
+		nil]
+	];
+	[toolboxItemCostNotification runAction:[CCSequence actions:
+		[CCDelayTime actionWithDuration:0.50f],
+		[CCFadeOut actionWithDuration:1.0f],
+		nil]
+	];
+}
+
 -(void)scoreToolboxItemPlacement:(LHSprite*)toolboxItem replaced:(bool)replaced {
 
 	//accounting
@@ -2303,24 +2336,10 @@
 	//round to 25s
 	score = (score/25)*25;
 	
-				
-	[_toolsScoreKeeper addScore:score description:(_state == PLACE ? @"PLACE" : @"RUNNING") sprite:toolboxItem group:true];
-	
-	//show a notification about the cost of the item
-	CCLabelTTF* toolboxItemCostNotification = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"-%d", score] fontName:@"Helvetica" fontSize:24*SCALING_FACTOR_FONTS];
-	toolboxItemCostNotification.color = ccRED;
-	toolboxItemCostNotification.position = toolboxItem.position;
-	[self addChild:toolboxItemCostNotification];
-	
-	[toolboxItemCostNotification runAction:[CCSequence actions:
-		[CCMoveBy actionWithDuration:1.5f position:ccp(0, 200*SCALING_FACTOR_V)],
-		nil]
-	];
-	[toolboxItemCostNotification runAction:[CCSequence actions:
-		[CCDelayTime actionWithDuration:0.50f],
-		[CCFadeOut actionWithDuration:1.0f],
-		nil]
-	];
+	[_toolsScoreKeeper addScore:score category:[NSString stringWithFormat:@"%@", [(id)toolboxItem.userData class]] tag:(_state == PLACE ? @"PLACE" : @"RUNNING") group:YES];
+	if(DEBUG_SCORING) DebugLog(@"New Tools deduction score: %d", _toolsScoreKeeper.totalScore);
+
+	[self floatScore:-score multiplier:1 atPosition:toolboxItem.position];
 }
 
 
@@ -2858,6 +2877,27 @@
 		if (callback._fixture) {
 			if (callback._fixture->GetBody() == sprite.body && callback._fraction < minWindmillFraction) {
 			
+				//apply extra credit!
+				if(sprite.tag == PENGUIN) {
+					if([_extraCreditScoreKeeper addScore:SCORING_CLOSE_CALL_EXTRA_CREDIT
+												category: [NSString stringWithFormat:@"COMBO_%@", [ToolboxItem_Windmill class]]
+												tag: windmill.uniqueName
+												group:YES
+												unique:YES]) {
+						//new score for this windmill
+						int combos = [_extraCreditScoreKeeper numberOfScoresInCategory:[NSString stringWithFormat:@"COMBO_%@", [ToolboxItem_Windmill class]]];
+						//actually add the combo score to the score keeper
+						[_extraCreditScoreKeeper addScore:combos*SCORING_CLOSE_CALL_EXTRA_CREDIT
+												category: [NSString stringWithFormat:@"COMBO_%@", [ToolboxItem_Windmill class]]
+												tag: windmill.uniqueName
+												group:YES
+												unique:YES];
+						[self floatScore:SCORING_COMBO_BASE_EXTRA_CREDIT multiplier:combos atPosition:windmill.position];
+						
+						if(DEBUG_SCORING) DebugLog(@"New Extra Credit score: %d", _extraCreditScoreKeeper.totalScore);
+					}
+				}
+				
 				minWindmillFraction = callback._fraction;
 			
 				//shark is in the way!!
@@ -3424,16 +3464,29 @@
     {
 		if(!penguinData.isSafe) {
 			penguinData.isSafe = true;
+			
+			//give any extra credit if due for a close call!
+			for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
+				double dist = ccpDistance(shark.position, penguin.position);
+				if(dist < SCORING_CLOSE_CALL_DISTANCE) {
+					[_extraCreditScoreKeeper addScore:SCORING_CLOSE_CALL_EXTRA_CREDIT category:@"CLOSE_CALL" tag:penguin.uniqueName group:YES unique:YES];
+					[self floatScore:SCORING_CLOSE_CALL_EXTRA_CREDIT multiplier:1 atPosition:penguin.position];
+					if(DEBUG_SCORING) DebugLog(@"New Extra Credit score: %d", _extraCreditScoreKeeper.totalScore);
+					break;
+				}
+			}			
+			
 			[_penguinsToPutOnLand setObject:land forKey:penguin.uniqueName];
 			DebugLog(@"Penguin %@ has collided with some land!", penguin.uniqueName);
 		
 			[penguin prepareAnimationNamed:@"Penguin_Happy" fromSHScene:@"Spritesheet"];
-			[penguin playAnimation];			
+			[penguin playAnimation];
 			
 			//tell all sharks they should update
 			for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
 				[[_sharkMoveGridDatas objectForKey:shark.uniqueName] forceUpdateToMoveGrid];
 			}
+			
 		}
     }
 }

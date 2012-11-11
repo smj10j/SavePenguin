@@ -7,22 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LHSprite.h"
 
 @interface Score : NSObject {
 
 	int _score;
 	int _count;
-	LHSprite* _sprite;
 }
 
--(id)initWithScore:(int)score sprite:(LHSprite*)sprite;
+-(id)initWithScore:(int)score;
 -(int)score;
 -(int)count;
--(LHSprite*)sprite;
 
 -(void)setScore:(int)score;
 -(void)setCount:(int)count;
--(void)setSprite:(LHSprite*)sprite;
 
 @end

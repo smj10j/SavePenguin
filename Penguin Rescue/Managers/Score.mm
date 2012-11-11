@@ -10,11 +10,10 @@
 
 @implementation Score
 
--(id)initWithScore:(int)score sprite:(LHSprite*)sprite {
+-(id)initWithScore:(int)score {
 	
 	if(self = [super init]) {
 		_score = score;
-		_sprite = [sprite retain];
 		_count = 1;
 	}
 	return self;
@@ -28,10 +27,6 @@
 	return _count;
 }
 
--(LHSprite*)sprite {
-	return _sprite;
-}
-
 -(void)setScore:(int)score {
 	_score = score;
 }
@@ -40,17 +35,7 @@
 	_count = count;
 }
 
--(void)setSprite:(LHSprite*)sprite {
-	if(_sprite != nil) {
-		[_sprite release];
-	}
-	_sprite = [sprite retain];
-}
-
 -(void)dealloc {
-	if(_sprite != nil) {
-		[_sprite release];
-	}
 	[super dealloc];
 }
 

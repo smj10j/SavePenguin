@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "Constants.h"
-#import "LHSprite.h"
 #import "Score.h"
 #import "JSONKit.h"
 
@@ -20,7 +19,9 @@
 
 -(id)init;
 
--(void)addScore:(int)score description:(NSString*)tag sprite:(LHSprite*)sprite group:(bool)group;
+-(int)numberOfScoresInCategory:(NSString*)category;
+-(bool)addScore:(int)value category:(NSString*)category tag:(NSString*)tag group:(bool)group;
+-(bool)addScore:(int)value category:(NSString*)category tag:(NSString*)tag group:(bool)group unique:(bool)unique;
 
 -(int)totalScore;
 

@@ -30,18 +30,45 @@
 	return self;
 }
 
--(void)addScore:(int)value description:(NSString*)tag sprite:(LHSprite*)sprite group:(bool)group {
 
-	NSString* scoresKey = [NSString stringWithFormat:@"%@-%@-%@", tag, (sprite != nil ? sprite.userInfoClassName : @""), (group ? @"" : [NSString stringWithFormat:@"%d", arc4random()%100000])];
+
+
+-(int)numberOfScoresInCategory:(NSString*)category {
+	int count = 0;
+	for(NSString* scoreTag in _scores) {
+		if([scoreTag hasPrefix:category]) {
+			Score* score = [_scores objectForKey:scoreTag];
+			count+= score.count;
+		}
+	}
+	return count;
+}
+
+-(bool)addScore:(int)value category:(NSString*)category tag:(NSString*)tag group:(bool)group {
+	return [self addScore:value category:category tag:tag group:group unique:NO];
+}
+
+-(bool)addScore:(int)value category:(NSString*)category tag:(NSString*)tag group:(bool)group unique:(bool)unique {
+
+	NSString* scoresKey = [NSString stringWithFormat:@"%@-%@-%@", (category != nil ? category : @""), tag, (group ? @"" : [NSString stringWithFormat:@"%d", arc4random()%100000])];
 	Score* score = [_scores objectForKey:scoresKey];
 	if(score == nil) {
-		score = [[Score alloc] initWithScore:value sprite:sprite];
+		score = [[Score alloc] initWithScore:value];
 		[_scores setObject:score forKey:scoresKey];
+		if(DEBUG_SCORING) DebugLog(@"Adding score %d for scoreKey: %@", value, scoresKey);
 		[score release];
+		return true;
 	}else {
-		score.count++;
+		if(unique) {
+			if(DEBUG_SCORING) DebugLog(@"Setting unique score from %d to %d for scoreKey: %@", score.score, value, scoresKey);
+			score.score = value;
+			return false;
+		}else {
+			score.count++;
+			if(DEBUG_SCORING) DebugLog(@"Incrementing count to %d for score %d for scoreKey: %@", score.count, score.score, scoresKey);
+			return true;
+		}
 	}
-
 }
 
 -(int)totalScore {
