@@ -1677,7 +1677,7 @@
 	[Analytics endTimedEvent:@"Begin_Level" withParameters:flurryParams];
 	
 	//store our earned coins
-	[SettingsManager incrementIntBy:coinsEarned forKey:coinsEarnedForLevelKey];
+	[SettingsManager setInt:totalCoinsEarnedForLevel forKey:coinsEarnedForLevelKey];
 	[SettingsManager incrementIntBy:coinsEarned forKey:SETTING_TOTAL_EARNED_COINS];
 	[SettingsManager incrementIntBy:coinsEarned forKey:SETTING_TOTAL_AVAILABLE_COINS];
 	
@@ -1858,7 +1858,7 @@
 		CCLabelTTF* highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", highScoresLabelText] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE3 dimensions:CGSizeMake(300*SCALING_FACTOR_H,150*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
 		highScoreLabel.color = SCORING_FONT_COLOR_NOTICE;
 		highScoreLabel.opacity = 0;
-		highScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset - 200*SCALING_FACTOR_H,
+		highScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset - highScoreLabel.boundingBox.size.width,
 									110*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
 		[self addChild:highScoreLabel];
 		
@@ -2944,7 +2944,7 @@
 			
 				//apply extra credit!
 				if(sprite.tag == PENGUIN) {
-					if([_extraCreditScoreKeeper addScore:SCORING_COMBO_BASE_EXTRA_CREDIT
+					if([_extraCreditScoreKeeper addScore:0
 												category: @"COMBO_WINDMILL_WHIRLPOOL"
 												tag: windmill.uniqueName
 												group:YES
@@ -2999,7 +2999,7 @@
 				
 				//apply extra credit!
 				if(sprite.tag == PENGUIN) {
-					if([_extraCreditScoreKeeper addScore:SCORING_COMBO_BASE_EXTRA_CREDIT
+					if([_extraCreditScoreKeeper addScore:0
 												category: @"COMBO_WINDMILL_WHIRLPOOL"
 												tag: whirlpool.uniqueName
 												group:YES
@@ -3668,18 +3668,8 @@
 				if(_handOfGodPowerSecondsRemaining > 0) {
 					//nudge the nearest penguin!
 					
-					if(!_isNudgingPenguin) {
-						[_handOfGodPowerNode runAction:[CCFadeIn actionWithDuration:0.25f]];
-						
-						if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
-							[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/nudge.wav"];
-						}				
-						
-					}
-					_isNudgingPenguin = true;
-					
 					LHSprite* nearestPenguin = nil;
-					int minDistance = 100000;
+					int minDistance = 200*SCALING_FACTOR_GENERIC;
 					for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
 						int dist = ccpDistance(penguin.position, _startTouch);
 						if(dist < minDistance) {
@@ -3688,6 +3678,17 @@
 						}
 					}
 					if(nearestPenguin != nil) {
+					
+						if(!_isNudgingPenguin) {
+							[_handOfGodPowerNode runAction:[CCFadeIn actionWithDuration:0.25f]];
+							
+							if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+								[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/nudge.wav"];
+							}				
+							
+						}
+						_isNudgingPenguin = true;					
+						
 						//[nearestPenguin transformPosition:ccp(nearestPenguin.position.x+location.x-_lastTouch.x, nearestPenguin.position.y+location.y-_lastTouch.y)];
 						if(nearestPenguin.body) {
 							nearestPenguin.body->ApplyLinearImpulse(

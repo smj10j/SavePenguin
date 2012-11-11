@@ -60,8 +60,8 @@
 		return true;
 	}else {
 		if(unique) {
-			if(DEBUG_SCORING) DebugLog(@"Setting unique score from %d to %d for scoreKey: %@", score.score, value, scoresKey);
-			score.score = value;
+			if(DEBUG_SCORING) DebugLog(@"Adding to unique score %d +%d for scoreKey: %@", score.score, value, scoresKey);
+			score.score+= value;
 			return false;
 		}else {
 			score.count++;
