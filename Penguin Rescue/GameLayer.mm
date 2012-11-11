@@ -81,7 +81,8 @@
 		_placedToolboxItems = [[NSMutableArray alloc] init];
 		_newlyPlacedToolboxItems = [[NSMutableArray alloc] init];
 		_loudNoiseNodes = [[NSMutableDictionary alloc] init];
-		_scoreKeeper = [[ScoreKeeper alloc] init];
+		_toolsScoreKeeper = [[ScoreKeeper alloc] init];
+		_extraCreditScoreKeeper = [[ScoreKeeper alloc] init];
 		_handOfGodPowerSecondsRemaining = HAND_OF_GOD_INITIAL_POWER;
 		_handOfGodPowerSecondsUsed = 0;
 		_isNudgingPenguin = false;
@@ -1587,7 +1588,7 @@
 	int scoreDeductions = 0;
 	
 	
-	int toolsScoreDeduction = _scoreKeeper.totalScore;
+	int toolsScoreDeduction = _toolsScoreKeeper.totalScore;
 	//hand of god power
 	toolsScoreDeduction+= _handOfGodPowerSecondsUsed*SCORING_HAND_OF_GOD_COST_PER_SECOND;
 	scoreDeductions+= toolsScoreDeduction;
@@ -1596,6 +1597,9 @@
 	const double runningTimeScore = _levelRunningTimeDuration * SCORING_RUNNING_SECOND_COST;
 	const int timeScoreDeduction = placeTimeScore + runningTimeScore;
 	scoreDeductions+= timeScoreDeduction;
+	
+	//TODO: add extra credit to score
+	int extraCreditScore = _extraCreditScoreKeeper.totalScore;
 	
 	const int finalScore = scoreDeductions > SCORING_MAX_SCORE_POSSIBLE ? 0 : SCORING_MAX_SCORE_POSSIBLE - scoreDeductions;
 	
@@ -2300,7 +2304,7 @@
 	score = (score/25)*25;
 	
 				
-	[_scoreKeeper addScore:score description:(_state == PLACE ? @"PLACE" : @"RUNNING") sprite:toolboxItem group:true];
+	[_toolsScoreKeeper addScore:score description:(_state == PLACE ? @"PLACE" : @"RUNNING") sprite:toolboxItem group:true];
 	
 	//show a notification about the cost of the item
 	CCLabelTTF* toolboxItemCostNotification = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"-%d", score] fontName:@"Helvetica" fontSize:24*SCALING_FACTOR_FONTS];
@@ -3533,7 +3537,18 @@
 						_activeToolboxItem.body->SetAngularVelocity(0);
 						_activeToolboxItem.body->ApplyTorque(angularVelocity>0 ? -15 : 15);
 						_activeToolboxItem.flipX = angularVelocity < 0;
+					}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Sandbar class]) {
+						//oscillate between 0 and 90
+						int newRotation = _activeToolboxItem.rotation == 90 ? 0 : 90;
+						[_activeToolboxItem transformRotation:newRotation];
+					}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Loud_Noise class]) {
+						//no rotation
+					}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Invisibility_Hat class]) {
+						//no rotation
+					}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Bag_of_Fish class]) {
+						//no rotation
 					}else {
+						//rotate by 90 degrees
 						[_activeToolboxItem transformRotation:((int)_activeToolboxItem.rotation+90)%360];
 					}
 					
@@ -3761,7 +3776,8 @@
 	
 	[_placedToolboxItems release];
 	[_newlyPlacedToolboxItems release];
-	[_scoreKeeper release];
+	[_toolsScoreKeeper release];
+	[_extraCreditScoreKeeper release];
 	
 	if(_handOfGodPowerNode != nil) {
 		[_handOfGodPowerNode release];

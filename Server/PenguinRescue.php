@@ -117,6 +117,11 @@ if($method == 'GET') {
 		//TODO: build summary tables to store this data
 /*
 
+
+TODO:!!!!!!!! make key level_pack-level-created unique
+
+
+
 CREATE TABLE IF NOT EXISTS `scores_summary` (
   `score_summary_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `level_pack_id` int(10) unsigned NOT NULL,

@@ -99,7 +99,8 @@ enum PROPAGATION_RESULT {
 	CGSize _toolboxItemSize;
 	NSMutableArray* _placedToolboxItems;
 	NSMutableArray* _newlyPlacedToolboxItems;
-	ScoreKeeper* _scoreKeeper;
+	ScoreKeeper* _toolsScoreKeeper;
+	ScoreKeeper* _extraCreditScoreKeeper;
 			
 	NSMutableDictionary* _loudNoiseNodes;
 	
