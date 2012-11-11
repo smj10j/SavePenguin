@@ -3521,22 +3521,22 @@
 	LHSprite* shark = [contact spriteA];
     LHSprite* bagOfFish = [contact spriteB];
 
-    if(_state == RUNNING && nil != bagOfFish && nil != shark && bagOfFish.userData != nil) {
+    if(contact.contactType == LH_BEGIN_CONTACT && _state == RUNNING && nil != bagOfFish && nil != shark && bagOfFish.userData != nil) {
 	
 		[(id)bagOfFish.userData release];
 		bagOfFish.userData = nil;
+		[bagOfFish stopAllActions];
 		
 		[bagOfFish runAction:[CCSequence actions:
 				//[CCTwirl actionWithPosition:bagOfFish.position twirls:1 amplitude:10 grid:ccg(12,8) duration:0.50],
 				//[CCShatteredTiles3D actionWithRange:20 shatterZ:NO grid:ccg(12,8) duration:1.50],
 				[CCShakyTiles3D actionWithRange:3 shakeZ:NO grid:ccg(12, 8) duration:0.50],
-				[CCStopGrid action],
 				[CCCallBlock actionWithBlock:^{
 					[bagOfFish removeSelf];
 				}],
 			nil]
 		];	
-	
+		//[bagOfFish scheduleOnce:@selector(removeSelf) delay:0.55];
     }
 }
 
@@ -3566,7 +3566,7 @@
     LHSprite* penguin = [contact spriteB];
 	Penguin* penguinData = ((Penguin*)penguin.userInfo);
 
-    if(nil != penguin && nil != shark)
+    if(contact.contactType == LH_BEGIN_CONTACT && nil != penguin && nil != shark)
     {
 		if(!penguinData.isDead) {
 			penguinData.isDead = true;
@@ -3582,7 +3582,7 @@
     LHSprite* penguin = [contact spriteB];
 	Penguin* penguinData = ((Penguin*)penguin.userInfo);
 
-    if(nil != penguin && nil != land)
+    if(contact.contactType == LH_BEGIN_CONTACT && nil != penguin && nil != land)
     {
 		if(!penguinData.isSafe) {
 			penguinData.isSafe = true;
