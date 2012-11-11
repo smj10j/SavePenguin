@@ -185,6 +185,13 @@
 
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/button.wav"];
 	
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/penguin/close-call.wav"];
+
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/combo/1.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/combo/2.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/combo/3.wav"];
+	
+	
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/pickup.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/return.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/rotate.wav"];
@@ -1746,8 +1753,6 @@
 									scoringYOffset);
 	[self addChild:toolsScoreLabel];
 
-		//TODO: add extra credit to score
-
 	CCLabelTTF* extraCreditLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", extraCreditScore] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 	extraCreditLabel.color = SCORING_FONT_COLOR_GOOD;
 	extraCreditLabel.position = ccp(winSize.width/2 + (85*SCALING_FACTOR_H) + (IS_IPHONE ? 8*SCALING_FACTOR_H : 0),
@@ -1770,7 +1775,7 @@
 	const int competitiveTextYOffset = 135*SCALING_FACTOR_V;
 	
 	
-	if(false && worldScores != nil) {
+	if(worldScores != nil) {
 
 		CCLabelTTF* worldAverageScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", worldScoreMean] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
 		worldAverageScoreLabel.color = SCORING_FONT_COLOR_NEUTRAL_CONTRAST;
@@ -2917,15 +2922,21 @@
 												unique:YES]) {
 						//new score for this windmill
 						int combos = [_extraCreditScoreKeeper numberOfScoresInCategory:@"COMBO_WINDMILL_WHIRLPOOL"];
-						//actually add the combo score to the score keeper
-						[_extraCreditScoreKeeper addScore:combos*SCORING_COMBO_BASE_EXTRA_CREDIT
-												category: @"COMBO_WINDMILL_WHIRLPOOL"
-												tag: windmill.uniqueName
-												group:YES
-												unique:YES];
-						[self floatScore:SCORING_COMBO_BASE_EXTRA_CREDIT multiplier:combos atPosition:windmill.position];
-						
-						if(DEBUG_SCORING) DebugLog(@"New Extra Credit score: %d", _extraCreditScoreKeeper.totalScore);
+						if(combos > 1) {
+							//actually add the combo score to the score keeper
+							[_extraCreditScoreKeeper addScore:combos*SCORING_COMBO_BASE_EXTRA_CREDIT
+													category: @"COMBO_WINDMILL_WHIRLPOOL"
+													tag: windmill.uniqueName
+													group:YES
+													unique:YES];
+							[self floatScore:SCORING_COMBO_BASE_EXTRA_CREDIT multiplier:combos atPosition:windmill.position];
+							
+							if(DEBUG_SCORING) DebugLog(@"New Extra Credit score: %d", _extraCreditScoreKeeper.totalScore);
+							
+							if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+								[[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"sounds/game/combo/%d.wav", (int)min(combos-1,3)]];
+							}
+						}
 					}
 				}
 				
@@ -2966,15 +2977,21 @@
 												unique:YES]) {
 						//new score for this windmill
 						int combos = [_extraCreditScoreKeeper numberOfScoresInCategory:@"COMBO_WINDMILL_WHIRLPOOL"];
-						//actually add the combo score to the score keeper
-						[_extraCreditScoreKeeper addScore:combos*SCORING_COMBO_BASE_EXTRA_CREDIT
-												category: @"COMBO_WINDMILL_WHIRLPOOL"
-												tag: whirlpool.uniqueName
-												group:YES
-												unique:YES];
-						[self floatScore:SCORING_COMBO_BASE_EXTRA_CREDIT multiplier:combos atPosition:whirlpool.position];
-						
-						if(DEBUG_SCORING) DebugLog(@"New Extra Credit score: %d", _extraCreditScoreKeeper.totalScore);
+						if(combos > 1) {
+							//actually add the combo score to the score keeper
+							[_extraCreditScoreKeeper addScore:combos*SCORING_COMBO_BASE_EXTRA_CREDIT
+													category: @"COMBO_WINDMILL_WHIRLPOOL"
+													tag: whirlpool.uniqueName
+													group:YES
+													unique:YES];
+							[self floatScore:SCORING_COMBO_BASE_EXTRA_CREDIT multiplier:combos atPosition:whirlpool.position];
+							
+							if(DEBUG_SCORING) DebugLog(@"New Extra Credit score: %d", _extraCreditScoreKeeper.totalScore);
+							
+							if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+								[[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"sounds/game/combo/%d.wav", (int)min(combos-1,3)]];
+							}
+						}
 					}
 				}				
 				
@@ -3517,6 +3534,13 @@
 		if(!penguinData.isSafe) {
 			penguinData.isSafe = true;
 			
+			int unsafePenguins = 0;
+			for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
+				if(!((Penguin*)penguin.userData).isSafe) {
+					unsafePenguins++;
+				}
+			}			
+			
 			//give any extra credit if due for a close call!
 			for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
 				double dist = ccpDistance(shark.position, penguin.position);
@@ -3524,6 +3548,13 @@
 					[_extraCreditScoreKeeper addScore:SCORING_CLOSE_CALL_EXTRA_CREDIT category:@"CLOSE_CALL" tag:penguin.uniqueName group:YES unique:YES];
 					[self floatScore:SCORING_CLOSE_CALL_EXTRA_CREDIT multiplier:1 atPosition:penguin.position];
 					if(DEBUG_SCORING) DebugLog(@"New Extra Credit score: %d", _extraCreditScoreKeeper.totalScore);
+					
+					if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+						if(unsafePenguins > 0) {
+							[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/penguin/close-call.wav"];
+						}
+					}
+					
 					break;
 				}
 			}			
@@ -3531,8 +3562,10 @@
 			[_penguinsToPutOnLand setObject:land forKey:penguin.uniqueName];
 			DebugLog(@"Penguin %@ has collided with some land!", penguin.uniqueName);
 		
-			[penguin prepareAnimationNamed:@"Penguin_Happy" fromSHScene:@"Spritesheet"];
-			[penguin playAnimation];
+			if(unsafePenguins > 0) {
+				[penguin prepareAnimationNamed:@"Penguin_Happy" fromSHScene:@"Spritesheet"];
+				[penguin playAnimation];
+			}
 			
 			//tell all sharks they should update
 			for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
