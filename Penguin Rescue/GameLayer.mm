@@ -1727,36 +1727,36 @@
 	const int scoringYOffset = (IS_IPHONE ? 500 : 480)*SCALING_FACTOR_V;
 	
 	CCLabelTTF* maxScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", SCORING_MAX_SCORE_POSSIBLE] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1 ];
-	maxScoreLabel.color = SCORING_FONT_COLOR2;
-	maxScoreLabel.position = ccp(winSize.width/2 - (190*SCALING_FACTOR_H) - (IS_IPHONE ? 15*SCALING_FACTOR_H : 0),
+	maxScoreLabel.color = SCORING_FONT_COLOR_NEUTRAL;
+	maxScoreLabel.position = ccp(winSize.width/2 - (260*SCALING_FACTOR_H) - (IS_IPHONE ? 15*SCALING_FACTOR_H : 0),
 								 scoringYOffset);
 	[self addChild:maxScoreLabel];
 		
 	
 	CCLabelTTF* elapsedPlaceTimeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", timeScoreDeduction] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
-	elapsedPlaceTimeLabel.color = SCORING_FONT_COLOR1;
-	elapsedPlaceTimeLabel.position = ccp(winSize.width/2 - (80*SCALING_FACTOR_H) - (IS_IPHONE ? 5*SCALING_FACTOR_H : 0),
+	elapsedPlaceTimeLabel.color = SCORING_FONT_COLOR_BAD;
+	elapsedPlaceTimeLabel.position = ccp(winSize.width/2 - (150*SCALING_FACTOR_H) - (IS_IPHONE ? 10*SCALING_FACTOR_H : 0),
 									  	scoringYOffset);
 	[self addChild:elapsedPlaceTimeLabel];
 
 
 	CCLabelTTF* toolsScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", toolsScoreDeduction] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
-	toolsScoreLabel.color = SCORING_FONT_COLOR1;
-	toolsScoreLabel.position = ccp(winSize.width/2 + (32*SCALING_FACTOR_H),
+	toolsScoreLabel.color = SCORING_FONT_COLOR_BAD;
+	toolsScoreLabel.position = ccp(winSize.width/2 - (45*SCALING_FACTOR_H) - (IS_IPHONE ? 4*SCALING_FACTOR_H : 0),
 									scoringYOffset);
 	[self addChild:toolsScoreLabel];
 
 		//TODO: add extra credit to score
 
 	CCLabelTTF* extraCreditLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", extraCreditScore] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
-	extraCreditLabel.color = SCORING_FONT_COLOR4;
-	extraCreditLabel.position = ccp(winSize.width/2 + (32*SCALING_FACTOR_H),
+	extraCreditLabel.color = SCORING_FONT_COLOR_GOOD;
+	extraCreditLabel.position = ccp(winSize.width/2 + (85*SCALING_FACTOR_H) + (IS_IPHONE ? 8*SCALING_FACTOR_H : 0),
 									scoringYOffset);
 	[self addChild:extraCreditLabel];
 
 	CCLabelTTF* totalScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", finalScore] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
-	totalScoreLabel.color = SCORING_FONT_COLOR2;
-	totalScoreLabel.position = ccp(winSize.width/2 + (165*SCALING_FACTOR_H) + (IS_IPHONE ? 12*SCALING_FACTOR_H : 0),
+	totalScoreLabel.color = SCORING_FONT_COLOR_NEUTRAL;
+	totalScoreLabel.position = ccp(winSize.width/2 + (228*SCALING_FACTOR_H) + (IS_IPHONE ? 12*SCALING_FACTOR_H : 0),
 									scoringYOffset);
 	[self addChild:totalScoreLabel];
 
@@ -1766,23 +1766,23 @@
 
 	/***** competitive items ******/
 
-	const int competitiveTextXOffset = (165 + (IS_IPHONE ? 13 : 0))*SCALING_FACTOR_H;
+	const int competitiveTextXOffset = (228 + (IS_IPHONE ? 16 : 0))*SCALING_FACTOR_H;
 	const int competitiveTextYOffset = 135*SCALING_FACTOR_V;
 	
 	
-	if(worldScores != nil) {
+	if(false && worldScores != nil) {
 
 		CCLabelTTF* worldAverageScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", worldScoreMean] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE1];
-		worldAverageScoreLabel.color = SCORING_FONT_COLOR3;
+		worldAverageScoreLabel.color = SCORING_FONT_COLOR_NEUTRAL_CONTRAST;
 		worldAverageScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
 											242*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? 1: 0));
 		[self addChild:worldAverageScoreLabel];
 
 		CCLabelTTF* gradeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", grade] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
-		gradeLabel.color = SCORING_FONT_COLOR3;
+		gradeLabel.color = SCORING_FONT_COLOR_NEUTRAL_CONTRAST;
 		gradeLabel.opacity = 0;
 		gradeLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
-									170*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -5 : 0));
+									170*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -6 : 0));
 		[self addChild:gradeLabel];
 		
 		//grade fades in with a thump
@@ -1795,13 +1795,25 @@
 		
 	
 		CCLabelTTF* coinsEarnedLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", coinsEarned] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
-		coinsEarnedLabel.color = SCORING_FONT_COLOR2;
-		coinsEarnedLabel.opacity = 0;
-		coinsEarnedLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
+		coinsEarnedLabel.color = SCORING_FONT_COLOR_NEUTRAL;
+		coinsEarnedLabel.position = ccp(winSize.width/2 + competitiveTextXOffset - 30*SCALING_FACTOR_H,
 									105*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
 		[self addChild:coinsEarnedLabel];
-			
+		
+		LHSprite* coinsIcon = [_levelLoader createSpriteWithName:@"Coins_Icon" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+		coinsIcon.opacity = 0;
+		[coinsIcon transformPosition: ccp(coinsEarnedLabel.position.x
+														+ coinsEarnedLabel.boundingBox.size.width/2
+														+ 30*SCALING_FACTOR_H,
+													coinsEarnedLabel.position.y)];
+								
+		coinsEarnedLabel.opacity = 0;
 		[coinsEarnedLabel runAction:[CCSequence actions:
+			[CCDelayTime actionWithDuration:1.50f],
+			[CCFadeIn actionWithDuration:0.25f],
+			nil]
+		];
+		[coinsIcon runAction:[CCSequence actions:
 			[CCDelayTime actionWithDuration:1.50f],
 			[CCFadeIn actionWithDuration:0.25f],
 			nil]
@@ -1819,8 +1831,8 @@
 		}
 		
 		
-		CCLabelTTF* highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", highScoresLabelText] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE3 dimensions:CGSizeMake(250*SCALING_FACTOR_H,150*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
-		highScoreLabel.color = SCORING_FONT_COLOR1;
+		CCLabelTTF* highScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", highScoresLabelText] fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE3 dimensions:CGSizeMake(300*SCALING_FACTOR_H,150*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
+		highScoreLabel.color = SCORING_FONT_COLOR_NOTICE;
 		highScoreLabel.opacity = 0;
 		highScoreLabel.position = ccp(winSize.width/2 + competitiveTextXOffset - 200*SCALING_FACTOR_H,
 									110*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
@@ -1835,15 +1847,34 @@
 	}else {
 
 		CCLabelTTF* coinsEarnedLabel = [CCLabelTTF labelWithString:@"?" fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE2];
-		coinsEarnedLabel.color = SCORING_FONT_COLOR2;
-		coinsEarnedLabel.position = ccp(winSize.width/2 + competitiveTextXOffset,
+		coinsEarnedLabel.color = SCORING_FONT_COLOR_NEUTRAL;
+		coinsEarnedLabel.position = ccp(winSize.width/2 + competitiveTextXOffset - 30*SCALING_FACTOR_H,
 									105*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
 		[self addChild:coinsEarnedLabel];		
+
+		LHSprite* coinsIcon = [_levelLoader createSpriteWithName:@"Coins_Icon" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+		coinsIcon.opacity = 0;
+		[coinsIcon transformPosition: ccp(coinsEarnedLabel.position.x
+														+ coinsEarnedLabel.boundingBox.size.width/2
+														+ 30*SCALING_FACTOR_H,
+													coinsEarnedLabel.position.y)];
+								
+		coinsEarnedLabel.opacity = 0;
+		[coinsEarnedLabel runAction:[CCSequence actions:
+			[CCDelayTime actionWithDuration:1.50f],
+			[CCFadeIn actionWithDuration:0.25f],
+			nil]
+		];
+		[coinsIcon runAction:[CCSequence actions:
+			[CCDelayTime actionWithDuration:1.50f],
+			[CCFadeIn actionWithDuration:0.25f],
+			nil]
+		];
 	
 		//show info about needed to connect
-		CCLabelTTF* goOnlineForScoresLabel = [CCLabelTTF labelWithString:@"Connect to the Internet to earn coins and see how your score compares with other players!" fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE3 dimensions:CGSizeMake(200*SCALING_FACTOR_H,200*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
-		goOnlineForScoresLabel.color = SCORING_FONT_COLOR2;
-		goOnlineForScoresLabel.position = ccp(winSize.width/2 - competitiveTextXOffset,
+		CCLabelTTF* goOnlineForScoresLabel = [CCLabelTTF labelWithString:@"Connect to the Internet to earn coins and see how your score compares with other players!" fontName:@"Helvetica" fontSize:SCORING_FONT_SIZE3 dimensions:CGSizeMake(300*SCALING_FACTOR_H,200*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter lineBreakMode:kCCLineBreakModeWordWrap];
+		goOnlineForScoresLabel.color = SCORING_FONT_COLOR_NOTICE;
+		goOnlineForScoresLabel.position = ccp(winSize.width/2 - goOnlineForScoresLabel.boundingBox.size.width/2,
 									150*SCALING_FACTOR_V + competitiveTextYOffset + (IS_IPHONE ? -12 : 0));
 		[self addChild:goOnlineForScoresLabel];	
 	}
@@ -2880,15 +2911,15 @@
 				//apply extra credit!
 				if(sprite.tag == PENGUIN) {
 					if([_extraCreditScoreKeeper addScore:SCORING_COMBO_BASE_EXTRA_CREDIT
-												category: [NSString stringWithFormat:@"COMBO_%@", [ToolboxItem_Windmill class]]
+												category: @"COMBO_WINDMILL_WHIRLPOOL"
 												tag: windmill.uniqueName
 												group:YES
 												unique:YES]) {
 						//new score for this windmill
-						int combos = [_extraCreditScoreKeeper numberOfScoresInCategory:[NSString stringWithFormat:@"COMBO_%@", [ToolboxItem_Windmill class]]];
+						int combos = [_extraCreditScoreKeeper numberOfScoresInCategory:@"COMBO_WINDMILL_WHIRLPOOL"];
 						//actually add the combo score to the score keeper
 						[_extraCreditScoreKeeper addScore:combos*SCORING_COMBO_BASE_EXTRA_CREDIT
-												category: [NSString stringWithFormat:@"COMBO_%@", [ToolboxItem_Windmill class]]
+												category: @"COMBO_WINDMILL_WHIRLPOOL"
 												tag: windmill.uniqueName
 												group:YES
 												unique:YES];
@@ -2929,15 +2960,15 @@
 				//apply extra credit!
 				if(sprite.tag == PENGUIN) {
 					if([_extraCreditScoreKeeper addScore:SCORING_COMBO_BASE_EXTRA_CREDIT
-												category: [NSString stringWithFormat:@"COMBO_%@", [ToolboxItem_Windmill class]]
+												category: @"COMBO_WINDMILL_WHIRLPOOL"
 												tag: whirlpool.uniqueName
 												group:YES
 												unique:YES]) {
 						//new score for this windmill
-						int combos = [_extraCreditScoreKeeper numberOfScoresInCategory:[NSString stringWithFormat:@"COMBO_%@", [ToolboxItem_Windmill class]]];
+						int combos = [_extraCreditScoreKeeper numberOfScoresInCategory:@"COMBO_WINDMILL_WHIRLPOOL"];
 						//actually add the combo score to the score keeper
 						[_extraCreditScoreKeeper addScore:combos*SCORING_COMBO_BASE_EXTRA_CREDIT
-												category: [NSString stringWithFormat:@"COMBO_%@", [ToolboxItem_Windmill class]]
+												category: @"COMBO_WINDMILL_WHIRLPOOL"
 												tag: whirlpool.uniqueName
 												group:YES
 												unique:YES];
