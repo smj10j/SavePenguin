@@ -29,6 +29,8 @@
 	CCLabelTTF* _availableCoinsLabel;
 	
 	LHSprite* _selectedIAPItem;
+	
+	NSMutableDictionary* _itemDatas;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

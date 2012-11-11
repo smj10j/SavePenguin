@@ -148,6 +148,9 @@
 		[backButton registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
 		[backButton registerTouchEndedObserver:self selector:@selector(onBack:)];
 
+
+		_itemDatas = [[NSMutableDictionary alloc] init];
+
 		[self addIAPItemsToSand];
 
 		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
@@ -166,9 +169,6 @@
 
 -(void)addIAPItemsToSand {
 
-	//filled and attached to each IAP item
-	NSMutableDictionary* itemData = nil;
-
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
 	LHSprite* santaHat = [_levelLoader createSpriteWithName:@"Santa_Hat_Big" fromSheet:@"Toolbox" fromSHFile:@"Spritesheet" parent:self];
@@ -184,12 +184,13 @@
 							nil]
 						]
 	];
-	itemData = [[NSMutableDictionary alloc] init];
+	NSMutableDictionary* itemData = [[NSMutableDictionary alloc] init];
 	[itemData setObject:@"Strange Hat" forKey:@"Name"];
 	[itemData setObject:[NSNumber numberWithInt:30]	forKey:@"Cost"];
 	[itemData setObject:[NSNumber numberWithInt:5]	forKey:@"Amount"];
 	[itemData setObject:@"\"Found\" by a group of penguin adventures in the North, these magical hats appear to make the wearer invisible..." forKey:@"Description"];
-	santaHat.userData = itemData;
+	[_itemDatas setObject:itemData forKey:santaHat.uniqueName];
+	[itemData release];
 	
 	
 	LHSprite* bagOfFish = [_levelLoader createSpriteWithName:@"Bag_of_Fish_Big" fromSheet:@"Toolbox" fromSHFile:@"Spritesheet" parent:self];
@@ -210,7 +211,8 @@
 	[itemData setObject:[NSNumber numberWithInt:25]	forKey:@"Cost"];
 	[itemData setObject:[NSNumber numberWithInt:5]	forKey:@"Amount"];
 	[itemData setObject:@"If there's one thing that sharks and penguins can agree on it's that a ready-made bag of tasty fish is hard to turn down." forKey:@"Description"];	
-	bagOfFish.userData = itemData;
+	[_itemDatas setObject:itemData forKey:bagOfFish.uniqueName];
+	[itemData release];
 
 
 	
@@ -234,7 +236,8 @@
 	[itemData setObject:[NSNumber numberWithInt:25]	forKey:@"Cost"];
 	[itemData setObject:[NSNumber numberWithInt:10]	forKey:@"Amount"];
 	[itemData setObject:@"These older-model anti-shark devices were recovered near the remains of ruined shark cages." forKey:@"Description"];	
-	antiShark272.userData = itemData;
+	[_itemDatas setObject:itemData forKey:antiShark272.uniqueName];
+	[itemData release];
 
 }
 
@@ -262,7 +265,7 @@
 
 
 	//add in the object info
-	NSMutableDictionary* iapItemData = (NSMutableDictionary*)_selectedIAPItem.userData;
+	NSMutableDictionary* iapItemData = (NSMutableDictionary*)[_itemDatas objectForKey:_selectedIAPItem.uniqueName];
 	NSString* name = [iapItemData objectForKey:@"Name"];
 	NSString* description = [iapItemData objectForKey:@"Description"];
 	int cost = [(NSNumber*)[iapItemData objectForKey:@"Cost"] intValue];
@@ -323,7 +326,7 @@
 	if(info.sprite == nil || _selectedIAPItem == nil) return;
 	
 	int availableCoins = [SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS];
-	NSMutableDictionary* iapItemData = (NSMutableDictionary*)_selectedIAPItem.userData;
+	NSMutableDictionary* iapItemData = (NSMutableDictionary*)[_itemDatas objectForKey:_selectedIAPItem.uniqueName];
 	NSString* name = [iapItemData objectForKey:@"Name"];
 	int cost = [(NSNumber*)[iapItemData objectForKey:@"Cost"] intValue];
 	int amount = [(NSNumber*)[iapItemData objectForKey:@"Amount"] intValue];
@@ -413,11 +416,7 @@
 {
 	if(DEBUG_MEMORY) DebugLog(@"InAppPurchaseLayer dealloc");
 
-	for(LHSprite* sprite in [_levelLoader allSprites]) {
-		if(sprite.userData != nil) {
-			[(NSMutableDictionary*)sprite.userData release];
-		}
-	}
+	[_itemDatas release];
 
 	[_levelLoader release];
 	_levelLoader = nil;	

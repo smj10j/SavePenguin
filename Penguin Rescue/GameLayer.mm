@@ -3536,7 +3536,6 @@
 				}],
 			nil]
 		];	
-		//[bagOfFish scheduleOnce:@selector(removeSelf) delay:0.55];
     }
 }
 
@@ -3943,6 +3942,15 @@
 
 	[_levelPath release];
 	[_levelPackPath release];
+	
+	for(LHSprite* sprite in [_levelLoader allSprites]) {
+		Class userDataClass = sprite.userData != nil ? [(id)sprite.userData class] : nil;
+		if(userDataClass == [ToolboxItem_Bag_of_Fish class] ||
+			userDataClass == [ToolboxItem_Invisibility_Hat class] ||
+			userDataClass == [ToolboxItem_Loud_Noise class]) {
+			[(id)sprite.userData release];
+		}
+	}
 
 	[_inGameMenuItems release];
 	
