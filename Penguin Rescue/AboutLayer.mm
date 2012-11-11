@@ -89,7 +89,7 @@
 			
 		CCLabelTTF* aboutConquerLabel = [CCLabelTTF labelWithString:
 			[NSString stringWithFormat:
-@"Made by Conquer LLC, a group of guys who like making awesome strategy games.\n%@\
+@"Made by Conquer LLC, a group of guys who like making awesome strategy and puzzle games.\n%@\
 Save Penguin is our first game - we hope you enjoy it and please let us know what you think!", (IS_IPHONE ? @"" : @"\n")]
 			fontName:@"Helvetica" fontSize:(IS_IPHONE ? 13 : 26)
 			dimensions:CGSizeMake(winSize.width-150*SCALING_FACTOR_H, 150*SCALING_FACTOR_V + (IS_IPHONE ? 10 : 0))
@@ -180,6 +180,9 @@ Drop us an email or leave a review in the App Store and tell us your ideas!"]
 		[backButton registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
 		[backButton registerTouchEndedObserver:self selector:@selector(onBack:)];
 
+		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/ambient.wav" loop:YES];
+		}
 
 		[Analytics logEvent:@"View_About"];
 

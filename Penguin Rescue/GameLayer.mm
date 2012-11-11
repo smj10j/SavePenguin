@@ -153,6 +153,10 @@
 		}		
 	}
 
+	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/game/ambient/place.wav" loop:YES];
+	}
+
 	//start the game
 	_state = PLACE;
 	_levelStartPlaceTime  = [[NSDate date] timeIntervalSince1970];
@@ -175,6 +179,9 @@
 
 -(void) preloadSounds {
 
+	[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sounds/game/ambient/place.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sounds/game/ambient/running.wav"];
+
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/button.wav"];
 	
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/pickup.wav"];
@@ -189,6 +196,7 @@
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-bag-of-fish.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-invisibility-hat.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-loud-noise.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/nudge.wav"];
 
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelLost/hoot.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelWon/reward.mp3"];
@@ -471,8 +479,8 @@
 			if([spriteName isEqualToString:@"Bag_of_Fish"]) {
 				ToolboxItem_Bag_of_Fish* userData = [[ToolboxItem_Bag_of_Fish alloc] init];
 				userData.scale = 1;
-				userData.runningCost = 750;
-				userData.placeCost = 500;
+				userData.runningCost = 1500;
+				userData.placeCost = 1250;
 				[iapSprite setUserData:userData];
 				
 			}else if([spriteName isEqualToString:@"Anti_Shark_272_1"]) {
@@ -489,8 +497,8 @@
 			}else if([spriteName isEqualToString:@"Santa_Hat"]) {
 				ToolboxItem_Invisibility_Hat* userData = [[ToolboxItem_Invisibility_Hat alloc] init];
 				userData.scale = 1;
-				userData.runningCost = 750;
-				userData.placeCost = 500;
+				userData.runningCost = 2000;
+				userData.placeCost = 1750;
 				[iapSprite setUserData:userData];
 				
 			}
@@ -1523,6 +1531,10 @@
 			}
 		}
 		
+		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/game/ambient/running.wav" loop:YES];
+		}		
+		
 		//analytics logging
 		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 			[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
@@ -1917,6 +1929,10 @@
 	nil];
 	[Analytics endTimedEvent:@"Begin_Level" withParameters:flurryParams];
 
+	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+	}
+
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:_levelPath]]];
 }
 
@@ -1930,6 +1946,10 @@
 	NSString* nextLevelPath = [LevelPackManager levelAfter:_levelPath inPack:_levelPackPath];
 	DebugLog(@"Going to next level %@", nextLevelPath);
 	
+	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+	}
+	
 	if(nextLevelPath == nil) {
 		//TODO: show some kind of pack completed notification
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelPackSelectLayer scene] ]];
@@ -1941,16 +1961,31 @@
 
 -(void) showMainMenuLayer {
 	DebugLog(@"Showing MainMenuLayer in GameLayer instance %f", _instanceId);
+
+	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+	}	
+	
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[MainMenuLayer scene] ]];
 }
 
 -(void) showInAppPurchaseLayer {
 	DebugLog(@"Showing InAppPurchaseLayer in GameLayer instance %f", _instanceId);
+
+	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+	}	
+	
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[InAppPurchaseLayer scene] ]];
 }
 
 -(void) showLevelsMenuLayer {
 	DebugLog(@"Showing LevelSelectLayer in GameLayer instance %f", _instanceId);
+
+	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+	}
+	
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelSelectLayer sceneWithLevelPackPath:[NSString stringWithFormat:@"%@", _levelPackPath]] ]];
 }
 
@@ -3339,9 +3374,22 @@
 	LHSprite* shark = [contact spriteA];
     LHSprite* bagOfFish = [contact spriteB];
 
-    if(nil != bagOfFish && nil != shark) {
-		[bagOfFish removeSelf];
-		//TODO: play an eating sound
+    if(_state == RUNNING && nil != bagOfFish && nil != shark && bagOfFish.userData != nil) {
+	
+		[(id)bagOfFish.userData release];
+		bagOfFish.userData = nil;
+		
+		[bagOfFish runAction:[CCSequence actions:
+				//[CCTwirl actionWithPosition:bagOfFish.position twirls:1 amplitude:10 grid:ccg(12,8) duration:0.50],
+				//[CCShatteredTiles3D actionWithRange:20 shatterZ:NO grid:ccg(12,8) duration:1.50],
+				[CCShakyTiles3D actionWithRange:3 shakeZ:NO grid:ccg(12, 8) duration:0.50],
+				[CCStopGrid action],
+				[CCCallBlock actionWithBlock:^{
+					[bagOfFish removeSelf];
+				}],
+			nil]
+		];	
+	
     }
 }
 
@@ -3432,6 +3480,11 @@
 					
 					if(!_isNudgingPenguin) {
 						[_handOfGodPowerNode runAction:[CCFadeIn actionWithDuration:0.25f]];
+						
+						if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+							[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/nudge.wav"];
+						}				
+						
 					}
 					_isNudgingPenguin = true;
 					

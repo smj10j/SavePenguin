@@ -290,6 +290,8 @@
 									<true/>
 									<key>hasSpottedShark</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isDead</key>
 									<true/>
 									<key>isInvisible</key>
@@ -311,6 +313,8 @@
 									<real>2048</real>
 									<key>hasSpottedShark</key>
 									<false/>
+									<key>hatName</key>
+									<string></string>
 									<key>isDead</key>
 									<false/>
 									<key>isInvisible</key>
@@ -403,6 +407,8 @@
 									<true/>
 									<key>endpointY</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isInvisible</key>
 									<true/>
 									<key>isStuck</key>
@@ -426,6 +432,8 @@
 									<real>1024</real>
 									<key>endpointY</key>
 									<real>400</real>
+									<key>hatName</key>
+									<string></string>
 									<key>isInvisible</key>
 									<false/>
 									<key>isStuck</key>
@@ -1049,7 +1057,7 @@
 								<key>ClassRepresentation</key>
 								<dict>
 									<key>placeCost</key>
-									<real>1000</real>
+									<real>1150</real>
 									<key>runningCost</key>
 									<real>1250</real>
 									<key>scale</key>
@@ -1283,6 +1291,8 @@
 					<real>2048</real>
 					<key>hasSpottedShark</key>
 					<false/>
+					<key>hatName</key>
+					<string></string>
 					<key>isDead</key>
 					<false/>
 					<key>isInvisible</key>
@@ -1308,6 +1318,8 @@
 					<real>1024</real>
 					<key>endpointY</key>
 					<real>400</real>
+					<key>hatName</key>
+					<string></string>
 					<key>isInvisible</key>
 					<false/>
 					<key>isStuck</key>
@@ -1326,7 +1338,7 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1000</real>
+					<real>1150</real>
 					<key>runningCost</key>
 					<real>1250</real>
 					<key>scale</key>
@@ -1388,11 +1400,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1500</real>
+					<real>750</real>
 					<key>power</key>
 					<real>200</real>
 					<key>runningCost</key>
-					<real>1750</real>
+					<real>1000</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -1403,9 +1415,9 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1000</real>
-					<key>runningCost</key>
 					<real>1250</real>
+					<key>runningCost</key>
+					<real>1400</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>

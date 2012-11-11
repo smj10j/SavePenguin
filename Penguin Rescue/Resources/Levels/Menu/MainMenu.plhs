@@ -214,7 +214,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{655, 763}, {148.75, 77.75}}</string>
+								<string>{{655, 869}, {148.75, 77.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -289,7 +289,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{655, 573}, {149.5, 99.75}}</string>
+								<string>{{655, 679}, {149.5, 99.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -364,7 +364,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{655, 673}, {149.5, 88.75}}</string>
+								<string>{{655, 779}, {149.5, 88.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -439,13 +439,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{655, 841}, {148.75, 77}}</string>
+								<string>{{815, 0}, {148.75, 77}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -514,13 +514,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{655, 841}, {148.75, 77}}</string>
+								<string>{{815, 0}, {148.75, 77}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -589,7 +589,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{655, 763}, {148.75, 77.75}}</string>
+								<string>{{655, 869}, {148.75, 77.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -664,13 +664,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{655, 841}, {148.75, 77}}</string>
+								<string>{{815, 0}, {148.75, 77}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -739,13 +739,13 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{655, 841}, {148.75, 77}}</string>
+								<string>{{815, 0}, {148.75, 77}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
 								<false/>
 								<key>IsRotated</key>
-								<false/>
+								<true/>
 								<key>Locked</key>
 								<false/>
 								<key>Opacity</key>
@@ -814,7 +814,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{655, 763}, {148.75, 77.75}}</string>
+								<string>{{655, 869}, {148.75, 77.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -906,7 +906,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{805, 841}, {100.75, 111.75}}</string>
+								<string>{{815, 150}, {100.75, 111.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -998,7 +998,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{805, 841}, {100.75, 111.75}}</string>
+								<string>{{815, 150}, {100.75, 111.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1176,6 +1176,8 @@
 					<real>2048</real>
 					<key>hasSpottedShark</key>
 					<false/>
+					<key>hatName</key>
+					<string></string>
 					<key>isDead</key>
 					<false/>
 					<key>isInvisible</key>
@@ -1201,6 +1203,8 @@
 					<real>1024</real>
 					<key>endpointY</key>
 					<real>400</real>
+					<key>hatName</key>
+					<string></string>
 					<key>isInvisible</key>
 					<false/>
 					<key>isStuck</key>
@@ -1219,7 +1223,7 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1000</real>
+					<real>1150</real>
 					<key>runningCost</key>
 					<real>1250</real>
 					<key>scale</key>
@@ -1281,11 +1285,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1250</real>
+					<real>750</real>
 					<key>power</key>
 					<real>200</real>
 					<key>runningCost</key>
-					<real>1500</real>
+					<real>1000</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -1296,9 +1300,9 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1000</real>
-					<key>runningCost</key>
 					<real>1250</real>
+					<key>runningCost</key>
+					<real>1400</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -1309,11 +1313,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>500</real>
+					<real>0.0</real>
 					<key>runningCost</key>
-					<real>750</real>
+					<real>0.0</real>
 					<key>scale</key>
-					<real>1</real>
+					<real>0.0</real>
 				</dict>
 			</dict>
 			<dict>
@@ -1322,11 +1326,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>500</real>
+					<real>0.0</real>
 					<key>runningCost</key>
-					<real>750</real>
+					<real>0.0</real>
 					<key>scale</key>
-					<real>1</real>
+					<real>0.0</real>
 				</dict>
 			</dict>
 			<dict>
@@ -1335,11 +1339,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>500</real>
+					<real>0.0</real>
 					<key>runningCost</key>
-					<real>750</real>
+					<real>0.0</real>
 					<key>scale</key>
-					<real>1</real>
+					<real>0.0</real>
 				</dict>
 			</dict>
 			<dict>
@@ -1349,10 +1353,31 @@
 				<dict>
 					<key>followXAxis</key>
 					<false/>
+					<key>followYAxis</key>
+					<false/>
 					<key>isCyclic</key>
 					<true/>
 					<key>pathName</key>
-					<string></string>
+					<string>BezierNode</string>
+					<key>restartAtOtherEnd</key>
+					<false/>
+					<key>timeToCompletePath</key>
+					<real>15</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>MovingLand</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>followXAxis</key>
+					<false/>
+					<key>followYAxis</key>
+					<false/>
+					<key>isCyclic</key>
+					<true/>
+					<key>pathName</key>
+					<string>BezierNode</string>
 					<key>restartAtOtherEnd</key>
 					<false/>
 					<key>timeToCompletePath</key>
@@ -1401,6 +1426,7 @@
 			<string>INVISIBILITY_HAT</string>
 			<string>LOUD_NOISE</string>
 			<string>BORDER_PATH</string>
+			<string>LAND_PATH</string>
 		</array>
 		<key>ZoomValue</key>
 		<real>0.0</real>

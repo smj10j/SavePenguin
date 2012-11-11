@@ -148,11 +148,11 @@
 		[backButton registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
 		[backButton registerTouchEndedObserver:self selector:@selector(onBack:)];
 
-
-
 		[self addIAPItemsToSand];
 
-
+		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/ambient.wav" loop:YES];
+		}
 
 		[Analytics logEvent:@"View_IAP"];
 	}
@@ -186,8 +186,8 @@
 	];
 	itemData = [[NSMutableDictionary alloc] init];
 	[itemData setObject:@"Strange Hat" forKey:@"Name"];
-	[itemData setObject:[NSNumber numberWithInt:40]	forKey:@"Cost"];
-	[itemData setObject:[NSNumber numberWithInt:10]	forKey:@"Amount"];
+	[itemData setObject:[NSNumber numberWithInt:30]	forKey:@"Cost"];
+	[itemData setObject:[NSNumber numberWithInt:5]	forKey:@"Amount"];
 	[itemData setObject:@"\"Found\" by a group of penguin adventures in the North, these magical hats appear to make the wearer invisible..." forKey:@"Description"];
 	santaHat.userData = itemData;
 	
@@ -207,8 +207,8 @@
 	];
 	itemData = [[NSMutableDictionary alloc] init];
 	[itemData setObject:@"Bag of Fish" forKey:@"Name"];
-	[itemData setObject:[NSNumber numberWithInt:30]	forKey:@"Cost"];
-	[itemData setObject:[NSNumber numberWithInt:10]	forKey:@"Amount"];
+	[itemData setObject:[NSNumber numberWithInt:25]	forKey:@"Cost"];
+	[itemData setObject:[NSNumber numberWithInt:5]	forKey:@"Amount"];
 	[itemData setObject:@"If there's one thing that sharks and penguins can agree on it's that a ready-made bag of tasty fish is hard to turn down." forKey:@"Description"];	
 	bagOfFish.userData = itemData;
 
@@ -232,7 +232,7 @@
 	itemData = [[NSMutableDictionary alloc] init];
 	[itemData setObject:@"Anti Shark 272™" forKey:@"Name"];
 	[itemData setObject:[NSNumber numberWithInt:25]	forKey:@"Cost"];
-	[itemData setObject:[NSNumber numberWithInt:15]	forKey:@"Amount"];
+	[itemData setObject:[NSNumber numberWithInt:10]	forKey:@"Amount"];
 	[itemData setObject:@"These older-model anti-shark devices were recovered near the remains of ruined shark cages." forKey:@"Description"];	
 	antiShark272.userData = itemData;
 

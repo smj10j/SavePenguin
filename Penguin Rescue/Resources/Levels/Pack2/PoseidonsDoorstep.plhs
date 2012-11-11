@@ -1330,11 +1330,11 @@
 						<key>ClassRepresentation</key>
 						<dict>
 							<key>placeCost</key>
-							<real>1500</real>
+							<real>750</real>
 							<key>power</key>
 							<real>150</real>
 							<key>runningCost</key>
-							<real>1750</real>
+							<real>1000</real>
 							<key>scale</key>
 							<real>1.25</real>
 						</dict>
@@ -1442,9 +1442,9 @@
 						<key>ClassRepresentation</key>
 						<dict>
 							<key>placeCost</key>
-							<real>1000</real>
-							<key>runningCost</key>
 							<real>1250</real>
+							<key>runningCost</key>
+							<real>1400</real>
 							<key>scale</key>
 							<real>1</real>
 						</dict>
@@ -1483,7 +1483,7 @@
 						<key>FlipY</key>
 						<false/>
 						<key>Frame</key>
-						<string>{{0, 147}, {116.5, 37.75}}</string>
+						<string>{{0, 109}, {116.5, 37.75}}</string>
 						<key>IsDrawable</key>
 						<true/>
 						<key>IsExpanded</key>
@@ -1537,11 +1537,11 @@
 						<key>ClassRepresentation</key>
 						<dict>
 							<key>placeCost</key>
-							<real>1500</real>
+							<real>750</real>
 							<key>power</key>
 							<real>150</real>
 							<key>runningCost</key>
-							<real>1750</real>
+							<real>1000</real>
 							<key>scale</key>
 							<real>1.25</real>
 						</dict>
@@ -1629,6 +1629,8 @@
 									<true/>
 									<key>hasSpottedShark</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isDead</key>
 									<true/>
 									<key>isInvisible</key>
@@ -1650,6 +1652,8 @@
 									<real>2048</real>
 									<key>hasSpottedShark</key>
 									<false/>
+									<key>hatName</key>
+									<string></string>
 									<key>isDead</key>
 									<false/>
 									<key>isInvisible</key>
@@ -1742,6 +1746,8 @@
 									<true/>
 									<key>endpointY</key>
 									<true/>
+									<key>hatName</key>
+									<true/>
 									<key>isInvisible</key>
 									<true/>
 									<key>isStuck</key>
@@ -1765,6 +1771,8 @@
 									<real>1024</real>
 									<key>endpointY</key>
 									<real>400</real>
+									<key>hatName</key>
+									<string></string>
 									<key>isInvisible</key>
 									<false/>
 									<key>isStuck</key>
@@ -1908,7 +1916,7 @@
 								<key>ClassRepresentation</key>
 								<dict>
 									<key>placeCost</key>
-									<real>1000</real>
+									<real>1150</real>
 									<key>runningCost</key>
 									<real>1250</real>
 									<key>scale</key>
@@ -1947,7 +1955,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 204}, {17.75, 71.75}}</string>
+								<string>{{118, 70}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2016,7 +2024,7 @@
 								<key>ClassRepresentation</key>
 								<dict>
 									<key>placeCost</key>
-									<real>1000</real>
+									<real>1150</real>
 									<key>runningCost</key>
 									<real>1250</real>
 									<key>scale</key>
@@ -2055,7 +2063,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{0, 204}, {17.75, 71.75}}</string>
+								<string>{{118, 70}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2171,7 +2179,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{73, 185}, {29, 43.75}}</string>
+								<string>{{159, 147}, {29, 43.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2287,7 +2295,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{73, 185}, {29, 43.75}}</string>
+								<string>{{159, 147}, {29, 43.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2390,6 +2398,8 @@
 					<real>2048</real>
 					<key>hasSpottedShark</key>
 					<false/>
+					<key>hatName</key>
+					<string></string>
 					<key>isDead</key>
 					<false/>
 					<key>isInvisible</key>
@@ -2415,6 +2425,8 @@
 					<real>1024</real>
 					<key>endpointY</key>
 					<real>400</real>
+					<key>hatName</key>
+					<string></string>
 					<key>isInvisible</key>
 					<false/>
 					<key>isStuck</key>
@@ -2433,7 +2445,7 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1000</real>
+					<real>1150</real>
 					<key>runningCost</key>
 					<real>1250</real>
 					<key>scale</key>
@@ -2495,11 +2507,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1500</real>
+					<real>750</real>
 					<key>power</key>
 					<real>200</real>
 					<key>runningCost</key>
-					<real>1750</real>
+					<real>1000</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -2510,9 +2522,9 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>1000</real>
-					<key>runningCost</key>
 					<real>1250</real>
+					<key>runningCost</key>
+					<real>1400</real>
 					<key>scale</key>
 					<real>1</real>
 				</dict>
@@ -2523,11 +2535,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>500</real>
+					<real>0.0</real>
 					<key>runningCost</key>
-					<real>750</real>
+					<real>0.0</real>
 					<key>scale</key>
-					<real>1</real>
+					<real>0.0</real>
 				</dict>
 			</dict>
 			<dict>
@@ -2536,11 +2548,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>500</real>
+					<real>0.0</real>
 					<key>runningCost</key>
-					<real>750</real>
+					<real>0.0</real>
 					<key>scale</key>
-					<real>1</real>
+					<real>0.0</real>
 				</dict>
 			</dict>
 			<dict>
@@ -2549,11 +2561,11 @@
 				<key>ClassRepresentation</key>
 				<dict>
 					<key>placeCost</key>
-					<real>500</real>
+					<real>0.0</real>
 					<key>runningCost</key>
-					<real>750</real>
+					<real>0.0</real>
 					<key>scale</key>
-					<real>1</real>
+					<real>0.0</real>
 				</dict>
 			</dict>
 			<dict>
@@ -2568,7 +2580,7 @@
 					<key>isCyclic</key>
 					<true/>
 					<key>pathName</key>
-					<string></string>
+					<string>BezierNode</string>
 					<key>restartAtOtherEnd</key>
 					<false/>
 					<key>timeToCompletePath</key>
@@ -2587,7 +2599,7 @@
 					<key>isCyclic</key>
 					<true/>
 					<key>pathName</key>
-					<string></string>
+					<string>BezierNode</string>
 					<key>restartAtOtherEnd</key>
 					<false/>
 					<key>timeToCompletePath</key>

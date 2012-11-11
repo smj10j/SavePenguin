@@ -79,6 +79,9 @@
 		[backButton registerTouchBeganObserver:self selector:@selector(onTouchAnyButton:)];
 		[backButton registerTouchEndedObserver:self selector:@selector(onTouchEndedBack:)];
 
+		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/ambient.wav" loop:YES];
+		}
 	}
 	
 	if(DEBUG_MEMORY) DebugLog(@"Initialized LevelSelectLayer");	

@@ -11,7 +11,7 @@
 	<key>JOINTS_INFO</key>
 	<array/>
 	<key>LHVersion</key>
-	<string>1.4.966</string>
+	<string>1.4.967</string>
 	<key>NODES_INFO</key>
 	<array>
 		<dict>
@@ -61,7 +61,11 @@
 					<real>2048</real>
 					<key>hasSpottedShark</key>
 					<false/>
+					<key>hatName</key>
+					<string></string>
 					<key>isDead</key>
+					<false/>
+					<key>isInvisible</key>
 					<false/>
 					<key>isSafe</key>
 					<false/>
@@ -84,6 +88,10 @@
 					<real>1024</real>
 					<key>endpointY</key>
 					<real>400</real>
+					<key>hatName</key>
+					<string></string>
+					<key>isInvisible</key>
+					<false/>
 					<key>isStuck</key>
 					<false/>
 					<key>restingDetectionRadius</key>
@@ -96,32 +104,169 @@
 			</dict>
 			<dict>
 				<key>ClassName</key>
-				<string>ToolboxItem_Border</string>
+				<string>ToolboxItem_Obstruction</string>
 				<key>ClassRepresentation</key>
-				<dict/>
+				<dict>
+					<key>placeCost</key>
+					<real>1150</real>
+					<key>runningCost</key>
+					<real>1250</real>
+					<key>scale</key>
+					<real>1</real>
+				</dict>
 			</dict>
 			<dict>
 				<key>ClassName</key>
 				<string>ToolboxItem_Debris</string>
 				<key>ClassRepresentation</key>
-				<dict/>
-			</dict>
-			<dict>
-				<key>ClassName</key>
-				<string>ToolboxItem_SlowDown</string>
-				<key>ClassRepresentation</key>
 				<dict>
-					<key>amount</key>
-					<real>0.20000000298023224</real>
+					<key>mass</key>
+					<real>1</real>
+					<key>placeCost</key>
+					<real>150</real>
+					<key>runningCost</key>
+					<real>250</real>
+					<key>scale</key>
+					<real>1</real>
 				</dict>
 			</dict>
 			<dict>
 				<key>ClassName</key>
-				<string>ToolboxItem_SpeedUp</string>
+				<string>ToolboxItem_Windmill</string>
 				<key>ClassRepresentation</key>
 				<dict>
-					<key>amount</key>
-					<real>0.20000000298023224</real>
+					<key>placeCost</key>
+					<real>750</real>
+					<key>power</key>
+					<real>50</real>
+					<key>reach</key>
+					<real>5000</real>
+					<key>runningCost</key>
+					<real>1000</real>
+					<key>scale</key>
+					<real>1</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>MovingDoodad</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>followXAxis</key>
+					<false/>
+					<key>isCyclic</key>
+					<true/>
+					<key>pathName</key>
+					<string>Default</string>
+					<key>restartAtOtherEnd</key>
+					<true/>
+					<key>timeToCompletePath</key>
+					<real>60</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>ToolboxItem_Whirlpool</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>placeCost</key>
+					<real>750</real>
+					<key>power</key>
+					<real>200</real>
+					<key>runningCost</key>
+					<real>1000</real>
+					<key>scale</key>
+					<real>1</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>ToolboxItem_Sandbar</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>placeCost</key>
+					<real>1250</real>
+					<key>runningCost</key>
+					<real>1400</real>
+					<key>scale</key>
+					<real>1</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>ToolboxItem_Bag_of_Fish</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>placeCost</key>
+					<real>0.0</real>
+					<key>runningCost</key>
+					<real>0.0</real>
+					<key>scale</key>
+					<real>0.0</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>ToolboxItem_Loud_Noise</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>placeCost</key>
+					<real>0.0</real>
+					<key>runningCost</key>
+					<real>0.0</real>
+					<key>scale</key>
+					<real>0.0</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>ToolboxItem_Invisibility_Hat</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>placeCost</key>
+					<real>0.0</real>
+					<key>runningCost</key>
+					<real>0.0</real>
+					<key>scale</key>
+					<real>0.0</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>MovingBorder</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>followXAxis</key>
+					<false/>
+					<key>followYAxis</key>
+					<false/>
+					<key>isCyclic</key>
+					<true/>
+					<key>pathName</key>
+					<string>BezierNode</string>
+					<key>restartAtOtherEnd</key>
+					<false/>
+					<key>timeToCompletePath</key>
+					<real>15</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>MovingLand</string>
+				<key>ClassRepresentation</key>
+				<dict>
+					<key>followXAxis</key>
+					<false/>
+					<key>followYAxis</key>
+					<false/>
+					<key>isCyclic</key>
+					<true/>
+					<key>pathName</key>
+					<string>BezierNode</string>
+					<key>restartAtOtherEnd</key>
+					<false/>
+					<key>timeToCompletePath</key>
+					<real>15</real>
 				</dict>
 			</dict>
 		</array>
@@ -136,7 +281,7 @@
 		<key>PanValue</key>
 		<string>{0, 0}</string>
 		<key>ProjectName</key>
-		<string>Penguin Rescue</string>
+		<string></string>
 		<key>ProjectPath</key>
 		<string>/Users/Steve/Code/Conquer/Penguin Rescue</string>
 		<key>SafeFrame</key>
@@ -153,10 +298,20 @@
 			<string>BORDER</string>
 			<string>TOOLBOX_ITEM</string>
 			<string>DEBRIS</string>
-			<string>SLOWDOWN</string>
-			<string>SPEEDUP</string>
 			<string>TOOLBOX_ITEM_CONTAINER</string>
 			<string>BACKGROUND</string>
+			<string>TUTORIAL</string>
+			<string>WINDMILL</string>
+			<string>DOODAD</string>
+			<string>DOODAD_PATH</string>
+			<string>OBSTRUCTION</string>
+			<string>WHIRLPOOL</string>
+			<string>SANDBAR</string>
+			<string>BAG_OF_FISH</string>
+			<string>INVISIBILITY_HAT</string>
+			<string>LOUD_NOISE</string>
+			<string>BORDER_PATH</string>
+			<string>LAND_PATH</string>
 		</array>
 		<key>ZoomValue</key>
 		<real>0.0</real>

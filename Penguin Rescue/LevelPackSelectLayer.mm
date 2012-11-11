@@ -77,6 +77,10 @@
 		
 		[self loadLevelPacks];
 		
+		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/ambient.wav" loop:YES];
+		}
+		
 		[Analytics logEvent:@"View_Level_Packs"];
 	}
 	

@@ -114,9 +114,8 @@
 		[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/menu/button.wav"];
 
 
-		if(isMusicEnabled && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
-			[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sounds/menu/background.wav"];
-			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/background.wav" loop:YES];
+		if(isMusicEnabled) {
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/theme.wav" loop:YES];
 		}
 
 		[SettingsManager remove:SETTING_LAST_LEVEL_PACK_PATH];
@@ -146,6 +145,10 @@
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
 	}
 	
+	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+	}
+	
 	if(TEST_MODE) {
 		//TESTING CODE
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[GameLayer sceneWithLevelPackPath:TEST_LEVEL_PACK levelPath:TEST_LEVEL]]];
@@ -163,7 +166,11 @@
 	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
 	}
-
+	
+	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+	}
+	
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[InAppPurchaseLayer scene] ]];
 }
 
@@ -174,6 +181,10 @@
 	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
 	}
+	
+	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+	}	
 
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[AboutLayer scene] ]];
 }
