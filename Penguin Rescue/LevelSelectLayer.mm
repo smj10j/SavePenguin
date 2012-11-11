@@ -249,7 +249,6 @@
 	NSString* levelPath = [_spriteNameToLevelPath objectForKey:info.sprite.uniqueName];
 	
 	[SettingsManager setString:_levelPackPath forKey:SETTING_LAST_LEVEL_PACK_PATH];
-	[SettingsManager setString:levelPath forKey:SETTING_LAST_LEVEL_PATH];
 	[SettingsManager setInt:_scrollLayer.currentScreen forKey:SETTING_LAST_LEVEL_SELECT_SCREEN_NUM];
 	
 	

@@ -115,6 +115,8 @@
 	_levelPath = [levelPath retain];
 	_levelPackPath = [levelPackPath retain];
 	_levelData =  [LevelPackManager level:_levelPath inPack:_levelPackPath];
+	[SettingsManager setString:_levelPath forKey:SETTING_LAST_LEVEL_PATH];
+	[SettingsManager setString:_levelPackPath forKey:SETTING_LAST_LEVEL_PACK_PATH];
 	[self loadLevel:_levelPath inLevelPack:_levelPackPath];
 		
 	//set the grid size and create various arrays
@@ -2577,6 +2579,7 @@
 					
 				[_activeToolboxItem transformPosition:ccpAdd(hattedActor.position, ccp(0, [actorData class] == [Shark class] ? 20*SCALING_FACTOR_V : hattedActor.boundingBox.size.height/2))];
 				[_activeToolboxItem transformRotation:(hattedActor.rotation + ([actorData class] == [Shark class] ? 90 : 0))];
+				[_activeToolboxItem transformScale:hattedActor.scale];
 				
 				if([actorData class] == [Penguin class]) {
 					[self invalidateSharkMoveGridsNear:nil];
@@ -2944,21 +2947,22 @@
 			
 				//apply extra credit!
 				if(sprite.tag == PENGUIN) {
+					NSString* comboCategory = [NSString stringWithFormat:@"COMBO_WINDMILL_WHIRLPOOL_%@|", sprite.uniqueName];
 					if([_extraCreditScoreKeeper addScore:0
-												category: @"COMBO_WINDMILL_WHIRLPOOL"
+												category: comboCategory
 												tag: windmill.uniqueName
 												group:YES
 												unique:YES]) {
 						//new score for this windmill
-						int combos = [_extraCreditScoreKeeper numberOfScoresInCategory:@"COMBO_WINDMILL_WHIRLPOOL"];
+						int combos = [_extraCreditScoreKeeper numberOfScoresInCategory:comboCategory];
 						if(combos > 1) {
 							//actually add the combo score to the score keeper
 							[_extraCreditScoreKeeper addScore:combos*SCORING_COMBO_BASE_EXTRA_CREDIT
-													category: @"COMBO_WINDMILL_WHIRLPOOL"
+													category: comboCategory
 													tag: windmill.uniqueName
 													group:YES
 													unique:YES];
-							[self floatScore:SCORING_COMBO_BASE_EXTRA_CREDIT multiplier:combos atPosition:windmill.position];
+							[self floatScore:SCORING_COMBO_BASE_EXTRA_CREDIT multiplier:combos atPosition:sprite.position];
 							
 							if(DEBUG_SCORING) DebugLog(@"New Extra Credit score: %d", _extraCreditScoreKeeper.totalScore);
 							
@@ -2999,21 +3003,22 @@
 				
 				//apply extra credit!
 				if(sprite.tag == PENGUIN) {
+					NSString* comboCategory = [NSString stringWithFormat:@"COMBO_WINDMILL_WHIRLPOOL_%@|", sprite.uniqueName];
 					if([_extraCreditScoreKeeper addScore:0
-												category: @"COMBO_WINDMILL_WHIRLPOOL"
+												category: comboCategory
 												tag: whirlpool.uniqueName
 												group:YES
 												unique:YES]) {
 						//new score for this windmill
-						int combos = [_extraCreditScoreKeeper numberOfScoresInCategory:@"COMBO_WINDMILL_WHIRLPOOL"];
+						int combos = [_extraCreditScoreKeeper numberOfScoresInCategory:comboCategory];
 						if(combos > 1) {
 							//actually add the combo score to the score keeper
 							[_extraCreditScoreKeeper addScore:combos*SCORING_COMBO_BASE_EXTRA_CREDIT
-													category: @"COMBO_WINDMILL_WHIRLPOOL"
+													category: comboCategory
 													tag: whirlpool.uniqueName
 													group:YES
 													unique:YES];
-							[self floatScore:SCORING_COMBO_BASE_EXTRA_CREDIT multiplier:combos atPosition:whirlpool.position];
+							[self floatScore:SCORING_COMBO_BASE_EXTRA_CREDIT multiplier:combos atPosition:sprite.position];
 							
 							if(DEBUG_SCORING) DebugLog(@"New Extra Credit score: %d", _extraCreditScoreKeeper.totalScore);
 							
