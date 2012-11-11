@@ -208,6 +208,7 @@
 		AA54C92A162BCDD600DF56D0 /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = AA54C929162BCDD600DF56D0 /* Levels */; };
 		AA54C933162BD64300DF56D0 /* Spritesheet.pshs in Resources */ = {isa = PBXBuildFile; fileRef = AA54C92F162BD64300DF56D0 /* Spritesheet.pshs */; };
 		AA6252561638097000A36D65 /* LevelPackSelectLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA6252551638097000A36D65 /* LevelPackSelectLayer.mm */; };
+		AA85A5A9164FAB4D006929A1 /* particles in Resources */ = {isa = PBXBuildFile; fileRef = AA85A5A8164FAB4D006929A1 /* particles */; };
 		AA8DD3471643A7E800E49D07 /* InAppPurchaseLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA8DD3461643A7E800E49D07 /* InAppPurchaseLayer.mm */; };
 		AA8DD3661643ED2200E49D07 /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA8DD34E1643ED2200E49D07 /* GLES-Render.mm */; };
 		AA8DD3671643ED2200E49D07 /* Utilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA8DD3501643ED2200E49D07 /* Utilities.mm */; };
@@ -700,6 +701,7 @@
 		AA6252541638097000A36D65 /* LevelPackSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelPackSelectLayer.h; sourceTree = "<group>"; };
 		AA6252551638097000A36D65 /* LevelPackSelectLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LevelPackSelectLayer.mm; sourceTree = "<group>"; };
 		AA62525B1638191C00A36D65 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		AA85A5A8164FAB4D006929A1 /* particles */ = {isa = PBXFileReference; lastKnownFileType = folder; name = particles; path = Resources/particles; sourceTree = "<group>"; };
 		AA8DD3451643A7E800E49D07 /* InAppPurchaseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseLayer.h; sourceTree = "<group>"; };
 		AA8DD3461643A7E800E49D07 /* InAppPurchaseLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InAppPurchaseLayer.mm; sourceTree = "<group>"; };
 		AA8DD34D1643ED2200E49D07 /* GLES-Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
@@ -978,8 +980,9 @@
 		AA54C6A7162BB27A00DF56D0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AAD7B65F163C34BB00B02521 /* sounds */,
 				AA54C92E162BD64300DF56D0 /* images */,
+				AA85A5A8164FAB4D006929A1 /* particles */,
+				AAD7B65F163C34BB00B02521 /* sounds */,
 				AA54C929162BCDD600DF56D0 /* Levels */,
 				AA54C6B0162BB27A00DF56D0 /* fps_images.png */,
 				AA54C6B2162BB27A00DF56D0 /* fps_images-hd.png */,
@@ -1821,6 +1824,7 @@
 				AA27286016444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-hd.png in Resources */,
 				AA27286116444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-ipadhd.png in Resources */,
 				AA27286216444A2E00297CE4 /* Spritesheet_MenuBackgrounds1.png in Resources */,
+				AA85A5A9164FAB4D006929A1 /* particles in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

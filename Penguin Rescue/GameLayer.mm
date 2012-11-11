@@ -88,6 +88,7 @@
 		_isNudgingPenguin = false;
 		_levelHasMovingBorders = false;
 		_levelHasMovingLands = false;
+		
 		__DEBUG_SHARKS = DEBUG_SHARK;
 		__DEBUG_PENGUINS = DEBUG_PENGUIN;
 		__DEBUG_TOUCH_SECONDS = 0;
@@ -124,6 +125,9 @@
 	
 	//place the toolbox items
 	[self updateToolbox];
+	
+	//particle systems
+	[self initializeParticleSystems];
 	
 	//various handlers
 	[self setupCollisionHandling];
@@ -185,6 +189,8 @@
 
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/button.wav"];
 	
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/collision/actor-obstruction.wav"];
+	
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/penguin/close-call.wav"];
 
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/combo/1.wav"];
@@ -236,6 +242,12 @@
 		//		flags += b2Draw::e_centerOfMassBit;
 		_debugDraw->SetFlags(flags);
 	}
+}
+
+-(void) initializeParticleSystems {
+	_obstructionParticleSystem = [CCParticleSystemQuad particleWithFile:@"particles/obstruction.plist"];
+	[_obstructionParticleSystem stopSystem];
+	[self addChild:_obstructionParticleSystem z:_mainLayer.zOrder+1];
 }
 
 -(void) initializeMapGrid {
@@ -319,9 +331,14 @@
 -(void) setupCollisionHandling
 {
     [_levelLoader useLevelHelperCollisionHandling];
+	
 	[_levelLoader registerBeginOrEndCollisionCallbackBetweenTagA:LAND andTagB:PENGUIN idListener:self selListener:@selector(landPenguinCollision:)];
     [_levelLoader registerBeginOrEndCollisionCallbackBetweenTagA:SHARK andTagB:PENGUIN idListener:self selListener:@selector(sharkPenguinCollision:)];
     [_levelLoader registerBeginOrEndCollisionCallbackBetweenTagA:SHARK andTagB:BAG_OF_FISH idListener:self selListener:@selector(sharkBagOfFishCollision:)];
+
+
+    [_levelLoader registerBeginOrEndCollisionCallbackBetweenTagA:SHARK andTagB:OBSTRUCTION idListener:self selListener:@selector(actorObstructionCollisionn:)];
+    [_levelLoader registerBeginOrEndCollisionCallbackBetweenTagA:PENGUIN andTagB:OBSTRUCTION idListener:self selListener:@selector(actorObstructionCollisionn:)];
 
 }
 
@@ -1568,6 +1585,8 @@
 		[sprite stopPathMovement];
 	}
 	
+	[self stopObstructionCollisionParticles];
+	
 	//remove the toolbox item crosshair
 	if(_activeToolboxItemRotationCrosshair != nil) {
 		[self removeChild:_activeToolboxItemRotationCrosshair cleanup:YES];
@@ -2321,6 +2340,16 @@
 		if(DEBUG_IAP) DebugLog(@"Item %@ is not an IAP item", toolboxItem.shSpriteName);
 	}
 }
+
+-(void) startObstructionCollisionParticlesAt:(CGPoint)position {
+	_obstructionParticleSystem.position = position;
+	[_obstructionParticleSystem resetSystem];
+}
+
+-(void) stopObstructionCollisionParticles {
+	[_obstructionParticleSystem stopSystem];
+}
+
 
 -(void)floatScore:(int)score multiplier:(int)multiplier atPosition:(CGPoint)position {
 	
@@ -3504,6 +3533,25 @@
 		];	
 	
     }
+}
+
+-(void) actorObstructionCollisionn:(LHContactInfo*)contact {
+	LHSprite* actor = [contact spriteA];
+    LHSprite* obstruction = [contact spriteB];
+
+	if(_state == RUNNING && nil != actor && nil != obstruction) {
+		if(contact.contactType == LH_BEGIN_CONTACT) {
+			CGPoint p = ccpMult(ccpAdd(actor.position, obstruction.position), .5);
+			[self startObstructionCollisionParticlesAt:p];
+
+			if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+				[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/collision/actor-obstruction.wav"];
+			}
+
+		}else if(contact.contactType == LH_END_CONTACT) {
+			[self stopObstructionCollisionParticles];
+		}	
+	}
 }
 
 //if this ever gets trigger then the penguins lost

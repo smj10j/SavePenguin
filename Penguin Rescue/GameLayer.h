@@ -118,6 +118,8 @@ enum PROPAGATION_RESULT {
 	bool _isNudgingPenguin;
 	
 	
+	CCParticleSystemQuad *_obstructionParticleSystem;
+	
 	
 	bool __DEBUG_SHARKS;
 	bool __DEBUG_PENGUINS;
