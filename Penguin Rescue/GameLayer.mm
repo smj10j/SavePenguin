@@ -911,7 +911,7 @@
 				}
 			}
 		}
-		//NSLog(@"Fill time: %f", [[NSDate date] timeIntervalSince1970] - startTime);
+		//DebugLog(@"Fill time: %f", [[NSDate date] timeIntervalSince1970] - startTime);
 
 	}
 	
@@ -935,12 +935,12 @@
 				int gridY = (y/_gridSize);
 				if(_sharkMapfeaturesGrid[gridX][gridY] != HARD_BORDER_WEIGHT) {
 					int val =  (loudNoiseNode.maxRangeCorner - ccpDistance(ccp(x,y), loudNoise.position))/loudNoiseNode.step;
-					//NSLog(@"Setting %d,%d to %d  -- midpoint = %f,%f", x, y, val, loudNoise.position.x, loudNoise.position.y);
+					//DebugLog(@"Setting %d,%d to %d  -- midpoint = %f,%f", x, y, val, loudNoise.position.x, loudNoise.position.y);
 					_sharkMapfeaturesGrid[gridX][gridY]+= val;
 				}
 			}
 		}
-		//NSLog(@"Fill time: %f", [[NSDate date] timeIntervalSince1970] - startTime);
+		//DebugLog(@"Fill time: %f", [[NSDate date] timeIntervalSince1970] - startTime);
 	}	
 	
 	
@@ -2879,7 +2879,7 @@
 			
 				//apply extra credit!
 				if(sprite.tag == PENGUIN) {
-					if([_extraCreditScoreKeeper addScore:SCORING_CLOSE_CALL_EXTRA_CREDIT
+					if([_extraCreditScoreKeeper addScore:SCORING_COMBO_BASE_EXTRA_CREDIT
 												category: [NSString stringWithFormat:@"COMBO_%@", [ToolboxItem_Windmill class]]
 												tag: windmill.uniqueName
 												group:YES
@@ -2887,7 +2887,7 @@
 						//new score for this windmill
 						int combos = [_extraCreditScoreKeeper numberOfScoresInCategory:[NSString stringWithFormat:@"COMBO_%@", [ToolboxItem_Windmill class]]];
 						//actually add the combo score to the score keeper
-						[_extraCreditScoreKeeper addScore:combos*SCORING_CLOSE_CALL_EXTRA_CREDIT
+						[_extraCreditScoreKeeper addScore:combos*SCORING_COMBO_BASE_EXTRA_CREDIT
 												category: [NSString stringWithFormat:@"COMBO_%@", [ToolboxItem_Windmill class]]
 												tag: windmill.uniqueName
 												group:YES
@@ -2925,6 +2925,27 @@
 		
 			double dist = ccpDistance(sprite.position, whirlpool.position);
 			if(dist < whirlpoolData.power*SCALING_FACTOR_GENERIC) {
+				
+				//apply extra credit!
+				if(sprite.tag == PENGUIN) {
+					if([_extraCreditScoreKeeper addScore:SCORING_COMBO_BASE_EXTRA_CREDIT
+												category: [NSString stringWithFormat:@"COMBO_%@", [ToolboxItem_Windmill class]]
+												tag: whirlpool.uniqueName
+												group:YES
+												unique:YES]) {
+						//new score for this windmill
+						int combos = [_extraCreditScoreKeeper numberOfScoresInCategory:[NSString stringWithFormat:@"COMBO_%@", [ToolboxItem_Windmill class]]];
+						//actually add the combo score to the score keeper
+						[_extraCreditScoreKeeper addScore:combos*SCORING_COMBO_BASE_EXTRA_CREDIT
+												category: [NSString stringWithFormat:@"COMBO_%@", [ToolboxItem_Windmill class]]
+												tag: whirlpool.uniqueName
+												group:YES
+												unique:YES];
+						[self floatScore:SCORING_COMBO_BASE_EXTRA_CREDIT multiplier:combos atPosition:whirlpool.position];
+						
+						if(DEBUG_SCORING) DebugLog(@"New Extra Credit score: %d", _extraCreditScoreKeeper.totalScore);
+					}
+				}				
 				
 				b2Vec2 vortexVelocity = whirlpool.body->GetLinearVelocityFromWorldPoint( sprite.body->GetPosition() );
 				b2Vec2 vortexVelocityN = vortexVelocity;
