@@ -9,6 +9,7 @@
 
 // Import the interfaces
 #import "MainMenuLayer.h"
+#import "IntroLayer.h"
 #import "AboutLayer.h"
 #import "InAppPurchaseLayer.h"
 #import "LevelPackSelectLayer.h"
@@ -118,9 +119,6 @@
 			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/theme.wav" loop:YES];
 		}
 
-		[SettingsManager remove:SETTING_LAST_LEVEL_PACK_PATH];
-		[SettingsManager remove:SETTING_LAST_LEVEL_PATH];
-
 		[Analytics logEvent:@"View_Main_Menu"];
 	}
 	
@@ -145,16 +143,18 @@
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
 	}
 	
-	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
-		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-	}
-	
 	if(TEST_MODE) {
 		//TESTING CODE
+		
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[GameLayer sceneWithLevelPackPath:TEST_LEVEL_PACK levelPath:TEST_LEVEL]]];
 
 	}else {
-		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[LevelPackSelectLayer scene] ]];
+	
+		if(![SettingsManager boolForKey:SETTING_HAS_SEEN_INTRO_STORYBOARD]) {
+			[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:4.0 scene:[IntroLayer scene]]];
+		}else {
+			[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[LevelPackSelectLayer scene] ]];
+		}
 	}
 }
 

@@ -1,5 +1,5 @@
 //
-//  IntroLayer.m
+//  IntroLayer.mm
 //  Penguin Rescue
 //
 //  Created by Stephen Johnson on 10/15/12.
@@ -9,20 +9,18 @@
 
 // Import the interfaces
 #import "IntroLayer.h"
-#import "MainMenuLayer.h"
-#import "AppDelegate.h"
 #import "SettingsManager.h"
 #import "SimpleAudioEngine.h"
+#import "LevelPackManager.h"
 #import "Analytics.h"
 #import "Utilities.h"
+#import "GameLayer.h"
 #import "APIManager.h"
 
 #pragma mark - IntroLayer
 
-// IntroLayer implementation
 @implementation IntroLayer
 
-// Helper class method that creates a Scene with the HelloWorldLayer as the only child.
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -42,85 +40,101 @@
 -(id) init
 {
 	if( (self=[super init])) {
-		
-		// ask director for the window size
-		CGSize winSize = [[CCDirector sharedDirector] winSize];
-		
-		CCSprite *background;
-		
-		if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
-			if(IS_STUPID_IPHONE_5) {
-				background = [CCSprite spriteWithFile:@"Default-568h@2x.png"];
-			}else {
-				background = [CCSprite spriteWithFile:@"Default.png"];
-			}
-			background.rotation = 90;
-		} else {
-			background = [CCSprite spriteWithFile:@"Default-Landscape~ipad.png"];
-		}
-		
-		background.position = ccp(winSize.width/2, winSize.height/2);
-		[self addChild: background];
-		
-	
-		/*********** Sound Settings ************/
-		[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.40f];
-		[[SimpleAudioEngine sharedEngine] setEffectsVolume:0.80f];
-		
-		
-		double lastRun = [SettingsManager doubleForKey:SETTING_LAST_RUN_TIMESTAMP];
-		DebugLog(@"Last run was: %f", lastRun);
-		
-		//INITIAL SETTINGS TIME!!
-		if(lastRun == 0) {
-			//first run
 			
-			//set up the default user preferences
-			[SettingsManager setBool:true forKey:SETTING_SOUND_ENABLED];
-			[SettingsManager setBool:true forKey:SETTING_MUSIC_ENABLED];
-			[SettingsManager setInt:1 forKey:SETTING_NUM_APP_OPENS];
+		[LevelHelperLoader dontStretchArt];
 
-			[SettingsManager setInt:INITIAL_FREE_COINS forKey:SETTING_TOTAL_EARNED_COINS];
-			[SettingsManager setInt:INITIAL_FREE_COINS forKey:SETTING_TOTAL_AVAILABLE_COINS];
-			
+		//create a LevelHelperLoader object - we use an empty level
+		_levelLoader = [[LevelHelperLoader alloc] initWithContentOfFile:[NSString stringWithFormat:@"Levels/%@/%@", @"Menu", @"Blank"]];
+		[_levelLoader addObjectsToWorld:nil cocos2dLayer:self];
+				
+		LHSprite* panel1 = [_levelLoader createSpriteWithName:@"Panel1" fromSheet:@"Intro1" fromSHFile:@"Spritesheet"];
+		_panelSize = panel1.contentSize;
+		[panel1 transformPosition:ccp(_panelSize.width/2,_panelSize.height*3/2)];
+		
+		LHSprite* panel2 = [_levelLoader createSpriteWithName:@"Panel2" fromSheet:@"Intro1" fromSHFile:@"Spritesheet"];
+		[panel2 transformPosition:ccp(_panelSize.width*3/2,_panelSize.height*3/2)];
+		LHSprite* panel3 = [_levelLoader createSpriteWithName:@"Panel3" fromSheet:@"Intro2" fromSHFile:@"Spritesheet"];
+		[panel3 transformPosition:ccp(_panelSize.width*3/2,_panelSize.height/2)];
+		LHSprite* panel4 = [_levelLoader createSpriteWithName:@"Panel4" fromSheet:@"Intro2" fromSHFile:@"Spritesheet"];
+		[panel4 transformPosition:ccp(_panelSize.width/2,_panelSize.height/2)];
+
+		CCLayerColor* background = [[CCLayerColor alloc] initWithColor:ccc4(0, 0, 0, 255) width:_panelSize.width*2 height:_panelSize.width*2];
+		[[_levelLoader layerWithUniqueName:@"MAIN_LAYER"] addChild:background];
+		
+		background.zOrder = 1;
+		panel1.zOrder = 2;
+		panel2.zOrder = 2;
+		panel3.zOrder = 2;
+		panel4.zOrder = 2;
+		
+		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/ambient.wav" loop:YES];
 		}
-		[APIManager createUser];
-		[Analytics setUserId:[SettingsManager getUUID]];
-		DebugLog(@"Launching with uuid=%@", [SettingsManager getUUID]);
 		
-		//set our current version (can be used in future version to test for update
-		NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-		NSString* version = [infoDict objectForKey:@"CFBundleShortVersionString"];
-		[SettingsManager setString:version forKey:SETTING_CURRENT_VERSION];
-		if(DEBUG_SETTINGS) DebugLog(@"Updated Current Version setting to %@", version);
-		
-		//set our boot time (can be used for applying settings on updates
-		[SettingsManager setDouble:[[NSDate date] timeIntervalSince1970] forKey:SETTING_LAST_RUN_TIMESTAMP];
-		[SettingsManager incrementIntBy:1 forKey:SETTING_NUM_APP_OPENS];
+		[SettingsManager setBool:true forKey:SETTING_HAS_SEEN_INTRO_STORYBOARD];
 	}
 
-	[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sounds/menu/ambient/theme.wav"];
-
-	
 	if(DEBUG_MEMORY) DebugLog(@"Initialized IntroLayer");	
 	
 	return self;
 }
 
--(void) onEnter
-{
+-(void) onEnter {
+
 	[super onEnter];
-	[self scheduleOnce:@selector(showMainLayer) delay:(DISTRIBUTION_MODE ? 1.0f : 0.0f)];
+	
+	self.position = ccp(0, -_panelSize.height);
+
+	[self runAction:[CCSequence actions:
+		[CCDelayTime actionWithDuration:10],
+		[CCMoveBy actionWithDuration:0.5 position:ccp(-_panelSize.width, 0)],
+		[CCDelayTime actionWithDuration:3],
+		[CCMoveBy actionWithDuration:0.5 position:ccp(0, _panelSize.height)],
+		//[CCDelayTime actionWithDuration:4],
+		//[CCMoveBy actionWithDuration:0.5 position:ccp(_panelSize.width, 0)],
+		[CCDelayTime actionWithDuration:3],
+		[CCCallBlock actionWithBlock:^{
+			for(LHSprite* sprite in [_levelLoader allSprites]) {
+				[sprite runAction:[CCFadeOut actionWithDuration:5]];
+			}
+			[self showGameLayer];
+		}],
+		nil]
+	];
+
 }
 
--(void)showMainLayer {
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFadeBL transitionWithDuration:0.5 scene:[MainMenuLayer scene]]];
-	//[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[MainMenuLayer scene] ]];
+-(void)showGameLayer {
+	NSString* lastLevelPackPath = [SettingsManager stringForKey:SETTING_LAST_LEVEL_PACK_PATH];
+	NSString* lastLevelPath = [SettingsManager stringForKey:SETTING_LAST_LEVEL_PATH];
+
+	if(lastLevelPackPath == nil) {
+		//get the first level pack and level
+		NSArray* availableLevelPacks = [LevelPackManager availablePacks];
+		lastLevelPackPath = [availableLevelPacks objectAtIndex:0];
+		lastLevelPath = [LevelPackManager levelAfter:nil inPack:lastLevelPackPath];
+	}
+
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:3 scene:[GameLayer sceneWithLevelPackPath:lastLevelPackPath levelPath:lastLevelPath] ]];
+
 }
 
 -(void) onExit {
-	if(DEBUG_MEMORY) DebugLog(@"IntroLayer onExit");
-
 	[super onExit];
+	if(DEBUG_MEMORY) DebugLog(@"IntroLayer onExit");	
 }
+
+-(void) dealloc
+{
+	if(DEBUG_MEMORY) DebugLog(@"IntroLayer dealloc");
+
+	[_levelLoader release];
+	_levelLoader = nil;	
+	
+	[super dealloc];
+	
+	if(DEBUG_MEMORY) report_memory();
+
+}	
+
 @end

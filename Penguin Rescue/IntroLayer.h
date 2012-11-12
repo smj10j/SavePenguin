@@ -10,13 +10,15 @@
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
 #import "Constants.h"
+#import "LevelHelperLoader.h"
 
-// IntroLayer
 @interface IntroLayer : CCLayer
 {
+	LevelHelperLoader* _levelLoader;
+	
+	CGSize _panelSize;
 }
 
-// returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
 @end

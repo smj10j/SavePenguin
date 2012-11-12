@@ -154,7 +154,7 @@
 		[self addIAPItemsToSand];
 
 		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
-			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/ambient.wav" loop:YES];
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/theme.wav" loop:YES];
 		}
 
 		[Analytics logEvent:@"View_IAP"];

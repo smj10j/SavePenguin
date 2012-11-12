@@ -267,7 +267,7 @@ static NSMutableDictionary* sCompletedLevelsInPackDictionary = nil;
 //returns the level after the given one. if no next leve, returns nil
 +(NSString*)levelAfter:(NSString*)levelPath inPack:(NSString*)packPath {
 	NSDictionary* levelsDictionary = [LevelPackManager allLevelsInPack:packPath];
-	bool returnNextLevel = false;
+	bool returnNextLevel = levelPath == nil;
 	for(int i = 0; i < levelsDictionary.count; i++) {
 		NSDictionary* levelData = [levelsDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
 		

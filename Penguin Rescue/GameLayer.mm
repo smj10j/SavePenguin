@@ -117,6 +117,7 @@
 	_levelData =  [LevelPackManager level:_levelPath inPack:_levelPackPath];
 	[SettingsManager setString:_levelPath forKey:SETTING_LAST_LEVEL_PATH];
 	[SettingsManager setString:_levelPackPath forKey:SETTING_LAST_LEVEL_PACK_PATH];
+	
 	[self loadLevel:_levelPath inLevelPack:_levelPackPath];
 		
 	//set the grid size and create various arrays

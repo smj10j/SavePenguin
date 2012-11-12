@@ -866,7 +866,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{387, 187}, {16, 8.75}}</string>
+								<string>{{405, 187}, {16, 8.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -896,6 +896,81 @@
 							</dict>
 							<key>UniqueName</key>
 							<string>Doodad_Flying_Bird_1</string>
+						</dict>
+						<dict>
+							<key>AnimationsProperties</key>
+							<dict/>
+							<key>Children</key>
+							<array/>
+							<key>CustomClassInfo</key>
+							<dict>
+								<key>ClassDefaults</key>
+								<dict/>
+								<key>ClassName</key>
+								<string>No Class</string>
+							</dict>
+							<key>NodeType</key>
+							<string>LHSprite</string>
+							<key>ParentClass</key>
+							<string>LHBatch</string>
+							<key>ParentName</key>
+							<string>Map</string>
+							<key>PathProperties</key>
+							<dict/>
+							<key>PhysicProperties</key>
+							<dict>
+								<key>HandledBySH</key>
+								<true/>
+							</dict>
+							<key>SHSceneName</key>
+							<string>Spritesheet.pshs</string>
+							<key>SHSheetName</key>
+							<string>Map</string>
+							<key>SHSpriteName</key>
+							<string>Doodad_Bird_Nest</string>
+							<key>SheetImage</key>
+							<string>Spritesheet_Map.png</string>
+							<key>TextureProperties</key>
+							<dict>
+								<key>Angle</key>
+								<integer>0</integer>
+								<key>Color</key>
+								<string>{{1, 1}, {1, 1}}</string>
+								<key>FlipX</key>
+								<false/>
+								<key>FlipY</key>
+								<false/>
+								<key>Frame</key>
+								<string>{{387, 187}, {17.75, 12.5}}</string>
+								<key>IsDrawable</key>
+								<true/>
+								<key>IsExpanded</key>
+								<false/>
+								<key>IsRotated</key>
+								<false/>
+								<key>Locked</key>
+								<false/>
+								<key>Opacity</key>
+								<real>1</real>
+								<key>Position</key>
+								<string>{112.75, -9.75}</string>
+								<key>Scale</key>
+								<string>{1, 1}</string>
+								<key>SpriteSize</key>
+								<string>{17.5, 12.5}</string>
+								<key>Tag</key>
+								<integer>0</integer>
+								<key>TagName</key>
+								<string>DEFAULT</string>
+								<key>TextureOffset</key>
+								<string>{0.375, -0}</string>
+								<key>UniqueName</key>
+								<string>Doodad_Bird_Nest</string>
+								<key>ZOrder</key>
+								<integer>3</integer>
+							</dict>
+							<key>UniqueName</key>
+							<string>Doodad_Bird_Nest</string>
 						</dict>
 					</array>
 					<key>CustomClassInfo</key>

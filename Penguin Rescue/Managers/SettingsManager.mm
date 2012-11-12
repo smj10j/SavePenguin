@@ -24,7 +24,7 @@
 		if(sSettings == nil) {
 			sSettings = [[NSMutableDictionary alloc] init];
 		}
-		if(DEBUG_SETTINGS) DebugLog(@"Loaded user settings");
+		if(DEBUG_SETTINGS) DebugLog(@"Loaded user settings from %@", settingsPlistPath);
 	}
 	return sSettings;
 }
@@ -39,7 +39,7 @@
         DebugLog(@"---- Failed to save user settings!! - %@ -----", settingsPlistPath);
         return;
     }
-		if(DEBUG_SETTINGS) DebugLog(@"Saved user settings");
+	if(DEBUG_SETTINGS) DebugLog(@"Saved user settings");
 }
 
 
@@ -83,7 +83,7 @@
 	[self setObject:nil forKey:key];
 }
 +(void)setString:(NSString*)value forKey:(NSString*)key {
-	[self setObject:value forKey:key];
+	[self setObject:[NSString stringWithString:value] forKey:key];
 }
 +(void)setBool:(bool)value forKey:(NSString*)key {
 	[self setObject:[NSNumber numberWithBool:value] forKey:key];
