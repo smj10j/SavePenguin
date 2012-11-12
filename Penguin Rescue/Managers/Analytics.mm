@@ -36,13 +36,13 @@
 
 +(void)logEvent:(NSString*)eventName withParameters:(NSDictionary*)parameters timed:(bool)timed {
 #if DISTRIBUTION_MODE
-	[Flurry logEvent:eventName withParameters:parameters timed:timed];
+	[Flurry logEvent:eventName withParameters:[self massageDictionaryForFlurry:parameters] timed:timed];
 #endif
 }
 
 +(void)logEvent:(NSString*)eventName withParameters:(NSDictionary*)parameters {
 #if DISTRIBUTION_MODE
-	[Flurry logEvent:eventName withParameters:parameters];
+	[Flurry logEvent:eventName withParameters:[self massageDictionaryForFlurry:parameters]];
 #endif
 }
 
@@ -54,8 +54,19 @@
 
 +(void)endTimedEvent:(NSString*)eventName withParameters:(NSDictionary*)parameters {
 #if DISTRIBUTION_MODE
-	[Flurry endTimedEvent:eventName withParameters:parameters];
+	[Flurry endTimedEvent:eventName withParameters:[self massageDictionaryForFlurry:parameters]];
 #endif
+}
+
+//converts all NS objects to NSString (why Flurry can't do this themselves is beyond me)
++(NSDictionary*)massageDictionaryForFlurry:(NSDictionary*)dictionaryIn {
+	NSMutableDictionary* dictionaryOut = [NSMutableDictionary dictionaryWithDictionary:dictionaryIn];
+	
+	for(id key in dictionaryIn) {
+		[dictionaryOut setObject:[NSString stringWithFormat:@"%@", [dictionaryIn objectForKey:key]] forKey:key];
+	}
+	
+	return dictionaryOut;
 }
 
 

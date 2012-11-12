@@ -66,9 +66,6 @@
 		/*********** Sound Settings ************/
 		[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.40f];
 		[[SimpleAudioEngine sharedEngine] setEffectsVolume:0.80f];
-
-
-		
 		
 		
 		double lastRun = [SettingsManager doubleForKey:SETTING_LAST_RUN_TIMESTAMP];
