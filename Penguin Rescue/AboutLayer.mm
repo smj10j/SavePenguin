@@ -44,9 +44,15 @@
 	if( (self=[super init])) {
 
 		NSMutableDictionary* credits = [[NSMutableDictionary alloc] init];
+		[credits setObject:@"Programming and Design" forKey:@"Stephen Johnson"];
+		[credits setObject:@"Sound Designer" forKey:@"Geran Pele"];
+		[credits setObject:@"Composer" forKey:@"Nick Alonzo"];
 		
-		//TODO: add credits
-		//[credits setObject:@"Programming and Design" forKey:@"Stephen Johnson"];
+		NSMutableArray* creditsOrder = [[NSMutableArray alloc] init];
+		[creditsOrder addObject:@"Stephen Johnson"];
+		[creditsOrder addObject:@"Geran Pele"];
+		[creditsOrder addObject:@"Nick Alonzo"];
+	
 
 		
 		self.isTouchEnabled = YES;
@@ -108,31 +114,21 @@ Save Penguin is our first game - we hope you enjoy it and please let us know wha
 		int creditsYOffset = aboutConquerLabel.position.y - aboutConquerLabel.boundingBox.size.height/2 - creditsLineHeight/2 - (IS_IPHONE ? 0 : 30*SCALING_FACTOR_V);
 		
 		
-		for(NSString* name in credits) {
-			NSString* job = [credits objectForKey:name]; 
-		
-			CCLabelTTF* creditsNameLabel = [CCLabelTTF labelWithString:name
-				fontName:@"Helvetica" fontSize:22*SCALING_FACTOR_FONTS
-				dimensions:CGSizeMake(600*SCALING_FACTOR_H, creditsLineHeight)
-				hAlignment:kCCTextAlignmentCenter
-				vAlignment:kCCVerticalTextAlignmentCenter
-			];
-			creditsNameLabel.color = ccWHITE;
-			creditsNameLabel.position = ccp(winSize.width/2, creditsYOffset);
-			[self addChild:creditsNameLabel];
-
-			creditsYOffset-= creditsLineHeight;
-
-			CCLabelTTF* creditsJobLabel = [CCLabelTTF labelWithString:job
-				fontName:@"Helvetica" fontSize:20*SCALING_FACTOR_FONTS
-				dimensions:CGSizeMake(600*SCALING_FACTOR_H, creditsLineHeight)
-				hAlignment:kCCTextAlignmentCenter
-				vAlignment:kCCVerticalTextAlignmentCenter
-			];
-			creditsJobLabel.color = ccWHITE;
-			creditsJobLabel.position = ccp(winSize.width/2, creditsYOffset);
-			[self addChild:creditsJobLabel];
+		for(NSString* name in creditsOrder) {
+			NSString* job = [credits objectForKey:name];
 			
+			NSString* creditLine = [NSString stringWithFormat:@"%@ - %@", name, job];
+		
+			CCLabelTTF* creditsLineLabel = [CCLabelTTF labelWithString:creditLine
+				fontName:@"Helvetica" fontSize:22*SCALING_FACTOR_FONTS
+				dimensions:CGSizeMake(450*SCALING_FACTOR_H, creditsLineHeight)
+				hAlignment:kCCTextAlignmentCenter
+				vAlignment:kCCVerticalTextAlignmentCenter
+			];
+			creditsLineLabel.color = ccWHITE;
+			creditsLineLabel.position = ccp(winSize.width/2, creditsYOffset);
+			[self addChild:creditsLineLabel];
+
 			creditsYOffset-= creditsLineHeight;
 		}
 		[credits release];

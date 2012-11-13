@@ -28,14 +28,14 @@
 	//capture uncaught exceptions for logging
 	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 	
-	//start analytics
-	[Analytics startAnalytics];
-	
 	//testflight
 	if(TESTFLIGHT_BUILD) {
 		[TestFlight takeOff:@"dcb57a9ef2d39552f3b77d6fa6ec3bb0_MTQxOTk2MjAxMi0xMC0xMSAwMjo1NDowMy44OTg4NTk"];
 		[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-	}
+	}	
+	
+	//start analytics
+	[Analytics startAnalytics];
 	
 	// Create the main window
 	_window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

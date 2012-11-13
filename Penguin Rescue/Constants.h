@@ -9,12 +9,25 @@
 #ifndef Penguin_Rescue_Constants_h
 #define Penguin_Rescue_Constants_h
 
-//true to disable all output and send analytics data
-#define DISTRIBUTION_MODE true
-//enables testflight
-#define TESTFLIGHT_BUILD true
 
 
+//prepares all settings for App Store
+//NOTE: be sure to set the correct distribution provisioning profile!
+#define APPSTORE_BUILD false
+
+//enables TestFlight as well as sets this as a Distribution build
+//NOTE: be sure to set the correct distribution provisioning profile!
+#define TESTFLIGHT_BUILD (false && !APPSTORE_BUILD)
+
+
+
+
+//true to disable all output and send analytics data (DON'T SET THIS DIRECTLY)
+#define DISTRIBUTION_MODE (false || TESTFLIGHT_BUILD || APPSTORE_BUILD)
+
+
+
+//used to go to a specific level during level development
 #define TEST_MODE (false && !DISTRIBUTION_MODE)
 #define TEST_LEVEL_PACK @"Pack1"
 #define TEST_LEVEL @"DangerDanger"

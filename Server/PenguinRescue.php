@@ -118,9 +118,6 @@ if($method == 'GET') {
 /*
 
 
-TODO:!!!!!!!! make key level_pack-level-created unique
-
-
 
 CREATE TABLE IF NOT EXISTS `scores_summary` (
   `score_summary_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -137,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `scores_summary` (
   `updating` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`score_summary_id`),
-  KEY `level_pack-level-created` (`level_pack_id`,`level_id`,`created`)
+  UNIQUE KEY `level_pack-level-created` (`level_pack_id`,`level_id`,`created`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 */
