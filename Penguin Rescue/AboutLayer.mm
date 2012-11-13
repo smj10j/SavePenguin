@@ -181,7 +181,7 @@ Drop us an email or leave a review in the App Store and tell us your ideas!"]
 		[backButton registerTouchEndedObserver:self selector:@selector(onBack:)];
 
 		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
-			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/ambient.wav" loop:YES];
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/theme.mp3" loop:YES];
 		}
 
 		[Analytics logEvent:@"View_About"];
@@ -258,7 +258,9 @@ Drop us an email or leave a review in the App Store and tell us your ideas!"]
 	
 	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
-	}	
+	}
+	
+	//[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 	
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[MainMenuLayer scene] ]];
 }

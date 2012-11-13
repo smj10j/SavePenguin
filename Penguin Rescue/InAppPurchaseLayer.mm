@@ -154,7 +154,7 @@
 		[self addIAPItemsToSand];
 
 		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
-			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/theme.wav" loop:YES];
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/theme.mp3" loop:YES];
 		}
 
 		[Analytics logEvent:@"View_IAP"];
@@ -386,6 +386,9 @@
 	NSString* lastLevelPath = [SettingsManager stringForKey:SETTING_LAST_LEVEL_PATH];
 	
 	if(lastLevelPackPath != nil) {
+	
+		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+	
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[GameLayer sceneWithLevelPackPath:lastLevelPackPath levelPath:lastLevelPath] ]];
 	}else {
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[MainMenuLayer scene] ]];

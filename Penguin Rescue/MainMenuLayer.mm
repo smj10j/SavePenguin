@@ -115,8 +115,8 @@
 		[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/menu/button.wav"];
 
 
-		if(isMusicEnabled) {
-			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/theme.wav" loop:YES];
+		if(isMusicEnabled && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/theme.mp3" loop:YES];
 		}
 
 		[Analytics logEvent:@"View_Main_Menu"];
@@ -143,6 +143,8 @@
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
 	}
 	
+	[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+	
 	if(TEST_MODE) {
 		//TESTING CODE
 		
@@ -167,10 +169,6 @@
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
 	}
 	
-	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
-		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-	}
-	
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[InAppPurchaseLayer scene] ]];
 }
 
@@ -182,9 +180,7 @@
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
 	}
 	
-	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
-		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-	}	
+	//[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[AboutLayer scene] ]];
 }
@@ -232,7 +228,7 @@
 	
 	}else {
 		[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
-		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/background.wav" loop:YES];
+		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/theme.mp3" loop:YES];
 
 		[Analytics logEvent:@"Background_Music_Enabled"];
 	}

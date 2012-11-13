@@ -162,7 +162,7 @@
 	}
 
 	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
-		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/game/ambient/place.wav" loop:YES];
+		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/game/ambient/place.mp3" loop:YES];
 	}
 
 	//start the game
@@ -187,14 +187,14 @@
 
 -(void) preloadSounds {
 
-	[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sounds/game/ambient/place.wav"];
-	[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sounds/game/ambient/running.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sounds/game/ambient/place.mp3"];
+	[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sounds/game/ambient/running.mp3"];
 
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/button.wav"];
 	
-	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/collision/actor-obstruction.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/collision/actor-obstruction.mp3"];
 	
-	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/penguin/close-call.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/penguin/close-call.mp3"];
 
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/combo/1.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/combo/2.wav"];
@@ -207,15 +207,16 @@
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-obstruction.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-debris.wav"];
-	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-windmill.wav"];
-	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-whirlpool.wav"];
-	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-sandboar.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-windmill.mp3"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-whirlpool.mp3"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-sandboar.mp3"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-bag-of-fish.wav"];
-	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-invisibility-hat.wav"];
-	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-loud-noise.wav"];
-	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/nudge.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-invisibility-hat.mp3"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/place-loud-noise.mp3"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/toolbox/nudge.mp3"];
 
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelLost/hoot.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelLost/chomp.mp3"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelWon/reward.mp3"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/levelWon/thud.wav"];
 
@@ -1463,6 +1464,10 @@
 		DebugLog(@"Pausing game");
 		_state = PAUSE;
 		
+		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/game/ambient/place.mp3" loop:YES];
+		}
+			
 		for(LHSprite* sprite in _levelLoader.allSprites) {
 			if(![sprite.userInfoClassName isEqualToString:@"MovingDoodad"]) {
 				[sprite pauseAnimation];
@@ -1526,6 +1531,10 @@
 		DebugLog(@"Resuming game");
 		_state = RUNNING;
 		
+		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/game/ambient/running.mp3" loop:YES];
+		}	
+		
 		for(LHSprite* sprite in _levelLoader.allSprites) {
 			if(sprite.numberOfFrames > 1) {
 				if(![sprite.animationName hasSuffix:@"_Button"]) {
@@ -1560,7 +1569,7 @@
 		}
 		
 		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
-			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/game/ambient/running.wav" loop:YES];
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/game/ambient/running.mp3" loop:YES];
 		}		
 		
 		//analytics logging
@@ -1575,6 +1584,8 @@
 -(void) setStateGameOver {
 
 	_state = GAME_OVER;
+	
+	[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 	
 	for(id key in _loudNoiseNodes) {
 		((LoudNoiseNode*)[_loudNoiseNodes objectForKey:key]).visible = false;
@@ -1609,6 +1620,10 @@
 	
 	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelWon/reward.mp3"];
+	}
+	
+	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/game/ambient/place.mp3" loop:YES];
 	}
 		
 	DebugLog(@"Showing level won animations");
@@ -1928,6 +1943,7 @@
 	//[self runAction:[CCShaky3D actionWithRange:1.5 shakeZ:false grid:ccg(12,8) duration:0.15f]];
 
 	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+		//[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelLost/chomp.mp3"];
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelLost/hoot.wav"];
 	}
 	
@@ -2000,10 +2016,6 @@
 	nil];
 	[Analytics endTimedEvent:@"Begin_Level" withParameters:flurryParams];
 
-	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
-		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-	}
-
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:_levelPath]]];
 }
 
@@ -2017,9 +2029,7 @@
 	NSString* nextLevelPath = [LevelPackManager levelAfter:_levelPath inPack:_levelPackPath];
 	DebugLog(@"Going to next level %@", nextLevelPath);
 	
-	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
-		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-	}
+	[self setStateGameOver];
 	
 	if(nextLevelPath == nil) {
 		//TODO: show some kind of pack completed notification
@@ -2033,9 +2043,7 @@
 -(void) showMainMenuLayer {
 	DebugLog(@"Showing MainMenuLayer in GameLayer instance %f", _instanceId);
 
-	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
-		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-	}	
+	[self setStateGameOver];
 	
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[MainMenuLayer scene] ]];
 }
@@ -2043,9 +2051,7 @@
 -(void) showInAppPurchaseLayer {
 	DebugLog(@"Showing InAppPurchaseLayer in GameLayer instance %f", _instanceId);
 
-	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
-		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-	}	
+	[self setStateGameOver];
 	
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[InAppPurchaseLayer scene] ]];
 }
@@ -2053,9 +2059,7 @@
 -(void) showLevelsMenuLayer {
 	DebugLog(@"Showing LevelSelectLayer in GameLayer instance %f", _instanceId);
 
-	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
-		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-	}
+	[self setStateGameOver];
 	
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelSelectLayer sceneWithLevelPackPath:[NSString stringWithFormat:@"%@", _levelPackPath]] ]];
 }
@@ -2515,13 +2519,13 @@
 			_activeToolboxItem.tag = WINDMILL;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
-			soundFileName = @"place-windmill.wav";
+			soundFileName = @"place-windmill.mp3";
 		
 		}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Whirlpool class]) {
 			_activeToolboxItem.tag = WHIRLPOOL;
 			[_activeToolboxItem makeDynamic];
 			[_activeToolboxItem setSensor:true];
-			soundFileName = @"place-whirlpool.wav";
+			soundFileName = @"place-whirlpool.mp3";
 		
 		}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Sandbar class]) {
 			_activeToolboxItem.tag = SANDBAR;
@@ -2529,7 +2533,7 @@
 			[_activeToolboxItem setSensor:true];
 			[self invalidateSharkFeatureGridsNear:nil];
 			[self invalidateSharkMoveGridsNear:_activeToolboxItem];
-			soundFileName = @"place-sandbar.wav";
+			soundFileName = @"place-sandbar.mp3";
 		
 		}else if([(id)_activeToolboxItem.userData class] == [ToolboxItem_Bag_of_Fish class]) {
 			_activeToolboxItem.tag = BAG_OF_FISH;
@@ -2552,7 +2556,7 @@
 			_activeToolboxItem.tag = INVISIBILITY_HAT;
 			[_activeToolboxItem makeNoPhysics];
 			[_activeToolboxItem setSensor:true];
-			soundFileName = @"place-invisibility-hat.wav";
+			soundFileName = @"place-invisibility-hat.mp3";
 			
 			double minDist = 100000;
 			LHSprite* hattedActor = nil;
@@ -2591,7 +2595,7 @@
 			_activeToolboxItem.tag = LOUD_NOISE;
 			[_activeToolboxItem makeStatic];
 			[_activeToolboxItem setSensor:true];
-			soundFileName = @"place-loud-noise.wav";
+			soundFileName = @"place-loud-noise.mp3";
 			
 			if([_loudNoiseNodes objectForKey:_activeToolboxItem.uniqueName] == nil) {
 				LoudNoiseNode* loudNoiseNode = [[LoudNoiseNode alloc] initWithSprite:_activeToolboxItem maxRange:100];
@@ -3550,7 +3554,7 @@
 			[self startObstructionCollisionParticlesAt:p];
 
 			if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
-				[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/collision/actor-obstruction.wav"];
+				[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/collision/actor-obstruction.mp3"];
 			}
 
 		}else if(contact.contactType == LH_END_CONTACT) {
@@ -3592,7 +3596,7 @@
 				if(!((Penguin*)penguin.userData).isSafe) {
 					unsafePenguins++;
 				}
-			}			
+			}
 			
 			//give any extra credit if due for a close call!
 			for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
@@ -3604,7 +3608,7 @@
 					
 					if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
 						if(unsafePenguins > 0) {
-							[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/penguin/close-call.wav"];
+							[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/penguin/close-call.mp3"];
 						}
 					}
 					
@@ -3688,7 +3692,7 @@
 							[_handOfGodPowerNode runAction:[CCFadeIn actionWithDuration:0.25f]];
 							
 							if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
-								[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/nudge.wav"];
+								[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/toolbox/nudge.mp3"];
 							}				
 							
 						}
@@ -3925,8 +3929,6 @@
 -(void) onExit{
 	if(DEBUG_MEMORY) DebugLog(@"Begin GameLayer %f onExit", _instanceId);
 	if(DEBUG_MEMORY) report_memory();
-
-	[self setStateGameOver];
 		
     [super onExit];
 	
