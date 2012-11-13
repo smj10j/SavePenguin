@@ -25,10 +25,6 @@
 			<array>
 				<string>Icon.png</string>
 				<string>Icon@2x.png</string>
-				<string>Icon-72.png</string>
-				<string>Icon-Small-50.png</string>
-				<string>Icon-Small.png</string>
-				<string>Icon-Small@2x.png</string>
 				<string>Icon_72x72.png</string>
 				<string>Icon_144x144.png</string>
 			</array>
@@ -49,7 +45,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>5567</string>
+	<string>5569</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIPrerenderedIcon</key>
