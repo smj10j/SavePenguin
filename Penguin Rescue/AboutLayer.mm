@@ -44,7 +44,9 @@
 	if( (self=[super init])) {
 
 		NSMutableDictionary* credits = [[NSMutableDictionary alloc] init];
-		[credits setObject:@"Programming and Design" forKey:@"Stephen Johnson"];
+		
+		//TODO: add credits
+		//[credits setObject:@"Programming and Design" forKey:@"Stephen Johnson"];
 
 		
 		self.isTouchEnabled = YES;
