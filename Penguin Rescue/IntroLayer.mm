@@ -68,7 +68,7 @@
 		panel4.zOrder = 2;
 		
 		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
-			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/ambient.wav" loop:YES];
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/menu.mp3" loop:YES];
 		}
 		
 		[SettingsManager setBool:true forKey:SETTING_HAS_SEEN_INTRO_STORYBOARD];

@@ -63,7 +63,7 @@
 		
 	
 		/*********** Sound Settings ************/
-		[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.80f];
+		[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.40f];
 		[[SimpleAudioEngine sharedEngine] setEffectsVolume:0.80f];
 		[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sounds/menu/ambient/theme.mp3"];
 		

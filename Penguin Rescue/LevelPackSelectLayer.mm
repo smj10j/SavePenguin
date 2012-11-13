@@ -78,7 +78,7 @@
 		[self loadLevelPacks];
 		
 		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
-			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/menu/ambient/ambient.wav" loop:YES];
+			[self fadeInBackgroundMusic: @"sounds/menu/ambient/menu.mp3"];
 		}
 		
 		[Analytics logEvent:@"View_Level_Packs"];
@@ -234,6 +234,24 @@
 	[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 	
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[MainMenuLayer scene] ]];
+}
+
+
+-(void)fadeInBackgroundMusic:(NSString*)path {
+	
+	float prevVolume = [[SimpleAudioEngine sharedEngine] backgroundMusicVolume];
+	float fadeInTimeOffset = 0;
+	
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, fadeInTimeOffset * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+		[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:.1];
+		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:path loop:YES];
+	});
+	
+	for(float volume = .1; volume <= prevVolume; volume+= .1) {
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, fadeInTimeOffset + volume * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+			[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:volume];
+		});
+	}
 }
 
 

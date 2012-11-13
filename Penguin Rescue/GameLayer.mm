@@ -161,8 +161,8 @@
 		}		
 	}
 
-	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
-		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/game/ambient/place.mp3" loop:YES];
+	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED] && ![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
+		[self fadeInBackgroundMusic: @"sounds/game/ambient/place.mp3"];
 	}
 
 	//start the game
@@ -186,9 +186,6 @@
 }
 
 -(void) preloadSounds {
-
-	[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sounds/game/ambient/place.mp3"];
-	[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sounds/game/ambient/running.mp3"];
 
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"sounds/game/button.wav"];
 	
@@ -1464,9 +1461,11 @@
 		DebugLog(@"Pausing game");
 		_state = PAUSE;
 		
+/*
 		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
-			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/game/ambient/place.mp3" loop:YES];
+			[self fadeInBackgroundMusic: @"sounds/game/ambient/place.mp3"];
 		}
+*/
 			
 		for(LHSprite* sprite in _levelLoader.allSprites) {
 			if(![sprite.userInfoClassName isEqualToString:@"MovingDoodad"]) {
@@ -1530,10 +1529,12 @@
 	if(_state == PAUSE) {
 		DebugLog(@"Resuming game");
 		_state = RUNNING;
-		
+
+/*
 		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
-			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/game/ambient/running.mp3" loop:YES];
+			[self fadeInBackgroundMusic: @"sounds/game/ambient/running.mp3"];
 		}	
+*/
 		
 		for(LHSprite* sprite in _levelLoader.allSprites) {
 			if(sprite.numberOfFrames > 1) {
@@ -1569,7 +1570,7 @@
 		}
 		
 		if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
-			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/game/ambient/running.mp3" loop:YES];
+			[self fadeInBackgroundMusic: @"sounds/game/ambient/running.mp3"];
 		}		
 		
 		//analytics logging
@@ -1584,7 +1585,7 @@
 -(void) setStateGameOver {
 
 	_state = GAME_OVER;
-	
+		
 	[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 	
 	for(id key in _loudNoiseNodes) {
@@ -1623,7 +1624,7 @@
 	}
 	
 	if([SettingsManager boolForKey:SETTING_MUSIC_ENABLED]) {
-		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sounds/game/ambient/place.mp3" loop:YES];
+		[self fadeInBackgroundMusic: @"sounds/game/ambient/place.mp3"];
 	}
 		
 	DebugLog(@"Showing level won animations");
@@ -2003,11 +2004,42 @@
 	
 }
 
+-(void)fadeInBackgroundMusic:(NSString*)path {
+	
+	float prevVolume = [[SimpleAudioEngine sharedEngine] backgroundMusicVolume];
+	float fadeInTimeOffset = 0;
+	
+	/*
+	if([[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying]) {
+		for(float volume = prevVolume; volume >= 0; volume-= .2) {
+			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (prevVolume-volume) * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+				[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:volume];
+			});
+			fadeInTimeOffset+= .2;
+		}
+	}
+	*/
+	
+	
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, fadeInTimeOffset * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+		[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:.1];
+		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:path loop:YES];
+	});
+	
+	for(float volume = .1; volume <= prevVolume; volume+= .1) {
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, fadeInTimeOffset + volume * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+			[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:volume];
+		});
+	}
+}
+
 -(void) restart {
 
 	DebugLog(@"Restarting");
 
-	[self setStateGameOver];
+	if(_state == RUNNING) {
+		[self setStateGameOver];
+	}
 
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -2028,9 +2060,7 @@
 -(void) goToNextLevel {
 	NSString* nextLevelPath = [LevelPackManager levelAfter:_levelPath inPack:_levelPackPath];
 	DebugLog(@"Going to next level %@", nextLevelPath);
-	
-	[self setStateGameOver];
-	
+		
 	if(nextLevelPath == nil) {
 		//TODO: show some kind of pack completed notification
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[LevelPackSelectLayer scene] ]];
