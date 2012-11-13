@@ -259,6 +259,10 @@
 		AAC6E5CC16403B4300FD549F /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6E5C416403B4300FD549F /* ASINetworkQueue.m */; };
 		AAC6E5CE16403B6900FD549F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC6E5CD16403B6900FD549F /* CFNetwork.framework */; };
 		AAC6E5D016403BD300FD549F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC6E5CF16403BD300FD549F /* MobileCoreServices.framework */; };
+		AACD32BE16523AC8009AFD99 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACD32BA16523AC8009AFD99 /* libTestFlight.a */; };
+		AACD32BF16523AC8009AFD99 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AACD32BB16523AC8009AFD99 /* README.md */; };
+		AACD32C016523AC8009AFD99 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = AACD32BC16523AC8009AFD99 /* release_notes.md */; };
+		AACD32C216523AF1009AFD99 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AACD32C116523AF1009AFD99 /* libz.dylib */; };
 		AAD7B65D163C296500B02521 /* AboutLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AAD7B65C163C296500B02521 /* AboutLayer.mm */; };
 		AAD7B660163C34BB00B02521 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = AAD7B65F163C34BB00B02521 /* sounds */; };
 		AAE610691632B7FD004166CC /* Spritesheet_Actors-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6105D1632B7FD004166CC /* Spritesheet_Actors-hd.png */; };
@@ -790,6 +794,12 @@
 		AAC6E5C516403B4300FD549F /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIProgressDelegate.h; path = libs/ASIHttpRequest/Classes/ASIProgressDelegate.h; sourceTree = "<group>"; };
 		AAC6E5CD16403B6900FD549F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		AAC6E5CF16403BD300FD549F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		AACD32BA16523AC8009AFD99 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		AACD32BB16523AC8009AFD99 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		AACD32BC16523AC8009AFD99 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		AACD32BD16523AC8009AFD99 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		AACD32C116523AF1009AFD99 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		AACD33E716523B17009AFD99 /* Penguin Rescue copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Penguin Rescue copy-Info.plist"; path = "/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue copy-Info.plist"; sourceTree = "<absolute>"; };
 		AAD7B65B163C296500B02521 /* AboutLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutLayer.h; sourceTree = "<group>"; };
 		AAD7B65C163C296500B02521 /* AboutLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AboutLayer.mm; sourceTree = "<group>"; };
 		AAD7B65F163C34BB00B02521 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sounds; path = Resources/sounds; sourceTree = "<group>"; };
@@ -852,6 +862,8 @@
 				AA54C6A3162BB27A00DF56D0 /* CoreGraphics.framework in Frameworks */,
 				AA54C6A5162BB27A00DF56D0 /* GameKit.framework in Frameworks */,
 				AA4C8D8B1637C48F00C55554 /* libFlurry.a in Frameworks */,
+				AACD32BE16523AC8009AFD99 /* libTestFlight.a in Frameworks */,
+				AACD32C216523AF1009AFD99 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -923,10 +935,12 @@
 		AA54C685162BB27A00DF56D0 = {
 			isa = PBXGroup;
 			children = (
+				AACD32C116523AF1009AFD99 /* libz.dylib */,
 				AA54C6A6162BB27A00DF56D0 /* Penguin Rescue */,
 				AA54C693162BB27A00DF56D0 /* Frameworks */,
 				AA54C691162BB27A00DF56D0 /* Products */,
 				a7a2907c30322286ead7472e /* LevelHelper */,
+				AACD33E716523B17009AFD99 /* Penguin Rescue copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1017,6 +1031,7 @@
 				AA54C7F6162BB27C00DF56D0 /* LICENSE_CocosDenshion.txt */,
 				AA54C828162BB27D00DF56D0 /* LICENSE_Kazmath.txt */,
 				AA54C8BB162BB27E00DF56D0 /* LICENSE_Box2D.txt */,
+				AACD32B916523AC8009AFD99 /* TestFlightSDK1.1 */,
 				AAC6E5B316403AD000FD549F /* ASIHTTPRequest */,
 				AAC6E586164022AE00FD549F /* SSKeychain */,
 				AAC6E56D1640071300FD549F /* JSONKit */,
@@ -1698,6 +1713,18 @@
 			name = ASIHTTPRequest;
 			sourceTree = "<group>";
 		};
+		AACD32B916523AC8009AFD99 /* TestFlightSDK1.1 */ = {
+			isa = PBXGroup;
+			children = (
+				AACD32BA16523AC8009AFD99 /* libTestFlight.a */,
+				AACD32BB16523AC8009AFD99 /* README.md */,
+				AACD32BC16523AC8009AFD99 /* release_notes.md */,
+				AACD32BD16523AC8009AFD99 /* TestFlight.h */,
+			);
+			name = TestFlightSDK1.1;
+			path = libs/TestFlightSDK1.1;
+			sourceTree = "<group>";
+		};
 		a7a2907c30322286ead7472e /* LevelHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -1854,6 +1881,8 @@
 				AA85A5B61650AB3D006929A1 /* Spritesheet_Intro2-hd.png in Resources */,
 				AA85A5B71650AB3D006929A1 /* Spritesheet_Intro2-ipadhd.png in Resources */,
 				AA85A5B81650AB3D006929A1 /* Spritesheet_Intro2.png in Resources */,
+				AACD32BF16523AC8009AFD99 /* README.md in Resources */,
+				AACD32C016523AC8009AFD99 /* release_notes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2165,6 +2194,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Penguin Rescue/libs/Flurry iPhone SDK v4.0.6/Flurry\"",
 					"\"$(SRCROOT)/Penguin Rescue/libs/Flurry iPhone SDK v4.0.6/FlurryAds\"",
+					"\"$(SRCROOT)/Penguin Rescue/libs/TestFlightSDK1.1\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -2183,7 +2213,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Penguin Rescue/Penguin Rescue.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Conquer LLC";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Penguin Rescue/Prefix.pch";
@@ -2201,13 +2231,14 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Penguin Rescue/libs/Flurry iPhone SDK v4.0.6/Flurry\"",
 					"\"$(SRCROOT)/Penguin Rescue/libs/Flurry iPhone SDK v4.0.6/FlurryAds\"",
+					"\"$(SRCROOT)/Penguin Rescue/libs/TestFlightSDK1.1\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "69481FC9-6C45-4A11-B843-6A9BFA7B667A";
 				USER_HEADER_SEARCH_PATHS = "\"Penguin Rescue/libs\"";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s armv6";

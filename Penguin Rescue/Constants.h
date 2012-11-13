@@ -11,10 +11,11 @@
 
 //true to disable all output and send analytics data
 #define DISTRIBUTION_MODE true
+//enables testflight
+#define TESTFLIGHT_BUILD true
 
 
-
-#define TEST_MODE false
+#define TEST_MODE (false && !DISTRIBUTION_MODE)
 #define TEST_LEVEL_PACK @"Pack1"
 #define TEST_LEVEL @"DangerDanger"
 
