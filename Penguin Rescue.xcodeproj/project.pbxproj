@@ -935,7 +935,6 @@
 		AA54C685162BB27A00DF56D0 = {
 			isa = PBXGroup;
 			children = (
-				AACD32C116523AF1009AFD99 /* libz.dylib */,
 				AA54C6A6162BB27A00DF56D0 /* Penguin Rescue */,
 				AA54C693162BB27A00DF56D0 /* Frameworks */,
 				AA54C691162BB27A00DF56D0 /* Products */,
@@ -955,6 +954,7 @@
 		AA54C693162BB27A00DF56D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AACD32C116523AF1009AFD99 /* libz.dylib */,
 				AA9F2892164E9D810038CD16 /* MessageUI.framework */,
 				AAC6E5CF16403BD300FD549F /* MobileCoreServices.framework */,
 				AAC6E5CD16403B6900FD549F /* CFNetwork.framework */,

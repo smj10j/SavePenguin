@@ -1,0 +1,31 @@
+<project name="SavePenguin" default="deploy">
+
+	<property environment="env" />
+
+	
+    <!-- ====================================== -->
+	<target name='deploy-static-remote'>
+
+		<echo message="Deploying to ${server}..."/>
+			<exec dir="." executable="rsync" failonerror="true">
+			<arg line="-rltDv -e ssh ${dir.local}/ www@${server}:${dir.remote}/" />
+		</exec>
+	
+	</target>	
+	
+	<!-- ====================================== -->
+	
+	<target name="deploy" depends="">
+		
+		<!-- Send over the static assets -->
+		<ant target="deploy-static-remote" >
+			<property name="server" value="www.savepenguin.com" />
+			<!--<property name="file.key" value="keys/SavePenguin.pem" />-->
+			<property name="dir.local" value="web" />
+			<property name="dir.remote" value="/usr/share/nginx/html" />
+		</ant>		
+	</target>	
+	
+	<!-- ====================================== -->	
+	
+</project>

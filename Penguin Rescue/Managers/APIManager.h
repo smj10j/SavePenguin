@@ -31,8 +31,8 @@
 
 
 
-#define SERVER_HOST @"www.conquerllc.com"
-#define SERVER_PATH @"/webservice/games/PenguinRescue.php"
+#define SERVER_HOST @"api.SavePenguin.com"
+#define SERVER_PATH @"/server.php"
 #define SERVER_URL [NSString stringWithFormat:@"http://%@%@", SERVER_HOST, SERVER_PATH]
 
 
