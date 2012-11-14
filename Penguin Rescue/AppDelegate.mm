@@ -58,7 +58,7 @@
 	_director.wantsFullScreenLayout = YES;
 	
 	// Display FSP and SPF
-	if(!DISTRIBUTION_MODE) {
+	if(DEBUG_MEMORY) {
 		[_director setDisplayStats:YES];
 	}
 	

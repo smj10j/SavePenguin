@@ -21,8 +21,8 @@
 		<ant target="deploy-static-remote" >
 			<property name="server" value="www.savepenguin.com" />
 			<!--<property name="file.key" value="keys/SavePenguin.pem" />-->
-			<property name="dir.local" value="web" />
-			<property name="dir.remote" value="/usr/share/nginx/html" />
+			<property name="dir.local" value="web/subdomains" />
+			<property name="dir.remote" value="/usr/share/nginx/html/subdomains" />
 		</ant>		
 	</target>	
 	

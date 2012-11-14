@@ -1,3 +1,12 @@
 echo "----------- Running pngquant on screenshots  --------------"
-tools/pngquant -f -ext .png 256 screenshots/**/**/*.png
+
+find screenshots -type d | while read dir
+do
+
+echo "In directory: $dir"
+tools/pngquant -f -ext .png 256 "$dir"/*.png
+
+done
+
+
 
