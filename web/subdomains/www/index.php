@@ -43,6 +43,10 @@
 		</div>
 		
 		<div>
+			<h3>Available December 1st, 2012</h3>
+		</div>
+		
+		<div>
 			<a href='http://itunes.com/apps/SavePenguin'><img id='app-store' title='Download Save Penguin from the App Store' src='/images/app-store.png'/></a>
 
 			<a id='facebook' href='https://www.facebook.com/SavePenguin'>Facebook Page</a>
@@ -121,6 +125,8 @@
 				<li><a href='http://itunes.com/apps/SavePenguin'>App Store</a></li>
 				<li><a href='/privacy' target='_blank'>Privacy Policy</a></li>
 			</ul>
+			<br style='clear:both'/>
+			<span style='font-size:.7em'>*Promotional video music by <a href='http://www.audionautix.com/' target='_blank'>Audionautix</a>*</span>
 		</div>
 	
 	</div>	
