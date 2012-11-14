@@ -39,7 +39,7 @@
 		<img id='logo' title='Save Penguin Logo' src='/images/logo.png'/>
 		
 		<div id='video'>
-			<iframe width="560" height="315" src="http://www.youtube.com/embed/8FpigqfcvlM?rel=0" frameborder="0" allowfullscreen></iframe>
+			<iframe width="420" height="315" src="http://www.youtube.com/embed/1AdbRmshePA?rel=0" frameborder="0" allowfullscreen></iframe>
 		</div>
 		
 		<div>
