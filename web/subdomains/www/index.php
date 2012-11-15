@@ -34,26 +34,19 @@
 
 <body>
 
-	<div id='container'>
-	
+<!--
+	<div id='header'>
 		<img id='logo' title='Save Penguin Logo' src='/images/logo.png'/>
-		
-		<div id='video'>
-			<iframe width="420" height="315" src="http://www.youtube.com/embed/RWOvUtSRyCA?rel=0" frameborder="0" allowfullscreen></iframe>
-		</div>
-		
-		<div>
-			<h3>Available December 1st, 2012</h3>
-		</div>
-		
-		<div>
-			<a href='http://itunes.com/apps/SavePenguin'><img id='app-store' title='Download Save Penguin from the App Store' src='/images/app-store.png'/></a>
+	</div>
+	<div id='header-separator'></div>
+-->
 
-			<a id='facebook' href='https://www.facebook.com/SavePenguin'>Facebook Page</a>
-		</div>
+	<div id='container'>
+			
+		<img id='logo' title='Save Penguin Logo' height="153" width="800" src='/images/logo.png'/>
 		<div class='separator'></div>
 		
-		<div class='feature-container' style='height:160px'>
+		<div class='feature-container' style='height:220px'>
 			<center>
 				<h2>An all new strategy puzzle game for iPad and iPhone!</h2>
 				<p>
@@ -64,7 +57,29 @@
 				whirlpools, fans, and more as you guide them to safety 
 				and keep the sharks at bay.
 				</p>
+							
+				<div>
+					<a href='http://itunes.com/apps/SavePenguin'><img title='Download Save Penguin from the App Store' class='app-store' width="135" height="40" src='/images/app-store.png'/></a>
+		
+					<a id='facebook' href='https://www.facebook.com/SavePenguin'>Facebook Page</a>
+				</div>				
+				
 			</center>
+		</div>
+		<div class='separator'></div>
+
+		<div id='video'>
+			<iframe width="420" height="315" src="http://www.youtube.com/embed/RWOvUtSRyCA?rel=0" frameborder="0" allowfullscreen></iframe>
+		</div>
+		
+		<div>
+			<h3>Available December 1st, 2012</h3>
+		</div>
+		
+		<div>
+			<a href='http://itunes.com/apps/SavePenguin'><img title='Download Save Penguin from the App Store' class='app-store' width="135" height="40" src='/images/app-store.png'/></a>
+
+			<a id='facebook' href='https://www.facebook.com/SavePenguin'>Facebook Page</a>
 		</div>
 		<div class='separator'></div>
 		
@@ -83,7 +98,7 @@
 		<div class='feature-container'>
 			<img class='right' alt='Save Penguin Level "Archipelago"' height="320" width="480" src='/images/gameplay2.png'/>
 			<div style='top:70px;'>
-				<h2>Unleash Your Creativity</h2>
+				<h2>Get Creative</h2>
 				<p>
 				Flex your creative muscles to earn a top score.
 				</p>
@@ -113,7 +128,7 @@
 		<div class='feature-container' style='height:125px'>
 			<center>
 				<h2>Find Save Penguin in the App Store!</h2>
-				<a href='http://itunes.com/apps/SavePenguin' style='top:15px'><img id='app-store' title='Download Save Penguin from the App Store' src='/images/app-store.png'/></a>
+				<a href='http://itunes.com/apps/SavePenguin' style='top:15px'><img class='app-store' title='Download Save Penguin from the App Store' src='/images/app-store.png'/></a>
 			<center>
 		</div>
 		<div class='separator'></div>		
