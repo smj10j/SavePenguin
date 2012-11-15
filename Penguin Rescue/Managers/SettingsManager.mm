@@ -171,8 +171,14 @@
 
 
 
++(void)sendToFacebookPage {
+	[SettingsManager setString:[SettingsManager stringForKey:SETTING_CURRENT_VERSION] forKey:SETTING_LIKED_FACEBOOK_VERSION];
 
-
+	NSString* escapedValue = [FACEBOOK_PAGE_URL stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	NSString *escStr = [escapedValue stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+	NSURL *url = [NSURL URLWithString:escStr];
+	[[UIApplication sharedApplication] openURL:url];
+}
 
 +(void)promptForAppReview {
 	[SettingsManager incrementIntBy:1 forKey:SETTING_NUM_REVIEW_PROMPTS];

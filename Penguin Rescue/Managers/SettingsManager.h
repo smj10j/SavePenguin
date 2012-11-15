@@ -39,6 +39,9 @@
 +(void)promptForAppReview;
 +(void)sendToAppReviewPage;
 
++(void)sendToFacebookPage;
+
+
 @end
 
 
@@ -65,6 +68,9 @@
 #define SETTING_LEFT_REVIEW_VERSION @"LeftReviewVersion"
 #define SETTING_CURRENT_VERSION @"CurrentVersion"
 
+#define SETTING_LIKED_FACEBOOK_VERSION @"LikedFacebookVersion"
+
+
 #define SETTING_TOTAL_EARNED_COINS @"TotalEarnedCoins"
 #define SETTING_TOTAL_AVAILABLE_COINS @"TotalAvailableCoins"
 #define SETTING_TOTAL_EARNED_COINS_FOR_LEVEL @"TotalEarnedCoinsForLevel_"
@@ -90,4 +96,6 @@
 #define APP_STORE_ID 570590917
 #define APP_STORE_REVIEW_URL [NSString stringWithFormat:@"https://userpub.itunes.apple.com/WebObjects/MZUserPublishing.woa/wa/addUserReview?id=%d&type=Purple+Software", APP_STORE_ID]
 
+
+#define FACEBOOK_PAGE_URL @"https://www.facebook.com/SavePenguin"
 

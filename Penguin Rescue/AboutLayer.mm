@@ -148,12 +148,17 @@ Drop us an email or leave a review in the App Store and tell us your ideas!"]
 		[self addChild:giveUsFeedbackLabel];		
 		
 		
+		LHSprite* facebookButton = [_levelLoader createSpriteWithName:@"Facebook" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
+		[facebookButton transformPosition: ccp(winSize.width/2,
+											30*SCALING_FACTOR_V + facebookButton.boundingBox.size.height/2)];
+		[facebookButton registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
+		[facebookButton registerTouchEndedObserver:self selector:@selector(onFacebook:)];
 		
 		
 		
 		LHSprite* rateTheAppButton = [_levelLoader createSpriteWithName:@"Rate_the_App_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 		[rateTheAppButton prepareAnimationNamed:@"Menu_Rate_the_App_Button" fromSHScene:@"Spritesheet"];
-		[rateTheAppButton transformPosition: ccp(winSize.width/2 - rateTheAppButton.boundingBox.size.width/2 - 20*SCALING_FACTOR_H,
+		[rateTheAppButton transformPosition: ccp(winSize.width/2 - rateTheAppButton.boundingBox.size.width/2 - facebookButton.boundingBox.size.width - 20*SCALING_FACTOR_H,
 											30*SCALING_FACTOR_V + rateTheAppButton.boundingBox.size.height/2)];
 		[rateTheAppButton registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
 		[rateTheAppButton registerTouchEndedObserver:self selector:@selector(onRateTheApp:)];
@@ -162,7 +167,7 @@ Drop us an email or leave a review in the App Store and tell us your ideas!"]
 		if ([MFMailComposeViewController canSendMail]) {
 			LHSprite* emailUsButton = [_levelLoader createSpriteWithName:@"Email_Us_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:self];
 			[emailUsButton prepareAnimationNamed:@"Menu_Email_Us_Button" fromSHScene:@"Spritesheet"];
-			[emailUsButton transformPosition: ccp(winSize.width/2 + emailUsButton.boundingBox.size.width/2 + 20*SCALING_FACTOR_H,
+			[emailUsButton transformPosition: ccp(winSize.width/2 + emailUsButton.boundingBox.size.width/2 + facebookButton.boundingBox.size.width + 20*SCALING_FACTOR_H,
 												30*SCALING_FACTOR_V + emailUsButton.boundingBox.size.height/2)];
 			[emailUsButton registerTouchBeganObserver:self selector:@selector(onTouchBeganAnyButton:)];
 			[emailUsButton registerTouchEndedObserver:self selector:@selector(onEmailUs:)];
@@ -233,6 +238,21 @@ Drop us an email or leave a review in the App Store and tell us your ideas!"]
 	UIViewController* rootViewController = (UIViewController*)[(AppController*)[[UIApplication sharedApplication] delegate] navController];
 	[rootViewController becomeFirstResponder];
 	[rootViewController dismissModalViewControllerAnimated:YES];
+}
+
+-(void)onFacebook:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame-1];	//active state
+	
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
+	}
+	
+	//analytics logging
+	[Analytics logEvent:@"About_Facebook_Click"];
+	
+	
+	[SettingsManager sendToFacebookPage];
 }
 
 -(void)onRateTheApp:(LHTouchInfo*)info {
