@@ -130,7 +130,7 @@
 				force ||
 				//DEBUG_SCORING ||
 				worldScoresDictionary == nil ||
-				([[NSDate date] timeIntervalSince1970] - [((NSNumber*)[worldScoresDictionary objectForKey:@"timestamp"]) doubleValue] > 43200)))
+				([[NSDate date] timeIntervalSince1970] - [((NSNumber*)[worldScoresDictionary objectForKey:@"timestamp"]) doubleValue] > SCORE_KEEPER_UPDATE_INTERVAL)))
 	{
 			
 		[APIManager getWorldScoresAndOnSuccess:^(NSMutableDictionary* worldScoresDictionary) {
