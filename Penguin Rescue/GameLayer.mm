@@ -3735,8 +3735,8 @@
 						//[nearestPenguin transformPosition:ccp(nearestPenguin.position.x+location.x-_lastTouch.x, nearestPenguin.position.y+location.y-_lastTouch.y)];
 						if(nearestPenguin.body) {
 							nearestPenguin.body->ApplyLinearImpulse(
-								b2Vec2((location.x-_lastTouch.x)*(IMPULSE_SCALAR/10)/**pow(nearestPenguin.scale,2)*/,
-										(location.y-_lastTouch.y)*(IMPULSE_SCALAR/10)/**pow(nearestPenguin.scale,2)*/),
+								b2Vec2((location.x-_lastTouch.x)*(IMPULSE_SCALAR*HAND_OF_GOD_POWER_FACTOR)/**pow(nearestPenguin.scale,2)*/,
+										(location.y-_lastTouch.y)*(IMPULSE_SCALAR*HAND_OF_GOD_POWER_FACTOR)/**pow(nearestPenguin.scale,2)*/),
 								nearestPenguin.body->GetWorldCenter()
 							);
 						}

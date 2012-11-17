@@ -96,9 +96,9 @@
 						<array>
 							<dict>
 								<key>EndControlPoint</key>
-								<string>{334, 74}</string>
+								<string>{334, 76}</string>
 								<key>EndPoint</key>
-								<string>{280, 80}</string>
+								<string>{288, 88}</string>
 								<key>StartControlPoint</key>
 								<string>{350.22433471679688, 99.967941284179688}</string>
 								<key>StartPoint</key>
@@ -110,15 +110,15 @@
 								<key>EndPoint</key>
 								<string>{184, 224}</string>
 								<key>StartControlPoint</key>
-								<string>{248.72433471679688, 149.46794128417969}</string>
+								<string>{242, 134}</string>
 								<key>StartPoint</key>
-								<string>{280, 80}</string>
+								<string>{288, 88}</string>
 							</dict>
 							<dict>
 								<key>EndControlPoint</key>
-								<string>{131.22433471679688, 220.46794128417969}</string>
+								<string>{116, 232}</string>
 								<key>EndPoint</key>
-								<string>{31.724334716796875, 219.46794128417969}</string>
+								<string>{54, 220}</string>
 								<key>StartControlPoint</key>
 								<string>{112, 246}</string>
 								<key>StartPoint</key>
@@ -126,13 +126,13 @@
 							</dict>
 							<dict>
 								<key>EndControlPoint</key>
-								<string>{43.224334716796875, 157.96794128417969}</string>
+								<string>{26, 112}</string>
 								<key>EndPoint</key>
-								<string>{30, 102}</string>
+								<string>{56, 100}</string>
 								<key>StartControlPoint</key>
-								<string>{-2, 158}</string>
+								<string>{16, 172}</string>
 								<key>StartPoint</key>
-								<string>{31.724334716796875, 219.46794128417969}</string>
+								<string>{54, 220}</string>
 							</dict>
 							<dict>
 								<key>EndControlPoint</key>
@@ -140,17 +140,17 @@
 								<key>EndPoint</key>
 								<string>{188, 100}</string>
 								<key>StartControlPoint</key>
-								<string>{96, 106}</string>
+								<string>{134, 86}</string>
 								<key>StartPoint</key>
-								<string>{30, 102}</string>
+								<string>{56, 100}</string>
 							</dict>
 							<dict>
 								<key>EndControlPoint</key>
-								<string>{212, 156}</string>
+								<string>{238, 188}</string>
 								<key>EndPoint</key>
 								<string>{304, 228}</string>
 								<key>StartControlPoint</key>
-								<string>{286, 134}</string>
+								<string>{274, 130}</string>
 								<key>StartPoint</key>
 								<string>{188, 100}</string>
 							</dict>
@@ -160,7 +160,7 @@
 								<key>EndPoint</key>
 								<string>{413.72433471679688, 125.46794128417969}</string>
 								<key>StartControlPoint</key>
-								<string>{347.72433471679688, 176.96794128417969}</string>
+								<string>{342, 226}</string>
 								<key>StartPoint</key>
 								<string>{304, 228}</string>
 							</dict>
@@ -247,7 +247,7 @@
 									<key>followYAxis</key>
 									<false/>
 									<key>isCyclic</key>
-									<false/>
+									<true/>
 									<key>pathName</key>
 									<string>BezierNode</string>
 									<key>restartAtOtherEnd</key>
