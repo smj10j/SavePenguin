@@ -2489,7 +2489,11 @@
 
 -(void) update: (ccTime) dt
 {
-
+	if(dt > 2) {
+		//just ignore the update - the game was probably minimized
+		return;
+	}
+	
 	/* !lways keep the physics going.
 	Linear Damping will stop actors
 	Whirlpools will keep spinning
