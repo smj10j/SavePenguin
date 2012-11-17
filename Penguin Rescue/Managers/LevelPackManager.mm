@@ -223,7 +223,7 @@ static NSMutableDictionary* sCompletedLevelsInPackDictionary = nil;
 			//hasn't reviewed this version
 			if(numLevelsCompleted % LEVELPACKMAANGER_LEVELS_COMPLETED_REVIEW_PROMPT_INTERVAL == 0) {
 				if(DEBUG_REVIEWS) DebugLog(@"PROMPTING FOR AN LEVEL COMPLETED REVIEW!!!");
-				[SettingsManager promptForAppReview];
+				[SettingsManager promptForAppReview:[NSString stringWithFormat:@"Bonkers! You've completed %d levels!", numLevelsCompleted]];
 			}
 		}
 	}
@@ -261,11 +261,11 @@ static NSMutableDictionary* sCompletedLevelsInPackDictionary = nil;
 	if([SettingsManager intForKey:SETTING_NUM_REVIEW_PROMPTS] == 0) {
 		//hasn't left a review and just completed a pack - prompt!
 		if(DEBUG_REVIEWS) DebugLog(@"PROMPTING FOR A FIRST-TIME REVIEW!!!");
-		[SettingsManager promptForAppReview];
+		[SettingsManager promptForAppReview:[NSString stringWithFormat:@"Nice! You just completed your first level pack."]];
 	}else if(![[SettingsManager stringForKey:SETTING_LEFT_REVIEW_VERSION] isEqualToString:[SettingsManager stringForKey:SETTING_CURRENT_VERSION]]) {
 		//hasn't reviewed this version
 		if(DEBUG_REVIEWS) DebugLog(@"PROMPTING FOR AN UPDATE REVIEW!!!");
-		[SettingsManager promptForAppReview];
+		[SettingsManager promptForAppReview:[NSString stringWithFormat:@"Nice! You just completed another level pack."]];
 	}
 }
 

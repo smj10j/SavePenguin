@@ -121,7 +121,7 @@
 
 		[Analytics logEvent:@"View_Main_Menu"];
 	}
-	
+		
 	if(DEBUG_MEMORY) DebugLog(@"Initialized MainMenuLayer");
 	if(DEBUG_MEMORY) report_memory();
 	

@@ -36,7 +36,7 @@
 
 
 
-+(void)promptForAppReview;
++(void)promptForAppReview:(NSString*)message;
 +(void)sendToAppReviewPage;
 
 +(void)sendToFacebookPage;

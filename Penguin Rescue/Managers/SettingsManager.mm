@@ -180,11 +180,11 @@
 	[[UIApplication sharedApplication] openURL:url];
 }
 
-+(void)promptForAppReview {
++(void)promptForAppReview:(NSString*)message {
 	[SettingsManager incrementIntBy:1 forKey:SETTING_NUM_REVIEW_PROMPTS];
 	if(DEBUG_REVIEWS) DebugLog(@"This is the %d time we've asked for a review", [SettingsManager intForKey:SETTING_NUM_REVIEW_PROMPTS]);
 	UIAlertView* reviewPromptAlert = [[UIAlertView alloc] initWithTitle:@"Rate Me?"
-		message:@"Let us know what you think about Save Penguin so we can improve and keep building more levels!" 
+		message:[NSString stringWithFormat:@"%@Let us know what you think about Save Penguin so we can improve and keep building more levels!", message == nil ? @"" : [NSString stringWithFormat:@"%@ ", message]]
 		delegate:self cancelButtonTitle:@"Not Now" otherButtonTitles:@"Okay!",nil];
 	reviewPromptAlert.tag = REVIEW_PROMPT_TAG;
 	[reviewPromptAlert show];	
