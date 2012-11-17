@@ -32,6 +32,8 @@
 		AA27286016444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA27285D16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-hd.png */; };
 		AA27286116444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA27285E16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-ipadhd.png */; };
 		AA27286216444A2E00297CE4 /* Spritesheet_MenuBackgrounds1.png in Resources */ = {isa = PBXBuildFile; fileRef = AA27285F16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1.png */; };
+		AA3ED1881657504500FDA2C9 /* UIDevice-Capabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3ED1871657504500FDA2C9 /* UIDevice-Capabilities.m */; };
+		AA3ED18D165750C100FDA2C9 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3ED18C165750C100FDA2C9 /* UIDevice-Hardware.m */; };
 		AA4C8D8B1637C48F00C55554 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4C8D8A1637C48F00C55554 /* libFlurry.a */; };
 		AA4C8D8D1637C53100C55554 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4C8D8C1637C53100C55554 /* SystemConfiguration.framework */; };
 		AA4C8D901637D2D200C55554 /* MainMenuLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA4C8D8F1637D2D200C55554 /* MainMenuLayer.mm */; };
@@ -334,6 +336,10 @@
 		AA27285D16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spritesheet_MenuBackgrounds1-hd.png"; sourceTree = "<group>"; };
 		AA27285E16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spritesheet_MenuBackgrounds1-ipadhd.png"; sourceTree = "<group>"; };
 		AA27285F16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spritesheet_MenuBackgrounds1.png; sourceTree = "<group>"; };
+		AA3ED1861657504500FDA2C9 /* UIDevice-Capabilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Capabilities.h"; path = "libs/uidevice-extension-master/UIDevice-Capabilities.h"; sourceTree = "<group>"; };
+		AA3ED1871657504500FDA2C9 /* UIDevice-Capabilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Capabilities.m"; path = "libs/uidevice-extension-master/UIDevice-Capabilities.m"; sourceTree = "<group>"; };
+		AA3ED18B165750C100FDA2C9 /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Hardware.h"; path = "libs/uidevice-extension-master/UIDevice-Hardware.h"; sourceTree = "<group>"; };
+		AA3ED18C165750C100FDA2C9 /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Hardware.m"; path = "libs/uidevice-extension-master/UIDevice-Hardware.m"; sourceTree = "<group>"; };
 		AA4C8D891637C48F00C55554 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		AA4C8D8A1637C48F00C55554 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		AA4C8D8C1637C53100C55554 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -910,6 +916,17 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		AA3ED18A1657504900FDA2C9 /* UIDevice */ = {
+			isa = PBXGroup;
+			children = (
+				AA3ED18B165750C100FDA2C9 /* UIDevice-Hardware.h */,
+				AA3ED18C165750C100FDA2C9 /* UIDevice-Hardware.m */,
+				AA3ED1861657504500FDA2C9 /* UIDevice-Capabilities.h */,
+				AA3ED1871657504500FDA2C9 /* UIDevice-Capabilities.m */,
+			);
+			name = UIDevice;
+			sourceTree = "<group>";
+		};
 		AA4C8D881637C48F00C55554 /* Flurry */ = {
 			isa = PBXGroup;
 			children = (
@@ -1019,6 +1036,7 @@
 				AA54C7F6162BB27C00DF56D0 /* LICENSE_CocosDenshion.txt */,
 				AA54C828162BB27D00DF56D0 /* LICENSE_Kazmath.txt */,
 				AA54C8BB162BB27E00DF56D0 /* LICENSE_Box2D.txt */,
+				AA3ED18A1657504900FDA2C9 /* UIDevice */,
 				AACD32B916523AC8009AFD99 /* TestFlightSDK1.1 */,
 				AAC6E5B316403AD000FD549F /* ASIHTTPRequest */,
 				AAC6E586164022AE00FD549F /* SSKeychain */,
@@ -2101,6 +2119,8 @@
 				250e1473997f280a794687eb /* SHDocumentLoader.mm in Sources */,
 				AAC6724A164DF6F500DA6F9F /* LoudNoiseNode.mm in Sources */,
 				AA85A5AC1650A8A7006929A1 /* IntroLayer.mm in Sources */,
+				AA3ED1881657504500FDA2C9 /* UIDevice-Capabilities.m in Sources */,
+				AA3ED18D165750C100FDA2C9 /* UIDevice-Hardware.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -187,6 +187,8 @@ static NSMutableDictionary* sCompletedLevelsInPackDictionary = nil;
 //completes a level and, if necessary, the pack
 +(void)completeLevel:(NSString*)levelPath inPack:(NSString*)packPath withScore:(int)score {
 	
+	int numLevelsCompleted = [SettingsManager incrementIntBy:1 forKey:SETTING_NUM_LEVELS_COMPLETED];
+	
 	//create the completed levels array
 	NSMutableDictionary* completedLevelsDictionary = [NSMutableDictionary dictionaryWithDictionary:[LevelPackManager completedLevelsInPack:packPath]];
 	if([completedLevelsDictionary valueForKey:levelPath] != nil) {
@@ -214,6 +216,16 @@ static NSMutableDictionary* sCompletedLevelsInPackDictionary = nil;
 	NSDictionary* allLevelsInPack = [LevelPackManager allLevelsInPack:packPath];
 	if(completedLevelsDictionary.count == allLevelsInPack.count) {
 		[LevelPackManager completePack:packPath];
+		
+	}else {
+		//see if we should prompt for a review
+		if(![[SettingsManager stringForKey:SETTING_LEFT_REVIEW_VERSION] isEqualToString:[SettingsManager stringForKey:SETTING_CURRENT_VERSION]]) {
+			//hasn't reviewed this version
+			if(numLevelsCompleted % LEVELPACKMAANGER_LEVELS_COMPLETED_REVIEW_PROMPT_INTERVAL == 0) {
+				if(DEBUG_REVIEWS) DebugLog(@"PROMPTING FOR AN LEVEL COMPLETED REVIEW!!!");
+				[SettingsManager promptForAppReview];
+			}
+		}
 	}
 }
 

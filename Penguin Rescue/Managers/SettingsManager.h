@@ -63,10 +63,11 @@
 
 #define SETTING_HAS_CREATED_UUID_ON_SERVER @"HasCreatedUUIDOnServer"
 
+#define SETTING_CURRENT_VERSION @"CurrentVersion"
 
 #define SETTING_NUM_REVIEW_PROMPTS @"NumReviewPrompts"
 #define SETTING_LEFT_REVIEW_VERSION @"LeftReviewVersion"
-#define SETTING_CURRENT_VERSION @"CurrentVersion"
+#define SETTING_NUM_LEVELS_COMPLETED @"NumLevelsCompleted"
 
 #define SETTING_LIKED_FACEBOOK_VERSION @"LikedFacebookVersion"
 
@@ -88,7 +89,6 @@
 
 
 #define COMPANY_IDENTIFIER @"com.conquerllc"
-
 
 
 

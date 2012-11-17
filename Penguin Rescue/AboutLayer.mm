@@ -14,6 +14,7 @@
 #import "SettingsManager.h"
 #import "SimpleAudioEngine.h"
 #import "Utilities.h"
+#import "UIDevice-Hardware.h"
 #import "Analytics.h"
 
 #import "AppDelegate.h"
@@ -121,7 +122,7 @@ Save Penguin is our first game - we hope you enjoy it and please let us know wha
 		
 			CCLabelTTF* creditsLineLabel = [CCLabelTTF labelWithString:creditLine
 				fontName:@"Helvetica" fontSize:22*SCALING_FACTOR_FONTS
-				dimensions:CGSizeMake(450*SCALING_FACTOR_H, creditsLineHeight)
+				dimensions:CGSizeMake(650*SCALING_FACTOR_H, creditsLineHeight)
 				hAlignment:kCCTextAlignmentCenter
 				vAlignment:kCCVerticalTextAlignmentCenter
 			];
@@ -226,7 +227,7 @@ Drop us an email or leave a review in the App Store and tell us your ideas!"]
     NSArray *recipientsArray = [NSArray arrayWithObject:recipient];
     [controller setToRecipients:recipientsArray];
 	
-	[controller setSubject:@"Save Penguin Feedback"];
+	[controller setSubject:[NSString stringWithFormat:@"Save Penguin v%@ Feedback - %@ @ %@", [SettingsManager stringForKey:SETTING_CURRENT_VERSION], [[UIDevice currentDevice] platformString], [[UIDevice currentDevice] systemVersion]]];
 	
 	[controller setMessageBody:@"" isHTML:NO];
 	
