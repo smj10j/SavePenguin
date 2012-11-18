@@ -369,10 +369,11 @@ function returnJSON($obj) {
 
 function initDatabase() {
 
-	//mysql_pconnect("localhost", "smjoneze_cqrpr2", "g-)+f+=UByQ;C,S^gO") or die(mysql_error());
-	//mysql_select_db("smjoneze_conquerllc-games-penguinrescue") or die(mysql_error());
+	//bluehost
+//	mysql_pconnect("localhost", "smjoneze_cqrpr3", "y#cki{i#_*zbh9(ChC6;V*;tRxIAZ~H^C(+n") or die(mysql_error());
+//	mysql_select_db("smjoneze_conquerllc-games-penguinrescue") or die(mysql_error());
 
-	//TODO: switch to new database (EC2) once pushing to savepenguin.com
+	//EC2
 	mysql_pconnect("localhost", "savepenguin_api", "bubbles&candyA()*ASg092") or die(mysql_error());
 	mysql_select_db("savepenguin") or die(mysql_error());
 }
