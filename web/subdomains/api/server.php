@@ -140,8 +140,6 @@ CREATE TABLE IF NOT EXISTS `scores_summary` (
 */
 
 		
-		$levels = array();
-		
 		//total users
 		$totalUsers = 0;
 		$result = mysql_query("SELECT count(*) as 'count' from users");
@@ -149,57 +147,126 @@ CREATE TABLE IF NOT EXISTS `scores_summary` (
 			$totalUsers = $row['count'];
 		}		
 		
-		//plays
-		$result = mysql_query("SELECT level_pack_id,level_id,".
-							"(SELECT level_pack_path FROM level_packs lp WHERE lp.level_pack_id=p.level_pack_id ) as 'level_pack_path', ".
-							"(SELECT level_path FROM levels l WHERE l.level_id=p.level_id ) as 'level_path', ". 
-							"count(distinct user_id) as 'uniquePlays',count(*) as 'totalPlays' FROM plays p GROUP BY level_pack_id,level_id");
+
+
+		$levels = array();
+
+
+
+
+		$result = mysql_query("SELECT level_pack_id, level_id, ". 
+							"(SELECT level_pack_path FROM level_packs lp WHERE lp.level_pack_id=s.level_pack_id ) as 'level_pack_path', ".
+							"(SELECT level_path FROM levels l WHERE l.level_id=s.level_id ) as 'level_path' ".
+							"FROM scores s GROUP BY level_pack_id,level_id");
 		while ($row = mysql_fetch_array($result)) {
 			$levels[$row["level_pack_path"].":".$row["level_path"]] = array(
 				"levelPackId"	=> $row["level_pack_id"],
 				"levelId"		=> $row["level_id"],
-				"totalUsers"	=> $totalUsers,
-				"uniquePlays"	=> $row["uniquePlays"],
-				"totalPlays"	=> $row["totalPlays"]				
+				"totalUsers"	=> $totalUsers
 			);
 		}
 
-		//wins
-		$result = mysql_query("SELECT ".
-							"(SELECT level_pack_path FROM level_packs lp WHERE lp.level_pack_id=s.level_pack_id ) as 'level_pack_path', ".
-							"(SELECT level_path FROM levels l WHERE l.level_id=s.level_id ) as 'level_path', ". 
-							"count(distinct user_id) as 'uniqueWins',count(*) as 'totalWins' FROM scores s GROUP BY level_pack_id,level_id");
-		while ($row = mysql_fetch_array($result)) {
-			$levels[$row["level_pack_path"].":".$row["level_path"]]["uniqueWins"] = $row["uniqueWins"];
-			$levels[$row["level_pack_path"].":".$row["level_path"]]["totalWins"] = $row["totalWins"];
-		}
-
-		//mean score
-		$result = mysql_query("SELECT ".
-							"(SELECT level_pack_path FROM level_packs lp WHERE lp.level_pack_id=s.level_pack_id ) as 'level_pack_path', ".
-							"(SELECT level_path FROM levels l WHERE l.level_id=s.level_id ) as 'level_path', ". 
-							"sum(score)/count(*) as 'scoreMean',stddev(score) as 'scoreStdDev' FROM scores s GROUP BY level_pack_id,level_id");
-		while ($row = mysql_fetch_array($result)) {
-			$levels[$row["level_pack_path"].":".$row["level_path"]]["scoreMean"] = floor($row["scoreMean"]);
-			$levels[$row["level_pack_path"].":".$row["level_path"]]["scoreStdDev"] = floor($row["scoreStdDev"]);
-		}
-
 		foreach($levels as $key => $level) {
-			//median score
-			$oneQuarters = 1*floor($level['totalWins']/4);
-			$levelPackId = $level["levelPackId"];
-			$levelId = $level["levelId"];
 			
-			$result = mysql_query("SELECT score FROM scores WHERE level_pack_id=$levelPackId AND level_id=$levelId ORDER BY score ASC LIMIT $twoQuarters,1");
-			while ($row = mysql_fetch_array($result)) {
-				$levels[$key]["scoreMedian"] = $row["score"];
-			}			
+			
+			//from the summaries table
+			$result = mysql_query("SELECT * ". 
+								"FROM scores_summary ss WHERE level_pack_id=".$level['levelPackId']." ".
+								"AND level_id=".$level['levelId']." ".
+								"AND created>=now()-INTERVAL 24 HOUR ".
+								"ORDER BY created DESC LIMIT 1"
+								);
+			if($row = mysql_fetch_array($result)) {
+			
+				if($row['updating']) {
+					die('updating');
+				}
+			
+				$levels[$key]['totalUsers'] = $row["total_users"];
+				$levels[$key]['totalPlays'] = $row["total_plays"];
+				$levels[$key]['uniquePlays'] = $row["unique_plays"];
+				$levels[$key]['totalWins'] = $row["total_wins"];
+				$levels[$key]['uniqueWins'] = $row["unique_wins"];
+				$levels[$key]['scoreMean'] = $row["score_mean"];
+				$levels[$key]['scoreMedian'] = $row["score_median"];
+				$levels[$key]['scoreStdDev'] = $row["score_std_dev"];
+				
+				
+			}else {
+	
+				//generate
+				
+				//first lock the scores summary table
+				mysql_query("INSERT INTO scores_summary (level_pack_id,level_id) VALUES (".$level['levelPackId'].",".$level['levelId'].")");
+				$scoreSummaryId = mysql_insert_id();
+			
+				//plays
+				$result = mysql_query("SELECT ". 
+									"count(distinct user_id) as 'uniquePlays',count(*) as 'totalPlays' FROM plays p ".
+									"WHERE level_pack_id=".$level['levelPackId']." ".
+									"AND level_id=".$level['levelId']." ".
+									"GROUP BY level_pack_id,level_id");
+				while ($row = mysql_fetch_array($result)) {
+					$levels[$key]["uniquePlays"] = $row["uniquePlays"];
+					$levels[$key]["totalPlays"] = $row["totalPlays"];
+
+				}
+		
+				//wins
+				$result = mysql_query("SELECT ". 
+									"count(distinct user_id) as 'uniqueWins',count(*) as 'totalWins' FROM scores s ".
+									"WHERE level_pack_id=".$level['levelPackId']." ".
+									"AND level_id=".$level['levelId']." ".
+									"GROUP BY level_pack_id,level_id");
+				while ($row = mysql_fetch_array($result)) {
+					$levels[$key]["uniqueWins"] = $row["uniqueWins"];
+					$levels[$key]["totalWins"] = $row["totalWins"];
+				}
+		
+				//mean score
+				$result = mysql_query("SELECT ". 
+									"sum(score)/count(*) as 'scoreMean',stddev(score) as 'scoreStdDev' ".
+									"FROM scores s ".
+									"WHERE level_pack_id=".$level['levelPackId']." ".
+									"AND level_id=".$level['levelId']." ".
+									"GROUP BY level_pack_id,level_id");
+				while ($row = mysql_fetch_array($result)) {
+					$levels[$key]["scoreMean"] = floor($row["scoreMean"]);
+					$levels[$key]["scoreStdDev"] = floor($row["scoreStdDev"]);
+				}
+		
+				//median score
+				$twoQuarters = 2*floor($level['totalWins']/4);
+				$levelPackId = $level["levelPackId"];
+				$levelId = $level["levelId"];
+				
+				$result = mysql_query("SELECT score FROM scores WHERE level_pack_id=$levelPackId AND level_id=$levelId ORDER BY score ASC LIMIT $twoQuarters,1");
+				while ($row = mysql_fetch_array($result)) {
+					$levels[$key]["scoreMedian"] = $row["score"];
+				}
+				
+				
+				
+				$updateQuery = "UPDATE scores_summary SET ".
+							"total_users=".$levels[$key]['totalUsers'].",".
+							"total_plays=".$levels[$key]['totalPlays'].",".
+							"unique_plays=".$levels[$key]['uniquePlays'].",".
+							"total_wins=".$levels[$key]['totalWins'].",".
+							"unique_wins=".$levels[$key]['uniqueWins'].",".
+							"score_mean=".$levels[$key]['scoreMean'].",".
+							"score_median=".$levels[$key]['scoreMedian'].",".
+							"score_std_dev=".$levels[$key]['scoreStdDev'].",".
+							"updating=0 ".
+							"WHERE score_summary_id=$scoreSummaryId LIMIT 1";
+				mysql_query($updateQuery);
+			}
 		}
-					
+		
+		
 		returnJSON(array(
 			"levels" => $levels
 		));
-	
+
 	}else {
 		die("error: Unknown action '$action'");
 	}
@@ -302,10 +369,10 @@ function returnJSON($obj) {
 
 function initDatabase() {
 
-	mysql_pconnect("localhost", "smjoneze_cqrpr2", "g-)+f+=UByQ;C,S^gO") or die(mysql_error());
-	mysql_select_db("smjoneze_conquerllc-games-penguinrescue") or die(mysql_error());
+	//mysql_pconnect("localhost", "smjoneze_cqrpr2", "g-)+f+=UByQ;C,S^gO") or die(mysql_error());
+	//mysql_select_db("smjoneze_conquerllc-games-penguinrescue") or die(mysql_error());
 
 	//TODO: switch to new database (EC2) once pushing to savepenguin.com
-	//mysql_pconnect("localhost", "savepenguin_api", "bubbles&candyA()*ASg092") or die(mysql_error());
-	//mysql_select_db("savepenguin") or die(mysql_error());
+	mysql_pconnect("localhost", "savepenguin_api", "bubbles&candyA()*ASg092") or die(mysql_error());
+	mysql_select_db("savepenguin") or die(mysql_error());
 }
