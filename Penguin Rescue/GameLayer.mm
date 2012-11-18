@@ -3159,17 +3159,17 @@
 			}
 			
 			if(wN == wMin) {
-				[shark transformPosition:ccp(shark.position.x, shark.position.y+_gridSize)];
-				if(true||DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the north off border he is in contact with", shark.uniqueName);
+				[shark transformPosition:ccp(shark.position.x, shark.position.y+_gridSize/2)];
+				if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the north off border he is in contact with", shark.uniqueName);
 			}else if(wS == wMin) {
-				[shark transformPosition:ccp(shark.position.x, shark.position.y-_gridSize)];
-				if(true||DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the south off border he is in contact with", shark.uniqueName);
+				[shark transformPosition:ccp(shark.position.x, shark.position.y-_gridSize/2)];
+				if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the south off border he is in contact with", shark.uniqueName);
 			}else if(wE == wMin) {
-				[shark transformPosition:ccp(shark.position.x+_gridSize, shark.position.y)];
-				if(true||DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the east off border he is in contact with", shark.uniqueName);
+				[shark transformPosition:ccp(shark.position.x+_gridSize/2, shark.position.y)];
+				if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the east off border he is in contact with", shark.uniqueName);
 			}else if(wW == wMin) {
-				[shark transformPosition:ccp(shark.position.x-_gridSize, shark.position.y)];
-				if(true||DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the west off border he is in contact with", shark.uniqueName);
+				[shark transformPosition:ccp(shark.position.x-_gridSize/2, shark.position.y)];
+				if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the west off border he is in contact with", shark.uniqueName);
 			}
 					
 			sharkGridPos = [self toGrid:shark.position];
@@ -3401,17 +3401,17 @@
 				}
 				
 				if(wN == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x, penguin.position.y+_gridSize)];
-					if(true||DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the north off border he is in contact with", penguin.uniqueName);
+					[penguin transformPosition:ccp(penguin.position.x, penguin.position.y+_gridSize/2)];
+					if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the north off border he is in contact with", penguin.uniqueName);
 				}else if(wS == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x, penguin.position.y-_gridSize)];
-					if(true||DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the south off border he is in contact with", penguin.uniqueName);
+					[penguin transformPosition:ccp(penguin.position.x, penguin.position.y-_gridSize/2)];
+					if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the south off border he is in contact with", penguin.uniqueName);
 				}else if(wE == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x+_gridSize, penguin.position.y)];
-					if(true||DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the east off border he is in contact with", penguin.uniqueName);
+					[penguin transformPosition:ccp(penguin.position.x+_gridSize/2, penguin.position.y)];
+					if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the east off border he is in contact with", penguin.uniqueName);
 				}else if(wW == wMin) {
-					[penguin transformPosition:ccp(penguin.position.x-_gridSize, penguin.position.y)];
-					if(true||DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the west off border he is in contact with", penguin.uniqueName);
+					[penguin transformPosition:ccp(penguin.position.x-_gridSize/2, penguin.position.y)];
+					if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the west off border he is in contact with", penguin.uniqueName);
 				}
 				
 				penguinGridPos = [self toGrid:penguin.position];
