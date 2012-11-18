@@ -3140,60 +3140,39 @@
 		
 		//readjust if we are somehow on top of land - this can happen when fans blow an actor on land or a moving border touches an actor, for example
 		int bumpIterations = 0;
-		double lastFoundStuckBorderDist = 0;
 		while(sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y] == HARD_BORDER_WEIGHT
 				&& bumpIterations < MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND) {
 			//move back off of land
 			bumpIterations++;
 			
-			//we are now stuck - trace the land and find the closet point to hop off at
+			//we are now stuck - find the closet point to hop off at
 			
-			double minDist = 10000;
-			LHSprite* touchedBoder = nil;
-			NSMutableArray* borders = [NSMutableArray arrayWithArray:[_levelLoader spritesWithTag:BORDER]];
-			[borders addObjectsFromArray:[_levelLoader spritesWithTag:OBSTRUCTION]];
-			[borders addObjectsFromArray:[_levelLoader spritesWithTag:LAND]];
-			[borders addObjectsFromArray:[_levelLoader spritesWithTag:SANDBAR]];
-
-			for(LHSprite* border in borders) {
-				double dist = ccpDistance(border.position, shark.position);
-				if(dist > lastFoundStuckBorderDist && dist < minDist) {
-					minDist = dist;
-					touchedBoder = border;
-				}
+			short wN = sharkGridPos.y < _gridHeight-bumpIterations ? sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y+bumpIterations]: HARD_BORDER_WEIGHT;
+			short wS = sharkGridPos.y >= bumpIterations ? sharkMoveGridData.moveGrid[(int)sharkGridPos.x][(int)sharkGridPos.y-bumpIterations]: HARD_BORDER_WEIGHT;
+			short wE = sharkGridPos.x < _gridWidth-bumpIterations ? sharkMoveGridData.moveGrid[(int)sharkGridPos.x+bumpIterations][(int)sharkGridPos.y]: HARD_BORDER_WEIGHT;
+			short wW = sharkGridPos.x >= bumpIterations ? sharkMoveGridData.moveGrid[(int)sharkGridPos.x-bumpIterations][(int)sharkGridPos.y]: HARD_BORDER_WEIGHT;
+							
+			double wMin = fmin(fmin(fmin(wE, wW), wN), wS);
+			
+			if(wMin == HARD_BORDER_WEIGHT) {
+				continue;
 			}
 			
-			if(touchedBoder != nil) {
-			
-				//this makes the search ever-expanding
-				lastFoundStuckBorderDist = bumpIterations%(MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND/3) == 0 ? minDist : lastFoundStuckBorderDist;
-			
-				CGPoint borderN = ccp(touchedBoder.position.x, touchedBoder.position.y+touchedBoder.boundingBox.size.height/2 + _gridSize/2);
-				double distN = ccpDistance(shark.position, borderN);
-				CGPoint borderS = ccp(touchedBoder.position.x, touchedBoder.position.y-touchedBoder.boundingBox.size.height/2 - _gridSize/2);
-				double distS = ccpDistance(shark.position, borderS);
-				CGPoint borderE =  ccp(touchedBoder.position.x+touchedBoder.boundingBox.size.width/2 + _gridSize/2, touchedBoder.position.y);
-				double distE = ccpDistance(shark.position, borderE);
-				CGPoint borderW = ccp(touchedBoder.position.x-touchedBoder.boundingBox.size.width/2 - _gridSize/2, touchedBoder.position.y);
-				double distW = ccpDistance(shark.position, borderW);
-				double absMin = fmin(fmin(fmin(distE, distW), distN), distS);
-				
-				if(distN == absMin) {
-					[shark transformPosition:ccp(shark.position.x, (shark.position.y*2+borderN.y)/3)];
-					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the north of border %@ he is in contact with", shark.uniqueName, touchedBoder.uniqueName);
-				}else if(distS == absMin) {
-					[shark transformPosition:ccp(shark.position.x, (shark.position.y*2+borderS.y)/3)];
-					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the south of border %@ he is in contact with", shark.uniqueName, touchedBoder.uniqueName);
-				}else if(distE == absMin) {
-					[shark transformPosition:ccp((shark.position.x*2+borderE.x)/3, shark.position.y)];
-					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the east of border %@ he is in contact with", shark.uniqueName, touchedBoder.uniqueName);
-				}else if(distW == absMin) {
-					[shark transformPosition:ccp((shark.position.x*2+borderW.x)/3, shark.position.y)];
-					if(DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the west of border %@ he is in contact with", shark.uniqueName, touchedBoder.uniqueName);
-				}
+			if(wN == wMin) {
+				[shark transformPosition:ccp(shark.position.x, shark.position.y+_gridSize)];
+				if(true||DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the north off border he is in contact with", shark.uniqueName);
+			}else if(wS == wMin) {
+				[shark transformPosition:ccp(shark.position.x, shark.position.y-_gridSize)];
+				if(true||DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the south off border he is in contact with", shark.uniqueName);
+			}else if(wE == wMin) {
+				[shark transformPosition:ccp(shark.position.x+_gridSize, shark.position.y)];
+				if(true||DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the east off border he is in contact with", shark.uniqueName);
+			}else if(wW == wMin) {
+				[shark transformPosition:ccp(shark.position.x-_gridSize, shark.position.y)];
+				if(true||DEBUG_MOVEGRID) DebugLog(@"Moving shark %@ to the west off border he is in contact with", shark.uniqueName);
 			}
-						
-			sharkGridPos = [self toGrid:shark.position];			
+					
+			sharkGridPos = [self toGrid:shark.position];
 		}
 		
 		//use the best route algorithm
@@ -3403,55 +3382,36 @@
 			
 			//readjust if we are somehow on top of land - this can happen when fans blow an actor on land, for example
 			int bumpIterations = 0;
-			double lastFoundStuckBorderDist = 0;
 			while(penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y] == HARD_BORDER_WEIGHT
 					&& bumpIterations < MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND) {
 				//move back onto land
 				bumpIterations++;
 
-				//we are now stuck - trace the land and find the closet point to hop off at
+				//we are now stuck - find the closet point to hop off at
 				
-				double minDist = 10000;
-				LHSprite* touchedBoder = nil;
-				NSMutableArray* borders = [NSMutableArray arrayWithArray:[_levelLoader spritesWithTag:BORDER]];
-				[borders addObjectsFromArray:[_levelLoader spritesWithTag:OBSTRUCTION]];
-
-				for(LHSprite* border in borders) {
-					double dist = ccpDistance(border.position, penguin.position);
-					if(dist > lastFoundStuckBorderDist && dist < minDist) {
-						minDist = dist;
-						touchedBoder = border;
-					}
+				short wN = penguinGridPos.y < _gridHeight-bumpIterations ? penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y+bumpIterations]: HARD_BORDER_WEIGHT;
+				short wS = penguinGridPos.y >= bumpIterations ? penguinMoveGridData.moveGrid[(int)penguinGridPos.x][(int)penguinGridPos.y-bumpIterations]: HARD_BORDER_WEIGHT;
+				short wE = penguinGridPos.x < _gridWidth-bumpIterations ? penguinMoveGridData.moveGrid[(int)penguinGridPos.x+bumpIterations][(int)penguinGridPos.y]: HARD_BORDER_WEIGHT;
+				short wW = penguinGridPos.x >= bumpIterations ? penguinMoveGridData.moveGrid[(int)penguinGridPos.x-bumpIterations][(int)penguinGridPos.y]: HARD_BORDER_WEIGHT;
+								
+				double wMin = fmin(fmin(fmin(wE, wW), wN), wS);
+				
+				if(wMin == HARD_BORDER_WEIGHT) {
+					continue;
 				}
 				
-				if(touchedBoder != nil) {
-				
-					//this makes the search ever-expanding
-					lastFoundStuckBorderDist = bumpIterations%(MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND/3) == 0 ? minDist : lastFoundStuckBorderDist;
-				
-					CGPoint borderN = ccp(touchedBoder.position.x, touchedBoder.position.y+touchedBoder.boundingBox.size.height/2 + _gridSize/2);
-					double distN = ccpDistance(penguin.position, borderN);
-					CGPoint borderS = ccp(touchedBoder.position.x, touchedBoder.position.y-touchedBoder.boundingBox.size.height/2 - _gridSize/2);
-					double distS = ccpDistance(penguin.position, borderS);
-					CGPoint borderE =  ccp(touchedBoder.position.x+touchedBoder.boundingBox.size.width/2 + _gridSize/2, touchedBoder.position.y);
-					double distE = ccpDistance(penguin.position, borderE);
-					CGPoint borderW = ccp(touchedBoder.position.x-touchedBoder.boundingBox.size.width/2 - _gridSize/2, touchedBoder.position.y);
-					double distW = ccpDistance(penguin.position, borderW);
-					double absMin = fmin(fmin(fmin(distE, distW), distN), distS);
-					
-					if(distN == absMin) {
-						[penguin transformPosition:ccp(penguin.position.x, (penguin.position.y*2+borderN.y)/3)];
-						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the north off border %@ he is in contact with", penguin.uniqueName, touchedBoder.uniqueName);
-					}else if(distS == absMin) {
-						[penguin transformPosition:ccp(penguin.position.x, (penguin.position.y*2+borderS.y)/3)];
-						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the south off border %@ he is in contact with", penguin.uniqueName, touchedBoder.uniqueName);
-					}else if(distE == absMin) {
-						[penguin transformPosition:ccp((penguin.position.x*2+borderE.x)/3, penguin.position.y)];
-						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the east off border %@ he is in contact with", penguin.uniqueName, touchedBoder.uniqueName);
-					}else if(distW == absMin) {
-						[penguin transformPosition:ccp((penguin.position.x*2+borderW.x)/3, penguin.position.y)];
-						if(DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the west off border %@ he is in contact with", penguin.uniqueName, touchedBoder.uniqueName);
-					}
+				if(wN == wMin) {
+					[penguin transformPosition:ccp(penguin.position.x, penguin.position.y+_gridSize)];
+					if(true||DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the north off border he is in contact with", penguin.uniqueName);
+				}else if(wS == wMin) {
+					[penguin transformPosition:ccp(penguin.position.x, penguin.position.y-_gridSize)];
+					if(true||DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the south off border he is in contact with", penguin.uniqueName);
+				}else if(wE == wMin) {
+					[penguin transformPosition:ccp(penguin.position.x+_gridSize, penguin.position.y)];
+					if(true||DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the east off border he is in contact with", penguin.uniqueName);
+				}else if(wW == wMin) {
+					[penguin transformPosition:ccp(penguin.position.x-_gridSize, penguin.position.y)];
+					if(true||DEBUG_MOVEGRID) DebugLog(@"Moving penguin %@ to the west off border he is in contact with", penguin.uniqueName);
 				}
 				
 				penguinGridPos = [self toGrid:penguin.position];
