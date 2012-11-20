@@ -59,7 +59,7 @@
 				</p>
 							
 				<div>
-					<a href='http://itunes.com/apps/SavePenguin'><img title='Download Save Penguin from the App Store' class='app-store' width="135" height="40" src='/images/app-store.png'/></a>
+					<a href='https://itunes.apple.com/us/app/save-penguin-strategy-puzzle/id570590917?mt=8'><img title='Download Save Penguin from the App Store' class='app-store' width="135" height="40" src='/images/app-store.png'/></a>
 		
 					<a id='facebook' href='https://www.facebook.com/SavePenguin'>Facebook Page</a>
 				</div>				
@@ -73,11 +73,11 @@
 		</div>
 		
 		<div>
-			<h3>Available December 1st, 2012</h3>
+			<h3>Available in the App Store</h3>
 		</div>
 		
 		<div>
-			<a href='http://itunes.com/apps/SavePenguin'><img title='Download Save Penguin from the App Store' class='app-store' width="135" height="40" src='/images/app-store.png'/></a>
+			<a href='https://itunes.apple.com/us/app/save-penguin-strategy-puzzle/id570590917?mt=8'><img title='Download Save Penguin from the App Store' class='app-store' width="135" height="40" src='/images/app-store.png'/></a>
 
 			<a id='facebook' href='https://www.facebook.com/SavePenguin'>Facebook Page</a>
 		</div>
@@ -128,7 +128,7 @@
 		<div class='feature-container' style='height:125px'>
 			<center>
 				<h2>Find Save Penguin in the App Store!</h2>
-				<a href='http://itunes.com/apps/SavePenguin' style='top:15px'><img class='app-store' title='Download Save Penguin from the App Store' src='/images/app-store.png'/></a>
+				<a href='https://itunes.apple.com/us/app/save-penguin-strategy-puzzle/id570590917?mt=8' style='top:15px'><img class='app-store' title='Download Save Penguin from the App Store' src='/images/app-store.png'/></a>
 			<center>
 		</div>
 		<div class='separator'></div>		

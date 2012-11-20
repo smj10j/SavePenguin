@@ -140,10 +140,10 @@
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
 		//place any moving doodads
 		[self setupDoodads];
-		
-		//start any moving borders
-		[self setupMovingBorders];
 	});
+	
+	//start any moving borders
+	[self setupMovingBorders];
 	
 	//record the play
 	//post the score to the server or queue for online processing
@@ -438,45 +438,61 @@
 
 -(void) setupMovingBorders {
 
+	const int delayTime = 1;
+
 	NSArray* borders = [_levelLoader spritesWithTag:BORDER];
 	NSMutableArray* bordersAndLands = [NSMutableArray arrayWithArray:[_levelLoader spritesWithTag:LAND]];
 	[bordersAndLands addObjectsFromArray:borders];
-	
+
 	for(LHSprite* sprite in bordersAndLands) {
 		if([sprite.userInfoClassName isEqualToString:@"MovingBorder"] || [sprite.userInfoClassName isEqualToString:@"MovingLand"]) {
-		
-			//MovingBorder and MovingLand classes are identical as of now
-			MovingBorder* borderData = ((MovingBorder*)sprite.userInfo);
-		
-			[sprite prepareMovementOnPathWithUniqueName:borderData.pathName];
-			
-			if(borderData.followXAxis) {
-				[sprite setPathMovementOrientation:LH_X_AXIT_ORIENTATION];
-			}else if(borderData.followYAxis) {
-				[sprite setPathMovementOrientation:LH_Y_AXIS_ORIENTATION];
-			}else {
-				[sprite setPathMovementOrientation:LH_NO_ORIENTATION];			
-			}
-			[sprite setPathMovementRestartsAtOtherEnd:borderData.restartAtOtherEnd];
-			[sprite setPathMovementIsCyclic:borderData.isCyclic];
-			[sprite setPathMovementSpeed:borderData.timeToCompletePath]; //moving from start to end in X seconds
-			
-			[sprite startPathMovement];
-			
-			if([sprite.userInfoClassName isEqualToString:@"MovingBorder"]) {
-				_levelHasMovingBorders = true;
-			}else {
-				_levelHasMovingLands = true;
-			}
+			sprite.opacity = 0;
+			[sprite runAction:[CCFadeIn actionWithDuration:delayTime+2]];
 		}
 	}
 	
-	if(_levelHasMovingBorders) {
-		[self schedule:@selector(invalidateFeatureGridsNearMovingBorders) interval:0.4f];
-	}
-	if(!_levelHasMovingBorders && _levelHasMovingLands) {
-		[self schedule:@selector(invalidateFeatureGridsNearMovingLands) interval:0.4f];
-	}
+	//we do these after a delay to make sure the previous LevelLoader instance has been dealloated
+	//had a problem with sprites being attached to Bezier nodes of the same name from the previous level
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delayTime * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+		//place any moving doodads
+	
+		for(LHSprite* sprite in bordersAndLands) {
+			if([sprite.userInfoClassName isEqualToString:@"MovingBorder"] || [sprite.userInfoClassName isEqualToString:@"MovingLand"]) {
+			
+				//MovingBorder and MovingLand classes are identical as of now
+				MovingBorder* borderData = ((MovingBorder*)sprite.userInfo);
+			
+				[sprite prepareMovementOnPathWithUniqueName:borderData.pathName];
+				
+				if(borderData.followXAxis) {
+					[sprite setPathMovementOrientation:LH_X_AXIT_ORIENTATION];
+				}else if(borderData.followYAxis) {
+					[sprite setPathMovementOrientation:LH_Y_AXIS_ORIENTATION];
+				}else {
+					[sprite setPathMovementOrientation:LH_NO_ORIENTATION];			
+				}
+				[sprite setPathMovementRestartsAtOtherEnd:borderData.restartAtOtherEnd];
+				[sprite setPathMovementIsCyclic:borderData.isCyclic];
+				[sprite setPathMovementSpeed:borderData.timeToCompletePath]; //moving from start to end in X seconds
+				
+				[sprite startPathMovement];
+				
+				if([sprite.userInfoClassName isEqualToString:@"MovingBorder"]) {
+					_levelHasMovingBorders = true;
+				}else {
+					_levelHasMovingLands = true;
+				}
+			}
+		}
+			
+		if(_levelHasMovingBorders) {
+			[self schedule:@selector(invalidateFeatureGridsNearMovingBorders) interval:0.4f];
+		}
+		if(!_levelHasMovingBorders && _levelHasMovingLands) {
+			[self schedule:@selector(invalidateFeatureGridsNearMovingLands) interval:0.4f];
+		}
+		
+	});
 }
 
 -(void) setupToolbox {
@@ -1575,7 +1591,7 @@
 			[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
 			_levelPackPath, @"Level_Pack",
 		nil];
-		[Analytics logEvent:@"Play_level" withParameters:flurryParams];
+		[Analytics logEvent:@"Play_Level" withParameters:flurryParams];
 	}
 }
 
@@ -3659,7 +3675,7 @@
 					//nudge the nearest penguin!
 					
 					LHSprite* nearestPenguin = nil;
-					int minDistance = 200*SCALING_FACTOR_GENERIC;
+					int minDistance = 250*SCALING_FACTOR_GENERIC;
 					for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
 						int dist = ccpDistance(penguin.position, _startTouch);
 						if(dist < minDistance) {
