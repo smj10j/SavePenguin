@@ -2020,10 +2020,11 @@
 	
 	
 	if(![SettingsManager boolForKey:SETTING_HAS_BEEN_TOLD_ABOUT_IAP_MENU]) {
-	
-		if([SettingsManager intForKey:SETTING_NUM_LEVELS_LOST] >= 5) {
-		
+		//haven't been told
+		if([SettingsManager intForKey:SETTING_NUM_LEVELS_LOST] >= 5 && [SettingsManager intForKey:SETTING_NUM_LEVELS_COMPLETED] >= 3) {
+			//are out of the tutorial phase and have lost 5 levels
 			if([SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS] >= 25) {
+				//have enough coins
 				NSString *alertMessage = [NSString stringWithFormat:@"Have you checked out the store yet? You already have enough coins to buy some cool new gadgets!" ];
 				UIAlertView *upgradeYourToolboxAlert = [[UIAlertView alloc] initWithTitle:@"Upgrade Your Toolbox!" message:alertMessage delegate:nil cancelButtonTitle:@"Show Me!" otherButtonTitles:@"Not Now", nil];
 				upgradeYourToolboxAlert.tag = ALERT_UPGRADE_TOOLBOX;
