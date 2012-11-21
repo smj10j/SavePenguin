@@ -133,4 +133,6 @@ enum PROPAGATION_RESULT {
 @end
 
 
+#define ALERT_UPGRADE_TOOLBOX 1
+
 

@@ -71,6 +71,8 @@
 
 #define SETTING_LIKED_FACEBOOK_VERSION @"LikedFacebookVersion"
 
+#define SETTING_NUM_LEVELS_LOST @"NumLevelsCompleted"
+#define SETTING_HAS_BEEN_TOLD_ABOUT_IAP_MENU @"HasBeenToldAboutIAPMenu"
 
 #define SETTING_TOTAL_EARNED_COINS @"TotalEarnedCoins"
 #define SETTING_TOTAL_AVAILABLE_COINS @"TotalAvailableCoins"

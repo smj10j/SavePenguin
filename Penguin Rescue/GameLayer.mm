@@ -1962,6 +1962,8 @@
 		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/game/levelLost/hoot.wav"];
 	}
 	
+	[SettingsManager incrementIntBy:1 forKey:SETTING_NUM_LEVELS_LOST];
+	
 	//analytics logging
 	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"Lost", @"Level_Status",
@@ -2016,7 +2018,36 @@
 	[restartMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[restartMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 	
+	
+	if(![SettingsManager boolForKey:SETTING_HAS_BEEN_TOLD_ABOUT_IAP_MENU]) {
+	
+		if([SettingsManager intForKey:SETTING_NUM_LEVELS_LOST] >= 5) {
+		
+			if([SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS] >= 25) {
+				NSString *alertMessage = [NSString stringWithFormat:@"Have you checked out the store yet? You already have enough coins to buy some cool new gadgets!" ];
+				UIAlertView *upgradeYourToolboxAlert = [[UIAlertView alloc] initWithTitle:@"Upgrade Your Toolbox!" message:alertMessage delegate:nil cancelButtonTitle:@"Show Me!" otherButtonTitles:@"Not Now", nil];
+				upgradeYourToolboxAlert.tag = ALERT_UPGRADE_TOOLBOX;
+				[upgradeYourToolboxAlert show];
+				[upgradeYourToolboxAlert release];			
+				
+				[SettingsManager setBool:true forKey:SETTING_HAS_BEEN_TOLD_ABOUT_IAP_MENU];
+			}
+		}
+	}
+	
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if(alertView.tag == ALERT_UPGRADE_TOOLBOX) {
+		NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+		if([title isEqualToString:@"Show Me!"]) {
+			[self showInAppPurchaseLayer];
+		}
+	}
+	
+}
+
 
 -(void)fadeInBackgroundMusic:(NSString*)path {
 	
