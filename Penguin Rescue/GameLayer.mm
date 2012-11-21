@@ -2018,7 +2018,7 @@
 	[restartMenuButton registerTouchBeganObserver:self selector:@selector(onTouchBeganRestart:)];
 	[restartMenuButton registerTouchEndedObserver:self selector:@selector(onTouchEndedRestart:)];
 	
-	
+		
 	if(![SettingsManager boolForKey:SETTING_HAS_BEEN_TOLD_ABOUT_IAP_MENU]) {
 		//haven't been told
 		if([SettingsManager intForKey:SETTING_NUM_LEVELS_LOST] >= 5 && [SettingsManager intForKey:SETTING_NUM_LEVELS_COMPLETED] >= 3) {
@@ -2026,7 +2026,7 @@
 			if([SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS] >= 25) {
 				//have enough coins
 				NSString *alertMessage = [NSString stringWithFormat:@"Have you checked out the store yet? You already have enough coins to buy some cool new gadgets!" ];
-				UIAlertView *upgradeYourToolboxAlert = [[UIAlertView alloc] initWithTitle:@"Upgrade Your Toolbox!" message:alertMessage delegate:nil cancelButtonTitle:@"Show Me!" otherButtonTitles:@"Not Now", nil];
+				UIAlertView *upgradeYourToolboxAlert = [[UIAlertView alloc] initWithTitle:@"Upgrade Your Toolbox!" message:alertMessage delegate:self cancelButtonTitle:@"Not Now" otherButtonTitles:@"Show Me!", nil];
 				upgradeYourToolboxAlert.tag = ALERT_UPGRADE_TOOLBOX;
 				[upgradeYourToolboxAlert show];
 				[upgradeYourToolboxAlert release];			
