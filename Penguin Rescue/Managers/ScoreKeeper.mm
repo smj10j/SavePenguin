@@ -349,23 +349,23 @@
 
 
 	if(percentile < 10) {
-		return @"F-";
+		return @"C";
 	}else if(percentile < 15) {
-		return @"F";
+		return @"C";
 	}else if(percentile < 20) {
-		return @"F+";
+		return @"C";
 		
 		
 	}else if(percentile < 25) {
-		return @"D-";
+		return @"C";
 	}else if(percentile < 30) {
-		return @"D";
+		return @"C";
 	}else if(percentile < 36) {
-		return @"D+";
+		return @"C";
 		
 		
 	}else if(percentile < 42) {
-		return @"C-";
+		return @"C";
 	}else if(percentile < 47) {
 		return @"C";
 	}else if(percentile < 52) {

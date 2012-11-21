@@ -236,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `scores_summary` (
 				}
 		
 				//median score
-				$twoQuarters = floor(2*($level['totalWins']/4));
+				$twoQuarters = floor(3*($level['totalWins']/5));	//actually 60%
 				$levelPackId = $level["levelPackId"];
 				$levelId = $level["levelId"];
 				
