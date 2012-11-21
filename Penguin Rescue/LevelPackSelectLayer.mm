@@ -17,6 +17,7 @@
 #import "CCScrollLayer.h"
 #import "Utilities.h"
 #import "Analytics.h"
+#import "AppDelegate.h"
 
 #pragma mark - LevelPackSelectLayer
 
@@ -47,6 +48,8 @@
 
 		self.isTouchEnabled = YES;
 
+		_iapManager = [[IAPManager alloc] init];
+
 		[LevelHelperLoader dontStretchArt];
 
 		//create a LevelHelperLoader object - we use an empty level
@@ -74,6 +77,12 @@
 											20*SCALING_FACTOR_V + backButton.boundingBox.size.height/2)];
 		[backButton registerTouchBeganObserver:self selector:@selector(onTouchAnyButton:)];
 		[backButton registerTouchEndedObserver:self selector:@selector(onTouchEndedBack:)];
+		
+		//100 coins
+		[_iapManager requestProduct:IAP_PACKAGE_ID_1 successCallback:^(NSString* productPrice){
+			if(DEBUG_IAP) DebugLog(@"Requested IAP product successfully!");
+		}];		
+		
 		
 		[self loadLevelPacks];
 		
@@ -166,13 +175,13 @@
 		[levelPackButton addChild:packNameLabel];
 		
 		
+		[_spriteNameToLevelPackPath setObject:levelPackPath forKey:levelPackButton.uniqueName];
 		
-		if(!DISTRIBUTION_MODE || !isLocked) {
+		if(!isLocked) {
 		
 			//used when clicking the sprite
-			[_spriteNameToLevelPackPath setObject:levelPackPath forKey:levelPackButton.uniqueName];
 			[levelPackButton registerTouchBeganObserver:self selector:@selector(onTouchAnyButton:)];
-			[levelPackButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelSelect:)];
+			[levelPackButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelPackSelect:)];
 
 			//display the % completion
 			double percentComplete = (double)completedLevels.count/(allLevels.count > 0 ? allLevels.count : 1) * 100.0;
@@ -181,6 +190,17 @@
 			percentCompleteLabel.position = ccp(levelPackButtonSize.width/2, -25*SCALING_FACTOR_V);
 			[levelPackButton addChild:percentCompleteLabel];
 			
+		}else {
+			//used when clicking the sprite
+			[levelPackButton registerTouchBeganObserver:self selector:@selector(onTouchAnyButton:)];
+			[levelPackButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLockedLevelPackSelect:)];
+		
+			//display the coin cost
+			CCLabelTTF* coinCostLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"75 Needed to Unlock"] fontName:@"Helvetica" fontSize:24*SCALING_FACTOR_FONTS];
+			coinCostLabel.color = ccWHITE;
+			coinCostLabel.position = ccp(levelPackButtonSize.width/2, -25*SCALING_FACTOR_V);
+			[levelPackButton addChild:coinCostLabel];
+		
 		}
 				
 		//positioning
@@ -209,7 +229,58 @@
 	if(info.sprite == nil) return;
 }
 
--(void)onTouchEndedLevelSelect:(LHTouchInfo*)info {
+-(void)onTouchEndedLockedLevelPackSelect:(LHTouchInfo*)info {
+	if(info.sprite == nil) return;
+	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
+	
+	if([SettingsManager boolForKey:SETTING_SOUND_ENABLED]) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"sounds/menu/button.wav"];
+	}
+	
+	[SettingsManager setInt:_scrollLayer.currentScreen forKey:SETTING_LAST_LEVEL_PACK_SELECT_SCREEN_NUM];	
+	
+	NSString* levelPackPath = [_spriteNameToLevelPackPath objectForKey:info.sprite.uniqueName];
+	
+	int availableCoins = [SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS];
+	if(availableCoins < 75) {
+		if(DEBUG_IAP) DebugLog(@"Not enough coins to unlock %@ - prompting", levelPackPath);
+
+		UIAlertView *promptForPurchaseAlert = [[UIAlertView alloc] initWithTitle:@"Not Enough Coins" message:[NSString stringWithFormat:@"You need %d coins and you only have %d. Would you like to buy 100 coins for %@", 75, availableCoins, (_iapManager.selectedProduct == nil ? @"$0.99" : _iapManager.selectedProduct.localizedPrice)] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Not Now", nil];
+		[promptForPurchaseAlert show];
+		[promptForPurchaseAlert release];
+		
+		//analytics logging
+		int availableCoins = [SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS];
+		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+			levelPackPath, @"Level_Pack",
+			[NSNumber numberWithInt:availableCoins], @"AvailableCoins",
+		nil];
+		[Analytics logEvent:@"LevelPackSelectLayer_Prompt_To_Buy_Coins" withParameters:flurryParams];
+		
+	}else {
+		if(DEBUG_IAP) DebugLog(@"Unlocking level pack %@", levelPackPath);
+
+		//analytics logging
+		int availableCoins = [SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS];
+		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+			levelPackPath, @"Level_Pack",
+			[NSNumber numberWithInt:availableCoins], @"AvailableCoins",
+		nil];
+		[Analytics logEvent:@"LevelPackSelectLayer_Unlock_Locked_Pack" withParameters:flurryParams];
+
+
+		//unlock
+		[SettingsManager setBool:false forKey:[NSString stringWithFormat:@"%@%@", SETTING_LOCKED_LEVEL_PACK_PATH, levelPackPath]];
+
+		//charge
+		availableCoins = [SettingsManager decrementIntBy:75 forKey:SETTING_TOTAL_AVAILABLE_COINS];
+		
+		//reload
+		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[LevelPackSelectLayer scene] ]];
+	}
+}
+
+-(void)onTouchEndedLevelPackSelect:(LHTouchInfo*)info {
 	if(info.sprite == nil) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 	
@@ -255,6 +326,53 @@
 }
 
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+	if([title isEqualToString:@"OK"])
+	{
+
+        // Then, call the purchase method.
+		
+        if (![_iapManager purchase:_iapManager.selectedProduct
+						successCallback:^(bool isRestore){
+						
+							int availableCoins = [SettingsManager incrementIntBy:100 forKey:SETTING_TOTAL_AVAILABLE_COINS];
+									
+							NSString *alertMessage = [NSString stringWithFormat:@"Your purchase for %@ was %@. You now have %d coins. Enjoy!", _iapManager.selectedProduct.localizedTitle, (isRestore ? @"restored" : @"successful"), availableCoins];
+							UIAlertView *updatedAlert = [[UIAlertView alloc] initWithTitle:@"Thank You!" message:alertMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+							[updatedAlert show];
+							[updatedAlert release];
+							
+							//analytics logging
+							NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+								[NSNumber numberWithInt:availableCoins], @"AvailableCoins",
+							nil];
+							[Analytics logEvent:@"LevelPackSelectLayer_Buy_Coins" withParameters:flurryParams];
+									
+							[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[LevelPackSelectLayer scene] ]];
+						
+						}]) {
+            // Returned NO, so notify user that In-App Purchase is Disabled in their Settings.
+            UIAlertView *settingsAlert = [[UIAlertView alloc] initWithTitle:@"Allow Purchases" message:@"You must first enable In-App Purchase in your iOS Settings before making this purchase." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [settingsAlert show];
+            [settingsAlert release];
+        }
+	}else {
+		
+		//analytics logging
+		int availableCoins = [SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS];
+		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
+			[NSNumber numberWithInt:availableCoins], @"AvailableCoins",
+		nil];
+		[Analytics logEvent:@"LevelPackSelectLayer_Ignore_Buy_Coins" withParameters:flurryParams];
+	}
+	
+	
+}
+
+
+
 -(void) onEnter
 {
 	[super onEnter];
@@ -278,6 +396,8 @@
 	if(DEBUG_MEMORY) DebugLog(@"LevelPackSelectLayer dealloc");
 
 	//[[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+
+	[_iapManager release];
 
 	[_spriteNameToLevelPackPath release];
 	

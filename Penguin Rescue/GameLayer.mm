@@ -80,6 +80,7 @@
 		_loudNoiseNodes = [[NSMutableDictionary alloc] init];
 		_toolsScoreKeeper = [[ScoreKeeper alloc] init];
 		_extraCreditScoreKeeper = [[ScoreKeeper alloc] init];
+		_iapManager = [[IAPManager alloc] init];
 		_handOfGodPowerSecondsRemaining = HAND_OF_GOD_INITIAL_POWER;
 		_handOfGodPowerSecondsUsed = 0;
 		_isNudgingPenguin = false;
@@ -4016,6 +4017,8 @@
 		delete _debugDraw;
 		_debugDraw = nil;
 	}
+
+	[_iapManager release];
 
 	delete _world;
 	_world = nil;

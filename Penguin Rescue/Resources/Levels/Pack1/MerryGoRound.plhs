@@ -11,7 +11,7 @@
 	<key>JOINTS_INFO</key>
 	<array/>
 	<key>LHVersion</key>
-	<string>1.4.967</string>
+	<string>1.4.969</string>
 	<key>NODES_INFO</key>
 	<array>
 		<dict>
@@ -681,7 +681,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{63, 545}, {24, 20}}</string>
+								<string>{{63, 566}, {24, 20}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1083,7 +1083,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{118, 70}, {17.75, 71.75}}</string>
+								<string>{{71, 39}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1191,7 +1191,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{118, 70}, {17.75, 71.75}}</string>
+								<string>{{71, 39}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -1821,7 +1821,7 @@
 									<key>placeCost</key>
 									<true/>
 									<key>power</key>
-									<true/>
+									<false/>
 									<key>reach</key>
 									<true/>
 									<key>runningCost</key>
@@ -1836,7 +1836,7 @@
 									<key>placeCost</key>
 									<real>750</real>
 									<key>power</key>
-									<real>50</real>
+									<real>75</real>
 									<key>reach</key>
 									<real>5000</real>
 									<key>runningCost</key>
@@ -1937,7 +1937,7 @@
 									<key>placeCost</key>
 									<true/>
 									<key>power</key>
-									<true/>
+									<false/>
 									<key>reach</key>
 									<true/>
 									<key>runningCost</key>
@@ -1952,7 +1952,7 @@
 									<key>placeCost</key>
 									<real>750</real>
 									<key>power</key>
-									<real>50</real>
+									<real>75</real>
 									<key>reach</key>
 									<real>5000</real>
 									<key>runningCost</key>

@@ -62,6 +62,15 @@
 		[self addChild: background];
 		
 	
+		/* IAP Be Slow - get the ball rolling */
+		//100 coins
+		IAPManager* iapManager = [[IAPManager alloc] init];
+		[iapManager requestProduct:IAP_PACKAGE_ID_1 successCallback:^(NSString* productPrice){
+			if(DEBUG_IAP) DebugLog(@"Requested IAP product successfully!");
+		}];
+		[iapManager release];
+		
+	
 		/*********** Sound Settings ************/
 		[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.40f];
 		[[SimpleAudioEngine sharedEngine] setEffectsVolume:0.80f];
@@ -83,7 +92,10 @@
 			[SettingsManager setInt:INITIAL_FREE_COINS forKey:SETTING_TOTAL_EARNED_COINS];
 			[SettingsManager setInt:INITIAL_FREE_COINS forKey:SETTING_TOTAL_AVAILABLE_COINS];
 			
-		}
+			//lock pack 2
+			[SettingsManager setBool:true forKey:[NSString stringWithFormat:@"%@%@", SETTING_LOCKED_LEVEL_PACK_PATH, @"Pack2"]];
+		}		
+		
 		[APIManager createUser];
 		[Analytics setUserId:[SettingsManager getUUID]];
 		DebugLog(@"Launching with uuid=%@", [SettingsManager getUUID]);

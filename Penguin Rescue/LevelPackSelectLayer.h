@@ -12,11 +12,13 @@
 #import "LevelHelperLoader.h"
 #import "Constants.h"
 #import "CCScrollLayer.h"
+#import "IAPManager.h"
 
 // IntroLayer
 @interface LevelPackSelectLayer : CCLayer
 {
 	LevelHelperLoader* _levelLoader;
+	IAPManager* _iapManager;
 	
 	CCScrollLayer *_scrollLayer;
 	

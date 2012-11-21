@@ -6,8 +6,8 @@
 		Name = Surrounded;
 	};
 	1 = {
-		RequiresPack = Pack1;
-		"RequiresNumPackLevelsCompleted" = 6;
+		RequiresPack = "";
+		"RequiresNumPackLevelsCompleted" = 0;
 		Path = Pack2;
 		Name = "Natural Powers";
 	};

@@ -1,5 +1,5 @@
 //
-//  SettingsManager.m
+//  SettingsManager.mm
 //  Penguin Rescue
 //
 //  Created by Stephen Johnson on 10/25/12.

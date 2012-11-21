@@ -239,10 +239,15 @@ CREATE TABLE IF NOT EXISTS `scores_summary` (
 				$twoQuarters = floor(3*($level['totalWins']/5));	//actually 60%
 				$levelPackId = $level["levelPackId"];
 				$levelId = $level["levelId"];
+				$levels[$key]["scoreMedian"] = 0;
 				
 				$result = mysql_query("SELECT score FROM scores WHERE level_pack_id=$levelPackId AND level_id=$levelId ORDER BY score ASC LIMIT $twoQuarters,1");
 				while ($row = mysql_fetch_array($result)) {
 					$levels[$key]["scoreMedian"] = $row["score"];
+				}
+
+				if($levels[$key]["scoreMedian"] == 0) {
+					$levels[$key]["scoreMedian"] = $levels[$key]["scoreMean"];
 				}
 				
 				

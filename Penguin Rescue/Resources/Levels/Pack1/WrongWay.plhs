@@ -11,7 +11,7 @@
 	<key>JOINTS_INFO</key>
 	<array/>
 	<key>LHVersion</key>
-	<string>1.4.967</string>
+	<string>1.4.969</string>
 	<key>NODES_INFO</key>
 	<array>
 		<dict>
@@ -427,7 +427,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{252.1385802179575, 162.625}</string>
+								<string>{260.1385802179575, 162.625}</string>
 								<key>Scale</key>
 								<string>{0.84973376989364624, 1}</string>
 								<key>SpriteSize</key>
@@ -502,7 +502,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{488.01225982507407, 135.39639205966938}</string>
+								<string>{484.01225982507407, 137.39639205966938}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -577,7 +577,7 @@
 								<key>Opacity</key>
 								<real>1</real>
 								<key>Position</key>
-								<string>{496.75, 184.75}</string>
+								<string>{497.75, 183.75}</string>
 								<key>Scale</key>
 								<string>{1, 1}</string>
 								<key>SpriteSize</key>
@@ -2224,7 +2224,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{118, 70}, {17.75, 71.75}}</string>
+								<string>{{71, 39}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>
@@ -2332,7 +2332,7 @@
 								<key>FlipY</key>
 								<false/>
 								<key>Frame</key>
-								<string>{{118, 70}, {17.75, 71.75}}</string>
+								<string>{{71, 39}, {17.75, 71.75}}</string>
 								<key>IsDrawable</key>
 								<true/>
 								<key>IsExpanded</key>

@@ -107,6 +107,13 @@ static NSMutableDictionary* sCompletedLevelsInPackDictionary = nil;
 		NSString* levelPackPath = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_PATH];
 		NSString* requiresPack = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_REQUIRES_PACK];
 		NSNumber* requiresNumPackLevelsCompleted = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_REQUIRES_NUM_PACK_LEVELS_COMPLETED];
+		NSString* lockedPackKey = [NSString stringWithFormat:@"%@%@", SETTING_LOCKED_LEVEL_PACK_PATH, levelPackPath];
+		bool locked = [SettingsManager boolForKey:lockedPackKey];
+		
+		if(locked) {
+			if(DEBUG_LEVELS) DebugLog(@"Pack %@ is locked via settings", levelPackPath);
+			continue;
+		}
 
 		if([completedLevelPacks containsObject:levelPackPath]) {
 		
@@ -114,7 +121,7 @@ static NSMutableDictionary* sCompletedLevelsInPackDictionary = nil;
 			[availableLevelPacks addObject:levelPackPath];
 			
 		}else if(requiresPack == nil || [requiresPack isEqualToString:@""]) {
-			//no prequisites
+			//no prequisites			
 			[availableLevelPacks addObject:levelPackPath];
 			
 		}else if([completedLevelPacks containsObject: requiresPack]) {
@@ -125,14 +132,14 @@ static NSMutableDictionary* sCompletedLevelsInPackDictionary = nil;
 			//requires a a fully or partially completed pack - let's see if we meet the number of levels required within the required pack
 			if(requiresNumPackLevelsCompleted == 0) {
 				//0 means 100% required, so let's not add it
-				//DebugLog(@"Pack %@ is not available because not 100%% of levels are completed in required pack %@", levelPackPath, requiresPack);
+				if(DEBUG_LEVELS) DebugLog(@"Pack %@ is not available because not 100%% of levels are completed in required pack %@", levelPackPath, requiresPack);
 				
 			}else {
 				NSDictionary* completedLevelsDictionary = [LevelPackManager completedLevelsInPack:requiresPack];
 				if(completedLevelsDictionary.count >= [requiresNumPackLevelsCompleted intValue]) {
 					[availableLevelPacks addObject:levelPackPath];
 				}else {
-					//DebugLog(@"Pack %@ is not available because %d/%d levels are completed in required pack %@", levelPackPath, completedLevels.count, [requiresNumPackLevelsCompleted intValue], requiresPack);
+					if(DEBUG_LEVELS) DebugLog(@"Pack %@ is not available because %d/%d levels are completed in required pack %@", levelPackPath, completedLevelsDictionary.count, [requiresNumPackLevelsCompleted intValue], requiresPack);
 				}
 			}		
 		}

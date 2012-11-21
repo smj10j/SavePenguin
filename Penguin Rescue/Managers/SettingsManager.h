@@ -84,6 +84,7 @@
 #define SETTING_LAST_LEVEL_SELECT_SCREEN_NUM @"LastLevelSelectScreenNum"
 
 
+#define SETTING_LOCKED_LEVEL_PACK_PATH @"LockedLevelPackPath_"
 
 
 

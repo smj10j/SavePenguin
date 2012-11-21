@@ -11,6 +11,7 @@
 #import "cocos2d.h"
 #import "Constants.h"
 #import "LevelHelperLoader.h"
+#import "IAPManager.h"
 
 // IntroLayer
 @interface InAppPurchaseLayer : CCLayer
@@ -30,6 +31,8 @@
 	
 	LHSprite* _selectedIAPItem;
 	
+	IAPManager* _iapManager;
+		
 	NSMutableDictionary* _itemDatas;
 }
 

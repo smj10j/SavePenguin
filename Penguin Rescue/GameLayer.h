@@ -19,6 +19,7 @@
 #import "ScoreKeeper.h"
 #import "ToolboxItemRotationCrosshair.h"
 #import "PowerBarNode.h"
+#import "IAPManager.h"
 #import "Constants.h"
 
 
@@ -77,6 +78,8 @@ enum PROPAGATION_RESULT {
 	int _gridSize;
 	int _gridWidth;
 	int _gridHeight;
+	
+	IAPManager* _iapManager;
 	
 	NSMutableDictionary* _penguinsToPutOnLand;
 	

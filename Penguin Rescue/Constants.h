@@ -13,7 +13,7 @@
 
 //prepares all settings for App Store
 //NOTE: be sure to set the correct distribution provisioning profile!
-#define APPSTORE_BUILD false
+#define APPSTORE_BUILD true
 
 //enables TestFlight as well as sets this as a Distribution build
 //NOTE: be sure to set the correct distribution provisioning profile!
@@ -113,7 +113,7 @@
 #define SCORING_MAX_SCORE_POSSIBLE 15000
 #define SCORING_PLACE_SECOND_COST 40
 #define SCORING_RUNNING_SECOND_COST 25
-#define SCORING_HAND_OF_GOD_COST_PER_SECOND 5000
+#define SCORING_HAND_OF_GOD_COST_PER_SECOND 6000
 
 #define SCORING_CLOSE_CALL_DISTANCE 150*SCALING_FACTOR_GENERIC
 #define SCORING_CLOSE_CALL_EXTRA_CREDIT 250
@@ -121,6 +121,9 @@
 
 #define SCORING_MAX_COINS_PER_LEVEL 5
 
+
+
+#define IAP_PACKAGE_ID_1 @"100_Coins"
 
 
 
