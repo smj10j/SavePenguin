@@ -184,11 +184,18 @@
 
 
 
+
+//cleanup
+-(void) removedTransactions:(EBPurchase*)ebp {
+	[_loadingIndicator stopAnimating];
+}
+
 //failure states
 
 -(void) failedPurchase:(EBPurchase*)ebp error:(NSInteger)errorCode message:(NSString*)errorMessage 
 {
     if(DEBUG_IAP) DebugLog(@"IAPManager failedPurchase");
+	[_loadingIndicator stopAnimating];
     
     // Purchase or Restore request failed or was cancelled, so notify the user.
     
@@ -200,6 +207,7 @@
 -(void) incompleteRestore:(EBPurchase*)ebp 
 {
     if(DEBUG_IAP) DebugLog(@"IAPManager incompleteRestore");
+	[_loadingIndicator stopAnimating];
     
     // Restore queue did not include any transactions, so either the user has not yet made a purchase
     // or the user's prior purchase is unavailable, so notify user to make a purchase within the app.
@@ -214,6 +222,7 @@
 -(void) failedRestore:(EBPurchase*)ebp error:(NSInteger)errorCode message:(NSString*)errorMessage 
 {
     if(DEBUG_IAP) DebugLog(@"IAPManager failedRestore");
+	[_loadingIndicator stopAnimating];
     
     // Restore request failed or was cancelled, so notify the user.
 

@@ -229,6 +229,10 @@
     
     // Release the transaction observer since transaction is finished/removed.
     [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
+	
+	if ([delegate respondsToSelector:@selector(removedTransactions:)])
+		[delegate removedTransactions:self];
+
 }
 
 // Called when SKPaymentQueue has finished sending restored transactions.

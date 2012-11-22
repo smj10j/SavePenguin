@@ -13,7 +13,7 @@
 
 //prepares all settings for App Store
 //NOTE: be sure to set the correct distribution provisioning profile!
-#define APPSTORE_BUILD true
+#define APPSTORE_BUILD false
 
 //enables TestFlight as well as sets this as a Distribution build
 //NOTE: be sure to set the correct distribution provisioning profile!
@@ -69,6 +69,7 @@
 #define MAX_BUMP_ITERATIONS_TO_UNSTICK_FROM_LAND 12
 
 #define INITIAL_FREE_COINS 25
+#define PACK_COIN_COST 100
 
 #define HAND_OF_GOD_INITIAL_POWER .50
 #define HAND_OF_GOD_POWER_REGENERATION_RATE .15

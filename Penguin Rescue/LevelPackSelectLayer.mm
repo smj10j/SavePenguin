@@ -196,7 +196,7 @@
 			[levelPackButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLockedLevelPackSelect:)];
 		
 			//display the coin cost
-			CCLabelTTF* coinCostLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"75 Needed to Unlock"] fontName:@"Helvetica" fontSize:24*SCALING_FACTOR_FONTS];
+			CCLabelTTF* coinCostLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d Coins Needed to Unlock", PACK_COIN_COST] fontName:@"Helvetica" fontSize:24*SCALING_FACTOR_FONTS];
 			coinCostLabel.color = ccWHITE;
 			coinCostLabel.position = ccp(levelPackButtonSize.width/2, -25*SCALING_FACTOR_V);
 			[levelPackButton addChild:coinCostLabel];
@@ -242,10 +242,10 @@
 	NSString* levelPackPath = [_spriteNameToLevelPackPath objectForKey:info.sprite.uniqueName];
 	
 	int availableCoins = [SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS];
-	if(availableCoins < 75) {
+	if(availableCoins < PACK_COIN_COST) {
 		if(DEBUG_IAP) DebugLog(@"Not enough coins to unlock %@ - prompting", levelPackPath);
 
-		UIAlertView *promptForPurchaseAlert = [[UIAlertView alloc] initWithTitle:@"Not Enough Coins" message:[NSString stringWithFormat:@"You need %d coins and you only have %d. Would you like to buy 100 coins for %@", 75, availableCoins, (_iapManager.selectedProduct == nil ? @"$0.99" : _iapManager.selectedProduct.localizedPrice)] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Not Now", nil];
+		UIAlertView *promptForPurchaseAlert = [[UIAlertView alloc] initWithTitle:@"Not Enough Coins" message:[NSString stringWithFormat:@"You need %d coins and you only have %d. Would you like to buy 100 coins for %@", PACK_COIN_COST, availableCoins, (_iapManager.selectedProduct == nil ? @"$0.99" : _iapManager.selectedProduct.localizedPrice)] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Not Now", nil];
 		[promptForPurchaseAlert show];
 		[promptForPurchaseAlert release];
 		
@@ -273,7 +273,7 @@
 		[SettingsManager setBool:false forKey:[NSString stringWithFormat:@"%@%@", SETTING_LOCKED_LEVEL_PACK_PATH, levelPackPath]];
 
 		//charge
-		availableCoins = [SettingsManager decrementIntBy:75 forKey:SETTING_TOTAL_AVAILABLE_COINS];
+		availableCoins = [SettingsManager decrementIntBy:PACK_COIN_COST forKey:SETTING_TOTAL_AVAILABLE_COINS];
 		
 		//reload
 		[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[LevelPackSelectLayer scene] ]];

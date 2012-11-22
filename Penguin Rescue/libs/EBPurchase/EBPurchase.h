@@ -65,4 +65,6 @@
 
 -(void) failedRestore:(EBPurchase*)ebp error:(NSInteger)errorCode message:(NSString*)errorMessage;
 
+-(void) removedTransactions:(EBPurchase*)ebp;
+
 @end
