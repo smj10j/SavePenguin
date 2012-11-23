@@ -93,7 +93,7 @@
 			[SettingsManager setInt:INITIAL_FREE_COINS forKey:SETTING_TOTAL_AVAILABLE_COINS];
 			
 			//lock pack 2
-			[SettingsManager setBool:true forKey:[NSString stringWithFormat:@"%@%@", SETTING_LOCKED_LEVEL_PACK_PATH, @"Pack2"]];
+			//[SettingsManager setBool:true forKey:[NSString stringWithFormat:@"%@%@", SETTING_LOCKED_LEVEL_PACK_PATH, @"Pack2"]];
 		}		
 		
 		[APIManager createUser];

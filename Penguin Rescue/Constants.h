@@ -13,7 +13,7 @@
 
 //prepares all settings for App Store
 //NOTE: be sure to set the correct distribution provisioning profile!
-#define APPSTORE_BUILD false
+#define APPSTORE_BUILD true
 
 //enables TestFlight as well as sets this as a Distribution build
 //NOTE: be sure to set the correct distribution provisioning profile!
