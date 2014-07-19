@@ -277,6 +277,7 @@
 		AAE610721632B7FD004166CC /* Spritesheet_Toolbox-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE610661632B7FD004166CC /* Spritesheet_Toolbox-hd.png */; };
 		AAE610731632B7FD004166CC /* Spritesheet_Toolbox-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE610671632B7FD004166CC /* Spritesheet_Toolbox-ipadhd.png */; };
 		AAE610741632B7FD004166CC /* Spritesheet_Toolbox.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE610681632B7FD004166CC /* Spritesheet_Toolbox.png */; };
+		AAF9170C197A93C3005FBFF3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF9170B197A93C3005FBFF3 /* Images.xcassets */; };
 		a27a6801a7e02573488cf2ae /* LHContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63faa4ee03f4d19437a2d01f /* LHContactListener.mm */; };
 		c1d7b53907c8999f8637a22c /* LHFixture.mm in Sources */ = {isa = PBXBuildFile; fileRef = ae757d5ca3555b0fca385c9e /* LHFixture.mm */; };
 		cbcf8a3be72e6868338383a0 /* LHTouchMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = a41826f9b6cfd4e5bfe15ed5 /* LHTouchMgr.mm */; };
@@ -820,6 +821,7 @@
 		AAE610661632B7FD004166CC /* Spritesheet_Toolbox-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spritesheet_Toolbox-hd.png"; sourceTree = "<group>"; };
 		AAE610671632B7FD004166CC /* Spritesheet_Toolbox-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spritesheet_Toolbox-ipadhd.png"; sourceTree = "<group>"; };
 		AAE610681632B7FD004166CC /* Spritesheet_Toolbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spritesheet_Toolbox.png; sourceTree = "<group>"; };
+		AAF9170B197A93C3005FBFF3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		a372192b40b20f50dc51d243 /* lhConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lhConfig.h; sourceTree = "<group>"; };
 		a41826f9b6cfd4e5bfe15ed5 /* LHTouchMgr.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LHTouchMgr.mm; sourceTree = "<group>"; };
 		ae757d5ca3555b0fca385c9e /* LHFixture.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LHFixture.mm; sourceTree = "<group>"; };
@@ -1021,6 +1023,7 @@
 				AA9213AA1642EB30008BAA08 /* splash screens */,
 				AA9213A91642EB26008BAA08 /* icons */,
 				AA54C6C5162BB27A00DF56D0 /* libs */,
+				AAF9170B197A93C3005FBFF3 /* Images.xcassets */,
 				AA54C8BC162BB27E00DF56D0 /* Supporting Files */,
 			);
 			path = "Penguin Rescue";
@@ -1820,7 +1823,7 @@
 				AA54C68C162BB27A00DF56D0 /* Sources */,
 				AA54C68D162BB27A00DF56D0 /* Frameworks */,
 				AA54C68E162BB27A00DF56D0 /* Resources */,
-				AA54C8D3162BB2B200DF56D0 /* ShellScript */,
+				AA54C8D3162BB2B200DF56D0 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -1837,8 +1840,13 @@
 		AA54C687162BB27A00DF56D0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Conquer LLC";
+				TargetAttributes = {
+					AA54C68F162BB27A00DF56D0 = {
+						DevelopmentTeam = UR8VJZL4LG;
+					};
+				};
 			};
 			buildConfigurationList = AA54C68A162BB27A00DF56D0 /* Build configuration list for PBXProject "Penguin Rescue" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1899,6 +1907,7 @@
 				AA9213A71642EB13008BAA08 /* Icon.png in Resources */,
 				AA9213A81642EB13008BAA08 /* Icon@2x.png in Resources */,
 				AA8DD36F1643ED2200E49D07 /* README in Resources */,
+				AAF9170C197A93C3005FBFF3 /* Images.xcassets in Resources */,
 				AA27286016444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-hd.png in Resources */,
 				AA27286116444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-ipadhd.png in Resources */,
 				AA27286216444A2E00297CE4 /* Spritesheet_MenuBackgrounds1.png in Resources */,
@@ -1911,13 +1920,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		AA54C8D3162BB2B200DF56D0 /* ShellScript */ = {
+		AA54C8D3162BB2B200DF56D0 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2161,7 +2171,12 @@
 		AA54C8CE162BB27E00DF56D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2170,10 +2185,15 @@
 					"COCOS2D_DEBUG=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2182,17 +2202,26 @@
 		AA54C8CF162BB27E00DF56D0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
 					"NS_BLOCK_ASSERTIONS=1",
 				);
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2202,7 +2231,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Penguin Rescue/Penguin Rescue.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2212,11 +2244,9 @@
 					DEBUG,
 					"COCOS2D_DEBUG=1",
 				);
-				HEADER_SEARCH_PATHS = (
-					"\"Penguin Rescue/libs/kazmath/include\"",
-				);
+				HEADER_SEARCH_PATHS = "\"Penguin Rescue/libs/kazmath/include\"";
 				INFOPLIST_FILE = "Penguin Rescue/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Penguin Rescue/libs/Flurry iPhone SDK v4.0.6/Flurry\"",
@@ -2239,7 +2269,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Penguin Rescue/Penguin Rescue.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Conquer LLC";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2249,11 +2282,9 @@
 					NDEBUG,
 					"NS_BLOCK_ASSERTIONS=1",
 				);
-				HEADER_SEARCH_PATHS = (
-					"\"Penguin Rescue/libs/kazmath/include\"",
-				);
+				HEADER_SEARCH_PATHS = "\"Penguin Rescue/libs/kazmath/include\"";
 				INFOPLIST_FILE = "Penguin Rescue/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Penguin Rescue/libs/Flurry iPhone SDK v4.0.6/Flurry\"",

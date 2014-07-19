@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>77DE236F-1FE0-4EF6-9A64-BAE8B6E0A88C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Penguin Rescue</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>251D4009-51C5-4461-A2EE-4D684901FA0C</key>
+		<string>https://github.com/johnezang/JSONKit.git</string>
+		<key>91DE2D64-CA26-450F-822C-61B06F8AA941</key>
+		<string>https://github.com/smj10j/SavePenguin.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Penguin Rescue.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>251D4009-51C5-4461-A2EE-4D684901FA0C</key>
+		<string>../../Penguin Rescue/libs/JSONKit</string>
+		<key>91DE2D64-CA26-450F-822C-61B06F8AA941</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/smj10j/SavePenguin.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>91DE2D64-CA26-450F-822C-61B06F8AA941</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>251D4009-51C5-4461-A2EE-4D684901FA0C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>JSONKit</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>91DE2D64-CA26-450F-822C-61B06F8AA941</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SavePenguin-via-xcode</string>
+		</dict>
+	</array>
+</dict>
+</plist>
