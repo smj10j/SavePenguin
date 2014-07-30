@@ -1,0 +1,6 @@
+language: objective-c
+xcode_project: "Penguin Rescue.xcodeproj" # path to your xcodeproj folder
+xcode_scheme: TravisCIScheme
+
+
+
