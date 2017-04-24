@@ -40,7 +40,7 @@
 -(void)removeJoint:(LHJoint*)jt{
    // NSLog(@"REMOVE JOINT %@", [jt uniqueName]);
     if(!jt)return;
-    [jointsInLevel removeObjectForKey:[jt uniqueName]];
+    [jointsInLevel removeObjectForKey:jt.uniqueName];
 }
 @end
 
@@ -66,7 +66,7 @@
 #endif
 }
 ////////////////////////////////////////////////////////////////////////////////
--(id) initWithDictionary:(NSDictionary*)dictionary 
+-(instancetype) initWithDictionary:(NSDictionary*)dictionary 
                    world:(b2World*)box2d 
                   loader:(LevelHelperLoader*)pLoader{
     
@@ -86,7 +86,7 @@
     return self;
 }
 ////////////////////////////////////////////////////////////////////////////////
-+(id) jointWithDictionary:(NSDictionary*)dictionary 
++(instancetype) jointWithDictionary:(NSDictionary*)dictionary 
                     world:(b2World*)box2d 
                    loader:(LevelHelperLoader*)pLoader{
 
@@ -170,11 +170,11 @@
     LHSprite* sprB  = [parentLoader spriteWithUniqueName:[dictionary stringForKey:@"ObjectB"]];
     b2Body* bodyB   = [sprB body];
 	
-    CGPoint sprPosA = [sprA position];
-    CGPoint sprPosB = [sprB position];
+    CGPoint sprPosA = sprA.position;
+    CGPoint sprPosB = sprB.position;
     
-    CGSize scaleA   = CGSizeMake([sprA scaleX], [sprA scaleY]);//[sprA realScale];
-    CGSize scaleB   = CGSizeMake([sprB scaleX], [sprB scaleY]);//[sprB realScale];
+    CGSize scaleA   = CGSizeMake(sprA.scaleX, sprA.scaleY);//[sprA realScale];
+    CGSize scaleB   = CGSizeMake(sprB.scaleX, sprB.scaleY);//[sprB realScale];
     
     scaleA = [[LHSettings sharedInstance] transformedSize:scaleA forImage:[sprA imageFile]];
     scaleB = [[LHSettings sharedInstance] transformedSize:scaleB forImage:[sprB imageFile]];
@@ -191,7 +191,7 @@
     
 	b2Vec2 posA, posB;
 	
-    float ptm = [[LHSettings sharedInstance] lhPtmRatio];
+    float ptm = [LHSettings sharedInstance].lhPtmRatio;
 	float convertX = [[LHSettings sharedInstance] convertRatio].x;
 //	float convertY = [[LHSettings sharedInstance] convertRatio].y;
     
@@ -471,7 +471,7 @@
 #else
         LHJoint* data = (__bridge LHJoint*)joint->GetUserData();
 #endif
-        if(nil != data)return [data tag];
+        if(nil != data)return data.tag;
     }
     return -1;
 }
@@ -483,7 +483,7 @@
 #else
         LHJoint* data = (__bridge LHJoint*)joint->GetUserData();
 #endif
-        if(nil != data) return [data type];
+        if(nil != data) return data.type;
     }
     return LH_UNKNOWN_TYPE;    
 }
@@ -495,7 +495,7 @@
 #else
         LHJoint* data = (__bridge LHJoint*)joint->GetUserData();
 #endif
-        if(0 != data)return [data uniqueName];
+        if(0 != data)return data.uniqueName;
     }
     return nil;
 }

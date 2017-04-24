@@ -112,13 +112,13 @@ enum {
 }
 
 /** initializes a CCTexturePVR with a path */
-- (id)initWithContentsOfFile:(NSString *)path;
+- (instancetype)initWithContentsOfFile:(NSString *)path NS_DESIGNATED_INITIALIZER;
 /** initializes a CCTexturePVR with an URL */
-- (id)initWithContentsOfURL:(NSURL *)url;
+- (instancetype)initWithContentsOfURL:(NSURL *)url;
 /** creates and initializes a CCTexturePVR with a path */
-+ (id)pvrTextureWithContentsOfFile:(NSString *)path;
++ (instancetype)pvrTextureWithContentsOfFile:(NSString *)path;
 /** creates and initializes a CCTexturePVR with an URL */
-+ (id)pvrTextureWithContentsOfURL:(NSURL *)url;
++ (instancetype)pvrTextureWithContentsOfURL:(NSURL *)url;
 
 /** texture id name */
 @property (nonatomic,readonly) GLuint name;

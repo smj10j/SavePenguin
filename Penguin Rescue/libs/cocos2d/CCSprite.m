@@ -73,32 +73,32 @@
 @synthesize offsetPosition = offsetPosition_;
 
 
-+(id)spriteWithTexture:(CCTexture2D*)texture
++(instancetype)spriteWithTexture:(CCTexture2D*)texture
 {
 	return [[[self alloc] initWithTexture:texture] autorelease];
 }
 
-+(id)spriteWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
++(instancetype)spriteWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
 	return [[[self alloc] initWithTexture:texture rect:rect] autorelease];
 }
 
-+(id)spriteWithFile:(NSString*)filename
++(instancetype)spriteWithFile:(NSString*)filename
 {
 	return [[[self alloc] initWithFile:filename] autorelease];
 }
 
-+(id)spriteWithFile:(NSString*)filename rect:(CGRect)rect
++(instancetype)spriteWithFile:(NSString*)filename rect:(CGRect)rect
 {
 	return [[[self alloc] initWithFile:filename rect:rect] autorelease];
 }
 
-+(id)spriteWithSpriteFrame:(CCSpriteFrame*)spriteFrame
++(instancetype)spriteWithSpriteFrame:(CCSpriteFrame*)spriteFrame
 {
 	return [[[self alloc] initWithSpriteFrame:spriteFrame] autorelease];
 }
 
-+(id)spriteWithSpriteFrameName:(NSString*)spriteFrameName
++(instancetype)spriteWithSpriteFrameName:(NSString*)spriteFrameName
 {
 	CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:spriteFrameName];
 
@@ -106,18 +106,18 @@
 	return [self spriteWithSpriteFrame:frame];
 }
 
-+(id)spriteWithCGImage:(CGImageRef)image key:(NSString*)key
++(instancetype)spriteWithCGImage:(CGImageRef)image key:(NSString*)key
 {
 	return [[[self alloc] initWithCGImage:image key:key] autorelease];
 }
 
--(id) init
+-(instancetype) init
 {
 	return [self initWithTexture:nil rect:CGRectZero];
 }
 
 // designated initializer
--(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect rotated:(BOOL)rotated
+-(instancetype) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect rotated:(BOOL)rotated
 {
 	if( (self = [super init]) )
 	{
@@ -166,12 +166,12 @@
 	return self;
 }
 
--(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
+-(instancetype) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
 	return [self initWithTexture:texture rect:rect rotated:NO];
 }
 
--(id) initWithTexture:(CCTexture2D*)texture
+-(instancetype) initWithTexture:(CCTexture2D*)texture
 {
 	NSAssert(texture!=nil, @"Invalid texture for sprite");
 
@@ -180,7 +180,7 @@
 	return [self initWithTexture:texture rect:rect];
 }
 
--(id) initWithFile:(NSString*)filename
+-(instancetype) initWithFile:(NSString*)filename
 {
 	NSAssert(filename != nil, @"Invalid filename for sprite");
 
@@ -195,7 +195,7 @@
 	return nil;
 }
 
--(id) initWithFile:(NSString*)filename rect:(CGRect)rect
+-(instancetype) initWithFile:(NSString*)filename rect:(CGRect)rect
 {
 	NSAssert(filename!=nil, @"Invalid filename for sprite");
 
@@ -207,7 +207,7 @@
 	return nil;
 }
 
-- (id) initWithSpriteFrame:(CCSpriteFrame*)spriteFrame
+- (instancetype) initWithSpriteFrame:(CCSpriteFrame*)spriteFrame
 {
 	NSAssert(spriteFrame!=nil, @"Invalid spriteFrame for sprite");
 
@@ -216,7 +216,7 @@
 	return ret;
 }
 
--(id)initWithSpriteFrameName:(NSString*)spriteFrameName
+-(instancetype)initWithSpriteFrameName:(NSString*)spriteFrameName
 {
 	NSAssert(spriteFrameName!=nil, @"Invalid spriteFrameName for sprite");
 
@@ -224,7 +224,7 @@
 	return [self initWithSpriteFrame:frame];
 }
 
-- (id) initWithCGImage:(CGImageRef)image key:(NSString*)key
+- (instancetype) initWithCGImage:(CGImageRef)image key:(NSString*)key
 {
 	NSAssert(image!=nil, @"Invalid CGImageRef for sprite");
 
@@ -280,7 +280,7 @@
 
 		// using batch
 		transformToBatch_ = CGAffineTransformIdentity;
-		textureAtlas_ = [batchNode textureAtlas]; // weak ref
+		textureAtlas_ = batchNode.textureAtlas; // weak ref
 	}
 }
 
@@ -293,7 +293,7 @@
 {
 	rectRotated_ = rotated;
 
-	[self setContentSize:untrimmedSize];
+	self.contentSize = untrimmedSize;
 	[self setVertexRect:rect];
 	[self setTextureCoords:rect];
 
@@ -343,7 +343,7 @@
 {
 	rect = CC_RECT_POINTS_TO_PIXELS(rect);
 
-	CCTexture2D *tex	= (batchNode_) ? [textureAtlas_ texture] : texture_;
+	CCTexture2D *tex	= (batchNode_) ? textureAtlas_.texture : texture_;
 	if(!tex)
 		return;
 
@@ -503,7 +503,7 @@
 
 	ccGLBlendFunc( blendFunc_.src, blendFunc_.dst );
 
-	ccGLBindTexture2D( [texture_ name] );
+	ccGLBindTexture2D( texture_.name );
 
 	//
 	// Attributes
@@ -694,79 +694,79 @@
 
 -(void)setPosition:(CGPoint)pos
 {
-	[super setPosition:pos];
+	super.position = pos;
 	SET_DIRTY_RECURSIVELY();
 }
 
 -(void)setRotation:(float)rot
 {
-	[super setRotation:rot];
+	super.rotation = rot;
 	SET_DIRTY_RECURSIVELY();
 }
 
 -(void)setRotationX:(float)rot
 {
-	[super setRotationX:rot];
+	super.rotationX = rot;
 	SET_DIRTY_RECURSIVELY();
 }
 
 -(void)setRotationY:(float)rot
 {
-	[super setRotationY:rot];
+	super.rotationY = rot;
 	SET_DIRTY_RECURSIVELY();
 }
 
 -(void)setSkewX:(float)sx
 {
-	[super setSkewX:sx];
+	super.skewX = sx;
 	SET_DIRTY_RECURSIVELY();
 }
 
 -(void)setSkewY:(float)sy
 {
-	[super setSkewY:sy];
+	super.skewY = sy;
 	SET_DIRTY_RECURSIVELY();
 }
 
 -(void)setScaleX:(float) sx
 {
-	[super setScaleX:sx];
+	super.scaleX = sx;
 	SET_DIRTY_RECURSIVELY();
 }
 
 -(void)setScaleY:(float) sy
 {
-	[super setScaleY:sy];
+	super.scaleY = sy;
 	SET_DIRTY_RECURSIVELY();
 }
 
 -(void)setScale:(float) s
 {
-	[super setScale:s];
+	super.scale = s;
 	SET_DIRTY_RECURSIVELY();
 }
 
 -(void) setVertexZ:(float)z
 {
-	[super setVertexZ:z];
+	super.vertexZ = z;
 	SET_DIRTY_RECURSIVELY();
 }
 
 -(void)setAnchorPoint:(CGPoint)anchor
 {
-	[super setAnchorPoint:anchor];
+	super.anchorPoint = anchor;
 	SET_DIRTY_RECURSIVELY();
 }
 
 -(void) setIgnoreAnchorPointForPosition:(BOOL)value
 {
 	NSAssert( ! batchNode_, @"ignoreAnchorPointForPosition is invalid in CCSprite");
-	[super setIgnoreAnchorPointForPosition:value];
+	super.ignoreAnchorPointForPosition = value;
 }
 
 -(void)setVisible:(BOOL)v
 {
-	[super setVisible:v];
+	super.visible = v;
 	SET_DIRTY_RECURSIVELY();
 }
 
@@ -831,7 +831,7 @@
 
 	// special opacity for premultiplied textures
 	if( opacityModifyRGB_ )
-		[self setColor: colorUnmodified_];
+		self.color = colorUnmodified_;
 
 	[self updateColor];
 }
@@ -878,7 +878,7 @@
 {
 	unflippedOffsetPositionFromCenter_ = frame.offset;
 
-	CCTexture2D *newTexture = [frame texture];
+	CCTexture2D *newTexture = frame.texture;
 	// update texture before updating texture rect
 	if ( newTexture.name != texture_.name )
 		[self setTexture: newTexture];
@@ -897,7 +897,7 @@
 
 	NSAssert( a, @"CCSprite#setDisplayFrameWithAnimationName: Frame not found");
 
-	CCAnimationFrame *frame = [[a frames] objectAtIndex:frameIndex];
+	CCAnimationFrame *frame = a.frames[frameIndex];
 
 	NSAssert( frame, @"CCSprite#setDisplayFrame. Invalid frame");
 
@@ -907,7 +907,7 @@
 
 -(BOOL) isFrameDisplayed:(CCSpriteFrame*)frame
 {
-	CGRect r = [frame rect];
+	CGRect r = frame.rect;
 	return ( CGRectEqualToRect(r, rect_) &&
 			frame.texture.name == self.texture.name &&
 			CGPointEqualToPoint( frame.offset, unflippedOffsetPositionFromCenter_ ) );
@@ -929,7 +929,7 @@
 	NSAssert( ! batchNode_, @"CCSprite: updateBlendFunc doesn't work when the sprite is rendered using a CCSpriteBatchNode");
 
 	// it is possible to have an untextured sprite
-	if( !texture_ || ! [texture_ hasPremultipliedAlpha] ) {
+	if( !texture_ || ! texture_.hasPremultipliedAlpha ) {
 		blendFunc_.src = GL_SRC_ALPHA;
 		blendFunc_.dst = GL_ONE_MINUS_SRC_ALPHA;
 		[self setOpacityModifyRGB:NO];

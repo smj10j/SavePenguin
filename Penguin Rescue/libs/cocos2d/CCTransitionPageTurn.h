@@ -53,7 +53,7 @@
  * if back is TRUE then the effect is reversed to appear as if the incoming
  * scene is being turned from left over the outgoing scene
  */
--(id) initWithDuration:(ccTime) t scene:(CCScene*)s backwards:(BOOL) back;
+-(instancetype) initWithDuration:(ccTime) t scene:(CCScene*)s backwards:(BOOL) back NS_DESIGNATED_INITIALIZER;
 
 -(CCActionInterval*) actionWithSize:(ccGridSize) vector;
 

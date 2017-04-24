@@ -63,7 +63,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 	return [[[self alloc] initWithDuration:t scene:s] autorelease];
 }
 
--(id) initWithDuration:(ccTime) t scene:(CCScene*)s
+-(instancetype) initWithDuration:(ccTime) t scene:(CCScene*)s
 {
 	NSAssert( s != nil, @"Argument scene must be non-nil");
 
@@ -73,7 +73,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 
 		// retain
 		inScene_ = [s retain];
-		outScene_ = [[CCDirector sharedDirector] runningScene];
+		outScene_ = [CCDirector sharedDirector].runningScene;
 		[outScene_ retain];
 
 		NSAssert( inScene_ != outScene_, @"Incoming scene must be different from the outgoing scene" );
@@ -81,7 +81,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 		// disable events while transitions
 		CCDirector *director = [CCDirector sharedDirector];
 #ifdef __CC_PLATFORM_IOS
-		[[director touchDispatcher] setDispatchEvents: NO];
+		[director.touchDispatcher setDispatchEvents: NO];
 #elif defined(__CC_PLATFORM_MAC)
 		[[director eventDispatcher] setDispatchEvents: NO];
 #endif
@@ -112,15 +112,15 @@ const NSInteger kSceneFade = 0xFADEFADE;
 {
 	/* clean up */
 	[inScene_ setVisible:YES];
-	[inScene_ setPosition:ccp(0,0)];
-	[inScene_ setScale:1.0f];
-	[inScene_ setRotation:0.0f];
+	inScene_.position = ccp(0,0);
+	inScene_.scale = 1.0f;
+	inScene_.rotation = 0.0f;
 	[inScene_.camera restore];
 
 	[outScene_ setVisible:NO];
-	[outScene_ setPosition:ccp(0,0)];
-	[outScene_ setScale:1.0f];
-	[outScene_ setRotation:0.0f];
+	outScene_.position = ccp(0,0);
+	outScene_.scale = 1.0f;
+	outScene_.rotation = 0.0f;
 	[outScene_.camera restore];
 
 	[self schedule:@selector(setNewScene:) interval:0];
@@ -133,13 +133,13 @@ const NSInteger kSceneFade = 0xFADEFADE;
 	CCDirector *director = [CCDirector sharedDirector];
 
 	// Before replacing, save the "send cleanup to scene"
-	sendCleanupToScene_ = [director sendCleanupToScene];
+	sendCleanupToScene_ = director.sendCleanupToScene;
 
 	[director replaceScene: inScene_];
 
 	// enable events while transitions
 #ifdef __CC_PLATFORM_IOS
-	[[director touchDispatcher] setDispatchEvents: YES];
+	[director.touchDispatcher setDispatchEvents: YES];
 #elif defined(__CC_PLATFORM_MAC)
 	[[director eventDispatcher] setDispatchEvents: YES];
 #endif
@@ -203,7 +203,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 	return [[[self alloc] initWithDuration:t scene:s orientation:o] autorelease];
 }
 
--(id) initWithDuration:(ccTime) t scene:(CCScene*)s orientation:(tOrientation)o
+-(instancetype) initWithDuration:(ccTime) t scene:(CCScene*)s orientation:(tOrientation)o
 {
 	if( (self=[super initWithDuration:t scene:s]) )
 		orientation = o;
@@ -216,7 +216,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 // RotoZoom
 //
 @implementation CCTransitionRotoZoom
--(id) init {
+-(instancetype) init {
 	return [super init];
 }
 
@@ -224,11 +224,11 @@ const NSInteger kSceneFade = 0xFADEFADE;
 {
 	[super onEnter];
 
-	[inScene_ setScale:0.001f];
-	[outScene_ setScale:1.0f];
+	inScene_.scale = 0.001f;
+	outScene_.scale = 1.0f;
 
-	[inScene_ setAnchorPoint:ccp(0.5f, 0.5f)];
-	[outScene_ setAnchorPoint:ccp(0.5f, 0.5f)];
+	inScene_.anchorPoint = ccp(0.5f, 0.5f);
+	outScene_.anchorPoint = ccp(0.5f, 0.5f);
 
 	CCActionInterval *rotozoom = [CCSequence actions: [CCSpawn actions:
 								   [CCScaleBy actionWithDuration:duration_/2 scale:0.001f],
@@ -250,7 +250,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 // JumpZoom
 //
 @implementation CCTransitionJumpZoom
--(id) init {
+-(instancetype) init {
 	return [super init];
 }
 -(void) onEnter
@@ -258,11 +258,11 @@ const NSInteger kSceneFade = 0xFADEFADE;
 	[super onEnter];
 	CGSize s = [[CCDirector sharedDirector] winSize];
 
-	[inScene_ setScale:0.5f];
-	[inScene_ setPosition:ccp( s.width,0 )];
+	inScene_.scale = 0.5f;
+	inScene_.position = ccp( s.width,0 );
 
-	[inScene_ setAnchorPoint:ccp(0.5f, 0.5f)];
-	[outScene_ setAnchorPoint:ccp(0.5f, 0.5f)];
+	inScene_.anchorPoint = ccp(0.5f, 0.5f);
+	outScene_.anchorPoint = ccp(0.5f, 0.5f);
 
 	CCActionInterval *jump = [CCJumpBy actionWithDuration:duration_/4 position:ccp(-s.width,0) height:s.width/4 jumps:2];
 	CCActionInterval *scaleIn = [CCScaleTo actionWithDuration:duration_/4 scale:1.0f];
@@ -314,7 +314,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 -(void) initScenes
 {
 	CGSize s = [[CCDirector sharedDirector] winSize];
-	[inScene_ setPosition: ccp( -s.width,0) ];
+	inScene_.position = ccp( -s.width,0) ;
 }
 @end
 
@@ -325,7 +325,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 -(void) initScenes
 {
 	CGSize s = [[CCDirector sharedDirector] winSize];
-	[inScene_ setPosition: ccp( s.width,0) ];
+	inScene_.position = ccp( s.width,0) ;
 }
 @end
 
@@ -336,7 +336,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 -(void) initScenes
 {
 	CGSize s = [[CCDirector sharedDirector] winSize];
-	[inScene_ setPosition: ccp( 0, s.height) ];
+	inScene_.position = ccp( 0, s.height) ;
 }
 @end
 
@@ -347,7 +347,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 -(void) initScenes
 {
 	CGSize s = [[CCDirector sharedDirector] winSize];
-	[inScene_ setPosition: ccp( 0, -s.height) ];
+	inScene_.position = ccp( 0, -s.height) ;
 }
 @end
 
@@ -386,7 +386,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 -(void) initScenes
 {
 	CGSize s = [[CCDirector sharedDirector] winSize];
-	[inScene_ setPosition: ccp( -(s.width-ADJUST_FACTOR),0) ];
+	inScene_.position = ccp( -(s.width-ADJUST_FACTOR),0) ;
 }
 -(CCActionInterval*) action
 {
@@ -413,7 +413,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 -(void) initScenes
 {
 	CGSize s = [[CCDirector sharedDirector] winSize];
-	[inScene_ setPosition: ccp( s.width-ADJUST_FACTOR,0) ];
+	inScene_.position = ccp( s.width-ADJUST_FACTOR,0) ;
 }
 
 -(CCActionInterval*) action
@@ -435,7 +435,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 -(void) initScenes
 {
 	CGSize s = [[CCDirector sharedDirector] winSize];
-	[inScene_ setPosition: ccp(0,s.height-ADJUST_FACTOR) ];
+	inScene_.position = ccp(0,s.height-ADJUST_FACTOR) ;
 }
 
 -(CCActionInterval*) action
@@ -458,7 +458,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 -(void) initScenes
 {
 	CGSize s = [[CCDirector sharedDirector] winSize];
-	[inScene_ setPosition: ccp(0,-(s.height-ADJUST_FACTOR)) ];
+	inScene_.position = ccp(0,-(s.height-ADJUST_FACTOR)) ;
 }
 
 -(CCActionInterval*) action
@@ -472,18 +472,18 @@ const NSInteger kSceneFade = 0xFADEFADE;
 // ShrinkGrow Transition
 //
 @implementation CCTransitionShrinkGrow
--(id) init {
+-(instancetype) init {
 	return [super init];
 }
 -(void) onEnter
 {
 	[super onEnter];
 
-	[inScene_ setScale:0.001f];
-	[outScene_ setScale:1.0f];
+	inScene_.scale = 0.001f;
+	outScene_.scale = 1.0f;
 
-	[inScene_ setAnchorPoint:ccp(2/3.0f,0.5f)];
-	[outScene_ setAnchorPoint:ccp(1/3.0f,0.5f)];
+	inScene_.anchorPoint = ccp(2/3.0f,0.5f);
+	outScene_.anchorPoint = ccp(1/3.0f,0.5f);
 
 	CCActionInterval *scaleOut = [CCScaleTo actionWithDuration:duration_ scale:0.01f];
 	CCActionInterval *scaleIn = [CCScaleTo actionWithDuration:duration_ scale:1.0f];
@@ -505,7 +505,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 // FlipX Transition
 //
 @implementation CCTransitionFlipX
--(id) init {
+-(instancetype) init {
 	return [super init];
 }
 -(void) onEnter
@@ -552,7 +552,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 // FlipY Transition
 //
 @implementation CCTransitionFlipY
--(id) init {
+-(instancetype) init {
 	return [super init];
 }
 -(void) onEnter
@@ -598,7 +598,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 // FlipAngular Transition
 //
 @implementation CCTransitionFlipAngular
--(id) init {
+-(instancetype) init {
 	return [super init];
 }
 -(void) onEnter
@@ -643,7 +643,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 // ZoomFlipX Transition
 //
 @implementation CCTransitionZoomFlipX
--(id) init {
+-(instancetype) init {
 	return [super init];
 }
 -(void) onEnter
@@ -695,7 +695,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 // ZoomFlipY Transition
 //
 @implementation CCTransitionZoomFlipY
--(id) init {
+-(instancetype) init {
 	return [super init];
 }
 -(void) onEnter
@@ -748,7 +748,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 // ZoomFlipAngular Transition
 //
 @implementation CCTransitionZoomFlipAngular
--(id) init {
+-(instancetype) init {
 	return [super init];
 }
 -(void) onEnter
@@ -808,7 +808,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 	return [[[self alloc] initWithDuration:d scene:s withColor:color] autorelease];
 }
 
--(id) initWithDuration:(ccTime)d scene:(CCScene*)s withColor:(ccColor3B)aColor
+-(instancetype) initWithDuration:(ccTime)d scene:(CCScene*)s withColor:(ccColor3B)aColor
 {
 	if( (self=[super initWithDuration:d scene:s]) ) {
 		color.r = aColor.r;
@@ -819,7 +819,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 	return self;
 }
 
--(id) initWithDuration:(ccTime)d scene:(CCScene*)s
+-(instancetype) initWithDuration:(ccTime)d scene:(CCScene*)s
 {
 	return [self initWithDuration:d scene:s withColor:ccBLACK];
 }
@@ -857,7 +857,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 // Cross Fade Transition
 //
 @implementation CCTransitionCrossFade
--(id) init {
+-(instancetype) init {
 	return [super init];
 }
 -(void) draw
@@ -903,16 +903,16 @@ const NSInteger kSceneFade = 0xFADEFADE;
 	ccBlendFunc blend2 = {GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA}; // we are going to blend outScene_ via alpha
 
 	// set blendfunctions
-	[inTexture.sprite setBlendFunc:blend1];
-	[outTexture.sprite setBlendFunc:blend2];
+	(inTexture.sprite).blendFunc = blend1;
+	(outTexture.sprite).blendFunc = blend2;
 
 	// add render textures to the layer
 	[layer addChild:inTexture];
 	[layer addChild:outTexture];
 
 	// initial opacity:
-	[inTexture.sprite setOpacity:255];
-	[outTexture.sprite setOpacity:255];
+	(inTexture.sprite).opacity = 255;
+	(outTexture.sprite).opacity = 255;
 
 	// create the blend action
 	CCActionInterval * layerAction = [CCSequence actions:
@@ -943,7 +943,7 @@ const NSInteger kSceneFade = 0xFADEFADE;
 // TurnOffTilesTransition
 //
 @implementation CCTransitionTurnOffTiles
--(id) init {
+-(instancetype) init {
 	return [super init];
 }
 // override addScenes, and change the order

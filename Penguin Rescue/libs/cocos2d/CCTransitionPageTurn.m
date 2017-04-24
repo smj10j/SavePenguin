@@ -37,7 +37,7 @@
 }
 
 /** initializes a transition with duration and incoming scene */
--(id) initWithDuration:(ccTime) t scene:(CCScene*)s backwards:(BOOL) back
+-(instancetype) initWithDuration:(ccTime) t scene:(CCScene*)s backwards:(BOOL) back
 {
 	// XXX: needed before [super init]
 	back_ = back;

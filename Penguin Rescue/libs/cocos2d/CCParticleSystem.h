@@ -61,7 +61,7 @@ enum {
 /** @typedef tCCPositionType
  possible types of particle positions
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, tCCPositionType) {
 	/** Living particles are attached to the world and are unaffected by emitter repositioning. */
 	kCCPositionTypeFree,
 
@@ -72,7 +72,7 @@ typedef enum {
 
 	/** Living particles are attached to the emitter and are translated along with it. */
 	kCCPositionTypeGrouped,
-}tCCPositionType;
+};
 
 // backward compatible
 enum {
@@ -430,21 +430,21 @@ typedef void (*CC_UPDATE_PARTICLE_IMP)(id, SEL, tCCParticle*, CGPoint);
 	http://particledesigner.71squared.com/
  @since v0.99.3
  */
--(id) initWithFile:(NSString*) plistFile;
+-(instancetype) initWithFile:(NSString*) plistFile;
 
 /** initializes a particle system from a NSDictionary.
  @since v0.99.3
  */
--(id) initWithDictionary:(NSDictionary*)dictionary;
+-(instancetype) initWithDictionary:(NSDictionary*)dictionary;
 
 //! Initializes a system with a fixed number of particles
--(id) initWithTotalParticles:(NSUInteger) numberOfParticles;
+-(instancetype) initWithTotalParticles:(NSUInteger) numberOfParticles NS_DESIGNATED_INITIALIZER;
 //! stop emitting particles. Running particles will continue to run until they die
 -(void) stopSystem;
 //! Kill all living particles.
 -(void) resetSystem;
 //! whether or not the system is full
--(BOOL) isFull;
+@property (NS_NONATOMIC_IOSONLY, getter=isFull, readonly) BOOL full;
 
 //! should be overriden by subclasses
 -(void) updateQuadWithParticle:(tCCParticle*)particle newPosition:(CGPoint)pos;

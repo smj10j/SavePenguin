@@ -179,12 +179,12 @@ typedef struct _hashSelectorEntry
 	return [[[self alloc] initWithTarget:t selector:s interval:i repeat:kCCRepeatForever delay:0] autorelease];
 }
 
--(id) initWithTarget:(id)t selector:(SEL)s
+-(instancetype) initWithTarget:(id)t selector:(SEL)s
 {
 	return [self initWithTarget:t selector:s interval:0 repeat:kCCRepeatForever delay: 0];
 }
 
--(id) initWithTarget:(id)t selector:(SEL)s interval:(ccTime) seconds repeat:(uint) r delay:(ccTime) d
+-(instancetype) initWithTarget:(id)t selector:(SEL)s interval:(ccTime) seconds repeat:(uint) r delay:(ccTime) d
 {
 	if( (self=[super init]) ) {
 #if COCOS2D_DEBUG
@@ -214,7 +214,7 @@ typedef struct _hashSelectorEntry
 
 -(void) cancel
 {
-	[[[CCDirector sharedDirector] scheduler] unscheduleSelector:_selector forTarget:_target];
+	[[CCDirector sharedDirector].scheduler unscheduleSelector:_selector forTarget:_target];
 }
 
 @end
@@ -228,7 +228,7 @@ typedef struct _hashSelectorEntry
 	return [[[self alloc] initWithInterval:seconds repeat:kCCRepeatForever delay:0 key:key block:block] autorelease];
 }
 
--(id) initWithInterval:(ccTime) seconds repeat:(uint) r delay:(ccTime)d key:(NSString*)key block:(void(^)(ccTime delta))block
+-(instancetype) initWithInterval:(ccTime) seconds repeat:(uint) r delay:(ccTime)d key:(NSString*)key block:(void(^)(ccTime delta))block
 {
 	if( (self=[super init]) ) {
 		_block = [block copy];
@@ -281,7 +281,7 @@ typedef struct _hashSelectorEntry
 
 @synthesize timeScale = timeScale_;
 
-- (id) init
+- (instancetype) init
 {
 	if( (self=[super init]) ) {
 		timeScale_ = 1.0f;
@@ -362,9 +362,9 @@ typedef struct _hashSelectorEntry
 	{
 		for( unsigned int i=0; i< element->timers->num; i++ ) {
 			CCTimer *timer = element->timers->arr[i];
-			if( [timer isKindOfClass:[CCTimerTargetSelector class]] && selector == [(CCTimerTargetSelector*)timer selector] ) {
+			if( [timer isKindOfClass:[CCTimerTargetSelector class]] && selector == ((CCTimerTargetSelector*)timer).selector ) {
 				CCLOG(@"CCScheduler#scheduleSelector. Selector already scheduled. Updating interval from: %.4f to %.4f", [timer interval], interval);
-				[timer setInterval: interval];
+				timer.interval = interval;
 				return;
 			}
 		}
@@ -402,9 +402,9 @@ typedef struct _hashSelectorEntry
 	{
 		for( unsigned int i=0; i< element->timers->num; i++ ) {
 			CCTimer *timer = element->timers->arr[i];
-			if( [timer isKindOfClass:[CCTimerBlock class]] && [key isEqualToString:[(CCTimerBlock*)timer key] ] ) {
+			if( [timer isKindOfClass:[CCTimerBlock class]] && [key isEqualToString:((CCTimerBlock*)timer).key ] ) {
 				CCLOG(@"CCScheduler#scheduleBlock. Block already scheduled. Updating interval from: %.4f to %.4f", [timer interval], interval);
-				[timer setInterval: interval];
+				timer.interval = interval;
 				return;
 			}
 		}
@@ -434,7 +434,7 @@ typedef struct _hashSelectorEntry
 			CCTimer *timer = element->timers->arr[i];
 			
 			
-			if( [timer isKindOfClass:[CCTimerTargetSelector class]] && selector == [(CCTimerTargetSelector*)timer selector] ) {
+			if( [timer isKindOfClass:[CCTimerTargetSelector class]] && selector == ((CCTimerTargetSelector*)timer).selector ) {
 				
 				if( timer == element->currentTimer && !element->currentTimerSalvaged ) {
 					[element->currentTimer retain];
@@ -481,7 +481,7 @@ typedef struct _hashSelectorEntry
 			CCTimer *timer = element->timers->arr[i];
 
 
-			if( [timer isKindOfClass:[CCTimerBlock class]] &&  [key isEqualToString: [(CCTimerBlock*)timer key]] ) {
+			if( [timer isKindOfClass:[CCTimerBlock class]] &&  [key isEqualToString: ((CCTimerBlock*)timer).key] ) {
 
 				if( timer == element->currentTimer && !element->currentTimerSalvaged ) {
 					[element->currentTimer retain];

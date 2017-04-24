@@ -48,23 +48,23 @@
 @property (readonly) NSString* imagePath; 
 
 
-+(id) batchWithDictionary:(NSDictionary*)dictionary layer:(LHLayer*)layer;
-+(id) batchWithSheetName:(NSString*)sheetName shFile:(NSString*)spriteHelperFile;
++(instancetype) batchWithDictionary:(NSDictionary*)dictionary layer:(LHLayer*)layer;
++(instancetype) batchWithSheetName:(NSString*)sheetName shFile:(NSString*)spriteHelperFile;
 
 -(void) removeSelf; //will also remove all the children
 
--(LevelHelperLoader*)parentLoader;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) LevelHelperLoader *parentLoader;
 
--(NSString*)shFile;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *shFile;
 
 //if sprite is child of this batch node you can retrieve it
 -(LHSprite*)spriteWithUniqueName:(NSString*)name;
 
--(NSArray*)allSprites;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *allSprites;
 -(NSArray*)spritesWithTag:(int)tag;
 
 //------------------------------------------------------------------------------
--(NSString*)userInfoClassName;
--(id)userInfo;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *userInfoClassName;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) id userInfo;
 
 @end

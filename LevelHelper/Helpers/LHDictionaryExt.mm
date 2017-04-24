@@ -30,34 +30,34 @@
 ////////////////////////////////////////////////////////////////////////////////
 -(float) floatForKey:(NSString*)key{
     
-    NSNumber* val = [self objectForKey:key];
+    NSNumber* val = self[key];
     
     if(nil == val)
         NSLog(@"Float for key %@ is not available", key);
     
-    return [val floatValue]; //if key is not available it will return 0.0f
+    return val.floatValue; //if key is not available it will return 0.0f
 }
 -(int) intForKey:(NSString*)key{
     
-    NSNumber* val = [self objectForKey:key];
+    NSNumber* val = self[key];
     
     if(nil == val)
         NSLog(@"Int for key %@ is not available", key);
     
-    return [val intValue]; //if key is not available it will return 0
+    return val.intValue; //if key is not available it will return 0
 }
 -(bool) boolForKey:(NSString*)key{
-    NSNumber* val = [self objectForKey:key];
+    NSNumber* val = self[key];
     
     if(nil == val)
     {
         NSLog(@"Bool for key %@ is not available", key);
     }
     
-    return [val boolValue]; //if key is not available it will return false
+    return val.boolValue; //if key is not available it will return false
 }
 -(CGPoint) pointForKey:(NSString*)key{
-    NSString* val = [self objectForKey:key];
+    NSString* val = self[key];
     
     if(nil == val)
     {
@@ -69,7 +69,7 @@
 }
 -(CGRect) rectForKey:(NSString*)key{
     
-    NSString* val = [self objectForKey:key];
+    NSString* val = self[key];
     
     if(nil == val)
     {
@@ -80,7 +80,7 @@
     return LHRectFromString(val);
 }
 -(CGSize) sizeForKey:(NSString*)key{
-    NSString* val = [self objectForKey:key];
+    NSString* val = self[key];
     
     if(nil == val)
     {
@@ -93,7 +93,7 @@
 }
 -(ccColor3B) colorForKey:(NSString*)key{
 
-    NSString* val = [self objectForKey:key];
+    NSString* val = self[key];
     
     if(nil == val)
     {
@@ -107,7 +107,7 @@
 
 -(NSString*)stringForKey:(id)key{
 
-    NSString* str = [self objectForKey:key];
+    NSString* str = self[key];
     
     if(nil == str){
         NSLog(@"NSString for key %@ is not available", key);

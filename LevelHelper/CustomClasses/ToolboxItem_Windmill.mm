@@ -40,20 +40,20 @@ return NSStringFromClass([self class]);
 -(void) setPropertiesFromDictionary:(NSDictionary*)dictionary
 {
 
-	if([dictionary objectForKey:@"reach"])
-		[self setReach:[[dictionary objectForKey:@"reach"] floatValue]];
+	if(dictionary[@"reach"])
+		self.reach = [dictionary[@"reach"] floatValue];
 
-	if([dictionary objectForKey:@"power"])
-		[self setPower:[[dictionary objectForKey:@"power"] floatValue]];
+	if(dictionary[@"power"])
+		self.power = [dictionary[@"power"] floatValue];
 
-	if([dictionary objectForKey:@"runningCost"])
-		[self setRunningCost:[[dictionary objectForKey:@"runningCost"] floatValue]];
+	if(dictionary[@"runningCost"])
+		self.runningCost = [dictionary[@"runningCost"] floatValue];
 
-	if([dictionary objectForKey:@"scale"])
-		[self setScale:[[dictionary objectForKey:@"scale"] floatValue]];
+	if(dictionary[@"scale"])
+		self.scale = [dictionary[@"scale"] floatValue];
 
-	if([dictionary objectForKey:@"placeCost"])
-		[self setPlaceCost:[[dictionary objectForKey:@"placeCost"] floatValue]];
+	if(dictionary[@"placeCost"])
+		self.placeCost = [dictionary[@"placeCost"] floatValue];
 
 }
 

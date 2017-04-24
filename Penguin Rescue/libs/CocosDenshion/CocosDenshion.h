@@ -148,26 +148,24 @@ typedef struct _sourceInfo {
 
 @protocol CDAudioTransportProtocol <NSObject>
 /** Play the audio */
--(BOOL) play;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL play;
 /** Pause the audio, retain resources */
--(BOOL) pause;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL pause;
 /** Stop the audio, release resources */
--(BOOL) stop;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL stop;
 /** Return playback to beginning */
--(BOOL) rewind;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL rewind;
 @end
 
 #pragma mark CDAudioInterruptProtocol
 
 @protocol CDAudioInterruptProtocol <NSObject>
 /** Is audio mute */
--(BOOL) mute;
+@property (NS_NONATOMIC_IOSONLY) BOOL mute;
 /** If YES then audio is silenced but not stopped, calls to start new audio will proceed but silently */
--(void) setMute:(BOOL) muteValue;
 /** Is audio enabled */
--(BOOL) enabled;
+@property (NS_NONATOMIC_IOSONLY) BOOL enabled;
 /** If NO then all audio is stopped and any calls to start new audio will be ignored */
--(void) setEnabled:(BOOL) enabledValue;
 @end
 
 #pragma mark CDUtilities
@@ -240,7 +238,7 @@ typedef struct _sourceInfo {
 +(void) setMixerSampleRate:(Float32) sampleRate;
 
 /** Initializes the engine with a group definition and a total number of groups */
--(id)init;
+-(instancetype)init;
 
 /** Plays a sound in a channel group with a pitch, pan and gain. The sound could played looped or not */
 -(ALuint) playSound:(int) soundId sourceGroupId:(int)sourceGroupId pitch:(float) pitch pan:(float) pan gain:(float) gain loop:(BOOL) loop;
@@ -264,7 +262,7 @@ typedef struct _sourceInfo {
 -(BOOL) loadBuffer:(int) soundId filePath:(NSString*) filePath;
 -(void) loadBuffersAsynchronously:(NSArray *) loadRequests;
 -(BOOL) unloadBuffer:(int) soundId;
--(ALCcontext *) openALContext;
+@property (NS_NONATOMIC_IOSONLY, readonly) ALCcontext *openALContext;
 
 /** Returns the duration of the buffer in seconds or a negative value if the buffer id is invalid */
 -(float) bufferDurationInSeconds:(int) soundId;
@@ -309,7 +307,7 @@ typedef struct _sourceInfo {
 /** Stores the last error code that occurred. Check against AL_NO_ERROR */
 @property (readonly) ALenum lastError;
 /** Do not init yourself, get an instance from the sourceForSound factory method on CDSoundEngine */
--(id)init:(ALuint) theSourceId sourceIndex:(int) index soundEngine:(CDSoundEngine*) engine;
+-(instancetype)init:(ALuint) theSourceId sourceIndex:(int) index soundEngine:(CDSoundEngine*) engine NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -337,7 +335,7 @@ typedef struct _sourceInfo {
 	CDSoundEngine *_soundEngine;
 }
 
--(id) init:(NSArray *)loadRequests soundEngine:(CDSoundEngine *) theSoundEngine;
+-(instancetype) init:(NSArray *)loadRequests soundEngine:(CDSoundEngine *) theSoundEngine NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -354,15 +352,15 @@ typedef struct _sourceInfo {
 @property (readonly) NSString *filePath;
 @property (readonly) int soundId;
 
-- (id)init:(int) theSoundId filePath:(const NSString *) theFilePath;
+- (instancetype)init:(int) theSoundId filePath:(const NSString *) theFilePath NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Interpolation type */
-typedef enum {
+typedef NS_ENUM(unsigned int, tCDInterpolationType) {
 	kIT_Linear,			//!Straight linear interpolation fade
 	kIT_SCurve,			//!S curved interpolation
 	kIT_Exponential 	//!Exponential interpolation
-} tCDInterpolationType;
+};
 
 #pragma mark CDFloatInterpolator
 @interface CDFloatInterpolator: NSObject
@@ -379,7 +377,7 @@ typedef enum {
 /** Return a value between min and max based on t which represents fractional progress where 0 is the start
  and 1 is the end */
 -(float) interpolate:(float) t;
--(id) init:(tCDInterpolationType) type startVal:(float) startVal endVal:(float) endVal;
+-(instancetype) init:(tCDInterpolationType) type startVal:(float) startVal endVal:(float) endVal NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -400,14 +398,14 @@ typedef enum {
 @property (readwrite, nonatomic) float endValue;
 @property (readwrite, nonatomic) tCDInterpolationType interpolationType;
 
--(id) init:(id) theTarget interpolationType:(tCDInterpolationType) type startVal:(float) startVal endVal:(float) endVal;
+-(instancetype) init:(id) theTarget interpolationType:(tCDInterpolationType) type startVal:(float) startVal endVal:(float) endVal NS_DESIGNATED_INITIALIZER;
 /** Set to a fractional value between 0 and 1 where 0 equals the start and 1 equals the end*/
 -(void) modify:(float) t;
 
 -(void) _setTargetProperty:(float) newVal;
--(float) _getTargetProperty;
+@property (NS_NONATOMIC_IOSONLY, readonly) float _getTargetProperty;
 -(void) _stopTarget;
--(Class) _allowableType;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) Class _allowableType;
 
 @end
 

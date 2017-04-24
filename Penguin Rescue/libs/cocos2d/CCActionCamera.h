@@ -69,7 +69,7 @@
 /** creates a CCOrbitCamera action with radius, delta-radius,  z, deltaZ, x, deltaX */
 +(id) actionWithDuration:(float) t radius:(float)r deltaRadius:(float) dr angleZ:(float)z deltaAngleZ:(float)dz angleX:(float)x deltaAngleX:(float)dx;
 /** initializes a CCOrbitCamera action with radius, delta-radius,  z, deltaZ, x, deltaX */
--(id) initWithDuration:(float) t radius:(float)r deltaRadius:(float) dr angleZ:(float)z deltaAngleZ:(float)dz angleX:(float)x deltaAngleX:(float)dx;
+-(instancetype) initWithDuration:(float) t radius:(float)r deltaRadius:(float) dr angleZ:(float)z deltaAngleZ:(float)dz angleX:(float)x deltaAngleX:(float)dx NS_DESIGNATED_INITIALIZER;
 /** positions the camera according to spherical coordinates */
 -(void) sphericalRadius:(float*) r zenith:(float*) zenith azimuth:(float*) azimuth;
 @end

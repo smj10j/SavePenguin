@@ -71,7 +71,7 @@
 #endif
 }
 ////////////////////////////////////////////////////////////////////////////////
-- (id)init
+- (instancetype)init
 {
 	self = [super init];
 	if (self != nil) {
@@ -95,7 +95,7 @@
         isCoronaUser = false;
         preloadBatchNodes = false;
         
-        [self setSafeFrame:CGSizeMake(480, 320)]; //universal
+        self.safeFrame = CGSizeMake(480, 320); //universal
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         [self setConvertRatio:CGPointMake(winSize.width/safeFrame.width,
                                           winSize.height/safeFrame.height)];
@@ -107,7 +107,7 @@
         hdSuffix = [[NSMutableString alloc] initWithString:@"-hd"];
         hd2xSuffix = [[NSMutableString alloc] initWithString:@"-ipadhd"];
         
-        [self setDevice:2];//universal
+        self.device = 2;//universal
 	}
 	return self;
 }
@@ -203,19 +203,19 @@
 -(NSString*)imagePath:(NSString*)file 
 {
     NSString* computedFile = file;
-    if([self isIpad] && [self useHDOnIpad])
+    if([self isIpad] && self.useHDOnIpad)
     {   
         if(device != 1 && device != 3)//if ipad only then we dont need to apply transformations
         {
             if(CC_CONTENT_SCALE_FACTOR() == 2)
             {
                 //we have ipad retina
-                computedFile = [NSString stringWithFormat:@"%@%@.%@", [file stringByDeletingPathExtension], hd2xSuffix, [file pathExtension]];
+                computedFile = [NSString stringWithFormat:@"%@%@.%@", file.stringByDeletingPathExtension, hd2xSuffix, file.pathExtension];
                 
             }
             else {
                 //we have normal ipad - lets use the HD image
-                computedFile = [NSString stringWithFormat:@"%@%@.%@", [file stringByDeletingPathExtension], hdSuffix, [file pathExtension]];
+                computedFile = [NSString stringWithFormat:@"%@%@.%@", file.stringByDeletingPathExtension, hdSuffix, file.pathExtension];
             }
         }
 //computedFile = [computedFile lastPathComponent];
@@ -238,7 +238,7 @@
 -(CGPoint) transformedScalePointToCocos2d:(CGPoint)point{
     
     CGPoint ratio = [self convertRatio];
-    if([self isIpad] && [self useHDOnIpad] && device != 1 && device != 3)
+    if([self isIpad] && self.useHDOnIpad && device != 1 && device != 3)
     {
         ratio.x /= 2.0f;
         ratio.y /= 2.0f;
@@ -252,7 +252,7 @@
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     CGPoint pos_offset = [self possitionOffset];
-    CGPoint user_offset = [self userOffset];
+    CGPoint user_offset = self.userOffset;
     CGPoint  wbConv = [self convertRatio];
     
     point.x += pos_offset.x/2.0f;

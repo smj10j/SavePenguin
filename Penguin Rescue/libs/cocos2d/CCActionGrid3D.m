@@ -41,7 +41,7 @@
 	return [[[self alloc] initWithWaves:wav amplitude:amp grid:gridSize duration:d] autorelease];
 }
 
--(id)initWithWaves:(int)wav amplitude:(float)amp grid:(ccGridSize)gSize duration:(ccTime)d
+-(instancetype)initWithWaves:(int)wav amplitude:(float)amp grid:(ccGridSize)gSize duration:(ccTime)d
 {
 	if ( (self = [super initWithSize:gSize duration:d]) )
 	{
@@ -88,12 +88,12 @@
 	return [[[self alloc] initWithSize:ccg(1,1) duration:d] autorelease];
 }
 
--(id) initWithDuration:(ccTime)d
+-(instancetype) initWithDuration:(ccTime)d
 {
 	return [super initWithSize:ccg(1,1) duration:d];
 }
 
--(id)initWithSize:(ccGridSize)gSize duration:(ccTime)d
+-(instancetype)initWithSize:(ccGridSize)gSize duration:(ccTime)d
 {
 	if ( gSize.x != 1 || gSize.y != 1 )
 	{
@@ -263,7 +263,7 @@
 	return [[[self alloc] initWithPosition:pos radius:r grid:gridSize duration:d] autorelease];
 }
 
--(id)initWithPosition:(CGPoint)pos radius:(float)r grid:(ccGridSize)gSize duration:(ccTime)d
+-(instancetype)initWithPosition:(CGPoint)pos radius:(float)r grid:(ccGridSize)gSize duration:(ccTime)d
 {
 	if ( (self = [super initWithSize:gSize duration:d]) )
 	{
@@ -351,7 +351,7 @@
 	return [[[self alloc] initWithPosition:pos radius:r waves:wav amplitude:amp grid:gridSize duration:d] autorelease];
 }
 
--(id)initWithPosition:(CGPoint)pos radius:(float)r waves:(int)wav amplitude:(float)amp grid:(ccGridSize)gSize duration:(ccTime)d
+-(instancetype)initWithPosition:(CGPoint)pos radius:(float)r waves:(int)wav amplitude:(float)amp grid:(ccGridSize)gSize duration:(ccTime)d
 {
 	if ( (self = [super initWithSize:gSize duration:d]) )
 	{
@@ -420,7 +420,7 @@
 	return [[[self alloc] initWithRange:range shakeZ:sz grid:gridSize duration:d] autorelease];
 }
 
--(id)initWithRange:(int)range shakeZ:(BOOL)sz grid:(ccGridSize)gSize duration:(ccTime)d
+-(instancetype)initWithRange:(int)range shakeZ:(BOOL)sz grid:(ccGridSize)gSize duration:(ccTime)d
 {
 	if ( (self = [super initWithSize:gSize duration:d]) )
 	{
@@ -473,7 +473,7 @@
 	return [[[self alloc] initWithWaves:wav amplitude:amp grid:gridSize duration:d] autorelease];
 }
 
--(id)initWithWaves:(int)wav amplitude:(float)amp grid:(ccGridSize)gSize duration:(ccTime)d
+-(instancetype)initWithWaves:(int)wav amplitude:(float)amp grid:(ccGridSize)gSize duration:(ccTime)d
 {
 	if ( (self = [super initWithSize:gSize duration:d]) )
 	{
@@ -524,7 +524,7 @@
 	return [[[self alloc] initWithWaves:wav amplitude:amp horizontal:h vertical:v grid:gridSize duration:d] autorelease];
 }
 
--(id)initWithWaves:(int)wav amplitude:(float)amp horizontal:(BOOL)h vertical:(BOOL)v grid:(ccGridSize)gSize duration:(ccTime)d
+-(instancetype)initWithWaves:(int)wav amplitude:(float)amp horizontal:(BOOL)h vertical:(BOOL)v grid:(ccGridSize)gSize duration:(ccTime)d
 {
 	if ( (self = [super initWithSize:gSize duration:d]) )
 	{
@@ -582,7 +582,7 @@
 	return [[[self alloc] initWithPosition:pos twirls:t amplitude:amp grid:gridSize duration:d] autorelease];
 }
 
--(id)initWithPosition:(CGPoint)pos twirls:(int)t amplitude:(float)amp grid:(ccGridSize)gSize duration:(ccTime)d
+-(instancetype)initWithPosition:(CGPoint)pos twirls:(int)t amplitude:(float)amp grid:(ccGridSize)gSize duration:(ccTime)d
 {
 	if ( (self = [super initWithSize:gSize duration:d]) )
 	{

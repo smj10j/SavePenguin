@@ -29,12 +29,12 @@
 /** Types of progress
  @since v0.99.1
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, CCProgressTimerType) {
 	/// Radial Counter-Clockwise
 	kCCProgressTimerTypeRadial,
 	/// Bar
 	kCCProgressTimerTypeBar,
-} CCProgressTimerType;
+};
 
 /**
  CCProgresstimer is a subclass of CCNode.
@@ -90,5 +90,5 @@ typedef enum {
 /** Creates a progress timer with the sprite as the shape the timer goes through */
 + (id) progressWithSprite:(CCSprite*) sprite;
 /** Initializes a progress timer with the sprite as the shape the timer goes through */
-- (id) initWithSprite:(CCSprite*) sprite;
+- (instancetype) initWithSprite:(CCSprite*) sprite NS_DESIGNATED_INITIALIZER;
 @end

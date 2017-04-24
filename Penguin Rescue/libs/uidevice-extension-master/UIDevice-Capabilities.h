@@ -98,6 +98,6 @@
 @interface UIDevice (Capabilities)
 - (BOOL) supportsCapability: (NSString *) capability;
 - (id) fetchCapability: (NSString *) capability;
-- (NSArray *) capabilityArray;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *capabilityArray;
 - (void) scanCapabilities;
 @end

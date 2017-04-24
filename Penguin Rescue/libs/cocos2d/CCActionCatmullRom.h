@@ -47,10 +47,10 @@
 @property (nonatomic,readwrite,retain) NSMutableArray *controlPoints;
 
 /** creates and initializes a Points array with capacity */
- +(id) arrayWithCapacity:(NSUInteger)capacity;
+ +(instancetype) arrayWithCapacity:(NSUInteger)capacity;
 
 /** initializes a Catmull Rom config with a capacity hint */
--(id) initWithCapacity:(NSUInteger)capacity;
+-(instancetype) initWithCapacity:(NSUInteger)capacity NS_DESIGNATED_INITIALIZER;
 
 /** appends a control point */
 -(void) addControlPoint:(CGPoint)controlPoint;
@@ -68,10 +68,10 @@
 -(void) removeControlPointAtIndex:(NSUInteger)index;
 
 /** returns the number of objects of the control point array */
--(NSUInteger) count;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger count;
 
 /** returns a new copy of the array reversed. User is responsible for releasing this copy */
--(CCPointArray*) reverse;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) CCPointArray *reverse;
 
 /** reverse the current control point array inline, without generating a new one */
 -(void) reverseInline;
@@ -94,7 +94,7 @@
 +(id) actionWithDuration:(ccTime)duration points:(CCPointArray*)points tension:(CGFloat)tension;
 
 /** initializes the action with a duration and an array of points */
--(id) initWithDuration:(ccTime)duration points:(CCPointArray*)points tension:(CGFloat)tension;
+-(instancetype) initWithDuration:(ccTime)duration points:(CCPointArray*)points tension:(CGFloat)tension NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -120,7 +120,7 @@
 +(id) actionWithDuration:(ccTime)dt points:(CCPointArray*)points;
 
 /** initializes the action with a duration and an array of points */
--(id) initWithDuration:(ccTime)dt points:(CCPointArray*)points;
+-(instancetype) initWithDuration:(ccTime)dt points:(CCPointArray*)points NS_DESIGNATED_INITIALIZER;
 @end
 
 /** An action that moves the target with a CatmullRom curve by a certain distance.
@@ -134,7 +134,7 @@
 +(id) actionWithDuration:(ccTime)dt points:(CCPointArray*)points;
 
 /** initializes the action with a duration and an array of points */
--(id) initWithDuration:(ccTime)dt points:(CCPointArray*)points;
+-(instancetype) initWithDuration:(ccTime)dt points:(CCPointArray*)points NS_DESIGNATED_INITIALIZER;
 @end
 
 #ifdef __cplusplus

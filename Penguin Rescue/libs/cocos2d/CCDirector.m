@@ -128,7 +128,7 @@ static CCDirector *_sharedDirector = nil;
 	return [super alloc];
 }
 
-- (id) init
+- (instancetype) init
 {
 	CCLOG(@"cocos2d: %@", cocos2dVersion() );
 
@@ -205,7 +205,7 @@ static CCDirector *_sharedDirector = nil;
 
 	[self setAlphaBlending: YES];
 	[self setDepthTest: view_.depthFormat];
-	[self setProjection: projection_];
+	self.projection = projection_;
 
 	// set other opengl default values
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -307,13 +307,13 @@ static CCDirector *_sharedDirector = nil;
 	if( view != view_ ) {
 	
 #ifdef __CC_PLATFORM_IOS
-		[super setView:view];
+		super.view = view;
 #endif
 		[view_ release];
 		view_ = [view retain];
 
 		// set size
-		winSizeInPixels_ = winSizeInPoints_ = CCNSSizeToCGSize( [view_ bounds].size );
+		winSizeInPixels_ = winSizeInPoints_ = CCNSSizeToCGSize( view_.bounds.size );
 
 		[self createStatsLabel];
 		
@@ -358,7 +358,7 @@ static CCDirector *_sharedDirector = nil;
 -(void) reshapeProjection:(CGSize)newWindowSize
 {
 	winSizeInPixels_ = winSizeInPoints_ = newWindowSize;
-	[self setProjection:projection_];
+	self.projection = projection_;
 }
 
 #pragma mark Director Scene Management
@@ -377,10 +377,10 @@ static CCDirector *_sharedDirector = nil;
 	NSAssert( runningScene_, @"Use runWithScene: instead to start the director");
 	NSAssert( scene != nil, @"Argument must be non-nil");
 
-	NSUInteger index = [scenesStack_ count];
+	NSUInteger index = scenesStack_.count;
 
 	sendCleanupToScene_ = YES;
-	[scenesStack_ replaceObjectAtIndex:index-1 withObject:scene];
+	scenesStack_[index-1] = scene;
 	nextScene_ = scene;	// nextScene_ is a weak ref
 }
 
@@ -399,28 +399,28 @@ static CCDirector *_sharedDirector = nil;
 	NSAssert( runningScene_ != nil, @"A running Scene is needed");
 
 	[scenesStack_ removeLastObject];
-	NSUInteger c = [scenesStack_ count];
+	NSUInteger c = scenesStack_.count;
 
 	if( c == 0 )
 		[self end];
 	else {
 		sendCleanupToScene_ = YES;
-		nextScene_ = [scenesStack_ objectAtIndex:c-1];
+		nextScene_ = scenesStack_[c-1];
 	}
 }
 
 -(void) popToRootScene
 {
 	NSAssert(runningScene_ != nil, @"A running Scene is needed");
-	NSUInteger c = [scenesStack_ count];
+	NSUInteger c = scenesStack_.count;
 	
 	if (c == 1) {
 		[scenesStack_ removeLastObject];
 		[self end];
 	} else {
 		while (c > 1) {
-			CCScene *current = [scenesStack_ lastObject];
-			if( [current isRunning] ){
+			CCScene *current = scenesStack_.lastObject;
+			if( current.isRunning ){
 				[current onExitTransitionDidStart];
 				[current onExit];
 			}
@@ -429,7 +429,7 @@ static CCDirector *_sharedDirector = nil;
 			[scenesStack_ removeLastObject];
 			c--;
 		}
-		nextScene_ = [scenesStack_ lastObject];
+		nextScene_ = scenesStack_.lastObject;
 		sendCleanupToScene_ = NO;
 	}
 }
@@ -519,7 +519,7 @@ static CCDirector *_sharedDirector = nil;
 	oldAnimationInterval_ = animationInterval_;
 
 	// when paused, don't consume CPU
-	[self setAnimationInterval:1/4.0];
+	self.animationInterval = 1/4.0;
 	
 	[self willChangeValueForKey:@"isPaused"];
 	isPaused_ = YES;
@@ -531,7 +531,7 @@ static CCDirector *_sharedDirector = nil;
 	if( ! isPaused_ )
 		return;
 
-	[self setAnimationInterval: oldAnimationInterval_];
+	self.animationInterval = oldAnimationInterval_;
 
 	if( gettimeofday( &lastUpdate_, NULL) != 0 ) {
 		CCLOG(@"cocos2d: Director: Error in gettimeofday");
@@ -633,8 +633,8 @@ static CCDirector *_sharedDirector = nil;
 
 	[CCTexture2D setDefaultAlphaPixelFormat:currentFormat];
 
-	[drawsLabel_ setPosition: ccpAdd( ccp(0,34), CC_DIRECTOR_STATS_POSITION ) ];
-	[SPFLabel_ setPosition: ccpAdd( ccp(0,17), CC_DIRECTOR_STATS_POSITION ) ];
+	drawsLabel_.position = ccpAdd( ccp(0,34), CC_DIRECTOR_STATS_POSITION ) ;
+	SPFLabel_.position = ccpAdd( ccp(0,17), CC_DIRECTOR_STATS_POSITION ) ;
 	[FPSLabel_ setPosition: CC_DIRECTOR_STATS_POSITION ];
 }
 

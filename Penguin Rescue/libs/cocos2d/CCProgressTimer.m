@@ -67,13 +67,13 @@ const char kCCProgressTextureCoords = 0x4b;
 	return [[[self alloc]initWithSprite:sprite] autorelease];
 }
 
--(id) init
+-(instancetype) init
 {
 	return [self initWithSprite:nil];
 }
 
 // designated initializer
--(id)initWithSprite:(CCSprite*) sprite
+-(instancetype)initWithSprite:(CCSprite*) sprite
 {
 	if(( self = [super init] )){
 		percentage_ = 0.f;
@@ -235,7 +235,7 @@ const char kCCProgressTextureCoords = 0x4b;
 
 -(void)setAnchorPoint:(CGPoint)anchorPoint
 {
-	[super setAnchorPoint:anchorPoint];
+	super.anchorPoint = anchorPoint;
 }
 
 -(CGPoint) midpoint

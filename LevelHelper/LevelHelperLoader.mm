@@ -35,7 +35,7 @@
 -(void)setTagTouchBeginObserver:(LHObserverPair*)pair;
 -(void)setTagTouchMovedObserver:(LHObserverPair*)pair;
 -(void)setTagTouchEndedObserver:(LHObserverPair*)pair;
--(bool)pathDefaultStartAtLaunch;
+@property (NS_NONATOMIC_IOSONLY, readonly) bool pathDefaultStartAtLaunch;
 @end
 @implementation LHSprite (LH_SPRITE_LOADER_PARENT)
 -(void)setTagTouchBeginObserver:(LHObserverPair*)pair{
@@ -96,7 +96,7 @@ CGSize  LHSizeFromString(NSString* val){
     return CGSizeFromString(val);
 }
 CGPoint LHPointFromValue(NSValue* val){
-    return [val CGPointValue];
+    return val.CGPointValue;
 }
 NSValue* LHValueWithCGPoint(CGPoint pt){
     return [NSValue valueWithCGPoint:pt];
@@ -166,10 +166,10 @@ CGSize  LHSizeFromString(NSString* val){
     
     imageFolder = [[NSMutableString alloc] init];
     
-	[[LHSettings sharedInstance] setLhPtmRatio:32.0f];
+	[LHSettings sharedInstance].lhPtmRatio = 32.0f;
 }
 ////////////////////////////////////////////////////////////////////////////////
--(id) initWithContentOfFile:(NSString*)levelFile
+-(instancetype) initWithContentOfFile:(NSString*)levelFile
 {
 	NSAssert(nil!=levelFile, @"Invalid file given to LevelHelperLoader");
 	if(!(self = [super init])){
@@ -183,7 +183,7 @@ CGSize  LHSizeFromString(NSString* val){
 	return self;
 }
 ////////////////////////////////////////////////////////////////////////////////
--(id) initWithContentOfFileFromInternet:(NSString*)webAddress
+-(instancetype) initWithContentOfFileFromInternet:(NSString*)webAddress
 {
 	NSAssert(nil!=webAddress, @"Invalid file given to LevelHelperLoader");
 	
@@ -198,7 +198,7 @@ CGSize  LHSizeFromString(NSString* val){
 	return self;
 }
 ////////////////////////////////////////////////////////////////////////////////
--(id) initWithContentOfFile:(NSString*)levelFile 
+-(instancetype) initWithContentOfFile:(NSString*)levelFile 
 			 levelSubfolder:(NSString*)levelFolder
 {
 	NSAssert(nil!=levelFile, @"Invalid file given to LevelHelperLoader");
@@ -226,12 +226,12 @@ CGSize  LHSizeFromString(NSString* val){
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [loadingProgressId performSelector:loadingProgressSel 
-                                withObject:[NSNumber numberWithFloat:val]];
+                                withObject:@(val)];
 #pragma clang diagnostic pop
     }
 }
 ////////////////////////////////////////////////////////////////////////////////
--(id) initWithContentOfFileAtURL:(NSURL*)levelURL imagesPath:(NSString*)imgFolder
+-(instancetype) initWithContentOfFileAtURL:(NSURL*)levelURL imagesPath:(NSString*)imgFolder
 {
     NSAssert(nil!=levelURL, @"Invalid URL given to LevelHelperLoader");
 	
@@ -247,7 +247,7 @@ CGSize  LHSizeFromString(NSString* val){
 	return self;	
 
 }
--(id) initWithContentOfDictionary:(NSDictionary*)levelDictionary
+-(instancetype) initWithContentOfDictionary:(NSDictionary*)levelDictionary
 					  imageFolder:(NSString*)imgFolder;
 {
 	NSAssert(nil!=levelDictionary, @"Invalid dictionary given to LevelHelperLoader");
@@ -307,10 +307,10 @@ CGSize  LHSizeFromString(NSString* val){
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 +(bool)isPaused{
-    return [[LHSettings sharedInstance] levelPaused];
+    return [LHSettings sharedInstance].levelPaused;
 }
 +(void)setPaused:(bool)value{
-    [[LHSettings sharedInstance] setLevelPaused:value];    
+    [LHSettings sharedInstance].levelPaused = value;    
 }
 
 -(bool)isPaused{
@@ -337,7 +337,7 @@ CGSize  LHSizeFromString(NSString* val){
     
     NSArray* allParallaxes = [self allParallaxes];
     for(LHParallaxNode* node in allParallaxes){
-        [node setPaused:paused];
+        node.paused = paused;
     }
 }
 
@@ -345,7 +345,7 @@ CGSize  LHSizeFromString(NSString* val){
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 +(void) loadLevelsWithOffset:(CGPoint)offset{
-    [[LHSettings sharedInstance] setUserOffset:offset];
+    [LHSettings sharedInstance].userOffset = offset;
 }
 +(void) dontStretchArt{
     [[LHSettings sharedInstance] setStretchArt:false];
@@ -354,15 +354,15 @@ CGSize  LHSizeFromString(NSString* val){
     [[LHSettings sharedInstance] setStretchArt:false];
 }
 +(void) useRetinaOnIpad:(bool)useRet{
-    [[LHSettings sharedInstance] setUseHDOnIpad:useRet];
+    [LHSettings sharedInstance].useHDOnIpad = useRet;
 }
 +(void) useHDonIpad:(bool)useHD{
-    [[LHSettings sharedInstance] setUseHDOnIpad:useHD];
+    [LHSettings sharedInstance].useHDOnIpad = useHD;
 }
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 -(LHLayer*)layerWithUniqueName:(NSString*)name{
-    if([[mainLHLayer uniqueName] isEqualToString:name])
+    if([mainLHLayer.uniqueName isEqualToString:name])
         return mainLHLayer;
     return [mainLHLayer layerWithUniqueName:name];
 }
@@ -376,7 +376,7 @@ CGSize  LHSizeFromString(NSString* val){
     return [mainLHLayer bezierWithUniqueName:name];
 }
 -(LHJoint*) jointWithUniqueName:(NSString*)name{
-    return [jointsInLevel objectForKey:name];
+    return jointsInLevel[name];
 }
 //------------------------------------------------------------------------------
 -(NSArray*)allLayers{
@@ -395,12 +395,12 @@ CGSize  LHSizeFromString(NSString* val){
     return [mainLHLayer allBeziers];
 }
 -(NSArray*) allJoints{
-    return [jointsInLevel allValues];
+    return jointsInLevel.allValues;
 }
 //------------------------------------------------------------------------------
 -(NSArray*)layersWithTag:(enum LevelHelper_TAG)tag{
     NSMutableArray* array = [NSMutableArray array];
-    if(tag == [mainLHLayer tag])
+    if(tag == mainLHLayer.tag)
         [array addObject:mainLHLayer];
     [array addObjectsFromArray:[mainLHLayer layersWithTag:tag]];
     return array;    
@@ -416,9 +416,9 @@ CGSize  LHSizeFromString(NSString* val){
 }
 -(NSArray*) jointsWithTag:(enum LevelHelper_TAG)tag{
     NSMutableArray* jointsWithTag = [NSMutableArray array];
-	NSArray* joints = [jointsInLevel allValues];
+	NSArray* joints = jointsInLevel.allValues;
 	for(LHJoint* jt in joints){
-        if([jt tag] == tag){
+        if(jt.tag == tag){
             [jointsWithTag addObject:jt];
         }
 	}
@@ -458,7 +458,7 @@ CGSize  LHSizeFromString(NSString* val){
 -(NSDictionary*)dictionaryInfoForSpriteNodeNamed:(NSString*)name 
                                     inDictionary:(NSDictionary*)dict{
         
-    NSArray* children = [dict objectForKey:@"Children"];
+    NSArray* children = dict[@"Children"];
     
     if(nil != children)
     {
@@ -500,13 +500,13 @@ CGSize  LHSizeFromString(NSString* val){
                                                              inDictionary:dictionary];
         if(spriteInfo){
             
-            NSDictionary* texDict = [spriteInfo objectForKey:@"TextureProperties"];
+            NSDictionary* texDict = spriteInfo[@"TextureProperties"];
             int tag = [texDict intForKey:@"Tag"];
             Class spriteClass = [[LHCustomSpriteMgr sharedInstance] customSpriteClassForTag:(LevelHelper_TAG)tag];
             LHSprite* spr = [spriteClass spriteWithDictionary:spriteInfo];
             if(spr && node){
-                [node addChild:spr z:[spr zOrder]];
-                [LevelHelperLoader setTouchDispatcherForObject:spr tag:(int)[spr tag]];
+                [node addChild:spr z:spr.zOrder];
+                [LevelHelperLoader setTouchDispatcherForObject:spr tag:(int)spr.tag];
                 [spr postInit];
             }
             return spr;
@@ -527,13 +527,13 @@ CGSize  LHSizeFromString(NSString* val){
         if(spriteInfo){
             LHBatch* batch = [self batchWithUniqueName:[spriteInfo stringForKey:@"ParentName"]];
             if(batch){                
-                NSDictionary* texDict = [spriteInfo objectForKey:@"TextureProperties"];
+                NSDictionary* texDict = spriteInfo[@"TextureProperties"];
                 int tag = [texDict intForKey:@"Tag"];
                 Class spriteClass = [[LHCustomSpriteMgr sharedInstance] customSpriteClassForTag:(LevelHelper_TAG)tag];
                 LHSprite* spr = [spriteClass batchSpriteWithDictionary:spriteInfo batch:batch];
                 
                 if(spr)
-                    [LevelHelperLoader setTouchDispatcherForObject:spr tag:(int)[spr tag]];
+                    [LevelHelperLoader setTouchDispatcherForObject:spr tag:(int)spr.tag];
                     [spr postInit];
                 return spr;
             }
@@ -605,8 +605,8 @@ CGSize  LHSizeFromString(NSString* val){
         LHSprite* sprite = [spriteClass spriteWithDictionary:dictionary];
         
         if(sprite){
-            [sprite setTag:tag];
-            [LevelHelperLoader setTouchDispatcherForObject:sprite tag:(int)[sprite tag]];
+            sprite.tag = tag;
+            [LevelHelperLoader setTouchDispatcherForObject:sprite tag:(int)sprite.tag];
             
             if(node){
                 [node addChild:sprite];
@@ -671,8 +671,8 @@ CGSize  LHSizeFromString(NSString* val){
             Class spriteClass = [[LHCustomSpriteMgr sharedInstance] customSpriteClassForTag:(LevelHelper_TAG)tag];            
             LHSprite* spr = [spriteClass batchSpriteWithDictionary:dictionary batch:batch];
             if(spr){
-                [spr setTag:tag];
-                [LevelHelperLoader setTouchDispatcherForObject:spr tag:(int)[spr tag]];
+                spr.tag = tag;
+                [LevelHelperLoader setTouchDispatcherForObject:spr tag:(int)spr.tag];
                 [spr postInit];
             }
             return spr;
@@ -793,10 +793,10 @@ CGSize  LHSizeFromString(NSString* val){
     [[LHCuttingEngineMgr sharedInstance] destroyAllPrevioslyCutSprites];
 #endif
 
-    NSArray* keys = [parallaxesInLevel allKeys];
+    NSArray* keys = parallaxesInLevel.allKeys;
     for(NSString* key in keys)
     {
-        LHParallaxNode* node = [parallaxesInLevel objectForKey:key];
+        LHParallaxNode* node = parallaxesInLevel[key];
         
         NSLog(@"SHOULD REMOVE PARALLAX %@", [node uniqueName]);
         
@@ -858,7 +858,7 @@ CGSize  LHSizeFromString(NSString* val){
 //PHYSIC BOUNDARIES
 ////////////////////////////////////////////////////////////////////////////////
 -(b2Body*)physicBoundarieForKey:(NSString*)key{
-    LHNode* spr = [physicBoundariesInLevel objectForKey:key];
+    LHNode* spr = physicBoundariesInLevel[key];
     if(nil == spr)
         return 0;
     return [spr body];
@@ -868,7 +868,7 @@ CGSize  LHSizeFromString(NSString* val){
     return [self physicBoundarieForKey:@"LHPhysicBoundarieLeft"];
 }
 -(LHNode*) leftPhysicBoundaryNode{
-    return [physicBoundariesInLevel objectForKey:@"LHPhysicBoundarieLeft"];
+    return physicBoundariesInLevel[@"LHPhysicBoundarieLeft"];
 }
 -(LHNode*) leftPhysicBoundarySprite{
     return [self leftPhysicBoundaryNode];
@@ -878,7 +878,7 @@ CGSize  LHSizeFromString(NSString* val){
 	return [self physicBoundarieForKey:@"LHPhysicBoundarieRight"];
 }
 -(LHNode*) rightPhysicBoundaryNode{
-    return [physicBoundariesInLevel objectForKey:@"LHPhysicBoundarieRight"];
+    return physicBoundariesInLevel[@"LHPhysicBoundarieRight"];
 }
 -(LHNode*) rightPhysicBoundarySprite{
     return [self rightPhysicBoundaryNode];
@@ -888,7 +888,7 @@ CGSize  LHSizeFromString(NSString* val){
     return [self physicBoundarieForKey:@"LHPhysicBoundarieTop"];
 }
 -(LHNode*) topPhysicBoundaryNode{
-    return [physicBoundariesInLevel objectForKey:@"LHPhysicBoundarieTop"];
+    return physicBoundariesInLevel[@"LHPhysicBoundarieTop"];
 }
 -(LHNode*) topPhysicBoundarySprite{
     return [self topPhysicBoundaryNode];
@@ -901,7 +901,7 @@ CGSize  LHSizeFromString(NSString* val){
     return [self bottomPhysicBoundaryNode];
 }
 -(LHNode*) bottomPhysicBoundaryNode{
-    return [physicBoundariesInLevel objectForKey:@"LHPhysicBoundarieBottom"];
+    return physicBoundariesInLevel[@"LHPhysicBoundarieBottom"];
 }
 //------------------------------------------------------------------------------
 -(bool) hasPhysicBoundaries{
@@ -956,9 +956,8 @@ CGSize  LHSizeFromString(NSString* val){
 	b2Body* wbBodyR = _world->CreateBody(&bodyDef);
 	
 	{
-        LHNode* spr = [LHNode nodeWithDictionary:[NSDictionary dictionaryWithObject:@"LHPhysicBoundarieLeft" 
-                                                                             forKey:@"UniqueName"]];     
-		[spr setTag:[wb intForKey:@"TagLeft"]]; 
+        LHNode* spr = [LHNode nodeWithDictionary:@{@"UniqueName": @"LHPhysicBoundarieLeft"}];     
+		spr.tag = [wb intForKey:@"TagLeft"]; 
 		[spr setVisible:false];
         [spr setBody:wbBodyL];    
 #ifndef LH_ARC_ENABLED
@@ -966,13 +965,12 @@ CGSize  LHSizeFromString(NSString* val){
 #else
         wbBodyL->SetUserData((__bridge void*)spr);
 #endif
-        [physicBoundariesInLevel setObject:spr forKey:@"LHPhysicBoundarieLeft"];
+        physicBoundariesInLevel[@"LHPhysicBoundarieLeft"] = spr;
 	}
 	
 	{
-        LHNode* spr = [LHNode nodeWithDictionary:[NSDictionary dictionaryWithObject:@"LHPhysicBoundarieRight" 
-                                                                             forKey:@"UniqueName"]];
-		[spr setTag:[wb intForKey:@"TagRight"]]; 
+        LHNode* spr = [LHNode nodeWithDictionary:@{@"UniqueName": @"LHPhysicBoundarieRight"}];
+		spr.tag = [wb intForKey:@"TagRight"]; 
 
 		[spr setVisible:false];
         [spr setBody:wbBodyR];  
@@ -981,13 +979,12 @@ CGSize  LHSizeFromString(NSString* val){
 #else
         wbBodyR->SetUserData((__bridge void*)spr);
 #endif
-        [physicBoundariesInLevel setObject:spr forKey:@"LHPhysicBoundarieRight"];
+        physicBoundariesInLevel[@"LHPhysicBoundarieRight"] = spr;
 	}
 	
 	{
-        LHNode* spr = [LHNode nodeWithDictionary:[NSDictionary dictionaryWithObject:@"LHPhysicBoundarieTop" 
-                                                                             forKey:@"UniqueName"]];     
-		[spr setTag:[wb intForKey:@"TagTop"]]; 
+        LHNode* spr = [LHNode nodeWithDictionary:@{@"UniqueName": @"LHPhysicBoundarieTop"}];     
+		spr.tag = [wb intForKey:@"TagTop"]; 
 		[spr setVisible:false];
         [spr setBody:wbBodyT];  
         
@@ -996,13 +993,12 @@ CGSize  LHSizeFromString(NSString* val){
 #else
         wbBodyT->SetUserData((__bridge void*)spr);        
 #endif
-        [physicBoundariesInLevel setObject:spr forKey:@"LHPhysicBoundarieTop"];
+        physicBoundariesInLevel[@"LHPhysicBoundarieTop"] = spr;
 	}
 	
 	{
-        LHNode* spr = [LHNode nodeWithDictionary:[NSDictionary dictionaryWithObject:@"LHPhysicBoundarieBottom" 
-                                                                             forKey:@"UniqueName"]];     
-		[spr setTag:[wb intForKey:@"TagBottom"]]; 
+        LHNode* spr = [LHNode nodeWithDictionary:@{@"UniqueName": @"LHPhysicBoundarieBottom"}];     
+		spr.tag = [wb intForKey:@"TagBottom"]; 
 		[spr setVisible:false];
         [spr setBody:wbBodyB];  
 #ifndef LH_ARC_ENABLED
@@ -1010,7 +1006,7 @@ CGSize  LHSizeFromString(NSString* val){
 #else
         wbBodyB->SetUserData((__bridge void*)spr);        
 #endif
-        [physicBoundariesInLevel setObject:spr forKey:@"LHPhysicBoundarieBottom"];
+        physicBoundariesInLevel[@"LHPhysicBoundarieBottom"] = spr;
 	}
 	
     bool canSleep = [wb boolForKey:@"CanSleep"];
@@ -1022,7 +1018,7 @@ CGSize  LHSizeFromString(NSString* val){
     CGRect rect = [wb rectForKey:@"WBRect"];    
     CGSize winSize = [[CCDirector sharedDirector] winSize];
 	
-    float ptm = [[LHSettings sharedInstance] lhPtmRatio];
+    float ptm = [LHSettings sharedInstance].lhPtmRatio;
     
     #ifndef LH_SCENE_TESTER
         rect.origin.x += pos_offset.x;
@@ -1168,19 +1164,19 @@ CGSize  LHSizeFromString(NSString* val){
 //PHYSICS
 ////////////////////////////////////////////////////////////////////////////////
 +(void) setMeterRatio:(float)ratio{
-	[[LHSettings sharedInstance] setLhPtmRatio:ratio];
+	[LHSettings sharedInstance].lhPtmRatio = ratio;
 }
 //------------------------------------------------------------------------------
 +(float) meterRatio{
-	return [[LHSettings sharedInstance] lhPtmRatio];
+	return [LHSettings sharedInstance].lhPtmRatio;
 }
 //------------------------------------------------------------------------------
 +(float) pixelsToMeterRatio{
-    return [[LHSettings sharedInstance] lhPtmRatio]*[[LHSettings sharedInstance] convertRatio].x;
+    return [LHSettings sharedInstance].lhPtmRatio*[[LHSettings sharedInstance] convertRatio].x;
 }
 //------------------------------------------------------------------------------
 +(float) pointsToMeterRatio{
-    return [[LHSettings sharedInstance] lhPtmRatio];
+    return [LHSettings sharedInstance].lhPtmRatio;
 }
 //------------------------------------------------------------------------------
 +(b2Vec2) pixelToMeters:(CGPoint)point{
@@ -1188,11 +1184,11 @@ CGSize  LHSizeFromString(NSString* val){
 }
 //------------------------------------------------------------------------------
 +(b2Vec2) pointsToMeters:(CGPoint)point{
-    return b2Vec2(point.x / [[LHSettings sharedInstance] lhPtmRatio], point.y / [[LHSettings sharedInstance] lhPtmRatio]);
+    return b2Vec2(point.x / [LHSettings sharedInstance].lhPtmRatio, point.y / [LHSettings sharedInstance].lhPtmRatio);
 }
 //------------------------------------------------------------------------------
 +(CGPoint) metersToPoints:(b2Vec2)vec{
-    return CGPointMake(vec.x*[[LHSettings sharedInstance] lhPtmRatio], vec.y*[[LHSettings sharedInstance] lhPtmRatio]);
+    return CGPointMake(vec.x*[LHSettings sharedInstance].lhPtmRatio, vec.y*[LHSettings sharedInstance].lhPtmRatio);
 }
 //------------------------------------------------------------------------------
 +(CGPoint) metersToPixels:(b2Vec2)vec{
@@ -1205,9 +1201,9 @@ CGSize  LHSizeFromString(NSString* val){
 {
     for(NSDictionary* dictionary in lhNodes)
     {
-        if([[dictionary objectForKey:@"NodeType"] isEqualToString:@"LHLayer"]){
+        if([dictionary[@"NodeType"] isEqualToString:@"LHLayer"]){
             LHLayer* layer = [LHLayer layerWithDictionary:dictionary];
-            [cocosLayer addChild:layer z:[layer zOrder]];
+            [cocosLayer addChild:layer z:layer.zOrder];
             mainLHLayer = layer;
             [mainLHLayer setIsMainLayer:YES];
             //we use the selector protocol so that we dont get warnings since this method is 
@@ -1229,7 +1225,7 @@ CGSize  LHSizeFromString(NSString* val){
                                                loader:self];
         
         if(joint)
-            [jointsInLevel setObject:joint forKey:[jointDict objectForKey:@"UniqueName"]];                
+            jointsInLevel[jointDict[@"UniqueName"]] = joint;                
 	}
     #endif
 }
@@ -1266,11 +1262,11 @@ CGSize  LHSizeFromString(NSString* val){
 //PARALLAX
 ////////////////////////////////////////////////////////////////////////////////
 -(LHParallaxNode*) parallaxNodeWithUniqueName:(NSString*)uniqueName{
-    return [parallaxesInLevel objectForKey:uniqueName];
+    return parallaxesInLevel[uniqueName];
 }
 //------------------------------------------------------------------------------
 -(NSArray*) allParallaxes{
-    return [parallaxesInLevel allValues];
+    return parallaxesInLevel.allValues;
 }
 //------------------------------------------------------------------------------
 -(LHParallaxNode*) parallaxNodeFromDictionary:(NSDictionary*)parallaxDict 
@@ -1282,7 +1278,7 @@ CGSize  LHSizeFromString(NSString* val){
         int z = [parallaxDict intForKey:@"ZOrder"];
         [layer addChild:node z:z];
     }
-    NSArray* spritesInfo = [parallaxDict objectForKey:@"Sprites"];
+    NSArray* spritesInfo = parallaxDict[@"Sprites"];
     for(NSDictionary* sprInf in spritesInfo){
         float ratioX = [sprInf floatForKey:@"RatioX"];
         float ratioY = [sprInf floatForKey:@"RatioY"];
@@ -1301,7 +1297,7 @@ CGSize  LHSizeFromString(NSString* val){
     for(NSDictionary* parallaxDict in lhParallax){
 		LHParallaxNode* node = [self parallaxNodeFromDictionary:parallaxDict layer:mainLHLayer];
         if(nil != node){
-			[parallaxesInLevel setObject:node forKey:[parallaxDict stringForKey:@"UniqueName"]];
+			parallaxesInLevel[[parallaxDict stringForKey:@"UniqueName"]] = node;
 		}
     }
 }
@@ -1326,10 +1322,10 @@ CGSize  LHSizeFromString(NSString* val){
 //------------------------------------------------------------------------------
 -(void) removeAllParallaxesAndChildSprites:(bool)remChilds{
 
-    NSArray* keys = [parallaxesInLevel allKeys];
+    NSArray* keys = parallaxesInLevel.allKeys;
     
 	for(NSString* key in keys){
-		LHParallaxNode* par = [parallaxesInLevel objectForKey:key];
+		LHParallaxNode* par = parallaxesInLevel[key];
 		if(nil != par){
             [par setRemoveChildSprites:remChilds];
             [par removeFromParentAndCleanup:YES];
@@ -1374,7 +1370,7 @@ CGSize  LHSizeFromString(NSString* val){
 #if COCOS2D_VERSION >= 0x00020000 
     #ifdef __CC_PLATFORM_IOS
         CCDirectorIOS *director = (CCDirectorIOS*) [CCDirector sharedDirector];
-        CCTouchDispatcher *dispatcher = [director touchDispatcher];
+        CCTouchDispatcher *dispatcher = director.touchDispatcher;
         [dispatcher addTargetedDelegate:object 
                                priority:priority 
                         swallowsTouches:swallow];
@@ -1414,7 +1410,7 @@ CGSize  LHSizeFromString(NSString* val){
     
 #ifdef __CC_PLATFORM_IOS
     CCDirectorIOS *director = (CCDirectorIOS*) [CCDirector sharedDirector];
-    CCTouchDispatcher *touchDisPatcher = [director touchDispatcher];
+    CCTouchDispatcher *touchDisPatcher = director.touchDispatcher;
 //    NSLog(@"TOUCH DISPATCHER - REMOVE DELEGATE %@", [object uniqueName]);
     [touchDisPatcher removeDelegate:object];
 #else //MAC
@@ -1472,12 +1468,12 @@ CGSize  LHSizeFromString(NSString* val){
 		return;
 	
 	bool fileInCorrectFormat =	[[dictionary stringForKey:@"Author"] isEqualToString:@"Bogdan Vladu"] && 
-	[[dictionary objectForKey:@"CreatedWith"] isEqualToString:@"LevelHelper"];
+	[dictionary[@"CreatedWith"] isEqualToString:@"LevelHelper"];
 	
 	if(fileInCorrectFormat == false)
 		NSLog(@"This file was not created with LevelHelper or file is damaged.");
 	
-    NSDictionary* scenePref = [dictionary objectForKey:@"ScenePreference"];
+    NSDictionary* scenePref = dictionary[@"ScenePreference"];
     safeFrame = [scenePref pointForKey:@"SafeFrame"];
     
     gameWorldRect = [scenePref rectForKey:@"GameWorld"];
@@ -1485,7 +1481,7 @@ CGSize  LHSizeFromString(NSString* val){
     
     [[LHSettings sharedInstance] setHDSuffix:[scenePref stringForKey:@"HDSuffix"]];
     [[LHSettings sharedInstance] setHD2xSuffix:[scenePref stringForKey:@"2HDSuffix"]];
-    [[LHSettings sharedInstance] setDevice:[scenePref intForKey:@"Device"]];
+    [LHSettings sharedInstance].device = [scenePref intForKey:@"Device"];
     
 	CGRect color = [scenePref rectForKey:@"BackgroundColor"];
 	glClearColor(color.origin.x, color.origin.y, color.size.width, 1);
@@ -1495,7 +1491,7 @@ CGSize  LHSizeFromString(NSString* val){
     if(safeFrame.x == 0 || safeFrame.y == 0)
         safeFrame = CGPointMake(winSize.width, winSize.height);
 
-    [[LHSettings sharedInstance] setSafeFrame:CGSizeMake(safeFrame.x, safeFrame.y)];
+    [LHSettings sharedInstance].safeFrame = CGSizeMake(safeFrame.x, safeFrame.y);
 //    bool usesCustomSize = false;
 //    if(4 == [[scenePref objectForKey:@"ScreenSize"] intValue])
 //        usesCustomSize = true;
@@ -1510,7 +1506,7 @@ CGSize  LHSizeFromString(NSString* val){
     float PTM_conversion = winDiagonal/safeFrameDiagonal;
     
 
-    [LevelHelperLoader setMeterRatio:[[LHSettings sharedInstance] lhPtmRatio]*PTM_conversion];
+    [LevelHelperLoader setMeterRatio:[LHSettings sharedInstance].lhPtmRatio*PTM_conversion];
 #endif
     
     
@@ -1535,18 +1531,18 @@ CGSize  LHSizeFromString(NSString* val){
     }
 
 	////////////////////////LOAD WORLD BOUNDARIES//////////////////////////////////////////////
-	if(nil != [dictionary objectForKey:@"WBInfo"]){
-		wb = [dictionary objectForKey:@"WBInfo"];
+	if(nil != dictionary[@"WBInfo"]){
+		wb = dictionary[@"WBInfo"];
 	}
 	
 	////////////////////////LOAD SPRITES////////////////////////////////////////////////////
-    lhNodes = [[NSArray alloc] initWithArray:[dictionary objectForKey:@"NODES_INFO"]];
+    lhNodes = [[NSArray alloc] initWithArray:dictionary[@"NODES_INFO"]];
 		
 	///////////////////////LOAD JOINTS//////////////////////////////////////////////////////////
-	lhJoints = [[NSArray alloc] initWithArray:[dictionary objectForKey:@"JOINTS_INFO"]];	
+	lhJoints = [[NSArray alloc] initWithArray:dictionary[@"JOINTS_INFO"]];	
 	
     //////////////////////LOAD PARALLAX/////////////////////////////////////////
-    lhParallax = [[NSArray alloc] initWithArray:[dictionary objectForKey:@"PARALLAX_INFO"]];
+    lhParallax = [[NSArray alloc] initWithArray:dictionary[@"PARALLAX_INFO"]];
     
     gravity = [dictionary pointForKey:@"Gravity"];
 }

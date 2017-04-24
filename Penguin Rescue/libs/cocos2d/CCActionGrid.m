@@ -34,12 +34,12 @@
 
 @synthesize gridSize = gridSize_;
 
-+(id) actionWithSize:(ccGridSize)size duration:(ccTime)d
++(instancetype) actionWithSize:(ccGridSize)size duration:(ccTime)d
 {
 	return [[[self alloc] initWithSize:size duration:d ] autorelease];
 }
 
--(id) initWithSize:(ccGridSize)gSize duration:(ccTime)d
+-(instancetype) initWithSize:(ccGridSize)gSize duration:(ccTime)d
 {
 	if ( (self = [super initWithDuration:d]) )
 	{
@@ -56,7 +56,7 @@
 	CCGridBase *newgrid = [self grid];
 
 	CCNode *t = (CCNode*) target;
-	CCGridBase *targetGrid = [t grid];
+	CCGridBase *targetGrid = t.grid;
 
 	if ( targetGrid && targetGrid.reuseGrid > 0 )
 	{
@@ -70,7 +70,7 @@
 		if ( targetGrid && targetGrid.active )
 			targetGrid.active = NO;
 
-		[t setGrid: newgrid];
+		t.grid = newgrid;
 		t.grid.active = YES;
 	}
 }
@@ -159,8 +159,7 @@
 ////////////////////////////////////////////////////////////
 
 @interface CCActionInterval (Amplitude)
--(void)setAmplitudeRate:(CGFloat)amp;
--(CGFloat)getAmplitudeRate;
+@property (NS_NONATOMIC_IOSONLY, getter=getAmplitudeRate) CGFloat amplitudeRate;
 @end
 
 @implementation CCActionInterval (Amplitude)
@@ -190,7 +189,7 @@
 	return [[[self alloc] initWithAction:action duration:d ] autorelease];
 }
 
--(id)initWithAction:(CCAction *)action duration:(ccTime)d
+-(instancetype)initWithAction:(CCAction *)action duration:(ccTime)d
 {
 	if ( (self = [super initWithDuration:d]) )
 	{
@@ -248,7 +247,7 @@
 	return [[[self alloc] initWithAction:action duration:d ] autorelease];
 }
 
--(id)initWithAction:(CCAction *)action duration:(ccTime)d
+-(instancetype)initWithAction:(CCAction *)action duration:(ccTime)d
 {
 	if ( (self = [super initWithDuration:d]) )
 	{
@@ -298,7 +297,7 @@
 	return [[[self alloc] initWithAction:action duration:d ] autorelease];
 }
 
--(id)initWithAction:(CCAction *)action duration:(ccTime)d
+-(instancetype)initWithAction:(CCAction *)action duration:(ccTime)d
 {
 	if ( (self = [super initWithDuration:d]) )
 	{
@@ -345,8 +344,8 @@
 {
 	[super startWithTarget:aTarget];
 
-	if ( [[self target] grid] && [[[self target] grid] active] ) {
-		[[[self target] grid] setActive: NO];
+	if ( [self.target grid] && [self.target grid].active ) {
+		[[self.target grid] setActive: NO];
 
 //		[[self target] setGrid: nil];
 	}
@@ -366,7 +365,7 @@
 	return [[[self alloc] initWithTimes:times ] autorelease];
 }
 
--(id)initWithTimes:(int)times
+-(instancetype)initWithTimes:(int)times
 {
 	if ( (self = [super init]) )
 		t_ = times;
@@ -378,7 +377,7 @@
 {
 	[super startWithTarget:aTarget];
 
-	CCNode *myTarget = (CCNode*) [self target];
+	CCNode *myTarget = (CCNode*) self.target;
 	if ( myTarget.grid && myTarget.grid.active )
 		myTarget.grid.reuseGrid += t_;
 }

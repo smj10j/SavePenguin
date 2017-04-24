@@ -28,10 +28,10 @@
 #import "CCMenuItem.h"
 #import "CCLayer.h"
 
-typedef enum  {
+typedef NS_ENUM(unsigned int, tCCMenuState) {
 	kCCMenuStateWaiting,
 	kCCMenuStateTrackingTouch
-} tCCMenuState;
+};
 
 enum {
 	//* priority used by the menu for the event handler
@@ -61,16 +61,16 @@ enum {
 @property (nonatomic, readwrite) BOOL enabled;
 
 /** creates a CCMenu with CCMenuItem objects */
-+ (id) menuWithItems: (CCMenuItem*) item, ... NS_REQUIRES_NIL_TERMINATION;
++ (instancetype) menuWithItems: (CCMenuItem*) item, ... NS_REQUIRES_NIL_TERMINATION;
 
 /** creates a CCMenu with CCMenuItem objects */
-+ (id) menuWithItems: (CCMenuItem*) firstItem vaList: (va_list) args;
++ (instancetype) menuWithItems: (CCMenuItem*) firstItem vaList: (va_list) args;
 
 /** creates a CCMenu with a NSArray of CCMenuItem objects */
-+ (id) menuWithArray:(NSArray*)arrayOfItems;
++ (instancetype) menuWithArray:(NSArray*)arrayOfItems;
 
 /** initializes a CCMenu with a NSArray of CCMenuItem objects */
-- (id) initWithArray:(NSArray*)arrayOfItems;
+- (instancetype) initWithArray:(NSArray*)arrayOfItems NS_DESIGNATED_INITIALIZER;
 
 /** align items vertically */
 -(void) alignItemsVertically;

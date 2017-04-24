@@ -35,39 +35,39 @@
 @synthesize textureFilename = textureFilename_;
 @synthesize rotated = rotated_;
 
-+(id) frameWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
++(instancetype) frameWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
 	return [[[self alloc] initWithTexture:texture rect:rect] autorelease];
 }
 
-+(id) frameWithTextureFilename:(NSString*)filename rect:(CGRect)rect
++(instancetype) frameWithTextureFilename:(NSString*)filename rect:(CGRect)rect
 {
 	return [[[self alloc] initWithTextureFilename:filename rect:rect] autorelease];
 }
 
-+(id) frameWithTexture:(CCTexture2D*)texture rectInPixels:(CGRect)rect rotated:(BOOL)rotated offset:(CGPoint)offset originalSize:(CGSize)originalSize
++(instancetype) frameWithTexture:(CCTexture2D*)texture rectInPixels:(CGRect)rect rotated:(BOOL)rotated offset:(CGPoint)offset originalSize:(CGSize)originalSize
 {
 	return [[[self alloc] initWithTexture:texture rectInPixels:rect rotated:rotated offset:offset originalSize:originalSize] autorelease];
 }
 
-+(id) frameWithTextureFilename:(NSString*)filename rectInPixels:(CGRect)rect rotated:(BOOL)rotated offset:(CGPoint)offset originalSize:(CGSize)originalSize
++(instancetype) frameWithTextureFilename:(NSString*)filename rectInPixels:(CGRect)rect rotated:(BOOL)rotated offset:(CGPoint)offset originalSize:(CGSize)originalSize
 {
 	return [[[self alloc] initWithTextureFilename:filename rectInPixels:rect rotated:rotated offset:offset originalSize:originalSize] autorelease];
 }
 
--(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
+-(instancetype) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
 	CGRect rectInPixels = CC_RECT_POINTS_TO_PIXELS( rect );
 	return [self initWithTexture:texture rectInPixels:rectInPixels rotated:NO offset:CGPointZero originalSize:rectInPixels.size];
 }
 
--(id) initWithTextureFilename:(NSString*)filename rect:(CGRect)rect
+-(instancetype) initWithTextureFilename:(NSString*)filename rect:(CGRect)rect
 {
 	CGRect rectInPixels = CC_RECT_POINTS_TO_PIXELS( rect );
 	return [self initWithTextureFilename:filename rectInPixels:rectInPixels rotated:NO offset:CGPointZero originalSize:rectInPixels.size];
 }
 
--(id) initWithTexture:(CCTexture2D*)texture rectInPixels:(CGRect)rect rotated:(BOOL)rotated offset:(CGPoint)offset originalSize:(CGSize)originalSize
+-(instancetype) initWithTexture:(CCTexture2D*)texture rectInPixels:(CGRect)rect rotated:(BOOL)rotated offset:(CGPoint)offset originalSize:(CGSize)originalSize
 {
 	if( (self=[super init]) )
     {
@@ -83,7 +83,7 @@
 	return self;
 }
 
--(id) initWithTextureFilename:(NSString *)filename rectInPixels:(CGRect)rect rotated:(BOOL)rotated offset:(CGPoint)offset originalSize:(CGSize)originalSize
+-(instancetype) initWithTextureFilename:(NSString *)filename rectInPixels:(CGRect)rect rotated:(BOOL)rotated offset:(CGPoint)offset originalSize:(CGSize)originalSize
 {
 	if( (self=[super init]) )
     {

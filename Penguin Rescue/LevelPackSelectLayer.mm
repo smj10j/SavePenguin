@@ -40,7 +40,7 @@
 }
 
 //
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init])) {
 		
@@ -126,9 +126,9 @@
 		[scrollableLayers addObject:scrollableLayer];
 		[scrollableLayer release];
 
-		NSDictionary* levelPackData = [levelPacksDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
-		NSString* levelPackName = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_NAME];
-		NSString* levelPackPath = [levelPackData objectForKey:LEVELPACKMANAGER_KEY_PATH];
+		NSDictionary* levelPackData = levelPacksDictionary[[NSString stringWithFormat:@"%d", i]];
+		NSString* levelPackName = levelPackData[LEVELPACKMANAGER_KEY_NAME];
+		NSString* levelPackPath = levelPackData[LEVELPACKMANAGER_KEY_PATH];
 		NSDictionary* completedLevels = [LevelPackManager completedLevelsInPack:levelPackPath];
 		NSDictionary* allLevels = [LevelPackManager allLevelsInPack:levelPackPath];
 
@@ -175,7 +175,7 @@
 		[levelPackButton addChild:packNameLabel];
 		
 		
-		[_spriteNameToLevelPackPath setObject:levelPackPath forKey:levelPackButton.uniqueName];
+		_spriteNameToLevelPackPath[levelPackButton.uniqueName] = levelPackPath;
 		
 		if(!isLocked) {
 		
@@ -239,7 +239,7 @@
 	
 	[SettingsManager setInt:_scrollLayer.currentScreen forKey:SETTING_LAST_LEVEL_PACK_SELECT_SCREEN_NUM];	
 	
-	NSString* levelPackPath = [_spriteNameToLevelPackPath objectForKey:info.sprite.uniqueName];
+	NSString* levelPackPath = _spriteNameToLevelPackPath[info.sprite.uniqueName];
 	
 	int availableCoins = [SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS];
 	if(availableCoins < PACK_COIN_COST) {
@@ -251,10 +251,8 @@
 		
 		//analytics logging
 		int availableCoins = [SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS];
-		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-			levelPackPath, @"Level_Pack",
-			[NSNumber numberWithInt:availableCoins], @"AvailableCoins",
-		nil];
+		NSDictionary* flurryParams = @{@"Level_Pack": levelPackPath,
+			@"AvailableCoins": @(availableCoins)};
 		[Analytics logEvent:@"LevelPackSelectLayer_Prompt_To_Buy_Coins" withParameters:flurryParams];
 		
 	}else {
@@ -262,10 +260,8 @@
 
 		//analytics logging
 		int availableCoins = [SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS];
-		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-			levelPackPath, @"Level_Pack",
-			[NSNumber numberWithInt:availableCoins], @"AvailableCoins",
-		nil];
+		NSDictionary* flurryParams = @{@"Level_Pack": levelPackPath,
+			@"AvailableCoins": @(availableCoins)};
 		[Analytics logEvent:@"LevelPackSelectLayer_Unlock_Locked_Pack" withParameters:flurryParams];
 
 
@@ -290,7 +286,7 @@
 	
 	[SettingsManager setInt:_scrollLayer.currentScreen forKey:SETTING_LAST_LEVEL_PACK_SELECT_SCREEN_NUM];
 	
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[LevelSelectLayer sceneWithLevelPackPath:[_spriteNameToLevelPackPath objectForKey:info.sprite.uniqueName]] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[LevelSelectLayer sceneWithLevelPackPath:_spriteNameToLevelPackPath[info.sprite.uniqueName]] ]];
 }
 
 
@@ -310,17 +306,17 @@
 
 -(void)fadeInBackgroundMusic:(NSString*)path {
 	
-	float prevVolume = [[SimpleAudioEngine sharedEngine] backgroundMusicVolume];
+	float prevVolume = [SimpleAudioEngine sharedEngine].backgroundMusicVolume;
 	float fadeInTimeOffset = 0;
 	
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, fadeInTimeOffset * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-		[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:.1];
+		[SimpleAudioEngine sharedEngine].backgroundMusicVolume = .1;
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:path loop:YES];
 	});
 	
 	for(float volume = .1; volume <= prevVolume; volume+= .1) {
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, fadeInTimeOffset + volume * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-			[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:volume];
+			[SimpleAudioEngine sharedEngine].backgroundMusicVolume = volume;
 		});
 	}
 }
@@ -345,9 +341,7 @@
 							[updatedAlert release];
 							
 							//analytics logging
-							NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-								[NSNumber numberWithInt:availableCoins], @"AvailableCoins",
-							nil];
+							NSDictionary* flurryParams = @{@"AvailableCoins": @(availableCoins)};
 							[Analytics logEvent:@"LevelPackSelectLayer_Buy_Coins" withParameters:flurryParams];
 									
 							[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[LevelPackSelectLayer scene] ]];
@@ -362,9 +356,7 @@
 		
 		//analytics logging
 		int availableCoins = [SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS];
-		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-			[NSNumber numberWithInt:availableCoins], @"AvailableCoins",
-		nil];
+		NSDictionary* flurryParams = @{@"AvailableCoins": @(availableCoins)};
 		[Analytics logEvent:@"LevelPackSelectLayer_Ignore_Buy_Coins" withParameters:flurryParams];
 	}
 	

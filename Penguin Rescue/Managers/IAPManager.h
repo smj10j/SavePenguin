@@ -19,7 +19,7 @@
 	__block void(^_requestSuccessCallback)(NSString*);
 }
 
--(SKProduct*)selectedProduct;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) SKProduct *selectedProduct;
 -(void)clearSelectedProduct;
 -(bool)purchase:(SKProduct*)product successCallback:(void(^)(bool))successCallback;
 -(bool)requestProduct:(NSString*)productId successCallback:(void(^)(NSString*))successCallback;

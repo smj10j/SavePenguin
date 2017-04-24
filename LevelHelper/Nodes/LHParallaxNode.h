@@ -74,8 +74,8 @@
 @property (readwrite) float speed;
 @property (readwrite) bool paused;
 
--(id) initWithDictionary:(NSDictionary*)properties loader:(LevelHelperLoader*)loader;
-+(id) nodeWithDictionary:(NSDictionary*)properties loader:(LevelHelperLoader*)loader;
+-(instancetype) initWithDictionary:(NSDictionary*)properties loader:(LevelHelperLoader*)loader NS_DESIGNATED_INITIALIZER;
++(instancetype) nodeWithDictionary:(NSDictionary*)properties loader:(LevelHelperLoader*)loader;
 
 -(void) addSprite:(LHSprite*)sprite parallaxRatio:(CGPoint)ratio;
 
@@ -91,6 +91,6 @@
 -(void) followSprite:(LHSprite*)sprite changePositionOnX:(bool)xChange changePositionOnY:(bool)yChange;
 
 
--(NSString*)uniqueName;
--(NSArray*)spritesInNode;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *uniqueName;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *spritesInNode;
 @end	

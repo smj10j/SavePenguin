@@ -175,7 +175,7 @@
  * @param layers NSArray of CCLayers, that will be used as pages.
  * @param widthOffset Length in X-coord, that describes length of possible pages
  * intersection. */
--(id) initWithLayers:(NSArray *)layers widthOffset: (int) widthOffset;
+-(instancetype) initWithLayers:(NSArray *)layers widthOffset: (int) widthOffset NS_DESIGNATED_INITIALIZER;
 
 #pragma mark Updates 
 /** Updates all pages positions & adds them as children if needed.

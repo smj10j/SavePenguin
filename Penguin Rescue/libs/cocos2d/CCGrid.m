@@ -68,7 +68,7 @@
 	return [[(CCGridBase*)[self alloc] initWithSize:gridSize] autorelease];
 }
 
--(id) initWithSize:(ccGridSize)gridSize texture:(CCTexture2D*)texture flippedTexture:(BOOL)flipped
+-(instancetype) initWithSize:(ccGridSize)gridSize texture:(CCTexture2D*)texture flippedTexture:(BOOL)flipped
 {
 	if( (self=[super init]) ) {
 
@@ -93,7 +93,7 @@
 	return self;
 }
 
--(id)initWithSize:(ccGridSize)gSize
+-(instancetype)initWithSize:(ccGridSize)gSize
 {
 	CCDirector *director = [CCDirector sharedDirector];
 	CGSize s = [director winSizeInPixels];
@@ -103,8 +103,8 @@
 	unsigned long POTHigh = ccNextPOT(s.height);
 
 #ifdef __CC_PLATFORM_IOS
-	CCGLView *glview = (CCGLView*)[[CCDirector sharedDirector] view];
-	NSString *pixelFormat = [glview pixelFormat];
+	CCGLView *glview = (CCGLView*)[CCDirector sharedDirector].view;
+	NSString *pixelFormat = glview.pixelFormat;
 
 	CCTexture2DPixelFormat format = [pixelFormat isEqualToString: kEAGLColorFormatRGB565] ? kCCTexture2DPixelFormat_RGB565 : kCCTexture2DPixelFormat_RGBA8888;
 #elif defined(__CC_PLATFORM_MAC)
@@ -162,8 +162,8 @@
 	active_ = active;
 	if( ! active ) {
 		CCDirector *director = [CCDirector sharedDirector];
-		ccDirectorProjection proj = [director projection];
-		[director setProjection:proj];
+		ccDirectorProjection proj = director.projection;
+		director.projection = proj;
 	}
 }
 
@@ -205,7 +205,7 @@
 {
 	// save projection
 	CCDirector *director = [CCDirector sharedDirector];
-	directorProjection_ = [director projection];
+	directorProjection_ = director.projection;
 	
 	// 2d projection
 //	[director setProjection:kCCDirectorProjection2D];
@@ -222,11 +222,11 @@
 
 	// restore projection
 	CCDirector *director = [CCDirector sharedDirector];
-	[director setProjection: directorProjection_];
+	director.projection = directorProjection_;
 
 	if( target.camera.dirty ) {
 
-		CGPoint offset = [target anchorPointInPoints];
+		CGPoint offset = target.anchorPointInPoints;
 
 		//
 		// XXX: Camera should be applied in the AnchorPoint

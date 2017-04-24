@@ -40,7 +40,7 @@
 
 @implementation CCActionManager
 
--(id) init
+-(instancetype) init
 {
 	if ((self=[super init]) ) {
 		targets = NULL;
@@ -215,7 +215,7 @@
 		return;
 
 	tHashElement *element = NULL;
-	id target = [action originalTarget];
+	id target = action.originalTarget;
 	HASH_FIND_INT(targets, &target, element );
 	if( element ) {
 		NSUInteger i = ccArrayGetIndexOfObject(element->actions, action);
@@ -240,7 +240,7 @@
 		for( NSUInteger i = 0; i < limit; i++) {
 			CCAction *a = element->actions->arr[i];
 
-			if( a.tag == aTag && [a originalTarget]==target) {
+			if( a.tag == aTag && a.originalTarget==target) {
 				[self removeActionAtIndex:i hashElement:element];
 				break;
 			}

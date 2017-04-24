@@ -43,18 +43,18 @@
 
 @synthesize controlPoints = controlPoints_;
 
-+(id) arrayWithCapacity:(NSUInteger)capacity
++(instancetype) arrayWithCapacity:(NSUInteger)capacity
 {
 	return [[[self alloc] initWithCapacity:capacity] autorelease];
 }
 
--(id) init
+-(instancetype) init
 {
 	return [self initWithCapacity:50];
 }
 
 // designated initializer
--(id) initWithCapacity:(NSUInteger)capacity
+-(instancetype) initWithCapacity:(NSUInteger)capacity
 {
 	if( (self=[super init])) {
 		controlPoints_ = [[NSMutableArray alloc] initWithCapacity:capacity];
@@ -107,12 +107,12 @@
 {
 	index = MIN([controlPoints_ count]-1, MAX(index, 0));
 
-	NSValue *value = [controlPoints_ objectAtIndex:index];
+	NSValue *value = controlPoints_[index];
 
 #ifdef __CC_PLATFORM_MAC
 	CGPoint point = NSPointToCGPoint([value pointValue]);
 #elif defined(__CC_PLATFORM_IOS)
-	CGPoint point = [value CGPointValue];
+	CGPoint point = value.CGPointValue;
 #endif
 
 	return point;
@@ -126,7 +126,7 @@
 	NSValue *value = [NSValue valueWithCGPoint:controlPoint];
 #endif
 
-	[controlPoints_ replaceObjectAtIndex:index withObject:value];
+	controlPoints_[index] = value;
 }
 
 -(void) removeControlPointAtIndex:(NSUInteger)index
@@ -136,12 +136,12 @@
 
 -(NSUInteger) count
 {
-	return [controlPoints_ count];
+	return controlPoints_.count;
 }
 
 -(CCPointArray*) reverse
 {
-	NSMutableArray *newArray = [[NSMutableArray alloc] initWithCapacity:[controlPoints_ count]];
+	NSMutableArray *newArray = [[NSMutableArray alloc] initWithCapacity:controlPoints_.count];
 	NSEnumerator *enumerator = [controlPoints_ reverseObjectEnumerator];
 	for (id element in enumerator)
 		[newArray addObject:element];
@@ -156,7 +156,7 @@
 
 -(void) reverseInline
 {
-	NSUInteger l = [controlPoints_ count];
+	NSUInteger l = controlPoints_.count;
 	for( NSUInteger i=0; i<l/2;i++)
 		[controlPoints_ exchangeObjectAtIndex:i withObjectAtIndex:l-i-1];
 }
@@ -200,7 +200,7 @@ inline CGPoint ccCardinalSplineAt( CGPoint p0, CGPoint p1, CGPoint p2, CGPoint p
 	return [[[self alloc] initWithDuration:duration points:points tension:tension ] autorelease];
 }
 
--(id) initWithDuration:(ccTime)duration points:(CCPointArray *)points tension:(CGFloat)tension								
+-(instancetype) initWithDuration:(ccTime)duration points:(CCPointArray *)points tension:(CGFloat)tension								
 {
 	NSAssert( [points count] > 0, @"Invalid configuration. It must at least have one control point");
 
@@ -228,7 +228,7 @@ inline CGPoint ccCardinalSplineAt( CGPoint p0, CGPoint p1, CGPoint p2, CGPoint p
 
 -(id) copyWithZone: (NSZone*) zone
 {
-	CCAction *copy = [[[self class] allocWithZone: zone] initWithDuration:[self duration] points:points_ tension:tension_];
+	CCAction *copy = [[[self class] allocWithZone: zone] initWithDuration:self.duration points:points_ tension:tension_];
     return copy;
 }
 
@@ -278,7 +278,7 @@ inline CGPoint ccCardinalSplineAt( CGPoint p0, CGPoint p1, CGPoint p2, CGPoint p
 {
 	[super startWithTarget:target];
 
-	startPosition_ = [(CCNode*)target position];
+	startPosition_ = ((CCNode*)target).position;
 }
 
 -(void) updatePosition:(CGPoint)newPos
@@ -336,7 +336,7 @@ inline CGPoint ccCardinalSplineAt( CGPoint p0, CGPoint p1, CGPoint p2, CGPoint p
 	return [[[self alloc] initWithDuration:dt points:points] autorelease];
 }
 
--(id) initWithDuration:(ccTime)dt points:(CCPointArray *)points
+-(instancetype) initWithDuration:(ccTime)dt points:(CCPointArray *)points
 {
 	if( (self=[super initWithDuration:dt points:points tension:0.5f]) ) {
 		
@@ -352,7 +352,7 @@ inline CGPoint ccCardinalSplineAt( CGPoint p0, CGPoint p1, CGPoint p2, CGPoint p
 	return [[[self alloc] initWithDuration:dt points:points] autorelease];
 }
 
--(id) initWithDuration:(ccTime)dt points:(CCPointArray *)points
+-(instancetype) initWithDuration:(ccTime)dt points:(CCPointArray *)points
 {
 	if( (self=[super initWithDuration:dt points:points tension:0.5f]) ) {
 		

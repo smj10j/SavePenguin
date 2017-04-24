@@ -59,11 +59,11 @@ Example:
 /** creates the action */
 +(id) actionWithDuration: (ccTime) d;
 /** initializes the action */
--(id) initWithDuration: (ccTime) d;
+-(instancetype) initWithDuration: (ccTime) d NS_DESIGNATED_INITIALIZER;
 /** returns YES if the action has finished */
--(BOOL) isDone;
+@property (NS_NONATOMIC_IOSONLY, getter=isDone, readonly) BOOL done;
 /** returns a reversed action */
-- (CCActionInterval*) reverse;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) CCActionInterval *reverse;
 @end
 
 /** Runs actions sequentially, one after another
@@ -83,7 +83,7 @@ Example:
 /** creates the action */
 +(id) actionOne:(CCFiniteTimeAction*)actionOne two:(CCFiniteTimeAction*)actionTwo;
 /** initializes the action */
--(id) initOne:(CCFiniteTimeAction*)actionOne two:(CCFiniteTimeAction*)actionTwo;
+-(instancetype) initOne:(CCFiniteTimeAction*)actionOne two:(CCFiniteTimeAction*)actionTwo NS_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -106,7 +106,7 @@ Example:
  */
 +(id) actionWithAction:(CCFiniteTimeAction*)action times: (NSUInteger)times;
 /** initializes a CCRepeat action. Times is an unsigned integer between 1 and MAX_UINT */
--(id) initWithAction:(CCFiniteTimeAction*)action times: (NSUInteger)times;
+-(instancetype) initWithAction:(CCFiniteTimeAction*)action times: (NSUInteger)times NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Spawn a new action immediately
@@ -125,7 +125,7 @@ Example:
 /** creates the Spawn action */
 +(id) actionOne: (CCFiniteTimeAction*) one two:(CCFiniteTimeAction*) two;
 /** initializes the Spawn action with the 2 actions to spawn */
--(id) initOne: (CCFiniteTimeAction*) one two:(CCFiniteTimeAction*) two;
+-(instancetype) initOne: (CCFiniteTimeAction*) one two:(CCFiniteTimeAction*) two NS_DESIGNATED_INITIALIZER;
 @end
 
 /**  Rotates a CCNode object to a certain angle by modifying it's
@@ -145,11 +145,11 @@ Example:
 /** creates the action */
 +(id) actionWithDuration:(ccTime)duration angle:(float)angle;
 /** initializes the action */
--(id) initWithDuration:(ccTime)duration angle:(float)angle;
+-(instancetype) initWithDuration:(ccTime)duration angle:(float)angle NS_DESIGNATED_INITIALIZER;
 
 /** creates the action with separate rotation angles */
 +(id) actionWithDuration: (ccTime) t angleX:(float) aX angleY:(float) aY;
--(id) initWithDuration: (ccTime) t angleX:(float) aX angleY:(float) aY;
+-(instancetype) initWithDuration: (ccTime) t angleX:(float) aX angleY:(float) aY NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Rotates a CCNode object clockwise a number of degrees by modifying its rotation attribute.
@@ -164,11 +164,11 @@ Example:
 /** creates the action */
 +(id) actionWithDuration:(ccTime)duration angle:(float)deltaAngle;
 /** initializes the action */
--(id) initWithDuration:(ccTime)duration angle:(float)deltaAngle;
+-(instancetype) initWithDuration:(ccTime)duration angle:(float)deltaAngle NS_DESIGNATED_INITIALIZER;
 
 /** creates the action with separate rotation angles */
 +(id) actionWithDuration: (ccTime) t angleX:(float) aX angleY:(float) aY;
--(id) initWithDuration: (ccTime) t angleX:(float) aX angleY:(float) aY;
+-(instancetype) initWithDuration: (ccTime) t angleX:(float) aX angleY:(float) aY NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Moves a CCNode object to the position x,y. x and y are absolute coordinates by modifying its position attribute.
@@ -182,7 +182,7 @@ Example:
 /** creates the action */
 +(id) actionWithDuration:(ccTime)duration position:(CGPoint)position;
 /** initializes the action */
--(id) initWithDuration:(ccTime)duration position:(CGPoint)position;
+-(instancetype) initWithDuration:(ccTime)duration position:(CGPoint)position NS_DESIGNATED_INITIALIZER;
 @end
 
 /**  Moves a CCNode object x,y pixels by modifying its position attribute.
@@ -195,7 +195,7 @@ Example:
 /** creates the action */
 +(id) actionWithDuration: (ccTime)duration position:(CGPoint)deltaPosition;
 /** initializes the action */
--(id) initWithDuration: (ccTime)duration position:(CGPoint)deltaPosition;
+-(instancetype) initWithDuration: (ccTime)duration position:(CGPoint)deltaPosition NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Skews a CCNode object to given angles by modifying its skewX and skewY attributes
@@ -215,7 +215,7 @@ Example:
 /** creates the action */
 +(id) actionWithDuration:(ccTime)t skewX:(float)sx skewY:(float)sy;
 /** initializes the action with duration, skew X and skew Y */
--(id) initWithDuration:(ccTime)t skewX:(float)sx skewY:(float)sy;
+-(instancetype) initWithDuration:(ccTime)t skewX:(float)sx skewY:(float)sy NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Skews a CCNode object by skewX and skewY degrees
@@ -225,7 +225,7 @@ Example:
 {
 }
 /** initializes the action with duration, skew X and skew Y */
--(id) initWithDuration:(ccTime)t skewX:(float)sx skewY:(float)sy;
+-(instancetype) initWithDuration:(ccTime)t skewX:(float)sx skewY:(float)sy NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Moves a CCNode object simulating a parabolic jump movement by modifying its position attribute.
@@ -240,7 +240,7 @@ Example:
 /** creates the action */
 +(id) actionWithDuration: (ccTime)duration position:(CGPoint)position height:(ccTime)height jumps:(NSUInteger)jumps;
 /** initializes the action */
--(id) initWithDuration: (ccTime)duration position:(CGPoint)position height:(ccTime)height jumps:(NSUInteger)jumps;
+-(instancetype) initWithDuration: (ccTime)duration position:(CGPoint)position height:(ccTime)height jumps:(NSUInteger)jumps NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Moves a CCNode object to a parabolic position simulating a jump movement by modifying its position attribute.
@@ -275,7 +275,7 @@ typedef struct _ccBezierConfig {
 +(id) actionWithDuration: (ccTime) t bezier:(ccBezierConfig) c;
 
 /** initializes the action with a duration and a bezier configuration */
--(id) initWithDuration: (ccTime) t bezier:(ccBezierConfig) c;
+-(instancetype) initWithDuration: (ccTime) t bezier:(ccBezierConfig) c NS_DESIGNATED_INITIALIZER;
 @end
 
 /** An action that moves the target with a cubic Bezier curve to a destination point.
@@ -305,11 +305,11 @@ typedef struct _ccBezierConfig {
 /** creates the action with the same scale factor for X and Y */
 +(id) actionWithDuration: (ccTime)duration scale:(float) s;
 /** initializes the action with the same scale factor for X and Y */
--(id) initWithDuration: (ccTime)duration scale:(float) s;
+-(instancetype) initWithDuration: (ccTime)duration scale:(float) s NS_DESIGNATED_INITIALIZER;
 /** creates the action with and X factor and a Y factor */
 +(id) actionWithDuration: (ccTime)duration scaleX:(float) sx scaleY:(float)sy;
 /** initializes the action with and X factor and a Y factor */
--(id) initWithDuration: (ccTime)duration scaleX:(float) sx scaleY:(float)sy;
+-(instancetype) initWithDuration: (ccTime)duration scaleX:(float) sx scaleY:(float)sy NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Scales a CCNode object a zoom factor by modifying its scale attribute.
@@ -330,7 +330,7 @@ typedef struct _ccBezierConfig {
 /** creates the action */
 +(id) actionWithDuration: (ccTime)duration blinks:(NSUInteger)blinks;
 /** initializes the action */
--(id) initWithDuration: (ccTime)duration blinks:(NSUInteger)blinks;
+-(instancetype) initWithDuration: (ccTime)duration blinks:(NSUInteger)blinks NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Fades In an object that implements the CCRGBAProtocol protocol. It modifies the opacity from 0 to 255.
@@ -364,7 +364,7 @@ typedef struct _ccBezierConfig {
 /** creates an action with duration and opacity */
 +(id) actionWithDuration:(ccTime)duration opacity:(GLubyte)opactiy;
 /** initializes the action with duration and opacity */
--(id) initWithDuration:(ccTime)duration opacity:(GLubyte)opacity;
+-(instancetype) initWithDuration:(ccTime)duration opacity:(GLubyte)opacity NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Tints a CCNode that implements the CCNodeRGB protocol from current tint to a custom one.
@@ -379,7 +379,7 @@ typedef struct _ccBezierConfig {
 /** creates an action with duration and color */
 +(id) actionWithDuration:(ccTime)duration red:(GLubyte)red green:(GLubyte)green blue:(GLubyte)blue;
 /** initializes the action with duration and color */
--(id) initWithDuration:(ccTime)duration red:(GLubyte)red green:(GLubyte)green blue:(GLubyte)blue;
+-(instancetype) initWithDuration:(ccTime)duration red:(GLubyte)red green:(GLubyte)green blue:(GLubyte)blue NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Tints a CCNode that implements the CCNodeRGB protocol from current tint to a custom one.
@@ -393,7 +393,7 @@ typedef struct _ccBezierConfig {
 /** creates an action with duration and color */
 +(id) actionWithDuration:(ccTime)duration red:(GLshort)deltaRed green:(GLshort)deltaGreen blue:(GLshort)deltaBlue;
 /** initializes the action with duration and color */
--(id) initWithDuration:(ccTime)duration red:(GLshort)deltaRed green:(GLshort)deltaGreen blue:(GLshort)deltaBlue;
+-(instancetype) initWithDuration:(ccTime)duration red:(GLshort)deltaRed green:(GLshort)deltaGreen blue:(GLshort)deltaBlue NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Delays the action a certain amount of seconds
@@ -419,7 +419,7 @@ typedef struct _ccBezierConfig {
 /** creates the action */
 +(id) actionWithAction: (CCFiniteTimeAction*) action;
 /** initializes the action */
--(id) initWithAction: (CCFiniteTimeAction*) action;
+-(instancetype) initWithAction: (CCFiniteTimeAction*) action NS_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -440,7 +440,7 @@ typedef struct _ccBezierConfig {
 /** creates the action with an Animation and will restore the original frame when the animation is over */
 +(id) actionWithAnimation:(CCAnimation*)animation;
 /** initializes the action with an Animation and will restore the original frame when the animation is over */
--(id) initWithAnimation:(CCAnimation*)animation;
+-(instancetype) initWithAnimation:(CCAnimation*)animation NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Overrides the target of an action so that it always runs on the target
@@ -455,9 +455,9 @@ typedef struct _ccBezierConfig {
 @property(readwrite,nonatomic,retain) id forcedTarget;
 
 /** Create an action with the specified action and forced target */
-+ (id) actionWithTarget:(id) target action:(CCFiniteTimeAction*) action;
++ (instancetype) actionWithTarget:(id) target action:(CCFiniteTimeAction*) action;
 
 /** Init an action with the specified action and forced target */
-- (id) initWithTarget:(id) target action:(CCFiniteTimeAction*) action;
+- (instancetype) initWithTarget:(id) target action:(CCFiniteTimeAction*) action NS_DESIGNATED_INITIALIZER;
 
 @end

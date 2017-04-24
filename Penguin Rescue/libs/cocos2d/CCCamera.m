@@ -34,7 +34,7 @@
 
 @synthesize dirty = dirty_;
 
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init]) )
 		[self restore];

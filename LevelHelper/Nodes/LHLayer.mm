@@ -54,7 +54,7 @@ static int untitledLayersCount = 0;
 #ifndef LH_ARC_ENABLED
     [userCustomInfo retain];
 #endif
-    [userCustomInfo performSelector:@selector(setPropertiesFromDictionary:) withObject:[dictionary objectForKey:@"ClassRepresentation"]];
+    [userCustomInfo performSelector:@selector(setPropertiesFromDictionary:) withObject:dictionary[@"ClassRepresentation"]];
 }
 -(NSString*)userInfoClassName{
     if(userCustomInfo)
@@ -62,7 +62,7 @@ static int untitledLayersCount = 0;
     return @"No Class";
 }
 //------------------------------------------------------------------------------
--(id)initWithDictionary:(NSDictionary*)dictionary{
+-(instancetype)initWithDictionary:(NSDictionary*)dictionary{
   
     self = [super init];
     if (self != nil)
@@ -78,17 +78,17 @@ static int untitledLayersCount = 0;
                 
         zOrder_ = [dictionary intForKey:@"ZOrder"];
         
-        NSArray* childrenInfo = [dictionary objectForKey:@"Children"];
+        NSArray* childrenInfo = dictionary[@"Children"];
         for(NSDictionary* childDict in childrenInfo){
             [self addChildFromDictionary:childDict];
         }
         
-        [self loadUserCustomInfoFromDictionary:[dictionary objectForKey:@"CustomClassInfo"]];
+        [self loadUserCustomInfoFromDictionary:dictionary[@"CustomClassInfo"]];
     }
     return self;
 }
 //------------------------------------------------------------------------------
-+(id)layerWithDictionary:(NSDictionary*)dictionary{
++(instancetype)layerWithDictionary:(NSDictionary*)dictionary{
 #ifndef LH_ARC_ENABLED
     return [[[self alloc] initWithDictionary:dictionary] autorelease];
 #else
@@ -124,7 +124,7 @@ static int untitledLayersCount = 0;
 {
     if([[childDict stringForKey:@"NodeType"] isEqualToString:@"LHSprite"])
     {
-        NSDictionary* texDict = [childDict objectForKey:@"TextureProperties"];
+        NSDictionary* texDict = childDict[@"TextureProperties"];
         int sprTag = [texDict intForKey:@"Tag"];
         
         Class spriteClass = [[LHCustomSpriteMgr sharedInstance] customSpriteClassForTag:(LevelHelper_TAG)sprTag];
@@ -145,7 +145,7 @@ static int untitledLayersCount = 0;
     }
     else if([[childDict stringForKey:@"NodeType"] isEqualToString:@"LHLayer"]){
         LHLayer* layer = [LHLayer layerWithDictionary:childDict];
-        [self addChild:layer z:[layer zOrder]];
+        [self addChild:layer z:layer.zOrder];
     }
 }
 -(id)userInfo{
@@ -157,7 +157,7 @@ static int untitledLayersCount = 0;
 -(LHLayer*)layerWithUniqueName:(NSString*)name{
     for(id layer in children_){
         if([layer isKindOfClass:[LHLayer class]]){
-            if([[(LHLayer*)layer uniqueName] isEqualToString:name])
+            if([((LHLayer*)layer).uniqueName isEqualToString:name])
                 return layer;
         }
     }
@@ -168,7 +168,7 @@ static int untitledLayersCount = 0;
 -(LHBatch*)batchWithUniqueName:(NSString*)name{
     for(id node in children_){
         if([node isKindOfClass:[LHBatch class]]){
-            if([[(LHBatch*)node uniqueName] isEqualToString:name])
+            if([((LHBatch*)node).uniqueName isEqualToString:name])
                 return node;
         }
         else if([node isKindOfClass:[LHLayer class]]){
@@ -290,7 +290,7 @@ static int untitledLayersCount = 0;
     
     for(id layer in children_){
         if([layer isKindOfClass:[LHLayer class]]){
-            if([(CCNode*)layer tag] == tag)
+            if(((CCNode*)layer).tag == tag)
                 [array addObject:layer];
         }
     }
@@ -302,7 +302,7 @@ static int untitledLayersCount = 0;
     
     for(id node in children_){
         if([node isKindOfClass:[LHBatch class]]){
-            if([(CCNode*)node tag] == tag)
+            if(((CCNode*)node).tag == tag)
                 [array addObject:node];
         }
         else if([node isKindOfClass:[LHLayer class]]){
@@ -317,7 +317,7 @@ static int untitledLayersCount = 0;
     
     for(id node in children_){
         if([node isKindOfClass:[LHSprite class]]){
-            if([(CCNode*)node tag] == tag)
+            if(((CCNode*)node).tag == tag)
                 [array addObject:node];
         }
         else if([node isKindOfClass:[LHBatch class]]){
@@ -334,7 +334,7 @@ static int untitledLayersCount = 0;
     
     for(id node in children_){
         if([node isKindOfClass:[LHBezier class]]){
-            if([(CCNode*)node tag] == tag)
+            if(((CCNode*)node).tag == tag)
                 [array addObject:node];
         }
         else if([node isKindOfClass:[LHLayer class]]){

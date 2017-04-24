@@ -35,11 +35,10 @@
 #import <UIKit/UIKit.h>
 #endif // iPHone
 
-typedef enum
-{
+typedef NS_ENUM(unsigned int, tCCImageFormat) {
 	kCCImageFormatJPEG = 0,
 	kCCImageFormatPNG = 1,
-} tCCImageFormat;
+};
 
 
 /**
@@ -71,19 +70,19 @@ typedef enum
 @property (nonatomic,readwrite, assign) CCSprite* sprite;
 
 /** initializes a RenderTexture object with width and height in Points and a pixel format( only RGB and RGBA formats are valid ) and depthStencil format*/
-+(id)renderTextureWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format depthStencilFormat:(GLuint)depthStencilFormat;
++(instancetype)renderTextureWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format depthStencilFormat:(GLuint)depthStencilFormat;
 
 /** creates a RenderTexture object with width and height in Points and a pixel format, only RGB and RGBA formats are valid */
-+(id)renderTextureWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format;
++(instancetype)renderTextureWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format;
 
 /** creates a RenderTexture object with width and height in Points, pixel format is RGBA8888 */
-+(id)renderTextureWithWidth:(int)w height:(int)h;
++(instancetype)renderTextureWithWidth:(int)w height:(int)h;
 
 /** initializes a RenderTexture object with width and height in Points and a pixel format, only RGB and RGBA formats are valid */
--(id)initWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format;
+-(instancetype)initWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format;
 
 /** initializes a RenderTexture object with width and height in Points and a pixel format( only RGB and RGBA formats are valid ) and depthStencil format*/
-- (id)initWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat)format depthStencilFormat:(GLuint)depthStencilFormat;
+- (instancetype)initWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat)format depthStencilFormat:(GLuint)depthStencilFormat NS_DESIGNATED_INITIALIZER;
 
 /** starts grabbing */
 -(void)begin;
@@ -116,7 +115,7 @@ typedef enum
 /* creates a new CGImage from with the texture's data.
  Caller is responsible for releasing it by calling CGImageRelease().
  */
--(CGImageRef) newCGImage;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGImageRef newCGImage CF_RETURNS_RETAINED;
 
 /** saves the texture into a file using JPEG format. The file will be saved in the Documents folder.
  Returns YES if the operation is successful.
@@ -131,7 +130,7 @@ typedef enum
 #ifdef __CC_PLATFORM_IOS
 
 /* returns an autoreleased UIImage from the texture */
--(UIImage *) getUIImage;
+@property (NS_NONATOMIC_IOSONLY, getter=getUIImage, readonly, strong) UIImage *UIImage;
 
 #endif // __CC_PLATFORM_IOS
 

@@ -76,10 +76,10 @@ typedef void (*TICK_IMP)(id, SEL, ccTime);
 +(id) timerWithTarget:(id) t selector:(SEL)s interval:(ccTime)seconds;
 
 /** Initializes a timer with a target and a selector. */
--(id) initWithTarget:(id) t selector:(SEL)s;
+-(instancetype) initWithTarget:(id) t selector:(SEL)s;
 
 /** Initializes a timer with a target, a selector, an interval in seconds, repeat in number of times to repeat, delay in seconds */
--(id) initWithTarget:(id)t selector:(SEL)s interval:(ccTime) seconds repeat:(uint) r delay:(ccTime) d;
+-(instancetype) initWithTarget:(id)t selector:(SEL)s interval:(ccTime) seconds repeat:(uint) r delay:(ccTime) d NS_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -96,7 +96,7 @@ typedef void (*TICK_IMP)(id, SEL, ccTime);
 +(id) timerWithInterval:(ccTime)seconds key:(NSString*)key block:(void(^)(ccTime delta)) block;
 
 /** Initializes a timer Interval in seconds, repeat in number of times to repeat, delay in seconds and a block */
--(id) initWithInterval:(ccTime)seconds repeat:(uint)r delay:(ccTime) d key:(NSString*)key block:(void(^)(ccTime delta)) block;
+-(instancetype) initWithInterval:(ccTime)seconds repeat:(uint)r delay:(ccTime) d key:(NSString*)key block:(void(^)(ccTime delta)) block NS_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -249,7 +249,7 @@ struct _hashUpdateEntry;
   You should NEVER call this method, unless you know what you are doing.
  @since v2.0.0
   */
--(NSSet*) pauseAllTargets;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSSet *pauseAllTargets;
 
 /** Pause all selectors from all targets with a minimum priority.
   You should only call this with kCCPriorityNonSystemMin or higher.

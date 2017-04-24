@@ -38,14 +38,14 @@ return NSStringFromClass([self class]);
 -(void) setPropertiesFromDictionary:(NSDictionary*)dictionary
 {
 
-	if([dictionary objectForKey:@"runningCost"])
-		[self setRunningCost:[[dictionary objectForKey:@"runningCost"] floatValue]];
+	if(dictionary[@"runningCost"])
+		self.runningCost = [dictionary[@"runningCost"] floatValue];
 
-	if([dictionary objectForKey:@"scale"])
-		[self setScale:[[dictionary objectForKey:@"scale"] floatValue]];
+	if(dictionary[@"scale"])
+		self.scale = [dictionary[@"scale"] floatValue];
 
-	if([dictionary objectForKey:@"placeCost"])
-		[self setPlaceCost:[[dictionary objectForKey:@"placeCost"] floatValue]];
+	if(dictionary[@"placeCost"])
+		self.placeCost = [dictionary[@"placeCost"] floatValue];
 
 }
 

@@ -79,8 +79,8 @@
 @property (readonly) LHSprite* sprite;
 @property bool  paused;
 
--(id) initWithDictionary:(NSDictionary*)dictionary 
-                onSprite:(LHSprite*)sprite sceneName:(NSString*)scene;
+-(instancetype) initWithDictionary:(NSDictionary*)dictionary 
+                onSprite:(LHSprite*)sprite sceneName:(NSString*)scene NS_DESIGNATED_INITIALIZER;
 
 +(id) animationWithDictionary:(NSDictionary*)dic 
                      onSprite:(LHSprite*)sprite sceneName:(NSString*)scene;
@@ -89,15 +89,15 @@
 -(void)play;
 -(void)restart;
 
--(int)numberOfFrames;
+@property (NS_NONATOMIC_IOSONLY, readonly) int numberOfFrames;
 -(void)setFrame:(int)frm;
--(int)currentFrame;
+@property (NS_NONATOMIC_IOSONLY, readonly) int currentFrame;
 
 -(void) nextFrame;
 -(void) prevFrame;
 -(void) nextFrameAndRepeat;
 -(void) prevFrameAndRepeat;
--(bool) isAtLastFrame;
+@property (NS_NONATOMIC_IOSONLY, getter=isAtLastFrame, readonly) bool atLastFrame;
 
 -(void)update:(ccTime)dt;
 
@@ -108,6 +108,6 @@
 -(void)setOldTexture:(CCTexture2D*)tex;
 -(void)setOldRect:(CGRect)r;
 
--(float)totalTime;
+@property (NS_NONATOMIC_IOSONLY, readonly) float totalTime;
 
 @end	

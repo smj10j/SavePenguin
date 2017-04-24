@@ -59,6 +59,10 @@ typedef void (*GLLogFunction) (GLuint program,
 #pragma mark -
 #pragma mark Private Extension Method Declaration
 
+#define EXTENSION_STRING "#extension GL_OES_standard_derivatives : enable"
+static NSString * g_extensionStr = @EXTENSION_STRING;
+
+
 @interface CCGLProgram()
 - (BOOL)compileShader:(GLuint *)shader type:(GLenum)type byteArray:(const GLchar*)byteArray;
 
@@ -71,7 +75,7 @@ typedef void (*GLLogFunction) (GLuint program,
 
 @synthesize program = program_;
 
-- (id)initWithVertexShaderByteArray:(const GLchar *)vShaderByteArray fragmentShaderByteArray:(const GLchar *)fShaderByteArray
+- (instancetype)initWithVertexShaderByteArray:(const GLchar *)vShaderByteArray fragmentShaderByteArray:(const GLchar *)fShaderByteArray
 {
     if ((self = [super init]) )
     {
@@ -108,11 +112,11 @@ typedef void (*GLLogFunction) (GLuint program,
     return self;
 }
 
-- (id)initWithVertexShaderFilename:(NSString *)vShaderFilename fragmentShaderFilename:(NSString *)fShaderFilename
+- (instancetype)initWithVertexShaderFilename:(NSString *)vShaderFilename fragmentShaderFilename:(NSString *)fShaderFilename
 {
 	
-	const GLchar * vertexSource = (GLchar*) [[NSString stringWithContentsOfFile:[[CCFileUtils sharedFileUtils] fullPathFromRelativePath:vShaderFilename] encoding:NSUTF8StringEncoding error:nil] UTF8String];
-	const GLchar * fragmentSource = (GLchar*) [[NSString stringWithContentsOfFile:[[CCFileUtils sharedFileUtils] fullPathFromRelativePath:fShaderFilename] encoding:NSUTF8StringEncoding error:nil] UTF8String];
+	const GLchar * vertexSource = (GLchar*) [NSString stringWithContentsOfFile:[[CCFileUtils sharedFileUtils] fullPathFromRelativePath:vShaderFilename] encoding:NSUTF8StringEncoding error:nil].UTF8String;
+	const GLchar * fragmentSource = (GLchar*) [NSString stringWithContentsOfFile:[[CCFileUtils sharedFileUtils] fullPathFromRelativePath:fShaderFilename] encoding:NSUTF8StringEncoding error:nil].UTF8String;
 
 	return [self initWithVertexShaderByteArray:vertexSource fragmentShaderByteArray:fragmentSource];
 }
@@ -126,46 +130,81 @@ typedef void (*GLLogFunction) (GLuint program,
 - (BOOL)compileShader:(GLuint *)shader type:(GLenum)type byteArray:(const GLchar *)source
 {
     GLint status;
-
+    
     if (!source)
         return NO;
-		
-		const GLchar *sources[] = {
+    
+#ifdef __IPHONE_9_0
+    // BEGIN workaround for Xcode 7 bug
+    NSLog(@"USING IOS9 shaders");
+    static NSString * g_extensionStr = @EXTENSION_STRING;
+    // BEGIN workaround for Xcode 7 ios9----
+    BOOL hasExtension = NO;
+    NSString *sourceStr = [NSString stringWithUTF8String:source];
+    if([sourceStr containsString:g_extensionStr]) {
+        hasExtension = YES;
+        NSArray *strs = [sourceStr componentsSeparatedByString:g_extensionStr];
+        assert(strs.count == 2);
+        sourceStr = [strs componentsJoinedByString:@"\n"];
+        source = (GLchar *)[sourceStr UTF8String];
+    }
+    
+    const GLchar *sources[] = {
+        (hasExtension ? EXTENSION_STRING "\n" : ""),
 #ifdef __CC_PLATFORM_IOS
-			(type == GL_VERTEX_SHADER ? "precision highp float;\n" : "precision mediump float;\n"),
+        (type == GL_VERTEX_SHADER ? "precision highp float;\n" : "precision mediump float;\n"),
 #endif
-			"uniform mat4 CC_PMatrix;\n"
-			"uniform mat4 CC_MVMatrix;\n"
-			"uniform mat4 CC_MVPMatrix;\n"
-			"uniform vec4 CC_Time;\n"
-			"uniform vec4 CC_SinTime;\n"
-			"uniform vec4 CC_CosTime;\n"
-			"uniform vec4 CC_Random01;\n"
-			"//CC INCLUDES END\n\n",
-			source,
-		};
-		
+        "uniform mat4 CC_PMatrix;\n"
+        "uniform mat4 CC_MVMatrix;\n"
+        "uniform mat4 CC_MVPMatrix;\n"
+        "uniform vec4 CC_Time;\n"
+        "uniform vec4 CC_SinTime;\n"
+        "uniform vec4 CC_CosTime;\n"
+        "uniform vec4 CC_Random01;\n"
+        "//CC INCLUDES END\n\n",
+        source,
+    };
+    // END workaround for Xcode 7 bug
+#else
+    NSLog(@"USING IOS8 shaders");
+    
+    const GLchar *sources[] = {
+#ifdef __CC_PLATFORM_IOS
+        (type == GL_VERTEX_SHADER ? "precision highp float;\n" : "precision mediump float;\n"),
+#endif
+        "uniform mat4 CC_PMatrix;\n"
+        "uniform mat4 CC_MVMatrix;\n"
+        "uniform mat4 CC_MVPMatrix;\n"
+        "uniform vec4 CC_Time;\n"
+        "uniform vec4 CC_SinTime;\n"
+        "uniform vec4 CC_CosTime;\n"
+        "uniform vec4 CC_Random01;\n"
+        "//CC INCLUDES END\n\n",
+        source,
+    };
+#endif
+    
     *shader = glCreateShader(type);
     glShaderSource(*shader, sizeof(sources)/sizeof(*sources), sources, NULL);
     glCompileShader(*shader);
-	
+    
     glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
-	
-	if( ! status ) {
-		GLsizei length;
-		glGetShaderiv(*shader, GL_SHADER_SOURCE_LENGTH, &length);
-		GLchar src[length];
-		
-		glGetShaderSource(*shader, length, NULL, src);
-		CCLOG(@"cocos2d: ERROR: Failed to compile shader:\n%s", src);
-		
-		if( type == GL_VERTEX_SHADER )
-			CCLOG(@"cocos2d: %@", [self vertexShaderLog] );
-		else
-			CCLOG(@"cocos2d: %@", [self fragmentShaderLog] );
-		
-		abort();
-	}
+    
+    if( ! status ) {
+        GLsizei length;
+        glGetShaderiv(*shader, GL_SHADER_SOURCE_LENGTH, &length);
+        GLchar src[length];
+        
+        glGetShaderSource(*shader, length, NULL, src);
+        CCLOG(@"cocos2d: ERROR: Failed to compile shader:\n%s", src);
+        
+        if( type == GL_VERTEX_SHADER )
+            CCLOG(@"cocos2d: %@", [self vertexShaderLog] );
+        else
+            CCLOG(@"cocos2d: %@", [self fragmentShaderLog] );
+        
+        abort();
+    }
     return ( status == GL_TRUE );
 }
 
@@ -175,7 +214,7 @@ typedef void (*GLLogFunction) (GLuint program,
 {
 	glBindAttribLocation(program_,
 						 index,
-						 [attributeName UTF8String]);
+						 attributeName.UTF8String);
 }
 
 -(void) updateUniforms

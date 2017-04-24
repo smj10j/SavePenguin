@@ -52,16 +52,16 @@ enum LH_CONTACT_TYPE
     const b2ContactImpulse* impulse; //available at post solve - else is nil
 }
 
--(id) initWithInfo:(b2Body*)bodyA 
+-(instancetype) initWithInfo:(b2Body*)bodyA 
              bodyB:(b2Body*)bodyB
           fixtureA:(b2Fixture*)fixA
           fixtureB:(b2Fixture*)fixB
            contact:(b2Contact*)_contact
        contactType:(int)type
           manifold:(const b2Manifold*)_manifold
-           impulse:(const b2ContactImpulse*)_impulse;
+           impulse:(const b2ContactImpulse*)_impulse NS_DESIGNATED_INITIALIZER;
 
-+(id) contactInfoWithBodyA:(b2Body*)bodyA
++(instancetype) contactInfoWithBodyA:(b2Body*)bodyA
                      bodyB:(b2Body*)bodyB
                   fixtureA:(b2Fixture*)fixA
                   fixtureB:(b2Fixture*)fixB
@@ -71,32 +71,32 @@ enum LH_CONTACT_TYPE
                    impulse:(const b2ContactImpulse*)_impulse;
 
 
--(b2Body*)bodyA;
--(b2Body*)bodyB;
+@property (NS_NONATOMIC_IOSONLY, readonly) b2Body *bodyA;
+@property (NS_NONATOMIC_IOSONLY, readonly) b2Body *bodyB;
 
 //returns 
 // 1 if its begin contact, 
 // 0 if its end contact,
 //-1 if its pre solve contact
 //-2 if its post solve contact
--(enum LH_CONTACT_TYPE) contactType; 
+@property (NS_NONATOMIC_IOSONLY, readonly) enum LH_CONTACT_TYPE contactType; 
 
--(CGPoint)contactPoint;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGPoint contactPoint;
 
--(LHSprite*)spriteA;//may return nil;
--(LHSprite*)spriteB;//may return nil;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) LHSprite *spriteA;//may return nil;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) LHSprite *spriteB;//may return nil;
 
--(LHBezier*)bezierA;//may return nil;
--(LHBezier*)bezierB;//may return nil;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) LHBezier *bezierA;//may return nil;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) LHBezier *bezierB;//may return nil;
 
--(NSString*)fixtureNameA;
--(NSString*)fixtureNameB;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *fixtureNameA;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *fixtureNameB;
 
--(int)fixtureIdA;
--(int)fixtureIdB;
+@property (NS_NONATOMIC_IOSONLY, readonly) int fixtureIdA;
+@property (NS_NONATOMIC_IOSONLY, readonly) int fixtureIdB;
 
--(b2Contact*)contact;//available at both pre and post solve
--(const b2Manifold*)oldManifold;//available at pre solve - else is nil
--(const b2ContactImpulse*)impulse;//available at post solve - else is nil
+@property (NS_NONATOMIC_IOSONLY, readonly) b2Contact *contact;//available at both pre and post solve
+@property (NS_NONATOMIC_IOSONLY, readonly) const b2Manifold *oldManifold;//available at pre solve - else is nil
+@property (NS_NONATOMIC_IOSONLY, readonly) const b2ContactImpulse *impulse;//available at post solve - else is nil
 @end	
 #endif

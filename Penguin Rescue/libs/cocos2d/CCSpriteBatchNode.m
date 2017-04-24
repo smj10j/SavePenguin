@@ -65,12 +65,12 @@ const NSUInteger defaultCapacity = 29;
 /*
  * creation with CCTexture2D
  */
-+(id)batchNodeWithTexture:(CCTexture2D *)tex
++(instancetype)batchNodeWithTexture:(CCTexture2D *)tex
 {
 	return [[[self alloc] initWithTexture:tex capacity:defaultCapacity] autorelease];
 }
 
-+(id)batchNodeWithTexture:(CCTexture2D *)tex capacity:(NSUInteger)capacity
++(instancetype)batchNodeWithTexture:(CCTexture2D *)tex capacity:(NSUInteger)capacity
 {
 	return [[[self alloc] initWithTexture:tex capacity:capacity] autorelease];
 }
@@ -78,29 +78,29 @@ const NSUInteger defaultCapacity = 29;
 /*
  * creation with File Image
  */
-+(id)batchNodeWithFile:(NSString*)fileImage capacity:(NSUInteger)capacity
++(instancetype)batchNodeWithFile:(NSString*)fileImage capacity:(NSUInteger)capacity
 {
 	return [[[self alloc] initWithFile:fileImage capacity:capacity] autorelease];
 }
 
-+(id)batchNodeWithFile:(NSString*) imageFile
++(instancetype)batchNodeWithFile:(NSString*) imageFile
 {
 	return [[[self alloc] initWithFile:imageFile capacity:defaultCapacity] autorelease];
 }
 
--(id)init
+-(instancetype)init
 {
     return [self initWithTexture:[[[CCTexture2D alloc] init] autorelease] capacity:0];
 }
 
--(id)initWithFile:(NSString *)fileImage capacity:(NSUInteger)capacity
+-(instancetype)initWithFile:(NSString *)fileImage capacity:(NSUInteger)capacity
 {
 	CCTexture2D *tex = [[CCTextureCache sharedTextureCache] addImage:fileImage];
 	return [self initWithTexture:tex capacity:capacity];
 }
 
 // Designated initializer
--(id)initWithTexture:(CCTexture2D *)tex capacity:(NSUInteger)capacity
+-(instancetype)initWithTexture:(CCTexture2D *)tex capacity:(NSUInteger)capacity
 {
 	if( (self=[super init])) {
 
@@ -278,7 +278,7 @@ const NSUInteger defaultCapacity = 29;
 
 -(void) updateAtlasIndex:(CCSprite*) sprite currentIndex:(NSInteger*) curIndex
 {
-	CCArray *array = [sprite children];
+	CCArray *array = sprite.children;
 	NSUInteger count = [array count];
 	NSInteger oldIndex;
 
@@ -427,7 +427,7 @@ const NSUInteger defaultCapacity = 29;
 
 -(NSUInteger) highestAtlasIndexInChild:(CCSprite*)sprite
 {
-	CCArray *array = [sprite children];
+	CCArray *array = sprite.children;
 	NSUInteger count = [array count];
 	if( count == 0 )
 		return sprite.atlasIndex;
@@ -437,7 +437,7 @@ const NSUInteger defaultCapacity = 29;
 
 -(NSUInteger) lowestAtlasIndexInChild:(CCSprite*)sprite
 {
-	CCArray *array = [sprite children];
+	CCArray *array = sprite.children;
 	NSUInteger count = [array count];
 	if( count == 0 )
 		return sprite.atlasIndex;
@@ -448,7 +448,7 @@ const NSUInteger defaultCapacity = 29;
 
 -(NSUInteger)atlasIndexForChild:(CCSprite*)sprite atZ:(NSInteger)z
 {
-	CCArray *brothers = [[sprite parent] children];
+	CCArray *brothers = sprite.parent.children;
 	NSUInteger childIndex = [brothers indexOfObject:sprite];
 
 	// ignore parent Z if parent is batchnode
@@ -496,14 +496,14 @@ const NSUInteger defaultCapacity = 29;
 // add child helper
 -(void) insertChild:(CCSprite*)sprite inAtlasAtIndex:(NSUInteger)index
 {
-	[sprite setBatchNode:self];
-	[sprite setAtlasIndex:index];
+	sprite.batchNode = self;
+	sprite.atlasIndex = index;
 	[sprite setDirty: YES];
 
 	if(textureAtlas_.totalQuads == textureAtlas_.capacity)
 		[self increaseAtlasCapacity];
 
-	ccV3F_C4B_T2F_Quad quad = [sprite quad];
+	ccV3F_C4B_T2F_Quad quad = sprite.quad;
 	[textureAtlas_ insertQuad:&quad atIndex:index];
 
 	ccArray *descendantsData = descendants_->data;
@@ -529,7 +529,7 @@ const NSUInteger defaultCapacity = 29;
 -(void) appendChild:(CCSprite*)sprite
 {
 	isReorderChildDirty_=YES;
-	[sprite setBatchNode:self];
+	sprite.batchNode = self;
 	[sprite setDirty: YES];
 
 	if(textureAtlas_.totalQuads == textureAtlas_.capacity)
@@ -543,7 +543,7 @@ const NSUInteger defaultCapacity = 29;
 
 	sprite.atlasIndex=index;
 
-	ccV3F_C4B_T2F_Quad quad = [sprite quad];
+	ccV3F_C4B_T2F_Quad quad = sprite.quad;
 	[textureAtlas_ insertQuad:&quad atIndex:index];
 
 	// add children recursively
@@ -587,7 +587,7 @@ const NSUInteger defaultCapacity = 29;
 
 -(void) updateBlendFunc
 {
-	if( ! [textureAtlas_.texture hasPremultipliedAlpha] ) {
+	if( ! (textureAtlas_.texture).hasPremultipliedAlpha ) {
 		blendFunc_.src = GL_SRC_ALPHA;
 		blendFunc_.dst = GL_ONE_MINUS_SRC_ALPHA;
 	}
@@ -623,10 +623,10 @@ const NSUInteger defaultCapacity = 29;
 	// update the quad directly. Don't add the sprite to the scene graph
 	//
 	
-	[sprite setBatchNode:self];
-	[sprite setAtlasIndex:index];
+	sprite.batchNode = self;
+	sprite.atlasIndex = index;
 	
-	ccV3F_C4B_T2F_Quad quad = [sprite quad];
+	ccV3F_C4B_T2F_Quad quad = sprite.quad;
 	[textureAtlas_ insertQuad:&quad atIndex:index];
 	
 	// XXX: updateTransform will update the textureAtlas too using updateQuad.
@@ -641,7 +641,7 @@ const NSUInteger defaultCapacity = 29;
 	NSAssert( [child isKindOfClass:[CCSprite class]], @"CCSpriteBatchNode only supports CCSprites as children");
 	
 	// quad index is Z
-	[child setAtlasIndex:z];
+	child.atlasIndex = z;
 	
 	// XXX: optimize with a binary search
 	int i=0;

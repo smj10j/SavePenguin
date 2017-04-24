@@ -32,14 +32,13 @@
 #import "CCGLView.h"
 
 
-typedef enum
-{
+typedef NS_OPTIONS(unsigned int, ccTouchSelectorFlag) {
 	kCCTouchSelectorBeganBit = 1 << 0,
 	kCCTouchSelectorMovedBit = 1 << 1,
 	kCCTouchSelectorEndedBit = 1 << 2,
 	kCCTouchSelectorCancelledBit = 1 << 3,
 	kCCTouchSelectorAllBits = ( kCCTouchSelectorBeganBit | kCCTouchSelectorMovedBit | kCCTouchSelectorEndedBit | kCCTouchSelectorCancelledBit),
-} ccTouchSelectorFlag;
+};
 
 
 enum {

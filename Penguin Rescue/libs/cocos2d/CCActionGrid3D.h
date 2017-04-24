@@ -40,7 +40,7 @@
 @property (nonatomic,readwrite) float amplitudeRate;
 
 +(id)actionWithWaves:(int)wav amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d;
--(id)initWithWaves:(int)wav amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d;
+-(instancetype)initWithWaves:(int)wav amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -54,7 +54,7 @@
 /** creates the action with duration */
 +(id) actionWithDuration:(ccTime)d;
 /** initializes the action with duration */
--(id) initWithDuration:(ccTime)d;
+-(instancetype) initWithDuration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -87,7 +87,7 @@
 /** creates the action with center position in Points, radius, a grid size and duration */
 +(id)actionWithPosition:(CGPoint)pos radius:(float)r grid:(ccGridSize)gridSize duration:(ccTime)d;
 /** initializes the action with center position in Points, radius, a grid size and duration */
--(id)initWithPosition:(CGPoint)pos radius:(float)r grid:(ccGridSize)gridSize duration:(ccTime)d;
+-(instancetype)initWithPosition:(CGPoint)pos radius:(float)r grid:(ccGridSize)gridSize duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -113,7 +113,7 @@
 /** creates the action with a position in points, radius, number of waves, amplitude, a grid size and duration */
 +(id)actionWithPosition:(CGPoint)pos radius:(float)r waves:(int)wav amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d;
 /** initializes the action with a position in points, radius, number of waves, amplitude, a grid size and duration */
--(id)initWithPosition:(CGPoint)pos radius:(float)r waves:(int)wav amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d;
+-(instancetype)initWithPosition:(CGPoint)pos radius:(float)r waves:(int)wav amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -129,7 +129,7 @@
 /** creates the action with a range, shake Z vertices, a grid and duration */
 +(id)actionWithRange:(int)range shakeZ:(BOOL)shakeZ grid:(ccGridSize)gridSize duration:(ccTime)d;
 /** initializes the action with a range, shake Z vertices, a grid and duration */
--(id)initWithRange:(int)range shakeZ:(BOOL)shakeZ grid:(ccGridSize)gridSize duration:(ccTime)d;
+-(instancetype)initWithRange:(int)range shakeZ:(BOOL)shakeZ grid:(ccGridSize)gridSize duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -152,7 +152,7 @@
 /** creates the action with amplitude, a grid and duration */
 +(id)actionWithWaves:(int)wav amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d;
 /** initializes the action with amplitude, a grid and duration */
--(id)initWithWaves:(int)wav amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d;
+-(instancetype)initWithWaves:(int)wav amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -176,7 +176,7 @@
 /** initializes the action with amplitude, horizontal sin, vertical sin, a grid and duration */
 +(id)actionWithWaves:(int)wav amplitude:(float)amp horizontal:(BOOL)h vertical:(BOOL)v grid:(ccGridSize)gridSize duration:(ccTime)d;
 /** creates the action with amplitude, horizontal sin, vertical sin, a grid and duration */
--(id)initWithWaves:(int)wav amplitude:(float)amp horizontal:(BOOL)h vertical:(BOOL)v grid:(ccGridSize)gridSize duration:(ccTime)d;
+-(instancetype)initWithWaves:(int)wav amplitude:(float)amp horizontal:(BOOL)h vertical:(BOOL)v grid:(ccGridSize)gridSize duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -201,6 +201,6 @@
 /** creates the action with center position, number of twirls, amplitude, a grid size and duration */
 +(id)actionWithPosition:(CGPoint)pos twirls:(int)t amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d;
 /** initializes the action with center position, number of twirls, amplitude, a grid size and duration */
--(id)initWithPosition:(CGPoint)pos twirls:(int)t amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d;
+-(instancetype)initWithPosition:(CGPoint)pos twirls:(int)t amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end

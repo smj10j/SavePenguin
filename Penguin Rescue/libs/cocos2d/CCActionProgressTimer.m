@@ -34,7 +34,7 @@
 	return [[[ self alloc] initWithDuration: t percent: v] autorelease];
 }
 
--(id) initWithDuration: (ccTime) t percent: (float) v
+-(instancetype) initWithDuration: (ccTime) t percent: (float) v
 {
 	if( (self=[super initWithDuration: t] ) )
 		to_ = v;
@@ -51,7 +51,7 @@
 -(void) startWithTarget:(id) aTarget;
 {
 	[super startWithTarget:aTarget];
-	from_ = [(kProgressTimerCast)target_ percentage];
+	from_ = ((kProgressTimerCast)target_).percentage;
 
 	// XXX: Is this correct ?
 	// Adding it to support CCRepeat
@@ -61,7 +61,7 @@
 
 -(void) update: (ccTime) t
 {
-	[(kProgressTimerCast)target_ setPercentage: from_ + ( to_ - from_ ) * t];
+	((kProgressTimerCast)target_).percentage = from_ + ( to_ - from_ ) * t;
 }
 @end
 
@@ -71,7 +71,7 @@
 	return [[[self alloc] initWithDuration: t from: fromPercentage to: toPercentage] autorelease];
 }
 
--(id) initWithDuration: (ccTime) t from:(float)fromPercentage to:(float) toPercentage
+-(instancetype) initWithDuration: (ccTime) t from:(float)fromPercentage to:(float) toPercentage
 {
 	if( (self=[super initWithDuration: t] ) ){
 		to_ = toPercentage;
@@ -98,6 +98,6 @@
 
 -(void) update: (ccTime) t
 {
-	[(kProgressTimerCast)target_ setPercentage: from_ + ( to_ - from_ ) * t];
+	((kProgressTimerCast)target_).percentage = from_ + ( to_ - from_ ) * t;
 }
 @end

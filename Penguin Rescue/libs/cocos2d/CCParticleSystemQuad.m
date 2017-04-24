@@ -55,13 +55,13 @@
 
 @interface CCParticleSystemQuad ()
 -(void) initVAO;
--(BOOL) allocMemory;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL allocMemory;
 @end
 
 @implementation CCParticleSystemQuad
 
 // overriding the init method
--(id) initWithTotalParticles:(NSUInteger) numberOfParticles
+-(instancetype) initWithTotalParticles:(NSUInteger) numberOfParticles
 {
 	// base initialization
 	if( (self=[super initWithTotalParticles:numberOfParticles]) ) {
@@ -204,8 +204,8 @@
 		CHECK_GL_ERROR_DEBUG();
 	};
 	
-	NSThread *cocos2dThread = [[CCDirector sharedDirector] runningThread];
-	if( cocos2dThread == [NSThread currentThread] || [[CCConfiguration sharedConfiguration] supportsShareableVAO] )
+	NSThread *cocos2dThread = [CCDirector sharedDirector].runningThread;
+	if( cocos2dThread == [NSThread currentThread] || [CCConfiguration sharedConfiguration].supportsShareableVAO )
 		createVAO();
 	else 
 		[cocos2dThread performBlock:createVAO waitUntilDone:YES];
@@ -235,8 +235,8 @@
 							 pointRect.size.width * CC_CONTENT_SCALE_FACTOR(),
 							 pointRect.size.height * CC_CONTENT_SCALE_FACTOR() );
 
-	GLfloat wide = [texture_ pixelsWide];
-	GLfloat high = [texture_ pixelsHigh];
+	GLfloat wide = texture_.pixelsWide;
+	GLfloat high = texture_.pixelsHigh;
 
 #if CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL
 	GLfloat left = (rect.origin.x*2+1) / (wide*2);
@@ -257,7 +257,7 @@
 	NSUInteger start, end;
 	if (batchNode_)
 	{
-		quads = [[batchNode_ textureAtlas] quads];
+		quads = batchNode_.textureAtlas.quads;
 		start = atlasIndex_;
 		end = atlasIndex_ + totalParticles;
 	}
@@ -288,8 +288,8 @@
 -(void) setTexture:(CCTexture2D *)texture withRect:(CGRect)rect
 {
 	// Only update the texture if is different from the current one
-	if( [texture name] != [texture_ name] )
-		[super setTexture:texture];
+	if( texture.name != texture_.name )
+		super.texture = texture;
 
 	[self initTexCoordsWithRect:rect];
 }
@@ -307,7 +307,7 @@
     
 	// update texture before updating texture rect
 	if ( spriteFrame.texture.name != texture_.name )
-		[self setTexture: spriteFrame.texture];
+		self.texture = spriteFrame.texture;
 }
 
 -(void) initIndices
@@ -331,7 +331,7 @@
 
 	if (batchNode_)
 	{
-		ccV3F_C4B_T2F_Quad *batchQuads = [[batchNode_ textureAtlas] quads];
+		ccV3F_C4B_T2F_Quad *batchQuads = batchNode_.textureAtlas.quads;
 		quad = &(batchQuads[atlasIndex_+p->atlasIndex]);
 	}
 	else
@@ -419,7 +419,7 @@
 
 	CC_NODE_DRAW_SETUP();
 
-	ccGLBindTexture2D( [texture_ name] );
+	ccGLBindTexture2D( texture_.name );
 	ccGLBlendFunc( blendFunc_.src, blendFunc_.dst );
 
 	NSAssert( particleIdx == particleCount, @"Abnormal error in particle quad");
@@ -438,13 +438,13 @@
 
 		CCParticleBatchNode *oldBatch = batchNode_;
 
-		[super setBatchNode:batchNode];
+		super.batchNode = batchNode;
 
 		// NEW: is self render ?
 		if( ! batchNode ) {
 			[self allocMemory];
 			[self initIndices];
-			[self setTexture:[oldBatch texture]];
+			self.texture = [oldBatch texture];
 			[self initVAO];
 		}
 
@@ -452,7 +452,7 @@
 		else if( ! oldBatch )
 		{
 			// copy current state to batch
-			ccV3F_C4B_T2F_Quad *batchQuads = [[batchNode_ textureAtlas] quads];
+			ccV3F_C4B_T2F_Quad *batchQuads = batchNode_.textureAtlas.quads;
 			ccV3F_C4B_T2F_Quad *quad = &(batchQuads[atlasIndex_] );
 			memcpy( quad, quads_, totalParticles * sizeof(quads_[0]) );
 

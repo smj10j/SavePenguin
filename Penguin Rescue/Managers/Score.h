@@ -14,11 +14,9 @@
 	int _count;
 }
 
--(id)initWithScore:(int)score;
--(int)score;
--(int)count;
+-(instancetype)initWithScore:(int)score NS_DESIGNATED_INITIALIZER;
+@property (NS_NONATOMIC_IOSONLY) int score;
+@property (NS_NONATOMIC_IOSONLY) int count;
 
--(void)setScore:(int)score;
--(void)setCount:(int)count;
 
 @end

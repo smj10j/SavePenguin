@@ -10,7 +10,7 @@
 
 @implementation Score
 
--(id)initWithScore:(int)score {
+-(instancetype)initWithScore:(int)score {
 	
 	if(self = [super init]) {
 		_score = score;

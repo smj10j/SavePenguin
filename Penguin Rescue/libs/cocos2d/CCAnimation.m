@@ -35,7 +35,7 @@
 
 @synthesize spriteFrame = spriteFrame_, delayUnits = delayUnits_, userInfo=userInfo_;
 
--(id) initWithSpriteFrame:(CCSpriteFrame *)spriteFrame delayUnits:(float)delayUnits userInfo:(NSDictionary*)userInfo
+-(instancetype) initWithSpriteFrame:(CCSpriteFrame *)spriteFrame delayUnits:(float)delayUnits userInfo:(NSDictionary*)userInfo
 {
 	if( (self=[super init]) ) {
 		self.spriteFrame = spriteFrame;
@@ -74,44 +74,44 @@
 @implementation CCAnimation
 @synthesize frames = frames_, totalDelayUnits=totalDelayUnits_, delayPerUnit=delayPerUnit_, restoreOriginalFrame=restoreOriginalFrame_, loops=loops_;
 
-+(id) animation
++(instancetype) animation
 {
 	return [[[self alloc] init] autorelease];
 }
 
-+(id) animationWithSpriteFrames:(NSArray*)frames
++(instancetype) animationWithSpriteFrames:(NSArray*)frames
 {
 	return [[[self alloc] initWithSpriteFrames:frames] autorelease];
 }
 
-+(id) animationWithSpriteFrames:(NSArray*)frames delay:(float)delay
++(instancetype) animationWithSpriteFrames:(NSArray*)frames delay:(float)delay
 {
 	return [[[self alloc] initWithSpriteFrames:frames delay:delay] autorelease];
 }
 
-+(id) animationWithAnimationFrames:(NSArray*)arrayOfAnimationFrames delayPerUnit:(float)delayPerUnit loops:(NSUInteger)loops
++(instancetype) animationWithAnimationFrames:(NSArray*)arrayOfAnimationFrames delayPerUnit:(float)delayPerUnit loops:(NSUInteger)loops
 {
 	return [[[self alloc] initWithAnimationFrames:arrayOfAnimationFrames delayPerUnit:delayPerUnit loops:loops] autorelease];
 }
 
--(id) init
+-(instancetype) init
 {
 	return [self initWithSpriteFrames:nil delay:0];
 }
 
--(id) initWithSpriteFrames:(NSArray*)frames
+-(instancetype) initWithSpriteFrames:(NSArray*)frames
 {
 	return [self initWithSpriteFrames:frames delay:0];
 }
 
--(id) initWithSpriteFrames:(NSArray*)array delay:(float)delay
+-(instancetype) initWithSpriteFrames:(NSArray*)array delay:(float)delay
 {
 	if( (self=[super init]) )
 	{
 		loops_ = 1;
 		delayPerUnit_ = delay;
 
-		self.frames = [NSMutableArray arrayWithCapacity:[array count]];
+		self.frames = [NSMutableArray arrayWithCapacity:array.count];
 		
 		for( CCSpriteFrame *frame in array ) {
 			CCAnimationFrame *animFrame = [[CCAnimationFrame alloc] initWithSpriteFrame:frame delayUnits:1 userInfo:nil];
@@ -125,7 +125,7 @@
 	return self;
 }
 
--(id) initWithAnimationFrames:(NSArray*)arrayOfAnimationFrames delayPerUnit:(float)delayPerUnit loops:(NSUInteger)loops
+-(instancetype) initWithAnimationFrames:(NSArray*)arrayOfAnimationFrames delayPerUnit:(float)delayPerUnit loops:(NSUInteger)loops
 {
 	if( ( self=[super init]) )
 	{
@@ -143,7 +143,7 @@
 - (NSString*) description
 {
 	return [NSString stringWithFormat:@"<%@ = %p | frames=%lu, totalDelayUnits=%f, delayPerUnit=%f, loops=%lu>", [self class], self,
-			(unsigned long)[frames_ count],
+			(unsigned long)frames_.count,
 			totalDelayUnits_,
 			delayPerUnit_,
 			(unsigned long)loops_

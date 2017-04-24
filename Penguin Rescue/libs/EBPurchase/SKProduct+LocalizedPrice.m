@@ -13,9 +13,9 @@
 - (NSString *)localizedPrice
 {
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
-    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    [numberFormatter setLocale:self.priceLocale];
+    numberFormatter.formatterBehavior = NSNumberFormatterBehavior10_4;
+    numberFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    numberFormatter.locale = self.priceLocale;
     NSString *formattedString = [numberFormatter stringFromNumber:self.price];
     [numberFormatter release];
     return formattedString;

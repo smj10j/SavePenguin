@@ -38,7 +38,7 @@
 }
 
 //
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init])) {
 		
@@ -72,8 +72,8 @@
 		
 	
 		/*********** Sound Settings ************/
-		[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.40f];
-		[[SimpleAudioEngine sharedEngine] setEffectsVolume:0.80f];
+		[SimpleAudioEngine sharedEngine].backgroundMusicVolume = 0.40f;
+		[SimpleAudioEngine sharedEngine].effectsVolume = 0.80f;
 		[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sounds/menu/ambient/theme.mp3"];
 		
 		
@@ -101,13 +101,13 @@
 		DebugLog(@"Launching with uuid=%@", [SettingsManager getUUID]);
 		
 		//set our current version (can be used in future version to test for update
-		NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-		NSString* version = [infoDict objectForKey:@"CFBundleShortVersionString"];
+		NSDictionary* infoDict = [NSBundle mainBundle].infoDictionary;
+		NSString* version = infoDict[@"CFBundleShortVersionString"];
 		[SettingsManager setString:version forKey:SETTING_CURRENT_VERSION];
 		if(DEBUG_SETTINGS) DebugLog(@"Updated Current Version setting to %@", version);
 		
 		//set our boot time (can be used for applying settings on updates
-		[SettingsManager setDouble:[[NSDate date] timeIntervalSince1970] forKey:SETTING_LAST_RUN_TIMESTAMP];
+		[SettingsManager setDouble:[NSDate date].timeIntervalSince1970 forKey:SETTING_LAST_RUN_TIMESTAMP];
 		[SettingsManager incrementIntBy:1 forKey:SETTING_NUM_APP_OPENS];
 		
 		

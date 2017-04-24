@@ -34,7 +34,7 @@
 {
 }
 // XXX Needed for BridgeSupport
--(id) init;
+-(instancetype) init;
 @end
 
 /** Show the node
@@ -70,7 +70,7 @@
 	BOOL	flipX;
 }
 +(id) actionWithFlipX:(BOOL)x;
--(id) initWithFlipX:(BOOL)x;
+-(instancetype) initWithFlipX:(BOOL)x NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Flips the sprite vertically
@@ -81,7 +81,7 @@
 	BOOL	flipY;
 }
 +(id) actionWithFlipY:(BOOL)y;
--(id) initWithFlipY:(BOOL)y;
+-(instancetype) initWithFlipY:(BOOL)y NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Places the node in a certain position
@@ -93,7 +93,7 @@
 /** creates a Place action with a position */
 +(id) actionWithPosition: (CGPoint) pos;
 /** Initializes a Place action with a position */
--(id) initWithPosition: (CGPoint) pos;
+-(instancetype) initWithPosition: (CGPoint) pos NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Calls a 'callback'
@@ -110,7 +110,7 @@
 /** creates the action with the callback */
 +(id) actionWithTarget: (id) t selector:(SEL) s;
 /** initializes the action with the callback */
--(id) initWithTarget: (id) t selector:(SEL) s;
+-(instancetype) initWithTarget: (id) t selector:(SEL) s NS_DESIGNATED_INITIALIZER;
 /** executes the callback */
 -(void) execute;
 @end
@@ -141,7 +141,7 @@ typedef void (*CC_CALLBACK_ND)(id, SEL, id, void *);
 /** creates the action with the callback and the data to pass as an argument */
 +(id) actionWithTarget: (id) t selector:(SEL) s data:(void*)d;
 /** initializes the action with the callback and the data to pass as an argument */
--(id) initWithTarget:(id) t selector:(SEL) s data:(void*) d;
+-(instancetype) initWithTarget:(id) t selector:(SEL) s data:(void*) d NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Calls a 'callback' with an object as the first argument.
@@ -158,7 +158,7 @@ typedef void (*CC_CALLBACK_ND)(id, SEL, id, void *);
 /** creates the action with the callback and the object to pass as an argument */
 +(id) actionWithTarget: (id) t selector:(SEL) s object:(id)object;
 /** initializes the action with the callback and the object to pass as an argument */
--(id) initWithTarget:(id) t selector:(SEL) s object:(id)object;
+-(instancetype) initWithTarget:(id) t selector:(SEL) s object:(id)object NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -179,7 +179,7 @@ typedef void (*CC_CALLBACK_ND)(id, SEL, id, void *);
 /** initialized the action with the specified block, to be used as a callback.
  The block will be "copied".
  */
--(id) initWithBlock:(void(^)())block;
+-(instancetype) initWithBlock:(void(^)())block NS_DESIGNATED_INITIALIZER;
 
 /** executes the callback */
 -(void) execute;
@@ -202,7 +202,7 @@ typedef void (*CC_CALLBACK_ND)(id, SEL, id, void *);
 /** initialized the action with the specified block, to be used as a callback.
  The block will be "copied".
  */
--(id) initWithBlock:(void(^)(CCNode *node))block;
+-(instancetype) initWithBlock:(void(^)(CCNode *node))block NS_DESIGNATED_INITIALIZER;
 
 /** executes the callback */
 -(void) execute;
@@ -228,7 +228,7 @@ typedef void (*CC_CALLBACK_ND)(id, SEL, id, void *);
 /** initialized the action with the specified block, to be used as a callback.
  The block will be "copied".
  */
--(id) initWithBlock:(void(^)(id object))block object:(id)object;
+-(instancetype) initWithBlock:(void(^)(id object))block object:(id)object NS_DESIGNATED_INITIALIZER;
 
 /** executes the callback */
 -(void) execute;

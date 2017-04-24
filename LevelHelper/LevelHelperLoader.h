@@ -130,12 +130,12 @@ NSValue* LHValueWithCGPoint(CGPoint pt);
     NSMutableString* imageFolder;
 }
 //------------------------------------------------------------------------------
--(id) initWithContentOfFile:(NSString*)levelFile;
--(id) initWithContentOfFileFromInternet:(NSString*)webAddress;
+-(instancetype) initWithContentOfFile:(NSString*)levelFile NS_DESIGNATED_INITIALIZER;
+-(instancetype) initWithContentOfFileFromInternet:(NSString*)webAddress NS_DESIGNATED_INITIALIZER;
 //url can be a web address / imgFolder needs to be local
--(id) initWithContentOfFileAtURL:(NSURL*)levelURL imagesPath:(NSString*)imgFolder;
--(id) initWithContentOfFile:(NSString*)levelFile 
-			 levelSubfolder:(NSString*)levelFolder;
+-(instancetype) initWithContentOfFileAtURL:(NSURL*)levelURL imagesPath:(NSString*)imgFolder NS_DESIGNATED_INITIALIZER;
+-(instancetype) initWithContentOfFile:(NSString*)levelFile 
+			 levelSubfolder:(NSString*)levelFolder NS_DESIGNATED_INITIALIZER;
 //------------------------------------------------------------------------------
 
 //will call this selector during loading the level (addObjectsToWorld or addSpritesToLayer)
@@ -175,8 +175,7 @@ NSValue* LHValueWithCGPoint(CGPoint pt);
 +(void)setPaused:(bool)value; //pass true to pause, false to unpause
 
 //use this non static methods when you want to pause only one loader and not all
--(bool)isPaused;
--(void)setPaused:(bool)value;
+@property (NS_NONATOMIC_IOSONLY, getter=isPaused) bool paused;
 
 -(LHLayer*)  layerWithUniqueName:(NSString*)name;
 -(LHBatch*)  batchWithUniqueName:(NSString*)name;
@@ -185,12 +184,12 @@ NSValue* LHValueWithCGPoint(CGPoint pt);
 -(LHJoint*)  jointWithUniqueName:(NSString*)name;
 -(LHParallaxNode*) parallaxNodeWithUniqueName:(NSString*)uniqueName;
 
--(NSArray*) allLayers;
--(NSArray*) allBatches;
--(NSArray*) allSprites;
--(NSArray*) allBeziers;
--(NSArray*) allJoints;
--(NSArray*) allParallaxes;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *allLayers;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *allBatches;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *allSprites;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *allBeziers;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *allJoints;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *allParallaxes;
 
 -(NSArray*) layersWithTag:(enum LevelHelper_TAG)tag;
 -(NSArray*) batchesWithTag:(enum LevelHelper_TAG)tag;
@@ -330,7 +329,7 @@ NSValue* LHValueWithCGPoint(CGPoint pt);
 
 //GRAVITY
 #ifdef LH_USE_BOX2D
--(bool) isGravityZero;
+@property (NS_NONATOMIC_IOSONLY, getter=isGravityZero, readonly) bool gravityZero;
 -(void) createGravity:(b2World*)world;
 //------------------------------------------------------------------------------
 //PHYSIC BOUNDARIES
@@ -340,30 +339,30 @@ NSValue* LHValueWithCGPoint(CGPoint pt);
 //see api documentatin for more info
 -(void) createPhysicBoundariesNoStretching:(b2World *)_world;
 
--(CGRect) physicBoundariesRect;
--(bool) hasPhysicBoundaries;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGRect physicBoundariesRect;
+@property (NS_NONATOMIC_IOSONLY, readonly) bool hasPhysicBoundaries;
 
--(b2Body*) leftPhysicBoundary;
--(LHNode*) leftPhysicBoundaryNode;
+@property (NS_NONATOMIC_IOSONLY, readonly) b2Body *leftPhysicBoundary;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) LHNode *leftPhysicBoundaryNode;
 -(LHNode*) leftPhysicBoundarySprite DEPRECATED_ATTRIBUTE;
 
--(b2Body*) rightPhysicBoundary;
--(LHNode*) rightPhysicBoundaryNode;
+@property (NS_NONATOMIC_IOSONLY, readonly) b2Body *rightPhysicBoundary;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) LHNode *rightPhysicBoundaryNode;
 -(LHNode*) rightPhysicBoundarySprite DEPRECATED_ATTRIBUTE;
 
--(b2Body*) topPhysicBoundary;
--(LHNode*) topPhysicBoundaryNode;
+@property (NS_NONATOMIC_IOSONLY, readonly) b2Body *topPhysicBoundary;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) LHNode *topPhysicBoundaryNode;
 -(LHNode*) topPhysicBoundarySprite DEPRECATED_ATTRIBUTE;
 
--(b2Body*) bottomPhysicBoundary;
--(LHNode*) bottomPhysicBoundaryNode;
+@property (NS_NONATOMIC_IOSONLY, readonly) b2Body *bottomPhysicBoundary;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) LHNode *bottomPhysicBoundaryNode;
 -(LHNode*) bottomPhysicBoundarySprite DEPRECATED_ATTRIBUTE;
 -(void) removePhysicBoundaries;
 #endif
 //------------------------------------------------------------------------------
 //LEVEL INFO
--(CGSize) gameScreenSize; //the device size set in loaded level
--(CGRect) gameWorldSize; //the size of the game world
+@property (NS_NONATOMIC_IOSONLY, readonly) CGSize gameScreenSize; //the device size set in loaded level
+@property (NS_NONATOMIC_IOSONLY, readonly) CGRect gameWorldSize; //the size of the game world
 //------------------------------------------------------------------------------
 //PHYSICS
 #ifdef LH_USE_BOX2D

@@ -93,11 +93,11 @@
 	return [[[self alloc] initWithTotalParticles:numberOfParticles] autorelease];
 }
 
--(id) init {
+-(instancetype) init {
 	return [self initWithTotalParticles:150];
 }
 
--(id) initWithFile:(NSString *)plistFile
+-(instancetype) initWithFile:(NSString *)plistFile
 {
 	NSString *path = [[CCFileUtils sharedFileUtils] fullPathFromRelativePath:plistFile];
 	NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
@@ -106,7 +106,7 @@
 	return [self initWithDictionary:dict];
 }
 
--(id) initWithDictionary:(NSDictionary *)dictionary
+-(instancetype) initWithDictionary:(NSDictionary *)dictionary
 {
 	NSUInteger maxParticles = [[dictionary valueForKey:@"maxParticles"] integerValue];
 	// self, not super
@@ -185,17 +185,17 @@
 
 			// radial acceleration
 			NSString *tmp = [dictionary valueForKey:@"radialAcceleration"];
-			mode.A.radialAccel = tmp ? [tmp floatValue] : 0;
+			mode.A.radialAccel = tmp ? tmp.floatValue : 0;
 
 			tmp = [dictionary valueForKey:@"radialAccelVariance"];
-			mode.A.radialAccelVar = tmp ? [tmp floatValue] : 0;
+			mode.A.radialAccelVar = tmp ? tmp.floatValue : 0;
 
 			// tangential acceleration
 			tmp = [dictionary valueForKey:@"tangentialAcceleration"];
-			mode.A.tangentialAccel = tmp ? [tmp floatValue] : 0;
+			mode.A.tangentialAccel = tmp ? tmp.floatValue : 0;
 
 			tmp = [dictionary valueForKey:@"tangentialAccelVariance"];
-			mode.A.tangentialAccelVar = tmp ? [tmp floatValue] : 0;
+			mode.A.tangentialAccelVar = tmp ? tmp.floatValue : 0;
 		}
 
 		// or Mode B: radius movement
@@ -236,7 +236,7 @@
 			CCTexture2D *tex = [[CCTextureCache sharedTextureCache] addImage:textureName];
 
 			if( tex )
-				[self setTexture:tex];
+				self.texture = tex;
 			else {
 
 				NSString *textureData = [dictionary valueForKey:@"textureImageData"];
@@ -244,7 +244,7 @@
 
 				// if it fails, try to get it from the base64-gzipped data
 				unsigned char *buffer = NULL;
-				int len = base64Decode((unsigned char*)[textureData UTF8String], (unsigned int)[textureData length], &buffer);
+				int len = base64Decode((unsigned char*)textureData.UTF8String, (unsigned int)textureData.length, &buffer);
 				NSAssert( buffer != NULL, @"CCParticleSystem: error decoding textureImageData");
 
 				unsigned char *deflated = NULL;
@@ -262,7 +262,7 @@
 
 				free(deflated); deflated = NULL;
 
-				[self setTexture:  [ [CCTextureCache sharedTextureCache] addCGImage:[image CGImage] forKey:textureName]];
+				self.texture = [ [CCTextureCache sharedTextureCache] addCGImage:image.CGImage forKey:textureName];
 				[data release];
 				[image release];
 			}
@@ -274,7 +274,7 @@
 	return self;
 }
 
--(id) initWithTotalParticles:(NSUInteger) numberOfParticles
+-(instancetype) initWithTotalParticles:(NSUInteger) numberOfParticles
 {
 	if( (self=[super init]) ) {
 
@@ -659,7 +659,7 @@
 
 	} else {
 
-		if( texture_ && ! [texture_ hasPremultipliedAlpha] ) {
+		if( texture_ && ! texture_.hasPremultipliedAlpha ) {
 			blendFunc_.src = GL_SRC_ALPHA;
 			blendFunc_.dst = GL_ONE_MINUS_SRC_ALPHA;
 		} else {
@@ -867,25 +867,25 @@
 -(void) setScale:(float) s
 {
 	transformSystemDirty_ = YES;
-	[super setScale:s];
+	super.scale = s;
 }
 
 -(void) setRotation: (float)newRotation
 {
 	transformSystemDirty_ = YES;
-	[super setRotation:newRotation];
+	super.rotation = newRotation;
 }
 
 -(void) setScaleX: (float)newScaleX
 {
 	transformSystemDirty_ = YES;
-	[super setScaleX:newScaleX];
+	super.scaleX = newScaleX;
 }
 
 -(void) setScaleY: (float)newScaleY
 {
 	transformSystemDirty_ = YES;
-	[super setScaleY:newScaleY];
+	super.scaleY = newScaleY;
 }
 
 #pragma mark Particle - Helpers
@@ -894,7 +894,7 @@
 {
 	NSAssert(! batchNode_, @"Can't change blending functions when the particle is being batched");
 
-	BOOL premultiplied = [texture_ hasPremultipliedAlpha];
+	BOOL premultiplied = texture_.hasPremultipliedAlpha;
 
 	opacityModifyRGB_ = NO;
 

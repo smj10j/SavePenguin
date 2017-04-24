@@ -53,16 +53,16 @@
 	return [[[self alloc] initWithString:string fntFile:fntFile] autorelease];
 }
 
--(id) initWithString:(NSString*) theString fntFile:(NSString*)fntFile
+-(instancetype) initWithString:(NSString*) theString fntFile:(NSString*)fntFile
 {
 	NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[[CCFileUtils sharedFileUtils] fullPathFromRelativePath:fntFile]];
 	
-	NSAssert( [[dict objectForKey:@"version"] intValue] == 1, @"Unsupported version. Upgrade cocos2d version");
+	NSAssert( [dict[@"version"] intValue] == 1, @"Unsupported version. Upgrade cocos2d version");
 
-	NSString *textureFilename = [dict objectForKey:@"textureFilename"];
-	NSUInteger width = [[dict objectForKey:@"itemWidth"] unsignedIntValue]  / CC_CONTENT_SCALE_FACTOR();
-	NSUInteger height = [[dict objectForKey:@"itemHeight"] unsignedIntValue] / CC_CONTENT_SCALE_FACTOR();
-	NSUInteger startChar = [[dict objectForKey:@"firstChar"] unsignedIntValue];
+	NSString *textureFilename = dict[@"textureFilename"];
+	NSUInteger width = [dict[@"itemWidth"] unsignedIntValue]  / CC_CONTENT_SCALE_FACTOR();
+	NSUInteger height = [dict[@"itemHeight"] unsignedIntValue] / CC_CONTENT_SCALE_FACTOR();
+	NSUInteger startChar = [dict[@"firstChar"] unsignedIntValue];
 	
 	return [self initWithString:theString
 					charMapFile:textureFilename
@@ -71,9 +71,9 @@
 				   startCharMap:startChar];
 }
 
--(id) initWithString:(NSString*) theString charMapFile: (NSString*) charmapfile itemWidth:(NSUInteger)w itemHeight:(NSUInteger)h startCharMap:(NSUInteger)c
+-(instancetype) initWithString:(NSString*) theString charMapFile: (NSString*) charmapfile itemWidth:(NSUInteger)w itemHeight:(NSUInteger)h startCharMap:(NSUInteger)c
 {
-	if ((self=[super initWithTileFile:charmapfile tileWidth:w tileHeight:h itemsToRender:[theString length] ]) ) {
+	if ((self=[super initWithTileFile:charmapfile tileWidth:w tileHeight:h itemsToRender:theString.length ]) ) {
 
 		mapStartChar_ = c;
 		[self setString: theString];
@@ -93,15 +93,15 @@
 
 -(void) updateAtlasValues
 {
-	NSUInteger n = [string_ length];
+	NSUInteger n = string_.length;
 
 	ccV3F_C4B_T2F_Quad quad;
 
-	const unsigned char *s = (unsigned char*) [string_ UTF8String];
+	const unsigned char *s = (unsigned char*) string_.UTF8String;
 
-	CCTexture2D *texture = [textureAtlas_ texture];
-	float textureWide = [texture pixelsWide];
-	float textureHigh = [texture pixelsHigh];
+	CCTexture2D *texture = textureAtlas_.texture;
+	float textureWide = texture.pixelsWide;
+	float textureHigh = texture.pixelsHigh;
     float itemWidthInPixels = itemWidth_ * CC_CONTENT_SCALE_FACTOR();
     float itemHeightInPixels = itemHeight_ * CC_CONTENT_SCALE_FACTOR();
 
@@ -163,9 +163,9 @@
 	if( newString == string_ )
 		return;
 
-	if( [newString hash] != [string_ hash] ) {
+	if( newString.hash != string_.hash ) {
 
-		NSUInteger len = [newString length];
+		NSUInteger len = newString.length;
 		if( len > textureAtlas_.capacity )
 			[textureAtlas_ resizeCapacity:len];
 
@@ -174,7 +174,7 @@
 		[self updateAtlasValues];
 
 		CGSize s = CGSizeMake(len * itemWidth_, itemHeight_);
-		[self setContentSize:s];
+		self.contentSize = s;
 
 		self.quadsToDraw = len;
 	}

@@ -19,7 +19,7 @@
 //TODO: wrap with a pretty health-bar-style image
 
 
--(id)initWithSprite:(LHSprite*)sprite maxRange:(float)maxRange {
+-(instancetype)initWithSprite:(LHSprite*)sprite maxRange:(float)maxRange {
 	if(self = [super init]) {
 		_maxRange = maxRange;
 		_maxRangeCorner = _maxRange * sqrt(2.0);

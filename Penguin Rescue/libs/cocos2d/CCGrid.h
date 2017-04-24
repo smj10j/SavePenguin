@@ -73,8 +73,8 @@
 +(id) gridWithSize:(ccGridSize)gridSize texture:(CCTexture2D*)texture flippedTexture:(BOOL)flipped;
 +(id) gridWithSize:(ccGridSize)gridSize;
 
--(id) initWithSize:(ccGridSize)gridSize texture:(CCTexture2D*)texture flippedTexture:(BOOL)flipped;
--(id)initWithSize:(ccGridSize)gridSize;
+-(instancetype) initWithSize:(ccGridSize)gridSize texture:(CCTexture2D*)texture flippedTexture:(BOOL)flipped NS_DESIGNATED_INITIALIZER;
+-(instancetype)initWithSize:(ccGridSize)gridSize;
 -(void)beforeDraw;
 -(void)afterDraw:(CCNode*)target;
 -(void)blit;

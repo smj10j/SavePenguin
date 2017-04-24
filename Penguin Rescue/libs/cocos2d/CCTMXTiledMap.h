@@ -119,16 +119,16 @@ enum
 @property (nonatomic,readwrite,retain) NSMutableDictionary *properties;
 
 /** creates a TMX Tiled Map with a TMX file.*/
-+(id) tiledMapWithTMXFile:(NSString*)tmxFile;
++(instancetype) tiledMapWithTMXFile:(NSString*)tmxFile;
 
 /** initializes a TMX Tiled Map with a TMX formatted XML string and a path to TMX resources */
-+(id) tiledMapWithXML:(NSString*)tmxString resourcePath:(NSString*)resourcePath;
++(instancetype) tiledMapWithXML:(NSString*)tmxString resourcePath:(NSString*)resourcePath;
 
 /** initializes a TMX Tiled Map with a TMX file */
--(id) initWithTMXFile:(NSString*)tmxFile;
+-(instancetype) initWithTMXFile:(NSString*)tmxFile NS_DESIGNATED_INITIALIZER;
 
 /** initializes a TMX Tiled Map with a TMX formatted XML string and a path to TMX resources */
--(id) initWithXML:(NSString*)tmxString resourcePath:(NSString*)resourcePath;
+-(instancetype) initWithXML:(NSString*)tmxString resourcePath:(NSString*)resourcePath NS_DESIGNATED_INITIALIZER;
 
 /** return the TMXLayer for the specific layer */
 -(CCTMXLayer*) layerNamed:(NSString *)layerName;

@@ -74,7 +74,7 @@
 	[super dealloc];
 #endif
 }
--(id)initWithDictionary:(NSDictionary*)dictionary sprite:(LHSprite*)sprite
+-(instancetype)initWithDictionary:(NSDictionary*)dictionary sprite:(LHSprite*)sprite
 {
     self = [super init];    
     if (self != nil){
@@ -82,9 +82,9 @@
         delayPerUnit = [dictionary floatForKey:@"delayPerUnit"];
         offset = [dictionary pointForKey:@"offset"];
         
-        notifications= [[NSDictionary alloc] initWithDictionary:[dictionary objectForKey:@"notifications"]];
+        notifications= [[NSDictionary alloc] initWithDictionary:dictionary[@"notifications"]];
         
-        spriteframeName= [[NSString alloc] initWithString:[dictionary objectForKey:@"spriteframe"]];
+        spriteframeName= [[NSString alloc] initWithString:dictionary[@"spriteframe"]];
 
 //        NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 //        NSLog(@"SPRITE FRAME NAME %@", spriteframeName);
@@ -182,7 +182,7 @@
 #endif
 }
 ////////////////////////////////////////////////////////////////////////////////
--(id) initWithDictionary:(NSDictionary*)dictionary onSprite:(LHSprite*)spr sceneName:(NSString*)scene{
+-(instancetype) initWithDictionary:(NSDictionary*)dictionary onSprite:(LHSprite*)spr sceneName:(NSString*)scene{
 
     self = [super init];
     if (self != nil)
@@ -199,7 +199,7 @@
         delayPerUnit = [dictionary floatForKey:@"DelayPerUnit"];
         loop = [dictionary boolForKey:@"Loop"];
         sprite = spr;
-        oldRect = [sprite textureRect];
+        oldRect = sprite.textureRect;
         
         #if COCOS2D_VERSION >= 0x00020000
         oldSpriteFrame = [sprite displayFrame];
@@ -214,7 +214,7 @@
         repetitionsPerformed = 0;
         currentFrame = 0;
         elapsedFrameTime = 0.0f;
-        NSArray* framesInfo = [dictionary objectForKey:@"Frames"];
+        NSArray* framesInfo = dictionary[@"Frames"];
         
         frames = [[NSMutableArray alloc] init];
         for(NSDictionary* frmInfo in framesInfo){
@@ -268,7 +268,7 @@
         return;
     }
         
-    if(paused || [[LHSettings sharedInstance] levelPaused])
+    if(paused || [LHSettings sharedInstance].levelPaused)
         return;
     
 //    NSLog(@"FRAME %d - %@", currentFrame, uniqueName);
@@ -279,11 +279,11 @@
     bool endedRep = false;
     frameChanged = false;
     
-    if([activeFrame delayPerUnit]*delayPerUnit <= elapsedFrameTime){
+    if(activeFrame.delayPerUnit*delayPerUnit <= elapsedFrameTime){
         elapsedFrameTime = 0.0f;
         ++currentFrame;
     
-        if(currentFrame >= (int)[frames count]){
+        if(currentFrame >= (int)frames.count){
             
             //we should trigger a notification that the animation has ended
             endedNotif = true;
@@ -296,14 +296,14 @@
                 if(repetitionsPerformed >= repetitions)
                 {
                     paused = true;
-                    currentFrame = (int)[frames count] -1;
+                    currentFrame = (int)frames.count -1;
                     endedRep = true;
                 }
                 else {
                     if(restoreOriginalFrame || repetitionsPerformed < repetitions)
                         currentFrame = 0;
                     else {
-                        currentFrame = (int)[frames count] -1;
+                        currentFrame = (int)frames.count -1;
                     }
                 }
             }
@@ -340,14 +340,10 @@
             //check if this frame has any info and trigger a notification if it has
             //we dont trigger frame changed notifications for every frame because 
             //it may impact performance - we trigger only where user is looking for info
-            if(activeFrame && [activeFrame notifications] && [[[activeFrame notifications] allKeys] count] > 0)
+            if(activeFrame && activeFrame.notifications && activeFrame.notifications.allKeys.count > 0)
             {
-                NSDictionary* notifDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
-                                                                               [activeFrame notifications],
-                                                                               [activeFrame spriteframeName], nil]
-                                                                      forKeys:[NSArray arrayWithObjects:    
-                                                                               LHAnimationUserInfo,
-                                                                               LHAnimationFrameName, nil]];
+                NSDictionary* notifDict = @{LHAnimationUserInfo: activeFrame.notifications,
+                                                                               LHAnimationFrameName: activeFrame.spriteframeName};
             
                 [[NSNotificationCenter defaultCenter] postNotificationName:LHAnimationFrameNotification
                                                                     object:sprite
@@ -362,8 +358,8 @@
     currentFrame = 0;
     repetitionsPerformed = 0;
     elapsedFrameTime = 0.0f;
-    if([frames count] > 0)
-        activeFrame = [frames objectAtIndex:0];
+    if(frames.count > 0)
+        activeFrame = frames[0];
     else {
         activeFrame = nil;
     } 
@@ -381,13 +377,13 @@
 }
 //------------------------------------------------------------------------------
 -(int)numberOfFrames{
-    return (int)[frames count];
+    return (int)frames.count;
 }
 //------------------------------------------------------------------------------
 -(void)setFrame:(int)frm{
-    if(frm >= 0 && frm < (int)[frames count]){
+    if(frm >= 0 && frm < (int)frames.count){
         currentFrame = frm;
-        activeFrame = [frames objectAtIndex:(NSUInteger)currentFrame];        
+        activeFrame = frames[(NSUInteger)currentFrame];        
         [self setActiveFrameTexture];
     }
 }
@@ -455,12 +451,12 @@
     }
     //we do this so that we dont lose touches
     [sprite performSelector:@selector(setPrepareAnimInProgress:)
-                 withObject:[NSNumber numberWithBool:YES]];
+                 withObject:@YES];
     
     if(oldBatch){
         [sprite removeFromParentAndCleanup:NO];
         [sprite setTexture:oldTexture];
-        [oldBatch addChild:sprite z:[sprite zOrder]];
+        [oldBatch addChild:sprite z:sprite.zOrder];
     }
     else if(oldTexture){
         [sprite setTexture:oldTexture];
@@ -471,7 +467,7 @@
     
     //we do this so that we dont lose touches
     [sprite performSelector:@selector(setPrepareAnimInProgress:)
-                 withObject:[NSNumber numberWithBool:NO]];
+                 withObject:@NO];
 }
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -490,7 +486,7 @@
 -(float)totalTime{
     float t = 0.0f;
     for(LHAnimationFrameInfo* frm in frames){
-        t += delayPerUnit*[frm delayPerUnit];
+        t += delayPerUnit*frm.delayPerUnit;
     }
     return t;
 }

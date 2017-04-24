@@ -37,7 +37,7 @@
 
 @implementation CCActionInstant
 
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init]) )
 		duration_ = 0;
@@ -129,7 +129,7 @@
 	return [[[self alloc] initWithFlipX:x] autorelease];
 }
 
--(id) initWithFlipX:(BOOL)x
+-(instancetype) initWithFlipX:(BOOL)x
 {
 	if(( self=[super init]))
 		flipX = x;
@@ -139,7 +139,7 @@
 
 -(void) update:(ccTime)time
 {
-	[(CCSprite*)target_ setFlipX:flipX];
+	((CCSprite*)target_).flipX = flipX;
 }
 
 -(CCFiniteTimeAction*) reverse
@@ -165,7 +165,7 @@
 	return [[[self alloc] initWithFlipY:y] autorelease];
 }
 
--(id) initWithFlipY:(BOOL)y
+-(instancetype) initWithFlipY:(BOOL)y
 {
 	if(( self=[super init]))
 		flipY = y;
@@ -175,7 +175,7 @@
 
 -(void) update:(ccTime)time
 {
-	[(CCSprite*)target_ setFlipY:flipY];
+	((CCSprite*)target_).flipY = flipY;
 }
 
 -(CCFiniteTimeAction*) reverse
@@ -202,7 +202,7 @@
 	return [[[self alloc]initWithPosition:pos]autorelease];
 }
 
--(id) initWithPosition: (CGPoint) pos
+-(instancetype) initWithPosition: (CGPoint) pos
 {
 	if( (self=[super init]) )
 		position = pos;
@@ -237,7 +237,7 @@
 	return [[[self alloc] initWithTarget: t selector: s] autorelease];
 }
 
--(id) initWithTarget: (id) t selector:(SEL) s
+-(instancetype) initWithTarget: (id) t selector:(SEL) s
 {
 	if( (self=[super init]) ) {
 		self.targetCallback = t;
@@ -306,7 +306,7 @@
 	return [[[self alloc] initWithTarget:t selector:s data:d] autorelease];
 }
 
--(id) initWithTarget:(id)t selector:(SEL)s data:(void*)d
+-(instancetype) initWithTarget:(id)t selector:(SEL)s data:(void*)d
 {
 	if( (self=[super initWithTarget:t selector:s]) ) {
 		data_ = d;
@@ -346,7 +346,7 @@
 	return [[[self alloc] initWithTarget:t selector:s object:object] autorelease];
 }
 
--(id) initWithTarget:(id) t selector:(SEL) s object:(id)object
+-(instancetype) initWithTarget:(id) t selector:(SEL) s object:(id)object
 {
 	if( (self=[super initWithTarget:t selector:s] ) )
 		self.object = object;
@@ -387,7 +387,7 @@
 	return [[[self alloc] initWithBlock:block] autorelease];
 }
 
--(id) initWithBlock:(void(^)())block
+-(instancetype) initWithBlock:(void(^)())block
 {
 	if ((self = [super init]))
 		block_ = [block copy];
@@ -428,7 +428,7 @@
 	return [[[self alloc] initWithBlock:block] autorelease];
 }
 
--(id) initWithBlock:(void(^)(CCNode *node))block
+-(instancetype) initWithBlock:(void(^)(CCNode *node))block
 {
 	if ((self = [super init]))
 		block_ = [block copy];
@@ -471,7 +471,7 @@
 	return [[[self alloc] initWithBlock:block object:object] autorelease];
 }
 
--(id) initWithBlock:(void(^)(id object))block object:(id)object
+-(instancetype) initWithBlock:(void(^)(id object))block object:(id)object
 {
 	if ((self = [super init])) {
 		block_ = [block copy];

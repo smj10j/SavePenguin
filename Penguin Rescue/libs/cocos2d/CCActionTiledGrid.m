@@ -46,7 +46,7 @@ typedef struct
 	return [[[self alloc] initWithRange:range shakeZ:shakeZ grid:gridSize duration:d] autorelease];
 }
 
--(id)initWithRange:(int)range shakeZ:(BOOL)sz grid:(ccGridSize)gSize duration:(ccTime)d
+-(instancetype)initWithRange:(int)range shakeZ:(BOOL)sz grid:(ccGridSize)gSize duration:(ccTime)d
 {
 	if ( (self = [super initWithSize:gSize duration:d]) )
 	{
@@ -112,7 +112,7 @@ typedef struct
 	return [[[self alloc] initWithRange:range shatterZ:sz grid:gridSize duration:d] autorelease];
 }
 
--(id)initWithRange:(int)range shatterZ:(BOOL)sz grid:(ccGridSize)gSize duration:(ccTime)d
+-(instancetype)initWithRange:(int)range shatterZ:(BOOL)sz grid:(ccGridSize)gSize duration:(ccTime)d
 {
 	if ( (self = [super initWithSize:gSize duration:d]) )
 	{
@@ -184,7 +184,7 @@ typedef struct
 	return [[[self alloc] initWithSeed:s grid:gridSize duration:d] autorelease];
 }
 
--(id)initWithSeed:(int)s grid:(ccGridSize)gSize duration:(ccTime)d
+-(instancetype)initWithSeed:(int)s grid:(ccGridSize)gSize duration:(ccTime)d
 {
 	if ( (self = [super initWithSize:gSize duration:d]) )
 	{
@@ -238,7 +238,7 @@ typedef struct
 {
 	ccQuad3	coords = [self originalTile:pos];
 
-	CGPoint step = [[target_ grid] step];
+	CGPoint step = [target_ grid].step;
 	coords.bl.x += (int)(t.position.x * step.x);
 	coords.bl.y += (int)(t.position.y * step.y);
 
@@ -335,7 +335,7 @@ typedef struct
 -(void)transformTile:(ccGridSize)pos distance:(float)distance
 {
 	ccQuad3	coords = [self originalTile:pos];
-	CGPoint	step = [[target_ grid] step];
+	CGPoint	step = [target_ grid].step;
 
 	coords.bl.x += (step.x / 2) * (1.0f - distance);
 	coords.bl.y += (step.y / 2) * (1.0f - distance);
@@ -410,7 +410,7 @@ typedef struct
 -(void)transformTile:(ccGridSize)pos distance:(float)distance
 {
 	ccQuad3	coords = [self originalTile:pos];
-	CGPoint step = [[target_ grid] step];
+	CGPoint step = [target_ grid].step;
 
 	coords.bl.y += (step.y / 2) * (1.0f - distance);
 	coords.br.y += (step.y / 2) * (1.0f - distance);
@@ -452,7 +452,7 @@ typedef struct
 	return [[[self alloc] initWithSeed:s grid:gridSize duration:d] autorelease];
 }
 
--(id)initWithSeed:(int)s grid:(ccGridSize)gSize duration:(ccTime)d
+-(instancetype)initWithSeed:(int)s grid:(ccGridSize)gSize duration:(ccTime)d
 {
 	if ( (self = [super initWithSize:gSize duration:d]) )
 	{
@@ -553,7 +553,7 @@ typedef struct
 	return [[[self alloc] initWithWaves:wav amplitude:amp grid:gridSize duration:d] autorelease];
 }
 
--(id)initWithWaves:(int)wav amplitude:(float)amp grid:(ccGridSize)gSize duration:(ccTime)d
+-(instancetype)initWithWaves:(int)wav amplitude:(float)amp grid:(ccGridSize)gSize duration:(ccTime)d
 {
 	if ( (self = [super initWithSize:gSize duration:d]) )
 	{
@@ -608,7 +608,7 @@ typedef struct
 	return [[[self alloc] initWithJumps:j amplitude:amp grid:gridSize duration:d] autorelease];
 }
 
--(id)initWithJumps:(int)j amplitude:(float)amp grid:(ccGridSize)gSize duration:(ccTime)d
+-(instancetype)initWithJumps:(int)j amplitude:(float)amp grid:(ccGridSize)gSize duration:(ccTime)d
 {
 	if ( (self = [super initWithSize:gSize duration:d]) )
 	{
@@ -673,7 +673,7 @@ typedef struct
 	return [[[self alloc] initWithRows:r duration:d] autorelease];
 }
 
--(id)initWithRows:(int)r duration:(ccTime)d
+-(instancetype)initWithRows:(int)r duration:(ccTime)d
 {
 	rows = r;
 	return [super initWithSize:ccg(1,r) duration:d];
@@ -726,7 +726,7 @@ typedef struct
 	return [[[self alloc] initWithCols:c duration:d] autorelease];
 }
 
--(id)initWithCols:(int)c duration:(ccTime)d
+-(instancetype)initWithCols:(int)c duration:(ccTime)d
 {
 	cols = c;
 	return [super initWithSize:ccg(c,1) duration:d];

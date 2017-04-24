@@ -113,7 +113,7 @@ static CCTexture2DPixelFormat defaultAlphaPixelFormat_ = kCCTexture2DPixelFormat
 @synthesize resolutionType = resolutionType_;
 
 
-- (id) initWithData:(const void*)data pixelFormat:(CCTexture2DPixelFormat)pixelFormat pixelsWide:(NSUInteger)width pixelsHigh:(NSUInteger)height contentSize:(CGSize)size
+- (instancetype) initWithData:(const void*)data pixelFormat:(CCTexture2DPixelFormat)pixelFormat pixelsWide:(NSUInteger)width pixelsHigh:(NSUInteger)height contentSize:(CGSize)size
 {
 	if((self = [super init])) {
 		
@@ -224,7 +224,7 @@ static CCTexture2DPixelFormat defaultAlphaPixelFormat_ = kCCTexture2DPixelFormat
 
 @implementation CCTexture2D (Image)
 
-- (id) initWithCGImage:(CGImageRef)cgImage resolutionType:(ccResolutionType)resolution
+- (instancetype) initWithCGImage:(CGImageRef)cgImage resolutionType:(ccResolutionType)resolution
 {
 	NSUInteger				textureWidth, textureHeight;
 	CGContextRef			context = nil;
@@ -251,7 +251,7 @@ static CCTexture2DPixelFormat defaultAlphaPixelFormat_ = kCCTexture2DPixelFormat
 #ifdef __CC_PLATFORM_IOS
 
 	// Bug #886. It is present on iOS 4 only
-	unsigned int version = [conf OSVersion];
+	unsigned int version = conf.OSVersion;
 	if( version >= kCCiOSVersion_4_0 && version < kCCiOSVersion_5_0 )
 		hasAlpha = ((info == kCGImageAlphaNoneSkipLast) || (info == kCGImageAlphaPremultipliedLast) || (info == kCGImageAlphaPremultipliedFirst) || (info == kCGImageAlphaLast) || (info == kCGImageAlphaFirst) ? YES : NO);
 	else
@@ -286,7 +286,7 @@ static CCTexture2DPixelFormat defaultAlphaPixelFormat_ = kCCTexture2DPixelFormat
 		pixelFormat = kCCTexture2DPixelFormat_A8;
 	}
 
-	if( ! [conf supportsNPOT]  )
+	if( ! conf.supportsNPOT  )
 	{
 		textureWidth = ccNextPOT(CGImageGetWidth(cgImage));
 		textureHeight = ccNextPOT(CGImageGetHeight(cgImage));
@@ -302,7 +302,7 @@ static CCTexture2DPixelFormat defaultAlphaPixelFormat_ = kCCTexture2DPixelFormat
 	// iOS 5 BUG:
 	// If width is not word aligned, convert it to word aligned.
 	// http://www.cocos2d-iphone.org/forum/topic/31092
-	if( [conf OSVersion] >= kCCiOSVersion_5_0 )
+	if( conf.OSVersion >= kCCiOSVersion_5_0 )
 	{
 		
 		NSUInteger bpp = [[self class] bitsPerPixelForFormat:pixelFormat];
@@ -322,7 +322,7 @@ static CCTexture2DPixelFormat defaultAlphaPixelFormat_ = kCCTexture2DPixelFormat
 	}   
 #endif // IOS
    
-   NSUInteger maxTextureSize = [conf maxTextureSize];
+   NSUInteger maxTextureSize = conf.maxTextureSize;
    if( textureHeight > maxTextureSize || textureWidth > maxTextureSize ) {
 	   CCLOGWARN(@"cocos2d: WARNING: Image (%lu x %lu) is bigger than the supported %ld x %ld",
 			 (long)textureWidth, (long)textureHeight,
@@ -458,7 +458,7 @@ static CCTexture2DPixelFormat defaultAlphaPixelFormat_ = kCCTexture2DPixelFormat
 
 #ifdef __CC_PLATFORM_IOS
 
-- (id) initWithString:(NSString*)string dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)hAlignment vAlignment:(CCVerticalTextAlignment) vAlignment lineBreakMode:(CCLineBreakMode)lineBreakMode font:(UIFont*)uifont
+- (instancetype) initWithString:(NSString*)string dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)hAlignment vAlignment:(CCVerticalTextAlignment) vAlignment lineBreakMode:(CCLineBreakMode)lineBreakMode font:(UIFont*)uifont
 {
 	NSAssert( uifont, @"Invalid font");
 
@@ -611,7 +611,7 @@ static CCTexture2DPixelFormat defaultAlphaPixelFormat_ = kCCTexture2DPixelFormat
 }
 #endif // __CC_PLATFORM_MAC
 
-- (id) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size
+- (instancetype) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size
 {
     CGSize dim;
 
@@ -653,12 +653,12 @@ static CCTexture2DPixelFormat defaultAlphaPixelFormat_ = kCCTexture2DPixelFormat
 
 }
 
-- (id) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)alignment vAlignment:(CCVerticalTextAlignment)vAlignment
+- (instancetype) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)alignment vAlignment:(CCVerticalTextAlignment)vAlignment
 {
 	return [self initWithString:string fontName:name fontSize:size dimensions:dimensions hAlignment:alignment vAlignment:vAlignment lineBreakMode:kCCLineBreakModeWordWrap];
 }
 
-- (id) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)hAlignment vAlignment:(CCVerticalTextAlignment)vAlignment lineBreakMode:(CCLineBreakMode)lineBreakMode 
+- (instancetype) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)hAlignment vAlignment:(CCVerticalTextAlignment)vAlignment lineBreakMode:(CCLineBreakMode)lineBreakMode 
 {
 #ifdef __CC_PLATFORM_IOS
 	UIFont *uifont = [UIFont fontWithName:name size:size];
@@ -710,7 +710,7 @@ static CCTexture2DPixelFormat defaultAlphaPixelFormat_ = kCCTexture2DPixelFormat
 // By default PVR images are treated as if they don't have the alpha channel premultiplied
 static BOOL PVRHaveAlphaPremultiplied_ = NO;
 
--(id) initWithPVRFile: (NSString*) relPath
+-(instancetype) initWithPVRFile: (NSString*) relPath
 {
 	ccResolutionType resolution;
 	NSString *fullpath = [[CCFileUtils sharedFileUtils] fullPathFromRelativePath:relPath resolutionType:&resolution];

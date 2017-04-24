@@ -18,7 +18,7 @@
 +(NSMutableDictionary*)loadSettings {
 	static NSMutableDictionary* sSettings = nil;
 	if(sSettings == nil) {
-		NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		NSString* rootPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
 		NSString* settingsPlistPath = [rootPath stringByAppendingPathComponent:@"UserSettings.plist"];
 		sSettings = [[NSMutableDictionary alloc] initWithContentsOfFile:settingsPlistPath];
 		if(sSettings == nil) {
@@ -31,7 +31,7 @@
 
 +(void)saveSettings {
 	//write to file!
-	NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	NSString* rootPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
 	NSString* settingsPlistPath = [rootPath stringByAppendingPathComponent:@"UserSettings.plist"];
 	NSMutableDictionary* settings = [self loadSettings];
 
@@ -48,22 +48,22 @@
 +(id)objectForKey:(NSString*)key {
 	NSMutableDictionary* settings = [self loadSettings];
 	if(DEBUG_SETTINGS) DebugLog(@"Loading settings value for key %@", key);
-	return [settings objectForKey:key];
+	return settings[key];
 }
 +(NSString*)stringForKey:(NSString*)key {
 	return [self objectForKey:key];
 }
 +(bool)boolForKey:(NSString*)key {
 	id value = [self objectForKey:key];
-	return value == nil ? nil : [((NSNumber*)value) boolValue];
+	return value == nil ? nil : ((NSNumber*)value).boolValue;
 }
 +(int)intForKey:(NSString*)key {
 	id value = [self objectForKey:key];
-	return value == nil ? nil :  [((NSNumber*)value) intValue];
+	return value == nil ? nil :  ((NSNumber*)value).intValue;
 }
 +(double)doubleForKey:(NSString*)key {
 	id value = [self objectForKey:key];
-	return value == nil ? nil :  [((NSNumber*)value) doubleValue];
+	return value == nil ? nil :  ((NSNumber*)value).doubleValue;
 }
 
 
@@ -72,7 +72,7 @@
 +(void)setObject:(id)value forKey:(NSString*)key {
 	NSMutableDictionary* settings = [self loadSettings];
 	if(value != nil) {
-		[settings setObject:value forKey:key];
+		settings[key] = value;
 	}else {
 		[settings removeObjectForKey:key];
 	}
@@ -86,13 +86,13 @@
 	[self setObject:[NSString stringWithString:value] forKey:key];
 }
 +(void)setBool:(bool)value forKey:(NSString*)key {
-	[self setObject:[NSNumber numberWithBool:value] forKey:key];
+	[self setObject:@(value) forKey:key];
 }
 +(void)setInt:(int)value forKey:(NSString*)key {
-	[self setObject:[NSNumber numberWithInt:value] forKey:key];
+	[self setObject:@(value) forKey:key];
 }
 +(void)setDouble:(double)value forKey:(NSString*)key {
-	[self setObject:[NSNumber numberWithDouble:value] forKey:key];
+	[self setObject:@(value) forKey:key];
 }
 
 
@@ -207,12 +207,10 @@
 		//analytics logging
 		NSString* levelPackPath = [SettingsManager stringForKey:SETTING_LAST_LEVEL_PACK_PATH];
 		NSString* levelPath = [SettingsManager stringForKey:SETTING_LAST_LEVEL_PATH];
-		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-			[NSString stringWithFormat:@"%@:%@", levelPackPath, levelPath], @"Level_Pack_and_Name",
-			levelPackPath, @"Level_Pack",
-			[SettingsManager stringForKey:SETTING_CURRENT_VERSION], @"App_Version",
-			[NSNumber numberWithInt:[SettingsManager intForKey:SETTING_NUM_REVIEW_PROMPTS]], @"Num_Review_Prompts",
-		nil];
+		NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", levelPackPath, levelPath],
+			@"Level_Pack": levelPackPath,
+			@"App_Version": [SettingsManager stringForKey:SETTING_CURRENT_VERSION],
+			@"Num_Review_Prompts": @([SettingsManager intForKey:SETTING_NUM_REVIEW_PROMPTS])};
 		[Analytics logEvent:[NSString stringWithFormat:@"ReviewRequest_%@", (accept ? @"Accepted" : @"Rejected")] withParameters:flurryParams];
 	
 		if(accept) {

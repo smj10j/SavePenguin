@@ -69,7 +69,7 @@ float const kCD_PanFullRight = 1.0f;
 float const kCD_GainDefault = 1.0f;
 
 @interface CDSoundEngine (PrivateMethods)
--(BOOL) _initOpenAL;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL _initOpenAL;
 -(void) _testGetGain;
 -(void) _dumpSourceGroupsInfo;
 -(void) _getSourceIndexForSourceGroup;
@@ -85,13 +85,13 @@ float const kCD_GainDefault = 1.0f;
 +(NSString*) fullPathFromRelativePath:(NSString*) relPath
 {
 	// do not convert an absolute path (starting with '/')
-	if(([relPath length] > 0) && ([relPath characterAtIndex:0] == '/'))
+	if((relPath.length > 0) && ([relPath characterAtIndex:0] == '/'))
 	{
 		return relPath;
 	}
 
-	NSMutableArray *imagePathComponents = [NSMutableArray arrayWithArray:[relPath pathComponents]];
-	NSString *file = [imagePathComponents lastObject];
+	NSMutableArray *imagePathComponents = [NSMutableArray arrayWithArray:relPath.pathComponents];
+	NSString *file = imagePathComponents.lastObject;
 
 	[imagePathComponents removeLastObject];
 	NSString *imageDirectory = [NSString pathWithComponents:imagePathComponents];
@@ -336,12 +336,12 @@ static BOOL _mixerRateSet = NO;
 
 -(void) defineSourceGroups:(NSArray*) sourceGroupDefinitions {
 	CDLOGINFO(@"Denshion::CDSoundEngine - source groups defined by NSArray.");
-	NSUInteger totalDefs = [sourceGroupDefinitions count];
+	NSUInteger totalDefs = sourceGroupDefinitions.count;
 	int* defs = (int *)malloc( sizeof(int) * totalDefs);
 	int currentIndex = 0;
 	for (id currentDef in sourceGroupDefinitions) {
 		if ([currentDef isKindOfClass:[NSNumber class]]) {
-			defs[currentIndex] = (int)[(NSNumber*)currentDef integerValue];
+			defs[currentIndex] = (int)((NSNumber*)currentDef).integerValue;
 			CDLOGINFO(@"Denshion::CDSoundEngine - found definition %i.",defs[currentIndex]);
 		} else {
 			CDLOG(@"Denshion::CDSoundEngine - warning, did not understand source definition.");
@@ -353,7 +353,7 @@ static BOOL _mixerRateSet = NO;
 	free(defs);
 }
 
-- (id)init
+- (instancetype)init
 {
 	if ((self = [super init])) {
 
@@ -1047,7 +1047,7 @@ static BOOL _mixerRateSet = NO;
 #define CDSOUNDSOURCE_UPDATE_LAST_ERROR (lastError = alGetError())
 #define CDSOUNDSOURCE_ERROR_HANDLER ( CDSOUNDSOURCE_UPDATE_LAST_ERROR == AL_NO_ERROR)
 
--(id)init:(ALuint) theSourceId sourceIndex:(int) index soundEngine:(CDSoundEngine*) engine {
+-(instancetype)init:(ALuint) theSourceId sourceIndex:(int) index soundEngine:(CDSoundEngine*) engine {
 	if ((self = [super init])) {
 		_sourceId = theSourceId;
 		_engine = engine;
@@ -1228,7 +1228,7 @@ static BOOL _mixerRateSet = NO;
 
 @implementation CDAudioInterruptTargetGroup
 
--(id) init {
+-(instancetype) init {
 	if ((self = [super init])) {
 		children_ = [[NSMutableArray alloc] initWithCapacity:32];
 		enabled_ = YES;
@@ -1292,7 +1292,7 @@ static BOOL _mixerRateSet = NO;
 
 @implementation CDAsynchBufferLoader
 
--(id) init:(NSArray *)loadRequests soundEngine:(CDSoundEngine *) theSoundEngine {
+-(instancetype) init:(NSArray *)loadRequests soundEngine:(CDSoundEngine *) theSoundEngine {
 	if ((self = [super init])) {
 		_loadRequests = loadRequests;
 		[_loadRequests retain];
@@ -1307,8 +1307,8 @@ static BOOL _mixerRateSet = NO;
 	[super main];
 	_soundEngine.asynchLoadProgress = 0.0f;
 
-	if ([_loadRequests count] > 0) {
-		float increment = 1.0f / [_loadRequests count];
+	if (_loadRequests.count > 0) {
+		float increment = 1.0f / _loadRequests.count;
 		//Iterate over load request and load
 		for (CDBufferLoadRequest *loadRequest in _loadRequests) {
 			[_soundEngine loadBuffer:loadRequest.soundId filePath:loadRequest.filePath];
@@ -1339,7 +1339,7 @@ static BOOL _mixerRateSet = NO;
 
 @synthesize filePath, soundId;
 
--(id) init:(int) theSoundId filePath:(const NSString *) theFilePath {
+-(instancetype) init:(int) theSoundId filePath:(const NSString *) theFilePath {
 	if ((self = [super init])) {
 		soundId = theSoundId;
 		filePath = [theFilePath copy];
@@ -1392,7 +1392,7 @@ static BOOL _mixerRateSet = NO;
 	}
 }
 
--(id) init:(tCDInterpolationType) type startVal:(float) startVal endVal:(float) endVal {
+-(instancetype) init:(tCDInterpolationType) type startVal:(float) startVal endVal:(float) endVal {
 	if ((self = [super init])) {
 		start = startVal;
 		end = endVal;
@@ -1411,7 +1411,7 @@ static BOOL _mixerRateSet = NO;
 
 @synthesize stopTargetWhenComplete;
 
--(id) init:(id) theTarget interpolationType:(tCDInterpolationType) type startVal:(float) startVal endVal:(float) endVal {
+-(instancetype) init:(id) theTarget interpolationType:(tCDInterpolationType) type startVal:(float) startVal endVal:(float) endVal {
 	if ((self = [super init])) {
 		if (target) {
 			//Release the previous target if there is one

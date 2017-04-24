@@ -10,7 +10,7 @@
 #import <Security/Security.h>
 
 /** Error codes that can be returned in NSError objects. */
-typedef enum {
+typedef NS_ENUM(int, SSKeychainErrorCode) {
 	/** No error. */
 	SSKeychainErrorNone = noErr,
 	
@@ -43,7 +43,7 @@ typedef enum {
 	
 	/** Unable to decode the provided data. */
 	SSKeychainErrorFailedToDecode = errSecDecode
-} SSKeychainErrorCode;
+};
 
 extern NSString *const kSSKeychainErrorDomain;
 
@@ -339,7 +339,7 @@ extern NSString *const kSSKeychainWhereKey;
  
  @see accessibilityType
  */
-+ (CFTypeRef)accessibilityType;
++ (CFTypeRef)accessibilityType CF_RETURNS_NOT_RETAINED;
 
 /**
  Sets the accessibility type for all future passwords saved to the Keychain.

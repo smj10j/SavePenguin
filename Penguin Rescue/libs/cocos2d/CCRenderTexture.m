@@ -43,33 +43,33 @@
 
 @synthesize sprite=sprite_;
 
-+(id)renderTextureWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format depthStencilFormat:(GLuint)depthStencilFormat
++(instancetype)renderTextureWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format depthStencilFormat:(GLuint)depthStencilFormat
 {
   return [[[self alloc] initWithWidth:w height:h pixelFormat:format depthStencilFormat:depthStencilFormat] autorelease];
 }
 
 // issue #994
-+(id)renderTextureWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format
++(instancetype)renderTextureWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format
 {
 	return [[[self alloc] initWithWidth:w height:h pixelFormat:format] autorelease];
 }
 
-+(id)renderTextureWithWidth:(int)w height:(int)h
++(instancetype)renderTextureWithWidth:(int)w height:(int)h
 {
 	return [[[self alloc] initWithWidth:w height:h pixelFormat:kCCTexture2DPixelFormat_RGBA8888 depthStencilFormat:0] autorelease];
 }
 
--(id)initWithWidth:(int)w height:(int)h
+-(instancetype)initWithWidth:(int)w height:(int)h
 {
 	return [self initWithWidth:w height:h pixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 }
 
-- (id)initWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat)format
+- (instancetype)initWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat)format
 {
   return [self initWithWidth:w height:h pixelFormat:format depthStencilFormat:0];
 }
 
--(id)initWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format depthStencilFormat:(GLuint)depthStencilFormat
+-(instancetype)initWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format depthStencilFormat:(GLuint)depthStencilFormat
 {
 	if ((self = [super init]))
 	{
@@ -78,7 +78,7 @@
 		CCDirector *director = [CCDirector sharedDirector];
 
 		// XXX multithread
-		if( [director runningThread] != [NSThread currentThread] )
+		if( director.runningThread != [NSThread currentThread] )
 			CCLOGWARN(@"cocos2d: WARNING. CCRenderTexture is running on its own thread. Make sure that an OpenGL context is being used on this thread!");
 
 		
@@ -91,7 +91,7 @@
 		NSUInteger powW;
 		NSUInteger powH;
 
-		if( [[CCConfiguration sharedConfiguration] supportsNPOT] ) {
+		if( [CCConfiguration sharedConfiguration].supportsNPOT ) {
 			powW = w;
 			powH = h;
 		} else {
@@ -136,11 +136,11 @@
 		sprite_ = [CCSprite spriteWithTexture:texture_];
 
 		[texture_ release];
-		[sprite_ setScaleY:-1];
+		sprite_.scaleY = -1;
 		[self addChild:sprite_];
 
 		// issue #937
-		[sprite_ setBlendFunc:(ccBlendFunc){GL_ONE, GL_ONE_MINUS_SRC_ALPHA}];
+		sprite_.blendFunc = (ccBlendFunc){GL_ONE, GL_ONE_MINUS_SRC_ALPHA};
 
 		glBindRenderbuffer(GL_RENDERBUFFER, oldRBO);
 		glBindFramebuffer(GL_FRAMEBUFFER, oldFBO_);
@@ -164,7 +164,7 @@
 	// Save the current matrix
 	kmGLPushMatrix();
 
-	CGSize texSize = [texture_ contentSizeInPixels];
+	CGSize texSize = texture_.contentSizeInPixels;
 
 
 	// Calculate the adjustment ratios based on the old and new projections
@@ -259,7 +259,7 @@
 	if ( director.projection == kCCDirectorProjection3D && CC_CONTENT_SCALE_FACTOR() != 1 )
 		glViewport(-size.width/2, -size.height/2, size.width * CC_CONTENT_SCALE_FACTOR(), size.height * CC_CONTENT_SCALE_FACTOR() );
 	
-	[director setProjection:director.projection];	
+	director.projection = director.projection;	
 }
 
 -(void)clear:(float)r g:(float)g b:(float)b a:(float)a
@@ -303,7 +303,7 @@
     NSAssert(pixelFormat_ == kCCTexture2DPixelFormat_RGBA8888,@"only RGBA8888 can be saved as image");
 	
 	
-	CGSize s = [texture_ contentSizeInPixels];
+	CGSize s = texture_.contentSizeInPixels;
 	int tx = s.width;
 	int ty = s.height;
 	
@@ -375,7 +375,7 @@
 {
 	BOOL success;
 	
-	NSString *fullPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileName];
+	NSString *fullPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:fileName];
 	
 	CGImageRef imageRef = [self newCGImage];
 

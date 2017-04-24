@@ -115,15 +115,15 @@
 @property (readonly) bool isLine;
 @property (readwrite) bool swallowTouches;
 
-+(id) bezierWithDictionary:(NSDictionary*)properties;
++(instancetype) bezierWithDictionary:(NSDictionary*)properties;
 -(void)removeSelf; //use this to remove the bezier node entirely;
 
 
--(LevelHelperLoader*)parentLoader;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) LevelHelperLoader *parentLoader;
 
--(NSString*)uniqueName;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *uniqueName;
 #ifdef LH_USE_BOX2D
--(b2Body*)body;
+@property (NS_NONATOMIC_IOSONLY, readonly) b2Body *body;
 #endif
 
 //THIS WORKS ONLY WHEN THE BEZIER SHAPE IS A TILE SHAPE
@@ -186,7 +186,7 @@
 #endif
 
 //------------------------------------------------------------------------------
--(NSString*)userInfoClassName;
--(id)userInfo;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *userInfoClassName;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) id userInfo;
 
 @end	

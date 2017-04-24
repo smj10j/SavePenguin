@@ -66,16 +66,16 @@ enum LH_JOINT_TYPE
 @property enum LH_JOINT_TYPE type;
 @property (readwrite) bool shouldDestroyJointOnDealloc;
 ////////////////////////////////////////////////////////////////////////////////
-+(id) jointWithDictionary:(NSDictionary*)dictionary 
++(instancetype) jointWithDictionary:(NSDictionary*)dictionary 
                     world:(b2World*)box2d 
                    loader:(LevelHelperLoader*)pLoader;
 
 ////////////////////////////////////////////////////////////////////////////////
--(b2Joint*)joint;
--(bool) removeJointFromWorld;
+@property (NS_NONATOMIC_IOSONLY, readonly) b2Joint *joint;
+@property (NS_NONATOMIC_IOSONLY, readonly) bool removeJointFromWorld;
 
--(LHSprite*) spriteA;
--(LHSprite*) spriteB;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) LHSprite *spriteA;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) LHSprite *spriteB;
 
 //remove itself from the world - make sure you dont retain this object
 //if the box2d world is locked it will mark the joint for removal

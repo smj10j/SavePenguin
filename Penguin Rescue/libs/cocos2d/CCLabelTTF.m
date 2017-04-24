@@ -80,36 +80,36 @@
 	return [[[self alloc] initWithString:string fontName:name fontSize:size dimensions:dimensions hAlignment:alignment vAlignment:vertAlignment lineBreakMode:lineBreakMode]autorelease];
 }
 
-- (id) init
+- (instancetype) init
 {
     return [self initWithString:@"" fontName:@"Helvetica" fontSize:12];
 }
 
-- (id) initWithString:(NSString*)str fontName:(NSString*)name fontSize:(CGFloat)size
+- (instancetype) initWithString:(NSString*)str fontName:(NSString*)name fontSize:(CGFloat)size
 {
 	return [self initWithString:str fontName:name fontSize:size dimensions:CGSizeZero hAlignment:kCCTextAlignmentLeft vAlignment:kCCVerticalTextAlignmentTop lineBreakMode:kCCLineBreakModeWordWrap];
 }
 
 // hAlignment
-- (id) initWithString:(NSString*)str fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)alignment
+- (instancetype) initWithString:(NSString*)str fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)alignment
 {
 	return [self initWithString:str fontName:name fontSize:size dimensions:dimensions hAlignment:alignment vAlignment:kCCVerticalTextAlignmentTop lineBreakMode:kCCLineBreakModeWordWrap];
 }
 
 // hAlignment, vAlignment
-- (id) initWithString:(NSString*)str fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)alignment vAlignment:(CCVerticalTextAlignment) vertAlignment
+- (instancetype) initWithString:(NSString*)str fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)alignment vAlignment:(CCVerticalTextAlignment) vertAlignment
 {
 	return [self initWithString:str fontName:name fontSize:size dimensions:dimensions hAlignment:alignment vAlignment:vertAlignment lineBreakMode:kCCLineBreakModeWordWrap];
 }
 
 // hAlignment, lineBreakMode
-- (id) initWithString:(NSString*)str fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)alignment lineBreakMode:(CCLineBreakMode)lineBreakMode
+- (instancetype) initWithString:(NSString*)str fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)alignment lineBreakMode:(CCLineBreakMode)lineBreakMode
 {
 	return [self initWithString:str fontName:name fontSize:size dimensions:dimensions hAlignment:alignment vAlignment:kCCVerticalTextAlignmentTop lineBreakMode:lineBreakMode];
 }
 
 // hAlignment, vAligment, lineBreakMode
-- (id) initWithString:(NSString*)str  fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)alignment vAlignment:(CCVerticalTextAlignment) vertAlignment lineBreakMode:(CCLineBreakMode)lineBreakMode
+- (instancetype) initWithString:(NSString*)str  fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)alignment vAlignment:(CCVerticalTextAlignment) vertAlignment lineBreakMode:(CCLineBreakMode)lineBreakMode
 {
 	if( (self=[super init]) ) {
 
@@ -287,17 +287,17 @@
 	// iPad ?
 	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ) {
 		if( CC_CONTENT_SCALE_FACTOR() == 2 )
-			[tex setResolutionType:kCCResolutioniPadRetinaDisplay];
+			tex.resolutionType = kCCResolutioniPadRetinaDisplay;
 		else
-			[tex setResolutionType:kCCResolutioniPad];
+			tex.resolutionType = kCCResolutioniPad;
 	}
 	// iPhone ?
 	else
 	{
 		if( CC_CONTENT_SCALE_FACTOR() == 2 )
-			[tex setResolutionType:kCCResolutioniPhoneRetinaDisplay];
+			tex.resolutionType = kCCResolutioniPhoneRetinaDisplay;
 		else
-			[tex setResolutionType:kCCResolutioniPhone];
+			tex.resolutionType = kCCResolutioniPhone;
 	}
 #endif
 	

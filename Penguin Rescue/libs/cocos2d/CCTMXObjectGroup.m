@@ -46,7 +46,7 @@
 @synthesize positionOffset = positionOffset_;
 @synthesize properties = properties_;
 
--(id) init
+-(instancetype) init
 {
 	if (( self=[super init] )) {
 		self.groupName = nil;

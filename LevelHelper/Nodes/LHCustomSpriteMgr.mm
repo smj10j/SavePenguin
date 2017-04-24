@@ -49,7 +49,7 @@
 #endif
 }
 //------------------------------------------------------------------------------
-- (id)init
+- (instancetype)init
 {
 	self = [super init];
 	if (self != nil) {
@@ -72,12 +72,12 @@
 }
 
 -(void) registerCustomSpriteClass:(Class)customSpriteClass forTag:(int)tag{
-    [classesDictionary setObject:customSpriteClass forKey:[NSNumber numberWithInt:tag]];
+    classesDictionary[@(tag)] = customSpriteClass;
 }
 //------------------------------------------------------------------------------
 -(Class) customSpriteClassForTag:(int)tag{
  
-    id customSpriteClass = [classesDictionary objectForKey:[NSNumber numberWithInt:tag]];
+    id customSpriteClass = classesDictionary[@(tag)];
     
     if(customSpriteClass == nil)
     {

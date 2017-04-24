@@ -69,14 +69,14 @@
 @property (nonatomic, retain) CCTexture2D *texture;
 
 /** creates and initializes a motion streak with fade in seconds, minimum segments, stroke's width, color, texture filename */
-+ (id) streakWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color textureFilename:(NSString*)path;
++ (instancetype) streakWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color textureFilename:(NSString*)path;
 /** creates and initializes a motion streak with fade in seconds, minimum segments, stroke's width, color, texture */
-+ (id) streakWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color texture:(CCTexture2D*)texture;
++ (instancetype) streakWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color texture:(CCTexture2D*)texture;
 
 /** initializes a motion streak with fade in seconds, minimum segments, stroke's width, color and texture filename */
-- (id) initWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color textureFilename:(NSString*)path;
+- (instancetype) initWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color textureFilename:(NSString*)path;
 /** initializes a motion streak with fade in seconds, minimum segments, stroke's width, color and texture  */
-- (id) initWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color texture:(CCTexture2D*)texture;
+- (instancetype) initWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color texture:(CCTexture2D*)texture NS_DESIGNATED_INITIALIZER;
 
 /** color used for the tint */
 - (void) tintWithColor:(ccColor3B)colors;

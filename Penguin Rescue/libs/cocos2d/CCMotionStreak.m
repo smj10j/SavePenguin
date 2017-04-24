@@ -39,17 +39,17 @@
 @synthesize blendFunc = blendFunc_;
 @synthesize fastMode = fastMode_;
 
-+ (id) streakWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color textureFilename:(NSString*)path
++ (instancetype) streakWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color textureFilename:(NSString*)path
 {
     return [[[self alloc] initWithFade:fade minSeg:minSeg width:stroke color:color textureFilename:path] autorelease];
 }
 
-+ (id) streakWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color texture:(CCTexture2D*)texture
++ (instancetype) streakWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color texture:(CCTexture2D*)texture
 {
     return [[[self alloc] initWithFade:fade minSeg:minSeg width:stroke color:color texture:texture] autorelease];
 }
 
-- (id) initWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color textureFilename:(NSString*)path
+- (instancetype) initWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color textureFilename:(NSString*)path
 {
     NSAssert(path != nil, @"Invalid filename");
 
@@ -57,13 +57,13 @@
     return [self initWithFade:fade minSeg:minSeg width:stroke color:color texture:texture];
 }
 
-- (id) initWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color texture:(CCTexture2D*)texture
+- (instancetype) initWithFade:(float)fade minSeg:(float)minSeg width:(float)stroke color:(ccColor3B)color texture:(CCTexture2D*)texture
 {
     self = [super init];
     if (self)
     {
-        [super setPosition:CGPointZero];
-        [self setAnchorPoint:CGPointZero];
+        super.position = CGPointZero;
+        self.anchorPoint = CGPointZero;
         [self setIgnoreAnchorPointForPosition:YES];
 
 		startingPositionInitialized_ = NO;
@@ -91,7 +91,7 @@
 		// shader program
 		self.shaderProgram = [[CCShaderCache sharedShaderCache] programForKey:kCCShader_PositionTextureColor];
 
-        [self setTexture:texture];
+        self.texture = texture;
         [self setColor:color];
         [self scheduleUpdate];
 		
@@ -263,7 +263,7 @@
 	ccGLEnableVertexAttribs(kCCVertexAttribFlag_PosColorTex );
 	ccGLBlendFunc( blendFunc_.src, blendFunc_.dst );
 
-	ccGLBindTexture2D( [texture_ name] );
+	ccGLBindTexture2D( texture_.name );
 
 	glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices_);
 	glVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, 0, texCoords_);

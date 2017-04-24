@@ -27,33 +27,33 @@
 
 @implementation CCArray
 
-+ (id) array
++ (instancetype) array
 {
 	return [[[self alloc] init] autorelease];
 }
 
-+ (id) arrayWithCapacity:(NSUInteger)capacity
++ (instancetype) arrayWithCapacity:(NSUInteger)capacity
 {
 	return [[[self alloc] initWithCapacity:capacity] autorelease];
 }
 
-+ (id) arrayWithArray:(CCArray*)otherArray
++ (instancetype) arrayWithArray:(CCArray*)otherArray
 {
 	return [[(CCArray*)[self alloc] initWithArray:otherArray] autorelease];
 }
 
-+ (id) arrayWithNSArray:(NSArray*)otherArray
++ (instancetype) arrayWithNSArray:(NSArray*)otherArray
 {
 	return [[(CCArray*)[self alloc] initWithNSArray:otherArray] autorelease];
 }
 
-- (id) init
+- (instancetype) init
 {
 	self = [self initWithCapacity:2];
 	return self;
 }
 
-- (id) initWithCapacity:(NSUInteger)capacity
+- (instancetype) initWithCapacity:(NSUInteger)capacity
 {
 	self = [super init];
 	if (self != nil) {
@@ -62,7 +62,7 @@
 	return self;
 }
 
-- (id) initWithArray:(CCArray*)otherArray
+- (instancetype) initWithArray:(CCArray*)otherArray
 {
 	self = [self initWithCapacity:otherArray->data->num];
 	if (self != nil) {
@@ -71,7 +71,7 @@
 	return self;
 }
 
-- (id) initWithNSArray:(NSArray*)otherArray
+- (instancetype) initWithNSArray:(NSArray*)otherArray
 {
 	self = [self initWithCapacity:otherArray.count];
 	if (self != nil) {
@@ -80,7 +80,7 @@
 	return self;
 }
 
-- (id) initWithCoder:(NSCoder*)coder
+- (instancetype) initWithCoder:(NSCoder*)coder
 {
 	self = [self initWithNSArray:[coder decodeObjectForKey:@"nsarray"]];
 	return self;

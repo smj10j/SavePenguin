@@ -34,7 +34,6 @@
 		AA27286216444A2E00297CE4 /* Spritesheet_MenuBackgrounds1.png in Resources */ = {isa = PBXBuildFile; fileRef = AA27285F16444A2E00297CE4 /* Spritesheet_MenuBackgrounds1.png */; };
 		AA3ED1881657504500FDA2C9 /* UIDevice-Capabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3ED1871657504500FDA2C9 /* UIDevice-Capabilities.m */; };
 		AA3ED18D165750C100FDA2C9 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3ED18C165750C100FDA2C9 /* UIDevice-Hardware.m */; };
-		AA4C8D8B1637C48F00C55554 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4C8D8A1637C48F00C55554 /* libFlurry.a */; };
 		AA4C8D8D1637C53100C55554 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4C8D8C1637C53100C55554 /* SystemConfiguration.framework */; };
 		AA4C8D901637D2D200C55554 /* MainMenuLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA4C8D8F1637D2D200C55554 /* MainMenuLayer.mm */; };
 		AA4C8D931637D34900C55554 /* LevelSelectLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA4C8D921637D34900C55554 /* LevelSelectLayer.mm */; };
@@ -259,12 +258,11 @@
 		AAC6E5CC16403B4300FD549F /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6E5C416403B4300FD549F /* ASINetworkQueue.m */; };
 		AAC6E5CE16403B6900FD549F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC6E5CD16403B6900FD549F /* CFNetwork.framework */; };
 		AAC6E5D016403BD300FD549F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC6E5CF16403BD300FD549F /* MobileCoreServices.framework */; };
-		AACD32BE16523AC8009AFD99 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACD32BA16523AC8009AFD99 /* libTestFlight.a */; };
 		AACD32BF16523AC8009AFD99 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AACD32BB16523AC8009AFD99 /* README.md */; };
 		AACD32C016523AC8009AFD99 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = AACD32BC16523AC8009AFD99 /* release_notes.md */; };
-		AACD32C216523AF1009AFD99 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AACD32C116523AF1009AFD99 /* libz.dylib */; };
 		AAD7B65D163C296500B02521 /* AboutLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AAD7B65C163C296500B02521 /* AboutLayer.mm */; };
 		AAD7B660163C34BB00B02521 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = AAD7B65F163C34BB00B02521 /* sounds */; };
+		AAE55F4A1EAE103700E2620D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE55F491EAE103700E2620D /* libz.tbd */; };
 		AAE610691632B7FD004166CC /* Spritesheet_Actors-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6105D1632B7FD004166CC /* Spritesheet_Actors-hd.png */; };
 		AAE6106A1632B7FD004166CC /* Spritesheet_Actors-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6105E1632B7FD004166CC /* Spritesheet_Actors-ipadhd.png */; };
 		AAE6106B1632B7FD004166CC /* Spritesheet_Actors.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6105F1632B7FD004166CC /* Spritesheet_Actors.png */; };
@@ -345,8 +343,6 @@
 		AA3ED1871657504500FDA2C9 /* UIDevice-Capabilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Capabilities.m"; path = "libs/uidevice-extension-master/UIDevice-Capabilities.m"; sourceTree = "<group>"; };
 		AA3ED18B165750C100FDA2C9 /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Hardware.h"; path = "libs/uidevice-extension-master/UIDevice-Hardware.h"; sourceTree = "<group>"; };
 		AA3ED18C165750C100FDA2C9 /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Hardware.m"; path = "libs/uidevice-extension-master/UIDevice-Hardware.m"; sourceTree = "<group>"; };
-		AA4C8D891637C48F00C55554 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		AA4C8D8A1637C48F00C55554 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		AA4C8D8C1637C53100C55554 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AA4C8D8E1637D2D200C55554 /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		AA4C8D8F1637D2D200C55554 /* MainMenuLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainMenuLayer.mm; sourceTree = "<group>"; };
@@ -568,7 +564,6 @@
 		AA54C7E3162BB27C00DF56D0 /* utlist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = utlist.h; path = libs/cocos2d/Support/utlist.h; sourceTree = "<group>"; };
 		AA54C7E4162BB27C00DF56D0 /* ZipUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZipUtils.h; path = libs/cocos2d/Support/ZipUtils.h; sourceTree = "<group>"; };
 		AA54C7E5162BB27C00DF56D0 /* ZipUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZipUtils.m; path = libs/cocos2d/Support/ZipUtils.m; sourceTree = "<group>"; };
-		AA54C7E7162BB27C00DF56D0 /* LICENSE_cocos2d.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE_cocos2d.txt; path = libs/LICENSE_cocos2d.txt; sourceTree = "<group>"; };
 		AA54C7E9162BB27C00DF56D0 /* CDAudioManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CDAudioManager.h; path = libs/CocosDenshion/CDAudioManager.h; sourceTree = "<group>"; };
 		AA54C7EA162BB27C00DF56D0 /* CDAudioManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CDAudioManager.m; path = libs/CocosDenshion/CDAudioManager.m; sourceTree = "<group>"; };
 		AA54C7EC162BB27C00DF56D0 /* CDConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CDConfig.h; path = libs/CocosDenshion/CDConfig.h; sourceTree = "<group>"; };
@@ -578,7 +573,6 @@
 		AA54C7F1162BB27C00DF56D0 /* CocosDenshion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CocosDenshion.m; path = libs/CocosDenshion/CocosDenshion.m; sourceTree = "<group>"; };
 		AA54C7F3162BB27C00DF56D0 /* SimpleAudioEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SimpleAudioEngine.h; path = libs/CocosDenshion/SimpleAudioEngine.h; sourceTree = "<group>"; };
 		AA54C7F4162BB27C00DF56D0 /* SimpleAudioEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SimpleAudioEngine.m; path = libs/CocosDenshion/SimpleAudioEngine.m; sourceTree = "<group>"; };
-		AA54C7F6162BB27C00DF56D0 /* LICENSE_CocosDenshion.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE_CocosDenshion.txt; path = libs/LICENSE_CocosDenshion.txt; sourceTree = "<group>"; };
 		AA54C7FA162BB27C00DF56D0 /* aabb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = aabb.h; path = libs/kazmath/include/kazmath/aabb.h; sourceTree = "<group>"; };
 		AA54C7FC162BB27C00DF56D0 /* mat4stack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = mat4stack.h; path = libs/kazmath/include/kazmath/GL/mat4stack.h; sourceTree = "<group>"; };
 		AA54C7FD162BB27C00DF56D0 /* matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = matrix.h; path = libs/kazmath/include/kazmath/GL/matrix.h; sourceTree = "<group>"; };
@@ -608,7 +602,6 @@
 		AA54C822162BB27C00DF56D0 /* vec2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = vec2.c; path = libs/kazmath/src/vec2.c; sourceTree = "<group>"; };
 		AA54C824162BB27D00DF56D0 /* vec3.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = vec3.c; path = libs/kazmath/src/vec3.c; sourceTree = "<group>"; };
 		AA54C826162BB27D00DF56D0 /* vec4.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = vec4.c; path = libs/kazmath/src/vec4.c; sourceTree = "<group>"; };
-		AA54C828162BB27D00DF56D0 /* LICENSE_Kazmath.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE_Kazmath.txt; path = libs/LICENSE_Kazmath.txt; sourceTree = "<group>"; };
 		AA54C82A162BB27D00DF56D0 /* Box2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Box2D.h; path = libs/Box2D/Box2D.h; sourceTree = "<group>"; };
 		AA54C82B162BB27D00DF56D0 /* Box2DConfig.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; name = Box2DConfig.cmake; path = libs/Box2D/Box2DConfig.cmake; sourceTree = "<group>"; };
 		AA54C82C162BB27D00DF56D0 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = CMakeLists.txt; path = libs/Box2D/CMakeLists.txt; sourceTree = "<group>"; };
@@ -702,7 +695,6 @@
 		AA54C8B6162BB27E00DF56D0 /* b2WheelJoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = b2WheelJoint.h; path = libs/Box2D/Dynamics/Joints/b2WheelJoint.h; sourceTree = "<group>"; };
 		AA54C8B8162BB27E00DF56D0 /* b2Rope.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = b2Rope.cpp; path = libs/Box2D/Rope/b2Rope.cpp; sourceTree = "<group>"; };
 		AA54C8BA162BB27E00DF56D0 /* b2Rope.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = b2Rope.h; path = libs/Box2D/Rope/b2Rope.h; sourceTree = "<group>"; };
-		AA54C8BB162BB27E00DF56D0 /* LICENSE_Box2D.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE_Box2D.txt; path = libs/LICENSE_Box2D.txt; sourceTree = "<group>"; };
 		AA54C8BD162BB27E00DF56D0 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		AA54C8BE162BB27E00DF56D0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AA54C8C0162BB27E00DF56D0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -804,11 +796,12 @@
 		AACD32BB16523AC8009AFD99 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		AACD32BC16523AC8009AFD99 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		AACD32BD16523AC8009AFD99 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
-		AACD32C116523AF1009AFD99 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		AACD33E716523B17009AFD99 /* Penguin Rescue copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Penguin Rescue copy-Info.plist"; path = "/Users/Steve/Code/Conquer/Penguin Rescue/Penguin Rescue copy-Info.plist"; sourceTree = "<absolute>"; };
 		AAD7B65B163C296500B02521 /* AboutLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutLayer.h; sourceTree = "<group>"; };
 		AAD7B65C163C296500B02521 /* AboutLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AboutLayer.mm; sourceTree = "<group>"; };
 		AAD7B65F163C34BB00B02521 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sounds; path = Resources/sounds; sourceTree = "<group>"; };
+		AADC2C9A1DD3CD4100EFF1E6 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		AADC2C9B1DD3CD4100EFF1E6 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
+		AAE55F491EAE103700E2620D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		AAE6105D1632B7FD004166CC /* Spritesheet_Actors-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spritesheet_Actors-hd.png"; sourceTree = "<group>"; };
 		AAE6105E1632B7FD004166CC /* Spritesheet_Actors-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spritesheet_Actors-ipadhd.png"; sourceTree = "<group>"; };
 		AAE6105F1632B7FD004166CC /* Spritesheet_Actors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spritesheet_Actors.png; sourceTree = "<group>"; };
@@ -854,6 +847,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAE55F4A1EAE103700E2620D /* libz.tbd in Frameworks */,
 				AA73C5A9165D1D8000B93CED /* StoreKit.framework in Frameworks */,
 				AA9F2893164E9D810038CD16 /* MessageUI.framework in Frameworks */,
 				AAC6E5D016403BD300FD549F /* MobileCoreServices.framework in Frameworks */,
@@ -869,9 +863,6 @@
 				AA54C6A1162BB27A00DF56D0 /* Foundation.framework in Frameworks */,
 				AA54C6A3162BB27A00DF56D0 /* CoreGraphics.framework in Frameworks */,
 				AA54C6A5162BB27A00DF56D0 /* GameKit.framework in Frameworks */,
-				AA4C8D8B1637C48F00C55554 /* libFlurry.a in Frameworks */,
-				AACD32BE16523AC8009AFD99 /* libTestFlight.a in Frameworks */,
-				AACD32C216523AF1009AFD99 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -941,16 +932,6 @@
 			name = UIDevice;
 			sourceTree = "<group>";
 		};
-		AA4C8D881637C48F00C55554 /* Flurry */ = {
-			isa = PBXGroup;
-			children = (
-				AA4C8D891637C48F00C55554 /* Flurry.h */,
-				AA4C8D8A1637C48F00C55554 /* libFlurry.a */,
-			);
-			name = Flurry;
-			path = "libs/Flurry iPhone SDK v4.0.6/Flurry";
-			sourceTree = "<group>";
-		};
 		AA54C685162BB27A00DF56D0 = {
 			isa = PBXGroup;
 			children = (
@@ -958,7 +939,6 @@
 				AA54C693162BB27A00DF56D0 /* Frameworks */,
 				AA54C691162BB27A00DF56D0 /* Products */,
 				a7a2907c30322286ead7472e /* LevelHelper */,
-				AACD33E716523B17009AFD99 /* Penguin Rescue copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -973,8 +953,8 @@
 		AA54C693162BB27A00DF56D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AAE55F491EAE103700E2620D /* libz.tbd */,
 				AA73C5A8165D1D8000B93CED /* StoreKit.framework */,
-				AACD32C116523AF1009AFD99 /* libz.dylib */,
 				AA9F2892164E9D810038CD16 /* MessageUI.framework */,
 				AAC6E5CF16403BD300FD549F /* MobileCoreServices.framework */,
 				AAC6E5CD16403B6900FD549F /* CFNetwork.framework */,
@@ -1048,10 +1028,7 @@
 		AA54C6C5162BB27A00DF56D0 /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				AA54C7E7162BB27C00DF56D0 /* LICENSE_cocos2d.txt */,
-				AA54C7F6162BB27C00DF56D0 /* LICENSE_CocosDenshion.txt */,
-				AA54C828162BB27D00DF56D0 /* LICENSE_Kazmath.txt */,
-				AA54C8BB162BB27E00DF56D0 /* LICENSE_Box2D.txt */,
+				AADC2C991DD3CD4100EFF1E6 /* Flurry */,
 				AA73C5AD165D1DD700B93CED /* EBPurchase */,
 				AA3ED18A1657504900FDA2C9 /* UIDevice */,
 				AACD32B916523AC8009AFD99 /* TestFlightSDK1.1 */,
@@ -1059,7 +1036,6 @@
 				AAC6E586164022AE00FD549F /* SSKeychain */,
 				AAC6E56D1640071300FD549F /* JSONKit */,
 				AAC6E57F1640103600FD549F /* Reachability */,
-				AA4C8D881637C48F00C55554 /* Flurry */,
 				AA54C6C6162BB27A00DF56D0 /* cocos2d */,
 				AA54C7E8162BB27C00DF56D0 /* CocosDenshion */,
 				AA54C7F7162BB27C00DF56D0 /* kazmath */,
@@ -1756,6 +1732,16 @@
 			path = libs/TestFlightSDK1.1;
 			sourceTree = "<group>";
 		};
+		AADC2C991DD3CD4100EFF1E6 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				AADC2C9A1DD3CD4100EFF1E6 /* Flurry.h */,
+				AADC2C9B1DD3CD4100EFF1E6 /* libFlurry.a */,
+			);
+			name = Flurry;
+			path = libs/Flurry;
+			sourceTree = "<group>";
+		};
 		a7a2907c30322286ead7472e /* LevelHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -1840,11 +1826,26 @@
 		AA54C687162BB27A00DF56D0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Conquer LLC";
 				TargetAttributes = {
 					AA54C68F162BB27A00DF56D0 = {
 						DevelopmentTeam = UR8VJZL4LG;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -2175,9 +2176,16 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -2191,7 +2199,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2205,10 +2213,16 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
 					"NS_BLOCK_ASSERTIONS=1",
@@ -2220,7 +2234,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2234,7 +2248,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Penguin Rescue/Penguin Rescue.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = UR8VJZL4LG;
+				ENABLE_BITCODE = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Penguin Rescue/Prefix.pch";
@@ -2245,22 +2262,29 @@
 				);
 				HEADER_SEARCH_PATHS = "\"Penguin Rescue/libs/kazmath/include\"";
 				INFOPLIST_FILE = "Penguin Rescue/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Penguin Rescue/libs/Flurry iPhone SDK v4.0.6/Flurry\"",
 					"\"$(SRCROOT)/Penguin Rescue/libs/Flurry iPhone SDK v4.0.6/FlurryAds\"",
 					"\"$(SRCROOT)/Penguin Rescue/libs/TestFlightSDK1.1\"",
+					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry\\ iPhone\\ SDK\\ v4.0.6/Flurry",
+					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry",
+					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry",
+					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry",
+					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/TestFlightSDK1.1",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.conquerllc.games.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F2B9D51F-D069-43F8-ACC7-1D6BC6CDB7F7";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				USER_HEADER_SEARCH_PATHS = "\"Penguin Rescue/libs\"";
-				VALID_ARCHS = "armv7 armv7s armv6";
+				VALID_ARCHS = "armv7 armv7s armv6 arm64 i386 x64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2273,7 +2297,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Penguin Rescue/Penguin Rescue.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = UR8VJZL4LG;
+				ENABLE_BITCODE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Penguin Rescue/Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2283,22 +2310,29 @@
 				);
 				HEADER_SEARCH_PATHS = "\"Penguin Rescue/libs/kazmath/include\"";
 				INFOPLIST_FILE = "Penguin Rescue/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Penguin Rescue/libs/Flurry iPhone SDK v4.0.6/Flurry\"",
 					"\"$(SRCROOT)/Penguin Rescue/libs/Flurry iPhone SDK v4.0.6/FlurryAds\"",
 					"\"$(SRCROOT)/Penguin Rescue/libs/TestFlightSDK1.1\"",
+					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry\\ iPhone\\ SDK\\ v4.0.6/Flurry",
+					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry",
+					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry",
+					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry",
+					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/TestFlightSDK1.1",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.conquerllc.games.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				USER_HEADER_SEARCH_PATHS = "\"Penguin Rescue/libs\"";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 armv7s armv6";
+				VALID_ARCHS = "armv7 armv7s armv6 arm64 i386 x64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

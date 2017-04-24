@@ -62,15 +62,15 @@ enum {
 @property (nonatomic,readwrite,assign) NSInteger tag;
 
 /** Allocates and initializes the action */
-+(id) action;
++(instancetype) action;
 
 /** Initializes the action */
--(id) init;
+-(instancetype) init;
 
 -(id) copyWithZone: (NSZone*) zone;
 
 //! return YES if the action has finished
--(BOOL) isDone;
+@property (NS_NONATOMIC_IOSONLY, getter=isDone, readonly) BOOL done;
 //! called before the action start. It will also set the target.
 -(void) startWithTarget:(id)target;
 //! called after the action has finished. It will set the 'target' to nil.
@@ -102,7 +102,7 @@ enum {
 @property (nonatomic,readwrite) ccTime duration;
 
 /** returns a reversed action */
-- (CCFiniteTimeAction*) reverse;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) CCFiniteTimeAction *reverse;
 @end
 
 
@@ -121,7 +121,7 @@ enum {
 /** creates the action */
 +(id) actionWithAction: (CCActionInterval*) action;
 /** initializes the action */
--(id) initWithAction: (CCActionInterval*) action;
+-(instancetype) initWithAction: (CCActionInterval*) action NS_DESIGNATED_INITIALIZER;
 @end
 
 /** Changes the speed of an action, making it take longer (speed<1)
@@ -142,7 +142,7 @@ enum {
 /** creates the action */
 +(id) actionWithAction: (CCActionInterval*) action speed:(float)value;
 /** initializes the action */
--(id) initWithAction: (CCActionInterval*) action speed:(float)value;
+-(instancetype) initWithAction: (CCActionInterval*) action speed:(float)value NS_DESIGNATED_INITIALIZER;
 @end
 
 @class CCNode;
@@ -186,10 +186,10 @@ enum {
 +(id) actionWithTarget:(CCNode *)followedNode worldBoundary:(CGRect)rect;
 
 /** initializes the action */
--(id) initWithTarget:(CCNode *)followedNode;
+-(instancetype) initWithTarget:(CCNode *)followedNode NS_DESIGNATED_INITIALIZER;
 
 /** initializes the action with a set boundary */
--(id) initWithTarget:(CCNode *)followedNode worldBoundary:(CGRect)rect;
+-(instancetype) initWithTarget:(CCNode *)followedNode worldBoundary:(CGRect)rect NS_DESIGNATED_INITIALIZER;
 
 @end
 

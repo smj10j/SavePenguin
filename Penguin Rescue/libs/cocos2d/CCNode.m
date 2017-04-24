@@ -93,12 +93,12 @@ static NSUInteger globalOrderOfArrival = 1;
 
 #pragma mark CCNode - Init & cleanup
 
-+(id) node
++(instancetype) node
 {
 	return [[[self alloc] init] autorelease];
 }
 
--(id) init
+-(instancetype) init
 {
 	if ((self=[super init]) ) {
 
@@ -148,8 +148,8 @@ static NSUInteger globalOrderOfArrival = 1;
 		
 		// set default scheduler and actionManager
 		CCDirector *director = [CCDirector sharedDirector];
-		self.actionManager = [director actionManager];
-		self.scheduler = [director scheduler];
+		self.actionManager = director.actionManager;
+		self.scheduler = director.scheduler;
 	}
 
 	return self;
@@ -359,9 +359,9 @@ static NSUInteger globalOrderOfArrival = 1;
 
 	child.tag = aTag;
 
-	[child setParent: self];
+	child.parent = self;
 
-	[child setOrderOfArrival: globalOrderOfArrival++];
+	child.orderOfArrival = globalOrderOfArrival++;
 
 	if( isRunning_ ) {
 		[child onEnter];
@@ -480,7 +480,7 @@ static NSUInteger globalOrderOfArrival = 1;
 
 	isReorderChildDirty_ = YES;
 
-	[child setOrderOfArrival: globalOrderOfArrival++];
+	child.orderOfArrival = globalOrderOfArrival++;
 	[child _setZOrder:z];
 }
 
@@ -542,7 +542,7 @@ static NSUInteger globalOrderOfArrival = 1;
 		// draw children zOrder < 0
 		for( ; i < arrayData->num; i++ ) {
 			CCNode *child = arrayData->arr[i];
-			if ( [child zOrder] < 0 )
+			if ( child.zOrder < 0 )
 				[child visit];
 			else
 				break;
@@ -898,14 +898,14 @@ static NSUInteger globalOrderOfArrival = 1;
 
 - (CGPoint)convertTouchToNodeSpace:(UITouch *)touch
 {
-	CGPoint point = [touch locationInView: [touch view]];
+	CGPoint point = [touch locationInView: touch.view];
 	point = [[CCDirector sharedDirector] convertToGL: point];
 	return [self convertToNodeSpace:point];
 }
 
 - (CGPoint)convertTouchToNodeSpaceAR:(UITouch *)touch
 {
-	CGPoint point = [touch locationInView: [touch view]];
+	CGPoint point = [touch locationInView: touch.view];
 	point = [[CCDirector sharedDirector] convertToGL: point];
 	return [self convertToNodeSpaceAR:point];
 }

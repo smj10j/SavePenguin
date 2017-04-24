@@ -21,19 +21,19 @@ static NSLock *readLock = nil;
 	}
 }
 
-+ (id)inputStreamWithFileAtPath:(NSString *)path request:(ASIHTTPRequest *)theRequest
++ (instancetype)inputStreamWithFileAtPath:(NSString *)path request:(ASIHTTPRequest *)theRequest
 {
 	ASIInputStream *theStream = [[[self alloc] init] autorelease];
-	[theStream setRequest:theRequest];
-	[theStream setStream:[NSInputStream inputStreamWithFileAtPath:path]];
+	theStream.request = theRequest;
+	theStream.stream = [NSInputStream inputStreamWithFileAtPath:path];
 	return theStream;
 }
 
-+ (id)inputStreamWithData:(NSData *)data request:(ASIHTTPRequest *)theRequest
++ (instancetype)inputStreamWithData:(NSData *)data request:(ASIHTTPRequest *)theRequest
 {
 	ASIInputStream *theStream = [[[self alloc] init] autorelease];
-	[theStream setRequest:theRequest];
-	[theStream setStream:[NSInputStream inputStreamWithData:data]];
+	theStream.request = theRequest;
+	theStream.stream = [NSInputStream inputStreamWithData:data];
 	return theStream;
 }
 
@@ -82,12 +82,12 @@ static NSLock *readLock = nil;
 
 - (id)delegate
 {
-    return [stream delegate];
+    return stream.delegate;
 }
 
 - (void)setDelegate:(id)delegate
 {
-    [stream setDelegate:delegate];
+    stream.delegate = delegate;
 }
 
 - (void)scheduleInRunLoop:(NSRunLoop *)aRunLoop forMode:(NSString *)mode
@@ -112,12 +112,12 @@ static NSLock *readLock = nil;
 
 - (NSStreamStatus)streamStatus
 {
-    return [stream streamStatus];
+    return stream.streamStatus;
 }
 
 - (NSError *)streamError
 {
-    return [stream streamError];
+    return stream.streamError;
 }
 
 // If we get asked to perform a method we don't have (probably internal ones),

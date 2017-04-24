@@ -17,13 +17,13 @@
 
 }
 
--(id)init;
+-(instancetype)init;
 
 -(int)numberOfScoresInCategory:(NSString*)category;
 -(bool)addScore:(int)value category:(NSString*)category tag:(NSString*)tag group:(bool)group;
 -(bool)addScore:(int)value category:(NSString*)category tag:(NSString*)tag group:(bool)group unique:(bool)unique;
 
--(int)totalScore;
+@property (NS_NONATOMIC_IOSONLY, readonly) int totalScore;
 
 
 

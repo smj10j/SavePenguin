@@ -139,8 +139,7 @@ enum {
 static char gPVRTexIdentifier[4] = "PVR!";
 
 // v2
-typedef enum
-{
+typedef NS_ENUM(unsigned int, ccPVR2TexturePixelFormat) {
 	kPVR2TexturePixelFormat_RGBA_4444= 0x10,
 	kPVR2TexturePixelFormat_RGBA_5551,
 	kPVR2TexturePixelFormat_RGBA_8888,
@@ -153,10 +152,10 @@ typedef enum
 	kPVR2TexturePixelFormat_PVRTC_4BPP_RGBA,
 	kPVR2TexturePixelFormat_BGRA_8888,
 	kPVR2TexturePixelFormat_A_8,
-} ccPVR2TexturePixelFormat;
+};
 
 // v3
-typedef enum {
+typedef NS_ENUM(unsigned long, ccPVR3TexturePixelFormat) {
 	/* supported predefined formats */
 	kPVR3TexturePixelFormat_PVRTC_2BPP_RGB = 0,
 	kPVR3TexturePixelFormat_PVRTC_2BPP_RGBA = 1,
@@ -173,7 +172,7 @@ typedef enum {
 	kPVR3TexturePixelFormat_A_8 = 0x0000000800000061,
 	kPVR3TexturePixelFormat_L_8 = 0x000000080000006c,
 	kPVR3TexturePixelFormat_LA_88 = 0x000008080000616c,
-} ccPVR3TexturePixelFormat;
+};
 
 // v2
 static struct _pixelformat_hash v2_pixelformat_hash[] = {
@@ -294,7 +293,7 @@ typedef struct {
 	if( flipped )
 		CCLOGWARN(@"cocos2d: WARNING: Image is flipped. Regenerate it using PVRTexTool");
 
-	if( ! [configuration supportsNPOT] &&
+	if( ! configuration.supportsNPOT &&
 	   ( header->width != ccNextPOT(header->width) || header->height != ccNextPOT(header->height ) ) ) {
 		CCLOGWARN(@"cocos2d: ERROR: Loding an NPOT texture (%dx%d) but is not supported on this device", header->width, header->height);
 		return FALSE;
@@ -334,7 +333,7 @@ typedef struct {
 						heightBlocks = height / 4;
 						break;
 					case kPVR2TexturePixelFormat_BGRA_8888:
-						if( ! [[CCConfiguration sharedConfiguration] supportsBGRA8888] ) {
+						if( ! [CCConfiguration sharedConfiguration].supportsBGRA8888 ) {
 							CCLOG(@"cocos2d: TexturePVR. BGRA8888 not supported on this device");
 							return FALSE;
 						}
@@ -444,7 +443,7 @@ typedef struct {
 				heightBlocks = height / 4;
 				break;
 			case kPVR3TexturePixelFormat_BGRA_8888:
-				if( ! [[CCConfiguration sharedConfiguration] supportsBGRA8888] ) {
+				if( ! [CCConfiguration sharedConfiguration].supportsBGRA8888 ) {
 					CCLOG(@"cocos2d: TexturePVR. BGRA8888 not supported on this device");
 					return FALSE;
 				}
@@ -518,7 +517,7 @@ typedef struct {
 	// Generate textures with mipmaps
 	for (GLint i=0; i < numberOfMipmaps_; i++)
 	{
-		if( compressed && ! [[CCConfiguration sharedConfiguration] supportsPVRTC] ) {
+		if( compressed && ! [CCConfiguration sharedConfiguration].supportsPVRTC ) {
 			CCLOGWARN(@"cocos2d: WARNING: PVRTC images are not supported");
 			return FALSE;
 		}
@@ -549,22 +548,22 @@ typedef struct {
 }
 
 
-- (id)initWithContentsOfFile:(NSString *)path
+- (instancetype)initWithContentsOfFile:(NSString *)path
 {
 	if((self = [super init]))
 	{
 		unsigned char *pvrdata = NULL;
 		NSInteger pvrlen = 0;
-		NSString *lowerCase = [path lowercaseString];
+		NSString *lowerCase = path.lowercaseString;
 
         if ( [lowerCase hasSuffix:@".ccz"])
-			pvrlen = ccInflateCCZFile( [path UTF8String], &pvrdata );
+			pvrlen = ccInflateCCZFile( path.UTF8String, &pvrdata );
 
 		else if( [lowerCase hasSuffix:@".gz"] )
-			pvrlen = ccInflateGZipFile( [path UTF8String], &pvrdata );
+			pvrlen = ccInflateGZipFile( path.UTF8String, &pvrdata );
 
 		else
-			pvrlen = ccLoadFileIntoMemory( [path UTF8String], &pvrdata );
+			pvrlen = ccLoadFileIntoMemory( path.UTF8String, &pvrdata );
 
 		if( pvrlen < 0 ) {
 			[self release];
@@ -595,7 +594,7 @@ typedef struct {
 		GLenum pixelFormat = _pixelFormatInfo->ccPixelFormat;
 		CCConfiguration *conf = [CCConfiguration sharedConfiguration];
 		
-		if( [conf OSVersion] >= kCCiOSVersion_5_0 )
+		if( conf.OSVersion >= kCCiOSVersion_5_0 )
 		{
 			
 			// iOS 5 BUG:
@@ -605,7 +604,7 @@ typedef struct {
 			if( pixelFormat == kCCTexture2DPixelFormat_RGB888 ) {
 				printf("\n");
 				NSLog(@"cocos2d: WARNING. Using RGB888 texture. Convert it to RGB565 or RGBA8888 in order to reduce memory");
-				NSLog(@"cocos2d: WARNING: File: %@", [path lastPathComponent] );
+				NSLog(@"cocos2d: WARNING: File: %@", path.lastPathComponent );
 				NSLog(@"cocos2d: WARNING: For furhter info visit: http://www.cocos2d-iphone.org/forum/topic/31092");
 				printf("\n");
 			}
@@ -633,7 +632,7 @@ typedef struct {
 					NSUInteger neededBytes = (4 - mod ) / (bpp/8);
 					printf("\n");
 					NSLog(@"cocos2d: WARNING. Current texture size=(%d,%d). Convert it to size=(%d,%d) in order to save memory", width_, height_, width_ + neededBytes, height_ );
-					NSLog(@"cocos2d: WARNING: File: %@", [path lastPathComponent] );
+					NSLog(@"cocos2d: WARNING: File: %@", path.lastPathComponent );
 					NSLog(@"cocos2d: WARNING: For furhter info visit: http://www.cocos2d-iphone.org/forum/topic/31092");
 					printf("\n");
 				}
@@ -649,31 +648,31 @@ typedef struct {
 	return self;
 }
 
-- (id)initWithContentsOfURL:(NSURL *)url
+- (instancetype)initWithContentsOfURL:(NSURL *)url
 {
-	if (![url isFileURL])
+	if (!url.fileURL)
 	{
 		CCLOG(@"cocos2d: CCPVRTexture: Only files are supported");
 		[self release];
 		return nil;
 	}
 
-	return [self initWithContentsOfFile:[url path]];
+	return [self initWithContentsOfFile:url.path];
 }
 
 
-+ (id)pvrTextureWithContentsOfFile:(NSString *)path
++ (instancetype)pvrTextureWithContentsOfFile:(NSString *)path
 {
 	return [[[self alloc] initWithContentsOfFile:path] autorelease];
 }
 
 
-+ (id)pvrTextureWithContentsOfURL:(NSURL *)url
++ (instancetype)pvrTextureWithContentsOfURL:(NSURL *)url
 {
-	if (![url isFileURL])
+	if (!url.fileURL)
 		return nil;
 
-	return [CCTexturePVR pvrTextureWithContentsOfFile:[url path]];
+	return [CCTexturePVR pvrTextureWithContentsOfFile:url.path];
 }
 
 

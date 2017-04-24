@@ -37,14 +37,14 @@ void ccGLUniformModelViewProjectionMatrix( CCGLProgram* program )
 @implementation CCScheduler (Deprecated)
 +(CCScheduler*) sharedScheduler
 {
-	return [[CCDirector sharedDirector] scheduler];
+	return [CCDirector sharedDirector].scheduler;
 }
 @end
 
 @implementation CCActionManager (Deprecated)
 +(CCActionManager*) sharedManager
 {
-	return [[CCDirector sharedDirector] actionManager];
+	return [CCDirector sharedDirector].actionManager;
 }
 @end
 
@@ -52,7 +52,7 @@ void ccGLUniformModelViewProjectionMatrix( CCGLProgram* program )
 @implementation CCTouchDispatcher (Deprecated)
 +(CCTouchDispatcher*) sharedDispatcher
 {
-	return [[CCDirector sharedDirector] touchDispatcher];
+	return [CCDirector sharedDirector].touchDispatcher;
 }
 @end
 #elif __CC_PLATFORM_MAC
@@ -69,12 +69,12 @@ void ccGLUniformModelViewProjectionMatrix( CCGLProgram* program )
 @implementation CCDirector (Deprecated)
 -(void) setDisplayFPS:(BOOL)display
 {
-	[self setDisplayStats:display];
+	self.displayStats = display;
 }
 
 -(void) setOpenGLView:(CCGLView*)view
 {
-	[self setView:view];
+	self.view = view;
 }
 
 -(CCGLView*) openGLView
@@ -86,7 +86,7 @@ void ccGLUniformModelViewProjectionMatrix( CCGLProgram* program )
 @implementation CCNode (Deprecated)
 -(void) setIsRelativeAnchorPoint:(BOOL)value
 {
-	[self setIgnoreAnchorPointForPosition:!value];
+	self.ignoreAnchorPointForPosition = !value;
 }
 -(BOOL) isRelativeAnchorPoint
 {
@@ -106,7 +106,7 @@ void ccGLUniformModelViewProjectionMatrix( CCGLProgram* program )
 -(id) initWithBatchNode:(CCSpriteBatchNode*)node rect:(CGRect)rect
 {
 	self = [self initWithTexture:node.texture rect:rect];
-	[self setBatchNode:node];
+	self.batchNode = node;
 	return self;
 }
 
@@ -344,7 +344,7 @@ void ccGLUniformModelViewProjectionMatrix( CCGLProgram* program )
 #if __CC_PLATFORM_IOS
 +(void) setRetinaDisplaySuffix:(NSString*)suffix
 {
-	return [[self sharedFileUtils] setiPhoneRetinaDisplaySuffix:suffix];
+    [self sharedFileUtils].iPhoneRetinaDisplaySuffix = suffix;
 }
 +(NSString *)removeSuffixFromFile:(NSString*) path
 {

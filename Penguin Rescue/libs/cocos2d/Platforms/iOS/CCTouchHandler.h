@@ -56,9 +56,9 @@
 @property(nonatomic,readwrite) ccTouchSelectorFlag enabledSelectors;
 
 /** allocates a TouchHandler with a delegate and a priority */
-+ (id)handlerWithDelegate:(id)aDelegate priority:(int)priority;
++ (instancetype)handlerWithDelegate:(id)aDelegate priority:(int)priority;
 /** initializes a TouchHandler with a delegate and a priority */
-- (id)initWithDelegate:(id)aDelegate priority:(int)priority;
+- (instancetype)initWithDelegate:(id)aDelegate priority:(int)priority NS_DESIGNATED_INITIALIZER;
 @end
 
 /** CCStandardTouchHandler
@@ -84,9 +84,9 @@
 @property(nonatomic, readonly) NSMutableSet *claimedTouches;
 
 /** allocates a TargetedTouchHandler with a delegate, a priority and whether or not it swallows touches or not */
-+ (id)handlerWithDelegate:(id) aDelegate priority:(int)priority swallowsTouches:(BOOL)swallowsTouches;
++ (instancetype)handlerWithDelegate:(id) aDelegate priority:(int)priority swallowsTouches:(BOOL)swallowsTouches;
 /** initializes a TargetedTouchHandler with a delegate, a priority and whether or not it swallows touches or not */
-- (id)initWithDelegate:(id) aDelegate priority:(int)priority swallowsTouches:(BOOL)swallowsTouches;
+- (instancetype)initWithDelegate:(id) aDelegate priority:(int)priority swallowsTouches:(BOOL)swallowsTouches NS_DESIGNATED_INITIALIZER;
 
 @end
 

@@ -50,7 +50,7 @@
 	return scene;
 }
 
--(id) init
+-(instancetype) init
 {
 	if( (self=[super initWithColor:ccc4(100, 100, 255, 50)])) {
 						
@@ -58,7 +58,7 @@
 		self.isTouchEnabled = YES;
 		
 		_state = SETUP;
-		_instanceId = [[NSDate date] timeIntervalSince1970];
+		_instanceId = [NSDate date].timeIntervalSince1970;
 		_box2dStepAccumulator = 0;
 		DebugLog(@"Initializing GameLayer %f", _instanceId);
 		_inGameMenuItems = [[NSMutableArray alloc] init];
@@ -165,17 +165,15 @@
 
 	//start the game
 	_state = PLACE;
-	_levelStartPlaceTime  = [[NSDate date] timeIntervalSince1970];
+	_levelStartPlaceTime  = [NSDate date].timeIntervalSince1970;
 	_levelPlaceTimeDuration = 0;
 	_levelRunningTimeDuration = 0;
 
 	[self scheduleUpdate];
 	
 	
-	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-		_levelPackPath, @"Level_Pack",
-	nil];
+	NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+		@"Level_Pack": _levelPackPath};
 	[Analytics logEvent:@"Begin_Level" withParameters:flurryParams timed:YES];
 
 	if(DEBUG_MEMORY) DebugLog(@"GameLayer %f level loaded", _instanceId);
@@ -388,7 +386,7 @@
 	//show the level name at the top
 	LHSprite* timeAndLevelPopup = [_levelLoader createSpriteWithName:@"Time_and_Level_Popup" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
 	[timeAndLevelPopup transformPosition: ccp(winSize.width/2,winSize.height+timeAndLevelPopup.boundingBox.size.height/2)];
-	CCLabelTTF* levelNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level: %@", [_levelData objectForKey:LEVELPACKMANAGER_KEY_NAME]] fontName:@"Helvetica" fontSize:18*SCALING_FACTOR_FONTS];
+	CCLabelTTF* levelNameLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level: %@", _levelData[LEVELPACKMANAGER_KEY_NAME]] fontName:@"Helvetica" fontSize:18*SCALING_FACTOR_FONTS];
 	levelNameLabel.color = ccBLACK;
 	levelNameLabel.position = ccp(timeAndLevelPopup.boundingBox.size.width/2, timeAndLevelPopup.boundingBox.size.height - timeAndLevelPopup.boundingBox.size.height/4);
 	[timeAndLevelPopup addChild:levelNameLabel];
@@ -521,7 +519,7 @@
 				userData.scale = 1;
 				userData.runningCost = 1500;
 				userData.placeCost = 1250;
-				[iapSprite setUserData:userData];
+				iapSprite.userData = userData;
 				
 			}else if([spriteName isEqualToString:@"Anti_Shark_272_1"]) {
 				
@@ -532,14 +530,14 @@
 				userData.scale = 0.50;
 				userData.runningCost = 750;
 				userData.placeCost = 500;
-				[iapSprite setUserData:userData];
+				iapSprite.userData = userData;
 				
 			}else if([spriteName isEqualToString:@"Santa_Hat"]) {
 				ToolboxItem_Invisibility_Hat* userData = [[ToolboxItem_Invisibility_Hat alloc] init];
 				userData.scale = 1;
 				userData.runningCost = 2000;
 				userData.placeCost = 1750;
-				[iapSprite setUserData:userData];
+				iapSprite.userData = userData;
 				
 			}
 		}
@@ -565,14 +563,14 @@
 	
 	if(_toolGroups != nil) {
 		for(id key in _toolGroups) {
-			NSMutableDictionary* toolGroup = [_toolGroups objectForKey:key];
+			NSMutableDictionary* toolGroup = _toolGroups[key];
 			[toolGroup release];
 		}
 		[_toolGroups release];	
 	}
 	if(_iapToolGroups != nil) {
 		for(id key in _iapToolGroups) {
-			NSMutableDictionary* _iapToolGroup = [_iapToolGroups objectForKey:key];
+			NSMutableDictionary* _iapToolGroup = _iapToolGroups[key];
 			[_iapToolGroup release];
 		}
 		[_iapToolGroups release];	
@@ -608,18 +606,18 @@
 			iapToolGroup = true;
 		}
 		
-		NSMutableSet* toolGroup = [_toolGroups objectForKey:toolgroupKey];
+		NSMutableSet* toolGroup = _toolGroups[toolgroupKey];
 		if(toolGroup == nil) {
 			toolGroup = [[NSMutableSet alloc] init];
-			[_toolGroups setObject:toolGroup forKey:toolgroupKey];
+			_toolGroups[toolgroupKey] = toolGroup;
 		}
 		[toolGroup addObject:toolboxItem];
 
 		if(iapToolGroup) {
-			NSMutableSet* iapToolGroup = [_iapToolGroups objectForKey:toolgroupKey];
+			NSMutableSet* iapToolGroup = _iapToolGroups[toolgroupKey];
 			if(iapToolGroup == nil) {
 				iapToolGroup = [[NSMutableSet alloc] init];
-				[_iapToolGroups setObject:iapToolGroup forKey:toolgroupKey];
+				_iapToolGroups[toolgroupKey] = iapToolGroup;
 			}
 			[iapToolGroup addObject:toolboxItem];		
 		}
@@ -634,8 +632,8 @@
 		
 	for(id key in _toolGroups) {
 
-		NSMutableSet* toolGroup = [_toolGroups objectForKey:key];
-		bool isIAPToolGroup = [_iapToolGroups objectForKey:key] != nil;
+		NSMutableSet* toolGroup = _toolGroups[key];
+		bool isIAPToolGroup = _iapToolGroups[key] != nil;
 
 		//draw a box to hold it
 		LHSprite* toolboxContainer = [_levelLoader createSpriteWithName:@"Toolbox-Item-Container" fromSheet:@"HUD" fromSHFile:@"Spritesheet"];
@@ -706,7 +704,7 @@
 		}
 
 		
-		[toolboxContainer setUserData:(void*)topToolboxItem.uniqueName];
+		toolboxContainer.userData = (void*)topToolboxItem.uniqueName;
 		[toolboxContainer registerTouchBeganObserver:self selector:@selector(onTouchBeganToolboxItem:)];
 		[toolboxContainer registerTouchEndedObserver:self selector:@selector(onTouchEndedToolboxItem:)];
 
@@ -752,7 +750,7 @@
 	for(int x = -waterTile.boundingBox.size.width/2; x < winSize.width + waterTile.boundingBox.size.width/2; ) {
 		for(int y = -waterTile.boundingBox.size.height/2; y < winSize.height + waterTile.boundingBox.size.width/2; ) {
 			LHSprite* waterTile = [_levelLoader createSpriteWithName:@"Water1" fromSheet:@"Map" fromSHFile:@"Spritesheet" tag:BACKGROUND parent:_mapBatchNode];
-			[waterTile setZOrder:0];
+			waterTile.zOrder = 0;
 			[waterTile transformPosition:ccp(x,y)];
 			y+= waterTile.boundingBox.size.height;
 		}
@@ -820,7 +818,7 @@
 			[sprite setSensor:false];
 			
 			ToolboxItem_Debris* toolboxItemData = (ToolboxItem_Debris*)sprite.userData;
-			[sprite setScale:toolboxItemData.scale];
+			sprite.scale = toolboxItemData.scale;
 			
 		}else if(sprite.tag == OBSTRUCTION) {
 			//already placed - set it's physics data
@@ -832,7 +830,7 @@
 			[sprite setSensor:true];
 			
 			ToolboxItem_Windmill* toolboxItemData = (ToolboxItem_Windmill*)sprite.userData;
-			[sprite setScale:toolboxItemData.scale];
+			sprite.scale = toolboxItemData.scale;
 			
 		}else if(sprite.tag == WHIRLPOOL) {
 		
@@ -840,7 +838,7 @@
 			sprite.body->ApplyTorque(sprite.rotation < 180 ? -15 : 15);
 			
 			ToolboxItem_Whirlpool* toolboxItemData = (ToolboxItem_Whirlpool*)sprite.userData;
-			[sprite setScale:toolboxItemData.scale];
+			sprite.scale = toolboxItemData.scale;
 
 		}else if(sprite.tag == SANDBAR) {
 			//already placed - set it's physics data
@@ -958,7 +956,7 @@
 	//add in any unfriendly features like LOUD_NOISE
 	for(LHSprite* loudNoise in [_levelLoader spritesWithTag:LOUD_NOISE]) {
 			
-		LoudNoiseNode* loudNoiseNode = [_loudNoiseNodes objectForKey:loudNoise.uniqueName];
+		LoudNoiseNode* loudNoiseNode = _loudNoiseNodes[loudNoise.uniqueName];
 			
 		//convert to worldspace (Figure out why the conversion is needed at all later)
 		int minX = max(loudNoise.position.x - loudNoiseNode.maxRange*SCALING_FACTOR_H, 0);
@@ -1062,7 +1060,7 @@
 	short** sharkBaseGrid;
 	int rowSize = _gridHeight * sizeof(short);
 	
-	MoveGridData* moveGridData = [_sharkMoveGridDatas objectForKey:shark.uniqueName];
+	MoveGridData* moveGridData = _sharkMoveGridDatas[shark.uniqueName];
 	if(moveGridData == nil) {
 		sharkBaseGrid = new short*[_gridWidth];
 		for(int x = 0; x < _gridWidth; x++) {
@@ -1071,7 +1069,7 @@
 		}
 		
 		moveGridData = [[MoveGridData alloc] initWithGrid: sharkBaseGrid height:_gridHeight width:_gridWidth moveHistorySize:SHARK_MOVE_HISTORY_SIZE tag:shark.uniqueName];
-		[_sharkMoveGridDatas setObject:moveGridData forKey:shark.uniqueName];
+		_sharkMoveGridDatas[shark.uniqueName] = moveGridData;
 					
 	}else {
 		sharkBaseGrid = moveGridData.baseGrid;
@@ -1092,7 +1090,7 @@
 	short** penguinBaseGrid;
 	int rowSize = _gridHeight * sizeof(short);
 	
-	MoveGridData* moveGridData = [_penguinMoveGridDatas objectForKey:penguin.uniqueName];
+	MoveGridData* moveGridData = _penguinMoveGridDatas[penguin.uniqueName];
 	if(moveGridData == nil) {
 		penguinBaseGrid = new short*[_gridWidth];
 		for(int x = 0; x < _gridWidth; x++) {
@@ -1101,7 +1099,7 @@
 		}
 		
 		moveGridData = [[MoveGridData alloc] initWithGrid: penguinBaseGrid height:_gridHeight width:_gridWidth moveHistorySize:PENGUIN_MOVE_HISTORY_SIZE tag:penguin.uniqueName];
-		[_penguinMoveGridDatas setObject:moveGridData forKey:penguin.uniqueName];				
+		_penguinMoveGridDatas[penguin.uniqueName] = moveGridData;				
 					
 	}else {
 		penguinBaseGrid = moveGridData.baseGrid;
@@ -1118,7 +1116,7 @@
 
 -(void)setActiveToolboxItem:(LHSprite*)toolboxItem {
 
-	double timestamp = [[NSDate date] timeIntervalSince1970];
+	double timestamp = [NSDate date].timeIntervalSince1970;
 	if(_activeToolboxItem != nil && (timestamp - _activeToolboxItemSelectionTimestamp > 0.100)) {
 		//only handle one touch at a time with touches right next to eachother preferring the later one
 		return;
@@ -1263,13 +1261,11 @@
 			//DebugLog(@"Scaled down toolbox item %@ to %d%% so it fits in the toolbox", _activeToolboxItem.uniqueName, (int)(100*scale));
 			if(DEBUG_TOOLBOX) DebugLog(@"Placing toolbox item back into the HUD");
 			
-			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-				_levelPackPath, @"Level_Pack",
-				[NSString stringWithFormat:@"%@",[(id)_activeToolboxItem.userData class]], @"Toolbox_Item_Class",
-				_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
-				[NSNumber numberWithInt:_state], @"Game_State",
-			nil];
+			NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+				@"Level_Pack": _levelPackPath,
+				@"Toolbox_Item_Class": [NSString stringWithFormat:@"%@",[(id)_activeToolboxItem.userData class]],
+				@"Toolbox_Item_Name": _activeToolboxItem.uniqueName,
+				@"Game_State": [NSNumber numberWithInt:_state]};
 			[Analytics logEvent:@"Undo_Place_Toolbox_Item" withParameters:flurryParams];
 			
 			_activeToolboxItem = nil;
@@ -1301,7 +1297,7 @@
 	if(_state != PLACE && _state != RUNNING && _state != PAUSE) return;
 	[info.sprite setFrame:info.sprite.currentFrame+1];	//active state
 		
-	__DEBUG_TOUCH_SECONDS = [[NSDate date] timeIntervalSince1970];
+	__DEBUG_TOUCH_SECONDS = [NSDate date].timeIntervalSince1970;
 }
 
 -(void)onTouchEndedPlayPause:(LHTouchInfo*)info {
@@ -1348,10 +1344,8 @@
 	}
 	
 	//analytics logging
-	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-		_levelPackPath, @"Level_Pack",
-	nil];
+	NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+		@"Level_Pack": _levelPackPath};
 	[Analytics logEvent:@"Click_Restart" withParameters:flurryParams];
 
 	[self restart];
@@ -1371,10 +1365,8 @@
 	}
 	
 	//analytics logging
-	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-		_levelPackPath, @"Level_Pack",
-	nil];
+	NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+		@"Level_Pack": _levelPackPath};
 	[Analytics logEvent:@"Click_Main_Menu" withParameters:flurryParams];
 	
 	[self showMainMenuLayer];
@@ -1393,10 +1385,8 @@
 	}
 	
 	//analytics logging
-	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-		_levelPackPath, @"Level_Pack",
-	nil];
+	NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+		@"Level_Pack": _levelPackPath};
 	[Analytics logEvent:@"Click_IAP_Menu" withParameters:flurryParams];
 	
 	[self showInAppPurchaseLayer];
@@ -1418,10 +1408,8 @@
 	//DebugLog(@"Touch ended levels menu on GameLayer instance %f with _state=%d", _instanceId, _state);
 
 	//analytics logging
-	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-		_levelPackPath, @"Level_Pack",
-	nil];
+	NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+		@"Level_Pack": _levelPackPath};
 	[Analytics logEvent:@"Click_Levels_Menu" withParameters:flurryParams];
 
 	
@@ -1442,10 +1430,8 @@
 	}
 	
 	//analytics logging
-	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-		_levelPackPath, @"Level_Pack",
-	nil];
+	NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+		@"Level_Pack": _levelPackPath};
 	[Analytics logEvent:@"Click_Next_Level" withParameters:flurryParams];
 
 	
@@ -1458,10 +1444,8 @@
 	[self fadeOutAllTutorials];
 	
 	//analytics logging
-	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-		_levelPackPath, @"Level_Pack",
-	nil];
+	NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+		@"Level_Pack": _levelPackPath};
 	[Analytics logEvent:@"Click_Tutorial" withParameters:flurryParams];
 
 }
@@ -1489,10 +1473,8 @@
 		}
 		
 		//analytics logging
-		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-			[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-			_levelPackPath, @"Level_Pack",
-		nil];
+		NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+			@"Level_Pack": _levelPackPath};
 		[Analytics logEvent:@"Pause_level" withParameters:flurryParams];
 	}
 	[self showInGameMenu];
@@ -1507,7 +1489,7 @@
 		
 	for(LHSprite* menuItem in _inGameMenuItems) {
 	
-		[menuItem setAnchorPoint:ccp(3.25,3.25)];
+		menuItem.anchorPoint = ccp(3.25,3.25);
 
 		//reset
 		[menuItem stopAllActions];
@@ -1560,10 +1542,8 @@
 		}
 		
 		//analytics loggin
-		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-			[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-			_levelPackPath, @"Level_Pack",
-		nil];
+		NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+			@"Level_Pack": _levelPackPath};
 		[Analytics logEvent:@"Resume_level" withParameters:flurryParams];
 
 		[self hideInGameMenu];
@@ -1571,7 +1551,7 @@
 	}else if(_state == PLACE) {
 		DebugLog(@"Running game");
 		_state = RUNNING;
-		_levelStartRunningTime  = [[NSDate date] timeIntervalSince1970];
+		_levelStartRunningTime  = [NSDate date].timeIntervalSince1970;
 
 		[self fadeOutAllTutorials];
 		
@@ -1588,10 +1568,8 @@
 		}		
 		
 		//analytics logging
-		NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-			[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-			_levelPackPath, @"Level_Pack",
-		nil];
+		NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+			@"Level_Pack": _levelPackPath};
 		[Analytics logEvent:@"Play_Level" withParameters:flurryParams];
 	}
 }
@@ -1603,7 +1581,7 @@
 	[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 	
 	for(id key in _loudNoiseNodes) {
-		((LoudNoiseNode*)[_loudNoiseNodes objectForKey:key]).visible = false;
+		((LoudNoiseNode*)_loudNoiseNodes[key]).visible = false;
 	}
 
 	[self unscheduleAllSelectors];
@@ -1666,12 +1644,12 @@
 					
 	//get the world numbers from the server
 	NSDictionary* worldScores = [ScoreKeeper worldScoresForLevelPackPath:_levelPackPath levelPath:_levelPath];
-	int worldScoreMean = [(NSNumber*)[worldScores objectForKey:@"scoreMean"] intValue];
+	int worldScoreMean = ((NSNumber*)worldScores[@"scoreMean"]).intValue;
 	double zScore = [ScoreKeeper zScoreFromScore:finalScore withLevelPackPath:_levelPackPath levelPath:_levelPath];
 	NSString* grade = [ScoreKeeper gradeFromZScore:zScore];
 	
 	int coinsEarned = 0;
-	int prevScore = [[LevelPackManager scoreForLevel:_levelPath inPack:_levelPackPath] intValue];
+	int prevScore = [LevelPackManager scoreForLevel:_levelPath inPack:_levelPackPath].intValue;
 	if(INITIAL_FREE_COINS == [SettingsManager intForKey:SETTING_TOTAL_EARNED_COINS]) {
 		prevScore = 0;
 	}
@@ -1697,16 +1675,14 @@
 	
 
 	//analytics logging
-	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-		@"Won", @"Level_Status",
-		[NSNumber numberWithInt:finalScore], @"Score",
-		[NSNumber numberWithInt:toolsScoreDeduction], @"ToolsScoreDeduction",
-		[NSNumber numberWithInt:extraCreditScore], @"ExtraCreditScore",
-		[NSNumber numberWithInt:timeScoreDeduction], @"TimeScoreDeduction",
-		[NSNumber numberWithInt:coinsEarned], @"CoinsEarned",
-		[NSNumber numberWithInt:totalCoinsEarnedForLevel], @"TotalCoinsEarnedForLevel",
-		grade, @"Grade",
-	nil];
+	NSDictionary* flurryParams = @{@"Level_Status": @"Won",
+		@"Score": @(finalScore),
+		@"ToolsScoreDeduction": @(toolsScoreDeduction),
+		@"ExtraCreditScore": @(extraCreditScore),
+		@"TimeScoreDeduction": @(timeScoreDeduction),
+		@"CoinsEarned": @(coinsEarned),
+		@"TotalCoinsEarnedForLevel": @(totalCoinsEarnedForLevel),
+		@"Grade": grade};
 	[Analytics endTimedEvent:@"Begin_Level" withParameters:flurryParams];
 	
 	//store our earned coins
@@ -1740,7 +1716,7 @@
 	[popupLayer release];
 
 	ccBlendFunc blendFunc = {GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA}; // we are going to blend via alpha
-	[popupLayerTexture.sprite setBlendFunc:blendFunc];
+	(popupLayerTexture.sprite).blendFunc = blendFunc;
 	[_mainLayer addChild:popupLayerTexture];
 	
 	LHSprite* levelWonPopup = [_levelLoader createSpriteWithName:@"Level_Won_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:popupLayerTexture];
@@ -1965,10 +1941,8 @@
 	[SettingsManager incrementIntBy:1 forKey:SETTING_NUM_LEVELS_LOST];
 	
 	//analytics logging
-	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-		@"Lost", @"Level_Status",
-		@"Shark Collision", @"Level_Lost_Reason",
-	nil];
+	NSDictionary* flurryParams = @{@"Level_Status": @"Lost",
+		@"Level_Lost_Reason": @"Shark Collision"};
 	[Analytics endTimedEvent:@"Begin_Level" withParameters:flurryParams];
 
 	DebugLog(@"Showing level lost animations for penguin/shark collision");
@@ -1994,7 +1968,7 @@
 	[popupLayer release];
 
 	ccBlendFunc blendFunc = {GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA}; // we are going to blend via alpha
-	[popupLayerTexture.sprite setBlendFunc:blendFunc];
+	(popupLayerTexture.sprite).blendFunc = blendFunc;
 	[_mainLayer addChild:popupLayerTexture];
 	
 	LHSprite* levelLostPopup = [_levelLoader createSpriteWithName:@"Level_Lost_Popup" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:popupLayerTexture];
@@ -2052,7 +2026,7 @@
 
 -(void)fadeInBackgroundMusic:(NSString*)path {
 	
-	float prevVolume = [[SimpleAudioEngine sharedEngine] backgroundMusicVolume];
+	float prevVolume = [SimpleAudioEngine sharedEngine].backgroundMusicVolume;
 	float fadeInTimeOffset = 0;
 	
 	/*
@@ -2068,13 +2042,13 @@
 	
 	
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, fadeInTimeOffset * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-		[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:.1];
+		[SimpleAudioEngine sharedEngine].backgroundMusicVolume = .1;
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:path loop:YES];
 	});
 	
 	for(float volume = .1; volume <= prevVolume; volume+= .1) {
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, fadeInTimeOffset + volume * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-			[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:volume];
+			[SimpleAudioEngine sharedEngine].backgroundMusicVolume = volume;
 		});
 	}
 }
@@ -2088,10 +2062,8 @@
 	}
 
 	//analytics logging
-	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-		@"Lost", @"Level_Status",
-		@"Restart", @"Level_Lost_Reason",
-	nil];
+	NSDictionary* flurryParams = @{@"Level_Status": @"Lost",
+		@"Level_Lost_Reason": @"Restart"};
 	[Analytics endTimedEvent:@"Begin_Level" withParameters:flurryParams];
 
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.25 scene:[GameLayer sceneWithLevelPackPath:_levelPackPath levelPath:_levelPath]]];
@@ -2251,7 +2223,7 @@
 	
 	for(LHSprite* penguin in penguins) {
 		
-		MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
+		MoveGridData* penguinMoveGridData = (MoveGridData*)_penguinMoveGridDatas[penguin.uniqueName];
 		if(penguinMoveGridData.busy) {
 			continue;
 		}
@@ -2317,7 +2289,7 @@
 		
 	for(LHSprite* shark in sharks) {
 
-		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];
+		MoveGridData* sharkMoveGridData = (MoveGridData*)_sharkMoveGridDatas[shark.uniqueName];
 		if(sharkMoveGridData.busy) {
 			continue;
 		}
@@ -2662,9 +2634,9 @@
 			[_activeToolboxItem setSensor:true];
 			soundFileName = @"place-loud-noise.mp3";
 			
-			if([_loudNoiseNodes objectForKey:_activeToolboxItem.uniqueName] == nil) {
+			if(_loudNoiseNodes[_activeToolboxItem.uniqueName] == nil) {
 				LoudNoiseNode* loudNoiseNode = [[LoudNoiseNode alloc] initWithSprite:_activeToolboxItem maxRange:100];
-				[_loudNoiseNodes setObject:loudNoiseNode forKey:_activeToolboxItem.uniqueName];
+				_loudNoiseNodes[_activeToolboxItem.uniqueName] = loudNoiseNode;
 				[self addChild:loudNoiseNode];
 				[loudNoiseNode release];
 			}
@@ -2683,14 +2655,12 @@
 			[self scoreToolboxItemPlacement:_activeToolboxItem replaced:false];
 
 			//analytics logging
-			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-				_levelPackPath, @"Level_Pack",
-				[NSString stringWithFormat:@"%@",[(id)_activeToolboxItem.userData class]], @"Toolbox_Item_Class",
-				_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
-				[NSNumber numberWithInt:_state], @"Game_State",
-				NSStringFromCGPoint(_activeToolboxItem.position), @"Location",
-			nil];
+			NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+				@"Level_Pack": _levelPackPath,
+				@"Toolbox_Item_Class": [NSString stringWithFormat:@"%@",[(id)_activeToolboxItem.userData class]],
+				@"Toolbox_Item_Name": _activeToolboxItem.uniqueName,
+				@"Game_State": [NSNumber numberWithInt:_state],
+				@"Location": NSStringFromCGPoint(_activeToolboxItem.position)};
 			[Analytics logEvent:@"Place_Toolbox_Item" withParameters:flurryParams];
 			
 		}else {
@@ -2698,14 +2668,12 @@
 			[self scoreToolboxItemPlacement:_activeToolboxItem replaced:true];
 
 			//analytics logging
-			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-				_levelPackPath, @"Level_Pack",
-				[NSString stringWithFormat:@"%@",[(id)_activeToolboxItem.userData class]], @"Toolbox_Item_Class",
-				_activeToolboxItem.uniqueName, @"Toolbox_Item_Name",
-				[NSNumber numberWithInt:_state], @"Game_State",
-				NSStringFromCGPoint(_activeToolboxItem.position), @"Location",
-			nil];
+			NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+				@"Level_Pack": _levelPackPath,
+				@"Toolbox_Item_Class": [NSString stringWithFormat:@"%@",[(id)_activeToolboxItem.userData class]],
+				@"Toolbox_Item_Name": _activeToolboxItem.uniqueName,
+				@"Game_State": [NSNumber numberWithInt:_state],
+				@"Location": NSStringFromCGPoint(_activeToolboxItem.position)};
 			[Analytics logEvent:@"Move_Placed_Toolbox_Item" withParameters:flurryParams];		
 		
 		}
@@ -2774,7 +2742,7 @@
 					[CCStopGrid action],
 					[CCCallBlock actionWithBlock:^{
 						
-						LoudNoiseNode* loudNoiseNode = [_loudNoiseNodes objectForKey:loudNoise.uniqueName];
+						LoudNoiseNode* loudNoiseNode = _loudNoiseNodes[loudNoise.uniqueName];
 						float power = arc4random()%75 + 25;	//fluctuating power
 						[loudNoiseNode setPowerPercentage:power];
 					
@@ -2788,7 +2756,7 @@
 	
 	
 	if(!DISTRIBUTION_MODE && __DEBUG_TOUCH_SECONDS != 0) {
-		double elapsed = ([[NSDate date] timeIntervalSince1970] - __DEBUG_TOUCH_SECONDS);
+		double elapsed = ([NSDate date].timeIntervalSince1970 - __DEBUG_TOUCH_SECONDS);
 		if(elapsed >= 1 && !__DEBUG_SHARKS) {
 			DebugLog(@"Enabling debug sharks");
 			__DEBUG_SHARKS = true;
@@ -2800,10 +2768,8 @@
 				[background setVisible:false];
 			}
 			
-			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-				_levelPackPath, @"Level_Pack",
-			nil];
+			NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+				@"Level_Pack": _levelPackPath};
 			[Analytics logEvent:@"Debug_Sharks_Enabled" withParameters:flurryParams];
 			
 		}
@@ -2818,10 +2784,8 @@
 				[background setVisible:false];
 			}
 			
-			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-				_levelPackPath, @"Level_Pack",
-			nil];
+			NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+				@"Level_Pack": _levelPackPath};
 			[Analytics logEvent:@"Debug_Penguins_Enabled" withParameters:flurryParams];
 		}
 		if(elapsed >= 5 && (__DEBUG_PENGUINS || __DEBUG_SHARKS)) {
@@ -2835,10 +2799,8 @@
 				[background setVisible:true];
 			}
 			
-			NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-				[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-				_levelPackPath, @"Level_Pack",
-			nil];
+			NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+				@"Level_Pack": _levelPackPath};
 			[Analytics logEvent:@"Disable_Debug_Penguins_and_Sharks" withParameters:flurryParams];
 		}
 	}
@@ -2875,7 +2837,7 @@
 	//place penguins on land for visual appeal
 	for(id penguinName in _penguinsToPutOnLand) {
 		LHSprite* penguin = [_levelLoader spriteWithUniqueName:penguinName];
-		LHSprite* land = [_penguinsToPutOnLand objectForKey:penguinName];
+		LHSprite* land = _penguinsToPutOnLand[penguinName];
 		[penguin makeNoPhysics];
 		[penguin transformPosition:land.position];
 	}
@@ -2977,7 +2939,7 @@
 -(void) invalidateSharkMoveGridsNear:(LHSprite*)sprite {
 	for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
 		if(sprite == nil || ccpDistance(sprite.position, shark.position) < 150*SCALING_FACTOR_GENERIC) {
-			[(MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName] invalidateMoveGrid];
+			[(MoveGridData*)_sharkMoveGridDatas[shark.uniqueName] invalidateMoveGrid];
 		}
 	}
 }
@@ -2985,7 +2947,7 @@
 -(void) invalidatePenguinMoveGridsNear:(LHSprite*)sprite {
 	for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
 		if(sprite == nil || ccpDistance(sprite.position, penguin.position) < 150*SCALING_FACTOR_GENERIC) {
-			[(MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName] invalidateMoveGrid];
+			[(MoveGridData*)_penguinMoveGridDatas[penguin.uniqueName] invalidateMoveGrid];
 		}
 	}
 }
@@ -3142,7 +3104,7 @@
 	if(DEBUG_ALL_THE_THINGS) DebugLog(@"Moving %d sharks...", [sharks count]);
 	
 	
-	if(SHARK_DIES_WHEN_STUCK && [sharks count] == 0) {
+	if(SHARK_DIES_WHEN_STUCK && sharks.count == 0) {
 		//winna winna chicken dinna!
 		[self levelWon];
 		return;
@@ -3152,7 +3114,7 @@
 		
 		bool needsToJitter = false;
 		Shark* sharkData = ((Shark*)shark.userInfo);
-		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:shark.uniqueName];		
+		MoveGridData* sharkMoveGridData = (MoveGridData*)_sharkMoveGridDatas[shark.uniqueName];		
 		CGPoint sharkGridPos = [self toGrid:shark.position];
 		
 		//update his lil' hat
@@ -3371,7 +3333,7 @@
 		bool needsToJitter = false;
 		CGPoint penguinGridPos = [self toGrid:penguin.position];
 		Penguin* penguinData = ((Penguin*)penguin.userInfo);
-		MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:penguin.uniqueName];
+		MoveGridData* penguinMoveGridData = (MoveGridData*)_penguinMoveGridDatas[penguin.uniqueName];
 		
 		//update his lil' hat
 		if(penguinData.hatName != nil && ![penguinData.hatName isEqualToString:@""]) {
@@ -3646,7 +3608,7 @@
 				}
 			}			
 			
-			[_penguinsToPutOnLand setObject:land forKey:penguin.uniqueName];
+			_penguinsToPutOnLand[penguin.uniqueName] = land;
 			DebugLog(@"Penguin %@ has collided with some land!", penguin.uniqueName);
 		
 			if(unsafePenguins > 0) {
@@ -3656,7 +3618,7 @@
 			
 			//tell all sharks they should update
 			for(LHSprite* shark in [_levelLoader spritesWithTag:SHARK]) {
-				[[_sharkMoveGridDatas objectForKey:shark.uniqueName] forceUpdateToMoveGrid];
+				[_sharkMoveGridDatas[shark.uniqueName] forceUpdateToMoveGrid];
 			}
 			
 		}
@@ -3673,10 +3635,10 @@
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	for( UITouch *touch in touches ) {
-		CGPoint location = [touch locationInView: [touch view]];
+		CGPoint location = [touch locationInView: touch.view];
 		location = [[CCDirector sharedDirector] convertToGL: location];
 	
-		if([touches count] == 1) {
+		if(touches.count == 1) {
 			if(_activeToolboxItem != nil) {
 				//toolbox item drag
 				[_activeToolboxItem transformPosition:location];
@@ -3749,7 +3711,7 @@
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	for( UITouch *touch in touches ) {
-		CGPoint location = [touch locationInView: [touch view]];
+		CGPoint location = [touch locationInView: touch.view];
 		location = [[CCDirector sharedDirector] convertToGL: location];
 
 		if(_state == RUNNING || _state == PLACE) {
@@ -3798,16 +3760,14 @@
 				if(_isNudgingPenguin) {
 					_isNudgingPenguin = false;
 					for(LHSprite* penguin in [_levelLoader spritesWithTag:PENGUIN]) {
-						[[_penguinMoveGridDatas objectForKey:penguin.uniqueName] scheduleUpdateToMoveGridIn:.50f];
+						[_penguinMoveGridDatas[penguin.uniqueName] scheduleUpdateToMoveGridIn:.50f];
 					}
 					[_handOfGodPowerNode runAction:[CCFadeOut actionWithDuration:1.5f]];
 					
 					//analytics logging
-					NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-						[NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath], @"Level_Pack_and_Name",
-						_levelPackPath, @"Level_Pack",
-						[NSNumber numberWithDouble:_handOfGodPowerSecondsRemaining], @"Power_Remaining",
-					nil];
+					NSDictionary* flurryParams = @{@"Level_Pack_and_Name": [NSString stringWithFormat:@"%@:%@", _levelPackPath, _levelPath],
+						@"Level_Pack": _levelPackPath,
+						@"Power_Remaining": @(_handOfGodPowerSecondsRemaining)};
 					[Analytics logEvent:@"Nudged_Penguin" withParameters:flurryParams];					
 					
 				}
@@ -3819,7 +3779,7 @@
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 
 	for( UITouch *touch in touches ) {
-		CGPoint location = [touch locationInView: [touch view]];
+		CGPoint location = [touch locationInView: touch.view];
 		location = [[CCDirector sharedDirector] convertToGL: location];
 
 		_startTouch = location;
@@ -3830,9 +3790,9 @@
 
 			CGPoint gridPos = [self toGrid:location];
 
-			MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:@"Penguin"];
+			MoveGridData* penguinMoveGridData = (MoveGridData*)_penguinMoveGridDatas[@"Penguin"];
 			const short** penguinMoveGrid = nil;
-			MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:@"Shark"];
+			MoveGridData* sharkMoveGridData = (MoveGridData*)_sharkMoveGridDatas[@"Shark"];
 			const short** sharkMoveGrid = nil;
 			if(penguinMoveGridData != nil) {
 				penguinMoveGrid = (const short** )[penguinMoveGridData moveGrid];
@@ -3856,9 +3816,9 @@
 
 	if(__DEBUG_SHARKS || __DEBUG_PENGUINS) {
 
-		MoveGridData* penguinMoveGridData = (MoveGridData*)[_penguinMoveGridDatas objectForKey:@"Penguin"];
+		MoveGridData* penguinMoveGridData = (MoveGridData*)_penguinMoveGridDatas[@"Penguin"];
 		const short** penguinMoveGrid = nil;
-		MoveGridData* sharkMoveGridData = (MoveGridData*)[_sharkMoveGridDatas objectForKey:@"Shark"];
+		MoveGridData* sharkMoveGridData = (MoveGridData*)_sharkMoveGridDatas[@"Shark"];
 		const short** sharkMoveGrid = nil;
 		if(penguinMoveGridData != nil) {
 			penguinMoveGrid = (const short** )[penguinMoveGridData moveGrid];
@@ -3993,7 +3953,7 @@
 	
 	if(_toolGroups != nil) {
 		for(id key in _toolGroups) {
-			NSMutableDictionary* toolGroup = [_toolGroups objectForKey:key];
+			NSMutableDictionary* toolGroup = _toolGroups[key];
 			[toolGroup release];
 		}
 		[_toolGroups release];
@@ -4001,7 +3961,7 @@
 	
 	if(_iapToolGroups != nil) {
 		for(id key in _iapToolGroups) {
-			NSMutableDictionary* _iapToolGroup = [_iapToolGroups objectForKey:key];
+			NSMutableDictionary* _iapToolGroup = _iapToolGroups[key];
 			[_iapToolGroup release];
 		}
 		[_iapToolGroups release];	
@@ -4018,12 +3978,12 @@
 	
 	[_penguinsToPutOnLand release];
 	for(id key in _sharkMoveGridDatas) {
-		MoveGridData* moveGriData = [_sharkMoveGridDatas objectForKey:key];
+		MoveGridData* moveGriData = _sharkMoveGridDatas[key];
 		[moveGriData release];
 	}
 	[_sharkMoveGridDatas release];
 	for(id key in _penguinMoveGridDatas) {
-		MoveGridData* moveGriData = [_penguinMoveGridDatas objectForKey:key];
+		MoveGridData* moveGriData = _penguinMoveGridDatas[key];
 		[moveGriData release];
 	}
 	[_penguinMoveGridDatas release];

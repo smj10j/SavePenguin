@@ -103,7 +103,7 @@ typedef struct _hashElement
 
 /** Pauses all running actions, returning a list of targets whose actions were paused.
  */
--(NSSet *) pauseAllRunningActions;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSSet *pauseAllRunningActions;
 
 /** Resume a set of targets (convenience function to reverse a pauseAllRunningActions call)
  */

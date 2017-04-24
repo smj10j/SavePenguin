@@ -48,7 +48,7 @@
 
 -(bool) requestProduct:(NSString*)productId;
 -(bool) purchaseProduct:(SKProduct*)requestedProduct;
--(bool) restorePurchase;
+@property (NS_NONATOMIC_IOSONLY, readonly) bool restorePurchase;
 
 @end
 

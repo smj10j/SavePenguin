@@ -45,32 +45,32 @@ return NSStringFromClass([self class]);
 -(void) setPropertiesFromDictionary:(NSDictionary*)dictionary
 {
 
-	if([dictionary objectForKey:@"isDead"])
-		[self setIsDead:[[dictionary objectForKey:@"isDead"] boolValue]];
+	if(dictionary[@"isDead"])
+		self.isDead = [dictionary[@"isDead"] boolValue];
 
-	if([dictionary objectForKey:@"speed"])
-		[self setSpeed:[[dictionary objectForKey:@"speed"] floatValue]];
+	if(dictionary[@"speed"])
+		self.speed = [dictionary[@"speed"] floatValue];
 
-	if([dictionary objectForKey:@"isInvisible"])
-		[self setIsInvisible:[[dictionary objectForKey:@"isInvisible"] boolValue]];
+	if(dictionary[@"isInvisible"])
+		self.isInvisible = [dictionary[@"isInvisible"] boolValue];
 
-	if([dictionary objectForKey:@"alertRadius"])
-		[self setAlertRadius:[[dictionary objectForKey:@"alertRadius"] floatValue]];
+	if(dictionary[@"alertRadius"])
+		self.alertRadius = [dictionary[@"alertRadius"] floatValue];
 
-	if([dictionary objectForKey:@"isSafe"])
-		[self setIsSafe:[[dictionary objectForKey:@"isSafe"] boolValue]];
+	if(dictionary[@"isSafe"])
+		self.isSafe = [dictionary[@"isSafe"] boolValue];
 
-	if([dictionary objectForKey:@"detectionRadius"])
-		[self setDetectionRadius:[[dictionary objectForKey:@"detectionRadius"] floatValue]];
+	if(dictionary[@"detectionRadius"])
+		self.detectionRadius = [dictionary[@"detectionRadius"] floatValue];
 
-	if([dictionary objectForKey:@"hasSpottedShark"])
-		[self setHasSpottedShark:[[dictionary objectForKey:@"hasSpottedShark"] boolValue]];
+	if(dictionary[@"hasSpottedShark"])
+		self.hasSpottedShark = [dictionary[@"hasSpottedShark"] boolValue];
 
-	if([dictionary objectForKey:@"hatName"])
-		[self setHatName:[dictionary objectForKey:@"hatName"]];
+	if(dictionary[@"hatName"])
+		self.hatName = dictionary[@"hatName"];
 
-	if([dictionary objectForKey:@"isStuck"])
-		[self setIsStuck:[[dictionary objectForKey:@"isStuck"] boolValue]];
+	if(dictionary[@"isStuck"])
+		self.isStuck = [dictionary[@"isStuck"] boolValue];
 
 }
 

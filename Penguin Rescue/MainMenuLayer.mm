@@ -40,7 +40,7 @@
 }
 
 //
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init])) {
 		
@@ -244,17 +244,17 @@
 
 -(void)fadeInBackgroundMusic:(NSString*)path {
 	
-	float prevVolume = [[SimpleAudioEngine sharedEngine] backgroundMusicVolume];
+	float prevVolume = [SimpleAudioEngine sharedEngine].backgroundMusicVolume;
 	float fadeInTimeOffset = 0;
 	
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, fadeInTimeOffset * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-		[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:.1];
+		[SimpleAudioEngine sharedEngine].backgroundMusicVolume = .1;
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:path loop:YES];
 	});
 	
 	for(float volume = .1; volume <= prevVolume; volume+= .1) {
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, fadeInTimeOffset + volume * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-			[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:volume];
+			[SimpleAudioEngine sharedEngine].backgroundMusicVolume = volume;
 		});
 	}
 }

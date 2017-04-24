@@ -16,7 +16,7 @@
 
 @implementation IAPManager
 
--(id)init {
+-(instancetype)init {
 	
 	if(self = [super init]) {
 
@@ -24,9 +24,9 @@
 		_ebPurchase.delegate = self;
 		
 		_loadingIndicator = [[UIActivityIndicatorView alloc]  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-		_loadingIndicator.center=[[CCDirector sharedDirector] view].center;
+		_loadingIndicator.center=[CCDirector sharedDirector].view.center;
 		_loadingIndicator.hidesWhenStopped = true;
-		[[[CCDirector sharedDirector] view] addSubview:_loadingIndicator];
+		[[CCDirector sharedDirector].view addSubview:_loadingIndicator];
 		
 	}
 	

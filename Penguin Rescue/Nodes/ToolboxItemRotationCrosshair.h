@@ -13,6 +13,6 @@
 	LHSprite* _toolboxItem;
 }
 
--(id)initWithToolboxItem:(LHSprite*)toolboxItem;
+-(instancetype)initWithToolboxItem:(LHSprite*)toolboxItem NS_DESIGNATED_INITIALIZER;
 
 @end

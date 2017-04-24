@@ -40,14 +40,14 @@
 }
 
 //
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init])) {
 
 		NSMutableDictionary* credits = [[NSMutableDictionary alloc] init];
-		[credits setObject:@"Programming and Design" forKey:@"Stephen Johnson"];
-		[credits setObject:@"Sound Designer" forKey:@"Geran Pele"];
-		[credits setObject:@"Composer" forKey:@"Nick Alonzo"];
+		credits[@"Stephen Johnson"] = @"Programming and Design";
+		credits[@"Geran Pele"] = @"Sound Designer";
+		credits[@"Nick Alonzo"] = @"Composer";
 		
 		NSMutableArray* creditsOrder = [[NSMutableArray alloc] init];
 		[creditsOrder addObject:@"Stephen Johnson"];
@@ -116,7 +116,7 @@ Save Penguin is our first game - we hope you enjoy it and please let us know wha
 		
 		
 		for(NSString* name in creditsOrder) {
-			NSString* job = [credits objectForKey:name];
+			NSString* job = credits[name];
 			
 			NSString* creditLine = [NSString stringWithFormat:@"%@ - %@", name, job];
 		
@@ -220,14 +220,14 @@ Drop us an email or leave a review in the App Store and tell us your ideas!"]
 
 
 	MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
-	UIViewController *rootViewController = (UIViewController*)[(AppController*)[[UIApplication sharedApplication] delegate] navController];
+	UIViewController *rootViewController = (UIViewController*)((AppController*)[UIApplication sharedApplication].delegate).navController;
   	controller.mailComposeDelegate = self;
 	// Recipient.
     NSString *recipient = @"feedback@conquerllc.com";
-    NSArray *recipientsArray = [NSArray arrayWithObject:recipient];
+    NSArray *recipientsArray = @[recipient];
     [controller setToRecipients:recipientsArray];
 	
-	[controller setSubject:[NSString stringWithFormat:@"Save Penguin v%@ Feedback - %@ @ %@", [SettingsManager stringForKey:SETTING_CURRENT_VERSION], [[UIDevice currentDevice] platformString], [[UIDevice currentDevice] systemVersion]]];
+	[controller setSubject:[NSString stringWithFormat:@"Save Penguin v%@ Feedback - %@ @ %@", [SettingsManager stringForKey:SETTING_CURRENT_VERSION], [[UIDevice currentDevice] platformString], [UIDevice currentDevice].systemVersion]];
 	
 	[controller setMessageBody:@"" isHTML:NO];
 	
@@ -236,7 +236,7 @@ Drop us an email or leave a review in the App Store and tell us your ideas!"]
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
-	UIViewController* rootViewController = (UIViewController*)[(AppController*)[[UIApplication sharedApplication] delegate] navController];
+	UIViewController* rootViewController = (UIViewController*)((AppController*)[UIApplication sharedApplication].delegate).navController;
 	[rootViewController becomeFirstResponder];
 	[rootViewController dismissModalViewControllerAnimated:YES];
 }

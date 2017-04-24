@@ -21,10 +21,9 @@
 #endif
 }
 
-+(id)nodeWithDictionary:(NSDictionary*)dictionary;
++(instancetype)nodeWithDictionary:(NSDictionary*)dictionary;
 
 #ifdef LH_USE_BOX2D
--(void)setBody:(b2Body*)body;
--(b2Body*)body;
+@property (NS_NONATOMIC_IOSONLY) b2Body *body;
 #endif
 @end

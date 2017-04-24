@@ -49,7 +49,7 @@
 @synthesize quadsToDraw = quadsToDraw_;
 
 #pragma mark CCAtlasNode - Creation & Init
-- (id) init
+- (instancetype) init
 {
 	NSAssert( NO, @"Not supported - Use initWtihTileFile instead");
     return self;
@@ -60,7 +60,7 @@
 	return [[[self alloc] initWithTileFile:tile tileWidth:w tileHeight:h itemsToRender:c] autorelease];
 }
 
--(id) initWithTileFile:(NSString*)tile tileWidth:(NSUInteger)w tileHeight:(NSUInteger)h itemsToRender: (NSUInteger) c
+-(instancetype) initWithTileFile:(NSString*)tile tileWidth:(NSUInteger)w tileHeight:(NSUInteger)h itemsToRender: (NSUInteger) c
 {
 	if( (self=[super init]) ) {
 		
@@ -109,7 +109,7 @@
 
 -(void) calculateMaxItems
 {
-	CGSize s = [[textureAtlas_ texture] contentSize];
+	CGSize s = [textureAtlas_.texture contentSize];
 	itemsPerColumn_ = s.height / itemHeight_;
 	itemsPerRow_ = s.width / itemWidth_;
 }
@@ -164,7 +164,7 @@
 
 	// special opacity for premultiplied textures
 	if( opacityModifyRGB_ )
-		[self setColor: colorUnmodified_];
+		self.color = colorUnmodified_;
 }
 
 -(void) setOpacityModifyRGB:(BOOL)modify
@@ -181,14 +181,14 @@
 
 -(void) updateOpacityModifyRGB
 {
-	opacityModifyRGB_ = [textureAtlas_.texture hasPremultipliedAlpha];
+	opacityModifyRGB_ = (textureAtlas_.texture).hasPremultipliedAlpha;
 }
 
 #pragma mark CCAtlasNode - CCNodeTexture protocol
 
 -(void) updateBlendFunc
 {
-	if( ! [textureAtlas_.texture hasPremultipliedAlpha] ) {
+	if( ! (textureAtlas_.texture).hasPremultipliedAlpha ) {
 		blendFunc_.src = GL_SRC_ALPHA;
 		blendFunc_.dst = GL_ONE_MINUS_SRC_ALPHA;
 	}

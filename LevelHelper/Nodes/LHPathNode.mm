@@ -32,7 +32,7 @@
 @interface NSMutableArray (LHMutableArrayExt)
 
 - (void)moveObjectFromIndex:(NSUInteger)from toIndex:(NSUInteger)to;
-- (NSArray *)reversedArray;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *reversedArray;
 - (void)reverse;
 @end
 ////////////////////////////////////////////////////////////////////////////////
@@ -41,12 +41,12 @@
 - (void)moveObjectFromIndex:(NSUInteger)from toIndex:(NSUInteger)to
 {
     if (to != from) {
-        id obj = [self objectAtIndex:from];
+        id obj = self[from];
 #ifndef LH_ARC_ENABLED
         [obj retain];
 #endif
         [self removeObjectAtIndex:from];
-        if (to >= [self count]) {
+        if (to >= self.count) {
             [self addObject:obj];
         } else {
             [self insertObject:obj atIndex:to];
@@ -58,7 +58,7 @@
 }
 ////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)reversedArray {
-    NSMutableArray *array = [NSMutableArray arrayWithCapacity:[self count]];
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:self.count];
     NSEnumerator *enumerator = [self reverseObjectEnumerator];
     for (id element in enumerator) {
         [array addObject:element];
@@ -68,11 +68,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 - (void)reverse {
     
-    if([self count] == 0)
+    if(self.count == 0)
         return;
     
     NSUInteger i = 0;
-    NSUInteger j = [self count] - 1;
+    NSUInteger j = self.count - 1;
     while (i < j) {
         [self exchangeObjectAtIndex:i
                   withObjectAtIndex:j];
@@ -108,7 +108,7 @@
 
 }
 ////////////////////////////////////////////////////////////////////////////////
--(id) initPathNodeWithPoints:(NSArray *)points onSprite:(LHSprite*)spr
+-(instancetype) initPathNodeWithPoints:(NSArray *)points onSprite:(LHSprite*)spr
 {
 	self = [super init];
 	if (self != nil)
@@ -130,10 +130,10 @@
 		elapsed = 0.0f;
 		isLine = true;
 		
-        initialAngle = [sprite rotation];
+        initialAngle = sprite.rotation;
                 
-        if([pathPoints count] > 0)
-            prevPathPosition = LHPointFromValue([pathPoints objectAtIndex:0]); 
+        if(pathPoints.count > 0)
+            prevPathPosition = LHPointFromValue(pathPoints[0]); 
 	}
 	return self;
 }
@@ -168,14 +168,14 @@
 }
 -(void)update:(ccTime)dt
 {
-    if([[LHSettings sharedInstance] levelPaused])return;
+    if([LHSettings sharedInstance].levelPaused)return;
 	if(!sprite)return;
 	if(paused) return;	
 	if(!pathPoints)return;
     
     bool killSelf = false;
         
-	NSValue* ptVal = [pathPoints objectAtIndex:(NSUInteger)currentPoint];
+	NSValue* ptVal = pathPoints[(NSUInteger)currentPoint];
 	CGPoint startPosition = LHPointFromValue(ptVal);
             
 	int previousPoint = currentPoint -1;
@@ -183,7 +183,7 @@
 		previousPoint = 0;
 	}
 	
-	NSValue* prevVal = [pathPoints objectAtIndex:(NSUInteger)previousPoint];
+	NSValue* prevVal = pathPoints[(NSUInteger)previousPoint];
 	CGPoint prevPosition = LHPointFromValue(prevVal);
 	CGPoint endPosition = startPosition;
 	
@@ -193,28 +193,25 @@
 	
 	float endAngle = startAngle;
 	
-	if((currentPoint + 1) < (int)[pathPoints count])
+	if((currentPoint + 1) < (int)pathPoints.count)
 	{
-		NSValue* val = [pathPoints objectAtIndex:(NSUInteger)(currentPoint + 1)];
+		NSValue* val = pathPoints[(NSUInteger)(currentPoint + 1)];
 		endPosition = LHPointFromValue(val);                
 		endAngle = [LHPathNode rotationDegreeFromPoint:endPosition toPoint:startPosition];
 	}
 	else {
 		if(isCyclic){
 			if(!restartOtherEnd)[pathPoints reverse];
-            if(flipX)[sprite setFlipX:![sprite flipX]];
-            if(flipY)[sprite setFlipY:![sprite flipY]];
+            if(flipX)sprite.flipX = !sprite.flipX;
+            if(flipY)sprite.flipY = !sprite.flipY;
 			currentPoint = -1;
 		}
         
         [[NSNotificationCenter defaultCenter] postNotificationName:LHPathMovementHasEndedNotification
                                                             object:sprite
-                                                          userInfo:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:sprite, 
-                                                                                                        [sprite pathUniqueName],
-                                                                                                        [NSNumber numberWithInt:currentPoint], nil]
-                                                                                               forKeys:[NSArray arrayWithObjects:LHPathMovementSpriteObject, 
-                                                                                                        LHPathMovementUniqueName,
-                                                                                                        LHPathMovementPointNumber, nil]]];
+                                                          userInfo:@{LHPathMovementSpriteObject: sprite, 
+                                                                                                        LHPathMovementUniqueName: [sprite pathUniqueName],
+                                                                                                        LHPathMovementPointNumber: @(currentPoint)}];
         if(!isCyclic)
             killSelf = true;
 	}
@@ -256,7 +253,7 @@
 	
 	if(nil != sprite)
     {
-        CGPoint sprPos = [sprite position];
+        CGPoint sprPos = sprite.position;
         
         CGPoint sprDelta = CGPointMake(newPos.x - prevPathPosition.x, newPos.y - prevPathPosition.y);
         
@@ -284,19 +281,16 @@
 	
 	if(0.001 > dist)
 	{
-		if(currentPoint + 1 < (int)[pathPoints count])
+		if(currentPoint + 1 < (int)pathPoints.count)
 		{
 			elapsed = 0;
 			currentPoint += 1;    
             
             [[NSNotificationCenter defaultCenter] postNotificationName:LHPathMovementHasChangedPointNotification
                                                                 object:sprite
-                                                              userInfo:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:sprite, 
-                                                                                                            [sprite pathUniqueName],
-                                                                                                            [NSNumber numberWithInt:currentPoint], nil]
-                                                                                                   forKeys:[NSArray arrayWithObjects:LHPathMovementSpriteObject, 
-                                                                                                            LHPathMovementUniqueName,
-                                                                                                            LHPathMovementPointNumber, nil]]];
+                                                              userInfo:@{LHPathMovementSpriteObject: sprite, 
+                                                                                                            LHPathMovementUniqueName: [sprite pathUniqueName],
+                                                                                                            LHPathMovementPointNumber: @(currentPoint)}];
 		}
 	}
     
@@ -310,7 +304,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 -(void) setSpeed:(float)value{
     speed = value;
-    interval = speed/([pathPoints count]-1);
+    interval = speed/(pathPoints.count-1);
 }
 -(float) speed{
     return speed;

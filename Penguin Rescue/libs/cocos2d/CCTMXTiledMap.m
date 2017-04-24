@@ -53,12 +53,12 @@
 @synthesize objectGroups = objectGroups_;
 @synthesize properties = properties_;
 
-+(id) tiledMapWithTMXFile:(NSString*)tmxFile
++(instancetype) tiledMapWithTMXFile:(NSString*)tmxFile
 {
 	return [[[self alloc] initWithTMXFile:tmxFile] autorelease];
 }
 
-+(id) tiledMapWithXML:(NSString*)tmxString resourcePath:(NSString*)resourcePath
++(instancetype) tiledMapWithXML:(NSString*)tmxString resourcePath:(NSString*)resourcePath
 {
 	return [[[self alloc] initWithXML:tmxString resourcePath:resourcePath] autorelease];
 }
@@ -81,22 +81,22 @@
 			[self addChild:child z:idx tag:idx];
 
 			// update content size with the max size
-			CGSize childSize = [child contentSize];
-			CGSize currentSize = [self contentSize];
+			CGSize childSize = child.contentSize;
+			CGSize currentSize = self.contentSize;
 			currentSize.width = MAX( currentSize.width, childSize.width );
 			currentSize.height = MAX( currentSize.height, childSize.height );
-			[self setContentSize:currentSize];
+			self.contentSize = currentSize;
 
 			idx++;
 		}
 	}
 }
 
--(id) initWithXML:(NSString*)tmxString resourcePath:(NSString*)resourcePath
+-(instancetype) initWithXML:(NSString*)tmxString resourcePath:(NSString*)resourcePath
 {
 	if ((self=[super init])) {
 
-		[self setContentSize:CGSizeZero];
+		self.contentSize = CGSizeZero;
 
 		CCTMXMapInfo *mapInfo = [CCTMXMapInfo formatWithXML:tmxString resourcePath:resourcePath];
 
@@ -107,13 +107,13 @@
 	return self;
 }
 
--(id) initWithTMXFile:(NSString*)tmxFile
+-(instancetype) initWithTMXFile:(NSString*)tmxFile
 {
 	NSAssert(tmxFile != nil, @"TMXTiledMap: tmx file should not bi nil");
 
 	if ((self=[super init])) {
 
-		[self setContentSize:CGSizeZero];
+		self.contentSize = CGSizeZero;
 
 		CCTMXMapInfo *mapInfo = [CCTMXMapInfo formatWithTMXFile:tmxFile];
 
@@ -211,7 +211,7 @@
 	return [properties_ valueForKey:propertyName];
 }
 -(NSDictionary*)propertiesForGID:(unsigned int)GID{
-	return [tileProperties_ objectForKey:[NSNumber numberWithInt:GID]];
+	return tileProperties_[[NSNumber numberWithInt:GID]];
 }
 @end
 

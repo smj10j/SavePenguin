@@ -40,11 +40,11 @@
 @property (nonatomic,readwrite) ccGridSize gridSize;
 
 /** creates the action with size and duration */
-+(id) actionWithSize:(ccGridSize)size duration:(ccTime)d;
++(instancetype) actionWithSize:(ccGridSize)size duration:(ccTime)d;
 /** initializes the action with size and duration */
--(id) initWithSize:(ccGridSize)gridSize duration:(ccTime)d;
+-(instancetype) initWithSize:(ccGridSize)gridSize duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 /** returns the grid */
--(CCGridBase *)grid;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) CCGridBase *grid;
 
 @end
 
@@ -97,7 +97,7 @@
 /** creates the action with an inner action that has the amplitude property, and a duration time */
 +(id)actionWithAction:(CCAction*)action duration:(ccTime)d;
 /** initializes the action with an inner action that has the amplitude property, and a duration time */
--(id)initWithAction:(CCAction*)action duration:(ccTime)d;
+-(instancetype)initWithAction:(CCAction*)action duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -116,7 +116,7 @@
 /** creates the action with an inner action that has the amplitude property, and a duration time */
 +(id)actionWithAction:(CCAction*)action duration:(ccTime)d;
 /** initializes the action with an inner action that has the amplitude property, and a duration time */
--(id)initWithAction:(CCAction*)action duration:(ccTime)d;
+-(instancetype)initWithAction:(CCAction*)action duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -135,7 +135,7 @@
 /** creates the action with an inner action that has the amplitude property, and a duration time */
 +(id)actionWithAction:(CCAction*)action duration:(ccTime)d;
 /** initializes the action with an inner action that has the amplitude property, and a duration time */
--(id)initWithAction:(CCAction*)action duration:(ccTime)d;
+-(instancetype)initWithAction:(CCAction*)action duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -161,5 +161,5 @@
 /** creates an action with the number of times that the current grid will be reused */
 +(id) actionWithTimes: (int) times;
 /** initializes an action with the number of times that the current grid will be reused */
--(id) initWithTimes: (int) times;
+-(instancetype) initWithTimes: (int) times NS_DESIGNATED_INITIALIZER;
 @end

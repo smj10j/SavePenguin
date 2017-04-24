@@ -40,12 +40,12 @@
 
 @synthesize tag = tag_, target = target_, originalTarget = originalTarget_;
 
-+(id) action
++(instancetype) action
 {
 	return [[[self alloc] init] autorelease];
 }
 
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init]) ) {
 		originalTarget_ = target_ = nil;
@@ -126,7 +126,7 @@
 	return [[[self alloc] initWithAction: action] autorelease];
 }
 
--(id) initWithAction: (CCActionInterval*) action
+-(instancetype) initWithAction: (CCActionInterval*) action
 {
 	if( (self=[super init]) )
 		self.innerAction = action;
@@ -191,7 +191,7 @@
 	return [[[self alloc] initWithAction: action speed:value] autorelease];
 }
 
--(id) initWithAction: (CCActionInterval*) action speed:(float)value
+-(instancetype) initWithAction: (CCActionInterval*) action speed:(float)value
 {
 	if( (self=[super init]) ) {
 		self.innerAction = action;
@@ -259,7 +259,7 @@
 	return [[[self alloc] initWithTarget:fNode worldBoundary:rect] autorelease];
 }
 
--(id) initWithTarget:(CCNode *)fNode
+-(instancetype) initWithTarget:(CCNode *)fNode
 {
 	if( (self=[super init]) ) {
 
@@ -275,7 +275,7 @@
 	return self;
 }
 
--(id) initWithTarget:(CCNode *)fNode worldBoundary:(CGRect)rect
+-(instancetype) initWithTarget:(CCNode *)fNode worldBoundary:(CGRect)rect
 {
 	if( (self=[super init]) ) {
 

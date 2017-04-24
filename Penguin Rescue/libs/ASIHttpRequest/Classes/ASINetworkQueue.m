@@ -17,17 +17,17 @@
 
 @implementation ASINetworkQueue
 
-- (id)init
+- (instancetype)init
 {
 	self = [super init];
 	[self setShouldCancelAllRequestsOnFailure:YES];
-	[self setMaxConcurrentOperationCount:4];
+	self.maxConcurrentOperationCount = 4;
 	[self setSuspended:YES];
 	
 	return self;
 }
 
-+ (id)queue
++ (instancetype)queue
 {
 	return [[[self alloc] init] autorelease];
 }
@@ -35,7 +35,7 @@
 - (void)dealloc
 {
 	//We need to clear the queue on any requests that haven't got around to cleaning up yet, as otherwise they'll try to let us know if something goes wrong, and we'll be long gone by then
-	for (ASIHTTPRequest *request in [self operations]) {
+	for (ASIHTTPRequest *request in self.operations) {
 		[request setQueue:nil];
 	}
 	[userInfo release];
@@ -44,7 +44,7 @@
 
 - (void)setSuspended:(BOOL)suspend
 {
-	[super setSuspended:suspend];
+	super.suspended = suspend;
 }
 
 - (void)reset
@@ -69,10 +69,10 @@
 
 - (void)cancelAllOperations
 {
-	[self setBytesUploadedSoFar:0];
-	[self setTotalBytesToUpload:0];
-	[self setBytesDownloadedSoFar:0];
-	[self setTotalBytesToDownload:0];
+	self.bytesUploadedSoFar = 0;
+	self.totalBytesToUpload = 0;
+	self.bytesDownloadedSoFar = 0;
+	self.totalBytesToDownload = 0;
 	[super cancelAllOperations];
 }
 
@@ -117,10 +117,10 @@
 	if ([operation isKindOfClass:[ASIHTTPRequest class]]) {
 		
 		ASIHTTPRequest *request = (ASIHTTPRequest *)operation;
-		[request setRequestMethod:@"HEAD"];
-		[request setQueuePriority:10];
+		request.requestMethod = @"HEAD";
+		request.queuePriority = 10;
 		[request setShowAccurateProgress:YES];
-		[request setQueue:self];
+		request.queue = self;
 		
 		// Important - we are calling NSOperation's add method - we don't want to add this as a normal request!
 		[super addOperation:request];
@@ -134,11 +134,11 @@
 		[NSException raise:@"AttemptToAddInvalidRequest" format:@"Attempted to add an object that was not an ASIHTTPRequest to an ASINetworkQueue"];
 	}
 		
-	[self setRequestsCount:[self requestsCount]+1];
+	self.requestsCount = self.requestsCount+1;
 	
 	ASIHTTPRequest *request = (ASIHTTPRequest *)operation;
 	
-	if ([self showAccurateProgress]) {
+	if (self.showAccurateProgress) {
 		
 		// Force the request to build its body (this may change requestMethod)
 		[request buildPostBody];
@@ -147,19 +147,19 @@
 		// We'll only do this before the queue is started
 		// If requests are added after the queue is started they will probably move the overall progress backwards anyway, so there's no value performing the HEAD requests first
 		// Instead, they'll update the total progress if and when they receive a content-length header
-		if ([[request requestMethod] isEqualToString:@"GET"]) {
-			if ([self isSuspended]) {
+		if ([request.requestMethod isEqualToString:@"GET"]) {
+			if (self.suspended) {
 				ASIHTTPRequest *HEADRequest = [request HEADRequest];
 				[self addHEADOperation:HEADRequest];
 				[request addDependency:HEADRequest];
-				if ([request shouldResetDownloadProgress]) {
+				if (request.shouldResetDownloadProgress) {
 					[self resetProgressDelegate:&downloadProgressDelegate];
 					[request setShouldResetDownloadProgress:NO];
 				}
 			}
 		}
 		[request buildPostBody];
-		[self request:nil incrementUploadSizeBy:[request postLength]];
+		[self request:nil incrementUploadSizeBy:request.postLength];
 
 
 	} else {
@@ -167,64 +167,64 @@
 		[self request:nil incrementUploadSizeBy:1];
 	}
 	// Tell the request not to increment the upload size when it starts, as we've already added its length
-	if ([request shouldResetUploadProgress]) {
+	if (request.shouldResetUploadProgress) {
 		[self resetProgressDelegate:&uploadProgressDelegate];
 		[request setShouldResetUploadProgress:NO];
 	}
 	
-	[request setShowAccurateProgress:[self showAccurateProgress]];
+	request.showAccurateProgress = self.showAccurateProgress;
 	
-	[request setQueue:self];
+	request.queue = self;
 	[super addOperation:request];
 
 }
 
 - (void)requestStarted:(ASIHTTPRequest *)request
 {
-	if ([self requestDidStartSelector]) {
-		[[self delegate] performSelector:[self requestDidStartSelector] withObject:request];
+	if (self.requestDidStartSelector) {
+		[self.delegate performSelector:self.requestDidStartSelector withObject:request];
 	}
 }
 
 - (void)request:(ASIHTTPRequest *)request didReceiveResponseHeaders:(NSDictionary *)responseHeaders
 {
-	if ([self requestDidReceiveResponseHeadersSelector]) {
-		[[self delegate] performSelector:[self requestDidReceiveResponseHeadersSelector] withObject:request withObject:responseHeaders];
+	if (self.requestDidReceiveResponseHeadersSelector) {
+		[self.delegate performSelector:self.requestDidReceiveResponseHeadersSelector withObject:request withObject:responseHeaders];
 	}
 }
 
 - (void)request:(ASIHTTPRequest *)request willRedirectToURL:(NSURL *)newURL
 {
-	if ([self requestWillRedirectSelector]) {
-		[[self delegate] performSelector:[self requestWillRedirectSelector] withObject:request withObject:newURL];
+	if (self.requestWillRedirectSelector) {
+		[self.delegate performSelector:self.requestWillRedirectSelector withObject:request withObject:newURL];
 	}
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-	[self setRequestsCount:[self requestsCount]-1];
-	if ([self requestDidFinishSelector]) {
-		[[self delegate] performSelector:[self requestDidFinishSelector] withObject:request];
+	self.requestsCount = self.requestsCount-1;
+	if (self.requestDidFinishSelector) {
+		[self.delegate performSelector:self.requestDidFinishSelector withObject:request];
 	}
-	if ([self requestsCount] == 0) {
-		if ([self queueDidFinishSelector]) {
-			[[self delegate] performSelector:[self queueDidFinishSelector] withObject:self];
+	if (self.requestsCount == 0) {
+		if (self.queueDidFinishSelector) {
+			[self.delegate performSelector:self.queueDidFinishSelector withObject:self];
 		}
 	}
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-	[self setRequestsCount:[self requestsCount]-1];
-	if ([self requestDidFailSelector]) {
-		[[self delegate] performSelector:[self requestDidFailSelector] withObject:request];
+	self.requestsCount = self.requestsCount-1;
+	if (self.requestDidFailSelector) {
+		[self.delegate performSelector:self.requestDidFailSelector withObject:request];
 	}
-	if ([self requestsCount] == 0) {
-		if ([self queueDidFinishSelector]) {
-			[[self delegate] performSelector:[self queueDidFinishSelector] withObject:self];
+	if (self.requestsCount == 0) {
+		if (self.queueDidFinishSelector) {
+			[self.delegate performSelector:self.queueDidFinishSelector withObject:self];
 		}
 	}
-	if ([self shouldCancelAllRequestsOnFailure] && [self requestsCount] > 0) {
+	if (self.shouldCancelAllRequestsOnFailure && self.requestsCount > 0) {
 		[self cancelAllOperations];
 	}
 	
@@ -233,43 +233,43 @@
 
 - (void)request:(ASIHTTPRequest *)request didReceiveBytes:(long long)bytes
 {
-	[self setBytesDownloadedSoFar:[self bytesDownloadedSoFar]+bytes];
-	if ([self downloadProgressDelegate]) {
-		[ASIHTTPRequest updateProgressIndicator:&downloadProgressDelegate withProgress:[self bytesDownloadedSoFar] ofTotal:[self totalBytesToDownload]];
+	self.bytesDownloadedSoFar = self.bytesDownloadedSoFar+bytes;
+	if (self.downloadProgressDelegate) {
+		[ASIHTTPRequest updateProgressIndicator:&downloadProgressDelegate withProgress:self.bytesDownloadedSoFar ofTotal:self.totalBytesToDownload];
 	}
 }
 
 - (void)request:(ASIHTTPRequest *)request didSendBytes:(long long)bytes
 {
-	[self setBytesUploadedSoFar:[self bytesUploadedSoFar]+bytes];
-	if ([self uploadProgressDelegate]) {
-		[ASIHTTPRequest updateProgressIndicator:&uploadProgressDelegate withProgress:[self bytesUploadedSoFar] ofTotal:[self totalBytesToUpload]];
+	self.bytesUploadedSoFar = self.bytesUploadedSoFar+bytes;
+	if (self.uploadProgressDelegate) {
+		[ASIHTTPRequest updateProgressIndicator:&uploadProgressDelegate withProgress:self.bytesUploadedSoFar ofTotal:self.totalBytesToUpload];
 	}
 }
 
 - (void)request:(ASIHTTPRequest *)request incrementDownloadSizeBy:(long long)newLength
 {
-	[self setTotalBytesToDownload:[self totalBytesToDownload]+newLength];
+	self.totalBytesToDownload = self.totalBytesToDownload+newLength;
 }
 
 - (void)request:(ASIHTTPRequest *)request incrementUploadSizeBy:(long long)newLength
 {
-	[self setTotalBytesToUpload:[self totalBytesToUpload]+newLength];
+	self.totalBytesToUpload = self.totalBytesToUpload+newLength;
 }
 
 
 // Since this queue takes over as the delegate for all requests it contains, it should forward authorisation requests to its own delegate
 - (void)authenticationNeededForRequest:(ASIHTTPRequest *)request
 {
-	if ([[self delegate] respondsToSelector:@selector(authenticationNeededForRequest:)]) {
-		[[self delegate] performSelector:@selector(authenticationNeededForRequest:) withObject:request];
+	if ([self.delegate respondsToSelector:@selector(authenticationNeededForRequest:)]) {
+		[self.delegate performSelector:@selector(authenticationNeededForRequest:) withObject:request];
 	}
 }
 
 - (void)proxyAuthenticationNeededForRequest:(ASIHTTPRequest *)request
 {
-	if ([[self delegate] respondsToSelector:@selector(proxyAuthenticationNeededForRequest:)]) {
-		[[self delegate] performSelector:@selector(proxyAuthenticationNeededForRequest:) withObject:request];
+	if ([self.delegate respondsToSelector:@selector(proxyAuthenticationNeededForRequest:)]) {
+		[self.delegate performSelector:@selector(proxyAuthenticationNeededForRequest:) withObject:request];
 	}
 }
 
@@ -280,21 +280,21 @@
 
 	// If the delegate implements this, the request will stop to wait for credentials
 	if (selector == @selector(authenticationNeededForRequest:)) {
-		if ([[self delegate] respondsToSelector:@selector(authenticationNeededForRequest:)]) {
+		if ([self.delegate respondsToSelector:@selector(authenticationNeededForRequest:)]) {
 			return YES;
 		}
 		return NO;
 
 	// If the delegate implements this, the request will to wait for credentials
 	} else if (selector == @selector(proxyAuthenticationNeededForRequest:)) {
-		if ([[self delegate] respondsToSelector:@selector(proxyAuthenticationNeededForRequest:)]) {
+		if ([self.delegate respondsToSelector:@selector(proxyAuthenticationNeededForRequest:)]) {
 			return YES;
 		}
 		return NO;
 
 	// If the delegate implements requestWillRedirectSelector, the request will stop to allow the delegate to change the url
 	} else if (selector == @selector(request:willRedirectToURL:)) {
-		if ([self requestWillRedirectSelector] && [[self delegate] respondsToSelector:[self requestWillRedirectSelector]]) {
+		if (self.requestWillRedirectSelector && [self.delegate respondsToSelector:self.requestWillRedirectSelector]) {
 			return YES;
 		}
 		return NO;
@@ -307,18 +307,18 @@
 - (id)copyWithZone:(NSZone *)zone
 {
 	ASINetworkQueue *newQueue = [[[self class] alloc] init];
-	[newQueue setDelegate:[self delegate]];
-	[newQueue setRequestDidStartSelector:[self requestDidStartSelector]];
-	[newQueue setRequestWillRedirectSelector:[self requestWillRedirectSelector]];
-	[newQueue setRequestDidReceiveResponseHeadersSelector:[self requestDidReceiveResponseHeadersSelector]];
-	[newQueue setRequestDidFinishSelector:[self requestDidFinishSelector]];
-	[newQueue setRequestDidFailSelector:[self requestDidFailSelector]];
-	[newQueue setQueueDidFinishSelector:[self queueDidFinishSelector]];
-	[newQueue setUploadProgressDelegate:[self uploadProgressDelegate]];
-	[newQueue setDownloadProgressDelegate:[self downloadProgressDelegate]];
-	[newQueue setShouldCancelAllRequestsOnFailure:[self shouldCancelAllRequestsOnFailure]];
-	[newQueue setShowAccurateProgress:[self showAccurateProgress]];
-	[newQueue setUserInfo:[[[self userInfo] copyWithZone:zone] autorelease]];
+	newQueue.delegate = self.delegate;
+	newQueue.requestDidStartSelector = self.requestDidStartSelector;
+	newQueue.requestWillRedirectSelector = self.requestWillRedirectSelector;
+	newQueue.requestDidReceiveResponseHeadersSelector = self.requestDidReceiveResponseHeadersSelector;
+	newQueue.requestDidFinishSelector = self.requestDidFinishSelector;
+	newQueue.requestDidFailSelector = self.requestDidFailSelector;
+	newQueue.queueDidFinishSelector = self.queueDidFinishSelector;
+	newQueue.uploadProgressDelegate = self.uploadProgressDelegate;
+	newQueue.downloadProgressDelegate = self.downloadProgressDelegate;
+	newQueue.shouldCancelAllRequestsOnFailure = self.shouldCancelAllRequestsOnFailure;
+	newQueue.showAccurateProgress = self.showAccurateProgress;
+	newQueue.userInfo = [[self.userInfo copyWithZone:zone] autorelease];
 	return newQueue;
 }
 

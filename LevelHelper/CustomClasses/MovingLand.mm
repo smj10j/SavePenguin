@@ -42,23 +42,23 @@ return NSStringFromClass([self class]);
 -(void) setPropertiesFromDictionary:(NSDictionary*)dictionary
 {
 
-	if([dictionary objectForKey:@"restartAtOtherEnd"])
-		[self setRestartAtOtherEnd:[[dictionary objectForKey:@"restartAtOtherEnd"] boolValue]];
+	if(dictionary[@"restartAtOtherEnd"])
+		self.restartAtOtherEnd = [dictionary[@"restartAtOtherEnd"] boolValue];
 
-	if([dictionary objectForKey:@"timeToCompletePath"])
-		[self setTimeToCompletePath:[[dictionary objectForKey:@"timeToCompletePath"] floatValue]];
+	if(dictionary[@"timeToCompletePath"])
+		self.timeToCompletePath = [dictionary[@"timeToCompletePath"] floatValue];
 
-	if([dictionary objectForKey:@"followXAxis"])
-		[self setFollowXAxis:[[dictionary objectForKey:@"followXAxis"] boolValue]];
+	if(dictionary[@"followXAxis"])
+		self.followXAxis = [dictionary[@"followXAxis"] boolValue];
 
-	if([dictionary objectForKey:@"isCyclic"])
-		[self setIsCyclic:[[dictionary objectForKey:@"isCyclic"] boolValue]];
+	if(dictionary[@"isCyclic"])
+		self.isCyclic = [dictionary[@"isCyclic"] boolValue];
 
-	if([dictionary objectForKey:@"followYAxis"])
-		[self setFollowYAxis:[[dictionary objectForKey:@"followYAxis"] boolValue]];
+	if(dictionary[@"followYAxis"])
+		self.followYAxis = [dictionary[@"followYAxis"] boolValue];
 
-	if([dictionary objectForKey:@"pathName"])
-		[self setPathName:[dictionary objectForKey:@"pathName"]];
+	if(dictionary[@"pathName"])
+		self.pathName = dictionary[@"pathName"];
 
 }
 

@@ -100,37 +100,37 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	return [CAEAGLLayer class];
 }
 
-+ (id) viewWithFrame:(CGRect)frame
++ (instancetype) viewWithFrame:(CGRect)frame
 {
 	return [[[self alloc] initWithFrame:frame] autorelease];
 }
 
-+ (id) viewWithFrame:(CGRect)frame pixelFormat:(NSString*)format
++ (instancetype) viewWithFrame:(CGRect)frame pixelFormat:(NSString*)format
 {
 	return [[[self alloc] initWithFrame:frame pixelFormat:format] autorelease];
 }
 
-+ (id) viewWithFrame:(CGRect)frame pixelFormat:(NSString*)format depthFormat:(GLuint)depth
++ (instancetype) viewWithFrame:(CGRect)frame pixelFormat:(NSString*)format depthFormat:(GLuint)depth
 {
 	return [[[self alloc] initWithFrame:frame pixelFormat:format depthFormat:depth preserveBackbuffer:NO sharegroup:nil multiSampling:NO numberOfSamples:0] autorelease];
 }
 
-+ (id) viewWithFrame:(CGRect)frame pixelFormat:(NSString*)format depthFormat:(GLuint)depth preserveBackbuffer:(BOOL)retained sharegroup:(EAGLSharegroup*)sharegroup multiSampling:(BOOL)multisampling numberOfSamples:(unsigned int)samples
++ (instancetype) viewWithFrame:(CGRect)frame pixelFormat:(NSString*)format depthFormat:(GLuint)depth preserveBackbuffer:(BOOL)retained sharegroup:(EAGLSharegroup*)sharegroup multiSampling:(BOOL)multisampling numberOfSamples:(unsigned int)samples
 {
 	return [[[self alloc] initWithFrame:frame pixelFormat:format depthFormat:depth preserveBackbuffer:retained sharegroup:sharegroup multiSampling:multisampling numberOfSamples:samples] autorelease];
 }
 
-- (id) initWithFrame:(CGRect)frame
+- (instancetype) initWithFrame:(CGRect)frame
 {
 	return [self initWithFrame:frame pixelFormat:kEAGLColorFormatRGB565 depthFormat:0 preserveBackbuffer:NO sharegroup:nil multiSampling:NO numberOfSamples:0];
 }
 
-- (id) initWithFrame:(CGRect)frame pixelFormat:(NSString*)format
+- (instancetype) initWithFrame:(CGRect)frame pixelFormat:(NSString*)format
 {
 	return [self initWithFrame:frame pixelFormat:format depthFormat:0 preserveBackbuffer:NO sharegroup:nil multiSampling:NO numberOfSamples:0];
 }
 
-- (id) initWithFrame:(CGRect)frame pixelFormat:(NSString*)format depthFormat:(GLuint)depth preserveBackbuffer:(BOOL)retained sharegroup:(EAGLSharegroup*)sharegroup multiSampling:(BOOL)sampling numberOfSamples:(unsigned int)nSamples
+- (instancetype) initWithFrame:(CGRect)frame pixelFormat:(NSString*)format depthFormat:(GLuint)depth preserveBackbuffer:(BOOL)retained sharegroup:(EAGLSharegroup*)sharegroup multiSampling:(BOOL)sampling numberOfSamples:(unsigned int)nSamples
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -151,17 +151,17 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	return self;
 }
 
--(id) initWithCoder:(NSCoder *)aDecoder
+-(instancetype) initWithCoder:(NSCoder *)aDecoder
 {
 	if( (self = [super initWithCoder:aDecoder]) ) {
 
-		CAEAGLLayer* eaglLayer = (CAEAGLLayer*)[self layer];
+		CAEAGLLayer* eaglLayer = (CAEAGLLayer*)self.layer;
 
 		pixelformat_ = kEAGLColorFormatRGB565;
 		depthFormat_ = 0; // GL_DEPTH_COMPONENT24;
 		multiSampling_= NO;
 		requestedSamples_ = 0;
-		size_ = [eaglLayer bounds].size;
+		size_ = eaglLayer.bounds.size;
 
 		if( ! [self setupSurfaceWithSharegroup:nil] ) {
 			[self release];
@@ -179,9 +179,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
 
 	eaglLayer.opaque = YES;
-	eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
-									[NSNumber numberWithBool:preserveBackbuffer_], kEAGLDrawablePropertyRetainedBacking,
-									pixelformat_, kEAGLDrawablePropertyColorFormat, nil];
+	eaglLayer.drawableProperties = @{kEAGLDrawablePropertyRetainedBacking: @(preserveBackbuffer_),
+									kEAGLDrawablePropertyColorFormat: pixelformat_};
 
 	// ES2 renderer only
 	renderer_ = [[CCES2Renderer alloc] initWithDepthFormat:depthFormat_
@@ -197,7 +196,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 	context_ = [renderer_ context];
 
-	discardFramebufferSupported_ = [[CCConfiguration sharedConfiguration] supportsDiscardFramebuffer];
+	discardFramebufferSupported_ = [CCConfiguration sharedConfiguration].supportsDiscardFramebuffer;
 
 	CHECK_GL_ERROR_DEBUG();
 
@@ -311,14 +310,14 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 - (CGPoint) convertPointFromViewToSurface:(CGPoint)point
 {
-	CGRect bounds = [self bounds];
+	CGRect bounds = self.bounds;
 
 	return CGPointMake((point.x - bounds.origin.x) / bounds.size.width * size_.width, (point.y - bounds.origin.y) / bounds.size.height * size_.height);
 }
 
 - (CGRect) convertRectFromViewToSurface:(CGRect)rect
 {
-	CGRect bounds = [self bounds];
+	CGRect bounds = self.bounds;
 
 	return CGRectMake((rect.origin.x - bounds.origin.x) / bounds.size.width * size_.width, (rect.origin.y - bounds.origin.y) / bounds.size.height * size_.height, rect.size.width / bounds.size.width * size_.width, rect.size.height / bounds.size.height * size_.height);
 }

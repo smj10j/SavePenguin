@@ -37,9 +37,9 @@
 }
 
 +(id) contactInfoWithTag:(int)tagB listenerId:(id)listId listenerSel:(SEL)listSel;
--(id) initContactInfoWithTag:(int)tagB listenerId:(id)listId listenerSel:(SEL)listSel;
+-(instancetype) initContactInfoWithTag:(int)tagB listenerId:(id)listId listenerSel:(SEL)listSel NS_DESIGNATED_INITIALIZER;
 
--(int)tagB;
+@property (NS_NONATOMIC_IOSONLY, readonly) int tagB;
 -(void)callListenerWithBodyA:(b2Body*)A 
                        bodyB:(b2Body*)B
                     fixtureA:(b2Fixture*)fixA
@@ -67,7 +67,7 @@
 #endif
 }
 
--(id) initContactInfoWithTag:(int)_tagB listenerId:(id)listId listenerSel:(SEL)listSel{
+-(instancetype) initContactInfoWithTag:(int)_tagB listenerId:(id)listId listenerSel:(SEL)listSel{
 	if( (self=[super init])) {
 		tagB = _tagB;
         listenerId = listId;
@@ -162,7 +162,7 @@ void lhContact_CallBeginEndSolveMethod(void* object,
 #endif
 }
 ////////////////////////////////////////////////////////////////////////////////
--(id) initContactNodeWithWorld:(b2World*)world
+-(instancetype) initContactNodeWithWorld:(b2World*)world
 {
     if(0 == world)
         return nil;
@@ -189,7 +189,7 @@ void lhContact_CallBeginEndSolveMethod(void* object,
 	return self;
 }
 ////////////////////////////////////////////////////////////////////////////////
-+(id) contactNodeWithWorld:(b2World*)world{
++(instancetype) contactNodeWithWorld:(b2World*)world{
 #ifndef LH_ARC_ENABLED
 	return [[[LHContactNode alloc] initContactNodeWithWorld:world] autorelease];
 #else
@@ -202,15 +202,15 @@ void lhContact_CallBeginEndSolveMethod(void* object,
                                     idListener:(id)obj 
                                    selListener:(SEL)selector{
     
-    NSMutableDictionary* tableA = [preCollisionMap objectForKey:[NSNumber numberWithInt:tagA]];
+    NSMutableDictionary* tableA = preCollisionMap[@(tagA)];
     
     if(nil == tableA){
         LHContactNodeInfo* info = [LHContactNodeInfo contactInfoWithTag:tagB listenerId:obj listenerSel:selector];
         
         NSMutableDictionary* map = [[NSMutableDictionary alloc] init];
-        [map setObject:info forKey:[NSNumber numberWithInt:tagB]];
+        map[@(tagB)] = info;
         
-        [preCollisionMap setObject:map forKey:[NSNumber numberWithInt:tagA]];
+        preCollisionMap[@(tagA)] = map;
         #ifndef LH_ARC_ENABLED
         [map release];
         #endif
@@ -218,7 +218,7 @@ void lhContact_CallBeginEndSolveMethod(void* object,
     else
     {
         LHContactNodeInfo* info = [LHContactNodeInfo contactInfoWithTag:tagB listenerId:obj listenerSel:selector];
-        [tableA setObject:info forKey:[NSNumber numberWithInt:tagB]];        
+        tableA[@(tagB)] = info;        
     }
     
 }
@@ -226,11 +226,11 @@ void lhContact_CallBeginEndSolveMethod(void* object,
 -(void) cancelPreColisionCallbackBetweenTagA:(int)tagA 
                                      andTagB:(int)tagB{
  
-    NSMutableDictionary* tableA = [preCollisionMap objectForKey:[NSNumber numberWithInt:tagA]];
+    NSMutableDictionary* tableA = preCollisionMap[@(tagA)];
     
     if(nil != tableA)
     {
-        [tableA removeObjectForKey:[NSNumber numberWithInt:tagB]];
+        [tableA removeObjectForKey:@(tagB)];
     }
 }
 
@@ -239,15 +239,15 @@ void lhContact_CallBeginEndSolveMethod(void* object,
                                            idListener:(id)obj 
                                           selListener:(SEL)selector{
     
-    NSMutableDictionary* tableA = [beginEndCollisionMap objectForKey:[NSNumber numberWithInt:tagA]];
+    NSMutableDictionary* tableA = beginEndCollisionMap[@(tagA)];
     
     if(nil == tableA){
         LHContactNodeInfo* info = [LHContactNodeInfo contactInfoWithTag:tagB listenerId:obj listenerSel:selector];
         
         NSMutableDictionary* map = [[NSMutableDictionary alloc] init];
-        [map setObject:info forKey:[NSNumber numberWithInt:tagB]];
+        map[@(tagB)] = info;
         
-        [beginEndCollisionMap setObject:map forKey:[NSNumber numberWithInt:tagA]];
+        beginEndCollisionMap[@(tagA)] = map;
 #ifndef LH_ARC_ENABLED
         [map release];
 #endif
@@ -255,17 +255,17 @@ void lhContact_CallBeginEndSolveMethod(void* object,
     else
     {
         LHContactNodeInfo* info = [LHContactNodeInfo contactInfoWithTag:tagB listenerId:obj listenerSel:selector];
-        [tableA setObject:info forKey:[NSNumber numberWithInt:tagB]];        
+        tableA[@(tagB)] = info;        
     }
 }
 
 -(void) cancelBeginOrEndColisionCallbackBetweenTagA:(int)tagA 
                                             andTagB:(int)tagB{
-    NSMutableDictionary* tableA = [beginEndCollisionMap objectForKey:[NSNumber numberWithInt:tagA]];
+    NSMutableDictionary* tableA = beginEndCollisionMap[@(tagA)];
     
     if(nil != tableA)
     {
-        [tableA removeObjectForKey:[NSNumber numberWithInt:tagB]];
+        [tableA removeObjectForKey:@(tagB)];
     }
     
 }
@@ -275,15 +275,15 @@ void lhContact_CallBeginEndSolveMethod(void* object,
                                         andTagB:(int)tagB 
                                      idListener:(id)obj 
                                     selListener:(SEL)selector{
-    NSMutableDictionary* tableA = [postCollisionMap objectForKey:[NSNumber numberWithInt:tagA]];
+    NSMutableDictionary* tableA = postCollisionMap[@(tagA)];
     
     if(nil == tableA){
         LHContactNodeInfo* info = [LHContactNodeInfo contactInfoWithTag:tagB listenerId:obj listenerSel:selector];
         
         NSMutableDictionary* map = [[NSMutableDictionary alloc] init];
-        [map setObject:info forKey:[NSNumber numberWithInt:tagB]];
+        map[@(tagB)] = info;
         
-        [postCollisionMap setObject:map forKey:[NSNumber numberWithInt:tagA]];
+        postCollisionMap[@(tagA)] = map;
 #ifndef LH_ARC_ENABLED
         [map release];
 #endif
@@ -291,15 +291,15 @@ void lhContact_CallBeginEndSolveMethod(void* object,
     else
     {
         LHContactNodeInfo* info = [LHContactNodeInfo contactInfoWithTag:tagB listenerId:obj listenerSel:selector];
-        [tableA setObject:info forKey:[NSNumber numberWithInt:tagB]];        
+        tableA[@(tagB)] = info;        
     }
 }
 ////////////////////////////////////////////////////////////////////////////////
 -(void) cancelPostColisionCallbackBetweenTagA:(int)tagA 
                                       andTagB:(int)tagB{
-    NSMutableDictionary* tableA = [postCollisionMap objectForKey:[NSNumber numberWithInt:tagA]];
+    NSMutableDictionary* tableA = postCollisionMap[@(tagA)];
     if(nil != tableA){
-        [tableA removeObjectForKey:[NSNumber numberWithInt:tagB]];        
+        [tableA removeObjectForKey:@(tagB)];        
     }
 }
 
@@ -324,10 +324,10 @@ void lhContact_CallBeginEndSolveMethod(void* object,
     if(NULL == nodeA || NULL == nodeB)
         return;
     
-    NSMutableDictionary* info = [preCollisionMap objectForKey:[NSNumber numberWithInt:(int)[nodeA tag]]];
+    NSMutableDictionary* info = preCollisionMap[@((int)nodeA.tag)];
     bool found = false;
     if(nil != info){
-        LHContactNodeInfo* contactInfo = [info objectForKey:[NSNumber numberWithInt:(int)[nodeB tag]]];
+        LHContactNodeInfo* contactInfo = info[@((int)nodeB.tag)];
         if(nil != contactInfo){
             found = false;
             [contactInfo callListenerWithBodyA:bodyA 
@@ -343,10 +343,10 @@ void lhContact_CallBeginEndSolveMethod(void* object,
     
     if(!found)
     {
-        info = [preCollisionMap objectForKey:[NSNumber numberWithInt:(int)[nodeB tag]]];
+        info = preCollisionMap[@((int)nodeB.tag)];
         
         if(nil != info){
-            LHContactNodeInfo* contactInfo = [info objectForKey:[NSNumber numberWithInt:(int)[nodeA tag]]];
+            LHContactNodeInfo* contactInfo = info[@((int)nodeA.tag)];
             if(nil != contactInfo)
                 [contactInfo callListenerWithBodyA:bodyB 
                                              bodyB:bodyA
@@ -379,10 +379,10 @@ void lhContact_CallBeginEndSolveMethod(void* object,
     if(NULL == nodeA || NULL == nodeB)
         return;
 
-    NSMutableDictionary* info = [postCollisionMap objectForKey:[NSNumber numberWithInt:(int)[nodeA tag]]];
+    NSMutableDictionary* info = postCollisionMap[@((int)nodeA.tag)];
     bool found = false;
     if(nil != info){
-        LHContactNodeInfo* contactInfo = [info objectForKey:[NSNumber numberWithInt:(int)[nodeB tag]]];
+        LHContactNodeInfo* contactInfo = info[@((int)nodeB.tag)];
         if(nil != contactInfo){
             found = true;
             [contactInfo callListenerWithBodyA:bodyA
@@ -398,10 +398,10 @@ void lhContact_CallBeginEndSolveMethod(void* object,
     
     if(!found)
     {
-        info = [postCollisionMap objectForKey:[NSNumber numberWithInt:(int)[nodeB tag]]];
+        info = postCollisionMap[@((int)nodeB.tag)];
         
         if(nil != info){
-            LHContactNodeInfo* contactInfo = [info objectForKey:[NSNumber numberWithInt:(int)[nodeA tag]]];
+            LHContactNodeInfo* contactInfo = info[@((int)nodeA.tag)];
             if(nil != contactInfo)
                 [contactInfo callListenerWithBodyA:bodyB 
                                              bodyB:bodyA
@@ -449,11 +449,11 @@ void lhContact_CallBeginEndSolveMethod(void* object,
     if(NULL == nodeA || NULL == nodeB)
         return;
     
-    NSMutableDictionary* info = [beginEndCollisionMap objectForKey:[NSNumber numberWithInt:(int)[nodeA tag]]];
+    NSMutableDictionary* info = beginEndCollisionMap[@((int)nodeA.tag)];
     bool found = false;
             
     if(nil != info){
-        LHContactNodeInfo* contactInfo = [info objectForKey:[NSNumber numberWithInt:(int)[nodeB tag]]];
+        LHContactNodeInfo* contactInfo = info[@((int)nodeB.tag)];
         
         if(nil != contactInfo)
         {
@@ -471,10 +471,10 @@ void lhContact_CallBeginEndSolveMethod(void* object,
     
     if(!found)
     {
-        info = [beginEndCollisionMap objectForKey:[NSNumber numberWithInt:(int)[nodeB tag]]];
+        info = beginEndCollisionMap[@((int)nodeB.tag)];
         
         if(nil != info){
-            LHContactNodeInfo* contactInfo = [info objectForKey:[NSNumber numberWithInt:(int)[nodeA tag]]];
+            LHContactNodeInfo* contactInfo = info[@((int)nodeA.tag)];
             if(nil != contactInfo)
                 [contactInfo callListenerWithBodyA:bodyB 
                                              bodyB:bodyA

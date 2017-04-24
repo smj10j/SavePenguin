@@ -82,23 +82,21 @@
 
 +(LHSettings*) sharedInstance;
 
--(void)setActiveFolder:(NSString*)folder;
--(NSString*)activeFolder;
+@property (NS_NONATOMIC_IOSONLY, copy) NSString *activeFolder;
 
 -(void)addLHMainLayer:(LHLayer*)layer;
 -(void)removeLHMainLayer:(LHLayer*)layer;
--(NSArray*)allLHMainLayers;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *allLHMainLayers;
 
 #ifdef LH_USE_BOX2D
--(b2World*)activeBox2dWorld;
--(void)setActiveBox2dWorld:(b2World*)world;
+@property (NS_NONATOMIC_IOSONLY) b2World *activeBox2dWorld;
 #endif
 
 -(void)setHDSuffix:(NSString*)suffix;
--(NSString*)hdSuffix;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *hdSuffix;
 
 -(void)setHD2xSuffix:(NSString*)suffix;
--(NSString*)hd2xSuffix;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *hd2xSuffix;
 
 -(void) markSpriteForRemoval:(LHSprite*)sprite;
 -(void) markBezierForRemoval:(LHBezier*) node; 
@@ -110,7 +108,7 @@
 
 
 
--(int)newBodyId;
+@property (NS_NONATOMIC_IOSONLY, readonly) int newBodyId;
 
 -(CGPoint)transformedScalePointToCocos2d:(CGPoint)point;
 -(CGPoint)transformedPointToCocos2d:(CGPoint)point;
@@ -125,14 +123,12 @@
 
 
 //-(bool)shouldScaleImageOnRetina:(NSString*)image;
--(bool)isIpad;
--(bool)isIphone5;
+@property (NS_NONATOMIC_IOSONLY, getter=isIpad, readonly) bool ipad;
+@property (NS_NONATOMIC_IOSONLY, getter=isIphone5, readonly) bool iphone5;
 
--(void)setStretchArt:(bool)value;
--(bool)stretchArt;
+@property (NS_NONATOMIC_IOSONLY) bool stretchArt;
 
--(CGPoint) possitionOffset;
--(void) setConvertRatio:(CGPoint)val;// usesCustomSize:(bool)usesCustomSize;
--(CGPoint) convertRatio;
--(CGPoint) realConvertRatio;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGPoint possitionOffset;
+@property (NS_NONATOMIC_IOSONLY) CGPoint convertRatio;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGPoint realConvertRatio;
 @end	

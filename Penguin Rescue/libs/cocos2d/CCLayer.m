@@ -55,13 +55,13 @@
 @implementation CCLayer
 
 #pragma mark Layer - Init
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init]) ) {
 
 		CGSize s = [[CCDirector sharedDirector] winSize];
 		anchorPoint_ = ccp(0.5f, 0.5f);
-		[self setContentSize:s];
+		self.contentSize = s;
 		self.ignoreAnchorPointForPosition = YES;
 
 		isTouchEnabled_ = NO;
@@ -83,7 +83,7 @@
 -(void) registerWithTouchDispatcher
 {
 	CCDirector *director = [CCDirector sharedDirector];
-	[[director touchDispatcher] addStandardDelegate:self priority:0];
+	[director.touchDispatcher addStandardDelegate:self priority:0];
 }
 
 -(BOOL) isAccelerometerEnabled
@@ -97,7 +97,7 @@
 		isAccelerometerEnabled_ = enabled;
 		if( isRunning_ ) {
 			if( enabled )
-				[[UIAccelerometer sharedAccelerometer] setDelegate:self];
+				[UIAccelerometer sharedAccelerometer].delegate = self;
 			else
 				[[UIAccelerometer sharedAccelerometer] setDelegate:nil];
 		}
@@ -118,7 +118,7 @@
 				[self registerWithTouchDispatcher];
 			else {
 				CCDirector *director = [CCDirector sharedDirector];
-				[[director touchDispatcher] removeDelegate:self];
+				[director.touchDispatcher removeDelegate:self];
 			}
 		}
 	}
@@ -240,7 +240,7 @@
 {
 #ifdef __CC_PLATFORM_IOS
 	if( isAccelerometerEnabled_ )
-		[[UIAccelerometer sharedAccelerometer] setDelegate:self];
+		[UIAccelerometer sharedAccelerometer].delegate = self;
 #endif
 
 	[super onEnterTransitionDidFinish];
@@ -253,7 +253,7 @@
 
 #ifdef __CC_PLATFORM_IOS
 	if( isTouchEnabled_ )
-		[[director touchDispatcher] removeDelegate:self];
+		[director.touchDispatcher removeDelegate:self];
 
 	if( isAccelerometerEnabled_ )
 		[[UIAccelerometer sharedAccelerometer] setDelegate:nil];
@@ -307,14 +307,14 @@
 	return [[(CCLayerColor*)[self alloc] initWithColor:color] autorelease];
 }
 
--(id) init
+-(instancetype) init
 {
 	CGSize s = [[CCDirector sharedDirector] winSize];
 	return [self initWithColor:ccc4(0,0,0,0) width:s.width height:s.height];
 }
 
 // Designated initializer
-- (id) initWithColor:(ccColor4B)color width:(GLfloat)w  height:(GLfloat) h
+- (instancetype) initWithColor:(ccColor4B)color width:(GLfloat)w  height:(GLfloat) h
 {
 	if( (self=[super init]) ) {
 
@@ -332,14 +332,14 @@
 		}
 
 		[self updateColor];
-		[self setContentSize:CGSizeMake(w, h) ];
+		self.contentSize = CGSizeMake(w, h) ;
 
 		self.shaderProgram = [[CCShaderCache sharedShaderCache] programForKey:kCCShader_PositionColor];
 	}
 	return self;
 }
 
-- (id) initWithColor:(ccColor4B)color
+- (instancetype) initWithColor:(ccColor4B)color
 {
 	CGSize s = [[CCDirector sharedDirector] winSize];
 	return [self initWithColor:color width:s.width height:s.height];
@@ -353,22 +353,22 @@
 	squareVertices_[3].x = size.width;
 	squareVertices_[3].y = size.height;
 
-	[super setContentSize:size];
+	super.contentSize = size;
 }
 
 - (void) changeWidth: (GLfloat) w height:(GLfloat) h
 {
-	[self setContentSize:CGSizeMake(w, h)];
+	self.contentSize = CGSizeMake(w, h);
 }
 
 -(void) changeWidth: (GLfloat) w
 {
-	[self setContentSize:CGSizeMake(w, contentSize_.height)];
+	self.contentSize = CGSizeMake(w, contentSize_.height);
 }
 
 -(void) changeHeight: (GLfloat) h
 {
-	[self setContentSize:CGSizeMake(contentSize_.width, h)];
+	self.contentSize = CGSizeMake(contentSize_.width, h);
 }
 
 - (void) updateColor
@@ -437,12 +437,12 @@
     return [[[self alloc] initWithColor:start fadingTo:end alongVector:v] autorelease];
 }
 
-- (id) initWithColor: (ccColor4B) start fadingTo: (ccColor4B) end
+- (instancetype) initWithColor: (ccColor4B) start fadingTo: (ccColor4B) end
 {
     return [self initWithColor:start fadingTo:end alongVector:ccp(0, -1)];
 }
 
-- (id) initWithColor: (ccColor4B) start fadingTo: (ccColor4B) end alongVector: (CGPoint) v
+- (instancetype) initWithColor: (ccColor4B) start fadingTo: (ccColor4B) end alongVector: (CGPoint) v
 {
 	endColor_.r = end.r;
 	endColor_.g = end.g;
@@ -575,7 +575,7 @@
 	return s;
 }
 
--(id) initWithLayers: (CCLayer*) layer vaList:(va_list) params
+-(instancetype) initWithLayers: (CCLayer*) layer vaList:(va_list) params
 {
 	if( (self=[super init]) ) {
 
@@ -590,7 +590,7 @@
 		}
 
 		enabledLayer_ = 0;
-		[self addChild: [layers_ objectAtIndex: enabledLayer_]];
+		[self addChild: layers_[enabledLayer_]];
 	}
 
 	return self;
@@ -606,23 +606,23 @@
 {
 	NSAssert( n < [layers_ count], @"Invalid index in MultiplexLayer switchTo message" );
 
-	[self removeChild: [layers_ objectAtIndex:enabledLayer_] cleanup:YES];
+	[self removeChild: layers_[enabledLayer_] cleanup:YES];
 
 	enabledLayer_ = n;
 
-	[self addChild: [layers_ objectAtIndex:n]];
+	[self addChild: layers_[n]];
 }
 
 -(void) switchToAndReleaseMe: (unsigned int) n
 {
 	NSAssert( n < [layers_ count], @"Invalid index in MultiplexLayer switchTo message" );
 
-	[self removeChild: [layers_ objectAtIndex:enabledLayer_] cleanup:YES];
+	[self removeChild: layers_[enabledLayer_] cleanup:YES];
 
-	[layers_ replaceObjectAtIndex:enabledLayer_ withObject:[NSNull null]];
+	layers_[enabledLayer_] = [NSNull null];
 
 	enabledLayer_ = n;
 
-	[self addChild: [layers_ objectAtIndex:n]];
+	[self addChild: layers_[n]];
 }
 @end

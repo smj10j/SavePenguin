@@ -46,7 +46,7 @@ enum
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 @interface CCTouchDispatcher (targetedHandlersGetter)
 
-- (id<NSFastEnumeration>) targetedHandlers;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) id<NSFastEnumeration> targetedHandlers;
 
 @end
 
@@ -84,7 +84,7 @@ enum
 @dynamic totalScreens;
 - (int) totalScreens
 {
-	return [layers_ count];
+	return layers_.count;
 }
 
 +(id) nodeWithLayers:(NSArray *)layers widthOffset: (int) widthOffset
@@ -92,7 +92,7 @@ enum
 	return [[[self alloc] initWithLayers: layers widthOffset:widthOffset] autorelease];
 }
 
--(id) initWithLayers:(NSArray *)layers widthOffset: (int) widthOffset
+-(instancetype) initWithLayers:(NSArray *)layers widthOffset: (int) widthOffset
 {
 	if ( (self = [super init]) )
 	{
@@ -167,7 +167,7 @@ enum
 	
 	if (self.showPagesIndicator)
 	{
-		int totalScreens = [layers_ count];
+		int totalScreens = layers_.count;
 		
 		// Prepare Points Array
 		CGFloat n = (CGFloat)totalScreens; //< Total points count in CGFloat.
@@ -268,7 +268,7 @@ enum
 
 -(void) moveToPage:(int)page
 {	
-    if (page < 0 || page >= [layers_ count]) {
+    if (page < 0 || page >= layers_.count) {
         CCLOGERROR(@"CCScrollLayer#moveToPage: %d - wrong page number, out of bounds. ", page);
 		return;
     }
@@ -282,7 +282,7 @@ enum
 
 -(void) selectPage:(int)page
 {
-    if (page < 0 || page >= [layers_ count]) {
+    if (page < 0 || page >= layers_.count) {
         CCLOGERROR(@"CCScrollLayer#selectPage: %d - wrong page number, out of bounds. ", page);
 		return;
     }
@@ -297,7 +297,7 @@ enum
 
 - (void) addPage: (CCLayer *) aPage
 {
-	[self addPage: aPage withNumber: [layers_ count]];
+	[self addPage: aPage withNumber: layers_.count];
 }
 
 - (void) addPage: (CCLayer *) aPage withNumber: (int) pageNumber
@@ -326,8 +326,8 @@ enum
 
 - (void) removePageWithNumber: (int) page
 {
-	if (page >= 0 && page < [layers_ count])
-		[self removePage:[layers_ objectAtIndex: page]];
+	if (page >= 0 && page < layers_.count)
+		[self removePage:layers_[page]];
 }
 
 #pragma mark Touches
@@ -337,7 +337,7 @@ enum
 -(void) registerWithTouchDispatcher
 {	
 #if COCOS2D_VERSION >= 0x00020000
-    CCTouchDispatcher *dispatcher = [[CCDirector sharedDirector] touchDispatcher];
+    CCTouchDispatcher *dispatcher = [CCDirector sharedDirector].touchDispatcher;
     int priority = kCCMenuHandlerPriority - 1;
 #else
     CCTouchDispatcher *dispatcher = [CCTouchDispatcher sharedDispatcher];
@@ -352,7 +352,7 @@ enum
 - (void) claimTouch: (UITouch *) aTouch
 {
 #if COCOS2D_VERSION >= 0x00020000
-    CCTouchDispatcher *dispatcher = [[CCDirector sharedDirector] touchDispatcher];
+    CCTouchDispatcher *dispatcher = [CCDirector sharedDirector].touchDispatcher;
 #else
     CCTouchDispatcher *dispatcher = [CCTouchDispatcher sharedDispatcher];
 #endif
@@ -399,7 +399,7 @@ enum
 		return NO;
 	}
 	
-	CGPoint touchPoint = [touch locationInView:[touch view]];
+	CGPoint touchPoint = [touch locationInView:touch.view];
 	touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint];
 	
 	startSwipe_ = touchPoint.x;
@@ -413,7 +413,7 @@ enum
 		return;
 	}
 	
-	CGPoint touchPoint = [touch locationInView:[touch view]];
+	CGPoint touchPoint = [touch locationInView:touch.view];
 	touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint];
 	
 	
@@ -443,7 +443,7 @@ enum
 		CGFloat desiredX = (- currentScreen_ * (self.contentSize.width - self.pagesWidthOffset)) + touchPoint.x - startSwipe_;
 		int page = [self pageNumberForPosition:ccp(desiredX, 0)];
 		CGFloat offset = desiredX - [self positionForPageWithNumber:page].x; 
-		if ((page == 0 && offset > 0) || (page == [layers_ count] - 1 && offset < 0))
+		if ((page == 0 && offset > 0) || (page == layers_.count - 1 && offset < 0))
 			offset -= marginOffset_ * offset / [[CCDirector sharedDirector] winSize].width;
 		else
 			offset = 0;
@@ -457,7 +457,7 @@ enum
 		return;
 	scrollTouch_ = nil;
 	
-	CGPoint touchPoint = [touch locationInView:[touch view]];
+	CGPoint touchPoint = [touch locationInView:touch.view];
 	touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint];
 	
 	int selectedPage = currentScreen_;
@@ -467,7 +467,7 @@ enum
 		selectedPage = [self pageNumberForPosition:self.position];
 		if (selectedPage == currentScreen_)
 		{
-			if (delta < 0.f && selectedPage < [layers_ count] - 1)
+			if (delta < 0.f && selectedPage < layers_.count - 1)
 				selectedPage++;
 			else if (delta > 0.f && selectedPage > 0)
 				selectedPage--;

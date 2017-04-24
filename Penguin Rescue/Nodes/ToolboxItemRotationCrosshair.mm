@@ -12,7 +12,7 @@
 @implementation ToolboxItemRotationCrosshair
 
 
--(id)initWithToolboxItem:(LHSprite*)toolboxItem {
+-(instancetype)initWithToolboxItem:(LHSprite*)toolboxItem {
 	if(self = [super init]) {
 		_toolboxItem = [toolboxItem retain];
 	}

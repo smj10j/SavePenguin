@@ -68,22 +68,22 @@
 @property (nonatomic, readwrite) ccBlendFunc blendFunc;
 
 /** initializes the particle system with CCTexture2D, a default capacity of 500 */
-+(id)batchNodeWithTexture:(CCTexture2D *)tex;
++(instancetype)batchNodeWithTexture:(CCTexture2D *)tex;
 
 /** initializes the particle system with the name of a file on disk (for a list of supported formats look at the CCTexture2D class), a default capacity of 500 particles */
-+(id)batchNodeWithFile:(NSString*) imageFile;
++(instancetype)batchNodeWithFile:(NSString*) imageFile;
 
 /** initializes the particle system with CCTexture2D, a capacity of particles, which particle system to use */
-+(id)batchNodeWithTexture:(CCTexture2D *)tex capacity:(NSUInteger) capacity;
++(instancetype)batchNodeWithTexture:(CCTexture2D *)tex capacity:(NSUInteger) capacity;
 
 /** initializes the particle system with the name of a file on disk (for a list of supported formats look at the CCTexture2D class), a capacity of particles */
-+(id)batchNodeWithFile:(NSString*)fileImage capacity:(NSUInteger)capacity;
++(instancetype)batchNodeWithFile:(NSString*)fileImage capacity:(NSUInteger)capacity;
 
 /** initializes the particle system with CCTexture2D, a capacity of particles */
--(id)initWithTexture:(CCTexture2D *)tex capacity:(NSUInteger)capacity;
+-(instancetype)initWithTexture:(CCTexture2D *)tex capacity:(NSUInteger)capacity NS_DESIGNATED_INITIALIZER;
 
 /** initializes the particle system with the name of a file on disk (for a list of supported formats look at the CCTexture2D class), a capacity of particles */
--(id)initWithFile:(NSString *)fileImage capacity:(NSUInteger)capacity;
+-(instancetype)initWithFile:(NSString *)fileImage capacity:(NSUInteger)capacity;
 
 /** Add a child into the CCParticleBatchNode */
 -(void) addChild:(CCParticleSystem*)child z:(NSInteger)z tag:(NSInteger) aTag;

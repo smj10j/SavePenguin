@@ -37,7 +37,7 @@
 }
 
 //
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init])) {
 		
@@ -189,11 +189,11 @@
 						]
 	];
 	NSMutableDictionary* itemData = [[NSMutableDictionary alloc] init];
-	[itemData setObject:@"Strange Hat" forKey:@"Name"];
-	[itemData setObject:[NSNumber numberWithInt:30]	forKey:@"Cost"];
-	[itemData setObject:[NSNumber numberWithInt:5]	forKey:@"Amount"];
-	[itemData setObject:@"\"Found\" by a group of penguin adventures in the North, these magical hats appear to make the wearer invisible..." forKey:@"Description"];
-	[_itemDatas setObject:itemData forKey:santaHat.uniqueName];
+	itemData[@"Name"] = @"Strange Hat";
+	itemData[@"Cost"] = @30;
+	itemData[@"Amount"] = @5;
+	itemData[@"Description"] = @"\"Found\" by a group of penguin adventures in the North, these magical hats appear to make the wearer invisible...";
+	_itemDatas[santaHat.uniqueName] = itemData;
 	[itemData release];
 	
 	
@@ -211,11 +211,11 @@
 						]
 	];
 	itemData = [[NSMutableDictionary alloc] init];
-	[itemData setObject:@"Bag of Fish" forKey:@"Name"];
-	[itemData setObject:[NSNumber numberWithInt:25]	forKey:@"Cost"];
-	[itemData setObject:[NSNumber numberWithInt:5]	forKey:@"Amount"];
-	[itemData setObject:@"If there's one thing that sharks and penguins can agree on it's that a ready-made bag of tasty fish is hard to turn down." forKey:@"Description"];	
-	[_itemDatas setObject:itemData forKey:bagOfFish.uniqueName];
+	itemData[@"Name"] = @"Bag of Fish";
+	itemData[@"Cost"] = @25;
+	itemData[@"Amount"] = @5;
+	itemData[@"Description"] = @"If there's one thing that sharks and penguins can agree on it's that a ready-made bag of tasty fish is hard to turn down.";	
+	_itemDatas[bagOfFish.uniqueName] = itemData;
 	[itemData release];
 
 
@@ -236,11 +236,11 @@
 						]
 	];
 	itemData = [[NSMutableDictionary alloc] init];
-	[itemData setObject:@"Anti Shark 272™" forKey:@"Name"];
-	[itemData setObject:[NSNumber numberWithInt:25]	forKey:@"Cost"];
-	[itemData setObject:[NSNumber numberWithInt:10]	forKey:@"Amount"];
-	[itemData setObject:@"These older-model anti-shark devices were recovered near the remains of ruined shark cages." forKey:@"Description"];	
-	[_itemDatas setObject:itemData forKey:antiShark272.uniqueName];
+	itemData[@"Name"] = @"Anti Shark 272™";
+	itemData[@"Cost"] = @25;
+	itemData[@"Amount"] = @10;
+	itemData[@"Description"] = @"These older-model anti-shark devices were recovered near the remains of ruined shark cages.";	
+	_itemDatas[antiShark272.uniqueName] = itemData;
 	[itemData release];
 
 
@@ -265,11 +265,11 @@
 							]
 		];
 		NSMutableDictionary* itemData = [[NSMutableDictionary alloc] init];
-		[itemData setObject:@"100 Coins" forKey:@"Name"];
-		[itemData setObject:[NSNumber numberWithBool:true]	forKey:@"IS_IAP"];
-		[itemData setObject:productPrice forKey:@"IAP_PRICE"];
-		[itemData setObject:@"Use coins to upgrade your toolbox and unlock level packs!" forKey:@"Description"];	
-		[_itemDatas setObject:itemData forKey:buyCoinsIcon.uniqueName];
+		itemData[@"Name"] = @"100 Coins";
+		itemData[@"IS_IAP"] = @true;
+		itemData[@"IAP_PRICE"] = productPrice;
+		itemData[@"Description"] = @"Use coins to upgrade your toolbox and unlock level packs!";	
+		_itemDatas[buyCoinsIcon.uniqueName] = itemData;
 		[itemData release];
 	
 	}];
@@ -299,13 +299,13 @@
 
 
 	//add in the object info
-	NSMutableDictionary* iapItemData = (NSMutableDictionary*)[_itemDatas objectForKey:_selectedIAPItem.uniqueName];
-	NSString* name = [iapItemData objectForKey:@"Name"];
-	NSString* description = [iapItemData objectForKey:@"Description"];
-	bool isIAP = [(NSNumber*)[iapItemData objectForKey:@"IS_IAP"] boolValue];
-	NSString* iapPrice = [iapItemData objectForKey:@"IAP_PRICE"];
-	int cost = [(NSNumber*)[iapItemData objectForKey:@"Cost"] intValue];
-	int amount = [(NSNumber*)[iapItemData objectForKey:@"Amount"] intValue];
+	NSMutableDictionary* iapItemData = (NSMutableDictionary*)_itemDatas[_selectedIAPItem.uniqueName];
+	NSString* name = iapItemData[@"Name"];
+	NSString* description = iapItemData[@"Description"];
+	bool isIAP = ((NSNumber*)iapItemData[@"IS_IAP"]).boolValue;
+	NSString* iapPrice = iapItemData[@"IAP_PRICE"];
+	int cost = ((NSNumber*)iapItemData[@"Cost"]).intValue;
+	int amount = ((NSNumber*)iapItemData[@"Amount"]).intValue;
 	
 	int availableCoins = [SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS];
 	
@@ -340,10 +340,8 @@
 	
 	
 	//analytics logging
-	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-		name, @"Name",
-		[NSNumber numberWithInt:availableCoins], @"AvailableCoins",
-	nil];
+	NSDictionary* flurryParams = @{@"Name": name,
+		@"AvailableCoins": @(availableCoins)};
 	[Analytics logEvent:@"View_IAP_Item" withParameters:flurryParams];
 }
 
@@ -373,11 +371,11 @@
 	if(info.sprite == nil || _selectedIAPItem == nil) return;
 	
 	int availableCoins = [SettingsManager intForKey:SETTING_TOTAL_AVAILABLE_COINS];
-	NSMutableDictionary* iapItemData = (NSMutableDictionary*)[_itemDatas objectForKey:_selectedIAPItem.uniqueName];
-	NSString* name = [iapItemData objectForKey:@"Name"];
-	bool isIAP = [(NSNumber*)[iapItemData objectForKey:@"IS_IAP"] boolValue];
-	int cost = [(NSNumber*)[iapItemData objectForKey:@"Cost"] intValue];
-	int amount = [(NSNumber*)[iapItemData objectForKey:@"Amount"] intValue];
+	NSMutableDictionary* iapItemData = (NSMutableDictionary*)_itemDatas[_selectedIAPItem.uniqueName];
+	NSString* name = iapItemData[@"Name"];
+	bool isIAP = ((NSNumber*)iapItemData[@"IS_IAP"]).boolValue;
+	int cost = ((NSNumber*)iapItemData[@"Cost"]).intValue;
+	int amount = ((NSNumber*)iapItemData[@"Amount"]).intValue;
 	
 	
 	//IAP?
@@ -405,10 +403,8 @@
 							
 
 							//analytics logging
-							NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-								name, @"Name",
-								[NSNumber numberWithInt:availableCoins], @"AvailableCoins",
-							nil];
+							NSDictionary* flurryParams = @{@"Name": name,
+								@"AvailableCoins": @(availableCoins)};
 							[Analytics logEvent:@"Buy_IAP_Item" withParameters:flurryParams];
 						
 						}]) {
@@ -454,11 +450,9 @@
 	];
 	
 	//analytics logging
-	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-		name, @"Name",
-		[NSNumber numberWithInt:availableCoins], @"NewAvailableCoins",
-		[NSNumber numberWithInt:ownedAmount], @"OwnedAmount",
-	nil];
+	NSDictionary* flurryParams = @{@"Name": name,
+		@"NewAvailableCoins": @(availableCoins),
+		@"OwnedAmount": @(ownedAmount)};
 	[Analytics logEvent:@"Buy_IAP_Item" withParameters:flurryParams];
 
 	if(DEBUG_IAP) DebugLog(@"We now have %d units of %@ and %d coins", ownedAmount, name, availableCoins);
@@ -488,17 +482,17 @@
 
 -(void)fadeInBackgroundMusic:(NSString*)path {
 	
-	float prevVolume = [[SimpleAudioEngine sharedEngine] backgroundMusicVolume];
+	float prevVolume = [SimpleAudioEngine sharedEngine].backgroundMusicVolume;
 	float fadeInTimeOffset = 0;
 	
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, fadeInTimeOffset * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-		[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:.1];
+		[SimpleAudioEngine sharedEngine].backgroundMusicVolume = .1;
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:path loop:YES];
 	});
 	
 	for(float volume = .1; volume <= prevVolume; volume+= .1) {
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, fadeInTimeOffset + volume * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-			[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:volume];
+			[SimpleAudioEngine sharedEngine].backgroundMusicVolume = volume;
 		});
 	}
 }

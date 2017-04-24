@@ -13,7 +13,7 @@
 @implementation MoveGridData
 
 
-- (id)initWithGrid:(short**)grid height:(int)height width:(int)width moveHistorySize:(int)moveHistorySize tag:(NSString*)tag {
+- (instancetype)initWithGrid:(short**)grid height:(int)height width:(int)width moveHistorySize:(int)moveHistorySize tag:(NSString*)tag {
 	if(self = [super init]) {
 		_baseGrid = grid;
 		_gridWidth = width;
@@ -263,7 +263,7 @@
 		_lastToTile = toTile;
 		_forceUpdateToMoveGrid = false;
 		
-		double startTime = [[NSDate date] timeIntervalSince1970];
+		double startTime = [NSDate date].timeIntervalSince1970;
 
 		short bestFoundRouteWeight = -1;
 		[bSelf copyBaseGridToMoveGridBuffer];

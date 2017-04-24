@@ -331,7 +331,7 @@ public:
 #endif
 }
 //------------------------------------------------------------------------------
-- (id)init
+- (instancetype)init
 {
 	self = [super init];
 	if (self != nil) {
@@ -357,7 +357,7 @@ public:
 //------------------------------------------------------------------------------
 -(NSArray*)sprites{
     
-    NSArray* array = [spritesPreviouslyCut allObjects];
+    NSArray* array = spritesPreviouslyCut.allObjects;
     [spritesPreviouslyCut removeAllObjects];
     return array;
 }
@@ -482,12 +482,12 @@ public:
     {
         [sprCut setOriginalRect:oldRect];
         [sprCut setImageFile:[oldSprite imageFile]];
-        [sprCut setTag:[oldSprite tag]];
-        [sprCut setOpacity:[oldSprite opacity]];
-        [sprCut setColor:[oldSprite color]];
+        sprCut.tag = oldSprite.tag;
+        sprCut.opacity = oldSprite.opacity;
+        sprCut.color = oldSprite.color;
         
-        [sprCut setScaleX:[oldSprite scaleX]];
-        [sprCut setScaleY:[oldSprite scaleY]];
+        sprCut.scaleX = oldSprite.scaleX;
+        sprCut.scaleY = oldSprite.scaleY;
         
         [sprCut setUsePhysicsForTouches:YES];
         
@@ -503,11 +503,11 @@ public:
         if([oldSprite usesBatchNode])
 #endif
         {
-            LHLayer* layer = (LHLayer*)[[oldSprite parent] parent];
+            LHLayer* layer = (LHLayer*)oldSprite.parent.parent;
             [layer addChild:sprCut];
         }
         else {
-            LHLayer* layer = (LHLayer*)[oldSprite parent];
+            LHLayer* layer = (LHLayer*)oldSprite.parent;
             [layer addChild:sprCut];
         }
         
@@ -546,14 +546,14 @@ public:
             texPoint[1] = [LevelHelperLoader metersToPoints:result[i*3+1]];
             texPoint[2] = [LevelHelperLoader metersToPoints:result[i*3+2]];
             
-            texPoint[0].x /= [oldSprite scaleX];
-            texPoint[0].y /= [oldSprite scaleY];
+            texPoint[0].x /= oldSprite.scaleX;
+            texPoint[0].y /= oldSprite.scaleY;
             
-            texPoint[1].x /= [oldSprite scaleX];
-            texPoint[1].y /= [oldSprite scaleY];
+            texPoint[1].x /= oldSprite.scaleX;
+            texPoint[1].y /= oldSprite.scaleY;
             
-            texPoint[2].x /= [oldSprite scaleX];
-            texPoint[2].y /= [oldSprite scaleY];
+            texPoint[2].x /= oldSprite.scaleX;
+            texPoint[2].y /= oldSprite.scaleY;
             
             
             texPoint[0] = ccp(oldSprite.contentSize.width/2 - texPoint[0].x,
@@ -1530,7 +1530,7 @@ triangulateAllFixtures:NO
         
         
         
-        if(sprite && [sprite tag] == tag)
+        if(sprite && sprite.tag == tag)
         {
             std::map<b2Body*, b2Vec2>::iterator it2 = callback2.rayCastInfo.find(key);
             if(it2 != callback2.rayCastInfo.end())
@@ -1567,7 +1567,7 @@ triangulateAllFixtures:NO
         LHSprite* sprite = (__bridge LHSprite*)bodyToCut->GetUserData();
 #endif
 
-        if (sprite && [sprite tag] == tag) {
+        if (sprite && sprite.tag == tag) {
             [self splitBody:bodyToCut 
                     intersectionPointA:pointAOnBody
                     intersectionPointB:pointBOnBody
@@ -1710,7 +1710,7 @@ triangulateAllFixtures:NO
             LHSprite* sprite = (__bridge LHSprite*)key->GetUserData();
 #endif
             
-            if(sprite && [sprite tag] == tag)
+            if(sprite && sprite.tag == tag)
             {
                 [self splitBody:key 
                    intersectionPointA:pointA

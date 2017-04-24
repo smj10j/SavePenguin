@@ -35,7 +35,7 @@
 /** @typedef ccDirectorProjection
  Possible OpenGL projections used by director
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, ccDirectorProjection) {
 	/// sets a 2D projection (orthogonal projection).
 	kCCDirectorProjection2D,
 
@@ -48,7 +48,7 @@ typedef enum {
 	/// Detault projection is 3D projection
 	kCCDirectorProjectionDefault = kCCDirectorProjection3D,
 
-} ccDirectorProjection;
+};
 
 
 @class CCLabelAtlas;
@@ -216,12 +216,12 @@ and when to execute the Scenes.
 
 #pragma mark Director - Win Size
 /** returns the size of the OpenGL view in points */
-- (CGSize) winSize;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGSize winSize;
 
 /** returns the size of the OpenGL view in pixels.
  On Mac winSize and winSizeInPixels return the same value.
  */
-- (CGSize) winSizeInPixels;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGSize winSizeInPixels;
 
 /** changes the projection size */
 -(void) reshapeProjection:(CGSize)newWindowSize;
@@ -236,7 +236,7 @@ and when to execute the Scenes.
 -(CGPoint) convertToUI:(CGPoint)p;
 
 /// XXX: missing description
--(float) getZEye;
+@property (NS_NONATOMIC_IOSONLY, getter=getZEye, readonly) float ZEye;
 
 #pragma mark Director - Scene Management
 

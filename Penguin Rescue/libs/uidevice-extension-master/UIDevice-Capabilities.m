@@ -43,7 +43,7 @@
 	printf("Device: %s\n", [[self fetchCapability: UIDeviceMarketingNameString] UTF8String]);
 	for (NSString *capability in CAPABILITY_STRINGS)
 	{
-		printf("%s: %s\n", [capability UTF8String], [self supportsCapability:capability] ? "Yes" : "No");
+		printf("%s: %s\n", capability.UTF8String, [self supportsCapability:capability] ? "Yes" : "No");
 	}
 }
 

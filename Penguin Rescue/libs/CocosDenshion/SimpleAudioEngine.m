@@ -50,7 +50,7 @@ static CDBufferManager *bufferManager = nil;
 	return nil;
 }
 
--(id) init
+-(instancetype) init
 {
 	if((self=[super init])) {
 		am = [CDAudioManager sharedManager];
@@ -118,7 +118,7 @@ static CDBufferManager *bufferManager = nil;
 }
 
 -(BOOL) willPlayBackgroundMusic {
-	return [am willPlayBackgroundMusic];
+	return am.willPlayBackgroundMusic;
 }
 
 #pragma mark SimpleAudioEngine - sound effects

@@ -39,7 +39,7 @@
     
     while(stFix != 0)
     {
-        if(stFix->TestPoint(b2Vec2(point.x/[[LHSettings sharedInstance] lhPtmRatio], point.y/[[LHSettings sharedInstance] lhPtmRatio])))
+        if(stFix->TestPoint(b2Vec2(point.x/[LHSettings sharedInstance].lhPtmRatio, point.y/[LHSettings sharedInstance].lhPtmRatio)))
         {
             return true;
         }
@@ -147,7 +147,7 @@
         return 0;
     }
     
-    b2Vec2 locationWorld = b2Vec2(point.x/[[LHSettings sharedInstance] lhPtmRatio], point.y/[[LHSettings sharedInstance] lhPtmRatio]);
+    b2Vec2 locationWorld = b2Vec2(point.x/[LHSettings sharedInstance].lhPtmRatio, point.y/[LHSettings sharedInstance].lhPtmRatio);
     
     
     md.target = locationWorld;
@@ -183,7 +183,7 @@
 {
     if(mouseJoint == 0)
         return;
-    b2Vec2 locationWorld = b2Vec2(point.x/[[LHSettings sharedInstance] lhPtmRatio], point.y/[[LHSettings sharedInstance] lhPtmRatio]);
+    b2Vec2 locationWorld = b2Vec2(point.x/[LHSettings sharedInstance].lhPtmRatio, point.y/[LHSettings sharedInstance].lhPtmRatio);
     
     mouseJoint->SetTarget(locationWorld);
 }

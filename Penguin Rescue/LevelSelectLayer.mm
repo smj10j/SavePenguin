@@ -42,7 +42,7 @@
 }
 
 //
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init])) {
 		
@@ -141,9 +141,9 @@
 			levelButtonX = levelButtonXInitial;
 		}
 		
-		NSDictionary* levelData = [levelsDictionary objectForKey:[NSString stringWithFormat:@"%d", i]];
-		NSString* levelName = [levelData objectForKey:LEVELPACKMANAGER_KEY_NAME];
-		NSString* levelPath = [levelData objectForKey:LEVELPACKMANAGER_KEY_PATH];
+		NSDictionary* levelData = levelsDictionary[[NSString stringWithFormat:@"%d", i]];
+		NSString* levelName = levelData[LEVELPACKMANAGER_KEY_NAME];
+		NSString* levelPath = levelData[LEVELPACKMANAGER_KEY_PATH];
 		
 		//create the sprite
 		LHSprite* levelButton = [_levelLoader createSpriteWithName:@"Level_inactive" fromSheet:@"Menu" fromSHFile:@"Spritesheet" parent:scrollableLayer];
@@ -161,7 +161,7 @@
 			*/
 
 			//display the grade
-			double score = [(NSNumber*)[completedLevels valueForKey:levelPath] doubleValue];
+			double score = ((NSNumber*)[completedLevels valueForKey:levelPath]).doubleValue;
 			double zScore = [ScoreKeeper zScoreFromScore:score withLevelPackPath:_levelPackPath levelPath:levelPath];
 			CCLabelTTF* gradeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", [ScoreKeeper gradeFromZScore:zScore]] fontName:@"Helvetica" fontSize:20*SCALING_FACTOR_FONTS dimensions:CGSizeMake(60*SCALING_FACTOR_H, 30*SCALING_FACTOR_V) hAlignment:kCCTextAlignmentRight];
 			gradeLabel.color = ccWHITE;
@@ -194,7 +194,7 @@
 		
 		if(!DISTRIBUTION_MODE || !isLocked) {
 			//used when clicking the sprite
-			[_spriteNameToLevelPath setObject:levelPath forKey:levelButton.uniqueName];
+			_spriteNameToLevelPath[levelButton.uniqueName] = levelPath;
 			[levelButton registerTouchBeganObserver:self selector:@selector(onTouchAnyButton:)];
 			[levelButton registerTouchEndedObserver:self selector:@selector(onTouchEndedLevelSelect:)];
 		}
@@ -223,9 +223,7 @@
 		[_scrollLayer selectPage:[SettingsManager intForKey:SETTING_LAST_LEVEL_SELECT_SCREEN_NUM]];
 	}
 	
-	NSDictionary* flurryParams = [NSDictionary dictionaryWithObjectsAndKeys:
-		_levelPackPath, @"Level_Pack",
-	nil];
+	NSDictionary* flurryParams = @{@"Level_Pack": _levelPackPath};
 	[Analytics logEvent:@"View_Level_Pack" withParameters:flurryParams];
 
 }
@@ -247,7 +245,7 @@
 	}
 	[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 
-	NSString* levelPath = [_spriteNameToLevelPath objectForKey:info.sprite.uniqueName];
+	NSString* levelPath = _spriteNameToLevelPath[info.sprite.uniqueName];
 	
 	[SettingsManager setString:_levelPackPath forKey:SETTING_LAST_LEVEL_PACK_PATH];
 	[SettingsManager setInt:_scrollLayer.currentScreen forKey:SETTING_LAST_LEVEL_SELECT_SCREEN_NUM];
@@ -271,17 +269,17 @@
 
 -(void)fadeInBackgroundMusic:(NSString*)path {
 	
-	float prevVolume = [[SimpleAudioEngine sharedEngine] backgroundMusicVolume];
+	float prevVolume = [SimpleAudioEngine sharedEngine].backgroundMusicVolume;
 	float fadeInTimeOffset = 0;
 	
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, fadeInTimeOffset * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-		[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:.1];
+		[SimpleAudioEngine sharedEngine].backgroundMusicVolume = .1;
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:path loop:YES];
 	});
 	
 	for(float volume = .1; volume <= prevVolume; volume+= .1) {
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, fadeInTimeOffset + volume * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-			[[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:volume];
+			[SimpleAudioEngine sharedEngine].backgroundMusicVolume = volume;
 		});
 	}
 }

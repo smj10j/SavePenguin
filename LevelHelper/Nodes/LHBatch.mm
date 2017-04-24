@@ -93,7 +93,7 @@ static int untitledBatchCount = 0;
 #ifndef LH_ARC_ENABLED
     [userCustomInfo retain];
 #endif
-    [userCustomInfo performSelector:@selector(setPropertiesFromDictionary:) withObject:[dictionary objectForKey:@"ClassRepresentation"]];
+    [userCustomInfo performSelector:@selector(setPropertiesFromDictionary:) withObject:dictionary[@"ClassRepresentation"]];
 }
 -(NSString*)userInfoClassName{
     if(userCustomInfo)
@@ -101,7 +101,7 @@ static int untitledBatchCount = 0;
     return @"No Class";
 }
 //------------------------------------------------------------------------------
--(id) initWithDictionary:(NSDictionary*)dictionary layer:(LHLayer*)layer{
+-(instancetype) initWithDictionary:(NSDictionary*)dictionary layer:(LHLayer*)layer{
     
     NSString* imgPath = [[LHSettings sharedInstance] imagePath:[dictionary stringForKey:@"SheetImage"]];
     
@@ -110,7 +110,7 @@ static int untitledBatchCount = 0;
     self = [super initWithFile:imgPath capacity:29]; //29 is the default capacity
     if (self != nil)
     {
-        NSString* uName = [dictionary objectForKey:@"UniqueName"];
+        NSString* uName = dictionary[@"UniqueName"];
         if(uName)
             uniqueName = [[NSString alloc] initWithString:uName];
         else {
@@ -125,7 +125,7 @@ static int untitledBatchCount = 0;
             }
         }
         
-        if([dictionary objectForKey:@"SHScene"])
+        if(dictionary[@"SHScene"])
             shFile = [[NSString alloc] initWithString:[dictionary stringForKey:@"SHScene"]];
         
         imagePath = [[NSString alloc] initWithString:imgPath];
@@ -133,10 +133,10 @@ static int untitledBatchCount = 0;
         zOrder_ = [dictionary intForKey:@"ZOrder"];
         
         if(layer){
-            [layer addChild:self z:[self zOrder]];
+            [layer addChild:self z:self.zOrder];
         }
         
-        NSArray* childrenInfo = [dictionary objectForKey:@"Children"];
+        NSArray* childrenInfo = dictionary[@"Children"];
         if(childrenInfo)
         {
             for(NSDictionary* childDict in childrenInfo){
@@ -144,19 +144,19 @@ static int untitledBatchCount = 0;
             }
         }
         
-        [self loadUserCustomInfoFromDictionary:[dictionary objectForKey:@"CustomClassInfo"]];
+        [self loadUserCustomInfoFromDictionary:dictionary[@"CustomClassInfo"]];
     }
     return self;
 }
 //------------------------------------------------------------------------------
-+(id) batchWithDictionary:(NSDictionary*)dictionary layer:(LHLayer*)layer{    
++(instancetype) batchWithDictionary:(NSDictionary*)dictionary layer:(LHLayer*)layer{    
 #ifndef LH_ARC_ENABLED
     return [[[self alloc] initWithDictionary:dictionary layer:layer] autorelease];
 #else
     return [[self alloc] initWithDictionary:dictionary layer:layer];
 #endif   
 }
-+(id) batchWithSheetName:(NSString*)sheetName shFile:(NSString*)spriteHelperFile
++(instancetype) batchWithSheetName:(NSString*)sheetName shFile:(NSString*)spriteHelperFile
 {
     NSDictionary* dictionary = [[SHDocumentLoader sharedInstance] dictionaryForSheetNamed:sheetName inDocument:spriteHelperFile];
     
@@ -195,7 +195,7 @@ static int untitledBatchCount = 0;
 {
     if([[childDict stringForKey:@"NodeType"] isEqualToString:@"LHSprite"])
     {
-        NSDictionary* texDict = [childDict objectForKey:@"TextureProperties"];
+        NSDictionary* texDict = childDict[@"TextureProperties"];
         int sprTag = [texDict intForKey:@"Tag"];
         
         Class spriteClass = [[LHCustomSpriteMgr sharedInstance] customSpriteClassForTag:(LevelHelper_TAG)sprTag];
@@ -244,7 +244,7 @@ static int untitledBatchCount = 0;
     
     for(id node in children_){
         if([node isKindOfClass:[LHSprite class]]){
-            if([(CCNode*)node tag] == tag)
+            if(((CCNode*)node).tag == tag)
                 [array addObject:node];    
         }
     }

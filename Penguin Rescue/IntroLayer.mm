@@ -37,7 +37,7 @@
 }
 
 //
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init])) {
 			
@@ -111,7 +111,7 @@
 	if(lastLevelPackPath == nil) {
 		//get the first level pack and level
 		NSArray* availableLevelPacks = [LevelPackManager availablePacks];
-		lastLevelPackPath = [availableLevelPacks objectAtIndex:0];
+		lastLevelPackPath = availableLevelPacks[0];
 		lastLevelPath = [LevelPackManager levelAfter:nil inPack:lastLevelPackPath];
 	}
 

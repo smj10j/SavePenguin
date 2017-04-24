@@ -60,7 +60,7 @@
 #pragma mark -
 #pragma mark Director - global variables (optimization)
 
-CGFloat	__ccContentScaleFactor = 1;
+float	__ccContentScaleFactor = 1;
 
 #pragma mark -
 #pragma mark Director
@@ -106,7 +106,7 @@ CGFloat	__ccContentScaleFactor = 1;
 
 @implementation CCDirectorIOS
 
-- (id) init
+- (instancetype) init
 {
 	if( (self=[super init]) ) {
 
@@ -140,9 +140,9 @@ CGFloat	__ccContentScaleFactor = 1;
 	/* calculate "global" dt */
 	[self calculateDeltaTime];
 
-	CCGLView *openGLview = (CCGLView*)[self view];
+	CCGLView *openGLview = (CCGLView*)self.view;
 
-	[EAGLContext setCurrentContext: [openGLview context]];
+	[EAGLContext setCurrentContext: openGLview.context];
 
 	/* tick before glClear: issue #533 */
 	if( ! isPaused_ )
@@ -244,7 +244,7 @@ CGFloat	__ccContentScaleFactor = 1;
 	
 	[self pushScene:scene];
 
-	NSThread *thread = [self runningThread];
+	NSThread *thread = self.runningThread;
 	[self performSelector:@selector(drawScene) onThread:thread withObject:nil waitUntilDone:YES];
 }
 
@@ -281,7 +281,7 @@ CGFloat	__ccContentScaleFactor = 1;
 			[self updateContentScaleFactor];
 
 		// update projection
-		[self setProjection:projection_];
+		self.projection = projection_;
 	}
 }
 
@@ -289,7 +289,7 @@ CGFloat	__ccContentScaleFactor = 1;
 {
 	NSAssert( [view_ respondsToSelector:@selector(setContentScaleFactor:)], @"cocos2d v2.0+ runs on iOS 4 or later");
 
-	[view_ setContentScaleFactor: __ccContentScaleFactor];
+	view_.contentScaleFactor = __ccContentScaleFactor;
 	isContentScaleSupported_ = YES;
 }
 
@@ -308,7 +308,7 @@ CGFloat	__ccContentScaleFactor = 1;
 		return NO;
 
 	// SD device
-	if ([[UIScreen mainScreen] scale] == 1.0)
+	if ([UIScreen mainScreen].scale == 1.0)
 		return NO;
 
 	float newScale = enabled ? 2 : 1;
@@ -323,10 +323,10 @@ CGFloat	__ccContentScaleFactor = 1;
 // overriden, don't call super
 -(void) reshapeProjection:(CGSize)size
 {
-	winSizeInPoints_ = [view_ bounds].size;
+	winSizeInPoints_ = view_.bounds.size;
 	winSizeInPixels_ = CGSizeMake(winSizeInPoints_.width * __ccContentScaleFactor, winSizeInPoints_.height *__ccContentScaleFactor);
 
-	[self setProjection:projection_];
+	self.projection = projection_;
   
 	if( [delegate_ respondsToSelector:@selector(directorDidReshapeProjection:)] )
 		[delegate_ directorDidReshapeProjection:self];
@@ -344,7 +344,7 @@ CGFloat	__ccContentScaleFactor = 1;
 
 -(CGPoint)convertTouchToGL:(UITouch*)touch
 {
-	CGPoint uiPoint = [touch locationInView: [touch view]];
+	CGPoint uiPoint = [touch locationInView: touch.view];
 	CGSize s = winSizeInPoints_;
 	float newY = s.height - uiPoint.y;
 	
@@ -375,7 +375,7 @@ CGFloat	__ccContentScaleFactor = 1;
 -(void) setView:(CCGLView *)view
 {
 	if( view != view_) {
-		[super setView:view];
+		super.view = view;
 
 		if( view ) {
 			// set size
@@ -384,7 +384,7 @@ CGFloat	__ccContentScaleFactor = 1;
 			if( __ccContentScaleFactor != 1 )
 				[self updateContentScaleFactor];
 
-			[view setTouchDelegate: touchDispatcher_];
+			view.touchDelegate = touchDispatcher_;
 			[touchDispatcher_ setDispatchEvents: YES];
 		}
 	}
@@ -494,7 +494,7 @@ CGFloat	__ccContentScaleFactor = 1;
 	CCLOG(@"cocos2d: animation started with frame interval: %.2f", 60.0f/frameInterval);
 
 	displayLink_ = [CADisplayLink displayLinkWithTarget:self selector:@selector(mainLoop:)];
-	[displayLink_ setFrameInterval:frameInterval];
+	displayLink_.frameInterval = frameInterval;
 
 #if CC_DIRECTOR_IOS_USE_BACKGROUND_THREAD
 	//

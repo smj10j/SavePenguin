@@ -63,7 +63,7 @@
 @property (readwrite, assign) NSTouch* touch;
 #endif
 
-+(id)touchInfo;
++(instancetype)touchInfo;
 @end
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -75,7 +75,7 @@
 }
 @property (readwrite, assign) id object;
 @property (readwrite, assign) SEL selector;
-+(id)observerPair;
++(instancetype)observerPair;
 +(void)performObserverPair:(LHObserverPair*)pair object:(id)info;
 @end
 //------------------------------------------------------------------------------

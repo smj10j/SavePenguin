@@ -89,15 +89,13 @@ enum LH_PATH_MOVEMENT_ORIENTATION
 @property (readwrite) bool  flipY;
 @property (readwrite) bool  relativeMovement;
 
--(id) initPathNodeWithPoints:(NSArray *)points onSprite:(LHSprite*)spr;
+-(instancetype) initPathNodeWithPoints:(NSArray *)points onSprite:(LHSprite*)spr NS_DESIGNATED_INITIALIZER;
 
--(void)  setSpeed:(float)value;
--(float) speed;
+@property (NS_NONATOMIC_IOSONLY) float speed;
 
 -(void) restart;
 
--(void) setStartAtEndPoint:(bool)val;
--(bool) startAtEndPoint;
+@property (NS_NONATOMIC_IOSONLY) bool startAtEndPoint;
 
 -(void)update:(ccTime)dt;
 @end	

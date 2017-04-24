@@ -87,7 +87,7 @@
 +(id) atlasWithTileFile:(NSString*)tile tileWidth:(NSUInteger)w tileHeight:(NSUInteger)h itemsToRender: (NSUInteger) c;
 
 /** initializes an CCAtlasNode  with an Atlas file the width and height of each item measured in points and the quantity of items to render*/
--(id) initWithTileFile:(NSString*)tile tileWidth:(NSUInteger)w tileHeight:(NSUInteger)h itemsToRender: (NSUInteger) c;
+-(instancetype) initWithTileFile:(NSString*)tile tileWidth:(NSUInteger)w tileHeight:(NSUInteger)h itemsToRender: (NSUInteger) c NS_DESIGNATED_INITIALIZER;
 
 /** updates the Atlas (indexed vertex array).
  * Shall be overridden in subclasses

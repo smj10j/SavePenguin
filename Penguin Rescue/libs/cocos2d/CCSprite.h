@@ -156,34 +156,34 @@
  The rect used will be the size of the texture.
  The offset will be (0,0).
  */
-+(id) spriteWithTexture:(CCTexture2D*)texture;
++(instancetype) spriteWithTexture:(CCTexture2D*)texture;
 
 /** Creates an sprite with a texture and a rect.
  The offset will be (0,0).
  */
-+(id) spriteWithTexture:(CCTexture2D*)texture rect:(CGRect)rect;
++(instancetype) spriteWithTexture:(CCTexture2D*)texture rect:(CGRect)rect;
 
 /** Creates an sprite with an sprite frame.
  */
-+(id) spriteWithSpriteFrame:(CCSpriteFrame*)spriteFrame;
++(instancetype) spriteWithSpriteFrame:(CCSpriteFrame*)spriteFrame;
 
 /** Creates an sprite with an sprite frame name.
  An CCSpriteFrame will be fetched from the CCSpriteFrameCache by name.
  If the CCSpriteFrame doesn't exist it will raise an exception.
  @since v0.9
  */
-+(id) spriteWithSpriteFrameName:(NSString*)spriteFrameName;
++(instancetype) spriteWithSpriteFrameName:(NSString*)spriteFrameName;
 
 /** Creates an sprite with an image filename.
  The rect used will be the size of the image.
  The offset will be (0,0).
  */
-+(id) spriteWithFile:(NSString*)filename;
++(instancetype) spriteWithFile:(NSString*)filename;
 
 /** Creates an sprite with an image filename and a rect.
  The offset will be (0,0).
  */
-+(id) spriteWithFile:(NSString*)filename rect:(CGRect)rect;
++(instancetype) spriteWithFile:(NSString*)filename rect:(CGRect)rect;
 
 /** Creates an sprite with a CGImageRef and a key.
  The key is used by the CCTextureCache to know if a texture was already created with this CGImage.
@@ -191,47 +191,47 @@
  If key is nil, then a new texture will be created each time by the CCTextureCache.
  @since v0.99.0
  */
-+(id) spriteWithCGImage: (CGImageRef)image key:(NSString*)key;
++(instancetype) spriteWithCGImage: (CGImageRef)image key:(NSString*)key;
 
 /** Initializes an sprite with a texture.
  The rect used will be the size of the texture.
  The offset will be (0,0).
  */
--(id) initWithTexture:(CCTexture2D*)texture;
+-(instancetype) initWithTexture:(CCTexture2D*)texture;
 
 /** Initializes an sprite with a texture and a rect in points (unrotated)
  The offset will be (0,0).
  */
--(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect;
+-(instancetype) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect;
 
 /** Initializes an sprite with a texture and a rect in points, optionally rotated.
  The offset will be (0,0).
  IMPORTANT: This is the designated initializer.
  */
-- (id)initWithTexture:(CCTexture2D *)texture rect:(CGRect)rect rotated:(BOOL)rotated;
+- (instancetype)initWithTexture:(CCTexture2D *)texture rect:(CGRect)rect rotated:(BOOL)rotated NS_DESIGNATED_INITIALIZER;
 
 
 /** Initializes an sprite with an sprite frame.
  */
--(id) initWithSpriteFrame:(CCSpriteFrame*)spriteFrame;
+-(instancetype) initWithSpriteFrame:(CCSpriteFrame*)spriteFrame;
 
 /** Initializes an sprite with an sprite frame name.
  An CCSpriteFrame will be fetched from the CCSpriteFrameCache by name.
  If the CCSpriteFrame doesn't exist it will raise an exception.
  @since v0.9
  */
--(id) initWithSpriteFrameName:(NSString*)spriteFrameName;
+-(instancetype) initWithSpriteFrameName:(NSString*)spriteFrameName;
 
 /** Initializes an sprite with an image filename.
  The rect used will be the size of the image.
  The offset will be (0,0).
  */
--(id) initWithFile:(NSString*)filename;
+-(instancetype) initWithFile:(NSString*)filename;
 
 /** Initializes an sprite with an image filename, and a rect.
  The offset will be (0,0).
  */
--(id) initWithFile:(NSString*)filename rect:(CGRect)rect;
+-(instancetype) initWithFile:(NSString*)filename rect:(CGRect)rect;
 
 /** Initializes an sprite with a CGImageRef and a key
  The key is used by the CCTextureCache to know if a texture was already created with this CGImage.
@@ -239,7 +239,7 @@
  If key is nil, then a new texture will be created each time by the CCTextureCache.
  @since v0.99.0
  */
--(id) initWithCGImage:(CGImageRef)image key:(NSString*)key;
+-(instancetype) initWithCGImage:(CGImageRef)image key:(NSString*)key;
 
 #pragma mark CCSprite - BatchNode methods
 
@@ -269,13 +269,12 @@
 #pragma mark CCSprite - Frames
 
 /** sets a new display frame to the CCSprite. */
--(void) setDisplayFrame:(CCSpriteFrame*)newFrame;
 
 /** returns whether or not a CCSpriteFrame is being displayed */
 -(BOOL) isFrameDisplayed:(CCSpriteFrame*)frame;
 
 /** returns the current displayed frame. */
--(CCSpriteFrame*) displayFrame;
+@property (NS_NONATOMIC_IOSONLY, strong) CCSpriteFrame *displayFrame;
 
 #pragma mark CCSprite - Animation
 

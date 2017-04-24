@@ -114,7 +114,7 @@ static inline ccTex2F __t(ccVertex2F v )
 	}
 }
 
--(id)init
+-(instancetype)init
 {
 	if((self = [super init])){
 		self.blendFunc = (ccBlendFunc){CC_BLEND_SRC, CC_BLEND_DST};

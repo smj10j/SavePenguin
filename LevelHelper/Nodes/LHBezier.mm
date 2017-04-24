@@ -76,20 +76,20 @@ typedef struct lhV3F_Line
     bool tile;
 }
 
-+(id) bezierBlendingInfoWithTexture:(CCTexture2D*)tex
++(instancetype) bezierBlendingInfoWithTexture:(CCTexture2D*)tex
                         blendSource:(GLenum)source
                    blendDestination:(GLenum)destination
                                tile:(bool)shouldTile;
 
--(id) initBezierBlendingInfoWithTexture:(CCTexture2D*)tex
+-(instancetype) initBezierBlendingInfoWithTexture:(CCTexture2D*)tex
                             blendSource:(GLenum)source
                        blendDestination:(GLenum)destination
-                                   tile:(bool)shouldTile;
+                                   tile:(bool)shouldTile NS_DESIGNATED_INITIALIZER;
 
--(CCTexture2D*) texture;
--(GLenum) blendSource;
--(GLenum) blendDestination;
--(bool) tile;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) CCTexture2D *texture;
+@property (NS_NONATOMIC_IOSONLY, readonly) GLenum blendSource;
+@property (NS_NONATOMIC_IOSONLY, readonly) GLenum blendDestination;
+@property (NS_NONATOMIC_IOSONLY, readonly) bool tile;
 @end
 //------------------------------------------------------------------------------
 @implementation LHBezierBlendingInfo
@@ -98,7 +98,7 @@ typedef struct lhV3F_Line
 	[super dealloc];
 #endif
 }
-+(id) bezierBlendingInfoWithTexture:(CCTexture2D*)tex
++(instancetype) bezierBlendingInfoWithTexture:(CCTexture2D*)tex
                         blendSource:(GLenum)source
                    blendDestination:(GLenum)destination
                                tile:(bool)shouldTile;
@@ -115,7 +115,7 @@ typedef struct lhV3F_Line
                                                        tile:shouldTile];
 #endif
 }
--(id) initBezierBlendingInfoWithTexture:(CCTexture2D*)tex
+-(instancetype) initBezierBlendingInfoWithTexture:(CCTexture2D*)tex
                             blendSource:(GLenum)source
                        blendDestination:(GLenum)destination
                                    tile:(bool)shouldTile{
@@ -279,7 +279,7 @@ typedef struct lhV3F_Line
 	linesHolder = [[NSMutableArray alloc] init];
 	if(isVisible)
 	{
-		NSArray* curvesInShape = [dictionary objectForKey:@"Curves"];
+		NSArray* curvesInShape = dictionary[@"Curves"];
 		
 		int MAX_STEPS = 25;
 		
@@ -334,7 +334,7 @@ typedef struct lhV3F_Line
 {
 	pathPoints = [[NSMutableArray alloc] init];
 	
-    NSArray* curvesInShape = [bezierDict objectForKey:@"Curves"];    
+    NSArray* curvesInShape = bezierDict[@"Curves"];    
     int MAX_STEPS = 25;    
 //	CGPoint conv = [[LHSettings sharedInstance] convertRatio];
 	int i = 0;
@@ -398,7 +398,7 @@ typedef struct lhV3F_Line
             
             [pathPoints addObject:LHValueWithCGPoint(sPoint)];            
             
-            if(i == (int)[curvesInShape count]-1)
+            if(i == (int)curvesInShape.count-1)
             {
                 CGPoint ePoint = [[LHSettings sharedInstance] transformedPointToCocos2d:endPt];
                 
@@ -448,16 +448,16 @@ typedef struct lhV3F_Line
 	
 	body = world->CreateBody(&bodyDef);
 	
-	float ptm = [[LHSettings sharedInstance] lhPtmRatio];
+	float ptm = [LHSettings sharedInstance].lhPtmRatio;
 
     for(NSArray* fix in trianglesHolder)
     {
-        int size = (int)[fix count];
+        int size = (int)fix.count;
         b2Vec2 *verts = new b2Vec2[size];
         int i = 0;
-        for(int j = (int)[fix count]-1; j >=0; --j)
+        for(int j = (int)fix.count-1; j >=0; --j)
         {
-            NSValue* val = [fix objectAtIndex:(NSUInteger)j];
+            NSValue* val = fix[(NSUInteger)j];
                         
             CGPoint pt = LHPointFromValue(val);
             
@@ -489,10 +489,10 @@ typedef struct lhV3F_Line
     
     //we test for the version of box2d here 
 #ifdef B2_CHAIN_SHAPE_H    
-    if([pathPoints count] > 0)
+    if(pathPoints.count > 0)
     {
     
-        b2Vec2 * verts = new b2Vec2 [(int)[pathPoints count]];
+        b2Vec2 * verts = new b2Vec2 [(int)pathPoints.count];
 
         int i = 0;
         for(NSValue* val in pathPoints)
@@ -504,7 +504,7 @@ typedef struct lhV3F_Line
         }
 
         b2ChainShape shape;
-        shape.CreateChain (verts, (int)[pathPoints count]);
+        shape.CreateChain (verts, (int)pathPoints.count);
         
         b2FixtureDef fixture;
     
@@ -607,7 +607,7 @@ typedef struct lhV3F_Line
 #ifndef LH_ARC_ENABLED
     [userCustomInfo retain];
 #endif
-    [userCustomInfo performSelector:@selector(setPropertiesFromDictionary:) withObject:[dictionary objectForKey:@"ClassRepresentation"]];
+    [userCustomInfo performSelector:@selector(setPropertiesFromDictionary:) withObject:dictionary[@"ClassRepresentation"]];
 }
 -(NSString*)userInfoClassName{
     if(userCustomInfo)
@@ -617,7 +617,7 @@ typedef struct lhV3F_Line
 //------------------------------------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////////////
--(id) initWithDictionary:(NSDictionary*)dictionary 
+-(instancetype) initWithDictionary:(NSDictionary*)dictionary 
 {
 	self = [super init];
 	if (self != nil)
@@ -625,7 +625,7 @@ typedef struct lhV3F_Line
         uniqueName = [[NSString alloc] initWithString:[dictionary stringForKey:@"UniqueName"]];		
         blendingTextures = [[NSMutableArray alloc] init];
 
-        NSDictionary* textureDict = [dictionary objectForKey:@"TextureProperties"];
+        NSDictionary* textureDict = dictionary[@"TextureProperties"];
 
         
 		isClosed	= [textureDict boolForKey:@"IsClosed"];
@@ -635,15 +635,15 @@ typedef struct lhV3F_Line
 		isPath		= [textureDict boolForKey:@"IsPath"];
         opacity     = [textureDict floatForKey:@"Opacity"];
 		
-        if([textureDict objectForKey:@"DrawBorder"])
+        if(textureDict[@"DrawBorder"])
             drawBorder  = [textureDict boolForKey:@"DrawBorder"];
         else
             drawBorder = true;
         
-		[self setTag:[textureDict intForKey:@"Tag"]];
-		[self setVertexZ:[textureDict intForKey:@"ZOrder"]];
+		self.tag = [textureDict intForKey:@"Tag"];
+		self.vertexZ = [textureDict intForKey:@"ZOrder"];
 #if COCOS2D_VERSION >= 0x00020000
-		[self setZOrder:[textureDict intForKey:@"ZOrder"]];
+		self.zOrder = [textureDict intForKey:@"ZOrder"];
 #else
         zOrder_ = [textureDict intForKey:@"ZOrder"]; //this property is read only on cocos2d 1.0
 #endif
@@ -691,8 +691,8 @@ typedef struct lhV3F_Line
 		lineColor   = [textureDict rectForKey:@"LineColor"];
 		lineWidth   = [textureDict floatForKey:@"LineWidth"];
     
-        NSDictionary* physicsDict = [dictionary objectForKey:@"PhysicsProperties"];
-		[self initTileVerticesFromDictionary:textureDict tileVertices:[physicsDict objectForKey:@"TileVertices"]];
+        NSDictionary* physicsDict = dictionary[@"PhysicsProperties"];
+		[self initTileVerticesFromDictionary:textureDict tileVertices:physicsDict[@"TileVertices"]];
 		[self initPathPointsFromDictionary:textureDict];	
 		
 #ifdef LH_USE_BOX2D
@@ -709,14 +709,14 @@ typedef struct lhV3F_Line
         tagTouchMovedObserver = nil;
         tagTouchEndedObserver = nil;
         
-         [self loadUserCustomInfoFromDictionary:[dictionary objectForKey:@"CustomClassInfo"]];
+         [self loadUserCustomInfoFromDictionary:dictionary[@"CustomClassInfo"]];
         
         [LevelHelperLoader setTouchDispatcherForObject:self tag:(int)self.tag];
 	}
 	return self;
 }
 ////////////////////////////////////////////////////////////////////////////////
-+(id) bezierWithDictionary:(NSDictionary*)properties
++(instancetype) bezierWithDictionary:(NSDictionary*)properties
 {
 #ifndef LH_ARC_ENABLED
 	return [[[self alloc] initWithDictionary:properties] autorelease];
@@ -761,7 +761,7 @@ typedef struct lhV3F_Line
         [shaderProgram_ setUniformForModelViewProjectionMatrix];
     #endif
     
-    int size = (int)[trianglesHolder count];
+    int size = (int)trianglesHolder.count;
     
     lhV3F_C4B_T2F_Triangle points[size];// = new ccV3F_C4B_T2F_Triangle[size];
     
@@ -770,13 +770,13 @@ typedef struct lhV3F_Line
                             (GLubyte)(color.size.width*255.0f), 
                             (GLubyte)(opacity*255.0f)};
     
-    for(int k = 0; k < (int)[trianglesHolder count]; ++k)
+    for(int k = 0; k < (int)trianglesHolder.count; ++k)
     {
-        NSArray* fix = [trianglesHolder objectAtIndex:(NSUInteger)k];
+        NSArray* fix = trianglesHolder[(NSUInteger)k];
         
         for(int j = 0; j < 3; ++j)
         {
-            NSValue* val  = [fix objectAtIndex:(NSUInteger)j];
+            NSValue* val  = fix[(NSUInteger)j];
             
             CGPoint pt = LHPointFromValue(val);
             
@@ -850,7 +850,7 @@ typedef struct lhV3F_Line
         if(NULL != tex)
         {
             glBlendFunc([info blendSource], [info blendDestination]);
-            glBindTexture(GL_TEXTURE_2D, [tex name]);
+            glBindTexture(GL_TEXTURE_2D, tex.name);
             
             if([info tile]){
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -881,7 +881,7 @@ typedef struct lhV3F_Line
                                 (opacity)};
     
     
-    int linesNo = (int)[linesHolder count];
+    int linesNo = (int)linesHolder.count;
     
     [mShaderProgram use];
         
@@ -893,11 +893,11 @@ typedef struct lhV3F_Line
 	[mShaderProgram setUniformLocation:(NSUInteger)mColorLocation withF1:colorLineVert.r f2:colorLineVert.g f3:colorLineVert.b f4:colorLineVert.a];
     
     
-    CGPoint* line_verts = new CGPoint[[linesHolder count]];
-    for(int i = 0; i < (int)[linesHolder count]; i+=2)
+    CGPoint* line_verts = new CGPoint[linesHolder.count];
+    for(int i = 0; i < (int)linesHolder.count; i+=2)
     {
-        CGPoint pt1 = LHPointFromValue([linesHolder objectAtIndex:(NSUInteger)i]);
-        CGPoint pt2 = LHPointFromValue([linesHolder objectAtIndex:(NSUInteger)(i+1)]);
+        CGPoint pt1 = LHPointFromValue(linesHolder[(NSUInteger)i]);
+        CGPoint pt2 = LHPointFromValue(linesHolder[(NSUInteger)(i+1)]);
         
         line_verts[i] = pt1;
         line_verts[i+1] = pt2;            
@@ -1100,8 +1100,8 @@ typedef struct lhV3F_Line
     {
         b2Fixture* stFix = body->GetFixtureList();
         while(stFix != 0){
-            if(stFix->TestPoint(b2Vec2(point.x/[[LHSettings sharedInstance] lhPtmRatio], 
-                                       point.y/[[LHSettings sharedInstance] lhPtmRatio]))){
+            if(stFix->TestPoint(b2Vec2(point.x/[LHSettings sharedInstance].lhPtmRatio, 
+                                       point.y/[LHSettings sharedInstance].lhPtmRatio))){
                 return true;
             }
             stFix = stFix->GetNext();
@@ -1208,7 +1208,7 @@ typedef struct lhV3F_Line
 //------------------------------------------------------------------------------
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
-    CGPoint touchPoint = [touch locationInView:[touch view]];    
+    CGPoint touchPoint = [touch locationInView:touch.view];    
     touchPoint=  [[CCDirector sharedDirector] convertToGL:touchPoint];    
 
     
@@ -1232,10 +1232,10 @@ typedef struct lhV3F_Line
 }
 //------------------------------------------------------------------------------
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event{    
-    CGPoint touchPoint = [touch locationInView:[touch view]];
+    CGPoint touchPoint = [touch locationInView:touch.view];
     touchPoint=  [[CCDirector sharedDirector] convertToGL:touchPoint];
     
-    CGPoint prevLocation = [touch previousLocationInView:[touch view]];
+    CGPoint prevLocation = [touch previousLocationInView:touch.view];
     prevLocation = [[CCDirector sharedDirector] convertToGL:prevLocation];    
     
     LHTouchInfo* info = [LHTouchInfo touchInfo];
@@ -1254,10 +1254,10 @@ typedef struct lhV3F_Line
 //------------------------------------------------------------------------------
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
     
-    CGPoint touchPoint = [touch locationInView:[touch view]];
+    CGPoint touchPoint = [touch locationInView:touch.view];
     touchPoint=  [[CCDirector sharedDirector] convertToGL:touchPoint];
 
-    CGPoint prevLocation = [touch previousLocationInView:[touch view]];
+    CGPoint prevLocation = [touch previousLocationInView:touch.view];
     prevLocation = [[CCDirector sharedDirector] convertToGL:prevLocation];    
 
     LHTouchInfo* info = [LHTouchInfo touchInfo];
@@ -1458,7 +1458,7 @@ typedef struct lhV3F_Line
         CCNode* spr = (__bridge CCNode*)body->GetUserData();
 #endif
         if(nil != spr){
-            return (int)[spr tag];
+            return (int)spr.tag;
         }
     }
     return -1;

@@ -39,7 +39,7 @@
 @synthesize touch;
 @synthesize sprite;
 @synthesize bezier;
--(id)initLHTouchInfo{
+-(instancetype)initLHTouchInfo{
     self = [super init];
 	if (self != nil){
         sprite = nil;
@@ -52,7 +52,7 @@
 	}
 	return self;
 }
-+(id)touchInfo{
++(instancetype)touchInfo{
 #ifndef LH_ARC_ENABLED
     return [[[LHTouchInfo alloc] initLHTouchInfo] autorelease];
 #else
@@ -66,7 +66,7 @@
 @synthesize object;
 @synthesize selector;
 //------------------------------------------------------------------------------
--(id)initObserverPair{
+-(instancetype)initObserverPair{
     self = [super init];
 	if (self != nil){
         object = nil;
@@ -77,7 +77,7 @@
 //------------------------------------------------------------------------------
 
 
-+(id)observerPair{
++(instancetype)observerPair{
 #ifndef LH_ARC_ENABLED
     return [[[LHObserverPair alloc] initObserverPair] autorelease];    
 #else
@@ -137,7 +137,7 @@
 #endif
 }
 //------------------------------------------------------------------------------
-- (id)init
+- (instancetype)init
 {
 	self = [super init];
 	if (self != nil) {
@@ -155,8 +155,7 @@
     if(priorityForTouchesOfTag == nil)
         priorityForTouchesOfTag = [[NSMutableDictionary alloc] init];
     
-    [priorityForTouchesOfTag setObject:[NSNumber numberWithInt:priority] 
-                                forKey:[NSNumber numberWithInt:tag]];
+    priorityForTouchesOfTag[@(tag)] = @(priority);
 }
 //------------------------------------------------------------------------------
 -(void) swallowTouchesForTag:(int)tag{
@@ -164,8 +163,7 @@
     if(swallowTouchesOnTag == nil)
         swallowTouchesOnTag = [[NSMutableDictionary alloc] init];
     
-    [swallowTouchesOnTag setObject:[NSNumber numberWithBool:TRUE] 
-                            forKey:[NSNumber numberWithInt:tag]];
+    swallowTouchesOnTag[@(tag)] = [NSNumber numberWithBool:TRUE];
 }
 //------------------------------------------------------------------------------
 -(void)registerTouchBeginObserver:(id)observer selector:(SEL)selector 
@@ -178,39 +176,36 @@
     if(onTouchBeginOnSpriteOfTag == nil)
         onTouchBeginOnSpriteOfTag = [[NSMutableDictionary alloc] init];
     
-    [onTouchBeginOnSpriteOfTag removeObjectForKey:[NSNumber numberWithInt:(int)tag]];
+    [onTouchBeginOnSpriteOfTag removeObjectForKey:@((int)tag)];
     
     LHObserverPair* pair = [LHObserverPair observerPair];
     pair.object = observer;
     pair.selector = selector;
-    [onTouchBeginOnSpriteOfTag setObject:pair 
-                                  forKey:[NSNumber numberWithInt:(int)tag]];
+    onTouchBeginOnSpriteOfTag[@((int)tag)] = pair;
 }
 -(void)registerTouchMovedObserver:(id)observer selector:(SEL)selector 
                 forTag:(int)tag{
     if(onTouchMovedOnSpriteOfTag == nil)
         onTouchMovedOnSpriteOfTag = [[NSMutableDictionary alloc] init];
     
-    [onTouchMovedOnSpriteOfTag removeObjectForKey:[NSNumber numberWithInt:(int)tag]];
+    [onTouchMovedOnSpriteOfTag removeObjectForKey:@((int)tag)];
 
     LHObserverPair* pair = [LHObserverPair observerPair];
     pair.object = observer;
     pair.selector = selector;
-    [onTouchMovedOnSpriteOfTag setObject:pair 
-                                  forKey:[NSNumber numberWithInt:(int)tag]];
+    onTouchMovedOnSpriteOfTag[@((int)tag)] = pair;
 }
 -(void)registerTouchEndedObserver:(id)observer selector:(SEL)selector 
                 forTag:(int)tag{
     if(onTouchEndedOnSpriteOfTag == nil)
         onTouchEndedOnSpriteOfTag = [[NSMutableDictionary alloc] init];
     
-    [onTouchEndedOnSpriteOfTag removeObjectForKey:[NSNumber numberWithInt:(int)tag]];
+    [onTouchEndedOnSpriteOfTag removeObjectForKey:@((int)tag)];
 
     LHObserverPair* pair = [LHObserverPair observerPair];
     pair.object = observer;
     pair.selector = selector;
-    [onTouchEndedOnSpriteOfTag setObject:pair 
-                                  forKey:[NSNumber numberWithInt:(int)tag]];    
+    onTouchEndedOnSpriteOfTag[@((int)tag)] = pair;    
 }
 //removing touch begin observer will remove all other observers also
 -(void)removeTouchBeginObserver:(id)observer{
@@ -218,10 +213,10 @@
     if(onTouchBeginOnSpriteOfTag == nil)
         return;
     
-    NSArray* keys = [onTouchBeginOnSpriteOfTag allKeys];
+    NSArray* keys = onTouchBeginOnSpriteOfTag.allKeys;
     
     for(NSNumber* key in keys){
-        LHObserverPair* pair = [onTouchBeginOnSpriteOfTag objectForKey:key];
+        LHObserverPair* pair = onTouchBeginOnSpriteOfTag[key];
         if(pair.object == observer){
             [onTouchBeginOnSpriteOfTag removeObjectForKey:key];
         }
@@ -235,10 +230,10 @@
     if(onTouchMovedOnSpriteOfTag == nil)
         return;
     
-    NSArray* keys = [onTouchMovedOnSpriteOfTag allKeys];
+    NSArray* keys = onTouchMovedOnSpriteOfTag.allKeys;
     
     for(NSNumber* key in keys){
-        LHObserverPair* pair = [onTouchMovedOnSpriteOfTag objectForKey:key];
+        LHObserverPair* pair = onTouchMovedOnSpriteOfTag[key];
         if(pair.object == observer){
             [onTouchMovedOnSpriteOfTag removeObjectForKey:key];
         }
@@ -249,10 +244,10 @@
     if(onTouchEndedOnSpriteOfTag == nil)
         return;
     
-    NSArray* keys = [onTouchEndedOnSpriteOfTag allKeys];
+    NSArray* keys = onTouchEndedOnSpriteOfTag.allKeys;
     
     for(NSNumber* key in keys){
-        LHObserverPair* pair = [onTouchEndedOnSpriteOfTag objectForKey:key];
+        LHObserverPair* pair = onTouchEndedOnSpriteOfTag[key];
         if(pair.object == observer){
             [onTouchEndedOnSpriteOfTag removeObjectForKey:key];
         }
@@ -262,26 +257,26 @@
 //------------------------------------------------------------------------------
 -(LHObserverPair*)onTouchBeginObserverForTag:(int)tag{
     if(onTouchBeginOnSpriteOfTag){
-        return [onTouchBeginOnSpriteOfTag objectForKey:[NSNumber numberWithInt:tag]];
+        return onTouchBeginOnSpriteOfTag[@(tag)];
     }
     return nil;
 }
 -(LHObserverPair*)onTouchMovedObserverForTag:(int)tag{
     if(onTouchMovedOnSpriteOfTag){
-        return [onTouchMovedOnSpriteOfTag objectForKey:[NSNumber numberWithInt:tag]];
+        return onTouchMovedOnSpriteOfTag[@(tag)];
     }
     return nil;    
 }
 -(LHObserverPair*)onTouchEndedObserverForTag:(int)tag{
     if(onTouchEndedOnSpriteOfTag){
-        return [onTouchEndedOnSpriteOfTag objectForKey:[NSNumber numberWithInt:tag]];
+        return onTouchEndedOnSpriteOfTag[@(tag)];
     }
     return nil;        
 }
 //------------------------------------------------------------------------------
 -(bool)shouldTouchesBeSwallowedForTag:(int)tag{
     if(swallowTouchesOnTag){
-        if(nil != [swallowTouchesOnTag objectForKey:[NSNumber numberWithInt:tag]])
+        if(nil != swallowTouchesOnTag[@(tag)])
             return true;
     }
     return false;
@@ -289,9 +284,9 @@
 //------------------------------------------------------------------------------
 -(int)priorityForTag:(int)tag{
     if(priorityForTouchesOfTag){
-        NSNumber* nr = [priorityForTouchesOfTag objectForKey:[NSNumber numberWithInt:tag]];
+        NSNumber* nr = priorityForTouchesOfTag[@(tag)];
         if(nr)
-            return [nr intValue];
+            return nr.intValue;
     }
     return 0;
 }

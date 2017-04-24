@@ -102,16 +102,16 @@ struct _hashUniformEntry;
 @property(nonatomic, readonly) GLuint program;
 
 /** Initializes the CCGLProgram with a vertex and fragment with bytes array */
-- (id)initWithVertexShaderByteArray:(const GLchar*)vShaderByteArray fragmentShaderByteArray:(const GLchar*)fShaderByteArray;
+- (instancetype)initWithVertexShaderByteArray:(const GLchar*)vShaderByteArray fragmentShaderByteArray:(const GLchar*)fShaderByteArray NS_DESIGNATED_INITIALIZER;
 
 /** Initializes the CCGLProgram with a vertex and fragment with contents of filenames */
-- (id)initWithVertexShaderFilename:(NSString *)vShaderFilename fragmentShaderFilename:(NSString *)fShaderFilename;
+- (instancetype)initWithVertexShaderFilename:(NSString *)vShaderFilename fragmentShaderFilename:(NSString *)fShaderFilename;
 
 /**  It will add a new attribute to the shader */
 - (void)addAttribute:(NSString *)attributeName index:(GLuint)index;
 
 /** links the glProgram */
-- (BOOL)link;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL link;
 
 /** it will call glUseProgram() */
 - (void)use;
@@ -160,11 +160,11 @@ struct _hashUniformEntry;
 -(void)setUniformForModelViewProjectionMatrix __attribute__((__deprecated__));
 
 /** returns the vertexShader error log */
-- (NSString *)vertexShaderLog;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *vertexShaderLog;
 
 /** returns the fragmentShader error log */
-- (NSString *)fragmentShaderLog;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *fragmentShaderLog;
 
 /** returns the program error log */
-- (NSString *)programLog;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *programLog;
 @end

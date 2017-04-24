@@ -152,16 +152,16 @@
 //CONSTRUCTORS USED BY LEVELHELPER
 //Autorelease constructors - user should almost always use this
 +(id)batchSpriteWithDictionary:(NSDictionary*)dictionary batch:(LHBatch*)batch;//render by batch node
-+(id)spriteWithDictionary:(NSDictionary*)dictionary;//self render
++(instancetype)spriteWithDictionary:(NSDictionary*)dictionary;//self render
 
--(id)initBatchSpriteWithDictionary:(NSDictionary*)dictionary batch:(LHBatch*)batch;
--(id)initWithDictionary:(NSDictionary*)dictionary;
+-(instancetype)initBatchSpriteWithDictionary:(NSDictionary*)dictionary batch:(LHBatch*)batch NS_DESIGNATED_INITIALIZER;
+-(instancetype)initWithDictionary:(NSDictionary*)dictionary NS_DESIGNATED_INITIALIZER;
 
 -(void)postInit;
 //the top methods should be overloaded when overloading this class
 
 //CONSTRUCTORS FOR THE USER
-+(id)spriteWithName:(NSString*)spriteName 
++(instancetype)spriteWithName:(NSString*)spriteName 
           fromSheet:(NSString*)sheetName 
              SHFile:(NSString*)spriteHelperFile;
 
@@ -173,27 +173,23 @@
 -(void)removeSelf; //use this to completely remove a sprite from the game
 
 
--(LevelHelperLoader*) parentLoader;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) LevelHelperLoader *parentLoader;
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 //INFO METHODS
 //------------------------------------------------------------------------------
--(void) setUniqueName:(NSString*)name;
--(NSString*)uniqueName;
+@property (NS_NONATOMIC_IOSONLY, copy) NSString *uniqueName;
 
 #ifdef LH_USE_BOX2D
--(void) setBody:(b2Body*)body;
--(b2Body*)body;
--(bool) removeBodyFromWorld;
+@property (NS_NONATOMIC_IOSONLY) b2Body *body;
+@property (NS_NONATOMIC_IOSONLY, readonly) bool removeBodyFromWorld;
 #endif
 
--(NSString*)imageFile;
--(void)setImageFile:(NSString*)img;
+@property (NS_NONATOMIC_IOSONLY, copy) NSString *imageFile;
 
--(CGRect)originalRect;
--(void)setOriginalRect:(CGRect)rect;
+@property (NS_NONATOMIC_IOSONLY) CGRect originalRect;
 
--(CGPoint)originalTextureOffset;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGPoint originalTextureOffset;
 
 @property (readonly) NSString* shSceneName;
 @property (readonly) NSString* shSheetName;
@@ -240,17 +236,16 @@
 -(void) restartAnimation;
 -(void) stopAnimation; //removes the animation entirely
 
--(bool) isAnimationPaused;
+@property (NS_NONATOMIC_IOSONLY, getter=isAnimationPaused, readonly) bool animationPaused;
 
--(NSString*) animationName;
--(NSString*) animationSHScene;
--(int) numberOfFrames;
--(int) currentFrame;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *animationName;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *animationSHScene;
+@property (NS_NONATOMIC_IOSONLY, readonly) int numberOfFrames;
+@property (NS_NONATOMIC_IOSONLY, readonly) int currentFrame;
 
--(float) animationDelayPerUnit;
--(void) setAnimationDelayPerUnit:(float)d;
+@property (NS_NONATOMIC_IOSONLY) float animationDelayPerUnit;
 
--(float)animationDuration;//return how much time will take for a loop to complete
+@property (NS_NONATOMIC_IOSONLY, readonly) float animationDuration;//return how much time will take for a loop to complete
 
 -(void)setFrame:(int)frmNo;
 -(void) nextFrame;
@@ -259,12 +254,12 @@
 -(void) nextFrameAndRepeat; //will loop when it reaches end
 -(void) prevFrameAndRepeat; //will loop when it reaches start
 
--(bool) isAtLastFrame;
+@property (NS_NONATOMIC_IOSONLY, getter=isAtLastFrame, readonly) bool atLastFrame;
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 //USER CUSTOM INFO - based on the custom class template
 //------------------------------------------------------------------------------
--(NSString*)userInfoClassName;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *userInfoClassName;
 //this will return an instance of the class defined in LH under Custom Class Properties
 //check for nil to see if you have any info
 //use the class properties to read all your info 
@@ -272,7 +267,7 @@
 
 //use the class properties to set new (other then the one set in LH) values
 //e.g id myInfo = [sprite userInfo]; if(myInfo){ myInfo.life = 40; } )
--(id)userInfo; 
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) id userInfo; 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 //JOINTS LIST
@@ -280,11 +275,11 @@
 //returns the LHJoint* objects attached to the body of this sprite
 //from the LHJoint you can take back the box2d joint
 #ifdef LH_USE_BOX2D
--(NSArray*) jointList; //array contains LHJoint* objects
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *jointList; //array contains LHJoint* objects
 -(LHJoint*) jointWithUniqueName:(NSString*)name;
 
 //remove all joints attached to this sprite
--(bool) removeAllAttachedJoints;
+@property (NS_NONATOMIC_IOSONLY, readonly) bool removeAllAttachedJoints;
 -(bool) removeJoint:(LHJoint*)jt;
 #endif
 ////////////////////////////////////////////////////////////////////////////////
@@ -294,7 +289,7 @@
 //------------------------------------------------------------------------------
 -(void) prepareMovementOnPathWithUniqueName:(NSString*)pathName;
 
--(NSString*) pathUniqueName;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *pathUniqueName;
 
 //use this methods when you want to get notification about path movement on a per sprite basis
 -(void) setPathMovementHasEndedObserver:(id)observer selector:(SEL)selector;
@@ -314,29 +309,21 @@
 -(void) restartPathMovement;
 -(void) stopPathMovement; //removes the path movement;
 
--(void) setPathMovementSpeed:(float)value;
--(float)pathMovementSpeed;
+@property (NS_NONATOMIC_IOSONLY) float pathMovementSpeed;
 
--(void) setPathMovementStartPoint:(enum LH_PATH_MOVEMENT_START_POINT)point;
--(enum LH_PATH_MOVEMENT_START_POINT) pathMovementStartPoint;
+@property (NS_NONATOMIC_IOSONLY) enum LH_PATH_MOVEMENT_START_POINT pathMovementStartPoint;
 
--(void) setPathMovementIsCyclic:(bool)cyclic;
--(bool) pathMovementIsCyclic;
+@property (NS_NONATOMIC_IOSONLY) bool pathMovementIsCyclic;
 
--(void) setPathMovementRestartsAtOtherEnd:(bool)otherEnd;
--(bool) pathMovementRestartsAtOtherEnd;
+@property (NS_NONATOMIC_IOSONLY) bool pathMovementRestartsAtOtherEnd;
 
--(void) setPathMovementOrientation:(enum LH_PATH_MOVEMENT_ORIENTATION)point;
--(enum LH_PATH_MOVEMENT_ORIENTATION) pathMovementOrientation;
+@property (NS_NONATOMIC_IOSONLY) enum LH_PATH_MOVEMENT_ORIENTATION pathMovementOrientation;
 
--(void) setPathMovementFlipXAtEnd:(bool)flip;
--(bool) pathMovementFlipXAtEnd;
+@property (NS_NONATOMIC_IOSONLY) bool pathMovementFlipXAtEnd;
 
--(void) setPathMovementFlipYAtEnd:(bool)flip;
--(bool) pathMovementFlipYAtEnd;
+@property (NS_NONATOMIC_IOSONLY) bool pathMovementFlipYAtEnd;
 
--(void) setPathMovementRelative:(bool)rel;
--(bool) pathMovementRelative;
+@property (NS_NONATOMIC_IOSONLY) bool pathMovementRelative;
 
 //for notifications please consult the api documentation or LHPathNode.h
 //------------------------------------------------------------------------------
@@ -414,10 +401,10 @@
 -(void)setSensor:(bool)val fixturesWithID:(int)fixID; //makes all the fixtures with the id sensors
 -(void)setSensor:(bool)val; //makes the entire body a sensor
 
--(bool)hasContacts;
+@property (NS_NONATOMIC_IOSONLY, readonly) bool hasContacts;
 //this methods return NULL if no contacts are found
--(NSArray*)contactSprites;//will return only the LHSprites objects with which this sprite is in contact
--(NSArray*)contactBeziers;//will return only the LHBezier objects with which this sprite is in contact
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *contactSprites;//will return only the LHSprites objects with which this sprite is in contact
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *contactBeziers;//will return only the LHBezier objects with which this sprite is in contact
 //Note: even if contactSprites and/or contactBeziers return an empty array, the sprite might still be in contact
 //with something else, like the physics boundaries or a box2d body created by your own code.
 //Use hasContacts to see if the sprite is in contact with anything

@@ -42,8 +42,8 @@
         LHContactListener *lhContactListener;
 }
 
--(id) initContactNodeWithWorld:(b2World*)world;
-+(id) contactNodeWithWorld:(b2World*)world;
+-(instancetype) initContactNodeWithWorld:(b2World*)world NS_DESIGNATED_INITIALIZER;
++(instancetype) contactNodeWithWorld:(b2World*)world;
 
 -(void)preSolve:(b2Contact*)contact                     
        manifold:(const b2Manifold*) oldManifold;

@@ -43,5 +43,5 @@
 /** initializes a node.
  The node will be created as "autorelease".
  */
--(id) init;
+-(instancetype) init;
 @end

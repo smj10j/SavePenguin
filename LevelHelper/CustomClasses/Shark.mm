@@ -46,35 +46,35 @@ return NSStringFromClass([self class]);
 -(void) setPropertiesFromDictionary:(NSDictionary*)dictionary
 {
 
-	if([dictionary objectForKey:@"isInvisible"])
-		[self setIsInvisible:[[dictionary objectForKey:@"isInvisible"] boolValue]];
+	if(dictionary[@"isInvisible"])
+		self.isInvisible = [dictionary[@"isInvisible"] boolValue];
 
-	if([dictionary objectForKey:@"endpointX"])
-		[self setEndpointX:[[dictionary objectForKey:@"endpointX"] floatValue]];
+	if(dictionary[@"endpointX"])
+		self.endpointX = [dictionary[@"endpointX"] floatValue];
 
-	if([dictionary objectForKey:@"activeSpeed"])
-		[self setActiveSpeed:[[dictionary objectForKey:@"activeSpeed"] floatValue]];
+	if(dictionary[@"activeSpeed"])
+		self.activeSpeed = [dictionary[@"activeSpeed"] floatValue];
 
-	if([dictionary objectForKey:@"hatName"])
-		[self setHatName:[dictionary objectForKey:@"hatName"]];
+	if(dictionary[@"hatName"])
+		self.hatName = dictionary[@"hatName"];
 
-	if([dictionary objectForKey:@"restingDetectionRadius"])
-		[self setRestingDetectionRadius:[[dictionary objectForKey:@"restingDetectionRadius"] floatValue]];
+	if(dictionary[@"restingDetectionRadius"])
+		self.restingDetectionRadius = [dictionary[@"restingDetectionRadius"] floatValue];
 
-	if([dictionary objectForKey:@"activeDetectionRadius"])
-		[self setActiveDetectionRadius:[[dictionary objectForKey:@"activeDetectionRadius"] floatValue]];
+	if(dictionary[@"activeDetectionRadius"])
+		self.activeDetectionRadius = [dictionary[@"activeDetectionRadius"] floatValue];
 
-	if([dictionary objectForKey:@"endpointY"])
-		[self setEndpointY:[[dictionary objectForKey:@"endpointY"] floatValue]];
+	if(dictionary[@"endpointY"])
+		self.endpointY = [dictionary[@"endpointY"] floatValue];
 
-	if([dictionary objectForKey:@"isStuck"])
-		[self setIsStuck:[[dictionary objectForKey:@"isStuck"] boolValue]];
+	if(dictionary[@"isStuck"])
+		self.isStuck = [dictionary[@"isStuck"] boolValue];
 
-	if([dictionary objectForKey:@"restingSpeed"])
-		[self setRestingSpeed:[[dictionary objectForKey:@"restingSpeed"] floatValue]];
+	if(dictionary[@"restingSpeed"])
+		self.restingSpeed = [dictionary[@"restingSpeed"] floatValue];
 
-	if([dictionary objectForKey:@"targetAcquired"])
-		[self setTargetAcquired:[[dictionary objectForKey:@"targetAcquired"] boolValue]];
+	if(dictionary[@"targetAcquired"])
+		self.targetAcquired = [dictionary[@"targetAcquired"] boolValue];
 
 }
 

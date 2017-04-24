@@ -58,17 +58,17 @@
 
 #pragma mark TextureAtlas - alloc & init
 
-+(id) textureAtlasWithFile:(NSString*) file capacity: (NSUInteger) n
++(instancetype) textureAtlasWithFile:(NSString*) file capacity: (NSUInteger) n
 {
 	return [[[self alloc] initWithFile:file capacity:n] autorelease];
 }
 
-+(id) textureAtlasWithTexture:(CCTexture2D *)tex capacity:(NSUInteger)n
++(instancetype) textureAtlasWithTexture:(CCTexture2D *)tex capacity:(NSUInteger)n
 {
 	return [[[self alloc] initWithTexture:tex capacity:n] autorelease];
 }
 
--(id) initWithFile:(NSString*)file capacity:(NSUInteger)n
+-(instancetype) initWithFile:(NSString*)file capacity:(NSUInteger)n
 {
 	// retained in property
 	CCTexture2D *tex = [[CCTextureCache sharedTextureCache] addImage:file];
@@ -83,7 +83,7 @@
 	}
 }
 
--(id) initWithTexture:(CCTexture2D*)tex capacity:(NSUInteger)n
+-(instancetype) initWithTexture:(CCTexture2D*)tex capacity:(NSUInteger)n
 {
 	if( (self=[super init]) ) {
 
@@ -213,8 +213,8 @@
 		CHECK_GL_ERROR_DEBUG();
 	};
 	
-	NSThread *cocos2dThread = [[CCDirector sharedDirector] runningThread];
-	if( cocos2dThread == [NSThread currentThread] || [[CCConfiguration sharedConfiguration] supportsShareableVAO] )
+	NSThread *cocos2dThread = [CCDirector sharedDirector].runningThread;
+	if( cocos2dThread == [NSThread currentThread] || [CCConfiguration sharedConfiguration].supportsShareableVAO )
 		createVAO();
 	else 
 		[cocos2dThread performBlock:createVAO waitUntilDone:YES];
@@ -487,7 +487,7 @@
 
 -(void) drawNumberOfQuads: (NSUInteger) n fromIndex: (NSUInteger) start
 {
-	ccGLBindTexture2D( [texture_ name] );
+	ccGLBindTexture2D( texture_.name );
 
 #if CC_TEXTURE_ATLAS_USE_VAO
 

@@ -21,7 +21,7 @@
 @property (readonly) NSString* fixtureName;
 @property (readonly) int fixtureID;
 
-+(id)fixtureWithDictionary:(NSDictionary*)dictionary 
++(instancetype)fixtureWithDictionary:(NSDictionary*)dictionary 
                       body:(b2Body*)body 
                     sprite:(LHSprite*)sprite;
 

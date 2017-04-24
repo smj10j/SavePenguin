@@ -35,7 +35,7 @@
 /** creates the action with a range, whether or not to shake Z vertices, a grid size, and duration */
 +(id)actionWithRange:(int)range shakeZ:(BOOL)shakeZ grid:(ccGridSize)gridSize duration:(ccTime)d;
 /** initializes the action with a range, whether or not to shake Z vertices, a grid size, and duration */
--(id)initWithRange:(int)range shakeZ:(BOOL)shakeZ grid:(ccGridSize)gridSize duration:(ccTime)d;
+-(instancetype)initWithRange:(int)range shakeZ:(BOOL)shakeZ grid:(ccGridSize)gridSize duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -52,7 +52,7 @@
 /** creates the action with a range, whether of not to shatter Z vertices, a grid size and duration */
 +(id)actionWithRange:(int)range shatterZ:(BOOL)shatterZ grid:(ccGridSize)gridSize duration:(ccTime)d;
 /** initializes the action with a range, whether or not to shatter Z vertices, a grid size and duration */
--(id)initWithRange:(int)range shatterZ:(BOOL)shatterZ grid:(ccGridSize)gridSize duration:(ccTime)d;
+-(instancetype)initWithRange:(int)range shatterZ:(BOOL)shatterZ grid:(ccGridSize)gridSize duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -72,7 +72,7 @@
 /** creates the action with a random seed, the grid size and the duration */
 +(id)actionWithSeed:(int)s grid:(ccGridSize)gridSize duration:(ccTime)d;
 /** initializes the action with a random seed, the grid size and the duration */
--(id)initWithSeed:(int)s grid:(ccGridSize)gridSize duration:(ccTime)d;
+-(instancetype)initWithSeed:(int)s grid:(ccGridSize)gridSize duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -131,7 +131,7 @@
 /** creates the action with a random seed, the grid size and the duration */
 +(id)actionWithSeed:(int)s grid:(ccGridSize)gridSize duration:(ccTime)d;
 /** initializes the action with a random seed, the grid size and the duration */
--(id)initWithSeed:(int)s grid:(ccGridSize)gridSize duration:(ccTime)d;
+-(instancetype)initWithSeed:(int)s grid:(ccGridSize)gridSize duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 @end
 
 ////////////////////////////////////////////////////////////
@@ -152,7 +152,7 @@
 /** creates the action with a number of waves, the waves amplitude, the grid size and the duration */
 +(id)actionWithWaves:(int)wav amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d;
 /** initializes the action with a number of waves, the waves amplitude, the grid size and the duration */
--(id)initWithWaves:(int)wav amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d;
+-(instancetype)initWithWaves:(int)wav amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -176,7 +176,7 @@
 /** creates the action with the number of jumps, the sin amplitude, the grid size and the duration */
 +(id)actionWithJumps:(int)j amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d;
 /** initializes the action with the number of jumps, the sin amplitude, the grid size and the duration */
--(id)initWithJumps:(int)j amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d;
+-(instancetype)initWithJumps:(int)j amplitude:(float)amp grid:(ccGridSize)gridSize duration:(ccTime)d NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -191,7 +191,7 @@
 /** creates the action with the number of rows to split and the duration */
 +(id)actionWithRows:(int)rows duration:(ccTime)duration;
 /** initializes the action with the number of rows to split and the duration */
--(id)initWithRows:(int)rows duration:(ccTime)duration;
+-(instancetype)initWithRows:(int)rows duration:(ccTime)duration NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -206,6 +206,6 @@
 /** creates the action with the number of columns to split and the duration */
 +(id)actionWithCols:(int)cols duration:(ccTime)duration;
 /** initializes the action with the number of columns to split and the duration */
--(id)initWithCols:(int)cols duration:(ccTime)duration;
+-(instancetype)initWithCols:(int)cols duration:(ccTime)duration NS_DESIGNATED_INITIALIZER;
 
 @end

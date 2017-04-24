@@ -81,21 +81,21 @@ static char * glExtensions;
 }
 #endif // __CC_PLATFORM_MAC
 
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init])) {
 
 		// Obtain iOS version
 		OSVersion_ = 0;
 #ifdef __CC_PLATFORM_IOS
-		NSString *OSVer = [[UIDevice currentDevice] systemVersion];
+		NSString *OSVer = [UIDevice currentDevice].systemVersion;
 #elif defined(__CC_PLATFORM_MAC)
 		NSString *OSVer = [self getMacVersion];
 #endif
 		NSArray *arr = [OSVer componentsSeparatedByString:@"."];
 		int idx = 0x01000000;
 		for( NSString *str in arr ) {
-			int value = [str intValue];
+			int value = str.intValue;
 			OSVersion_ += value * idx;
 			idx = idx >> 8;
 		}
@@ -188,7 +188,7 @@ static char * glExtensions;
 {
 	// For best results, extensionsNames should be stored in your renderer so that it does not
 	// need to be recreated on each invocation.
-    NSString *extensionsString = [NSString stringWithCString:glExtensions encoding: NSASCIIStringEncoding];
+    NSString *extensionsString = @(glExtensions);
     NSArray *extensionsNames = [extensionsString componentsSeparatedByString:@" "];
     return [extensionsNames containsObject: searchName];
 }

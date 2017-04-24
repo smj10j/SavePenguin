@@ -48,27 +48,27 @@ for(const CC_ARC_UNSAFE_RETAINED id *__arr__ = __array__->data->arr, *end = __ar
 	@public ccArray *data;
 }
 
-+ (id) array;
-+ (id) arrayWithCapacity:(NSUInteger)capacity;
-+ (id) arrayWithArray:(CCArray*)otherArray;
-+ (id) arrayWithNSArray:(NSArray*)otherArray;
++ (instancetype) array;
++ (instancetype) arrayWithCapacity:(NSUInteger)capacity;
++ (instancetype) arrayWithArray:(CCArray*)otherArray;
++ (instancetype) arrayWithNSArray:(NSArray*)otherArray;
 
 
-- (id) initWithCapacity:(NSUInteger)capacity;
-- (id) initWithArray:(CCArray*)otherArray;
-- (id) initWithNSArray:(NSArray*)otherArray;
+- (instancetype) initWithCapacity:(NSUInteger)capacity NS_DESIGNATED_INITIALIZER;
+- (instancetype) initWithArray:(CCArray*)otherArray;
+- (instancetype) initWithNSArray:(NSArray*)otherArray;
 
 
 // Querying an Array
 
-- (NSUInteger) count;
-- (NSUInteger) capacity;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger count;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger capacity;
 - (NSUInteger) indexOfObject:(id)object;
 - (id) objectAtIndex:(NSUInteger)index;
 - (BOOL) containsObject:(id)object;
-- (id) randomObject;
-- (id) lastObject;
-- (NSArray*) getNSArray;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) id randomObject;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) id lastObject;
+@property (NS_NONATOMIC_IOSONLY, getter=getNSArray, readonly, copy) NSArray *NSArray;
 /** @since 1.1 */
 - (BOOL) isEqualToArray:(CCArray*)otherArray;
 

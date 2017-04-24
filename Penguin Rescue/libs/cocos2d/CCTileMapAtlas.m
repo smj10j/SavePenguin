@@ -41,13 +41,13 @@
 @synthesize tgaInfo;
 
 #pragma mark CCTileMapAtlas - Creation & Init
-+(id) tileMapAtlasWithTileFile:(NSString*)tile mapFile:(NSString*)map tileWidth:(int)w tileHeight:(int)h
++(instancetype) tileMapAtlasWithTileFile:(NSString*)tile mapFile:(NSString*)map tileWidth:(int)w tileHeight:(int)h
 {
 	return [[[self alloc] initWithTileFile:tile mapFile:map tileWidth:w tileHeight:h] autorelease];
 }
 
 
--(id) initWithTileFile:(NSString*)tile mapFile:(NSString*)map tileWidth:(int)w tileHeight:(int)h
+-(instancetype) initWithTileFile:(NSString*)tile mapFile:(NSString*)map tileWidth:(int)w tileHeight:(int)h
 {
 	[self loadTGAfile: map];
 	[self calculateItemsToRender];
@@ -60,7 +60,7 @@
 
 		[self updateAtlasValues];
 
-		[self setContentSize: CGSizeMake(tgaInfo->width*itemWidth_, tgaInfo->height*itemHeight_)];
+		self.contentSize = CGSizeMake(tgaInfo->width*itemWidth_, tgaInfo->height*itemHeight_);
 	}
 
 	return self;
@@ -113,7 +113,7 @@
 //	NSString *resourcePath = [mainBndl resourcePath];
 //	NSString * path = [resourcePath stringByAppendingPathComponent:file];
 
-	tgaInfo = tgaLoad( [path UTF8String] );
+	tgaInfo = tgaLoad( path.UTF8String );
 #if 1
 	if( tgaInfo->status != TGA_OK )
 		[NSException raise:@"TileMapAtlasLoadTGA" format:@"TileMapAtas cannot load TGA file"];
@@ -140,8 +140,8 @@
 
 		// XXX: this method consumes a lot of memory
 		// XXX: a tree of something like that shall be impolemented
-		NSNumber *num = [posToAtlasIndex objectForKey: [NSString stringWithFormat:@"%ld,%ld", (long)pos.x, (long)pos.y]];
-		[self updateAtlasValueAt:pos withValue:tile withIndex: [num integerValue]];
+		NSNumber *num = posToAtlasIndex[[NSString stringWithFormat:@"%ld,%ld", (long)pos.x, (long)pos.y]];
+		[self updateAtlasValueAt:pos withValue:tile withIndex: num.integerValue];
 	}
 }
 
@@ -166,8 +166,8 @@
 	float row = (value.r % itemsPerRow_);
 	float col = (value.r / itemsPerRow_);
 
-	float textureWide = [[textureAtlas_ texture] pixelsWide];
-	float textureHigh = [[textureAtlas_ texture] pixelsHigh];
+	float textureWide = textureAtlas_.texture.pixelsWide;
+	float textureHigh = textureAtlas_.texture.pixelsHigh;
 
 	float itemWidthInPixels = itemWidth_ * CC_CONTENT_SCALE_FACTOR();
     float itemHeightInPixels = itemHeight_ * CC_CONTENT_SCALE_FACTOR();
@@ -233,8 +233,8 @@
 					[self updateAtlasValueAt:ccg(x,y) withValue:value withIndex:total];
 
 					NSString *key = [NSString stringWithFormat:@"%d,%d", x,y];
-					NSNumber *num = [NSNumber numberWithInt:total];
-					[posToAtlasIndex setObject:num forKey:key];
+					NSNumber *num = @(total);
+					posToAtlasIndex[key] = num;
 
 					total++;
 				}

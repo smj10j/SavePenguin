@@ -16,7 +16,7 @@
 #import "ScoreKeeper.h"
 #import "Analytics.h"
 #import "APIManager.h"
-#import "TestFlight.h"
+//#import "TestFlight.h"
 
 @implementation AppController
 
@@ -28,21 +28,21 @@
 	//capture uncaught exceptions for logging
 	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 	
-	//testflight
-	if(TESTFLIGHT_BUILD) {
-		[TestFlight takeOff:@"dcb57a9ef2d39552f3b77d6fa6ec3bb0_MTQxOTk2MjAxMi0xMC0xMSAwMjo1NDowMy44OTg4NTk"];
-		[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-	}	
+//	//testflight
+//	if(TESTFLIGHT_BUILD) {
+//		[TestFlight takeOff:@"dcb57a9ef2d39552f3b77d6fa6ec3bb0_MTQxOTk2MjAxMi0xMC0xMSAwMjo1NDowMy44OTg4NTk"];
+//		[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+//	}	
 	
 	//start analytics
 	[Analytics startAnalytics];
 	
 	// Create the main window
-	_window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	_window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 	
 	
 	// Create an CCGLView with a RGB565 color buffer, and a depth buffer of 0-bits
-	CCGLView *glView = [CCGLView viewWithFrame:[_window bounds]
+	CCGLView *glView = [CCGLView viewWithFrame:_window.bounds
 								   pixelFormat:kEAGLColorFormatRGBA8	// was kEAGLColorFormatRGB565
 								   depthFormat:GL_DEPTH_COMPONENT24_OES	// was 0
 							preserveBackbuffer:NO
@@ -55,7 +55,7 @@
 
 	_director = (CCDirectorIOS*) [CCDirector sharedDirector];
 	
-	_director.wantsFullScreenLayout = YES;
+//    _director.edgesForExtendedLayout = UIRectEdgeNone;
 	
 	// Display FSP and SPF
 	if(DEBUG_MEMORY) {
@@ -63,16 +63,16 @@
 	}
 	
 	// set FPS at 60
-	[_director setAnimationInterval:1.0/TARGET_FPS];
+	_director.animationInterval = 1.0/TARGET_FPS;
 	
 	// attach the openglView to the director
-	[_director setView:glView];
+	_director.view = glView;
 	
 	// for rotation and other messages
-	[_director setDelegate:self];
+	_director.delegate = self;
 	
 	// 2D projection
-	[_director setProjection:kCCDirectorProjection2D];
+	_director.projection = kCCDirectorProjection2D;
 	//	[director setProjection:kCCDirectorProjection3D];
 	
 	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
@@ -90,9 +90,9 @@
 	// On iPhone HD: "-hd"
 	CCFileUtils *sharedFileUtils = [CCFileUtils sharedFileUtils];
 	[sharedFileUtils setEnableFallbackSuffixes:NO];				// Default: NO. No fallback suffixes are going to be used
-	[sharedFileUtils setiPhoneRetinaDisplaySuffix:@"-hd"];		// Default on iPhone RetinaDisplay is "-hd"
-	[sharedFileUtils setiPadSuffix:@"-ipad"];					// Default on iPad is "ipad"
-	[sharedFileUtils setiPadRetinaDisplaySuffix:@"-ipadhd"];	// Default on iPad RetinaDisplay is "-ipadhd"
+	sharedFileUtils.iPhoneRetinaDisplaySuffix = @"-hd";		// Default on iPhone RetinaDisplay is "-hd"
+	sharedFileUtils.iPadSuffix = @"-ipad";					// Default on iPad is "ipad"
+	sharedFileUtils.iPadRetinaDisplaySuffix = @"-ipadhd";	// Default on iPad RetinaDisplay is "-ipadhd"
 	
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
@@ -102,7 +102,7 @@
 	_navController.navigationBarHidden = YES;
 	
 	// set the Navigation Controller as the root view controller
-	[_window setRootViewController:_navController];
+	_window.rootViewController = _navController;
 	
 	// make main window visible
 	[_window makeKeyAndVisible];
@@ -139,26 +139,26 @@
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application
 {
-	if( [_navController visibleViewController] == _director )
+	if( _navController.visibleViewController == _director )
 		[_director pause];
 }
 
 // call got rejected
 -(void) applicationDidBecomeActive:(UIApplication *)application
 {
-	if( [_navController visibleViewController] == _director )
+	if( _navController.visibleViewController == _director )
 		[_director resume];
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
-	if( [_navController visibleViewController] == _director )
+	if( _navController.visibleViewController == _director )
 		[_director stopAnimation];
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
-	if( [_navController visibleViewController] == _director )
+	if( _navController.visibleViewController == _director )
 		[_director startAnimation];
 }
 

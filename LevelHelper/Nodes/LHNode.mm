@@ -17,7 +17,7 @@
 static int untitledNodesCount = 0;
 //------------------------------------------------------------------------------
 @interface LHNode (LH_NODE_PRIVATE) 
--(bool) removeBodyFromWorld;
+@property (NS_NONATOMIC_IOSONLY, readonly) bool removeBodyFromWorld;
 @end
 
 @implementation LHNode
@@ -37,7 +37,7 @@ static int untitledNodesCount = 0;
     self = [super init];
     if (self != nil)
     {
-        NSString* uName = [dictionary objectForKey:@"UniqueName"];
+        NSString* uName = dictionary[@"UniqueName"];
         if(uName)
             uniqueName = [[NSString alloc] initWithString:uName];
         else {
@@ -46,22 +46,22 @@ static int untitledNodesCount = 0;
         }
         
         
-        NSArray* childrenInfo = [dictionary objectForKey:@"Children"];
+        NSArray* childrenInfo = dictionary[@"Children"];
         for(NSDictionary* childDict in childrenInfo)
         {
-            if([[childDict objectForKey:@"NodeType"] isEqualToString:@"LHLayer"])
+            if([childDict[@"NodeType"] isEqualToString:@"LHLayer"])
             {
                 //nothing to do yet.
             }
-            else if([[childDict objectForKey:@"NodeType"] isEqualToString:@"LHBatch"])
+            else if([childDict[@"NodeType"] isEqualToString:@"LHBatch"])
             {
                 //nothing to do yet.
             }
-            else if([[childDict objectForKey:@"NodeType"] isEqualToString:@"LHBezier"])
+            else if([childDict[@"NodeType"] isEqualToString:@"LHBezier"])
             {
                 //nothing to do yet.
             }
-            else if([[childDict objectForKey:@"NodeType"] isEqualToString:@"LHSprite"])
+            else if([childDict[@"NodeType"] isEqualToString:@"LHSprite"])
             {
                 //nothing to do yet.
             }
@@ -70,7 +70,7 @@ static int untitledNodesCount = 0;
     return self;
 }
 //------------------------------------------------------------------------------
-+(id)nodeWithDictionary:(NSDictionary*)dictionary{
++(instancetype)nodeWithDictionary:(NSDictionary*)dictionary{
 
 #ifndef LH_ARC_ENABLED
     return [[(LHNode*)[self alloc] initWithDictionary:dictionary] autorelease];

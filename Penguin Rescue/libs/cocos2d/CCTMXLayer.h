@@ -100,9 +100,9 @@
 @property (nonatomic,readwrite,retain) NSMutableArray *properties;
 
 /** creates a CCTMXLayer with an tileset info, a layer info and a map info */
-+(id) layerWithTilesetInfo:(CCTMXTilesetInfo*)tilesetInfo layerInfo:(CCTMXLayerInfo*)layerInfo mapInfo:(CCTMXMapInfo*)mapInfo;
++(instancetype) layerWithTilesetInfo:(CCTMXTilesetInfo*)tilesetInfo layerInfo:(CCTMXLayerInfo*)layerInfo mapInfo:(CCTMXMapInfo*)mapInfo;
 /** initializes a CCTMXLayer with a tileset info, a layer info and a map info */
--(id) initWithTilesetInfo:(CCTMXTilesetInfo*)tilesetInfo layerInfo:(CCTMXLayerInfo*)layerInfo mapInfo:(CCTMXMapInfo*)mapInfo;
+-(instancetype) initWithTilesetInfo:(CCTMXTilesetInfo*)tilesetInfo layerInfo:(CCTMXLayerInfo*)layerInfo mapInfo:(CCTMXMapInfo*)mapInfo NS_DESIGNATED_INITIALIZER;
 
 /** dealloc the map that contains the tile position from memory.
  Unless you want to know at runtime the tiles positions, you can safely call this method.

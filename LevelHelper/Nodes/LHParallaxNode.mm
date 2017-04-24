@@ -67,7 +67,7 @@
 //@property (readwrite,assign) b2Body *body;
 
 +(id) pointWithCGPoint:(CGPoint)point;
--(id) initWithCGPoint:(CGPoint)point;
+-(instancetype) initWithCGPoint:(CGPoint)point NS_DESIGNATED_INITIALIZER;
 @end
 
 @implementation LHParallaxPointObject
@@ -94,7 +94,7 @@
     return [[self alloc] initWithCGPoint:_ratio];
 #endif
 }
--(id) initWithCGPoint:(CGPoint)_ratio{
+-(instancetype) initWithCGPoint:(CGPoint)_ratio{
 	if( (self=[super init])) {
 		ratio = _ratio;
 	}
@@ -143,7 +143,7 @@
 #endif
 }
 ////////////////////////////////////////////////////////////////////////////////
--(id) initWithDictionary:(NSDictionary*)parallaxDict loader:(LevelHelperLoader*)loader;
+-(instancetype) initWithDictionary:(NSDictionary*)parallaxDict loader:(LevelHelperLoader*)loader;
 {
 	if( (self=[super init])) {
 
@@ -184,7 +184,7 @@
 	return self;
 }
 ////////////////////////////////////////////////////////////////////////////////
-+(id) nodeWithDictionary:(NSDictionary*)properties loader:(LevelHelperLoader*)loader
++(instancetype) nodeWithDictionary:(NSDictionary*)properties loader:(LevelHelperLoader*)loader
 {
 #ifndef LH_ARC_ENABLED
 	return [[[self alloc] initWithDictionary:properties loader:loader] autorelease];
@@ -199,10 +199,10 @@
 	
 	LHParallaxPointObject *obj = [LHParallaxPointObject pointWithCGPoint:ratio];
 	obj.ccsprite = node;
-	obj.position = [node position];
+	obj.position = node.position;
 //    obj.virtualPosition = obj.ccsprite.position;
 //	obj.offset = [node position];
-	obj.initialPosition = [node position];
+	obj.initialPosition = node.position;
 	[sprites addObject:obj];
 	//[sprite setSpriteIsInParallax:self];
 	
@@ -300,7 +300,7 @@
     
     if(NULL != sprite)
     {
-        lastFollowedSpritePosition = [sprite position];
+        lastFollowedSpritePosition = sprite.position;
         [sprite setParallaxFollowingThisSprite:self];
     }
 }
@@ -353,12 +353,12 @@
 {
 #pragma unused(frameTime)
     
-    CGSize spriteContentSize = [point.ccsprite contentSize];
-    CGPoint spritePosition = [point.ccsprite position];
-    float angle = [point.ccsprite rotation];
+    CGSize spriteContentSize = (point.ccsprite).contentSize;
+    CGPoint spritePosition = (point.ccsprite).position;
+    float angle = (point.ccsprite).rotation;
     float rotation = CC_DEGREES_TO_RADIANS(angle);
-	float scaleX = [point.ccsprite scaleX];
-	float scaleY = [point.ccsprite scaleY];
+	float scaleX = (point.ccsprite).scaleX;
+	float scaleY = (point.ccsprite).scaleY;
     
     CGSize contentSize = [self getBounds:spriteContentSize.width//*2.0f
                                   height:spriteContentSize.height//*2.0f
@@ -387,7 +387,7 @@
                         [(LHSprite*)point.ccsprite transformPosition:newPos];
                     }
                     else {
-                        [point.ccsprite setPosition:newPos];
+                        (point.ccsprite).position = newPos;
                     }
                 }
                     
@@ -417,7 +417,7 @@
                     [(LHSprite*)point.ccsprite transformPosition:newPos];
                 }
                 else {
-                    [point.ccsprite setPosition:newPos];
+                    (point.ccsprite).position = newPos;
                 }
                 
                 if(nil != movedEndListenerObj && nil != movedEndListenerSEL){
@@ -446,7 +446,7 @@
                     [(LHSprite*)point.ccsprite transformPosition:newPos];
                 }
                 else {
-                    [point.ccsprite setPosition:newPos];
+                    (point.ccsprite).position = newPos;
                 }
                                 
                 if(nil != movedEndListenerObj && nil != movedEndListenerSEL){
@@ -474,7 +474,7 @@
                     [(LHSprite*)point.ccsprite transformPosition:newPos];
                 }
                 else {
-                    [point.ccsprite setPosition:newPos];
+                    (point.ccsprite).position = newPos;
                 }
                                 
                 if(nil != movedEndListenerObj && nil != movedEndListenerSEL){
@@ -493,7 +493,7 @@
 
 -(void) tick: (ccTime) dt
 {    
-    if([[LHSettings sharedInstance] levelPaused] || paused) //level is paused
+    if([LHSettings sharedInstance].levelPaused || paused) //level is paused
     {
        // time = [[NSDate date] timeIntervalSince1970];
         return;
@@ -501,28 +501,28 @@
         
     if(NULL != followedSprite)
     {
-        CGPoint spritePos = [followedSprite position];
+        CGPoint spritePos = followedSprite.position;
         float deltaFX = lastFollowedSpritePosition.x - spritePos.x;
         float deltaFY = lastFollowedSpritePosition.y - spritePos.y;
         lastFollowedSpritePosition = spritePos;
         
-        CGPoint lastNodePosition = [self position];        
+        CGPoint lastNodePosition = self.position;        
         if(followChangeX && !followChangeY){
-            [super setPosition:ccp(lastNodePosition.x + deltaFX, 
-                                   lastNodePosition.y)];
+            super.position = ccp(lastNodePosition.x + deltaFX, 
+                                   lastNodePosition.y);
         }
         else if(!followChangeX && followChangeY){
-            [super setPosition:ccp(lastNodePosition.x, 
-                                   lastNodePosition.y + deltaFY)];
+            super.position = ccp(lastNodePosition.x, 
+                                   lastNodePosition.y + deltaFY);
         }
         else if(followChangeX && followChangeY){
-            [super setPosition:ccp(lastNodePosition.x + deltaFX, 
-                                   lastNodePosition.y + deltaFY)];
+            super.position = ccp(lastNodePosition.x + deltaFX, 
+                                   lastNodePosition.y + deltaFY);
         }
     }
     
     double i = -1.0f; //direction left to right //bottom to up
-	CGPoint pos = [self position];
+	CGPoint pos = self.position;
     
     CGPoint deltaPos = CGPointMake(pos.x - lastPosition.x,
                                    pos.y - lastPosition.y);
@@ -537,7 +537,7 @@
                 i = 1.0f;
             
             LHSprite* spr = (LHSprite*)point.ccsprite;
-            CGPoint oldPos = [spr position];
+            CGPoint oldPos = spr.position;
             
             
             if(isContinuous)

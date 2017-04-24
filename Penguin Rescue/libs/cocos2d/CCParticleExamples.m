@@ -35,12 +35,12 @@
 // ParticleFireworks
 //
 @implementation CCParticleFireworks
--(id) init
+-(instancetype) init
 {
 	return [self initWithTotalParticles:1500];
 }
 
--(id) initWithTotalParticles:(NSUInteger)p
+-(instancetype) initWithTotalParticles:(NSUInteger)p
 {
 	if( (self=[super initWithTotalParticles:p]) ) {
 		// duration
@@ -112,12 +112,12 @@
 // ParticleFire
 //
 @implementation CCParticleFire
--(id) init
+-(instancetype) init
 {
 	return [self initWithTotalParticles:250];
 }
 
--(id) initWithTotalParticles:(NSUInteger) p
+-(instancetype) initWithTotalParticles:(NSUInteger) p
 {
 	if( (self=[super initWithTotalParticles:p]) ) {
 
@@ -192,12 +192,12 @@
 // ParticleSun
 //
 @implementation CCParticleSun
--(id) init
+-(instancetype) init
 {
 	return [self initWithTotalParticles:350];
 }
 
--(id) initWithTotalParticles:(NSUInteger) p
+-(instancetype) initWithTotalParticles:(NSUInteger) p
 {
 	if( (self=[super initWithTotalParticles:p]) ) {
 
@@ -272,12 +272,12 @@
 // ParticleGalaxy
 //
 @implementation CCParticleGalaxy
--(id) init
+-(instancetype) init
 {
 	return [self initWithTotalParticles:200];
 }
 
--(id) initWithTotalParticles:(NSUInteger)p
+-(instancetype) initWithTotalParticles:(NSUInteger)p
 {
 	if( (self=[super initWithTotalParticles:p]) ) {
 
@@ -355,12 +355,12 @@
 // ParticleFlower
 //
 @implementation CCParticleFlower
--(id) init
+-(instancetype) init
 {
 	return [self initWithTotalParticles:250];
 }
 
--(id) initWithTotalParticles:(NSUInteger) p
+-(instancetype) initWithTotalParticles:(NSUInteger) p
 {
 	if( (self=[super initWithTotalParticles:p]) ) {
 
@@ -438,12 +438,12 @@
 // ParticleMeteor
 //
 @implementation CCParticleMeteor
--(id) init
+-(instancetype) init
 {
 	return [self initWithTotalParticles:150];
 }
 
--(id) initWithTotalParticles:(NSUInteger) p
+-(instancetype) initWithTotalParticles:(NSUInteger) p
 {
 	if( (self=[super initWithTotalParticles:p]) ) {
 
@@ -521,12 +521,12 @@
 // ParticleSpiral
 //
 @implementation CCParticleSpiral
--(id) init
+-(instancetype) init
 {
 	return [self initWithTotalParticles:500];
 }
 
--(id) initWithTotalParticles:(NSUInteger) p
+-(instancetype) initWithTotalParticles:(NSUInteger) p
 {
 	if( (self=[super initWithTotalParticles:p]) ) {
 
@@ -604,12 +604,12 @@
 // ParticleExplosion
 //
 @implementation CCParticleExplosion
--(id) init
+-(instancetype) init
 {
 	return [self initWithTotalParticles:700];
 }
 
--(id) initWithTotalParticles:(NSUInteger)p
+-(instancetype) initWithTotalParticles:(NSUInteger)p
 {
 	if( (self=[super initWithTotalParticles:p]) ) {
 
@@ -686,12 +686,12 @@
 // ParticleSmoke
 //
 @implementation CCParticleSmoke
--(id) init
+-(instancetype) init
 {
 	return [self initWithTotalParticles:200];
 }
 
--(id) initWithTotalParticles:(NSUInteger) p
+-(instancetype) initWithTotalParticles:(NSUInteger) p
 {
 	if( (self=[super initWithTotalParticles:p]) ) {
 
@@ -762,12 +762,12 @@
 @end
 
 @implementation CCParticleSnow
--(id) init
+-(instancetype) init
 {
 	return [self initWithTotalParticles:700];
 }
 
--(id) initWithTotalParticles:(NSUInteger)p
+-(instancetype) initWithTotalParticles:(NSUInteger)p
 {
 	if( (self=[super initWithTotalParticles:p]) ) {
 
@@ -844,12 +844,12 @@
 @end
 
 @implementation CCParticleRain
--(id) init
+-(instancetype) init
 {
 	return [self initWithTotalParticles:1000];
 }
 
--(id) initWithTotalParticles:(NSUInteger)p
+-(instancetype) initWithTotalParticles:(NSUInteger)p
 {
 	if( (self=[super initWithTotalParticles:p]) ) {
 

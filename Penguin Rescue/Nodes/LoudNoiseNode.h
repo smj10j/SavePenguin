@@ -19,12 +19,12 @@
 	LHSprite* _sprite;
 }
 
--(id)initWithSprite:(LHSprite*)sprite maxRange:(float)maxRange;
+-(instancetype)initWithSprite:(LHSprite*)sprite maxRange:(float)maxRange NS_DESIGNATED_INITIALIZER;
 
 -(void)setPowerPercentage:(float)power;
 
--(float)maxRange;
--(float)maxRangeCorner;
--(float)step;
+@property (NS_NONATOMIC_IOSONLY, readonly) float maxRange;
+@property (NS_NONATOMIC_IOSONLY, readonly) float maxRangeCorner;
+@property (NS_NONATOMIC_IOSONLY, readonly) float step;
 
 @end

@@ -49,12 +49,12 @@ enum {
 
 @synthesize opacity = opacity_, color = color_, enabled=enabled_;
 
-+(id) menuWithArray:(NSArray *)arrayOfItems
++(instancetype) menuWithArray:(NSArray *)arrayOfItems
 {
 	return [[[self alloc] initWithArray:arrayOfItems] autorelease];
 }
 
-+(id) menuWithItems: (CCMenuItem*) item, ...
++(instancetype) menuWithItems: (CCMenuItem*) item, ...
 {
 	va_list args;
 	va_start(args,item);
@@ -66,7 +66,7 @@ enum {
 	return ret;
 }
 
-+(id) menuWithItems: (CCMenuItem*) item vaList: (va_list) args
++(instancetype) menuWithItems: (CCMenuItem*) item vaList: (va_list) args
 {
 	NSMutableArray *array = nil;
 	if( item ) {
@@ -81,13 +81,13 @@ enum {
 	return [[[self alloc] initWithArray:array] autorelease];
 }
 
--(id) init
+-(instancetype) init
 {
 	return [self initWithArray:nil];
 }
 
 
--(id) initWithArray:(NSArray *)arrayOfItems
+-(instancetype) initWithArray:(NSArray *)arrayOfItems
 {
 	if( (self=[super init]) ) {
 #ifdef __CC_PLATFORM_IOS
@@ -102,12 +102,12 @@ enum {
 		
 		self.ignoreAnchorPointForPosition = YES;
 		anchorPoint_ = ccp(0.5f, 0.5f);
-		[self setContentSize:s];
+		self.contentSize = s;
 		
 		// XXX: in v0.7, winSize should return the visible size
 		// XXX: so the bar calculation should be done there
 #ifdef __CC_PLATFORM_IOS
-		CGRect r = [[UIApplication sharedApplication] statusBarFrame];
+		CGRect r = [UIApplication sharedApplication].statusBarFrame;
 		s.height -= r.size.height;
 #endif
 		self.position = ccp(s.width/2, s.height/2);
@@ -158,7 +158,7 @@ enum {
 -(void) setHandlerPriority:(NSInteger)newPriority
 {
 #ifdef __CC_PLATFORM_IOS
-	CCTouchDispatcher *dispatcher = [[CCDirector sharedDirector] touchDispatcher];
+	CCTouchDispatcher *dispatcher = [CCDirector sharedDirector].touchDispatcher;
 	[dispatcher setPriority:newPriority forDelegate:self];
 
 #elif defined(__CC_PLATFORM_MAC)
@@ -174,18 +174,18 @@ enum {
 -(void) registerWithTouchDispatcher
 {
 	CCDirector *director = [CCDirector sharedDirector];
-	[[director touchDispatcher] addTargetedDelegate:self priority:kCCMenuHandlerPriority swallowsTouches:YES];
+	[director.touchDispatcher addTargetedDelegate:self priority:kCCMenuHandlerPriority swallowsTouches:YES];
 }
 
 -(CCMenuItem *) itemForTouch: (UITouch *) touch
 {
-	CGPoint touchLocation = [touch locationInView: [touch view]];
+	CGPoint touchLocation = [touch locationInView: touch.view];
 	touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
 
 	CCMenuItem* item;
 	CCARRAY_FOREACH(children_, item){
 		// ignore invisible and disabled items: issue #779, #866
-		if ( [item visible] && [item isEnabled] ) {
+		if ( item.visible && [item isEnabled] ) {
 
 			CGPoint local = [item convertToNodeSpace:touchLocation];
 			CGRect r = [item rect];
@@ -350,7 +350,7 @@ enum {
 
 	CCARRAY_FOREACH(children_, item) {
 		CGSize itemSize = item.contentSize;
-	    [item setPosition:ccp(0, y - itemSize.height * item.scaleY / 2.0f)];
+	    item.position = ccp(0, y - itemSize.height * item.scaleY / 2.0f);
 	    y -= itemSize.height * item.scaleY + padding;
 	}
 }
@@ -372,7 +372,7 @@ enum {
 
 	CCARRAY_FOREACH(children_, item){
 		CGSize itemSize = item.contentSize;
-		[item setPosition:ccp(x + itemSize.width * item.scaleX / 2.0f, 0)];
+		item.position = ccp(x + itemSize.width * item.scaleX / 2.0f, 0);
 		x += itemSize.width * item.scaleX + padding;
 	}
 }
@@ -409,7 +409,7 @@ enum {
 	CCARRAY_FOREACH(children_, item){
 		NSAssert( row < [rows count], @"Too many menu items for the amount of rows/columns.");
 		
-		rowColumns = [(NSNumber *) [rows objectAtIndex:row] unsignedIntegerValue];
+		rowColumns = ((NSNumber *) rows[row]).unsignedIntegerValue;
 		NSAssert( rowColumns, @"Can't have zero columns on a row");
 		
 		rowHeight = fmaxf(rowHeight, item.contentSize.height);
@@ -431,15 +431,15 @@ enum {
 	float w, x, y = height / 2;
 	CCARRAY_FOREACH(children_, item) {
 		if(rowColumns == 0) {
-			rowColumns = [(NSNumber *) [rows objectAtIndex:row] unsignedIntegerValue];
+			rowColumns = ((NSNumber *) rows[row]).unsignedIntegerValue;
 			w = winSize.width / (1 + rowColumns);
 			x = w;
 		}
 		
 		CGSize itemSize = item.contentSize;
 		rowHeight = fmaxf(rowHeight, itemSize.height);
-		[item setPosition:ccp(x - winSize.width / 2,
-							  y - itemSize.height / 2)];
+		item.position = ccp(x - winSize.width / 2,
+							  y - itemSize.height / 2);
 		
 		x += w;
 		++columnsOccupied;
@@ -490,7 +490,7 @@ enum {
 	CCARRAY_FOREACH(children_, item){
 		NSAssert( column < [columns count], @"Too many menu items for the amount of rows/columns.");
 		
-		columnRows = [(NSNumber *) [columns objectAtIndex:column] unsignedIntegerValue];
+		columnRows = ((NSNumber *) columns[column]).unsignedIntegerValue;
 		NSAssert( columnRows, @"Can't have zero rows on a column");
 		
 		CGSize itemSize = item.contentSize;
@@ -499,7 +499,7 @@ enum {
 		++rowsOccupied;
 		
 		if(rowsOccupied >= columnRows) {
-			[columnWidths addObject:[NSNumber numberWithUnsignedInteger:columnWidth]];
+			[columnWidths addObject:@(columnWidth)];
 			[columnHeights addObject:[NSNumber numberWithUnsignedInteger:columnHeight]];
 			width += columnWidth + 10;
 			
@@ -518,14 +518,14 @@ enum {
 	
 	CCARRAY_FOREACH(children_, item){
 		if(columnRows == 0) {
-			columnRows = [(NSNumber *) [columns objectAtIndex:column] unsignedIntegerValue];
-			y = ([(NSNumber *) [columnHeights objectAtIndex:column] intValue] + winSize.height) / 2;
+			columnRows = ((NSNumber *) columns[column]).unsignedIntegerValue;
+			y = (((NSNumber *) columnHeights[column]).intValue + winSize.height) / 2;
 		}
 		
 		CGSize itemSize = item.contentSize;
 		columnWidth = fmaxf(columnWidth, itemSize.width);
-		[item setPosition:ccp(x + [(NSNumber *) [columnWidths objectAtIndex:column] unsignedIntegerValue] / 2,
-							  y - winSize.height / 2)];
+		item.position = ccp(x + ((NSNumber *) columnWidths[column]).unsignedIntegerValue / 2,
+							  y - winSize.height / 2);
 		
 		y -= itemSize.height + 10;
 		++rowsOccupied;

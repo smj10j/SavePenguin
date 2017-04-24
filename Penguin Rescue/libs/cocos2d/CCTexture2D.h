@@ -73,7 +73,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 /** @typedef CCTexture2DPixelFormat
  Possible texture pixel formats
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, CCTexture2DPixelFormat) {
 	//! 32-bit texture: RGBA8888
 	kCCTexture2DPixelFormat_RGBA8888,
 	//! 32-bit texture without Alpha channel. Don't use it.
@@ -98,7 +98,7 @@ typedef enum {
 	//! Default texture format: RGBA8888
 	kCCTexture2DPixelFormat_Default = kCCTexture2DPixelFormat_RGBA8888,
 
-} CCTexture2DPixelFormat;
+};
 
 
 @class CCGLProgram;
@@ -128,11 +128,11 @@ typedef enum {
 
 }
 /** Initializes with a texture2d with data */
-- (id) initWithData:(const void*)data pixelFormat:(CCTexture2DPixelFormat)pixelFormat pixelsWide:(NSUInteger)width pixelsHigh:(NSUInteger)height contentSize:(CGSize)size;
+- (instancetype) initWithData:(const void*)data pixelFormat:(CCTexture2DPixelFormat)pixelFormat pixelsWide:(NSUInteger)width pixelsHigh:(NSUInteger)height contentSize:(CGSize)size NS_DESIGNATED_INITIALIZER;
 
 /** These functions are needed to create mutable textures */
 - (void) releaseData:(void*)data;
-- (void*) keepData:(void*)data length:(NSUInteger)length;
+- (void*) keepData:(void*)data length:(NSUInteger)length NS_RETURNS_INNER_POINTER;
 
 /** pixel format of the texture */
 @property(nonatomic,readonly) CCTexture2DPixelFormat pixelFormat;
@@ -168,7 +168,7 @@ typedef enum {
 
 
 /** returns the content size of the texture in points */
--(CGSize) contentSize;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGSize contentSize;
 
 
 @end
@@ -190,7 +190,7 @@ Note that RGBA type textures will have their alpha premultiplied - use the blend
 */
 @interface CCTexture2D (Image)
 /** Initializes a texture from a CGImage object */
-- (id) initWithCGImage:(CGImageRef)cgImage resolutionType:(ccResolutionType)resolution;
+- (instancetype) initWithCGImage:(CGImageRef)cgImage resolutionType:(ccResolutionType)resolution;
 @end
 
 /**
@@ -204,11 +204,11 @@ Note that the generated textures are of type A8 - use the blending mode (GL_SRC_
 	- Mac: Only NSLineBreakByWordWrapping is supported.
  @since v1.0
  */
-- (id) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)alignment vAlignment:(CCVerticalTextAlignment) vertAlignment lineBreakMode:(CCLineBreakMode)lineBreakMode ;
+- (instancetype) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)alignment vAlignment:(CCVerticalTextAlignment) vertAlignment lineBreakMode:(CCLineBreakMode)lineBreakMode ;
 /** Initializes a texture from a string with dimensions, alignment, font name and font size */
-- (id) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)alignment vAlignment:(CCVerticalTextAlignment) vertAlignment;
+- (instancetype) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)alignment vAlignment:(CCVerticalTextAlignment) vertAlignment;
 /** Initializes a texture from a string with font name and font size */
-- (id) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size;
+- (instancetype) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size;
 @end
 
 
@@ -237,7 +237,7 @@ Note that the generated textures are of type A8 - use the blending mode (GL_SRC_
  IMPORTANT: This method is only defined on iOS. It is not supported on the Mac version.
 
  */
--(id) initWithPVRFile: (NSString*) file;
+-(instancetype) initWithPVRFile: (NSString*) file;
 
 /** treats (or not) PVR files as if they have alpha premultiplied.
  Since it is impossible to know at runtime if the PVR images have the alpha channel premultiplied, it is
@@ -328,12 +328,12 @@ typedef struct _ccTexParams {
 /** returns the bits-per-pixel of the in-memory OpenGL texture
  @since v1.0
  */
--(NSUInteger) bitsPerPixelForFormat;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger bitsPerPixelForFormat;
 
 /** returns the pixel format in a NSString.
  @since v2.0
  */
--(NSString*) stringForFormat;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *stringForFormat;
 
 
 /** Helper functions that returns bits per pixels for a given format.

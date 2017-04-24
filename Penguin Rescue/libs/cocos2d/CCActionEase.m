@@ -49,7 +49,7 @@
 	return [[[self alloc] initWithAction: action] autorelease ];
 }
 
--(id) initWithAction: (CCActionInterval*) action
+-(instancetype) initWithAction: (CCActionInterval*) action
 {
 	NSAssert( action!=nil, @"Ease: arguments must be non-nil");
 
@@ -103,12 +103,12 @@
 //
 @implementation CCEaseRateAction
 @synthesize rate;
-+(id) actionWithAction: (CCActionInterval*) action rate:(float)aRate
++(instancetype) actionWithAction: (CCActionInterval*) action rate:(float)aRate
 {
 	return [[[self alloc] initWithAction: action rate:aRate] autorelease ];
 }
 
--(id) initWithAction: (CCActionInterval*) action rate:(float)aRate
+-(instancetype) initWithAction: (CCActionInterval*) action rate:(float)aRate
 {
 	if( (self=[super initWithAction:action ]) )
 		self.rate = aRate;
@@ -289,12 +289,12 @@
 	return [[[self alloc] initWithAction:action period:period] autorelease];
 }
 
--(id) initWithAction: (CCActionInterval*) action
+-(instancetype) initWithAction: (CCActionInterval*) action
 {
 	return [self initWithAction:action period:0.3f];
 }
 
--(id) initWithAction: (CCActionInterval*) action period:(float)period
+-(instancetype) initWithAction: (CCActionInterval*) action period:(float)period
 {
 	if( (self=[super initWithAction:action]) )
 		period_ = period;

@@ -35,26 +35,26 @@
 	NSString* _tag;
 }
 
-- (id)initWithGrid:(short**)grid height:(int)height width:(int)width moveHistorySize:(int)moveHistorySize tag:(NSString*)tag;
+- (instancetype)initWithGrid:(short**)grid height:(int)height width:(int)width moveHistorySize:(int)moveHistorySize tag:(NSString*)tag NS_DESIGNATED_INITIALIZER;
 
 - (void)updateBaseGrid:(short**)baseGrid;
 
 - (void)logMove:(CGPoint)pos;
 - (CGPoint)moveHistoryAt:(int)indexOffset;
 - (void)clearMoveLog;
-- (double)distanceTraveled;
-- (double)distanceTraveledStraightline;
+@property (NS_NONATOMIC_IOSONLY, readonly) double distanceTraveled;
+@property (NS_NONATOMIC_IOSONLY, readonly) double distanceTraveledStraightline;
 
-- (short**)baseGrid;
-- (short**)moveGrid;
-- (const CGPoint)lastTargetTile;
+@property (NS_NONATOMIC_IOSONLY, readonly) short **baseGrid;
+@property (NS_NONATOMIC_IOSONLY, readonly) short **moveGrid;
+@property (NS_NONATOMIC_IOSONLY, readonly) const CGPoint lastTargetTile;
 
 - (void)updateMoveGridToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile;
 - (CGPoint)getBestMoveToTile:(CGPoint)toTile fromTile:(CGPoint)fromTile;
 - (void)forceUpdateToMoveGrid;
 - (void)invalidateMoveGrid;
-- (bool)busy;
-- (int)bestFoundRouteWeight;
+@property (NS_NONATOMIC_IOSONLY, readonly) bool busy;
+@property (NS_NONATOMIC_IOSONLY, readonly) int bestFoundRouteWeight;
 - (void)scheduleUpdateToMoveGridIn:(NSTimeInterval)timeInterval;
 
 

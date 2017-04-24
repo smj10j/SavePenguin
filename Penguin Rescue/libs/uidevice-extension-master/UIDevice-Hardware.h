@@ -40,7 +40,7 @@
 #define SIMULATOR_IPAD_NAMESTRING       @"iPad Simulator"
 #define SIMULATOR_APPLETV_NAMESTRING    @"Apple TV Simulator" // :)
 
-typedef enum {
+typedef NS_ENUM(unsigned int, UIDevicePlatform) {
     UIDeviceUnknown,
     
     UIDeviceSimulator,
@@ -75,34 +75,34 @@ typedef enum {
     UIDeviceUnknownAppleTV,
     UIDeviceIFPGA,
 
-} UIDevicePlatform;
+};
 
-typedef enum {
+typedef NS_ENUM(unsigned int, UIDeviceFamily) {
     UIDeviceFamilyiPhone,
     UIDeviceFamilyiPod,
     UIDeviceFamilyiPad,
     UIDeviceFamilyAppleTV,
     UIDeviceFamilyUnknown,
     
-} UIDeviceFamily;
+};
 
 @interface UIDevice (Hardware)
-- (NSString *) platform;
-- (NSString *) hwmodel;
-- (NSUInteger) platformType;
-- (NSString *) platformString;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *platform;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *hwmodel;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger platformType;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *platformString;
 
-- (NSUInteger) cpuFrequency;
-- (NSUInteger) busFrequency;
-- (NSUInteger) cpuCount;
-- (NSUInteger) totalMemory;
-- (NSUInteger) userMemory;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger cpuFrequency;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger busFrequency;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger cpuCount;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger totalMemory;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger userMemory;
 
-- (NSNumber *) totalDiskSpace;
-- (NSNumber *) freeDiskSpace;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSNumber *totalDiskSpace;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSNumber *freeDiskSpace;
 
-- (NSString *) macaddress;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *macaddress;
 
-- (BOOL) hasRetinaDisplay;
-- (UIDeviceFamily) deviceFamily;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL hasRetinaDisplay;
+@property (NS_NONATOMIC_IOSONLY, readonly) UIDeviceFamily deviceFamily;
 @end

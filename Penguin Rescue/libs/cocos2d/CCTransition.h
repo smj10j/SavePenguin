@@ -41,7 +41,7 @@
 
 /** Orientation Type used by some transitions
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, tOrientation) {
 	/// An horizontal orientation where the Left is nearer
 	kOrientationLeftOver = 0,
 	/// An horizontal orientation where the Right is nearer
@@ -50,7 +50,7 @@ typedef enum {
 	kOrientationUpOver = 0,
 	/// A vertical orientation where the Bottom is nearer
 	kOrientationDownOver = 1,
-} tOrientation;
+};
 
 /** Base class for CCTransition scenes
  */
@@ -65,7 +65,7 @@ typedef enum {
 /** creates a base transition with duration and incoming scene */
 +(id) transitionWithDuration:(ccTime) t scene:(CCScene*)s;
 /** initializes a transition with duration and incoming scene */
--(id) initWithDuration:(ccTime) t scene:(CCScene*)s;
+-(instancetype) initWithDuration:(ccTime) t scene:(CCScene*)s NS_DESIGNATED_INITIALIZER;
 /** called after the transition finishes */
 -(void) finish;
 /** used by some transitions to hide the outer scene */
@@ -82,7 +82,7 @@ typedef enum {
 /** creates a base transition with duration and incoming scene */
 +(id) transitionWithDuration:(ccTime) t scene:(CCScene*)s orientation:(tOrientation)o;
 /** initializes a transition with duration and incoming scene */
--(id) initWithDuration:(ccTime) t scene:(CCScene*)s orientation:(tOrientation)o;
+-(instancetype) initWithDuration:(ccTime) t scene:(CCScene*)s orientation:(tOrientation)o NS_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -92,7 +92,7 @@ typedef enum {
 @interface CCTransitionRotoZoom : CCTransitionScene
 {}
 // needed for BrdigeSupport
--(id) init;
+-(instancetype) init NS_DESIGNATED_INITIALIZER;
 @end
 
 /** CCTransitionJumpZoom:
@@ -101,7 +101,7 @@ typedef enum {
 @interface CCTransitionJumpZoom : CCTransitionScene
 {}
 // needed for BrdigeSupport
--(id) init;
+-(instancetype) init NS_DESIGNATED_INITIALIZER;
 @end
 
 /** CCTransitionMoveInL:
@@ -112,7 +112,7 @@ typedef enum {
 /** initializes the scenes */
 -(void) initScenes;
 /** returns the action that will be performed */
--(CCActionInterval*) action;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) CCActionInterval *action;
 @end
 
 /** CCTransitionMoveInR:
@@ -150,7 +150,7 @@ typedef enum {
 /** initializes the scenes */
 -(void) initScenes;
 /** returns the action that will be performed by the incoming and outgoing scene */
--(CCActionInterval*) action;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) CCActionInterval *action;
 @end
 
 /** CCTransitionSlideInR:
@@ -186,7 +186,7 @@ typedef enum {
 @interface CCTransitionShrinkGrow : CCTransitionScene <CCTransitionEaseScene>
 {}
 // needed for BrdigeSupport
--(id) init;
+-(instancetype) init NS_DESIGNATED_INITIALIZER;
 @end
 
 /** CCTransitionFlipX:
@@ -196,7 +196,7 @@ typedef enum {
 @interface CCTransitionFlipX : CCTransitionSceneOriented
 {}
 // needed for BrdigeSupport
--(id) init;
+-(instancetype) init NS_DESIGNATED_INITIALIZER;
 @end
 
 /** CCTransitionFlipY:
@@ -206,7 +206,7 @@ typedef enum {
 @interface CCTransitionFlipY : CCTransitionSceneOriented
 {}
 // needed for BrdigeSupport
--(id) init;
+-(instancetype) init NS_DESIGNATED_INITIALIZER;
 @end
 
 /** CCTransitionFlipAngular:
@@ -216,7 +216,7 @@ typedef enum {
 @interface CCTransitionFlipAngular : CCTransitionSceneOriented
 {}
 // needed for BrdigeSupport
--(id) init;
+-(instancetype) init NS_DESIGNATED_INITIALIZER;
 @end
 
 /** CCTransitionZoomFlipX:
@@ -226,7 +226,7 @@ typedef enum {
 @interface CCTransitionZoomFlipX : CCTransitionSceneOriented
 {}
 // needed for BrdigeSupport
--(id) init;
+-(instancetype) init NS_DESIGNATED_INITIALIZER;
 @end
 
 /** CCTransitionZoomFlipY:
@@ -236,7 +236,7 @@ typedef enum {
 @interface CCTransitionZoomFlipY : CCTransitionSceneOriented
 {}
 // needed for BrdigeSupport
--(id) init;
+-(instancetype) init NS_DESIGNATED_INITIALIZER;
 @end
 
 /** CCTransitionZoomFlipAngular:
@@ -246,7 +246,7 @@ typedef enum {
 @interface CCTransitionZoomFlipAngular : CCTransitionSceneOriented
 {}
 // needed for BrdigeSupport
--(id) init;
+-(instancetype) init NS_DESIGNATED_INITIALIZER;
 @end
 
 /** CCTransitionFade:
@@ -261,7 +261,7 @@ typedef enum {
  */
 +(id) transitionWithDuration:(ccTime)duration scene:(CCScene*)scene withColor:(ccColor3B)color;
 /** initializes the transition with a duration and with an RGB color */
--(id) initWithDuration:(ccTime)duration scene:(CCScene*)scene withColor:(ccColor3B)color;
+-(instancetype) initWithDuration:(ccTime)duration scene:(CCScene*)scene withColor:(ccColor3B)color NS_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -273,7 +273,7 @@ typedef enum {
 @interface CCTransitionCrossFade : CCTransitionScene
 {}
 // needed for BrdigeSupport
--(id) init;
+-(instancetype) init NS_DESIGNATED_INITIALIZER;
 @end
 
 /** CCTransitionTurnOffTiles:
@@ -282,7 +282,7 @@ typedef enum {
 @interface CCTransitionTurnOffTiles : CCTransitionScene <CCTransitionEaseScene>
 {}
 // needed for BrdigeSupport
--(id) init;
+-(instancetype) init NS_DESIGNATED_INITIALIZER;
 @end
 
 /** CCTransitionSplitCols:
@@ -290,7 +290,7 @@ typedef enum {
  */
 @interface CCTransitionSplitCols : CCTransitionScene <CCTransitionEaseScene>
 {}
--(CCActionInterval*) action;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) CCActionInterval *action;
 @end
 
 /** CCTransitionSplitRows:
@@ -299,7 +299,7 @@ typedef enum {
 @interface CCTransitionSplitRows : CCTransitionSplitCols
 {}
 // Needed for BridgeSupport
--(CCActionInterval*) action;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) CCActionInterval *action;
 @end
 
 /** CCTransitionFadeTR:

@@ -47,7 +47,7 @@ static int untitledSpritesCount = 0;
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 @interface LHBezier (LH_BEZIER_SPRITE_EXT) 
--(NSArray*)pathPoints;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *pathPoints;
 @end
 @implementation LHBezier (LH_BEZIER_SPRITE_EXT)
 -(NSArray*)pathPoints{
@@ -101,7 +101,7 @@ static int untitledSpritesCount = 0;
 }
 -(void)setPrepareAnimInProgress:(NSNumber*)val{
     
-    prepareAnimInProgress = [val boolValue];
+    prepareAnimInProgress = val.boolValue;
 }
 
 -(void) dealloc{
@@ -195,7 +195,7 @@ static int untitledSpritesCount = 0;
 #ifndef LH_ARC_ENABLED
     [userCustomInfo retain];
 #endif
-    [userCustomInfo performSelector:@selector(setPropertiesFromDictionary:) withObject:[dictionary objectForKey:@"ClassRepresentation"]];
+    [userCustomInfo performSelector:@selector(setPropertiesFromDictionary:) withObject:dictionary[@"ClassRepresentation"]];
 }
 //------------------------------------------------------------------------------
 #ifdef LH_USE_BOX2D
@@ -235,8 +235,8 @@ static int untitledSpritesCount = 0;
 	bodyDef.type = bDefaultType;
 	
 	CGPoint pos = self.position;
-	bodyDef.position.Set(pos.x/[[LHSettings sharedInstance] lhPtmRatio],
-                         pos.y/[[LHSettings sharedInstance] lhPtmRatio]);
+	bodyDef.position.Set(pos.x/[LHSettings sharedInstance].lhPtmRatio,
+                         pos.y/[LHSettings sharedInstance].lhPtmRatio);
     
 	bodyDef.angle = CC_DEGREES_TO_RADIANS(-1*self.rotation);
     
@@ -302,7 +302,7 @@ static int untitledSpritesCount = 0;
 
     [self createBodyFromDefaultValuesWithType:(b2BodyType)pType];
 	
-    NSArray* fixInfo = [dictionary objectForKey:@"SH_ComplexShapes"];
+    NSArray* fixInfo = dictionary[@"SH_ComplexShapes"];
     fixturesInfo = [[NSArray alloc] initWithArray:fixInfo];
     
     fixturesObj = [[NSMutableArray alloc] init];
@@ -317,7 +317,7 @@ static int untitledSpritesCount = 0;
     
     //if sprite has no animation dictionary will be empty in order to make the level size smaller
     //so we test here to see if we should load anything
-    if(![dictionary objectForKey:@"AnimName"]) return;
+    if(!dictionary[@"AnimName"]) return;
         
     
     [self prepareAnimationNamed:[dictionary stringForKey:@"AnimName"] 
@@ -328,10 +328,10 @@ static int untitledSpritesCount = 0;
     if([dictionary boolForKey:@"AnimAtStart"])//we should pause the animation
         [animation play];
     
-    [animation setLoop:[dictionary boolForKey:@"AnimLoop"]];
-    [animation setRepetitions:[dictionary intForKey:@"AnimRepetitions"]];
-    [animation setRestoreOriginalFrame:[dictionary boolForKey:@"AnimRestoreOriginalFrame"]];
-    [animation setDelayPerUnit:[dictionary floatForKey:@"AnimSpeed"]];
+    animation.loop = [dictionary boolForKey:@"AnimLoop"];
+    animation.repetitions = [dictionary intForKey:@"AnimRepetitions"];
+    animation.restoreOriginalFrame = [dictionary boolForKey:@"AnimRestoreOriginalFrame"];
+    animation.delayPerUnit = [dictionary floatForKey:@"AnimSpeed"];
 }
 
 -(void)loadPathMovementFromDictionary:(NSDictionary*)dictionary{
@@ -340,7 +340,7 @@ static int untitledSpritesCount = 0;
     //at this point we may not have a LHBezier in the level 
     //so we create the path after the level is fully loaded
     //but we save the path properties here
-    if(![dictionary objectForKey:@"PathName"]) return;
+    if(!dictionary[@"PathName"]) return;
        
     pathDefaultFlipX = [dictionary boolForKey:@"PathFlipX"];
     pathDefaultFlipY = [dictionary boolForKey:@"PathFlipY"];
@@ -359,34 +359,34 @@ static int untitledSpritesCount = 0;
     if(nil != uniqueName)
         return; //compatibility with cocos2d 2.0
         
-    if(nil != [dictionary objectForKey:@"UniqueName"]){
+    if(nil != dictionary[@"UniqueName"]){
         uniqueName = [[NSMutableString alloc] initWithString:[dictionary stringForKey:@"UniqueName"]];
     }else {
         uniqueName = [[NSMutableString alloc] initWithFormat:@"UntitledSprite_%d", untitledSpritesCount];
         ++untitledSpritesCount;
     }
         
-    if([dictionary objectForKey:@"SHSceneName"])
+    if(dictionary[@"SHSceneName"])
         shSceneName = [[NSString alloc] initWithString:[dictionary stringForKey:@"SHSceneName"]];
     
-    if([dictionary objectForKey:@"SHSheetName"])
+    if(dictionary[@"SHSheetName"])
         shSheetName = [[NSString alloc] initWithString:[dictionary stringForKey:@"SHSheetName"]];
-    if([dictionary objectForKey:@"SHSpriteName"])
+    if(dictionary[@"SHSpriteName"])
         shSpriteName= [[NSString alloc] initWithString:[dictionary stringForKey:@"SHSpriteName"]];
     
-    NSDictionary* texDict = [dictionary objectForKey:@"TextureProperties"];
+    NSDictionary* texDict = dictionary[@"TextureProperties"];
     
 
     
     NSDictionary* shTexDict = texDict;
-    if(![dictionary objectForKey:@"IsSHSprite"])//we may be loading directly from a sh dictionary
+    if(!dictionary[@"IsSHSprite"])//we may be loading directly from a sh dictionary
     {
         NSDictionary* shDict = [[SHDocumentLoader sharedInstance] dictionaryForSpriteNamed:[dictionary stringForKey:@"SHSpriteName"]
-                                                                          inSheetNamed:[dictionary objectForKey:@"SHSheetName"]
-                                                                            inDocument:[dictionary objectForKey:@"SHSceneName"]];
+                                                                          inSheetNamed:dictionary[@"SHSheetName"]
+                                                                            inDocument:dictionary[@"SHSceneName"]];
 
         if(shDict)
-            shTexDict = [shDict objectForKey:@"TextureProperties"];
+            shTexDict = shDict[@"TextureProperties"];
     }
     
     //CGRect rectInPixels = self.textureRect;
@@ -394,8 +394,8 @@ static int untitledSpritesCount = 0;
     CGSize contentSize = [shTexDict sizeForKey:@"SpriteSize"];
     originalTextureOffset = [shTexDict pointForKey:@"TextureOffset"];
     
-    NSString* sheetImg = [dictionary objectForKey:@"SheetImage"];
-    NSString* sheetImgHD = [dictionary objectForKey:@"SheetImage-HD"];
+    NSString* sheetImg = dictionary[@"SheetImage"];
+    NSString* sheetImgHD = dictionary[@"SheetImage-HD"];
     //if image and image hd are the same it means no-resampling has been used
     //and we should not transform the texture rectagnel
     usesUVTransformation = true;
@@ -441,16 +441,16 @@ static int untitledSpritesCount = 0;
     bool flipX = [texDict boolForKey:@"FlipX"];
     bool flipY = [texDict boolForKey:@"FlipY"];
     
-    [self setFlipX:flipX];
-    [self setFlipY:flipY];
+    self.flipX = flipX;
+    self.flipY = flipY;
     
     CGPoint scale = [texDict pointForKey:@"Scale"];
     
     if(usesUVTransformation)
         scale = [[LHSettings sharedInstance] transformedScalePointToCocos2d:scale];
     
-    [self setScaleX:(scale.x)];
-    [self setScaleY:(scale.y)];
+    self.scaleX = (scale.x);
+    self.scaleY = (scale.y);
     
     realScale = CGSizeMake(scale.x, scale.y);
 
@@ -463,28 +463,28 @@ static int untitledSpritesCount = 0;
     if(usesUVTransformation)
         position = [[LHSettings sharedInstance] transformedPointToCocos2d:position];
 
-    [self setPosition:ccp((int)position.x, (int)position.y)];
+    self.position = ccp((int)position.x, (int)position.y);
     
     
-    [self setRotation:[texDict intForKey:@"Angle"]];
-    [self setColor:[texDict colorForKey:@"Color"]];
-    [self setVisible:[texDict boolForKey:@"IsDrawable"]];
-    [self setOpacity:(GLubyte)([texDict floatForKey:@"Opacity"]*255.0f)];
-    [self setTag:[texDict intForKey:@"Tag"]];
+    self.rotation = [texDict intForKey:@"Angle"];
+    self.color = [texDict colorForKey:@"Color"];
+    self.visible = [texDict boolForKey:@"IsDrawable"];
+    self.opacity = (GLubyte)([texDict floatForKey:@"Opacity"]*255.0f);
+    self.tag = [texDict intForKey:@"Tag"];
     zOrder_ = [texDict intForKey:@"ZOrder"];
     
-    NSDictionary* phyDict = [dictionary objectForKey:@"PhysicProperties"];
-    if([phyDict boolForKey:@"HandledBySH"] && ![dictionary objectForKey:@"IsSHSprite"])
+    NSDictionary* phyDict = dictionary[@"PhysicProperties"];
+    if([phyDict boolForKey:@"HandledBySH"] && !dictionary[@"IsSHSprite"])
     {        
         NSDictionary* sprDict = [[SHDocumentLoader sharedInstance] dictionaryForSpriteNamed:shSpriteName
                                                                                inSheetNamed:shSheetName
                                                                                  inDocument:shSceneName];
-        phyDict = [sprDict objectForKey:@"PhysicProperties"];
+        phyDict = sprDict[@"PhysicProperties"];
     }
     
      //we do this because we need the batch to contain the sprite before loading any animation
-    if([self batchNode]){
-        [[self batchNode] addChild:self z:zOrder_];
+    if(self.batchNode){
+        [self.batchNode addChild:self z:zOrder_];
     }
 
     originalRect = self.textureRect;
@@ -492,10 +492,10 @@ static int untitledSpritesCount = 0;
 #ifdef LH_USE_BOX2D
     [self loadPhysicalInformationFromDictionary:phyDict];
 #endif
-    [self loadAnimationsInformationFromDictionary:[dictionary objectForKey:@"AnimationsProperties"]];
+    [self loadAnimationsInformationFromDictionary:dictionary[@"AnimationsProperties"]];
     
-    [self loadUserCustomInfoFromDictionary:[dictionary objectForKey:@"CustomClassInfo"]];
-    [self loadPathMovementFromDictionary:[dictionary objectForKey:@"PathProperties"]];
+    [self loadUserCustomInfoFromDictionary:dictionary[@"CustomClassInfo"]];
+    [self loadPathMovementFromDictionary:dictionary[@"PathProperties"]];
     
     pathNode = nil;
     spriteIsInParallax = nil;
@@ -510,7 +510,7 @@ static int untitledSpritesCount = 0;
     
     usesOverloadedTransformations = false;
 
-    [LevelHelperLoader setTouchDispatcherForObject:self tag:(int)[self tag]];
+    [LevelHelperLoader setTouchDispatcherForObject:self tag:(int)self.tag];
     
     [self scheduleUpdate];
 }
@@ -540,23 +540,23 @@ static int untitledSpritesCount = 0;
 }
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
--(id)initBatchSpriteWithDictionary:(NSDictionary*)dictionary batch:(LHBatch*)batch{
+-(instancetype)initBatchSpriteWithDictionary:(NSDictionary*)dictionary batch:(LHBatch*)batch{
         
-    NSDictionary* texDict = [dictionary objectForKey:@"TextureProperties"];
-    CGRect rect = LHRectFromString([texDict objectForKey:@"Frame"]);    
+    NSDictionary* texDict = dictionary[@"TextureProperties"];
+    CGRect rect = LHRectFromString(texDict[@"Frame"]);    
 
-    rect = [[LHSettings sharedInstance] transformedTextureRect:rect forImage:[batch imagePath]];
+    rect = [[LHSettings sharedInstance] transformedTextureRect:rect forImage:batch.imagePath];
         
 #if COCOS2D_VERSION >= 0x00020000
     self = [super initWithTexture:[batch texture] rect:rect];
     
-    [self setBatchNode:batch];
+    self.batchNode = batch;
 #else
     self = [super initWithBatchNode:batch rect:rect];
 #endif
     
     if (self != nil){        
-        [self setImageFile:[batch imagePath]];        
+        [self setImageFile:batch.imagePath];        
         [self loadInformationFromDictionary:dictionary];
     }
     return self;
@@ -572,16 +572,16 @@ static int untitledSpritesCount = 0;
 }
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
--(id)initWithDictionary:(NSDictionary*)dictionary{
+-(instancetype)initWithDictionary:(NSDictionary*)dictionary{
     
-    NSString* sheetImg = [dictionary objectForKey:@"SheetImage"];
+    NSString* sheetImg = dictionary[@"SheetImage"];
     NSString* imgPath = [[LHSettings sharedInstance] imagePath:sheetImg];
     NSAssert(imgPath!=nil, @"Image path must not be nil");
     
-    NSDictionary* texDict = [dictionary objectForKey:@"TextureProperties"];
-    CGRect rect = LHRectFromString([texDict objectForKey:@"Frame"]);
+    NSDictionary* texDict = dictionary[@"TextureProperties"];
+    CGRect rect = LHRectFromString(texDict[@"Frame"]);
     
-    NSString* sheetImgHD = [dictionary objectForKey:@"SheetImage-HD"];
+    NSString* sheetImgHD = dictionary[@"SheetImage-HD"];
     //if image and image hd are the same it means no-resampling has been used
     //and we should not transform the texture rectagnel
     if(![sheetImg isEqualToString:sheetImgHD])
@@ -595,7 +595,7 @@ static int untitledSpritesCount = 0;
     return self;
 }
 //------------------------------------------------------------------------------
-+(id)spriteWithDictionary:(NSDictionary*)dictionary{
++(instancetype)spriteWithDictionary:(NSDictionary*)dictionary{
     
 #ifndef LH_ARC_ENABLED
     return [[[self alloc] initWithDictionary:dictionary] autorelease];
@@ -608,7 +608,7 @@ static int untitledSpritesCount = 0;
 }
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-+(id)spriteWithName:(NSString*)spriteName 
++(instancetype)spriteWithName:(NSString*)spriteName 
           fromSheet:(NSString*)sheetName 
              SHFile:(NSString*)spriteHelperFile{
     
@@ -634,7 +634,7 @@ static int untitledSpritesCount = 0;
     NSAssert(batch!=nil, @"Batch must not be nil");
         
     NSDictionary* dictionary = [[SHDocumentLoader sharedInstance] dictionaryForSpriteNamed:spriteName 
-                                                                              inSheetNamed:[batch uniqueName]
+                                                                              inSheetNamed:batch.uniqueName
                                                                                 inDocument:[batch shFile]];
 #ifndef LH_ARC_ENABLED
     LHSprite* sprite = [[[LHSprite alloc] initBatchSpriteWithDictionary:dictionary batch:batch] autorelease];
@@ -723,7 +723,7 @@ static int untitledSpritesCount = 0;
     if(usesOverloadedTransformations)
         [self transformPosition:pos];
     else {
-        [super setPosition:pos];
+        super.position = pos;
     }
 }
 -(void)setRotation:(float)rot
@@ -731,7 +731,7 @@ static int untitledSpritesCount = 0;
     if(usesOverloadedTransformations)
         [self transformRotation:rot];
     else {
-        [super setRotation:rot];
+        super.rotation = rot;
     }
 }
 //------------------------------------------------------------------------------
@@ -740,14 +740,14 @@ static int untitledSpritesCount = 0;
     if(usesOverloadedTransformations)
         [self transformScale:scale];
     else {
-        [super setScale:scale];
+        super.scale = scale;
     }
 }
 -(void)setScaleX:(float)scaleX{
     if(usesOverloadedTransformations)
         [self transformScaleX:scaleX];
     else {
-        [super setScaleX:scaleX];
+        super.scaleX = scaleX;
     }
 }
 
@@ -755,12 +755,12 @@ static int untitledSpritesCount = 0;
     if(usesOverloadedTransformations)
         [self transformScaleY:scaleY];
     else {
-        [super setScaleY:scaleY];
+        super.scaleY = scaleY;
     }
 }
 //------------------------------------------------------------------------------
 -(void) transformPosition:(CGPoint)pos{
-    [super setPosition:pos];
+    super.position = pos;
 #ifdef LH_USE_BOX2D
     if(0 != body){
         b2Vec2 boxPosition = [LevelHelperLoader pointsToMeters:pos];
@@ -771,7 +771,7 @@ static int untitledSpritesCount = 0;
 }
 //------------------------------------------------------------------------------
 -(void)transformRotation:(float)rot{
-    [super setRotation:rot];
+    super.rotation = rot;
 #ifdef LH_USE_BOX2D
     if(0 != body){
         b2Vec2 boxPosition = [LevelHelperLoader pointsToMeters:super.position];
@@ -783,7 +783,7 @@ static int untitledSpritesCount = 0;
 //------------------------------------------------------------------------------
 -(void) transformScale:(float)scale{
 
-    [super setScale:scale];
+    super.scale = scale;
 #ifdef LH_USE_BOX2D
     if(0 != body){
         [self createFixturesFromInfoOnBody];
@@ -791,7 +791,7 @@ static int untitledSpritesCount = 0;
 #endif
 }
 -(void) transformScaleX:(float)scaleX{
-    [super setScaleX:scaleX];
+    super.scaleX = scaleX;
 #ifdef LH_USE_BOX2D
     if(0 != body){
         [self createFixturesFromInfoOnBody];        
@@ -799,7 +799,7 @@ static int untitledSpritesCount = 0;
 #endif
 }
 -(void) transformScaleY:(float)scaleY{
-    [super setScaleY:scaleY];
+    super.scaleY = scaleY;
 #ifdef LH_USE_BOX2D
     if(0 != body){
         [self createFixturesFromInfoOnBody];
@@ -824,8 +824,8 @@ static int untitledSpritesCount = 0;
     if(animation)
     {
         //if we already have the same animation active - reset it to frame 0
-        if([[animation uniqueName] isEqualToString:animName] &&
-           [[animation shSceneName] isEqualToString:shScene])
+        if([animation.uniqueName isEqualToString:animName] &&
+           [animation.shSceneName isEqualToString:shScene])
         {
             [animation setFrame:0];
             return;
@@ -864,15 +864,15 @@ static int untitledSpritesCount = 0;
             if(newTexture && newTexture.name != self.texture.name){
                 //if sprite is render by a batch node we need to remove if from the batch and 
                 //move it on the layer that contains the batch
-                LHBatch* parentBatch = (LHBatch*)[self batchNode];
+                LHBatch* parentBatch = (LHBatch*)self.batchNode;
                     
                 if(parentBatch){
                     [self removeFromParentAndCleanup:NO];
                     
                     [animation setOldBatch:parentBatch];
                     //we need to keep the z order so its batch z + sprite z 
-                    if([parentBatch parent]){
-                        [[parentBatch parent] addChild:self z:[parentBatch zOrder] + [self zOrder]];
+                    if(parentBatch.parent){
+                        [parentBatch.parent addChild:self z:parentBatch.zOrder + self.zOrder];
                     }
                     else {
                         NSLog(@"ERROR: Sprite is render by batch node, but batch node has no parent.");
@@ -1000,7 +1000,7 @@ static int untitledSpritesCount = 0;
 -(void) restartAnimation{ if(animation)[animation restart];}
 //------------------------------------------------------------------------------
 -(bool) isAnimationPaused{ if(!animation)return false;
-    return [animation paused];
+    return animation.paused;
 }
 //------------------------------------------------------------------------------
 -(void) stopAnimation{
@@ -1018,11 +1018,11 @@ static int untitledSpritesCount = 0;
     animation = nil;
 }
 //------------------------------------------------------------------------------
--(NSString*) animationName{ if(animation) return [animation uniqueName];
+-(NSString*) animationName{ if(animation) return animation.uniqueName;
     return @"";
 }
 //------------------------------------------------------------------------------
--(NSString*) animationSHScene{ if(animation) return [animation shSceneName];
+-(NSString*) animationSHScene{ if(animation) return animation.shSceneName;
     return @"";
 }
 //------------------------------------------------------------------------------
@@ -1031,11 +1031,11 @@ static int untitledSpritesCount = 0;
 }
 //------------------------------------------------------------------------------
 -(float) animationDelayPerUnit{
-    if(animation){return [animation delayPerUnit];}
+    if(animation){return animation.delayPerUnit;}
     return 0.0f;
 }
 -(void) setAnimationDelayPerUnit:(float)d{
-    if(animation){ if(d < 0.0f) d = 0.0f; [animation setDelayPerUnit:d];}
+    if(animation){ if(d < 0.0f) d = 0.0f; animation.delayPerUnit = d;}
 }
 //------------------------------------------------------------------------------
 -(float)animationDuration{
@@ -1093,7 +1093,7 @@ static int untitledSpritesCount = 0;
     if(name == nil) return nil;
     NSArray* jointList = [self jointList];
     for(LHJoint* jt in jointList){
-        if([[jt uniqueName] isEqualToString:name]){
+        if([jt.uniqueName isEqualToString:name]){
             return jt;
         }
     }
@@ -1121,7 +1121,7 @@ static int untitledSpritesCount = 0;
             }
         }
     }    
-    NSLog(@"WARNING: Trying to remove joint %@ from the sprite %@ but the joint does not belong to that sprite. Removal of joint was not performed.", [joint uniqueName], uniqueName);
+    NSLog(@"WARNING: Trying to remove joint %@ from the sprite %@ but the joint does not belong to that sprite. Removal of joint was not performed.", joint.uniqueName, uniqueName);
     return false;
 }
 #endif
@@ -1153,12 +1153,12 @@ static int untitledSpritesCount = 0;
         }
         
         pathDefaultName = [[NSString alloc] initWithString:pathName];
-        [pathNode setFlipX:pathDefaultFlipX];
-        [pathNode setFlipY:pathDefaultFlipY];
-        [pathNode setIsCyclic:pathDefaultIsCyclic];
-        [pathNode setRelativeMovement:pathDefaultRelativeMove];
-        [pathNode setAxisOrientation:pathDefaultOrientation];
-        [pathNode setRestartOtherEnd:pathDefaultRestartOtherEnd];
+        pathNode.flipX = pathDefaultFlipX;
+        pathNode.flipY = pathDefaultFlipY;
+        pathNode.isCyclic = pathDefaultIsCyclic;
+        pathNode.relativeMovement = pathDefaultRelativeMove;
+        pathNode.axisOrientation = pathDefaultOrientation;
+        pathNode.restartOtherEnd = pathDefaultRestartOtherEnd;
         [pathNode setSpeed:pathDefaultSpeed];
         [pathNode setStartAtEndPoint:pathDefaultStartPoint];
     }
@@ -1266,46 +1266,46 @@ static int untitledSpritesCount = 0;
     return (enum LH_PATH_MOVEMENT_START_POINT)[pathNode startAtEndPoint];
 }
 -(void) setPathMovementIsCyclic:(bool)cyclic{
-    if(pathNode)[pathNode setIsCyclic:cyclic];
+    if(pathNode)pathNode.isCyclic = cyclic;
 }
 -(bool) pathMovementIsCyclic{
     if(!pathNode)return false;
-    return [pathNode isCyclic];
+    return pathNode.isCyclic;
 }
 -(void) setPathMovementRestartsAtOtherEnd:(bool)otherEnd{
-    if(pathNode)[pathNode setRestartOtherEnd:otherEnd];
+    if(pathNode)pathNode.restartOtherEnd = otherEnd;
 }
 -(bool) pathMovementRestartsAtOtherEnd{
     if(!pathNode)return false;
-    return [pathNode restartOtherEnd];
+    return pathNode.restartOtherEnd;
 }
 -(void) setPathMovementOrientation:(enum LH_PATH_MOVEMENT_ORIENTATION)point{
-    if(pathNode)[pathNode setAxisOrientation:(int)point];
+    if(pathNode)pathNode.axisOrientation = (int)point;
 }
 -(enum LH_PATH_MOVEMENT_ORIENTATION) pathMovementOrientation{
     if(!pathNode)return LH_INVALID_ORIENTATION;
-    return (enum LH_PATH_MOVEMENT_ORIENTATION)[pathNode axisOrientation];
+    return (enum LH_PATH_MOVEMENT_ORIENTATION)pathNode.axisOrientation;
 }
 -(void) setPathMovementFlipXAtEnd:(bool)flip{
-    if(pathNode)[pathNode setFlipX:flip];
+    if(pathNode)pathNode.flipX = flip;
 }
 -(bool) pathMovementFlipXAtEnd{
     if(!pathNode)return false;
-    return [pathNode flipX];
+    return pathNode.flipX;
 }
 -(void) setPathMovementFlipYAtEnd:(bool)flip{
-    if(pathNode)[pathNode setFlipY:flip];    
+    if(pathNode)pathNode.flipY = flip;    
 }
 -(bool) pathMovementFlipYAtEnd{
     if(!pathNode)return false;
-    return [pathNode flipY];
+    return pathNode.flipY;
 }
 -(void) setPathMovementRelative:(bool)rel{
-    if(pathNode)[pathNode setRelativeMovement:rel];
+    if(pathNode)pathNode.relativeMovement = rel;
 }
 -(bool) pathMovementRelative{
     if(!pathNode)return false;
-    return [pathNode relativeMovement];
+    return pathNode.relativeMovement;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1324,8 +1324,8 @@ static int untitledSpritesCount = 0;
     else{
         b2Fixture* stFix = body->GetFixtureList();
         while(stFix != 0){
-            if(stFix->TestPoint(b2Vec2(point.x/[[LHSettings sharedInstance] lhPtmRatio], 
-                                       point.y/[[LHSettings sharedInstance] lhPtmRatio]))){
+            if(stFix->TestPoint(b2Vec2(point.x/[LHSettings sharedInstance].lhPtmRatio, 
+                                       point.y/[LHSettings sharedInstance].lhPtmRatio))){
                 return true;
             }
             stFix = stFix->GetNext();
@@ -1350,7 +1350,7 @@ static int untitledSpritesCount = 0;
 #if COCOS2D_VERSION >= 0x00020000
     #ifdef __CC_PLATFORM_IOS
             CCDirectorIOS *director = (CCDirectorIOS*) [CCDirector sharedDirector];
-            CCTouchDispatcher *dispatcher = [director touchDispatcher];
+            CCTouchDispatcher *dispatcher = director.touchDispatcher;
             [dispatcher addTargetedDelegate:self
                                    priority:touchPriority
                             swallowsTouches:swallowTouches];
@@ -1509,7 +1509,7 @@ static int untitledSpritesCount = 0;
     if(nil == touchBeginObserver && nil == tagTouchBeginObserver)
         return false;
     
-    CGPoint touchPoint = [touch locationInView:[touch view]];
+    CGPoint touchPoint = [touch locationInView:touch.view];
     touchPoint = [self convertedPoint:touchPoint];
     
     if([self isTouchedAtPoint:touchPoint])
@@ -1534,10 +1534,10 @@ static int untitledSpritesCount = 0;
     
     if(touchesDisabled)return;
     
-    CGPoint touchPoint = [touch locationInView:[touch view]];
+    CGPoint touchPoint = [touch locationInView:touch.view];
     touchPoint = [self convertedPoint:touchPoint];
         
-    CGPoint prevLocation = [touch previousLocationInView:[touch view]];
+    CGPoint prevLocation = [touch previousLocationInView:touch.view];
     prevLocation = [self convertedPoint:prevLocation];
 
     LHTouchInfo* info = [LHTouchInfo touchInfo];
@@ -1559,10 +1559,10 @@ static int untitledSpritesCount = 0;
     if(touchesDisabled)
         return;
     
-    CGPoint touchPoint = [touch locationInView:[touch view]];
+    CGPoint touchPoint = [touch locationInView:touch.view];
     touchPoint= [self convertedPoint:touchPoint];
 
-    CGPoint prevLocation = [touch previousLocationInView:[touch view]];
+    CGPoint prevLocation = [touch previousLocationInView:touch.view];
     prevLocation = [self convertedPoint:prevLocation];
 
     LHTouchInfo* info = [LHTouchInfo touchInfo];
@@ -1811,7 +1811,7 @@ static int untitledSpritesCount = 0;
         CCNode* spr = (__bridge CCNode*)body->GetUserData();
         #endif
         if(nil != spr){
-            return (int)[spr tag];
+            return (int)spr.tag;
         }
     }
     return -1;
@@ -1955,7 +1955,7 @@ static int untitledSpritesCount = 0;
 #endif
         if([LHFixture isLHFixture:lhFix])
         {
-            if([[lhFix fixtureName] isEqualToString:fixName]){
+            if([lhFix.fixtureName isEqualToString:fixName]){
                 fix->SetSensor(val);
                 return;
             }
@@ -1979,7 +1979,7 @@ static int untitledSpritesCount = 0;
 
         if([LHFixture isLHFixture:lhFix])
         {
-            if([lhFix fixtureID] == fixID){
+            if(lhFix.fixtureID == fixID){
                 fix->SetSensor(val);
             }
         }

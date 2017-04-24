@@ -56,11 +56,11 @@ CCBMFontConfiguration* FNTConfigLoadFile( NSString *fntFile)
 	if( configurations == nil )
 		configurations = [[NSMutableDictionary dictionaryWithCapacity:3] retain];
     
-	ret = [configurations objectForKey:fntFile];
+	ret = configurations[fntFile];
 	if( ret == nil ) {
 		ret = [CCBMFontConfiguration configurationWithFNTFile:fntFile];
 		if( ret )
-			[configurations setObject:ret forKey:fntFile];
+			configurations[fntFile] = ret;
 	}
     
 	return ret;
@@ -92,12 +92,12 @@ void FNTConfigRemoveCache( void )
 @synthesize characterSet=characterSet_;
 @synthesize atlasName=atlasName_;
 
-+(id) configurationWithFNTFile:(NSString*)FNTfile
++(instancetype) configurationWithFNTFile:(NSString*)FNTfile
 {
 	return [[[self alloc] initWithFNTfile:FNTfile] autorelease];
 }
 
--(id) initWithFNTfile:(NSString*)fntFile
+-(instancetype) initWithFNTfile:(NSString*)fntFile
 {
 	if((self=[super init])) {
         
@@ -240,11 +240,11 @@ void FNTConfigRemoveCache( void )
 	// file
 	propertyValue = [nse nextObject];
 	NSArray *array = [propertyValue componentsSeparatedByString:@"\""];
-	propertyValue = [array objectAtIndex:1];
+	propertyValue = array[1];
 	NSAssert(propertyValue,@"LabelBMFont file could not be found");
     
 	// Supports subdirectories
-	NSString *dir = [fntFile stringByDeletingLastPathComponent];
+	NSString *dir = fntFile.stringByDeletingLastPathComponent;
 	atlasName_ = [dir stringByAppendingPathComponent:propertyValue];
     
 	[atlasName_ retain];
@@ -299,19 +299,19 @@ void FNTConfigRemoveCache( void )
 		NSEnumerator *paddingEnum = [paddingValues objectEnumerator];
 		// padding top
 		propertyValue = [paddingEnum nextObject];
-		padding_.top = [propertyValue intValue];
+		padding_.top = propertyValue.intValue;
         
 		// padding right
 		propertyValue = [paddingEnum nextObject];
-		padding_.right = [propertyValue intValue];
+		padding_.right = propertyValue.intValue;
         
 		// padding bottom
 		propertyValue = [paddingEnum nextObject];
-		padding_.bottom = [propertyValue intValue];
+		padding_.bottom = propertyValue.intValue;
         
 		// padding left
 		propertyValue = [paddingEnum nextObject];
-		padding_.left = [propertyValue intValue];
+		padding_.left = propertyValue.intValue;
         
 		CCLOG(@"cocos2d: padding: %d,%d,%d,%d", padding_.left, padding_.top, padding_.right, padding_.bottom);
 	}
@@ -335,7 +335,7 @@ void FNTConfigRemoveCache( void )
     
 	// Character ID
 	propertyValue = [nse nextObject];
-	commonHeight_ = [propertyValue intValue];
+	commonHeight_ = propertyValue.intValue;
     
 	// base (ignore)
 	[nse nextObject];
@@ -368,29 +368,29 @@ void FNTConfigRemoveCache( void )
 	// Character ID
 	propertyValue = [nse nextObject];
 	propertyValue = [propertyValue substringToIndex: [propertyValue rangeOfString: @" "].location];
-	characterDefinition->charID = [propertyValue intValue];
+	characterDefinition->charID = propertyValue.intValue;
     
 	// Character x
 	propertyValue = [nse nextObject];
-	characterDefinition->rect.origin.x = [propertyValue intValue];
+	characterDefinition->rect.origin.x = propertyValue.intValue;
 	// Character y
 	propertyValue = [nse nextObject];
-	characterDefinition->rect.origin.y = [propertyValue intValue];
+	characterDefinition->rect.origin.y = propertyValue.intValue;
 	// Character width
 	propertyValue = [nse nextObject];
-	characterDefinition->rect.size.width = [propertyValue intValue];
+	characterDefinition->rect.size.width = propertyValue.intValue;
 	// Character height
 	propertyValue = [nse nextObject];
-	characterDefinition->rect.size.height = [propertyValue intValue];
+	characterDefinition->rect.size.height = propertyValue.intValue;
 	// Character xoffset
 	propertyValue = [nse nextObject];
-	characterDefinition->xOffset = [propertyValue intValue];
+	characterDefinition->xOffset = propertyValue.intValue;
 	// Character yoffset
 	propertyValue = [nse nextObject];
-	characterDefinition->yOffset = [propertyValue intValue];
+	characterDefinition->yOffset = propertyValue.intValue;
 	// Character xadvance
 	propertyValue = [nse nextObject];
-	characterDefinition->xAdvance = [propertyValue intValue];
+	characterDefinition->xAdvance = propertyValue.intValue;
 }
 
 -(void) parseKerningEntry:(NSString*) line
@@ -404,15 +404,15 @@ void FNTConfigRemoveCache( void )
     
 	// first
 	propertyValue = [nse nextObject];
-	int first = [propertyValue intValue];
+	int first = propertyValue.intValue;
     
 	// second
 	propertyValue = [nse nextObject];
-	int second = [propertyValue intValue];
+	int second = propertyValue.intValue;
     
 	// second
 	propertyValue = [nse nextObject];
-	int amount = [propertyValue intValue];
+	int amount = propertyValue.intValue;
     
 	tCCKerningHashElement *element = calloc( sizeof( *element ), 1 );
 	element->amount = amount;
@@ -465,23 +465,23 @@ void FNTConfigRemoveCache( void )
     return [[[self alloc] initWithString:string fntFile:fntFile width:width alignment:alignment imageOffset:offset] autorelease];
 }
 
--(id) init
+-(instancetype) init
 {
 	return [self initWithString:nil fntFile:nil width:kCCLabelAutomaticWidth alignment:kCCTextAlignmentLeft imageOffset:CGPointZero];
 }
 
--(id) initWithString:(NSString*)theString fntFile:(NSString*)fntFile
+-(instancetype) initWithString:(NSString*)theString fntFile:(NSString*)fntFile
 {
     return [self initWithString:theString fntFile:fntFile width:kCCLabelAutomaticWidth alignment:kCCTextAlignmentLeft];
 }
 
--(id) initWithString:(NSString*)theString fntFile:(NSString*)fntFile width:(float)width alignment:(CCTextAlignment)alignment
+-(instancetype) initWithString:(NSString*)theString fntFile:(NSString*)fntFile width:(float)width alignment:(CCTextAlignment)alignment
 {
 	return [self initWithString:theString fntFile:fntFile width:width alignment:alignment imageOffset:CGPointZero];
 }
 
 // designated initializer
--(id) initWithString:(NSString*)theString fntFile:(NSString*)fntFile width:(float)width alignment:(CCTextAlignment)alignment imageOffset:(CGPoint)offset
+-(instancetype) initWithString:(NSString*)theString fntFile:(NSString*)fntFile width:(float)width alignment:(CCTextAlignment)alignment imageOffset:(CGPoint)offset
 {
 	NSAssert(!configuration_, @"re-init is no longer supported");
 	
@@ -504,7 +504,7 @@ void FNTConfigRemoveCache( void )
 		texture = [[[CCTexture2D alloc] init] autorelease];
     
     
-	if( (self=[super initWithTexture:texture capacity:[theString length]]) ) {
+	if( (self=[super initWithTexture:texture capacity:theString.length]) ) {
         width_ = width;
         alignment_ = alignment;
         
@@ -513,7 +513,7 @@ void FNTConfigRemoveCache( void )
 		
 		contentSize_ = CGSizeZero;
 		
-		opacityModifyRGB_ = [[textureAtlas_ texture] hasPremultipliedAlpha];
+		opacityModifyRGB_ = textureAtlas_.texture.hasPremultipliedAlpha;
 		
 		anchorPoint_ = ccp(0.5f, 0.5f);
         
@@ -546,7 +546,7 @@ void FNTConfigRemoveCache( void )
 		
         NSString *multilineString = @"", *lastWord = @"";
         int line = 1, i = 0;
-        NSUInteger stringLength = [self.string length];
+        NSUInteger stringLength = (self.string).length;
         float startOfLine = -1, startOfWord = -1;
         int skip = 0;
         //Go through each character and insert line breaks as necessary
@@ -640,7 +640,7 @@ void FNTConfigRemoveCache( void )
             int lineWidth = 0;
 			
             //Find index of last character in this line
-            NSInteger index = i + [lineString length] - 1 + lineNumber;
+            NSInteger index = i + lineString.length - 1 + lineNumber;
             if (index < 0)
                 continue;
 			
@@ -664,7 +664,7 @@ void FNTConfigRemoveCache( void )
             if (shift != 0) {
                 int j = 0;
                 //For each character, shift it so that the line is center aligned
-                for (j = 0; j < [lineString length]; j++) {
+                for (j = 0; j < lineString.length; j++) {
                     index = i + j + lineNumber;
                     if (index < 0)
                         continue;
@@ -672,7 +672,7 @@ void FNTConfigRemoveCache( void )
                     characterSprite.position = ccpAdd(characterSprite.position, ccp(shift, 0));
                 }
             }
-            i += [lineString length];
+            i += lineString.length;
             lineNumber++;
         }
     }
@@ -711,7 +711,7 @@ void FNTConfigRemoveCache( void )
   
 	NSCharacterSet *charSet	= configuration_.characterSet;
     
-	NSUInteger stringLen = [string_ length];
+	NSUInteger stringLen = string_.length;
 	if( ! stringLen )
 		return;
     
@@ -790,12 +790,12 @@ void FNTConfigRemoveCache( void )
 		// Apply label properties
 		[fontChar setOpacityModifyRGB:opacityModifyRGB_];
 		// Color MUST be set before opacity, since opacity might change color if OpacityModifyRGB is on
-		[fontChar setColor:color_];
+		fontChar.color = color_;
         
 		// only apply opacity if it is different than 255 )
 		// to prevent modifying the color too (issue #610)
 		if( opacity_ != 255 )
-			[fontChar setOpacity: opacity_];
+			fontChar.opacity = opacity_;
         
 		if (longestLine < nextFontPositionX)
 			longestLine = nextFontPositionX;
@@ -815,7 +815,7 @@ void FNTConfigRemoveCache( void )
 
 -(void) setCString:(char*)label
 {
-	[self setString:[NSString stringWithUTF8String:label] ];
+	[self setString:@(label) ];
 }
 
 - (void) setString:(NSString*)newString
@@ -851,7 +851,7 @@ void FNTConfigRemoveCache( void )
     
 	CCSprite *child;
 	CCARRAY_FOREACH(children_, child)
-    [child setColor:color_];
+    child.color = color_;
 }
 
 -(void) setOpacity:(GLubyte)opacity
@@ -880,7 +880,7 @@ void FNTConfigRemoveCache( void )
 -(void) setAnchorPoint:(CGPoint)point
 {
 	if( ! CGPointEqualToPoint(point, anchorPoint_) ) {
-		[super setAnchorPoint:point];
+		super.anchorPoint = point;
 		[self createFontChars];
 	}
 }

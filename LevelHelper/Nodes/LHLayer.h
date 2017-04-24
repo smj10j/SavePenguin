@@ -23,29 +23,28 @@
 @property (readonly) NSString* uniqueName;
 @property bool isMainLayer;
 
-+(id)layerWithDictionary:(NSDictionary*)dict;
++(instancetype)layerWithDictionary:(NSDictionary*)dict;
 
 -(void) removeSelf; //will also remove all children
 
--(void)setParentLoader:(LevelHelperLoader*)p;
--(LevelHelperLoader*)parentLoader;
+@property (NS_NONATOMIC_IOSONLY, strong) LevelHelperLoader *parentLoader;
 
 -(LHLayer*)layerWithUniqueName:(NSString*)name; //does not return self
 -(LHBatch*)batchWithUniqueName:(NSString*)name;
 -(LHSprite*)spriteWithUniqueName:(NSString*)name;
 -(LHBezier*)bezierWithUniqueName:(NSString*)name;
 
--(NSArray*)allLayers; //does not return self
--(NSArray*)allBatches;
--(NSArray*)allSprites;
--(NSArray*)allBeziers;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *allLayers; //does not return self
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *allBatches;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *allSprites;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *allBeziers;
 
 -(NSArray*)layersWithTag:(int)tag; //does not return self
 -(NSArray*)batchesWithTag:(int)tag;
 -(NSArray*)spritesWithTag:(int)tag;
 -(NSArray*)beziersWithTag:(int)tag;
 //------------------------------------------------------------------------------
--(NSString*)userInfoClassName;
--(id)userInfo;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *userInfoClassName;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) id userInfo;
 
 @end

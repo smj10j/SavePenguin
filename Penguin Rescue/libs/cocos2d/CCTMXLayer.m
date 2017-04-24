@@ -77,12 +77,12 @@ int compareInts (const void * a, const void * b);
 
 #pragma mark CCTMXLayer - init & alloc & dealloc
 
-+(id) layerWithTilesetInfo:(CCTMXTilesetInfo*)tilesetInfo layerInfo:(CCTMXLayerInfo*)layerInfo mapInfo:(CCTMXMapInfo*)mapInfo
++(instancetype) layerWithTilesetInfo:(CCTMXTilesetInfo*)tilesetInfo layerInfo:(CCTMXLayerInfo*)layerInfo mapInfo:(CCTMXMapInfo*)mapInfo
 {
 	return [[[self alloc] initWithTilesetInfo:tilesetInfo layerInfo:layerInfo mapInfo:mapInfo] autorelease];
 }
 
--(id) initWithTilesetInfo:(CCTMXTilesetInfo*)tilesetInfo layerInfo:(CCTMXLayerInfo*)layerInfo mapInfo:(CCTMXMapInfo*)mapInfo
+-(instancetype) initWithTilesetInfo:(CCTMXTilesetInfo*)tilesetInfo layerInfo:(CCTMXLayerInfo*)layerInfo mapInfo:(CCTMXMapInfo*)mapInfo
 {
 	// XXX: is 35% a good estimate ?
 	CGSize size = layerInfo.layerSize;
@@ -165,7 +165,7 @@ int compareInts (const void * a, const void * b);
 {	
 	if( ! reusedTile_ ) {
 		reusedTile_ = [[CCSprite alloc] initWithTexture:textureAtlas_.texture rect:rect rotated:NO];
-		[reusedTile_ setBatchNode:self];
+		reusedTile_.batchNode = self;
 	}
 	else
 	{
@@ -175,7 +175,7 @@ int compareInts (const void * a, const void * b);
 		
 		// Since initWithTexture resets the batchNode, we need to re add it.
 		// but should be removed once initWithTexture is not called again
-		[reusedTile_ setBatchNode:self];
+		reusedTile_.batchNode = self;
 	}
 
 	return reusedTile_;
@@ -184,7 +184,7 @@ int compareInts (const void * a, const void * b);
 -(void) setupTiles
 {
 	// Optimization: quick hack that sets the image size on the tileset
-	tileset_.imageSize = [textureAtlas_.texture contentSizeInPixels];
+	tileset_.imageSize = (textureAtlas_.texture).contentSizeInPixels;
 
 	// By default all the tiles are aliased
 	// pros:
@@ -242,7 +242,7 @@ int compareInts (const void * a, const void * b);
 			useAutomaticVertexZ_ = YES;
 
 			NSString *alphaFuncVal = [self propertyNamed:@"cc_alpha_func"];
-			float alphaFuncValue = [alphaFuncVal floatValue];
+			float alphaFuncValue = alphaFuncVal.floatValue;
 
 			self.shaderProgram = [[CCShaderCache sharedShaderCache] programForKey:kCCShader_PositionTextureColorAlphaTest];
 
@@ -252,7 +252,7 @@ int compareInts (const void * a, const void * b);
 			[self.shaderProgram setUniformLocation:alphaValueLocation withF1:alphaFuncValue];
 		}
 		else
-			vertexZvalue_ = [vertexz intValue];
+			vertexZvalue_ = vertexz.intValue;
 	}
 }
 
@@ -276,13 +276,13 @@ int compareInts (const void * a, const void * b);
 			CGRect rect = [tileset_ rectForGID:gid];
 			rect = CC_RECT_PIXELS_TO_POINTS(rect);
 			tile = [[CCSprite alloc] initWithTexture:self.texture rect:rect];
-			[tile setBatchNode:self];
+			tile.batchNode = self;
 
             CGPoint p = [self positionAt:pos];
-            [tile setPosition:p];
-			[tile setVertexZ: [self vertexZForPos:pos]];
+            tile.position = p;
+			tile.vertexZ = [self vertexZForPos:pos];
 			tile.anchorPoint = CGPointZero;
-			[tile setOpacity:opacity_];
+			tile.opacity = opacity_;
 
 			NSUInteger indexForZ = [self atlasIndexForExistantZ:z];
 			[self addSpriteWithoutQuad:tile z:indexForZ tag:z];
@@ -319,10 +319,10 @@ int compareInts (const void * a, const void * b);
 
 - (void) setupTileSprite:(CCSprite*) sprite position:(CGPoint)pos withGID:(uint32_t)gid
 {
-	[sprite setPosition: [self positionAt:pos]];
-	[sprite setVertexZ: [self vertexZForPos:pos]];
+	sprite.position = [self positionAt:pos];
+	sprite.vertexZ = [self vertexZForPos:pos];
 	sprite.anchorPoint = CGPointZero;
-	[sprite setOpacity:opacity_];
+	sprite.opacity = opacity_;
 	
 	//issue 1264, flip can be undone as well
 	sprite.flipX = NO;
@@ -335,9 +335,9 @@ int compareInts (const void * a, const void * b);
 	{
 		// put the anchor in the middle for ease of rotation.
 		sprite.anchorPoint = ccp(0.5f,0.5f);
-		[sprite setPosition: ccp([self positionAt:pos].x + sprite.contentSize.height/2,
+		sprite.position = ccp([self positionAt:pos].x + sprite.contentSize.height/2,
 								 [self positionAt:pos].y + sprite.contentSize.width/2 )
-		 ];
+		 ;
 
 		uint32_t flag = gid & (kCCTMXTileHorizontalFlag | kCCTMXTileVerticalFlag );
 
@@ -394,9 +394,9 @@ int compareInts (const void * a, const void * b);
 	// update possible children
 	CCSprite *sprite;
 	CCARRAY_FOREACH(children_, sprite) {
-		NSUInteger ai = [sprite atlasIndex];
+		NSUInteger ai = sprite.atlasIndex;
 		if( ai >= indexForZ)
-			[sprite setAtlasIndex: ai+1];
+			sprite.atlasIndex = ai+1;
 	}
 
 	tiles_[z] = gid;
@@ -418,7 +418,7 @@ int compareInts (const void * a, const void * b);
 	// get atlas index
 	NSUInteger indexForZ = [self atlasIndexForExistantZ:z];
 
-	[tile setAtlasIndex:indexForZ];
+	tile.atlasIndex = indexForZ;
 	[tile setDirty:YES];
 	[tile updateTransform];
 	tiles_[z] = gid;
@@ -525,7 +525,7 @@ int compareInts (const void * a, const void * b)
 				[sprite setTextureRect:rect rotated:NO untrimmedSize:rect.size];
 
 				if (flags) 
-					[self setupTileSprite:sprite position:[sprite position] withGID:gidAndFlags];
+					[self setupTileSprite:sprite position:sprite.position withGID:gidAndFlags];
 
 				tiles_[z] = gidAndFlags;
 			} else
@@ -547,7 +547,7 @@ int compareInts (const void * a, const void * b)
 
 	NSAssert( [children_ containsObject:sprite], @"Tile does not belong to TMXLayer");
 
-	NSUInteger atlasIndex = [sprite atlasIndex];
+	NSUInteger atlasIndex = sprite.atlasIndex;
 	NSUInteger zz = (NSUInteger) atlasIndexArray_->arr[atlasIndex];
 	tiles_[zz] = 0;
 	ccCArrayRemoveValueAtIndex(atlasIndexArray_, atlasIndex);

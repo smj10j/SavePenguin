@@ -32,7 +32,7 @@
     NSMutableDictionary* sheets; //key sheetName - object NSDictionary
     NSMutableDictionary* animations; //key animName - object NSDictionary
 }
-+(id)SHSceneNodeWithContentOfFile:(NSString*)sceneFile;// sheetName:(NSString*)sheetName;
++(instancetype)SHSceneNodeWithContentOfFile:(NSString*)sceneFile;// sheetName:(NSString*)sheetName;
 -(NSDictionary*)infoForSpriteNamed:(NSString*)name inSheetNamed:(NSString*)sheetName;
 -(NSDictionary*)infoForSheetNamed:(NSString*)sheetName;
 -(NSDictionary*)infoForAnimationNamed:(NSString*)animName;
@@ -48,9 +48,9 @@
 #endif
 }
 //------------------------------------------------------------------------------
--(id)initWithContentOfFile:(NSString*)sceneFile{// sheetName:(NSString*)sheetName{
+-(instancetype)initWithContentOfFile:(NSString*)sceneFile{// sheetName:(NSString*)sheetName{
 
-    NSString *path = [[NSBundle mainBundle] pathForResource:[sceneFile stringByDeletingPathExtension] ofType:@"pshs" inDirectory:[[LHSettings sharedInstance] activeFolder]]; 
+    NSString *path = [[NSBundle mainBundle] pathForResource:sceneFile.stringByDeletingPathExtension ofType:@"pshs" inDirectory:[[LHSettings sharedInstance] activeFolder]]; 
 	    
     if(nil == path)
     {
@@ -66,22 +66,22 @@
         
         NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:path];
 
-        NSArray* sheetsList = [dictionary objectForKey:@"SHEETS_INFO"];
+        NSArray* sheetsList = dictionary[@"SHEETS_INFO"];
         
         for(NSDictionary* dic in sheetsList){
-            [sheets setObject:dic forKey:[dic objectForKey:@"SheetName"]];
+            sheets[dic[@"SheetName"]] = dic;
         }
         
-        NSArray* animList = [dictionary objectForKey:@"SH_ANIMATIONS_LIST"];
+        NSArray* animList = dictionary[@"SH_ANIMATIONS_LIST"];
         
         for(NSDictionary* dic in animList){
-            [animations setObject:dic forKey:[dic objectForKey:@"UniqueName"]];
+            animations[dic[@"UniqueName"]] = dic;
         }
 	}
 	return self;
 }
 //------------------------------------------------------------------------------
-+(id)SHSceneNodeWithContentOfFile:(NSString*)sceneFile{// sheetName:(NSString*)sheetName{
++(instancetype)SHSceneNodeWithContentOfFile:(NSString*)sceneFile{// sheetName:(NSString*)sheetName{
     #ifndef LH_ARC_ENABLED
     return [[[SHSceneNode alloc] initWithContentOfFile:sceneFile/* sheetName:sheetName*/] autorelease];
     #else
@@ -90,12 +90,12 @@
 }
 //------------------------------------------------------------------------------
 -(NSDictionary*)infoForSpriteNamed:(NSString*)name inSheetNamed:(NSString*)sheetName{
-    NSDictionary* sheetsInfo = [sheets objectForKey:sheetName];
+    NSDictionary* sheetsInfo = sheets[sheetName];
     
     if(sheetsInfo){
         
-        NSDictionary* spritesInfo = [sheetsInfo objectForKey:@"Sheet_Sprites_Info"];
-        NSDictionary* sprInfo = [spritesInfo objectForKey:name];
+        NSDictionary* spritesInfo = sheetsInfo[@"Sheet_Sprites_Info"];
+        NSDictionary* sprInfo = spritesInfo[name];
         
         if(sprInfo)
             return sprInfo;
@@ -109,11 +109,11 @@
 }
 //------------------------------------------------------------------------------
 -(NSDictionary*)infoForSheetNamed:(NSString*)sheetName{
-    return [sheets objectForKey:sheetName];
+    return sheets[sheetName];
 }
 //------------------------------------------------------------------------------
 -(NSDictionary*)infoForAnimationNamed:(NSString*)animName{
-    return [animations objectForKey:animName];    
+    return animations[animName];    
 }
 //------------------------------------------------------------------------------
 @end
@@ -147,7 +147,7 @@
 #endif
 }
 //------------------------------------------------------------------------------
-- (id)init
+- (instancetype)init
 {
 	self = [super init];
 	if (self != nil) {
@@ -170,12 +170,12 @@
 -(SHSceneNode*)sceneNodeForSHDocument:(NSString*)shDocument
 {
     //will create the node if it does not exit
-    SHSceneNode* sceneNode = [scenes objectForKey:shDocument];
+    SHSceneNode* sceneNode = scenes[shDocument];
     
     if(sceneNode == nil){
         sceneNode = [SHSceneNode SHSceneNodeWithContentOfFile:shDocument/* sheetName:sheetName*/];
         if(nil != sceneNode)
-            [scenes setObject:sceneNode forKey:shDocument];
+            scenes[shDocument] = sceneNode;
     }
     return sceneNode;
 }

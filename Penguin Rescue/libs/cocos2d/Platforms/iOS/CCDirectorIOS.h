@@ -49,7 +49,6 @@
 
  @since v0.99.4
  */
--(void) setContentScaleFactor:(CGFloat)scaleFactor;
 
 /** Will enable Retina Display on devices that supports it.
  It will enable Retina Display on iPhone4 and iPod Touch 4.
@@ -61,7 +60,7 @@
 -(BOOL) enableRetinaDisplay:(BOOL)enableRetina;
 
 /** returns the content scale factor */
--(CGFloat) contentScaleFactor;
+@property (NS_NONATOMIC_IOSONLY) CGFloat contentScaleFactor;
 
 /** converts a UITouch to a GL point */
 -(CGPoint)convertTouchToGL:(UITouch*)touch;
@@ -106,6 +105,6 @@
 @end
 
 // optimization. Should only be used to read it. Never to write it.
-extern CGFloat	__ccContentScaleFactor;
+extern float	__ccContentScaleFactor;
 
 #endif // __CC_PLATFORM_IOS

@@ -16,7 +16,7 @@
 	CGPoint _position;
 }
 
--(id)initWithSize:(CGSize)contentSize position:(CGPoint)position color:(ccColor4F)barColor label:(NSString *)label textColor:(ccColor3B)textColor fontSize:(int)fontSize;
+-(instancetype)initWithSize:(CGSize)contentSize position:(CGPoint)position color:(ccColor4F)barColor label:(NSString *)label textColor:(ccColor3B)textColor fontSize:(int)fontSize NS_DESIGNATED_INITIALIZER;
 
 -(void)setPercentFill:(float)percentFill;
 -(void)setLabel:(NSString*)label;

@@ -70,7 +70,7 @@ static CCShaderCache *_sharedShaderCache;
 	_sharedShaderCache = nil;
 }
 
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init]) ) {
 		programs_ = [[NSMutableDictionary alloc ] initWithCapacity: 10];
@@ -94,7 +94,7 @@ static CCShaderCache *_sharedShaderCache;
 	[p link];
 	[p updateUniforms];
 
-	[programs_ setObject:p forKey:kCCShader_PositionTextureColor];
+	programs_[kCCShader_PositionTextureColor] = p;
 	[p release];
 
 	CHECK_GL_ERROR_DEBUG();
@@ -110,7 +110,7 @@ static CCShaderCache *_sharedShaderCache;
 	[p link];
 	[p updateUniforms];
 
-	[programs_ setObject:p forKey:kCCShader_PositionTextureColorAlphaTest];
+	programs_[kCCShader_PositionTextureColorAlphaTest] = p;
 	[p release];
 
 	CHECK_GL_ERROR_DEBUG();
@@ -127,7 +127,7 @@ static CCShaderCache *_sharedShaderCache;
 	[p link];
 	[p updateUniforms];
 
-	[programs_ setObject:p forKey:kCCShader_PositionColor];
+	programs_[kCCShader_PositionColor] = p;
 	[p release];
 
 	CHECK_GL_ERROR_DEBUG();
@@ -144,7 +144,7 @@ static CCShaderCache *_sharedShaderCache;
 	[p link];
 	[p updateUniforms];
 
-	[programs_ setObject:p forKey:kCCShader_PositionTexture];
+	programs_[kCCShader_PositionTexture] = p;
 	[p release];
 
 	CHECK_GL_ERROR_DEBUG();
@@ -161,7 +161,7 @@ static CCShaderCache *_sharedShaderCache;
 	[p link];
 	[p updateUniforms];
 
-	[programs_ setObject:p forKey:kCCShader_PositionTexture_uColor];
+	programs_[kCCShader_PositionTexture_uColor] = p;
 	[p release];
 	
 	CHECK_GL_ERROR_DEBUG();
@@ -179,7 +179,7 @@ static CCShaderCache *_sharedShaderCache;
 	[p link];
 	[p updateUniforms];
 
-	[programs_ setObject:p forKey:kCCShader_PositionTextureA8Color];
+	programs_[kCCShader_PositionTextureA8Color] = p;
 	[p release];
 
 	CHECK_GL_ERROR_DEBUG();
@@ -195,7 +195,7 @@ static CCShaderCache *_sharedShaderCache;
 	[p link];
 	[p updateUniforms];
 
-	[programs_ setObject:p forKey:kCCShader_Position_uColor];
+	programs_[kCCShader_Position_uColor] = p;
 	[p release];
 
 	CHECK_GL_ERROR_DEBUG();
@@ -213,19 +213,19 @@ static CCShaderCache *_sharedShaderCache;
 	[p link];
 	[p updateUniforms];
 	
-	[programs_ setObject:p forKey:kCCShader_PositionLengthTexureColor];
+	programs_[kCCShader_PositionLengthTexureColor] = p;
 	[p release];
 	CHECK_GL_ERROR_DEBUG();
 }
 
 -(CCGLProgram *) programForKey:(NSString*)key
 {
-	return [programs_ objectForKey:key];
+	return programs_[key];
 }
 
 - (void) addProgram:(CCGLProgram*)program forKey:(NSString*)key
 {
-    [programs_ setObject:program forKey:key];
+    programs_[key] = program;
 }
 
 @end

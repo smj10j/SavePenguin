@@ -41,7 +41,7 @@ NSString * const kCDN_AudioManagerInitialised = @"kCDN_AudioManagerInitialised";
 
 @synthesize audioSourcePlayer, audioSourceFilePath, delegate, backgroundMusic;
 
--(id) init {
+-(instancetype) init {
 	if ((self = [super init])) {
 		state = kLAS_Init;
 		volume = 1.0f;
@@ -109,7 +109,7 @@ NSString * const kCDN_AudioManagerInitialised = @"kCDN_AudioManagerInitialised";
 }
 
 -(void) rewind {
-	[audioSourcePlayer setCurrentTime:0];
+	audioSourcePlayer.currentTime = 0;
 }
 
 -(void) resume {
@@ -118,7 +118,7 @@ NSString * const kCDN_AudioManagerInitialised = @"kCDN_AudioManagerInitialised";
 
 -(BOOL) isPlaying {
 	if (state != kLAS_Init) {
-		return [audioSourcePlayer isPlaying];
+		return audioSourcePlayer.playing;
 	} else {
 		return NO;
 	}
@@ -394,7 +394,7 @@ static BOOL configured = FALSE;
 	}
 }
 
-- (id) init: (tAudioManagerMode) mode {
+- (instancetype) init: (tAudioManagerMode) mode {
 	if ((self = [super init])) {
 
 		//Initialise the audio session
@@ -446,7 +446,7 @@ static BOOL configured = FALSE;
 /** Retrieves the audio source for the specified channel */
 -(CDLongAudioSource*) audioSourceForChannel:(tAudioSourceChannel) channel
 {
-	return (CDLongAudioSource*)[audioSourceChannels objectAtIndex:channel];
+	return (CDLongAudioSource*)audioSourceChannels[channel];
 }
 
 /** Loads the data from the specified file path to the channel's audio source */
@@ -543,9 +543,9 @@ static BOOL configured = FALSE;
 	[self.backgroundMusic load:filePath];
 
 	if (loop) {
-		[self.backgroundMusic setNumberOfLoops:-1];
+		(self.backgroundMusic).numberOfLoops = -1;
 	} else {
-		[self.backgroundMusic setNumberOfLoops:0];
+		(self.backgroundMusic).numberOfLoops = 0;
 	}
 
 	if (!willPlayBackgroundMusic || _mute) {
@@ -818,7 +818,7 @@ static BOOL configured = FALSE;
 ///////////////////////////////////////////////////////////////////////////////////////
 @implementation CDBufferManager
 
--(id) initWithEngine:(CDSoundEngine *) theSoundEngine {
+-(instancetype) initWithEngine:(CDSoundEngine *) theSoundEngine {
 	if ((self = [super init])) {
 		soundEngine = theSoundEngine;
 		loadedBuffers = [[NSMutableDictionary alloc] initWithCapacity:CD_BUFFERS_START];
@@ -836,14 +836,14 @@ static BOOL configured = FALSE;
 
 -(int) bufferForFile:(NSString*) filePath create:(BOOL) create {
 
-	NSNumber* soundId = (NSNumber*)[loadedBuffers objectForKey:filePath];
+	NSNumber* soundId = (NSNumber*)loadedBuffers[filePath];
 	if(soundId == nil)
 	{
 		if (create) {
 			NSNumber* bufferId = nil;
 			//First try to get a buffer from the free buffers
-			if ([freedBuffers count] > 0) {
-				bufferId = [[[freedBuffers lastObject] retain] autorelease];
+			if (freedBuffers.count > 0) {
+				bufferId = [[freedBuffers.lastObject retain] autorelease];
 				[freedBuffers removeLastObject];
 				CDLOGINFO(@"Denshion::CDBufferManager reusing buffer id %i",[bufferId intValue]);
 			} else {
@@ -853,11 +853,11 @@ static BOOL configured = FALSE;
 				nextBufferId++;
 			}
 
-			if ([soundEngine loadBuffer:[bufferId intValue] filePath:filePath]) {
+			if ([soundEngine loadBuffer:bufferId.intValue filePath:filePath]) {
 				//File successfully loaded
 				CDLOGINFO(@"Denshion::CDBufferManager buffer loaded %@ %@",bufferId,filePath);
-				[loadedBuffers setObject:bufferId forKey:filePath];
-				return [bufferId intValue];
+				loadedBuffers[filePath] = bufferId;
+				return bufferId.intValue;
 			} else {
 				//File didn't load, put buffer id on free list
 				[freedBuffers addObject:bufferId];
@@ -868,7 +868,7 @@ static BOOL configured = FALSE;
 			return kCDNoBuffer;
 		}
 	} else {
-		return [soundId intValue];
+		return soundId.intValue;
 	}
 }
 

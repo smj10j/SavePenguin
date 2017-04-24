@@ -37,7 +37,7 @@
 //when specified the base class of all sprites will be this
 //base class needs to be a subclass of LHSprite
 -(void) registerBaseSpriteClass:(Class)base;
--(Class) baseClass;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) Class baseClass;
 
 -(void) registerCustomSpriteClass:(Class)customSpriteClass forTag:(int)tag;
 -(Class) customSpriteClassForTag:(int)tag;

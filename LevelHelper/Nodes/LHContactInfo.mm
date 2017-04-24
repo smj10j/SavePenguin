@@ -42,7 +42,7 @@
 #endif
 }
 ////////////////////////////////////////////////////////////////////////////////
--(id) initWithInfo:(b2Body*)_bodyA 
+-(instancetype) initWithInfo:(b2Body*)_bodyA 
              bodyB:(b2Body*)_bodyB
           fixtureA:(b2Fixture*)fixA
           fixtureB:(b2Fixture*)fixB
@@ -67,7 +67,7 @@
 	return self;
 }
 ////////////////////////////////////////////////////////////////////////////////
-+(id) contactInfoWithBodyA:(b2Body*)bodyA 
++(instancetype) contactInfoWithBodyA:(b2Body*)bodyA 
                      bodyB:(b2Body*)bodyB
                   fixtureA:(b2Fixture*)fixA
                   fixtureB:(b2Fixture*)fixB

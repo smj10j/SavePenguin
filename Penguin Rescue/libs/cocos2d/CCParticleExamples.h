@@ -33,7 +33,7 @@
 {
 }
 // needed for BridgeSupport
--(id) init;
+-(instancetype) init;
 @end
 
 //! A fireworks particle system
@@ -41,7 +41,7 @@
 {
 }
 // needed for BridgeSupport
--(id) init;
+-(instancetype) init;
 @end
 
 //! A sun particle system
@@ -49,7 +49,7 @@
 {
 }
 // needed for BridgeSupport
--(id) init;
+-(instancetype) init;
 @end
 
 //! A galaxy particle system
@@ -57,7 +57,7 @@
 {
 }
 // needed for BridgeSupport
--(id) init;
+-(instancetype) init;
 @end
 
 //! A flower particle system
@@ -65,7 +65,7 @@
 {
 }
 // needed for BridgeSupport
--(id) init;
+-(instancetype) init;
 @end
 
 //! A meteor particle system
@@ -73,7 +73,7 @@
 {
 }
 // needed for BridgeSupport
--(id) init;
+-(instancetype) init;
 @end
 
 //! An spiral particle system
@@ -81,7 +81,7 @@
 {
 }
 // needed for BridgeSupport
--(id) init;
+-(instancetype) init;
 @end
 
 //! An explosion particle system
@@ -89,7 +89,7 @@
 {
 }
 // needed for BridgeSupport
--(id) init;
+-(instancetype) init;
 @end
 
 //! An smoke particle system
@@ -97,7 +97,7 @@
 {
 }
 // needed for BridgeSupport
--(id) init;
+-(instancetype) init;
 @end
 
 //! An snow particle system
@@ -105,7 +105,7 @@
 {
 }
 // needed for BridgeSupport
--(id) init;
+-(instancetype) init;
 @end
 
 //! A rain particle system
@@ -113,5 +113,5 @@
 {
 }
 // needed for BridgeSupport
--(id) init;
+-(instancetype) init;
 @end

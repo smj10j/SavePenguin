@@ -46,21 +46,21 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 @implementation CCMenuItem
 
 @synthesize isSelected=isSelected_;
-+(id) itemWithTarget:(id) r selector:(SEL) s
++(instancetype) itemWithTarget:(id) r selector:(SEL) s
 {
 	return [[[self alloc] initWithTarget:r selector:s] autorelease];
 }
 
-+(id) itemWithBlock:(void(^)(id sender))block {
++(instancetype) itemWithBlock:(void(^)(id sender))block {
 	return [[[self alloc] initWithBlock:block] autorelease];
 }
 
--(id) init
+-(instancetype) init
 {
 	return [self initWithBlock:nil];
 }
 
--(id) initWithTarget:(id)target selector:(SEL)selector
+-(instancetype) initWithTarget:(id)target selector:(SEL)selector
 {
 	// avoid retain cycle
 	__block id t = target;
@@ -73,7 +73,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 
 
 // Designated initializer
--(id) initWithBlock:(void (^)(id))block
+-(instancetype) initWithBlock:(void (^)(id))block
 {
 	if((self=[super init]) ) {
 
@@ -175,7 +175,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 }
 
 
--(id) initWithLabel:(CCNode<CCLabelProtocol,CCRGBAProtocol>*)label target:(id)target selector:(SEL)selector
+-(instancetype) initWithLabel:(CCNode<CCLabelProtocol,CCRGBAProtocol>*)label target:(id)target selector:(SEL)selector
 {
 	// avoid retain cycle
 	__block id t = target;
@@ -190,7 +190,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 //
 // Designated initializer
 //
--(id) initWithLabel:(CCNode<CCLabelProtocol,CCRGBAProtocol> *)label block:(void (^)(id))block
+-(instancetype) initWithLabel:(CCNode<CCLabelProtocol,CCRGBAProtocol> *)label block:(void (^)(id))block
 {
 	if( (self=[self initWithBlock:block]) ) {
 		originalScale_ = 1;
@@ -215,14 +215,14 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 		label_ = label;
 		label_.anchorPoint = ccp(0,0);
 
-		[self setContentSize:[label_ contentSize]];
+		self.contentSize = label_.contentSize;
 	}
 }
 
 -(void) setString:(NSString *)string
 {
 	[label_ setString:string];
-	[self setContentSize: [label_ contentSize]];
+	self.contentSize = label_.contentSize;
 }
 
 -(void) activate {
@@ -316,7 +316,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 	return [[[self alloc] initWithString:value charMapFile:charMapFile itemWidth:itemWidth itemHeight:itemHeight startCharMap:startCharMap block:block] autorelease];
 }
 
--(id) initWithString: (NSString*) value charMapFile:(NSString*) charMapFile itemWidth:(int)itemWidth itemHeight:(int)itemHeight startCharMap:(char)startCharMap target:(id)target selector:(SEL)selector
+-(instancetype) initWithString: (NSString*) value charMapFile:(NSString*) charMapFile itemWidth:(int)itemWidth itemHeight:(int)itemHeight startCharMap:(char)startCharMap target:(id)target selector:(SEL)selector
 {
 	// avoid retain cycle
 	__block id t = target;
@@ -329,7 +329,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 //
 // Designated initializer
 //
--(id) initWithString:(NSString*)value charMapFile:(NSString*)charMapFile itemWidth:(int)itemWidth itemHeight:(int)itemHeight startCharMap:(char)startCharMap block:(void(^)(id sender))block
+-(instancetype) initWithString:(NSString*)value charMapFile:(NSString*)charMapFile itemWidth:(int)itemWidth itemHeight:(int)itemHeight startCharMap:(char)startCharMap block:(void(^)(id sender))block
 {
 	NSAssert( [value length] > 0, @"value length must be greater than 0");
 
@@ -393,7 +393,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 	return [[[self alloc] initWithString:value block:block] autorelease];
 }
 
--(id) initWithString: (NSString*) value target:(id)target selector:(SEL)selector
+-(instancetype) initWithString: (NSString*) value target:(id)target selector:(SEL)selector
 {
 	// avoid retain cycle
 	__block id t = target;
@@ -406,7 +406,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 //
 // Designated initializer
 //
--(id) initWithString: (NSString*)string block:(void(^)(id sender))block
+-(instancetype) initWithString: (NSString*)string block:(void(^)(id sender))block
 {
 	NSAssert( [string length] > 0, @"Value length must be greater than 0");
 
@@ -465,32 +465,32 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 
 @synthesize normalImage=normalImage_, selectedImage=selectedImage_, disabledImage=disabledImage_;
 
-+(id) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite
++(instancetype) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite
 {
 	return [self itemWithNormalSprite:normalSprite selectedSprite:selectedSprite disabledSprite:nil target:nil selector:nil];
 }
 
-+(id) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite target:(id)target selector:(SEL)selector
++(instancetype) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite target:(id)target selector:(SEL)selector
 {
 	return [self itemWithNormalSprite:normalSprite selectedSprite:selectedSprite disabledSprite:nil target:target selector:selector];
 }
 
-+(id) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite target:(id)target selector:(SEL)selector
++(instancetype) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite target:(id)target selector:(SEL)selector
 {
 	return [[[self alloc] initWithNormalSprite:normalSprite selectedSprite:selectedSprite disabledSprite:disabledSprite target:target selector:selector] autorelease];
 }
 
-+(id) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite block:(void(^)(id sender))block
++(instancetype) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite block:(void(^)(id sender))block
 {
 	return [self itemWithNormalSprite:normalSprite selectedSprite:selectedSprite disabledSprite:nil block:block];
 }
 
-+(id) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite block:(void(^)(id sender))block
++(instancetype) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite block:(void(^)(id sender))block
 {
 	return [[[self alloc] initWithNormalSprite:normalSprite selectedSprite:selectedSprite disabledSprite:disabledSprite block:block] autorelease];
 }
 
--(id) initWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite target:(id)target selector:(SEL)selector
+-(instancetype) initWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite target:(id)target selector:(SEL)selector
 {
 	// avoid retain cycle
 	__block id t = target;
@@ -503,7 +503,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 //
 // Designated initializer
 //
--(id) initWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite block:(void(^)(id sender))block
+-(instancetype) initWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite block:(void(^)(id sender))block
 {
 	if ( (self = [super initWithBlock:block] ) ) {
 
@@ -511,7 +511,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 		self.selectedImage = selectedSprite;
 		self.disabledImage = disabledSprite;
 
-		[self setContentSize: [normalImage_ contentSize]];
+		self.contentSize = normalImage_.contentSize;
 	}
 	return self;
 }
@@ -526,7 +526,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 
 		normalImage_ = image;
         
-        [self setContentSize: [normalImage_ contentSize]];
+        self.contentSize = normalImage_.contentSize;
 		
 		[self updateImagesVisibility];
 	}
@@ -678,7 +678,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 	return [[[self alloc] initWithNormalImage:value selectedImage:value2 disabledImage:value3 block:block] autorelease];
 }
 
--(id) initWithNormalImage: (NSString*) normalI selectedImage:(NSString*)selectedI disabledImage: (NSString*) disabledI target:(id)target selector:(SEL)selector
+-(instancetype) initWithNormalImage: (NSString*) normalI selectedImage:(NSString*)selectedI disabledImage: (NSString*) disabledI target:(id)target selector:(SEL)selector
 {
 	// avoid retain cycle
 	__block id t = target;
@@ -692,7 +692,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 //
 // Designated initializer
 //
--(id) initWithNormalImage:(NSString*)normalI selectedImage:(NSString*)selectedI disabledImage:(NSString*)disabledI block:(void(^)(id sender))block
+-(instancetype) initWithNormalImage:(NSString*)normalI selectedImage:(NSString*)selectedI disabledImage:(NSString*)disabledI block:(void(^)(id sender))block
 {
 	CCNode<CCRGBAProtocol> *normalImage = [CCSprite spriteWithFile:normalI];
 	CCNode<CCRGBAProtocol> *selectedImage = nil;
@@ -711,17 +711,17 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 //
 -(void) setNormalSpriteFrame:(CCSpriteFrame *)frame
 {
-    [self setNormalImage:[CCSprite spriteWithSpriteFrame:frame]];
+    self.normalImage = [CCSprite spriteWithSpriteFrame:frame];
 }
 
 -(void) setSelectedSpriteFrame:(CCSpriteFrame *)frame
 {
-    [self setSelectedImage:[CCSprite spriteWithSpriteFrame:frame]];
+    self.selectedImage = [CCSprite spriteWithSpriteFrame:frame];
 }
 
 -(void) setDisabledSpriteFrame:(CCSpriteFrame *)frame
 {
-    [self setDisabledImage:[CCSprite spriteWithSpriteFrame:frame]];
+    self.disabledImage = [CCSprite spriteWithSpriteFrame:frame];
 }
 
 @end
@@ -786,7 +786,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 	return [[[self alloc] initWithItems:arrayOfItems block:block] autorelease];
 }
 
--(id) initWithItems:(NSArray*)arrayOfItems block:(void(^)(id sender))block
+-(instancetype) initWithItems:(NSArray*)arrayOfItems block:(void(^)(id sender))block
 {
 	if( (self=[super initWithBlock:block] ) ) {
 
@@ -794,7 +794,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 
         currentItem_ = nil;
 		selectedIndex_ = NSUIntegerMax;
-		[self setSelectedIndex:0];
+		self.selectedIndex = 0;
 	}
 
 	return self;
@@ -814,12 +814,12 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 		if( currentItem_ )
 			[currentItem_ removeFromParentAndCleanup:NO];
 		
-		CCMenuItem *item = [subItems_ objectAtIndex:selectedIndex_];
+		CCMenuItem *item = subItems_[selectedIndex_];
 		[self addChild:item z:0];
         self.currentItem = item;
 
-		CGSize s = [item contentSize];
-		[self setContentSize: s];
+		CGSize s = item.contentSize;
+		self.contentSize = s;
 		item.position = ccp( s.width/2, s.height/2 );
 	}
 }
@@ -833,21 +833,21 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 -(void) selected
 {
 	[super selected];
-	[[subItems_ objectAtIndex:selectedIndex_] selected];
+	[subItems_[selectedIndex_] selected];
 }
 
 -(void) unselected
 {
 	[super unselected];
-	[[subItems_ objectAtIndex:selectedIndex_] unselected];
+	[subItems_[selectedIndex_] unselected];
 }
 
 -(void) activate
 {
 	// update index
 	if( isEnabled_ ) {
-		NSUInteger newIndex = (selectedIndex_ + 1) % [subItems_ count];
-		[self setSelectedIndex:newIndex];
+		NSUInteger newIndex = (selectedIndex_ + 1) % subItems_.count;
+		self.selectedIndex = newIndex;
 
 	}
 
@@ -865,7 +865,7 @@ const NSInteger	kCCZoomActionTag = 0xc0c05002;
 
 -(CCMenuItem*) selectedItem
 {
-	return [subItems_ objectAtIndex:selectedIndex_];
+	return subItems_[selectedIndex_];
 }
 
 #pragma mark CCMenuItemToggle - CCRGBAProtocol protocol

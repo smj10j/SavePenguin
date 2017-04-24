@@ -14,7 +14,7 @@
 @implementation ScoreKeeper
 
 
--(id)init {
+-(instancetype)init {
 
 	if(self = [super init]) {
 	
@@ -37,7 +37,7 @@
 	int count = 0;
 	for(NSString* scoreTag in _scores) {
 		if([scoreTag hasPrefix:category]) {
-			Score* score = [_scores objectForKey:scoreTag];
+			Score* score = _scores[scoreTag];
 			count+= score.count;
 		}
 	}
@@ -51,10 +51,10 @@
 -(bool)addScore:(int)value category:(NSString*)category tag:(NSString*)tag group:(bool)group unique:(bool)unique {
 
 	NSString* scoresKey = [NSString stringWithFormat:@"%@-%@-%@", (category != nil ? category : @""), tag, (group ? @"" : [NSString stringWithFormat:@"%d", arc4random()%100000])];
-	Score* score = [_scores objectForKey:scoresKey];
+	Score* score = _scores[scoresKey];
 	if(score == nil) {
 		score = [[Score alloc] initWithScore:value];
-		[_scores setObject:score forKey:scoresKey];
+		_scores[scoresKey] = score;
 		if(DEBUG_SCORING) DebugLog(@"Adding score %d for scoreKey: %@", value, scoresKey);
 		[score release];
 		return true;
@@ -74,7 +74,7 @@
 -(int)totalScore {
 	int total = 0;
 	for(NSString* scoreTag in _scores) {
-		Score* score = [_scores objectForKey:scoreTag];
+		Score* score = _scores[scoreTag];
 		total+= score.count * score.score;
 	}
 	return total;
@@ -130,11 +130,11 @@
 				force ||
 				//DEBUG_SCORING ||
 				worldScoresDictionary == nil ||
-				([[NSDate date] timeIntervalSince1970] - [((NSNumber*)[worldScoresDictionary objectForKey:@"timestamp"]) doubleValue] > SCORE_KEEPER_UPDATE_INTERVAL)))
+				([NSDate date].timeIntervalSince1970 - ((NSNumber*)worldScoresDictionary[@"timestamp"]).doubleValue > SCORE_KEEPER_UPDATE_INTERVAL)))
 	{
 			
 		[APIManager getWorldScoresAndOnSuccess:^(NSMutableDictionary* worldScoresDictionary) {
-				[worldScoresDictionary setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"timestamp"];
+				worldScoresDictionary[@"timestamp"] = @([NSDate date].timeIntervalSince1970);
 			
 				if(DEBUG_SCORING) DebugLog(@"Loaded world scores data from server: %@", worldScoresDictionary);
 			
@@ -153,7 +153,7 @@
 
 +(NSDictionary*)worldScoresForLevelPackPath:(NSString*)levelPackPath levelPath:(NSString*)levelPath {
 	NSDictionary* worldScores = [self getWorldScores];
-	NSDictionary* worldScoresForLevel = [worldScores objectForKey:[NSString stringWithFormat:@"%@:%@", levelPackPath, levelPath]];
+	NSDictionary* worldScoresForLevel = worldScores[[NSString stringWithFormat:@"%@:%@", levelPackPath, levelPath]];
 	if(worldScoresForLevel == nil) {
 		//we need an update - this shouldn't really happen in production
 		if(DEBUG_SCORING) DebugLog(@"Forcing a sWorldScoresDictionary update from the server because we couldn't find an entry for levelPackPath=%@, levelPath=%@", levelPackPath,levelPath);
@@ -165,7 +165,7 @@
 +(NSDictionary*)getWorldScoresDictionary:(bool)forceReloadFromDisk {
 	static NSDictionary* sWorldScoresDictionary = nil;
 	if(sWorldScoresDictionary == nil || forceReloadFromDisk) {
-		NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		NSString* rootPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
 		NSString* worldScoresPropertyListPath = [rootPath stringByAppendingPathComponent:@"WorldScores.plist"];
 		sWorldScoresDictionary = [[NSDictionary alloc] initWithContentsOfFile:worldScoresPropertyListPath];
 		if(DEBUG_SCORING) DebugLog(@"Loaded worldScoresDictionary from local plist");
@@ -175,11 +175,11 @@
 
 +(NSDictionary*)getWorldScores {
 	NSDictionary* worldScoresDictionary = [self getWorldScoresDictionary:false];
-	return [worldScoresDictionary objectForKey:@"levels"];
+	return worldScoresDictionary[@"levels"];
 }
 
 +(void)saveWorldScoresLocally:(NSDictionary*)worldScoresDictionary {
-	NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	NSString* rootPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
 	NSString* worldScoresPropertyListPath = [rootPath stringByAppendingPathComponent:@"WorldScores.plist"];
 	
 	//write to file!
@@ -208,10 +208,10 @@
 				
 				//save local queue for sending to server later
 				NSMutableDictionary* scoreData = [[NSMutableDictionary alloc] init];
-				[scoreData setObject:[NSNumber numberWithInt:SCORE_KEEPER_NO_SCORE] forKey:@"score"];
-				[scoreData setObject:UUID forKey:@"UUID"];
-				[scoreData setObject:levelPackPath forKey:@"levelPackPath"];
-				[scoreData setObject:levelPath forKey:@"levelPath"];
+				scoreData[@"score"] = @SCORE_KEEPER_NO_SCORE;
+				scoreData[@"UUID"] = UUID;
+				scoreData[@"levelPackPath"] = levelPackPath;
+				scoreData[@"levelPath"] = levelPath;
 					
 				[self addScoreDataToLocalSendQueue:scoreData];
 				
@@ -222,10 +222,10 @@
 	}else {
 		//save local queue for sending to server if we're offline
 		NSMutableDictionary* scoreData = [[NSMutableDictionary alloc] init];
-		[scoreData setObject:[NSNumber numberWithInt:SCORE_KEEPER_NO_SCORE] forKey:@"score"];
-		[scoreData setObject:UUID forKey:@"UUID"];
-		[scoreData setObject:levelPackPath forKey:@"levelPackPath"];
-		[scoreData setObject:levelPath forKey:@"levelPath"];
+		scoreData[@"score"] = @SCORE_KEEPER_NO_SCORE;
+		scoreData[@"UUID"] = UUID;
+		scoreData[@"levelPackPath"] = levelPackPath;
+		scoreData[@"levelPath"] = levelPath;
 			
 		[self addScoreDataToLocalSendQueue:scoreData];
 		
@@ -250,10 +250,10 @@
 				
 				//save local queue for sending to server later
 				NSMutableDictionary* scoreData = [[NSMutableDictionary alloc] init];
-				[scoreData setObject:[NSNumber numberWithInt:score] forKey:@"score"];
-				[scoreData setObject:UUID forKey:@"UUID"];
-				[scoreData setObject:levelPackPath forKey:@"levelPackPath"];
-				[scoreData setObject:levelPath forKey:@"levelPath"];
+				scoreData[@"score"] = @(score);
+				scoreData[@"UUID"] = UUID;
+				scoreData[@"levelPackPath"] = levelPackPath;
+				scoreData[@"levelPath"] = levelPath;
 					
 				[self addScoreDataToLocalSendQueue:scoreData];
 				
@@ -264,10 +264,10 @@
 	}else {
 		//save local queue for sending to server if we're offline
 		NSMutableDictionary* scoreData = [[NSMutableDictionary alloc] init];
-		[scoreData setObject:[NSNumber numberWithInt:score] forKey:@"score"];
-		[scoreData setObject:UUID forKey:@"UUID"];
-		[scoreData setObject:levelPackPath forKey:@"levelPackPath"];
-		[scoreData setObject:levelPath forKey:@"levelPath"];
+		scoreData[@"score"] = @(score);
+		scoreData[@"UUID"] = UUID;
+		scoreData[@"levelPackPath"] = levelPackPath;
+		scoreData[@"levelPath"] = levelPath;
 			
 		[self addScoreDataToLocalSendQueue:scoreData];
 		
@@ -278,7 +278,7 @@
 +(void)emptyLocalSendQueue {
 
 	if(isServerAvailable()) {
-		NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		NSString* rootPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
 		NSString* localScoreSendQueuePropertyListPath = [rootPath stringByAppendingPathComponent:@"LocalScoreSendQueue.plist"];
 
 		NSMutableArray* localScoreSendQueue = [NSMutableArray arrayWithContentsOfFile:localScoreSendQueuePropertyListPath];
@@ -287,7 +287,7 @@
 		}
 
 		//write an empty array to file!
-		if(![[NSArray arrayWithObjects:nil] writeToFile:localScoreSendQueuePropertyListPath atomically: YES]) {
+		if(![@[] writeToFile:localScoreSendQueuePropertyListPath atomically: YES]) {
 			DebugLog(@"---- Failed to save emptied score queue plist!! - %@ -----", localScoreSendQueuePropertyListPath);
 			return;
 		}
@@ -296,17 +296,17 @@
 		//now iterate to empty
 		if(DEBUG_SCORING) DebugLog(@"Sending %d queued scores/plays to server", localScoreSendQueue.count);
 		for(NSDictionary* scoreData in localScoreSendQueue) {
-			int score = [(NSNumber*)[scoreData objectForKey:@"score"] intValue];
+			int score = ((NSNumber*)scoreData[@"score"]).intValue;
 			if(score == SCORE_KEEPER_NO_SCORE) {
-				[self savePlayForUUID:[scoreData objectForKey:@"UUID"]
-					levelPackPath:[scoreData objectForKey:@"levelPackPath"]
-					levelPath:[scoreData objectForKey:@"levelPath"]
+				[self savePlayForUUID:scoreData[@"UUID"]
+					levelPackPath:scoreData[@"levelPackPath"]
+					levelPath:scoreData[@"levelPath"]
 				];
 			}else {
 				[self saveScore:score
-					UUID:[scoreData objectForKey:@"UUID"]
-					levelPackPath:[scoreData objectForKey:@"levelPackPath"]
-					levelPath:[scoreData objectForKey:@"levelPath"]
+					UUID:scoreData[@"UUID"]
+					levelPackPath:scoreData[@"levelPackPath"]
+					levelPath:scoreData[@"levelPath"]
 				];
 			}
 		}		
@@ -315,7 +315,7 @@
 
 
 +(void)addScoreDataToLocalSendQueue:(NSDictionary*)scoreData {
-	NSString* rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	NSString* rootPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
 	NSString* localScoreSendQueuePropertyListPath = [rootPath stringByAppendingPathComponent:@"LocalScoreSendQueue.plist"];
 
 	NSMutableArray* localScoreSendQueue = [[NSMutableArray alloc] initWithContentsOfFile:localScoreSendQueuePropertyListPath];
@@ -435,50 +435,50 @@
 	}	
 	
 	NSMutableDictionary* zTable = [[NSMutableDictionary alloc] init];
-	[zTable setObject:[NSNumber numberWithFloat:1.5] forKey:[NSNumber numberWithFloat:-2.2]];
-	[zTable setObject:[NSNumber numberWithFloat:6] forKey:[NSNumber numberWithFloat:-1.6]];
-	[zTable setObject:[NSNumber numberWithFloat:12] forKey:[NSNumber numberWithFloat:-1.2]];
-	[zTable setObject:[NSNumber numberWithFloat:16] forKey:[NSNumber numberWithFloat:-1.0]];
-	[zTable setObject:[NSNumber numberWithFloat:18] forKey:[NSNumber numberWithFloat:-0.9]];
-	[zTable setObject:[NSNumber numberWithFloat:21] forKey:[NSNumber numberWithFloat:-0.8]];
-	[zTable setObject:[NSNumber numberWithFloat:24] forKey:[NSNumber numberWithFloat:-0.7]];
-	[zTable setObject:[NSNumber numberWithFloat:27] forKey:[NSNumber numberWithFloat:-0.6]];
-	[zTable setObject:[NSNumber numberWithFloat:31] forKey:[NSNumber numberWithFloat:-0.5]];
-	[zTable setObject:[NSNumber numberWithFloat:35] forKey:[NSNumber numberWithFloat:-0.4]];
-	[zTable setObject:[NSNumber numberWithFloat:38] forKey:[NSNumber numberWithFloat:-0.3]];
-	[zTable setObject:[NSNumber numberWithFloat:42] forKey:[NSNumber numberWithFloat:-0.2]];
-	[zTable setObject:[NSNumber numberWithFloat:46] forKey:[NSNumber numberWithFloat:-0.1]];
-	[zTable setObject:[NSNumber numberWithFloat:50] forKey:[NSNumber numberWithFloat:0.0]];
+	zTable[@-2.2f] = @1.5f;
+	zTable[@-1.6f] = @6.0f;
+	zTable[@-1.2f] = @12.0f;
+	zTable[@-1.0f] = @16.0f;
+	zTable[@-0.9f] = @18.0f;
+	zTable[@-0.8f] = @21.0f;
+	zTable[@-0.7f] = @24.0f;
+	zTable[@-0.6f] = @27.0f;
+	zTable[@-0.5f] = @31.0f;
+	zTable[@-0.4f] = @35.0f;
+	zTable[@-0.3f] = @38.0f;
+	zTable[@-0.2f] = @42.0f;
+	zTable[@-0.1f] = @46.0f;
+	zTable[@0.0f] = @50.0f;
 				
-	[zTable setObject:[NSNumber numberWithFloat:54] forKey:[NSNumber numberWithFloat:0.1]];
-	[zTable setObject:[NSNumber numberWithFloat:58] forKey:[NSNumber numberWithFloat:0.2]];
-	[zTable setObject:[NSNumber numberWithFloat:62] forKey:[NSNumber numberWithFloat:0.3]];
-	[zTable setObject:[NSNumber numberWithFloat:65] forKey:[NSNumber numberWithFloat:0.4]];
-	[zTable setObject:[NSNumber numberWithFloat:69] forKey:[NSNumber numberWithFloat:0.5]];
-	[zTable setObject:[NSNumber numberWithFloat:72] forKey:[NSNumber numberWithFloat:0.6]];
-	[zTable setObject:[NSNumber numberWithFloat:76] forKey:[NSNumber numberWithFloat:0.7]];
-	[zTable setObject:[NSNumber numberWithFloat:79] forKey:[NSNumber numberWithFloat:0.8]];
-	[zTable setObject:[NSNumber numberWithFloat:82] forKey:[NSNumber numberWithFloat:0.9]];
-	[zTable setObject:[NSNumber numberWithFloat:84] forKey:[NSNumber numberWithFloat:1.0]];
-	[zTable setObject:[NSNumber numberWithFloat:86] forKey:[NSNumber numberWithFloat:1.1]];
-	[zTable setObject:[NSNumber numberWithFloat:88] forKey:[NSNumber numberWithFloat:1.2]];
-	[zTable setObject:[NSNumber numberWithFloat:90] forKey:[NSNumber numberWithFloat:1.3]];
-	[zTable setObject:[NSNumber numberWithFloat:92] forKey:[NSNumber numberWithFloat:1.4]];
-	[zTable setObject:[NSNumber numberWithFloat:93] forKey:[NSNumber numberWithFloat:1.5]];
-	[zTable setObject:[NSNumber numberWithFloat:94] forKey:[NSNumber numberWithFloat:1.6]];
-	[zTable setObject:[NSNumber numberWithFloat:95] forKey:[NSNumber numberWithFloat:1.7]];
-	[zTable setObject:[NSNumber numberWithFloat:96] forKey:[NSNumber numberWithFloat:1.8]];
-	[zTable setObject:[NSNumber numberWithFloat:97] forKey:[NSNumber numberWithFloat:1.9]];
-	[zTable setObject:[NSNumber numberWithFloat:97.5] forKey:[NSNumber numberWithFloat:2.0]];
-	[zTable setObject:[NSNumber numberWithFloat:98] forKey:[NSNumber numberWithFloat:2.1]];
-	[zTable setObject:[NSNumber numberWithFloat:99] forKey:[NSNumber numberWithFloat:2.2]];
+	zTable[@0.1f] = @54.0f;
+	zTable[@0.2f] = @58.0f;
+	zTable[@0.3f] = @62.0f;
+	zTable[@0.4f] = @65.0f;
+	zTable[@0.5f] = @69.0f;
+	zTable[@0.6f] = @72.0f;
+	zTable[@0.7f] = @76.0f;
+	zTable[@0.8f] = @79.0f;
+	zTable[@0.9f] = @82.0f;
+	zTable[@1.0f] = @84.0f;
+	zTable[@1.1f] = @86.0f;
+	zTable[@1.2f] = @88.0f;
+	zTable[@1.3f] = @90.0f;
+	zTable[@1.4f] = @92.0f;
+	zTable[@1.5f] = @93.0f;
+	zTable[@1.6f] = @94.0f;
+	zTable[@1.7f] = @95.0f;
+	zTable[@1.8f] = @96.0f;
+	zTable[@1.9f] = @97.0f;
+	zTable[@2.0f] = @97.5f;
+	zTable[@2.1f] = @98.0f;
+	zTable[@2.2f] = @99.0f;
 	
 	
 	float cumulScore = 0;
 	float totalScalars = 0;
 	for(NSNumber* zScoreKey in zTable) {
-		float aZScore = [zScoreKey floatValue];
-		float percentile = [(NSNumber*)[zTable objectForKey:zScoreKey] floatValue];
+		float aZScore = zScoreKey.floatValue;
+		float percentile = ((NSNumber*)zTable[zScoreKey]).floatValue;
 		
 		float scalar = zScore == aZScore ? 1000 : fmin(1.0/fabs(zScore-aZScore), 1000);
 		cumulScore+= (scalar * percentile);
@@ -497,8 +497,8 @@
 	//get the world numbers from the server
 	NSDictionary* worldScores = [ScoreKeeper worldScoresForLevelPackPath:levelPackPath levelPath:levelPath];
 	if(worldScores != nil) {
-		int worldScoreMean = [(NSNumber*)[worldScores objectForKey:@"scoreMean"] intValue];
-		int worldScoreStdDev = [(NSNumber*)[worldScores objectForKey:@"scoreStdDev"] intValue];
+		int worldScoreMean = ((NSNumber*)worldScores[@"scoreMean"]).intValue;
+		int worldScoreStdDev = ((NSNumber*)worldScores[@"scoreStdDev"]).intValue;
 		double zScore = ((score - worldScoreMean) / (1.0f*(worldScoreStdDev > 0 ? worldScoreStdDev : 1)));
 		return zScore;
 	}else {

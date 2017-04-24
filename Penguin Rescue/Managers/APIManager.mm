@@ -30,7 +30,7 @@
 
 	NSURL* url = [[NSURL alloc] initWithString:SERVER_URL];
 	__block ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:url];
-	[request setTimeOutSeconds:20];
+	request.timeOutSeconds = 20;
 
 	[request addPostValue:@"saveUser" forKey:@"action"];
 	[request addPostValue:UUID forKey:@"UUID"];
@@ -56,7 +56,7 @@
 	// Oops, failed, let's see why
 	[request setFailedBlock:^{
 		if(onError) {
-			onError([request error]);
+			onError(request.error);
 		}
 	}];
 
@@ -78,7 +78,7 @@
 	
 	NSURL* url = [[NSURL alloc] initWithString:SERVER_URL];
 	__block ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:url];
-	[request setTimeOutSeconds:20];
+	request.timeOutSeconds = 20;
 
 	[request addPostValue:@"savePlay" forKey:@"action"];
 	[request addPostValue:UUID forKey:@"UUID"];
@@ -106,7 +106,7 @@
 	// Oops, failed, let's see why
 	[request setFailedBlock:^{
 		if(onError) {
-			onError([request error]);
+			onError(request.error);
 		}
 	}];
 
@@ -127,10 +127,10 @@
 
 	NSURL* url = [[NSURL alloc] initWithString:SERVER_URL];
 	__block ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:url];
-	[request setTimeOutSeconds:20];
+	request.timeOutSeconds = 20;
 
 	[request addPostValue:@"saveScore" forKey:@"action"];
-	[request addPostValue:[NSNumber numberWithInt:score] forKey:@"score"];
+	[request addPostValue:@(score) forKey:@"score"];
 	[request addPostValue:UUID forKey:@"UUID"];
 	[request addPostValue:levelPackPath forKey:@"levelPackPath"];
 	[request addPostValue:levelPath forKey:@"levelPath"];
@@ -156,7 +156,7 @@
 	// Oops, failed, let's see why
 	[request setFailedBlock:^{
 		if(onError) {
-			onError([request error]);
+			onError(request.error);
 		}
 	}];
 
@@ -180,7 +180,7 @@
 	
 	NSURL* url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@?action=%@", SERVER_URL, @"getWorldScores"]];
 	__block ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
-	[request setTimeOutSeconds:20];
+	request.timeOutSeconds = 20;
 
 	// Ah, success, parse the returned JSON data into a NSDictionary
 	[request setCompletionBlock:^{
@@ -203,7 +203,7 @@
 	// Oops, failed, let's see why
 	[request setFailedBlock:^{
 		if(onError) {
-			onError([request error]);
+			onError(request.error);
 		}
 	}];
 

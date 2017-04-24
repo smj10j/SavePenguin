@@ -38,7 +38,7 @@
 
 +(Penguin*) customClassInstance;
 
--(NSString*) className;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *className;
 
 -(void) setPropertiesFromDictionary:(NSDictionary*)dictionary;
 

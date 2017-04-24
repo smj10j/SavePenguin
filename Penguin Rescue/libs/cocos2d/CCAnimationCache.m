@@ -61,7 +61,7 @@ static CCAnimationCache *sharedAnimationCache_=nil;
 	sharedAnimationCache_ = nil;
 }
 
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init]) ) {
 		animations_ = [[NSMutableDictionary alloc] initWithCapacity: 20];
@@ -72,7 +72,7 @@ static CCAnimationCache *sharedAnimationCache_=nil;
 
 - (NSString*) description
 {
-	return [NSString stringWithFormat:@"<%@ = %p | num of animations =  %lu>", [self class], self, (unsigned long)[animations_ count]];
+	return [NSString stringWithFormat:@"<%@ = %p | num of animations =  %lu>", [self class], self, (unsigned long)animations_.count];
 }
 
 -(void) dealloc
@@ -87,7 +87,7 @@ static CCAnimationCache *sharedAnimationCache_=nil;
 
 -(void) addAnimation:(CCAnimation*)animation name:(NSString*)name
 {
-	[animations_ setObject:animation forKey:name];
+	animations_[name] = animation;
 }
 
 -(void) removeAnimationByName:(NSString*)name
@@ -100,20 +100,20 @@ static CCAnimationCache *sharedAnimationCache_=nil;
 
 -(CCAnimation*) animationByName:(NSString*)name
 {
-	return [animations_ objectForKey:name];
+	return animations_[name];
 }
 
 #pragma mark CCAnimationCache - from file
 
 -(void) parseVersion1:(NSDictionary*)animations
 {
-	NSArray* animationNames = [animations allKeys];
+	NSArray* animationNames = animations.allKeys;
 	CCSpriteFrameCache *frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
 
 	for( NSString *name in animationNames ) {
-		NSDictionary* animationDict = [animations objectForKey:name];
-		NSArray *frameNames = [animationDict objectForKey:@"frames"];
-		NSNumber *delay = [animationDict objectForKey:@"delay"];
+		NSDictionary* animationDict = animations[name];
+		NSArray *frameNames = animationDict[@"frames"];
+		NSNumber *delay = animationDict[@"delay"];
 		CCAnimation* animation = nil;
 		
 		if ( frameNames == nil ) {
@@ -121,7 +121,7 @@ static CCAnimationCache *sharedAnimationCache_=nil;
 			continue;
 		}
 		
-		NSMutableArray *frames = [NSMutableArray arrayWithCapacity:[frameNames count]];
+		NSMutableArray *frames = [NSMutableArray arrayWithCapacity:frameNames.count];
 		
 		for( NSString *frameName in frameNames ) {
 			CCSpriteFrame *spriteFrame = [frameCache spriteFrameByName:frameName];
@@ -137,14 +137,14 @@ static CCAnimationCache *sharedAnimationCache_=nil;
 			[animFrame release];
 		}
 		
-		if ( [frames count] == 0 ) {
+		if ( frames.count == 0 ) {
 			CCLOG(@"cocos2d: CCAnimationCache: None of the frames for animation '%@' were found in the CCSpriteFrameCache. Animation is not being added to the Animation Cache.", name);
 			continue;
-		} else if ( [frames count] != [frameNames count] ) {
+		} else if ( frames.count != frameNames.count ) {
 			CCLOG(@"cocos2d: CCAnimationCache: An animation in your dictionary refers to a frame which is not in the CCSpriteFrameCache. Some or all of the frames for the animation '%@' may be missing.", name);
 		}
 		
-		animation = [CCAnimation animationWithAnimationFrames:frames delayPerUnit:[delay floatValue] loops:1 ];
+		animation = [CCAnimation animationWithAnimationFrames:frames delayPerUnit:delay.floatValue loops:1 ];
 		
 		[[CCAnimationCache sharedAnimationCache] addAnimation:animation name:name];
 	}	
@@ -152,16 +152,16 @@ static CCAnimationCache *sharedAnimationCache_=nil;
 
 -(void) parseVersion2:(NSDictionary*)animations
 {
-	NSArray* animationNames = [animations allKeys];
+	NSArray* animationNames = animations.allKeys;
 	CCSpriteFrameCache *frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
 	
 	for( NSString *name in animationNames )
 	{
-		NSDictionary* animationDict = [animations objectForKey:name];
+		NSDictionary* animationDict = animations[name];
 
-		NSNumber *loops = [animationDict objectForKey:@"loops"];
-		BOOL restoreOriginalFrame = [[animationDict objectForKey:@"restoreOriginalFrame"] boolValue];
-		NSArray *frameArray = [animationDict objectForKey:@"frames"];
+		NSNumber *loops = animationDict[@"loops"];
+		BOOL restoreOriginalFrame = [animationDict[@"restoreOriginalFrame"] boolValue];
+		NSArray *frameArray = animationDict[@"frames"];
 		
 		
 		if ( frameArray == nil ) {
@@ -170,10 +170,10 @@ static CCAnimationCache *sharedAnimationCache_=nil;
 		}
 
 		// Array of AnimationFrames
-		NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:[frameArray count]];
+		NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:frameArray.count];
 
 		for( NSDictionary *entry in frameArray ) {
-			NSString *spriteFrameName = [entry objectForKey:@"spriteframe"];
+			NSString *spriteFrameName = entry[@"spriteframe"];
 			CCSpriteFrame *spriteFrame = [frameCache spriteFrameByName:spriteFrameName];
 			
 			if( ! spriteFrame ) {
@@ -182,8 +182,8 @@ static CCAnimationCache *sharedAnimationCache_=nil;
 				continue;
 			}
 
-			float delayUnits = [[entry objectForKey:@"delayUnits"] floatValue];
-			NSDictionary *userInfo = [entry objectForKey:@"notification"];
+			float delayUnits = [entry[@"delayUnits"] floatValue];
+			NSDictionary *userInfo = entry[@"notification"];
 			
 			CCAnimationFrame *animFrame = [[CCAnimationFrame alloc] initWithSpriteFrame:spriteFrame delayUnits:delayUnits userInfo:userInfo];
 			
@@ -191,11 +191,11 @@ static CCAnimationCache *sharedAnimationCache_=nil;
 			[animFrame release];
 		}
 		
-		float delayPerUnit = [[animationDict objectForKey:@"delayPerUnit"] floatValue];
-		CCAnimation *animation = [[CCAnimation alloc] initWithAnimationFrames:array delayPerUnit:delayPerUnit loops:(loops?[loops intValue]:1)];
+		float delayPerUnit = [animationDict[@"delayPerUnit"] floatValue];
+		CCAnimation *animation = [[CCAnimation alloc] initWithAnimationFrames:array delayPerUnit:delayPerUnit loops:(loops?loops.intValue:1)];
 		[array release];
 		
-		[animation setRestoreOriginalFrame:restoreOriginalFrame];
+		animation.restoreOriginalFrame = restoreOriginalFrame;
 				
 		[[CCAnimationCache sharedAnimationCache] addAnimation:animation name:name];
 		[animation release];
@@ -204,7 +204,7 @@ static CCAnimationCache *sharedAnimationCache_=nil;
 
 -(void)addAnimationsWithDictionary:(NSDictionary *)dictionary
 {
-	NSDictionary *animations = [dictionary objectForKey:@"animations"];
+	NSDictionary *animations = dictionary[@"animations"];
 
 	if ( animations == nil ) {
 		CCLOG(@"cocos2d: CCAnimationCache: No animations were found in provided dictionary.");
@@ -212,11 +212,11 @@ static CCAnimationCache *sharedAnimationCache_=nil;
 	}
 	
 	NSUInteger version = 1;
-	NSDictionary *properties = [dictionary objectForKey:@"properties"];
+	NSDictionary *properties = dictionary[@"properties"];
 	if( properties )
-		version = [[properties objectForKey:@"format"] intValue];
+		version = [properties[@"format"] intValue];
 	
-	NSArray *spritesheets = [properties objectForKey:@"spritesheets"];
+	NSArray *spritesheets = properties[@"spritesheets"];
 	for( NSString *name in spritesheets )
 		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:name];
 

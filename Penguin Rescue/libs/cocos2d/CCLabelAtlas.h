@@ -58,11 +58,11 @@
 +(id) labelWithString:(NSString*) string fntFile:(NSString*)fontFile;
 
 /** initializes the CCLabelAtlas with a string, a char map file(the atlas), the width and height in points of each element and the starting char of the atlas */
--(id) initWithString:(NSString*) string charMapFile: (NSString*) charmapfile itemWidth:(NSUInteger)w itemHeight:(NSUInteger)h startCharMap:(NSUInteger)firstElement;
+-(instancetype) initWithString:(NSString*) string charMapFile: (NSString*) charmapfile itemWidth:(NSUInteger)w itemHeight:(NSUInteger)h startCharMap:(NSUInteger)firstElement NS_DESIGNATED_INITIALIZER;
 
 /** initializes the CCLabelAtlas with a string and a configuration file
  @since v2.0
  */
--(id) initWithString:(NSString*) string fntFile:(NSString*)fontFile;
+-(instancetype) initWithString:(NSString*) string fntFile:(NSString*)fontFile;
 
 @end

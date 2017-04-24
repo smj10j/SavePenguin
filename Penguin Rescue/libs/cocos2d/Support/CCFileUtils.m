@@ -89,7 +89,7 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 
 @implementation CCCacheValue
 @synthesize fullpath = fullpath_, resolutionType = resolutionType_;
--(id) initWithFullPath:(NSString*)path resolutionType:(ccResolutionType)resolutionType
+-(instancetype) initWithFullPath:(NSString*)path resolutionType:(ccResolutionType)resolutionType
 {
 	if( (self=[super init]) )
 	{
@@ -113,7 +113,7 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 @interface CCFileUtils()
 -(NSString *) removeSuffix:(NSString*)suffix fromPath:(NSString*)path;
 -(BOOL) fileExistsAtPath:(NSString*)string withSuffix:(NSString*)suffix;
--(NSInteger) runningDevice;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSInteger runningDevice;
 @end
 
 @implementation CCFileUtils
@@ -130,7 +130,7 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 @synthesize macRetinaDisplaySuffix = macRetinaDisplaySuffix_;
 #endif // __CC_PLATFORM_IOS
 
-+ (id)sharedFileUtils
++ (CCFileUtils*)sharedFileUtils
 {
 	static dispatch_once_t pred;
 	static CCFileUtils *fileUtils = nil;
@@ -140,7 +140,7 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 	return fileUtils;
 }
 
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init])) {
 		fileManager_ = [[NSFileManager alloc] init];
@@ -205,23 +205,23 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 	NSString *newName = path;
 	
 	// only recreate filename if suffix is valid
-	if( suffix && [suffix length] > 0)
+	if( suffix && suffix.length > 0)
 	{
-		NSString *pathWithoutExtension = [path stringByDeletingPathExtension];
-		NSString *name = [pathWithoutExtension lastPathComponent];
+		NSString *pathWithoutExtension = path.stringByDeletingPathExtension;
+		NSString *name = pathWithoutExtension.lastPathComponent;
 
 		// check if path already has the suffix.
 		if( [name rangeOfString:suffix].location == NSNotFound ) {
 			
 
-			NSString *extension = [path pathExtension];
+			NSString *extension = path.pathExtension;
 
 			if( [extension isEqualToString:@"ccz"] || [extension isEqualToString:@"gz"] )
 			{
 				// All ccz / gz files should be in the format filename.xxx.ccz
 				// so we need to pull off the .xxx part of the extension as well
-				extension = [NSString stringWithFormat:@"%@.%@", [pathWithoutExtension pathExtension], extension];
-				pathWithoutExtension = [pathWithoutExtension stringByDeletingPathExtension];
+				extension = [NSString stringWithFormat:@"%@.%@", pathWithoutExtension.pathExtension, extension];
+				pathWithoutExtension = pathWithoutExtension.stringByDeletingPathExtension;
 			}
 
 
@@ -233,13 +233,13 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 
 	NSString *ret = nil;
 	// only if it is not an absolute path
-	if( ! [path isAbsolutePath] ) {
+	if( ! path.absolutePath ) {
 		
 		// pathForResource also searches in .lproj directories. issue #1230
-		NSString *imageDirectory = [path stringByDeletingLastPathComponent];
+		NSString *imageDirectory = path.stringByDeletingLastPathComponent;
 		
 		// If the file does not exist it will return nil.
-		ret = [self pathForResource:[newName lastPathComponent]
+		ret = [self pathForResource:newName.lastPathComponent
 												   ofType:nil
 											  inDirectory:imageDirectory];
 	}
@@ -256,7 +256,7 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 {
 	NSAssert(relPath != nil, @"CCFileUtils: Invalid path");
 
-	CCCacheValue *value = [fullPathCache_ objectForKey:relPath];
+	CCCacheValue *value = fullPathCache_[relPath];
 	if( value ) {
 		*resolutionType = value.resolutionType;
 		return value.fullpath;
@@ -321,7 +321,7 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 	}
 		
 	value = [[CCCacheValue alloc] initWithFullPath:ret resolutionType:*resolutionType];
-	[fullPathCache_ setObject:value forKey:relPath];
+	fullPathCache_[relPath] = value;
 	[value release];
 	
 	return ret;
@@ -370,10 +370,10 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 -(NSString *) removeSuffix:(NSString*)suffix fromPath:(NSString*)path
 {
 	// quick return
-	if( ! suffix || [suffix length] == 0 )
+	if( ! suffix || suffix.length == 0 )
 		return path;
 	
-	NSString *name = [path lastPathComponent];
+	NSString *name = path.lastPathComponent;
 	
 	// check if path already has the suffix.
 	if( [name rangeOfString:suffix].location != NSNotFound ) {
@@ -382,7 +382,7 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 		
 		NSString *newLastname = [name stringByReplacingOccurrencesOfString:suffix withString:@""];
 		
-		NSString *pathWithoutLastname = [path stringByDeletingLastPathComponent];
+		NSString *pathWithoutLastname = path.stringByDeletingLastPathComponent;
 		return [pathWithoutLastname stringByAppendingPathComponent:newLastname];
 	}
 	
@@ -392,7 +392,7 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 
 -(NSString*) removeSuffixFromFile:(NSString*) path
 {
-	NSString *withoutSuffix = [removeSuffixCache_ objectForKey:path];
+	NSString *withoutSuffix = removeSuffixCache_[path];
 	if( withoutSuffix )
 		return withoutSuffix;
 	
@@ -424,7 +424,7 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 #endif // __CC_PLATFORM_MAC
 	
 	if( ret )
-		[removeSuffixCache_ setObject:ret forKey:path];
+		removeSuffixCache_[path] = ret;
 	
 	return ret;
 }
@@ -434,10 +434,10 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 	NSString *fullpath = nil;
 	
 	// only if it is not an absolute path
-	if( ! [relPath isAbsolutePath] ) {
+	if( ! relPath.absolutePath ) {
 		// pathForResource also searches in .lproj directories. issue #1230
-		NSString *file = [relPath lastPathComponent];
-		NSString *imageDirectory = [relPath stringByDeletingLastPathComponent];
+		NSString *file = relPath.lastPathComponent;
+		NSString *imageDirectory = relPath.stringByDeletingLastPathComponent;
 		
 		fullpath = [bundle_ pathForResource:file
 									 ofType:nil

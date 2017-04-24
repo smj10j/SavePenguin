@@ -37,7 +37,7 @@
 @synthesize validProduct;
 
 
--(id)init {
+-(instancetype)init {
 	if(self = [super init]) {
 		productRequests = [[NSMutableArray alloc] init];
 	}
@@ -148,10 +148,10 @@
     	
 	// Parse the received product info.
 	self.validProduct = nil;
-	int count = [response.products count];
+	int count = (response.products).count;
 	if (count>0) {
         // Grab the first product in the array.
-		self.validProduct = [response.products objectAtIndex:0];
+		self.validProduct = (response.products)[0];
 	}
 	if (self.validProduct) {
         // Yes, product is available, so return values.
@@ -240,7 +240,7 @@
     
     NSLog(@"EBPurchase paymentQueueRestoreCompletedTransactionsFinished");
     
-    if ([queue.transactions count] == 0) {
+    if ((queue.transactions).count == 0) {
         // Queue does not include any transactions, so either user has not yet made a purchase
         // or the user's prior purchase is unavailable, so notify app (and user) accordingly.
         

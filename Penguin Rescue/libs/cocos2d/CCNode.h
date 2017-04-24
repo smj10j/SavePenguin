@@ -292,9 +292,9 @@ enum {
 /** allocates and initializes a node.
  The node will be created as "autorelease".
  */
-+(id) node;
++(instancetype) node;
 /** initializes the node */
--(id) init;
+-(instancetype) init;
 
 
 // scene management
@@ -421,7 +421,7 @@ enum {
 
  @since v0.8.2
  */
-- (CGRect) boundingBox;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGRect boundingBox;
 
 // actions
 
@@ -450,7 +450,7 @@ enum {
  *    If you are running 1 Sequence of 7 actions, it will return 1.
  *    If you are running 7 Sequences of 2 actions, it will return 7.
  */
--(NSUInteger) numberOfRunningActions;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger numberOfRunningActions;
 
 // timers
 
@@ -529,20 +529,20 @@ enum {
  The matrix is in Pixels.
  @since v0.7.1
  */
-- (CGAffineTransform)nodeToParentTransform;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGAffineTransform nodeToParentTransform;
 /** Returns the matrix that transform parent's space coordinates to the node's (local) space coordinates.
  The matrix is in Pixels.
  @since v0.7.1
  */
-- (CGAffineTransform)parentToNodeTransform;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGAffineTransform parentToNodeTransform;
 /** Returns the world affine transform matrix. The matrix is in Pixels.
  @since v0.7.1
  */
-- (CGAffineTransform)nodeToWorldTransform;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGAffineTransform nodeToWorldTransform;
 /** Returns the inverse world affine transform matrix. The matrix is in Pixels.
  @since v0.7.1
  */
-- (CGAffineTransform)worldToNodeTransform;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGAffineTransform worldToNodeTransform;
 /** Converts a Point to node (local) space coordinates. The result is in Points.
  @since v0.7.1
  */

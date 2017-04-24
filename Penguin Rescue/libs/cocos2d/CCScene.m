@@ -31,13 +31,13 @@
 
 
 @implementation CCScene
--(id) init
+-(instancetype) init
 {
 	if( (self=[super init]) ) {
 		CGSize s = [[CCDirector sharedDirector] winSize];
 		self.ignoreAnchorPointForPosition = YES;
 		anchorPoint_ = ccp(0.5f, 0.5f);
-		[self setContentSize:s];
+		self.contentSize = s;
 	}
 
 	return self;

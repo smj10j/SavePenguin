@@ -38,19 +38,17 @@
 /** sets Color
  @since v0.8
  */
--(void) setColor:(ccColor3B)color;
 /** returns the color
  @since v0.8
  */
--(ccColor3B) color;
+@property (NS_NONATOMIC_IOSONLY) ccColor3B color;
 
 /// returns the opacity
--(GLubyte) opacity;
+@property (NS_NONATOMIC_IOSONLY) GLubyte opacity;
 /** sets the opacity.
  @warning If the the texture has premultiplied alpha then, the R, G and B channels will be modified.
  Values goes from 0 to 255, where 255 means fully opaque.
  */
--(void) setOpacity: (GLubyte) opacity;
 @optional
 /** sets the premultipliedAlphaOpacity property.
  If set to NO then opacity will be applied as: glColor(R,G,B,opacity);
@@ -62,7 +60,7 @@
 /** returns whether or not the opacity will be applied using glColor(R,G,B,opacity) or glColor(opacity, opacity, opacity, opacity);
  @since v0.8
  */
- -(BOOL) doesOpacityModifyRGB;
+ @property (NS_NONATOMIC_IOSONLY, readonly) BOOL doesOpacityModifyRGB;
 @end
 
 #pragma mark -
@@ -73,9 +71,8 @@
  */
 @protocol CCBlendProtocol <NSObject>
 /** set the source blending function for the texture */
--(void) setBlendFunc:(ccBlendFunc)blendFunc;
 /** returns the blending function used for the texture */
--(ccBlendFunc) blendFunc;
+@property (NS_NONATOMIC_IOSONLY) ccBlendFunc blendFunc;
 @end
 
 
@@ -93,9 +90,8 @@
  */
 @protocol CCTextureProtocol <CCBlendProtocol>
 /** returns the used texture */
--(CCTexture2D*) texture;
+@property (NS_NONATOMIC_IOSONLY, strong) CCTexture2D *texture;
 /** sets a new texture. it will be retained */
--(void) setTexture:(CCTexture2D*)texture;
 @end
 
 #pragma mark -
@@ -105,9 +101,8 @@
 /** sets a new label using an NSString.
  The string will be copied.
  */
--(void) setString:(NSString*)label;
 /** returns the string that is rendered */
--(NSString*) string;
+@property (NS_NONATOMIC_IOSONLY, copy) NSString *string;
 @optional
 /** sets a new label using a CString.
  It is faster than setString since it doesn't require to alloc/retain/release an NString object.

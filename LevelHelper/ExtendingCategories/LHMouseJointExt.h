@@ -33,15 +33,15 @@
 
 -(bool) isBodyTouched:(b2Body*)body touchPoint:(CGPoint)point;
 
--(b2Body*) bodyWithTag:(enum LevelHelper_TAG)tag touchedAtPoint:(CGPoint*)point withFingerSize:(int)size;
--(b2Body*) bodyWithTag:(enum LevelHelper_TAG)tag touchedAtPoint:(CGPoint)point;
+-(b2Body*) bodyWithTag:(enum LevelHelper_TAG)tag touchedAtPoint:(CGPoint*)point withFingerSize:(int)size NS_RETURNS_INNER_POINTER;
+-(b2Body*) bodyWithTag:(enum LevelHelper_TAG)tag touchedAtPoint:(CGPoint)point NS_RETURNS_INNER_POINTER;
 -(bool) isBodyWithUniqueNameTouched:(NSString*)name touchPoint:(CGPoint)point; 
--(b2Body*) bodyWithUniqueName:name touchedAtPoint:(CGPoint*)point withFingerSize:(int)size;
+-(b2Body*) bodyWithUniqueName:name touchedAtPoint:(CGPoint*)point withFingerSize:(int)size NS_RETURNS_INNER_POINTER;
 
--(b2MouseJoint*) mouseJointForBodyA:(b2Body*)wb_Body bodyB:(b2Body*)ourBody touchPoint:(CGPoint)point;
--(b2MouseJoint*) mouseJointForBody:(b2Body*)body touchPoint:(CGPoint)point;
+-(b2MouseJoint*) mouseJointForBodyA:(b2Body*)wb_Body bodyB:(b2Body*)ourBody touchPoint:(CGPoint)point NS_RETURNS_INNER_POINTER;
+-(b2MouseJoint*) mouseJointForBody:(b2Body*)body touchPoint:(CGPoint)point NS_RETURNS_INNER_POINTER;
 -(b2MouseJoint*) mouseJointForBodyWithUniqueName:(NSString*)name 
-                                      touchPoint:(CGPoint)point;
+                                      touchPoint:(CGPoint)point NS_RETURNS_INNER_POINTER;
 
 -(void) setTarget:(CGPoint)point onMouseJoint:(b2MouseJoint*)mouseJoint;
 

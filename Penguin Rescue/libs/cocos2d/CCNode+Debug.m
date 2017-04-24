@@ -47,7 +47,7 @@
 		// draw children zOrder < 0
 		for( ; i < arrayData->num; i++ ) {
 			CCNode *child = arrayData->arr[i];
-			if ( [child zOrder] < 0 )
+			if ( child.zOrder < 0 )
 				[child walkSceneGraph:level+1];
 			else
 				break;

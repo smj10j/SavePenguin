@@ -21,20 +21,20 @@
 {
 #pragma unused(offset)
     
-    float ptm = [[LHSettings sharedInstance] lhPtmRatio];
+    float ptm = [LHSettings sharedInstance].lhPtmRatio;
     
-    int flipx = [sprite flipX] ? -1.f : 1.f;
-    int flipy = [sprite flipY] ? -1.f : 1.f;    
+    int flipx = sprite.flipX ? -1.f : 1.f;
+    int flipy = sprite.flipY ? -1.f : 1.f;    
 
     point.x *= scale.x*flipx;
     point.y *= scale.y*flipy;
 
-    if([sprite usesUVTransformation] &&
+    if(sprite.usesUVTransformation &&
        [[LHSettings sharedInstance] isHDImage:[sprite imageFile]]){
         point.x *=2.0f;
         point.y *=2.0f;
     }
-    else if(![sprite usesUVTransformation])
+    else if(!sprite.usesUVTransformation)
     {
         point.x /=CC_CONTENT_SCALE_FACTOR();
         point.y /=CC_CONTENT_SCALE_FACTOR();
@@ -44,7 +44,7 @@
 }
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
--(id)initWithDictionary:(NSDictionary*)dictionary 
+-(instancetype)initWithDictionary:(NSDictionary*)dictionary 
                    body:(b2Body*)body
                     sprite:(LHSprite*)sprite{
 
@@ -69,17 +69,17 @@
         float width = [dictionary floatForKey:@"LHWidth"];
         float height= [dictionary floatForKey:@"LHHeight"];
         
-        NSArray* fixturePoints = [dictionary objectForKey:@"Fixture"];
+        NSArray* fixturePoints = dictionary[@"Fixture"];
         
-        float ptm = [[LHSettings sharedInstance] lhPtmRatio];
+        float ptm = [LHSettings sharedInstance].lhPtmRatio;
         
         CGPoint scale = ccp(sprite.scaleX,sprite.scaleY);
-        int flipx = [sprite flipX] ? -1 : 1;
-        int flipy = [sprite flipY] ? -1 : 1;
+        int flipx = sprite.flipX ? -1 : 1;
+        int flipy = sprite.flipY ? -1 : 1;
 
-        if([fixturePoints count] > 0)
+        if(fixturePoints.count > 0)
         {
-            if(![[fixturePoints objectAtIndex:0] isKindOfClass:[NSArray class]])
+            if(![fixturePoints[0] isKindOfClass:[NSArray class]])
             {
                 NSLog(@"ERROR: Please update to SpriteHelper 1.8.x and resave all your scenes. Body will be created without a shape.");
                 
@@ -87,7 +87,7 @@
             }
         }
         
-        if([fixturePoints count] > 0 && [(NSArray*)[fixturePoints objectAtIndex:0] count] > 0)
+        if(fixturePoints.count > 0 && ((NSArray*)fixturePoints[0]).count > 0)
         {
             for(NSArray* fixInfo in fixturePoints)
             {
@@ -96,7 +96,7 @@
                     NSLog(@"ERROR: Please update to SpriteHelper 1.8.1 and resave all your scenes. Body will be created without a shape.");
                     break;
                 }
-                int count = (int)[fixInfo count];
+                int count = (int)fixInfo.count;
                 b2Vec2 *verts = new b2Vec2[count];
                 b2PolygonShape shapeDef;
                 int i = 0;            
@@ -105,7 +105,7 @@
                 {
                     const int idx = (flipx < 0 && flipy >= 0) || (flipx >= 0 && flipy < 0) ? count - i - 1 : i;
                     
-                    CGPoint point = LHPointFromString([fixInfo objectAtIndex:(NSUInteger)j]);
+                    CGPoint point = LHPointFromString(fixInfo[(NSUInteger)j]);
                     verts[idx] = [self transformPoint:point sprite:sprite offset:offset scale:scale];
                     
                     ++i;
@@ -164,13 +164,13 @@
             //------------------------------------------------------------------            
             
             CGPoint origin = ccp(offset.x*scale.x*flipx,  -offset.y*scale.y*flipy);
-            if([sprite usesUVTransformation] &&
+            if(sprite.usesUVTransformation &&
                [[LHSettings sharedInstance] isHDImage:[sprite imageFile]])
             {
                 origin.x *=2.0f;
                 origin.y *=2.0f;
             }
-            else if(![sprite usesUVTransformation])
+            else if(!sprite.usesUVTransformation)
             {
                 origin.x /=CC_CONTENT_SCALE_FACTOR();
                 origin.y /=CC_CONTENT_SCALE_FACTOR();
@@ -178,10 +178,10 @@
             
             if(isCircle)
             {
-                if([[LHSettings sharedInstance] convertLevel]){
+                if([LHSettings sharedInstance].convertLevel){
                     //circle look weird if we dont do this
-                    float scaleSpr = [sprite scaleX];
-                    [sprite setScaleY:scaleSpr];
+                    float scaleSpr = sprite.scaleX;
+                    sprite.scaleY = scaleSpr;
                 }
                 
                 float circleScale = scale.x; //if we dont do this we dont have collision
@@ -190,7 +190,7 @@
                 
                 float radius = (width*circleScale)/ptm;
                 
-                if(![sprite usesUVTransformation])
+                if(!sprite.usesUVTransformation)
                 {
                     radius = width/CC_CONTENT_SCALE_FACTOR()/ptm;
                 }
@@ -237,7 +237,7 @@
     }
     return self;
 }
-+(id)fixtureWithDictionary:(NSDictionary*)dictionary 
++(instancetype)fixtureWithDictionary:(NSDictionary*)dictionary 
                       body:(b2Body*)body                     
                     sprite:(LHSprite*)sprite
 {

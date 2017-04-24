@@ -56,23 +56,23 @@
  target/selector will be implemented using blocks.
  "target" won't be retained.
  */
-+(id) itemWithTarget:(id)target selector:(SEL)selector;
++(instancetype) itemWithTarget:(id)target selector:(SEL)selector;
 
 /** Creates a CCMenuItem with the specified block.
  The block will be "copied".
  */
-+(id) itemWithBlock:(void(^)(id sender))block;
++(instancetype) itemWithBlock:(void(^)(id sender))block;
 
 /** Initializes a CCMenuItem with a target/selector */
--(id) initWithTarget:(id)target selector:(SEL)selector;
+-(instancetype) initWithTarget:(id)target selector:(SEL)selector;
 
 /** Initializes a CCMenuItem with the specified block.
  The block will be "copied".
 */
--(id) initWithBlock:(void(^)(id sender))block;
+-(instancetype) initWithBlock:(void(^)(id sender))block NS_DESIGNATED_INITIALIZER;
 
 /** Returns the outside box in points */
--(CGRect) rect;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGRect rect;
 
 /** Activate the item */
 -(void) activate;
@@ -84,10 +84,9 @@
 -(void) unselected;
 
 /** Enable or disabled the CCMenuItem */
--(void) setIsEnabled:(BOOL)enabled;
 
 /** Returns whether or not the CCMenuItem is enabled */
--(BOOL) isEnabled;
+@property (NS_NONATOMIC_IOSONLY) BOOL isEnabled;
 
 /** Sets the block that is called when the item is tapped.
  The block will be "copied".
@@ -146,13 +145,13 @@
  Internally it will create a block that executes the target/selector.
  The "target" won't be retained.
  */
--(id) initWithLabel:(CCNode<CCLabelProtocol,CCRGBAProtocol>*)label target:(id)target selector:(SEL)selector;
+-(instancetype) initWithLabel:(CCNode<CCLabelProtocol,CCRGBAProtocol>*)label target:(id)target selector:(SEL)selector;
 
 /** initializes a CCMenuItemLabel with a Label and a block to execute.
  The block will be "copied".
  This is the designated initializer.
  */
--(id) initWithLabel:(CCNode<CCLabelProtocol,CCRGBAProtocol>*)label block:(void(^)(id sender))block;
+-(instancetype) initWithLabel:(CCNode<CCLabelProtocol,CCRGBAProtocol>*)label block:(void(^)(id sender))block;
 
 /** sets a new string to the inner label */
 -(void) setString:(NSString*)label;
@@ -184,7 +183,7 @@
 /** initializes a menu item from a string and atlas with a target/selector.
   The "target" won't be retained.
  */
--(id) initWithString: (NSString*) value charMapFile:(NSString*) charMapFile itemWidth:(int)itemWidth itemHeight:(int)itemHeight startCharMap:(char)startCharMap target:(id)target selector:(SEL)selector;
+-(instancetype) initWithString: (NSString*) value charMapFile:(NSString*) charMapFile itemWidth:(int)itemWidth itemHeight:(int)itemHeight startCharMap:(char)startCharMap target:(id)target selector:(SEL)selector;
 
 /** creates a menu item from a string and atlas. Use it with CCMenuItemToggle.
  The block will be "copied".
@@ -194,7 +193,7 @@
 /** initializes a menu item from a string and atlas with a  block.
  The block will be "copied".
  */
--(id) initWithString: (NSString*) value charMapFile:(NSString*) charMapFile itemWidth:(int)itemWidth itemHeight:(int)itemHeight startCharMap:(char)startCharMap block:(void(^)(id sender))block;
+-(instancetype) initWithString: (NSString*) value charMapFile:(NSString*) charMapFile itemWidth:(int)itemWidth itemHeight:(int)itemHeight startCharMap:(char)startCharMap block:(void(^)(id sender))block;
 
 @end
 
@@ -237,24 +236,22 @@
 /** initializes a menu item from a string with a target/selector
   The "target" won't be retained.
  */
--(id) initWithString: (NSString*) value target:(id) r selector:(SEL) s;
+-(instancetype) initWithString: (NSString*) value target:(id) r selector:(SEL) s;
 
 /** set font size */
--(void) setFontSize: (NSUInteger) s;
 
 /** get font size */
--(NSUInteger) fontSize;
+@property (NS_NONATOMIC_IOSONLY) NSUInteger fontSize;
 
 /** set the font name */
--(void) setFontName: (NSString*) n;
 
 /** get the font name */
--(NSString*) fontName;
+@property (NS_NONATOMIC_IOSONLY, copy) NSString *fontName;
 
 /** initializes a menu item from a string with the specified block.
  The block will be "copied".
  */
--(id) initWithString: (NSString*) value block:(void(^)(id sender))block;
+-(instancetype) initWithString: (NSString*) value block:(void(^)(id sender))block NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -284,36 +281,36 @@
 @property (nonatomic,readwrite,assign) CCNode<CCRGBAProtocol> *disabledImage;
 
 /** creates a menu item with a normal and selected image*/
-+(id) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite;
++(instancetype) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite;
 /** creates a menu item with a normal and selected image with target/selector.
  The "target" won't be retained.
  */
-+(id) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite target:(id)target selector:(SEL)selector;
++(instancetype) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite target:(id)target selector:(SEL)selector;
 
 /** creates a menu item with a normal, selected and disabled image with target/selector.
  The "target" won't be retained.
  */
-+(id) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite target:(id)target selector:(SEL)selector;
++(instancetype) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite target:(id)target selector:(SEL)selector;
 
 /** creates a menu item with a normal and selected image with a block.
  The block will be "copied".
  */
-+(id) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite block:(void(^)(id sender))block;
++(instancetype) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite block:(void(^)(id sender))block;
 
 /** creates a menu item with a normal, selected and disabled image with a block.
  The block will be "copied".
  */
-+(id) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite block:(void(^)(id sender))block;
++(instancetype) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite block:(void(^)(id sender))block;
 
 /** initializes a menu item with a normal, selected  and disabled image with target/selector.
  The "target" won't be retained.
  */
--(id) initWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite target:(id)target selector:(SEL)selector;
+-(instancetype) initWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite target:(id)target selector:(SEL)selector;
 
 /** initializes a menu item with a normal, selected  and disabled image with a block.
  The block will be "copied".
  */
--(id) initWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite block:(void(^)(id sender))block;
+-(instancetype) initWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite block:(void(^)(id sender))block NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -359,12 +356,12 @@
 /** initializes a menu item with a normal, selected  and disabled image with target/selector.
  The "target" won't be retained.
  */
--(id) initWithNormalImage: (NSString*) value selectedImage:(NSString*)value2 disabledImage:(NSString*) value3 target:(id) r selector:(SEL) s;
+-(instancetype) initWithNormalImage: (NSString*) value selectedImage:(NSString*)value2 disabledImage:(NSString*) value3 target:(id) r selector:(SEL) s;
 
 /** initializes a menu item with a normal, selected  and disabled image with a block.
  The block will be "copied".
 */
--(id) initWithNormalImage: (NSString*) value selectedImage:(NSString*)value2 disabledImage:(NSString*) value3 block:(void(^)(id sender))block;
+-(instancetype) initWithNormalImage: (NSString*) value selectedImage:(NSString*)value2 disabledImage:(NSString*) value3 block:(void(^)(id sender))block NS_DESIGNATED_INITIALIZER;
 
 /** sets the sprite frame for the normal image */
 - (void) setNormalSpriteFrame:(CCSpriteFrame*)frame;
@@ -420,9 +417,9 @@
 /** initializes a menu item from a list of items with a block.
  The block will be "copied".
  */
--(id) initWithItems:(NSArray*)arrayOfItems block:(void (^)(id))block;
+-(instancetype) initWithItems:(NSArray*)arrayOfItems block:(void (^)(id))block NS_DESIGNATED_INITIALIZER;
 
 /** return the selected item */
--(CCMenuItem*) selectedItem;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) CCMenuItem *selectedItem;
 @end
 

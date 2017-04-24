@@ -69,12 +69,12 @@
 /*
  * creation with CCTexture2D
  */
-+(id)batchNodeWithTexture:(CCTexture2D *)tex
++(instancetype)batchNodeWithTexture:(CCTexture2D *)tex
 {
 	return [[[self alloc] initWithTexture:tex capacity:kCCParticleDefaultCapacity] autorelease];
 }
 
-+(id)batchNodeWithTexture:(CCTexture2D *)tex capacity:(NSUInteger) capacity
++(instancetype)batchNodeWithTexture:(CCTexture2D *)tex capacity:(NSUInteger) capacity
 {
 	return [[[self alloc] initWithTexture:tex capacity:capacity] autorelease];
 }
@@ -82,12 +82,12 @@
 /*
  * creation with File Image
  */
-+(id)batchNodeWithFile:(NSString*)fileImage capacity:(NSUInteger)capacity
++(instancetype)batchNodeWithFile:(NSString*)fileImage capacity:(NSUInteger)capacity
 {
 	return [[[self alloc] initWithFile:fileImage capacity:capacity] autorelease];
 }
 
-+(id)batchNodeWithFile:(NSString*) imageFile
++(instancetype)batchNodeWithFile:(NSString*) imageFile
 {
 	return [[[self alloc] initWithFile:imageFile capacity:kCCParticleDefaultCapacity] autorelease];
 }
@@ -95,7 +95,7 @@
 /*
  * init with CCTexture2D
  */
--(id)initWithTexture:(CCTexture2D *)tex capacity:(NSUInteger)capacity
+-(instancetype)initWithTexture:(CCTexture2D *)tex capacity:(NSUInteger)capacity
 {
 	if (self = [super init])
 	{
@@ -116,7 +116,7 @@
 /*
  * init with FileImage
  */
--(id)initWithFile:(NSString *)fileImage capacity:(NSUInteger)capacity
+-(instancetype)initWithFile:(NSString *)fileImage capacity:(NSUInteger)capacity
 {
 	CCTexture2D *tex = [[CCTextureCache sharedTextureCache] addImage:fileImage];
 	return [self initWithTexture:tex capacity:capacity];
@@ -175,7 +175,7 @@
 
 	// If this is the 1st children, then copy blending function
 	if( [children_ count] == 0 )
-		blendFunc_ = [child blendFunc];
+		blendFunc_ = child.blendFunc;
 
 	NSAssert( blendFunc_.src  == child.blendFunc.src && blendFunc_.dst  == child.blendFunc.dst, @"Can't add a PaticleSystem that uses a differnt blending function");
 
@@ -193,7 +193,7 @@
 	[self insertChild:child inAtlasAtIndex:atlasIndex];
 
 	// update quad info
-	[child setBatchNode:self];
+	child.batchNode = self;
 }
 
 // don't use lazy sorting, reordering the particle systems quads afterwards would be too complex
@@ -216,7 +216,7 @@
 	child.tag = aTag;
 	[child _setZOrder:z];
 
-	[child setParent: self];
+	child.parent = self;
 
 	if( isRunning_ ) {
 		[child onEnter];
@@ -260,7 +260,7 @@
 			for( NSUInteger i=0;i < [children_ count];i++) {
 				CCParticleSystem *node = [children_ objectAtIndex:i];
 				if( node == child ) {
-					newAtlasIndex = [child atlasIndex];
+					newAtlasIndex = child.atlasIndex;
 					break;
 				}
 			}
@@ -447,7 +447,7 @@
 
 -(void) updateBlendFunc
 {
-	if( ! [textureAtlas_.texture hasPremultipliedAlpha] ) {
+	if( ! (textureAtlas_.texture).hasPremultipliedAlpha ) {
 		blendFunc_.src = GL_SRC_ALPHA;
 		blendFunc_.dst = GL_ONE_MINUS_SRC_ALPHA;
 	}
@@ -458,7 +458,7 @@
 	textureAtlas_.texture = texture;
 
 	// If the new texture has No premultiplied alpha, AND the blendFunc hasn't been changed, then update it
-	if( texture && ! [texture hasPremultipliedAlpha] && ( blendFunc_.src == CC_BLEND_SRC && blendFunc_.dst == CC_BLEND_DST ) )
+	if( texture && ! texture.hasPremultipliedAlpha && ( blendFunc_.src == CC_BLEND_SRC && blendFunc_.dst == CC_BLEND_DST ) )
 	{
 			blendFunc_.src = GL_SRC_ALPHA;
 			blendFunc_.dst = GL_ONE_MINUS_SRC_ALPHA;
