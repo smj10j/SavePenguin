@@ -1894,8 +1894,6 @@
 				AA4C8D981637DB5700C55554 /* Spritesheet_Menu-ipadhd.png in Resources */,
 				AA4C8D991637DB5700C55554 /* Spritesheet_Menu.png in Resources */,
 				AAD7B660163C34BB00B02521 /* sounds in Resources */,
-				AAC6E5721640071300FD549F /* CHANGELOG.md in Resources */,
-				AAC6E5741640071300FD549F /* README.md in Resources */,
 				AA92139E1642EB13008BAA08 /* Default-568h@2x.png in Resources */,
 				AA92139F1642EB13008BAA08 /* Default-Landscape@2x~ipad.png in Resources */,
 				AA9213A01642EB13008BAA08 /* Default-Landscape~ipad.png in Resources */,
@@ -1913,8 +1911,6 @@
 				AA27286116444A2E00297CE4 /* Spritesheet_MenuBackgrounds1-ipadhd.png in Resources */,
 				AA27286216444A2E00297CE4 /* Spritesheet_MenuBackgrounds1.png in Resources */,
 				AA85A5A9164FAB4D006929A1 /* particles in Resources */,
-				AACD32BF16523AC8009AFD99 /* README.md in Resources */,
-				AACD32C016523AC8009AFD99 /* release_notes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2199,7 +2195,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2234,7 +2230,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2243,7 +2239,7 @@
 		AA54C8D1162BB27E00DF56D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Penguin Rescue/Penguin Rescue.entitlements";
@@ -2259,22 +2255,22 @@
 					"CC_ENABLE_BOX2D_INTEGRATION=1",
 					DEBUG,
 					"COCOS2D_DEBUG=1",
+					GLES_SILENCE_DEPRECATION,
 				);
-				HEADER_SEARCH_PATHS = "\"Penguin Rescue/libs/kazmath/include\"";
+				HEADER_SEARCH_PATHS = (
+					"\"Penguin Rescue/libs/kazmath/include\"",
+					"\"Penguin Rescue/libs\"",
+				);
 				INFOPLIST_FILE = "Penguin Rescue/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Penguin Rescue/libs/Flurry iPhone SDK v4.0.6/Flurry\"",
-					"\"$(SRCROOT)/Penguin Rescue/libs/Flurry iPhone SDK v4.0.6/FlurryAds\"",
-					"\"$(SRCROOT)/Penguin Rescue/libs/TestFlightSDK1.1\"",
-					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry\\ iPhone\\ SDK\\ v4.0.6/Flurry",
-					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry",
-					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry",
-					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry",
-					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/TestFlightSDK1.1",
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wno-c++11-narrowing",
+				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
@@ -2284,7 +2280,6 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				USER_HEADER_SEARCH_PATHS = "\"Penguin Rescue/libs\"";
-				VALID_ARCHS = "armv7 armv7s armv6 arm64 i386 x64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2292,7 +2287,7 @@
 		AA54C8D2162BB27E00DF56D0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Penguin Rescue/Penguin Rescue.entitlements";
@@ -2307,20 +2302,20 @@
 					"CC_ENABLE_BOX2D_INTEGRATION=1",
 					NDEBUG,
 					"NS_BLOCK_ASSERTIONS=1",
+					GLES_SILENCE_DEPRECATION,
 				);
-				HEADER_SEARCH_PATHS = "\"Penguin Rescue/libs/kazmath/include\"";
+				HEADER_SEARCH_PATHS = (
+					"\"Penguin Rescue/libs/kazmath/include\"",
+					"\"Penguin Rescue/libs\"",
+				);
 				INFOPLIST_FILE = "Penguin Rescue/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Penguin Rescue/libs/Flurry iPhone SDK v4.0.6/Flurry\"",
-					"\"$(SRCROOT)/Penguin Rescue/libs/Flurry iPhone SDK v4.0.6/FlurryAds\"",
-					"\"$(SRCROOT)/Penguin Rescue/libs/TestFlightSDK1.1\"",
-					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry\\ iPhone\\ SDK\\ v4.0.6/Flurry",
-					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry",
-					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry",
-					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/Flurry",
-					"$(PROJECT_DIR)/Penguin\\ Rescue/libs/TestFlightSDK1.1",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wno-c++11-narrowing",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -2332,7 +2327,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				USER_HEADER_SEARCH_PATHS = "\"Penguin Rescue/libs\"";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 armv7s armv6 arm64 i386 x64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -55,15 +55,15 @@
 }
 +(bool)boolForKey:(NSString*)key {
 	id value = [self objectForKey:key];
-	return value == nil ? nil : ((NSNumber*)value).boolValue;
+	return value == nil ? false : ((NSNumber*)value).boolValue;
 }
 +(int)intForKey:(NSString*)key {
 	id value = [self objectForKey:key];
-	return value == nil ? nil :  ((NSNumber*)value).intValue;
+	return value == nil ? 0 : ((NSNumber*)value).intValue;
 }
 +(double)doubleForKey:(NSString*)key {
 	id value = [self objectForKey:key];
-	return value == nil ? nil :  ((NSNumber*)value).doubleValue;
+	return value == nil ? 0.0 : ((NSNumber*)value).doubleValue;
 }
 
 
