@@ -1,0 +1,7 @@
+name = "savepenguin"
+pages_build_output_dir = "web/dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "savepenguin-db"
+database_id = "0bb65740-525a-4a72-a042-b667dc076790"

@@ -31,8 +31,8 @@
 
 
 
-#define SERVER_HOST @"api.SavePenguin.com"
-#define SERVER_PATH @"/server.php"
-#define SERVER_URL [NSString stringWithFormat:@"http://%@%@", SERVER_HOST, SERVER_PATH]
+#define SERVER_HOST @"savepenguin.pages.dev"
+#define SERVER_PATH @"/server"
+#define SERVER_URL [NSString stringWithFormat:@"https://%@%@", SERVER_HOST, SERVER_PATH]
 
 
